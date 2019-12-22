@@ -431,3 +431,289 @@ The following Java types can implement interfaces:
 - Java Enum
 - Java Dynamic Proxy
 
+**Interface Variables**
+
+A Java interface can contain both variables and constants. However, often it does not makes sense to place variables in an interface. In some cases it can make sense to define constants in an interface. Especially if those constants are to be used by the classes implementing the interface, e.g. in calculations, or as parameters to some of the methods in the interface. However, my advice to you is to avoid placing variables in Java interfaces if you can.
+
+All variables in an interface are public, even if you leave out the public keyword in the variable declaration.
+
+**Interface Methods**
+
+A Java interface can contain one or more method declarations. As mentioned earlier, the interface cannot specify any implementation for these methods. It is up to the classes implementing the interface to specify an implementation.
+
+All methods in an interface are public, even if you leave out the public keyword in the method declaration.
+
+**Interface Default Methods**
+
+Before Java 8 Java interfaces could not contain an implementation of the methods, but only contain the method signatures. However, this results in some problems when an API needs to add a method to one of its interfaces. If the API just adds the method to the desired interface, all classes that implements the interface must implement that new method. That is fine if all implementing classes are located within the API. But if some implementing classes are located in client code of the API (the code that uses the API), then that code breaks.
+
+Let me illustrate this with an example. Look at this interface and imagine that it is part of e.g. an open source API which many applications are using internally:
+
+```java
+public interface ResourceLoader {
+
+    Resource load(String resourcePath);
+
+}
+```
+
+Now imagine that a project uses this API and has implemented the ResourceLoader interface like this:
+
+```java
+public class FileLoader implements ResourceLoader {
+
+    public Resource load(String resourcePath) {
+        // in here is the implementation +
+        // a return statement.
+    }
+}
+```
+
+If the developer of the API wants to add one more method to the ResourceLoader interface, then the FileLoader class will be broken when that project upgrades to the new version of the API.
+
+To alleviate this Java interface evolution problem, Java 8 has added the concept of interface default methods to Java interfaces. An interface default method can contain a default implementation of that method. Classes that implement the interface but which contain no implementation for the default interface will then automatically get the default method implementation.
+
+You mark a method in an interface as a default method using the default keyword. Here is an example of adding a default method to the ResourceLoader interface:
+
+```java
+public interface ResourceLoader {
+
+    Resource load(String resourcePath);
+
+    default Resource load(Path resourcePath) {
+        // provide default implementation to load
+        // resource from a Path and return the content
+        // in a Resource object.
+    }
+
+}
+```
+
+This example adds the default method load(Path). The example leaves out the actual implementation (inside the method body) because this is not really interesting. What matters is how you declare the interface default method.
+
+A class can override the implementation of a default method simply by implementing that method explicitly, as is done normally when implementing a Java interface. Any implementation in a class takes precedence over interface default method implementations.
+
+**Interface Static Methods**
+
+A Java interface can have static methods. Static methods in a Java interface must have implementation. Here is an example of a static method in a Java interface:
+
+```java
+public interface MyInterface {
+
+    public static void print(String text){
+        System.out.print(text);
+    }
+}
+```
+
+Calling a static method in an interface looks and works just like calling a static method in a class. Here is an example of calling the static print() method from the above MyInterface interface:
+
+```java
+MyInterface.print("Hello static method!");
+```
+
+Static methods in interfaces can be useful when you have some utility methods you would like to make available, which fit naturally into an interface related to the same responsibility. For instance, a Vehicle interface could have a printVehicle(Vehicle v) static method.
+
+
+**Interfaces and Inheritance**
+
+It is possible for a Java interface to inherit from another Java interface, just like classes can inherit from other classes. You specify inheritance using the extends keyword. Here is a simple interface inheritance example:
+
+```java
+public interface MySuperInterface {
+
+    public void saiHello();
+
+}
+```
+
+```java
+public interface MySubInterface extends MySuperInterface {
+
+    public void sayGoodbye();
+}
+```
+
+The interface MySubInterface extends the interface MySuperInterface. That means, that the MySubInterface inherits all field and methods from MySuperInterface. That then means, that if a class implements MySubInterface, that class has to implement all methods defined in both MySubInterface and MySuperInterface.
+
+It is possible to define methods in a subinterface with the same signature (name + parameters) as methods defined in a superinterface, should you find that desirable in your design, somehow.
+
+Unlike classes, interfaces can actually inherit from multiple superinterfaces. You specify that by listing the names of all interfaces to inherit from, separated by comma. A class implementing an interface which inherits from multiple interfaces must implement all methods from the interface and its superinterfaces.
+
+Here is an example of a Java interface that inherits from multiple interfaces:
+
+```java
+public interface MySubInterface extends
+    SuperInterface1, SuperInterface2 {
+
+    public void sayItAll();
+}
+```
+
+As when implementing multiple interfaces, there are no rules for how you handle the situation when multiple superinterfaces have methods with the same signature (name + parameters).
+
+**Inheritance and Default Methods**
+
+Interface default methods add a bit complexity to the rules of interface inheritance. While it is normally possible for a class to implement multiple interfaces even if the interfaces contain methods with the same signature, this is not possible if one or more of these methods are default methods. In other words, if two interfaces contain the same method signature (name + parameters) and one of the interfaces declare this method as a default method, a class cannot automatically implement both interfaces.
+
+The situation is the same if an interface extends (inherits from) multiple interfaces, and one or more of these interfaces contain methods with the same signature, and one of the superinterfaces declare the overlapping method as a default method.
+
+In both of the above situations the Java compiler requires that the class implementing the interface(s) explicitly implements the method which causes the problem. That way there is no doubt about which implementation the class will have. The implementation in the class takes precedence over any default implementations.
+
+**Interfaces and Polymorphism**
+
+Java interfaces are a way to achieve polymorphism. Polymorphism is a concept that takes some practice and thought to master. Basically, polymorphism means that an instance of an class (an object) can be used as if it were of different types. Here, a type means either a class or an interface.
+
+Look at this simple class diagram:
+
+![interfaces](interfaces-1.png)
+
+*Two parallel class hierarchies used in the same application.*
+
+Two parallel class hierarchies used in the same application.
+The classes above are all parts of a model representing different types of vehicles and drivers, with fields and methods. That is the responsibility of these classes - to model these entities from real life.
+
+Now imagine you needed to be able to store these objects in a database, and also serialize them to XML, JSON, or other formats. You want that implemented using a single method for each operation, available on each Car, Truck or Vehicle object. A store() method, a serializeToXML() method and a serializeToJSON() method.
+
+Please forget for a while, that implementing this functionality as methods directly on the objects may lead to a messy class hierarchy. Just imagine that this is how you want the operations implemented.
+
+Where in the above diagram would you put these three methods, so they are accessible on all classes?
+
+One way to solve this problem would be to create a common superclass for the Vehicle and Driver class, which has the storage and serialization methods. However, this would result in a conceptual mess. The class hierarchy would no longer model vehicles and drivers, but also be tied to the storage and serialization mechanisms used in your application.
+
+A better solution would be to create some interfaces with the storage and serialization methods on, and let the classes implement these interfaces. Here are examples of such interfaces:
+
+```java
+public interface Storable {
+
+    public void store();
+}
+```
+
+```java
+public interface Serializable {
+    public void serializeToXML(Writer writer);
+    public void serializeToJSON(Writer writer);
+}
+```
+
+When each class implements these two interfaces and their methods, you can access the methods of these interfaces by casting the objects to instances of the interface types. You don't need to know exactly what class a given object is of, as long as you know what interface it implements. Here is an example:
+
+```java
+Car car = new Car();
+
+Storable storable = (Storable) car;
+storable.store();
+
+Serializable serializable = (Serializable) car;
+serializable.serializeToXML (new FileWriter("car.xml"));
+serializable.serializeToJSON(new FileWriter("car.json"));
+```
+
+As you can probably imagine by now, interfaces provide a cleaner way of implementing cross cutting functionality in classes than inheritance.
+
+**Generic Interfaces**
+
+A generic Java interface is an interface which can be typed - meaning it can be specialized to work with a specific type (e.g. interface or class) when used. Let me first create a simple Java interface that contains a single method:
+
+```java
+public interface MyProducer() {
+
+    public Object produce();
+
+}
+```
+
+This interface represents an interface which contains a single method called produce() which can produce a single object. Since the return value of produce() is Object, it can return any Java object.
+
+Here is a class that implements the MyProducer interface:
+
+```java
+public class CarProducer implements MyProducer{
+    public Object produce() {
+        return new Car();
+    }
+}
+```
+
+The above class CarProducer implements the MyProducer interface. The implementation of the produce() method returns a new Car object every time it is called. Here is how it looks to use the CarProducer class:
+
+```java
+MyProducer carProducer = new CarProducer();
+
+Car car = (Car) carProducer.produce();
+```
+
+Notice how the object returned from the carProducer.produce() method call has to be cast to a Car instance, because the produce() method return type is Object. Using Java Generics you can type the MyProducer interface so you can specify what type of object it produces when you use it. Here is first a generic version of the MyProducer interface:
+
+```java
+public interface MyProducer <T>{
+    
+    public T produce();
+    
+}
+```
+
+Now when I implement the MyProducer interface in the CarProducer class, I have to include the generic type declaration too, like this:
+
+```java
+public class CarProducer<T> implements MyProducer<T>{
+
+    @Override
+    public T produce() {
+        return (T) new Car();
+    }
+}
+```
+
+Now, when creating a CarProducer I can specify its generic interface type, like this:
+
+```java
+MyProducer<Car> myCarProducer = new CarProducer<Car>();
+
+Car produce = myCarProducer.produce();
+```
+
+As you can see, since the generic type for the CarProducer instance is set to Car, it is no longer necessary to cast the object returned from the produce() method, since the original method declaration in the MyProducer interface states, that this method returns the same type as is specified in the generic type when used.
+
+But - now it is actually possible to specify another generic type for a CarProducer instance than the type it actually returns from it's produce() method implementation. If you scroll up, you can see that the CarProducer.produce() implementation returns a Car object no matter what generic type you specify for it when you create it. So, the following declaration is possible, but would return in a ClassCastException when executed:
+
+```java
+MyProducer<String> myStringProducer = new CarProducer<String>();
+
+String produce1 = myStringProducer.produce();
+```
+
+Instead, you can lock down the generic type of the MyProducer interface already when you implement it, in the CarProducer class. Here is an example of specifying the generic type of a generic interface when implementing it:
+
+```java
+public class CarProducer implements MyProducer<Car>{
+
+    @Override
+    public Car produce() {
+        return new Car();
+    }
+}
+```
+
+Now you cannot specify the generic type of the CarProducer when using it. It is already typed to Car. Here is how using the CarProducer looks:
+
+```java
+MyProducer<Car> myCarProducer = new CarProducer();
+
+Car produce = myCarProducer.produce();
+```
+
+
+As you can see, it is still not necessary to cast the object returned by produce(), as the CarProducer implementation declares that to be a Car instance.
+
+Java generics is covered in more detail in my [Java Generics Tutorial](http://tutorials.jenkov.com/java-generics/index.html).
+
+**Functional Interfaces**
+
+From Java 8 a new concept was introduced called functional interfaces. In short, a functional interface is an interface with a single, unimplemented method (non-default, non-static method). I have explained functional interfaces in my [Java functional interface tutorial](http://tutorials.jenkov.com/java-functional-programming/functional-interfaces.html), which is part of my [Java Functional Programming Tutorial.](http://tutorials.jenkov.com/java-functional-programming/index.html) .
+
+Functional interfaces are often intended to be implemented by a [Java Lambda Expression](http://tutorials.jenkov.com/java/lambda-expressions.html).
+
+
+
