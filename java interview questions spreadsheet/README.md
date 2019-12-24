@@ -1,12 +1,12 @@
 # java interview questions spreadsheet 2019-12-22-1502
 
-## Java CORE
+# Java CORE
 
-### How does multiple inheritance work in Java?
+# How does multiple inheritance work in Java?
 
-|Junior|Mid|Senior|
-|------|---|------|
-|x|x|x|
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
 
 `Reference:`
 https://www.interviewsansar.com/2017/06/29/implement-multiple-inheritance-in-java/
@@ -306,7 +306,21 @@ This flexibility in method invocation is not available in inheritance and boosts
 Unit testing is easy in composition because we know what all methods we are using from superclass and we can mock it up for testing whereas in inheritance we depend heavily on superclass and don’t know what all methods of superclass will be used, so we need to test all the methods of superclass, that is an extra work and we need to do it unnecessarily because of inheritance.
 That’s all for multiple inheritances in java and a brief look at composition.
 
-### What is an interface?
+# What is an interface?
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
+
+`Reference:` https://blog.udemy.com/java-interface-example/
+
+**What is a Java Interface?**
+
+A Java interface is an abstract type used to designate a set of abstract methods for classes to implement. As mentioned before, when a class implements an interface, it must inherit all of the abstract methods declared within, as though signing into a contract and carrying out the agreement.
+
+The most significant similarity between interfaces and classes is that they both contain methods. They are more different than they are the same, however: an interface lacks constructors, contains exclusively abstract methods (no method implementation), and exclusively final and static fields.
+
+----
 
 `Reference:`
 http://tutorials.jenkov.com/java/interfaces.html
@@ -714,6 +728,123 @@ Java generics is covered in more detail in my [Java Generics Tutorial](http://tu
 From Java 8 a new concept was introduced called functional interfaces. In short, a functional interface is an interface with a single, unimplemented method (non-default, non-static method). I have explained functional interfaces in my [Java functional interface tutorial](http://tutorials.jenkov.com/java-functional-programming/functional-interfaces.html), which is part of my [Java Functional Programming Tutorial.](http://tutorials.jenkov.com/java-functional-programming/index.html) .
 
 Functional interfaces are often intended to be implemented by a [Java Lambda Expression](http://tutorials.jenkov.com/java/lambda-expressions.html).
+
+# What is an Abstract class?
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
+
+`Reference:` https://www.techopedia.com/definition/24335/abstract-class-java
+
+**Definition - What does Abstract Class mean?**
+
+An abstract class, in the context of Java, is a superclass that cannot be instantiated and is used to state or define general characteristics. An object cannot be formed from a Java abstract class; trying to instantiate an abstract class only produces a compiler error. The abstract class is declared using the keyword abstract.
+
+Subclasses extended from an abstract class have all the abstract class's attributes, in addition to attributes specific to each subclass. The abstract class states the class characteristics and methods for implementation, thus defining a whole interface.
+
+----
+
+`Reference:` https://www.javatpoint.com/abstract-class-in-java
+
+**Points to Remember**
+
+- An abstract class must be declared with an abstract keyword.
+- It can have abstract and non-abstract methods.
+- It cannot be instantiated.
+- It can have constructors and static methods also.
+- It can have final methods which will force the subclass not to change the body of the method.
+
+**Understanding the real scenario of Abstract class**
+
+In this example, Shape is the abstract class, and its implementation is provided by the Rectangle and Circle classes.
+
+Mostly, we don't know about the implementation class (which is hidden to the end user), and an object of the implementation class is provided by the factory method.
+
+A factory method is a method that returns the instance of the class. We will learn about the factory method later.
+
+In this example, if you create the instance of Rectangle class, draw() method of Rectangle class will be invoked.
+
+
+```java
+abstract class Shape{  
+abstract void draw();  
+}  
+//In real scenario, implementation is provided by others i.e. unknown by end user  
+class Rectangle extends Shape{  
+void draw(){System.out.println("drawing rectangle");}  
+}  
+class Circle1 extends Shape{  
+void draw(){System.out.println("drawing circle");}  
+}  
+//In real scenario, method is called by programmer or user  
+class TestAbstraction1{  
+public static void main(String args[]){  
+Shape s=new Circle1();//In a real scenario, object is provided through method, e.g., getShape() method  
+s.draw();  
+}  
+}  
+```
+
+----
+`Refernce:` https://docs.oracle.com/javase/tutorial/java/IandI/abstract.html
+
+**Abstract Methods and Classes**
+
+An abstract class is a class that is declared abstract—it may or may not include abstract methods. Abstract classes cannot be instantiated, but they can be subclassed.
+
+An abstract method is a method that is declared without an implementation (without braces, and followed by a semicolon), like this:
+
+```java
+abstract void moveTo(double deltaX, double deltaY);
+```
+
+If a class includes abstract methods, then the class itself must be declared abstract, as in:
+
+```java
+public abstract class GraphicObject {
+   // declare fields
+   // declare nonabstract methods
+   abstract void draw();
+}
+```
+
+When an abstract class is subclassed, the subclass usually provides implementations for all of the abstract methods in its parent class. However, if it does not, then the subclass must also be declared abstract.
+
+`Note: Methods in an interface (see the Interfaces section) that are not declared as default or static are implicitly abstract, so the abstract modifier is not used with interface methods. (It can be used, but it is unnecessary.)`
+
+* Abstract Classes Compared to Interfaces
+
+Abstract classes are similar to interfaces. You cannot instantiate them, and they may contain a mix of methods declared with or without an implementation. However, with abstract classes, you can declare fields that are not static and final, and define public, protected, and private concrete methods. With interfaces, all fields are automatically public, static, and final, and all methods that you declare or define (as default methods) are public. In addition, you can extend only one class, whether or not it is abstract, whereas you can implement any number of interfaces.
+
+Which should you use, abstract classes or interfaces?
+
+* Consider using abstract classes if any of these statements apply to your situation:
+
+    * You want to share code among several closely related classes.
+
+    * You expect that classes that extend your abstract class have many common methods or fields, or require access modifiers other than public (such as protected and private).
+
+    * You want to declare non-static or non-final fields. This enables you to define methods that can access and modify the state of the object to which they belong.
+
+* Consider using interfaces if any of these statements apply to your situation:
+
+    * You expect that unrelated classes would implement your interface. For example, the interfaces Comparable and Cloneable are implemented by many unrelated classes.
+
+    * You want to specify the behavior of a particular data type, but not concerned about who implements its behavior.
+    
+    * You want to take advantage of multiple inheritance of type.
+
+An example of an abstract class in the JDK is AbstractMap, which is part of the Collections Framework. Its subclasses (which include HashMap, TreeMap, and ConcurrentHashMap) share many methods (including get, put, isEmpty, containsKey, and containsValue) that AbstractMap defines.
+
+An example of a class in the JDK that implements several interfaces is HashMap, which implements the interfaces Serializable, Cloneable, and Map<K, V>. By reading this list of interfaces, you can infer that an instance of HashMap (regardless of the developer or company who implemented the class) can be cloned, is serializable (which means that it can be converted into a byte stream; see the section Serializable Objects), and has the functionality of a map. In addition, the Map<K, V> interface has been enhanced with many default methods such as merge and forEach that older classes that have implemented this interface do not have to define.
+
+`Note that many software libraries use both abstract classes and interfaces; the HashMap class implements several interfaces and also extends the abstract class AbstractMap.`
+
+
+
+
+
 
 
 
