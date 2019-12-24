@@ -813,33 +813,143 @@ When an abstract class is subclassed, the subclass usually provides implementati
 
 `Note: Methods in an interface (see the Interfaces section) that are not declared as default or static are implicitly abstract, so the abstract modifier is not used with interface methods. (It can be used, but it is unnecessary.)`
 
-* Abstract Classes Compared to Interfaces
+- Abstract Classes Compared to Interfaces
 
 Abstract classes are similar to interfaces. You cannot instantiate them, and they may contain a mix of methods declared with or without an implementation. However, with abstract classes, you can declare fields that are not static and final, and define public, protected, and private concrete methods. With interfaces, all fields are automatically public, static, and final, and all methods that you declare or define (as default methods) are public. In addition, you can extend only one class, whether or not it is abstract, whereas you can implement any number of interfaces.
 
 Which should you use, abstract classes or interfaces?
 
-* Consider using abstract classes if any of these statements apply to your situation:
+- Consider using abstract classes if any of these statements apply to your situation:
 
-    * You want to share code among several closely related classes.
+    - You want to share code among several closely related classes.
 
-    * You expect that classes that extend your abstract class have many common methods or fields, or require access modifiers other than public (such as protected and private).
+    - You expect that classes that extend your abstract class have many common methods or fields, or require access modifiers other than public (such as protected and private).
 
-    * You want to declare non-static or non-final fields. This enables you to define methods that can access and modify the state of the object to which they belong.
+    - You want to declare non-static or non-final fields. This enables you to define methods that can access and modify the state of the object to which they belong.
 
-* Consider using interfaces if any of these statements apply to your situation:
+- Consider using interfaces if any of these statements apply to your situation:
 
-    * You expect that unrelated classes would implement your interface. For example, the interfaces Comparable and Cloneable are implemented by many unrelated classes.
+    - You expect that unrelated classes would implement your interface. For example, the interfaces Comparable and Cloneable are implemented by many unrelated classes.
 
-    * You want to specify the behavior of a particular data type, but not concerned about who implements its behavior.
+    - You want to specify the behavior of a particular data type, but not concerned about who implements its behavior.
     
-    * You want to take advantage of multiple inheritance of type.
+    - You want to take advantage of multiple inheritance of type.
 
 An example of an abstract class in the JDK is AbstractMap, which is part of the Collections Framework. Its subclasses (which include HashMap, TreeMap, and ConcurrentHashMap) share many methods (including get, put, isEmpty, containsKey, and containsValue) that AbstractMap defines.
 
 An example of a class in the JDK that implements several interfaces is HashMap, which implements the interfaces Serializable, Cloneable, and Map<K, V>. By reading this list of interfaces, you can infer that an instance of HashMap (regardless of the developer or company who implemented the class) can be cloned, is serializable (which means that it can be converted into a byte stream; see the section Serializable Objects), and has the functionality of a map. In addition, the Map<K, V> interface has been enhanced with many default methods such as merge and forEach that older classes that have implemented this interface do not have to define.
 
 `Note that many software libraries use both abstract classes and interfaces; the HashMap class implements several interfaces and also extends the abstract class AbstractMap.`
+
+# What is the difference between an interface and an abstract class?
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
+
+Please see:
+- What is an interface?
+- What is an Abstract class?
+    - Abstract Classes Compared to Interfaces
+
+`Reference:` https://blog.udemy.com/difference-between-abstract-class-and-interface
+
+- Abstract Classes
+
+So what are abstract classes exactly? Let’s go over the basics. An abstract class is a class that you can’t instantiate. It will let other classes inherit from it, but it cannot be instantiated by itself. The only purpose of the abstract class is to let other sub classes inherit from it. It can be used to impose guidelines and hierarchies on sub classes.
+
+- Interface
+
+An interface is not a class, like the abstract class, but it is very similar to it. It contains methods without a signature (a body). An interface cannot do anything on its own. Think of it as an empty template that you can copy and fill. It, too, is used to impose guidelines and hierarchies and provide methods to sub classes. A class cannot inherit from more than one abstract class at one time in languages like Java and C. Because of the lack of support for multiple-inheritance, interfaces are used instead.
+
+# Access modifiers
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
+
+`Reference:` https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html
+
+**Controlling Access to Members of a Class** 
+
+Access level modifiers determine whether other classes can use a particular field or invoke a particular method. There are two levels of access control:
+
+At the top level—public, or package-private (no explicit modifier).
+At the member level—public, private, protected, or package-private (no explicit modifier).
+A class may be declared with the modifier public, in which case that class is visible to all classes everywhere. If a class has no modifier (the default, also known as package-private), it is visible only within its own package (packages are named groups of related classes — you will learn about them in a later lesson.)
+
+At the member level, you can also use the public modifier or no modifier (package-private) just as with top-level classes, and with the same meaning. For members, there are two additional access modifiers: private and protected. The private modifier specifies that the member can only be accessed in its own class. The protected modifier specifies that the member can only be accessed within its own package (as with package-private) and, in addition, by a subclass of its class in another package.
+
+The following table shows the access to members permitted by each modifier.
+
+|Modifier   |Class|Package|Subclass|World|
+|-----------|-----|-------|--------|-----|
+|public     |Y    |Y      |Y       |Y    |
+|protected  |Y    |Y      |Y       |N    |
+|no modifier|Y    |Y      |N       |N    |
+|private    |Y    |N      |N       |N    |
+
+----
+
+`Reference:` https://www.w3schools.com/java/java_modifiers.asp
+
+We divide modifiers into two groups:
+
+- Access Modifiers - controls the access level
+- Non-Access Modifiers - do not control access level, but provides other functionality
+
+**Non-Access Modifiers**
+
+For classes, you can use either final or abstract:
+
+|Modifier|Description|
+|--------|-----------|
+|final   |The class cannot be inherited by other classes|
+|abstract|The class cannot be used to create objects (To access an abstract class, it must be inherited from another class.|
+
+For attributes and methods, you can use the one of the following:
+
+|Modifier|Description|
+|--------|-----------|
+|final|Attributes and methods cannot be overridden/modified|
+|static|Attributes and methods belongs to the class, rather than an object|
+|abstract|Can only be used in an abstract class, and can only be used on methods. The method does not have a body, for example abstract void run();. The body is provided by the subclass (inherited from).|
+|transient|Attributes and methods are skipped when serializing the object containing them|
+|synchronized|Methods can only be accessed by one thread at a time|
+|volatile|The value of an attribute is not cached thread-locally, and is always read from the "main memory"|
+
+
+
+
+
+
+
+# Abstraction
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
+
+`Reference:` https://www.javatpoint.com/abstract-class-in-java
+
+**Abstraction in Java**
+
+Abstraction is a process of hiding the implementation details and showing only functionality to the user.
+
+Another way, it shows only essential things to the user and hides the internal details, for example, sending SMS where you type the text and send the message. You don't know the internal processing about the message delivery.
+
+Abstraction lets you focus on what the object does instead of how it does it.
+
+**Ways to achieve Abstraction**
+
+There are two ways to achieve abstraction in java
+
+- Abstract class (0 to 100%)
+- Interface (100%)
+
+----
+
+
 
 
 
