@@ -2020,7 +2020,14 @@ Manager's salary : 30000
 Clerk's salary : 20000
 ```
 
+----
 
+**Dynamic Method Dispatch or Runtime Polymorphism in Java**
+
+`Reference:`
+https://www.geeksforgeeks.org/dynamic-method-dispatch-runtime-polymorphism-java/
+
+----
 
 
 
