@@ -1324,6 +1324,707 @@ We can write a new instance method in the subclass that has the same signature a
 
 - We can write a subclass constructor that invokes the constructor of the superclass, either implicitly or by using the keyword super.
 
+----
+
+`Reference:`
+http://tutorials.jenkov.com/java/inheritance.html
+
+----
+
+`Reference:`
+https://docs.oracle.com/javase/tutorial/java/IandI/subclasses.html
+
+----
+
+# Polymorphism
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
+
+`Reference:`
+https://www.geeksforgeeks.org/polymorphism-in-java/
+
+**Polymorphism in Java**
+
+The word polymorphism means having many forms. In simple words, we can define polymorphism as the ability of a message to be displayed in more than one form.
+
+Real life example of polymorphism: A person at the same time can have different characteristic. Like a man at the same time is a father, a husband, an employee. So the same person posses different behaviour in different situations. This is called polymorphism.
+
+Polymorphism is considered as one of the important features of Object Oriented Programming. Polymorphism allows us to perform a single action in different ways. In other words, polymorphism allows you to define one interface and have multiple implementations. The word “poly” means many and “morphs” means forms, So it means many forms.
+
+**In Java polymorphism is mainly divided into two types:**
+
+    - Compile time Polymorphism
+    - Runtime Polymorphism
+
+- Compile time polymorphism: It is also known as static polymorphism. This type of polymorphism is achieved by function overloading or operator overloading.
+
+![OverridingVsOverloading](OverridingVsOverloading.png)
+
+- Method Overloading: When there are multiple functions with same name but different parameters then these functions are said to be overloaded. Functions can be overloaded by change in number of arguments or/and change in type of arguments.
+
+Example: By using different types of arguments
+
+```java
+// Java program for Method overloading 
+  
+class MultiplyFun { 
+  
+    // Method with 2 parameter 
+    static int Multiply(int a, int b) 
+    { 
+        return a * b; 
+    } 
+  
+    // Method with the same name but 2 double parameter 
+    static double Multiply(double a, double b) 
+    { 
+        return a * b; 
+    } 
+} 
+  
+class Main { 
+    public static void main(String[] args) 
+    { 
+  
+        System.out.println(MultiplyFun.Multiply(2, 4)); 
+  
+        System.out.println(MultiplyFun.Multiply(5.5, 6.3)); 
+    } 
+} 
+```
+
+Output:
+
+```text
+8
+34.65
+```
+
+- Example: By using different numbers of arguments
+
+```java
+// Java program for Method overloading 
+
+class MultiplyFun { 
+
+	// Method with 2 parameter 
+	static int Multiply(int a, int b) 
+	{ 
+		return a * b; 
+	} 
+
+	// Method with the same name but 3 parameter 
+	static int Multiply(int a, int b, int c) 
+	{ 
+		return a * b * c; 
+	} 
+} 
+
+class Main { 
+	public static void main(String[] args) 
+	{ 
+		System.out.println(MultiplyFun.Multiply(2, 4)); 
+
+		System.out.println(MultiplyFun.Multiply(2, 7, 3)); 
+	} 
+} 
+```
+
+Output:
+
+```text
+8
+42
+```
+
+- Operator Overloading: Java also provide option to overload operators. For example, we can make the operator (‘+’) for string class to concatenate two strings. We know that this is the addition operator whose task is to add two operands. So a single operator ‘+’ when placed between integer operands, adds them and when placed between string operands, concatenates them.
+In java, Only “+” operator can be overloaded:
+
+    - To add integers
+    - To concatenate strings
+
+Example:
+
+```java
+// Java program for Operator overloading 
+
+class OperatorOVERDDN { 
+
+	void operator(String str1, String str2) 
+	{ 
+		String s = str1 + str2; 
+		System.out.println("Concatinated String - "
+						+ s); 
+	} 
+
+	void operator(int a, int b) 
+	{ 
+		int c = a + b; 
+		System.out.println("Sum = " + c); 
+	} 
+} 
+
+class Main { 
+	public static void main(String[] args) 
+	{ 
+		OperatorOVERDDN obj = new OperatorOVERDDN(); 
+		obj.operator(2, 3); 
+		obj.operator("joe", "now"); 
+	} 
+} 
+```
+
+Output:
+
+```text
+Sum = 5
+Concatinated String - joenow
+```
+
+- Runtime polymorphism: It is also known as Dynamic Method Dispatch. It is a process in which a function call to the overridden method is resolved at Runtime. This type of polymorphism is achieved by Method Overriding.
+
+    - Method overriding, on the other hand, occurs when a derived class has a definition for one of the member functions of the base class. That base function is said to be overridden.
+
+Example:
+
+```java
+// Java program for Method overridding 
+
+class Parent { 
+
+	void Print() 
+	{ 
+		System.out.println("parent class"); 
+	} 
+} 
+
+class subclass1 extends Parent { 
+
+	void Print() 
+	{ 
+		System.out.println("subclass1"); 
+	} 
+} 
+
+class subclass2 extends Parent { 
+
+	void Print() 
+	{ 
+		System.out.println("subclass2"); 
+	} 
+} 
+
+class TestPolymorphism3 { 
+	public static void main(String[] args) 
+	{ 
+
+		Parent a; 
+
+		a = new subclass1(); 
+		a.Print(); 
+
+		a = new subclass2(); 
+		a.Print(); 
+	} 
+} 
+```
+
+Output:
+
+```text
+subclass1
+subclass2
+```
+
+----
+`Reference:`
+https://docs.oracle.com/javase/tutorial/java/IandI/polymorphism.html
+
+
+# Method overriding
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
+
+`Reference:`
+https://www.geeksforgeeks.org/overriding-in-java/
+
+**Overriding in Java**
+
+In any object-oriented programming language, Overriding is a feature that allows a subclass or child class to provide a specific implementation of a method that is already provided by one of its super-classes or parent classes. When a method in a subclass has the same name, same parameters or signature and same return type(or sub-type) as a method in its super-class, then the method in the subclass is said to override the method in the super-class.
+
+Method overriding is one of the way by which java achieve Run Time Polymorphism.The version of a method that is executed will be determined by the object that is used to invoke it. If an object of a parent class is used to invoke the method, then the version in the parent class will be executed, but if an object of the subclass is used to invoke the method, then the version in the child class will be executed. In other words, it is the type of the object being referred to (not the type of the reference variable) that determines which version of an overridden method will be executed.
+
+```java
+// A Simple Java program to demonstrate 
+// method overriding in java 
+
+// Base Class 
+class Parent { 
+	void show() 
+	{ 
+		System.out.println("Parent's show()"); 
+	} 
+} 
+
+// Inherited class 
+class Child extends Parent { 
+	// This method overrides show() of Parent 
+	@Override
+	void show() 
+	{ 
+		System.out.println("Child's show()"); 
+	} 
+} 
+
+// Driver class 
+class Main { 
+	public static void main(String[] args) 
+	{ 
+		// If a Parent type reference refers 
+		// to a Parent object, then Parent's 
+		// show is called 
+		Parent obj1 = new Parent(); 
+		obj1.show(); 
+
+		// If a Parent type reference refers 
+		// to a Child object Child's show() 
+		// is called. This is called RUN TIME 
+		// POLYMORPHISM. 
+		Parent obj2 = new Child(); 
+		obj2.show(); 
+	} 
+} 
+```
+
+Output:
+
+```text
+Parent's show()
+Child's show()
+```
+
+Rules for method overriding:
+
+1. Overriding and Access-Modifiers : The access modifier for an overriding method can allow more, but not less, access than the overridden method. For example, a protected instance method in the super-class can be made public, but not private, in the subclass. Doing so, will generate compile-time error.
+
+```java
+// A Simple Java program to demonstrate 
+// Overriding and Access-Modifiers 
+
+class Parent { 
+	// private methods are not overridden 
+	private void m1() 
+	{ 
+		System.out.println("From parent m1()"); 
+	} 
+
+	protected void m2() 
+	{ 
+		System.out.println("From parent m2()"); 
+	} 
+} 
+
+class Child extends Parent { 
+	// new m1() method 
+	// unique to Child class 
+	private void m1() 
+	{ 
+		System.out.println("From child m1()"); 
+	} 
+
+	// overriding method 
+	// with more accessibility 
+	@Override
+	public void m2() 
+	{ 
+		System.out.println("From child m2()"); 
+	} 
+} 
+
+// Driver class 
+class Main { 
+	public static void main(String[] args) 
+	{ 
+		Parent obj1 = new Parent(); 
+		obj1.m2(); 
+		Parent obj2 = new Child(); 
+		obj2.m2(); 
+	} 
+} 
+```
+
+Output:
+
+```text
+From parent m2()
+From child m2()
+```
+
+2. Final methods can not be overridden : If we don’t want a method to be overridden, we declare it as final.
+
+```java
+// A Java program to demonstrate that 
+// final methods cannot be overridden 
+
+class Parent { 
+	// Can't be overridden 
+	final void show() {} 
+} 
+
+class Child extends Parent { 
+	// This would produce error 
+	void show() {} 
+} 
+```
+
+Output:
+
+```java
+13: error: show() in Child cannot override show() in Parent
+    void show() {  }
+         ^
+  overridden method is final
+```
+
+3. Static methods can not be overridden(Method Overriding vs Method Hiding) : When you defines a static method with same signature as a static method in base class, it is known as method hiding.
+
+    The following table summarizes what happens when you define a method with the same signature as a method in a super-class.
+
+||SUPERCLASS INSTANCE METHOD|SUPERCLASS STATIC METHOD|
+|----|----|----|
+|SUBCLASS INSTANCE METHOD|Overrides|	Generates a compile-time error|
+|SUBCLASS STATIC METHOD|Generates a compile-time error|Hides|
+
+```java
+// Java program to show that 
+// if the static method is redefined by 
+// a derived class, then it is not 
+// overriding, it is hiding 
+
+class Parent { 
+	// Static method in base class 
+	// which will be hidden in subclass 
+	static void m1() 
+	{ 
+		System.out.println("From parent "
+						+ "static m1()"); 
+	} 
+
+	// Non-static method which will 
+	// be overridden in derived class 
+	void m2() 
+	{ 
+		System.out.println("From parent "
+						+ "non-static(instance) m2()"); 
+	} 
+} 
+
+class Child extends Parent { 
+	// This method hides m1() in Parent 
+	static void m1() 
+	{ 
+		System.out.println("From child static m1()"); 
+	} 
+
+	// This method overrides m2() in Parent 
+	@Override
+	public void m2() 
+	{ 
+		System.out.println("From child "
+						+ "non-static(instance) m2()"); 
+	} 
+} 
+
+// Driver class 
+class Main { 
+	public static void main(String[] args) 
+	{ 
+		Parent obj1 = new Child(); 
+
+		// As per overriding rules this 
+		// should call to class Child static 
+		// overridden method. Since static 
+		// method can not be overridden, it 
+		// calls Parent's m1() 
+		obj1.m1(); 
+
+		// Here overriding works 
+		// and Child's m2() is called 
+		obj1.m2(); 
+	} 
+} 
+```
+
+Output:
+
+```text
+From parent static m1()
+From child non-static(instance) m2()
+```
+
+4. Private methods can not be overridden : Private methods cannot be overridden as they are bonded during compile time. Therefore we can’t even override private methods in a subclass.
+ 
+5. The overriding method must have same return type (or subtype) : From Java 5.0 onwards it is possible to have different return type for a overriding method in child class, but child’s return type should be sub-type of parent’s return type. This phenomena is known as covariant return type.
+
+6. Invoking overridden method from sub-class : We can call parent class method in overriding method using super keyword.
+
+7. Overriding and constructor : We can not override constructor as parent and child class can never have constructor with same name(Constructor name must always be same as Class name).
+
+8. Overriding and Exception-Handling: Below are two rules to note when overriding methods related to exception-handling.
+
+    - Rule#1 : If the super-class overridden method does not throws an exception, subclass overriding method can only throws the unchecked exception, throwing checked exception will lead to compile-time error.
+
+```java
+/* Java program to demonstrate overriding when 
+superclass method does not declare an exception 
+*/
+
+class Parent { 
+	void m1() 
+	{ 
+		System.out.println("From parent m1()"); 
+	} 
+
+	void m2() 
+	{ 
+		System.out.println("From parent m2()"); 
+	} 
+} 
+
+class Child extends Parent { 
+	@Override
+	// no issue while throwing unchecked exception 
+	void m1() throws ArithmeticException 
+	{ 
+		System.out.println("From child m1()"); 
+	} 
+
+	@Override
+	// compile-time error 
+	// issue while throwin checked exception 
+	void m2() throws Exception 
+	{ 
+		System.out.println("From child m2"); 
+	} 
+}
+```
+
+Output:
+
+```java
+error: m2() in Child cannot override m2() in Parent
+    void m2() throws Exception{ System.out.println("From child m2");}
+         ^
+  overridden method does not throw Exception
+```
+
+    - Rule#2: If the super-class overridden method does throws an exception, subclass overriding method can only throw same, subclass exception. Throwing parent exception in Exception hierarchy will lead to compile time error.Also there is no issue if subclass overridden method is not throwing any exception.
+
+```java
+// Java program to demonstrate overriding when 
+// superclass method does declare an exception 
+
+class Parent { 
+	void m1() throws RuntimeException 
+	{ 
+		System.out.println("From parent m1()"); 
+	} 
+} 
+
+class Child1 extends Parent { 
+	@Override
+	// no issue while throwing same exception 
+	void m1() throws RuntimeException 
+	{ 
+		System.out.println("From child1 m1()"); 
+	} 
+} 
+class Child2 extends Parent { 
+	@Override
+	// no issue while throwing subclass exception 
+	void m1() throws ArithmeticException 
+	{ 
+		System.out.println("From child2 m1()"); 
+	} 
+} 
+class Child3 extends Parent { 
+	@Override
+	// no issue while not throwing any exception 
+	void m1() 
+	{ 
+		System.out.println("From child3 m1()"); 
+	} 
+} 
+class Child4 extends Parent { 
+	@Override
+	// compile-time error 
+	// issue while throwing parent exception 
+	void m1() throws Exception 
+	{ 
+		System.out.println("From child4 m1()"); 
+	} 
+} 
+```
+
+Output:
+
+```text
+error: m1() in Child4 cannot override m1() in Parent
+    void m1() throws Exception
+         ^
+  overridden method does not throw Exception
+```
+
+9. Overriding and abstract method: Abstract methods in an interface or abstract class are meant to be overridden in derived concrete classes otherwise a compile-time error will be thrown.
+
+
+10. Overriding and synchronized/strictfp method : The presence of synchronized/strictfp modifier with method have no effect on the rules of overriding, i.e. it’s possible that a synchronized/strictfp method can override a non synchronized/strictfp one and vice-versa.
+
+**Note:**
+
+1. In C++, we need virtual keyword to achieve overriding or Run Time Polymorphism. In Java, methods are virtual by default.
+
+2. We can have multilevel method-overriding.
+
+```java
+// A Java program to demonstrate 
+// multi-level overriding 
+
+// Base Class 
+class Parent { 
+	void show() 
+	{ 
+		System.out.println("Parent's show()"); 
+	} 
+} 
+
+// Inherited class 
+class Child extends Parent { 
+	// This method overrides show() of Parent 
+	void show() { System.out.println("Child's show()"); } 
+} 
+
+// Inherited class 
+class GrandChild extends Child { 
+	// This method overrides show() of Parent 
+	void show() 
+	{ 
+		System.out.println("GrandChild's show()"); 
+	} 
+} 
+
+// Driver class 
+class Main { 
+	public static void main(String[] args) 
+	{ 
+		Parent obj1 = new GrandChild(); 
+		obj1.show(); 
+	} 
+} 
+```
+
+Output:
+
+```text
+GrandChild's show()
+```
+
+3. Overriding vs Overloading :
+
+    1. Overloading is about same method have different signatures. Overriding is about same method, same signature but different classes connected through inheritance.
+
+    ![OverridingVsOverloading](OverridingVsOverloading.png)
+
+    2. Overloading is an example of compiler-time polymorphism and overriding is an example of run time polymorphism.
+
+**Why Method Overriding?**
+
+As stated earlier, overridden methods allow Java to support run-time polymorphism. Polymorphism is essential to object-oriented programming for one reason: it allows a general class to specify methods that will be common to all of its derivatives while allowing subclasses to define the specific implementation of some or all of those methods. Overridden methods are another way that Java implements the “one interface, multiple methods” aspect of polymorphism.
+
+Dynamic Method Dispatch is one of the most powerful mechanisms that object-oriented design brings to bear on code reuse and robustness. The ability to exist code libraries to call methods on instances of new classes without recompiling while maintaining a clean abstract interface is a profoundly powerful tool.
+
+Overridden methods allow us to call methods of any of the derived classes without even knowing the type of derived class object.
+
+**When to apply Method Overriding ?(with example)**
+
+Overriding and Inheritance : Part of the key to successfully applying polymorphism is understanding that the superclasses and subclasses form a hierarchy which moves from lesser to greater specialization. Used correctly, the superclass provides all elements that a subclass can use directly. It also defines those methods that the derived class must implement on its own. This allows the subclass the flexibility to define its methods, yet still enforces a consistent interface. Thus, by combining inheritance with overridden methods, a superclass can define the general form of the methods that will be used by all of its subclasses.
+
+Let’s look at a more practical example that uses method overriding. Consider an employee management software for an organization, let the code has a simple base class Employee, the class has methods like raiseSalary(), transfer(), promote(), .. etc. Different types of employees like Manager, Engineer, ..etc may have their implementations of the methods present in base class Employee. In our complete software, we just need to pass a list of employees everywhere and call appropriate methods without even knowing the type of employee. For example, we can easily raise the salary of all employees by iterating through the list of employees. Every type of employee may have its logic in its class, we don’t need to worry because if raiseSalary() is present for a specific employee type, only that method would be called.
+
+![JavaOVerriding](JavaOVerriding.jpg)
+
+```java
+// A Simple Java program to demonstrate application 
+// of overriding in Java 
+
+// Base Class 
+class Employee { 
+	public static int base = 10000; 
+	int salary() 
+	{ 
+		return base; 
+	} 
+} 
+
+// Inherited class 
+class Manager extends Employee { 
+	// This method overrides salary() of Parent 
+	int salary() 
+	{ 
+		return base + 20000; 
+	} 
+} 
+
+// Inherited class 
+class Clerk extends Employee { 
+	// This method overrides salary() of Parent 
+	int salary() 
+	{ 
+		return base + 10000; 
+	} 
+} 
+
+// Driver class 
+class Main { 
+	// This method can be used to print the salary of 
+	// any type of employee using base class reference 
+	static void printSalary(Employee e) 
+	{ 
+		System.out.println(e.salary()); 
+	} 
+
+	public static void main(String[] args) 
+	{ 
+		Employee obj1 = new Manager(); 
+
+		// We could also get type of employee using 
+		// one more overridden method.loke getType() 
+		System.out.print("Manager's salary : "); 
+		printSalary(obj1); 
+
+		Employee obj2 = new Clerk(); 
+		System.out.print("Clerk's salary : "); 
+		printSalary(obj2); 
+	} 
+} 
+```
+
+Output:
+
+```text
+Manager's salary : 30000
+Clerk's salary : 20000
+```
+
+
+
+
+
+
 # Abstraction
 
 |Junior |Mid  |Senior |
