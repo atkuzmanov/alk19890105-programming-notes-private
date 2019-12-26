@@ -2029,6 +2029,23 @@ https://www.geeksforgeeks.org/dynamic-method-dispatch-runtime-polymorphism-java/
 
 ----
 
+**Different ways of Method Overloading in Java**
+
+`Reference:`
+https://www.geeksforgeeks.org/different-ways-method-overloading-java/
+
+----
+
+# Method hiding
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
+
+
+
+
 
 
 
