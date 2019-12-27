@@ -2026,6 +2026,7 @@ Clerk's salary : 20000
 
 `Reference:`
 https://www.geeksforgeeks.org/dynamic-method-dispatch-runtime-polymorphism-java/
+[Dynamic-Method-Dispatch-or-Runtime-Polymorphism-Java-GeeksforGeeks](reference-websites/Dynamic-Method-Dispatch-or-Runtime-Polymorphism-Java-GeeksforGeeks)
 
 ----
 
@@ -2034,12 +2035,16 @@ https://www.geeksforgeeks.org/dynamic-method-dispatch-runtime-polymorphism-java/
 `Reference:`
 https://www.geeksforgeeks.org/overloading-in-java/
 
+[Overloading-Java-GeeksforGeeks](reference-websites/Overloading-Java-GeeksforGeeks)
+
 ----
 
 **Different ways of Method Overloading in Java**
 
 `Reference:`
 https://www.geeksforgeeks.org/different-ways-method-overloading-java/
+
+[Different-ways-of-Method-Overloading-Java -GeeksforGeeks](reference-websites/Different-ways-of-Method-Overloading-Java -GeeksforGeeks)
 
 ----
 
@@ -2399,6 +2404,236 @@ There are two ways to achieve abstraction in java
 |Junior |Mid  |Senior |
 |-------|-----|-------|
 |   x   |  x  |   x   |
+
+`Reference:`
+https://howtodoinjava.com/oops/object-oriented-principles/
+[Java-OOPs-Concepts-Object-Oriented-Principles-HowToDoInJava](reference-websites/Java-OOPs-Concepts-Object-Oriented-Principles-HowToDoInJava)
+
+**Java OOPs Concepts – Object Oriented Principles**
+
+In this Java OOPs concepts tutorial, we will learn four major object oriented principles – abstraction, encapsulation, inheritance, and polymorphism. They are also known as four pillars of the object oriented programming paradigm.
+
+- Abstraction is the process of exposing the essential details of an entity, while ignoring the irrelevant details, to reduce the complexity for the users.
+
+- Encapsulation is the process of bundling data and operations on the data together in an entity.
+
+- Inheritance is used to derive a new type from an existing type, thereby establishing a parent-child relationship.
+
+- Polymorphism lets an entity take on different meanings in different contexts.
+
+**Data abstraction**
+
+Data abstraction is the way to create complex data types from multiple smaller data types – which is more close to real life entity. e.g. An Employee class can be a complex object of having various small associations.
+
+```java
+public class Employee 
+{
+    private Department department;
+    private Address address;
+    private Education education;
+    //So on...
+}
+```
+
+So, if you want to fetch information of a employee, you ask it from Employee object – as you do in real life, ask the person itself.
+
+**Control abstraction**
+
+Control abstraction is achieved by hiding the sequence of actions for a complex task – inside a simple method call, so logic to perform the task can be hidden from the client and could be changed in future without impacting the client code.
+
+```java
+public class EmployeeManager
+{
+    public Address getPrefferedAddress(Employee e)
+    {
+        //Get all addresses from database 
+        //Apply logic to determine which address is preferred
+        //Return address
+    }
+}
+```
+
+In above example, tomorrow if you want to change the logic so that everytime domestic address is always the preferred address, you will change the logic inside getPrefferedAddress() method, and client will be unaffected.
+
+**Encapsulation**
+
+Wrapping data and methods within classes in combination with implementation hiding (through access control) is often called encapsulation in OOPs. The result is a data type with characteristics and behaviors. Encapsulation essentially has both i.e. information hiding and implementation hiding.
+
+**_"Whatever changes, encapsulate it" – A famous design principle_**
+
+Information hiding is done through using access control modifiers (public, private, protected) and implementation hiding is achieved through creation of interface for a class.
+
+Implementation hiding gives the designer the freedom to modify how the responsibility is fulfilled by an object. This is especially valuable at points where the design (or even the requirements) are likely to change.
+
+Let’s take an example to make it more clear.
+
+- Information hiding
+
+```java
+class InformationHiding 
+{
+    //Restrict direct access to inward data
+    private ArrayList items = new ArrayList();
+ 
+    //Provide a way to access data - internal logic can safely be changed in future
+    public ArrayList getItems(){
+        return items;
+    }
+}
+```
+
+**Implementation hiding**
+
+```java
+interface ImplemenatationHiding {
+    Integer sumAllItems(ArrayList items);
+}
+
+class InformationHiding implements ImplemenatationHiding
+{
+    //Restrict direct access to inward data
+    private ArrayList items = new ArrayList();
+ 
+    //Provide a way to access data - internal logic can safely be changed in future
+    public ArrayList getItems(){
+        return items;
+    }
+ 
+    public Integer sumAllItems(ArrayList items) {
+        //Here you may do N number of things in any sequence
+        //Which you do not want your clients to know
+        //You can change the sequence or even whole logic
+        //without affecting the client
+    }
+}
+```
+
+**Inheritance**
+
+Inheritance is another important concept in object oriented programming. Inheritance in Java is a mechanism by which one object acquires the properties and behaviors of the parent object. It’s essentially creating a parent-child relationship between classes. In Java, you will use inheritance mainly for code re-usability and maintainability.
+
+Keyword “extends” is used to inherit a class in java. The “extends” keyword indicates that you are making a new class that derives from an existing class. In the terminology of Java, a class that is inherited is called a super class. The new class is called a subclass.
+
+A subclass inherits all the non-private members (fields, methods, and nested classes) from its superclass. Constructors are not members, so they are not inherited by subclasses, but the constructor of the superclass can be invoked from the subclass.
+
+e.g.
+
+```java
+class Employee 
+{
+    private Department department;
+    private Address address;
+    private Education education;
+    //So on...
+}
+
+class Manager extends Employee {
+    private List<Employee> reportees;
+}
+```
+
+In above example, Manager is specialized version of Employee and reuses department, address and education from Employee class as well as define it’s own reportees list.
+
+**Polymorphism**
+
+Polymorphism is the ability by which, we can create functions or reference variables which behaves differently in different programmatic context.
+
+In java language, polymorphism is essentially considered into two versions:
+
+- Compile time polymorphism (static binding or method overloading)
+
+- Runtime polymorphism (dynamic binding or method overriding)
+
+----
+
+`Reference:`
+https://raygun.com/blog/oop-concepts-java/#association
+
+[6-OOP-Concepts-in-Java-with-examples-2020-Raygun-Blog](reference-websites/6-OOP-Concepts-in-Java-with-examples-2020-Raygun-Blog)
+
+
+**Association**
+
+Besides the four main principles of OOP, Java also works with three further concepts (association, aggregation, composition) you can make use of when designing your programs. Aggregation is a special form of association, while composition is a special form of aggregation.
+
+Association simply means the act of establishing a relationship between two unrelated classes. For example, when you declare two fields of different types (e.g. Car and Bicycle) within the same class and make them interact with each other, you have performed association.
+
+Association in Java:
+
+- Two separate classes are associated through their objects.
+- The two classes are unrelated, each can exist without the other one.
+- Can be a one-to-one, one-to-many, many-to-one, or many-to-many relationship.
+
+**Aggregation**
+
+Aggregation is a narrower kind of association. It occurs when there’s a one-way (HAS-A) relationship between the two classes you associate through their objects. For example, every Passenger has a Car but a Car doesn’t necessarily have a Passenger. When you declare the Passenger class, you can create a field of the Car type that shows which car the passenger belongs to. Then, when you instantiate a new Passenger object, you can access the data stored in the related Car as well.
+
+Aggregation in Java:
+
+- One-directional association.
+- Represents a HAS-A relationship between two classes.
+- Only one class is dependent on the other.
+
+**Composition**
+
+Compositionis a stricter form of aggregation. It occurs when the two classes you associate are mutually dependent on each other and can’t exist without each other. For example, take a Car and an Engine class. A Car cannot run without an Engine, while an Engine also can’t function without being built into a Car. This kind of relationship between objects is also called a PART-OF relationship.
+
+Composition in Java:
+
+- A restricted form of aggregation
+- Represents a PART-OF relationship between two classes
+- Both classes are dependent on each other
+- If one class ceases to exist, the other can’t survive alone
+
+----
+
+`Reference:`
+https://www.geeksforgeeks.org/object-oriented-programming-oops-concept-in-java/
+[Object-Oriented-Programming-OOPs-Concept-in-Java-GeeksforGeeks](reference-websites/Object-Oriented-Programming-OOPs-Concept-in-Java-GeeksforGeeks)
+
+Class: A class is a user defined blueprint or prototype from which objects are created. It represents the set of properties or methods that are common to all objects of one type. In general, class declarations can include these components, in order:
+
+- Modifiers: A class can be public or has default access (Refer this for details).
+
+- Class name: The name should begin with a initial letter (capitalized by convention).
+
+- Superclass(if any): The name of the class’s parent (superclass), if any, preceded by the keyword extends. A class can only extend (subclass) one parent.
+
+- Interfaces(if any): A comma-separated list of interfaces implemented by the class, if any, preceded by the keyword implements. A class can implement more than one interface.
+
+- Body: The class body surrounded by braces, { }.
+
+Object: It is a basic unit of Object Oriented Programming and represents the real life entities. A typical Java program creates many objects, which as you know, interact by invoking methods. An object consists of:
+
+- State : It is represented by attributes of an object. It also reflects the properties of an object.
+
+- Behavior : It is represented by methods of an object. It also reflects the response of an object with other objects.
+
+- Identity : It gives a unique name to an object and enables one object to interact with other objects.
+
+----
+
+`Reference:`
+https://www.javatpoint.com/java-oops-concepts
+
+[Java-OOPs-Concepts-Javatpoint](reference-websites/Java-OOPs-Concepts-Javatpoint)
+
+**Coupling**
+
+Coupling refers to the knowledge or information or dependency of another class. It arises when classes are aware of each other. If a class has the details information of another class, there is strong coupling. In Java, we use private, protected, and public modifiers to display the visibility level of a class, method, and field. You can use interfaces for the weaker coupling because there is no concrete implementation.
+
+**Cohesion**
+
+Cohesion refers to the level of a component which performs a single well-defined task. A single well-defined task is done by a highly cohesive method. The weakly cohesive method will split the task into separate parts. The java.io package is a highly cohesive package because it has I/O related classes and interface. However, the java.util package is a weakly cohesive package because it has unrelated classes and interfaces.
+
+----
+
+`Reference:`
+https://stackabuse.com/object-oriented-design-principles-in-java/
+
+[]()
+
+Object Oriented Design Principles in Java
 
 
 
