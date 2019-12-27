@@ -2631,9 +2631,404 @@ Cohesion refers to the level of a component which performs a single well-defined
 `Reference:`
 https://stackabuse.com/object-oriented-design-principles-in-java/
 
-[]()
+[Object-Oriented-Design-Principles-in-Java](reference-websites/Object-Oriented-Design-Principles-in-Java)
 
-Object Oriented Design Principles in Java
+**Object Oriented Design Principles in Java**
+
+Don't Repeat Yourself (DRY) Principle
+The Don't Repeat Yourself (DRY) principle is a common principle across programming paradigms, but it is especially important in OOP. According to the principle:
+
+```text
+Every piece of knowledge or logic must have a single, unambiguous representation within a system.
+```
+
+When it comes to OOP, this means utilizing abstract classes, interfaces, and public constants. Whenever there's a functionality common across classes, it either might make sense to abstract them away into a common parent class or use interfaces to couple their functionality:
+
+```java
+public class Animal {
+    public void eatFood() {
+        System.out.println("Eating food...");
+    }
+}
+
+public class Cat extends Animal {
+    public void meow() {
+        System.out.println("Meow! *purrs*");
+    }
+}
+
+public class Dog extends Animal {
+    public void woof() {
+        System.out.println("Woof! *wags tail*");
+    }
+}
+```
+
+Both a Cat and a Dog need to eat food, but they speak differently. Since eating food is a common functionality for them, we can abstract it into a parent class such as Animal and then have them extend the class.
+
+Now, instead of both classes implementing the same functionality of eating food, each can focus on their own unique logic.
+
+```java
+Cat cat = new Cat();
+cat.eatFood();
+cat.meow();
+
+Dog dog = new Dog();
+dog.eatFood();
+dog.woof();
+```
+
+The output would be:
+
+```text
+Eating food...
+Meow! *purrs*
+Eating food...
+Woof! *wags tail*
+```
+
+Whenever there's a constant that's used multiple times, it's good practice to define it as a public constant:
+
+```java
+static final int GENERATION_SIZE = 5000;
+static final int REPRODUCTION_SIZE = 200;
+static final int MAX_ITERATIONS = 1000;
+static final float MUTATION_SIZE = 0.1f;
+static final int TOURNAMENT_SIZE = 40;
+```
+
+For an example, we'll be using these constants several times, and eventually we'll be changing their values manually to optimize a genetic algorithm. It would be easy to make a mistake if we had to update each of these values at multiple places.
+
+Also, we don't want to make a mistake and programmatically change these values during execution, so we're also introducing the final modifier.
+
+Note: Due to the naming convention in Java, these should be capitalized with words separated by an underscore ("_").
+
+The purpose of this principle is to ensure easy maintenance of code, because when a functionality or a constant changes you have to edit the code only in one place. This not only makes the job easier, but ensures that mistakes won't happen in the future. You may forget to edit the code in multiple places, or somebody else who's not as familiar with your project may not know that you've repeated code and may end up editing it in just one place.
+
+However, it's important to apply common sense when using this principle. If you use the same piece of code to do two different things initially, that doesn't mean those two things will always need to be dealt with in the same way.
+
+This usually happens if structures are actually dissimilar, despite the same code being used to handle them. The code can also be 'over-dried', making it essentially unreadable because methods are called form unrelated, incomprehensible places.
+
+A good architecture can amortize this, but the problem can crop up in practice nonetheless.
+
+**_Violations of the DRY Principle_**
+
+Violations of the DRY Principle are often referred to as WET solutions. WET can be an abbreviation for multiple things:
+
+- We Enjoy Typing
+- Waste Everyone's Time
+- Write Every Time
+- Write Everything Twice
+
+WET solutions aren't always bad, as repetition is sometimes advisable in inherently dissimilar classes, or in order to make code more readable, less inter-dependent, etc.
+
+**Keep It Simple and Stupid (KISS) Principle**
+
+The Keep it Simple and Stupid (KISS) principle is a reminder to keep your code simple and readable for humans. If your method handles multiple use-cases, split them into smaller functions. If it performs multiple functionalities, make multiple methods instead.
+
+The core of this principle is that for most cases, unless efficiency is extremely crucial, another stack call isn't going to severely affect the performance of your program. In fact, some compilers or runtime environments will even simplify a method call into an inline execution.
+
+On the other hand, unreadable and long methods will be very hard to maintain for human programmers, bugs will be harder to find, and you might find yourself violating DRY as well because if a function does two things, you can't call it to do just one of them, so you'll make another method.
+
+All in all, if you find yourself tangled up in your own code and unsure what each part does, it's time for reevaluation.
+
+It's almost certain that the design could be tweaked to make it more readable. And if you are having trouble as the one who designed it while it's all still fresh in your mind, think about how somebody who sees it for the first time in the future will perform.
+
+**The Single Responsibility Principle (SRP)**
+
+The Single Responsibility Principle (SRP) states that there should never be two functionalities in one class. Sometimes, it's paraphrased as:
+
+```text
+"A class should only have one, and only one, reason to be changed."
+```
+
+Where a "reason to be changed" is the responsibility of the class. If there are more than one responsibilities, there are more reasons to change that class at some point.
+
+This means that in the event of a functionality needing an update, there shouldn't be multiple separate functionalities in that same class that may be affected.
+
+This principle makes it easier to deal with bugs, to implement changes without confusing co-dependencies, and to inherit from a class without having to implement or inherit methods your class doesn't need.
+
+
+While it may seem that this encourages you to rely on dependencies a lot, this sort of modularity is much more important. Some level of dependency between classes is inevitable, which is why we also have principles and patterns to deal with that.
+
+For an example, say our application should retrieve some product information from the database, then process it and finally display it to the end-user.
+
+We could use a single class to handle the database call, process the information and push the information to the presentation layer. Though, bundling these functionalities makes our code unreadable and illogical.
+
+What we'd do instead is defining a class, such as ProductService that would fetch the product from the database, a ProductController to process the info and then we'd display it in a presentation layer - either an HTML page or another class/GUI.
+
+**The Open/Closed Principle**
+
+The Open/Closed principle states that classes or objects and methods should be open for extension, but closed for modifications.
+
+What this means in essence is that you should design your classes and modules with possible future updates in mind, so they should have a generic design that you won't need to change the class itself in order to extend their behavior.
+
+You can add more fields or methods, but in such a way that you don't need to rewrite old methods, delete old fields and modify the old code in order to make it work again. Thinking ahead will help you write stable code, before and after an update of requirements.
+
+This principle is important in order to ensure backwards compatibility and prevent regressions - a bug which happens when your programs features or efficiency breaks after an update.
+
+
+**Liskov Substitution Principle (LSP)**
+
+According to the Liskov Substitution Principle (LSP), derived classes should be able to substitute their base classes without the behavior of your code changing.
+
+This principle is closely related to The Interface Segregation Principle and The Single Responsibility Principle, meaning that a violation of either of those is likely to be (or become) a violation of LSP as well. This is because if a class does more than one thing, subclasses extending it are less likely to meaningfully implement those two or more functionalities.
+
+A common way people think about object relationships (which can be a bit misleading at times) is that there needs to be an is relationship between classes.
+
+For example:
+
+Car is a Vehicle
+TeachingAssistaint is a CollegeEmployee
+It's important to note that these relationships don't go in both directions. The fact that Car is a Vehicle might not mean that Vehicle is a Car - it can be a Motorcycle, Bicycle, Truck...
+
+The reason this can be misleading is a common mistake people make when thinking about it in natural language. For example, if I asked you if Square has an "is relationship" with Rectangle, you might automatically say yes.
+
+After all, we know from geometry that a square is a special case of rectangle. But depending on how your structures are implemented, this might not be the case:
+
+```java
+public class Rectangle {
+    protected double a;
+    protected double b;
+
+    public Rectangle(double a, double b) {
+        this.a = a;
+        this.b = b;
+    }
+
+    public void setA(double a) {
+        this.a = a;
+    }
+
+    public void setB(double b) {
+        this.b = b;
+    }
+
+    public double calculateArea() {
+        return a*b;
+    }
+}
+```
+
+Now let's try inheriting from it for our Square within the same package:
+
+```java
+public class Square extends Rectangle {
+    public Square(double a) {
+        super(a, a);
+    }
+
+    @Override
+    public void setA(double a) {
+        this.a = a;
+        this.b = a;
+    }
+
+    @Override
+    public void setB(double b) {
+        this.a = b;
+        this.b = b;
+    }
+}
+```
+
+You'll notice that setters here actually set both a and b. Some of you may already guess the problem. Let's say we initialized our Square and applied polymorphism to contain it within a Rectangle variable:
+
+```java
+Rectangle rec = new Square(5);
+```
+
+And let's say that sometime later in the program, maybe in an entirely separate function, another programmer who had nothing to do with implementing these classes, decides that they want to resize their rectangle. They may try something like this:
+
+```java
+rec.setA(6);
+rec.setB(3);
+```
+
+They'll get completely unexpected behavior and it might be difficult to trace back what the problem is.
+
+If they try to use rec.calculateArea() the result won't be 18 as they might expect from a rectangle with sides of lengths 6 and 3.
+
+The result would instead be 9 because their rectangle is actually a square and has two equal sides - of length 3.
+
+You may say that this is exactly the behavior you wanted because that's how a square works, but it's nonetheless not the expected behavior from a rectangle.
+
+So when we're inheriting we have to keep in mind the behavior of our classes and are they really functionally interchangeable within the code, rather than just the concepts being similar outside of the context of their usage in the program.
+
+The Interface Segregation Principle (ISP)
+The Interface Segregation Principle (ISP) states that the client should never be forced to depend on an interface they aren't using in their entirety. This means that an interface should have a minimum set of methods necessary for the functionality it ensures, and should be limited to only one functionality.
+
+For example, a Pizza interface shouldn't be required to implement an addPepperoni() method, because this doesn't have to be available for every type of pizza. For the sake of this tutorial, let's assume that all pizzas have a sauce and need to be baked and there's not a single exception.
+
+This is when we can define an interface:
+
+```java
+public interface Pizza {
+    void addSauce();
+    void bake();
+}
+```
+
+And then, let's implement this through a couple of classes:
+
+```java
+public class VegetarianPizza implements Pizza {
+    public void addMushrooms() {System.out.println("Adding mushrooms");}
+
+    @Override
+    public void addSauce() {System.out.println("Adding sauce");}
+
+    @Override
+    public void bake() {System.out.println("Baking the vegetarian pizza");}
+}
+
+public class PepperoniPizza implements Pizza {
+    public void addPepperoni() {System.out.println("Adding pepperoni");}
+
+    @Override
+    public void addSauce() {System.out.println("Adding sauce");}
+
+    @Override
+    public void bake() {System.out.println("Baking the pepperoni pizza");}
+}
+```
+The VegetarianPizza has mushrooms whereas the PepperoniPizza has pepperoni. Both, of course, need sauce and need to be baked, which is also defined in the interface.
+
+If the addMushrooms() or addPepperoni() methods were located in the interface, both classes would have to implement them even though they don't need both, but rather only one each.
+
+We should strip interfaces of all but absolutely necessary functionalities.
+
+**The Dependency Inversion Principle (DIP)**
+
+According to the Dependency Inversion Principle (DIP), high-level and low-level modules should be decoupled in such a way that changing (or even replacing) low-level modules doesn't require (much) rework of high-level modules. Given that, both low-level and high-level modules shouldn't depend on each other, but rather they should depend on abstractions, such as interfaces.
+
+Another important thing DIP states is:
+
+```text
+Abstractions should not depend on details. Details (concrete implementations) should depend on abstractions.
+```
+
+This principle is important because it decouples modules, making the system less complex, easier to maintain and update, easier to test, and more reusable. I can't stress enough how much of a game changer this is, especially for unit testing and reusability. If the code is written generically enough, it can easily find application in another project, while code that's too specific and interdependent with other modules of the original project will be hard to decouple from it.
+
+This principle is closely related to the dependency injection, which is practically the implementation or rather, the goal of DIP. DI boils down to - if two classes are dependent, their features should be abstracted away and they should both depend on the abstraction, instead of on each other. This essentially should allow us to change details of the implementation while retaining its functionality.
+
+The Dependency Inversion Principle and Inversion of Control (IoC) are used interchangeably by some people, although it is not technically true.
+
+Dependency Inversion guides us towards decoupling by using dependency injection through an Inversion of Control Container. Another name of IoC Containers could very well be Dependency Injection Containers, though the old name sticks around.
+
+**The Composition Over Inheritance Principle**
+
+One should often prefer composition over inheritance when designing their systems. In Java, this means that we should more often define interfaces and implement them, rather than defining classes and extending them.
+
+We've already mentioned the Car is a Vehicle as a common guiding principle people use to determine whether classes should inherit one another or not.
+
+Despite being tricky to think about and tending to violate The Liskov Substitution Principle, this way of thinking is extremely problematic when it comes to reusing and repurposing code later in development.
+
+The problem here is illustrated by the following example:
+
+![object-oriented-design-principles-in-java](reference-websites/Object-Oriented-Design-Principles-in-Java/object-oriented-design-principles-in-java.png)
+
+Spaceship and Airplane extend an abstract class FlyingVehicle, while Car and Truck extend GroundVehicle. Each have their respective methods which make sense for the type of vehicle, and we'd naturally group them together with abstraction when thinking of them in these terms.
+
+This inheritance structure is based on thinking about objects in terms of what they are instead of what they do.
+
+The problem with this is that new requirements can throw the whole hierarchy off balance. In this example, what if your boss waltzed in and informed you that a client wants a flying car now? If you inherit from FlyingVehicle, you'll have to implement drive() again even though that same functionality already exists, thereby violating the DRY Principle, and vice-versa:
+
+```java
+public class FlyingVehicle {
+    public void fly() {}
+    public void land() {}
+}
+
+public class GroundVehicle {
+    public void drive() {}
+}
+
+public class FlyingCar extends FlyingVehicle {
+
+    @Override
+    public void fly() {}
+
+    @Override
+    public void land() {}
+
+    public void drive() {}
+}
+
+public class FlyingCar2 extends GroundVehicle {
+
+    @Override
+    public void drive() {}
+
+    public void fly() {}
+    public void land() {}
+}
+```
+
+Since most languages, including Java, don't allow multiple inheritance, we can opt to extend either one of these classes. Though, in both cases, we can't inherit the functionality of the other and have to rewrite it.
+
+You may figure out a way to change the whole architecture to fit around this new FlyingCar class, but depending on how deep in the development you are that can be a costly process.
+
+Given this problem, we could try and avoid this whole mess by basing our generalities on common functionality instead of inherent similarity. This is the way a lot of built-in Java mechanisms have been developed.
+
+```text
+If your class is going to implement all of the functionalities and your child class can be used as a substitute for your parent class, use inheritance.
+
+If you class is going to implement some specific functionalities, use composition.
+```
+
+We use Runnable, Comparable, etc. instead of using some abstract classes implementing their methods because it's cleaner, it makes code more reusable, and it makes it easy to create a new class that conforms to what we need in order to use previously made functionalities.
+
+This also resolves the problem of dependencies destroying important functionalities and causing a chain reaction throughout our code. Instead of having a big problem when we need to make our code work for a new type of thing, we can simply make that new thing conform to previously set standards and work just as well as the old thing.
+
+In our vehicle example, we could just implement interfaces Flyable and Drivable instead of introducing abstraction and inheritance.
+
+Our Airplane and Spaceship could implement Flyable, our Car and Truck could implement Drivable, and our new FlyingCar could implement both.
+
+No changes in the class structure needed, no major DRY violations, no confusion of colleagues. If you happen to need exact same functionality in multiple classes, you can implement it using a default method in your interface, to avoid violating DRY.
+
+----
+
+`Reference:`
+https://dev.to/javinpaul/top-10-object-oriented-design-principles-for-writing-clean-code-4pe1
+
+[Top-10-Object-Oriented-Design-Principles-for-writing-Clean-Code-DEV-Community](reference-websites/Top-10-Object-Oriented-Design-Principles-for-writing-Clean-Code-DEV-Community)
+
+**Encapsulate What Changes**
+
+There is only one thing which is constant in the software field and that is "Change", So, encapsulate the code you expect or suspect to be changed in future.
+
+```text
+The benefit of this OOP Design principle is that It's easy to test and maintain proper encapsulated code.
+```
+
+If you are coding in Java then follow the principle of making variable and methods private by default and increasing access step by step like from a private to protected and not public.
+
+Several of the design patterns in Java uses Encapsulation, the Factory design pattern is one example of Encapsulation which encapsulates object creation code and provides flexibility to introduce a new product later with no impact on existing code.
+
+**Programming for Interface not implementation**
+
+A programmer should always program for the interface and not for implementation this will lead to flexible code which can work with any new implementation of the interface.
+
+In concrete words, you should use interface type on variables, return types of a method or argument type of methods in Java like using SuperClass type to store object rather using SubClass.
+
+I mean
+
+```java
+List numbers= getNumbers();
+```
+
+instead of
+
+```java
+ArrayList numbers = getNumbers();
+```
+
+This has also been advised in many Java books including in "Effective Java" and "Head First design pattern" book.
+
+----
+
+
 
 
 
