@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<!-- saved from url=(0065)https://stackabuse.com/object-oriented-design-principles-in-java/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script src="./Object Oriented Design Principles in Java_files/525232124909042" async=""></script><script async="" src="./Object Oriented Design Principles in Java_files/fbevents.js"></script><script async="" src="./Object Oriented Design Principles in Java_files/analytics.js"></script><script id="repixel" async="" src="./Object Oriented Design Principles in Java_files/r.js"></script><script type="text/javascript" src="./Object Oriented Design Principles in Java_files/cmp.complete.bundle.js"></script><script type="text/javascript" async="" src="./Object Oriented Design Principles in Java_files/videoplayer.js"></script><script type="text/javascript" async="" src="./Object Oriented Design Principles in Java_files/prebid.js"></script>
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Object Oriented Design Principles in Java</title>
+    <meta name="HandheldFriendly" content="True">
+	<meta name="keywords" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- fav icons -->
+	<!--<link rel="shortcut icon" href="/favicon.ico">-->
+	<link rel="apple-touch-icon" href="https://stackabuse.com/assets/images/apple-touch-icon.png?v=8b761e8043">
+	<link rel="apple-touch-icon" sizes="72x72" href="https://stackabuse.com/assets/images/apple-touch-icon-72x72.png?v=8b761e8043">
+	<link rel="apple-touch-icon" sizes="114x114" href="https://stackabuse.com/assets/images/apple-touch-icon-114x114.png?v=8b761e8043">
+    <!-- header scripts -->
+    <script async="" type="text/javascript" src="./Object Oriented Design Principles in Java_files/gpt.js"></script><script type="text/javascript" src="./Object Oriented Design Principles in Java_files/3873.js"></script><style type="text/css">.waldo-sticky-footer{position: fixed; width: 100%; bottom: 0px; left: 0px; text-align: center; z-index: 9000;}.waldo-sticky-footer iframe, .waldo-sticky-footer div {margin-left: auto;margin-right: auto;}.waldo-sticky-sidebar{position: fixed; top: 10px;z-index: 90}.waldo-sticky-css{position: sticky; top: 10px; z-index: 90}.waldo-overlay{position: fixed;height: 100%;width: 100%;top: 0;left: 0;z-index: 105;background: rgba(0,0,0,0.7);}#waldo-counter {position: absolute;bottom: 0;right: 0;color: #fff;font-size: 30px;padding: 15px;}.waldo-bfleft {position: fixed; left: 0; top: 10px;z-index:101;}.waldo-bfright {position: fixed; right: 0; top: 10px;z-index:101;}#waldo-tag-6038 {clear: both !important;}div[class^="app_gdpr-"] a {color: #41afbb !important; text-decoration: underline !important}#waldo-close-button a {border: 1px solid rgba(0,0,0,.35);padding: 3px;font-size: 12px;color: #fff;font-weight: bold;background-color: #777;}</style><script type="text/javascript">googletag.cmd.push(function() {gptAdSlots[3874] = googletag.defineSlot('/124067137/stackabuse300x250FL_1', [[300, 250], [300, 600]], 'waldo-tag-3874').defineSizeMapping(googletag.sizeMapping().addSize([1024, 0], [[300, 250], [300, 600]]).addSize([768, 0], [[300, 250], [300, 600]]).addSize([0, 0], [[300, 250], [300, 600]]).build()).addService(googletag.pubads());gptAdSlots[3875] = googletag.defineSlot('/8491498/stackabuse300x250FL_1_Universal_Passback_5c8a5d10788bc', [300, 250], 'waldo-tag-3875').addService(googletag.pubads());gptAdSlots[3876] = googletag.defineSlot('/124067137/stackabuse300x250FL_2', [[300, 250], [300, 600]], 'waldo-tag-3876').defineSizeMapping(googletag.sizeMapping().addSize([1024, 0], [[300, 250], [300, 600]]).addSize([768, 0], [[300, 250], [300, 600]]).addSize([0, 0], [[300, 250], [300, 600]]).build()).addService(googletag.pubads());gptAdSlots[3877] = googletag.defineSlot('/8491498/stackabuse300x250FL_2_Universal_Passback_5c8a5d13f3b0f', [300, 250], 'waldo-tag-3877').addService(googletag.pubads());gptAdSlots[3878] = googletag.defineSlot('/124067137/stackabuse728x90FS_1', [[728, 90], [320, 50]], 'waldo-tag-3878').defineSizeMapping(googletag.sizeMapping().addSize([1024, 0], [[728, 90]]).addSize([768, 0], [[320, 50]]).addSize([0, 0], [[320, 50]]).build()).addService(googletag.pubads());gptAdSlots[3879] = googletag.defineSlot('/8491498/stackabuse728x90FS_1_Universal_Passback_5c8a5d17af7f4', [[728, 90], [320, 50]], 'waldo-tag-3879').defineSizeMapping(googletag.sizeMapping().addSize([1024, 0], [[728, 90]]).addSize([768, 0], [[320, 50]]).addSize([0, 0], [[320, 50]]).build()).addService(googletag.pubads());gptAdSlots[3880] = googletag.defineSlot('/124067137/stackabuse728x90FS_2', [[728, 90], [300, 250], [320, 50]], 'waldo-tag-3880').defineSizeMapping(googletag.sizeMapping().addSize([1024, 0], [[728, 90], [300, 250]]).addSize([768, 0], [[300, 250], [320, 50]]).addSize([0, 0], [[300, 250], [320, 50]]).build()).addService(googletag.pubads());gptAdSlots[3881] = googletag.defineSlot('/8491498/stackabuse728x90FS_2_Universal_Passback_5c8a5d1c6686c', [[728, 90], [300, 250]], 'waldo-tag-3881').defineSizeMapping(googletag.sizeMapping().addSize([1024, 0], [[728, 90]]).addSize([768, 0], [[300, 250]]).addSize([0, 0], [[300, 250]]).build()).addService(googletag.pubads());gptAdSlots[3884] = googletag.defineSlot('/124067137/stackabuse728x90FS_3', [[728, 90], [300, 250], [320, 50]], 'waldo-tag-3884').defineSizeMapping(googletag.sizeMapping().addSize([1024, 0], [[728, 90], [300, 250]]).addSize([768, 0], [[300, 250], [320, 50]]).addSize([0, 0], [[300, 250], [320, 50]]).build()).addService(googletag.pubads());gptAdSlots[3885] = googletag.defineSlot('/8491498/stackabuse728x90FS_3_Universal_Passback_5c8ab6465375f', [[728, 90], [300, 250]], 'waldo-tag-3885').defineSizeMapping(googletag.sizeMapping().addSize([1024, 0], [[728, 90]]).addSize([768, 0], [[300, 250]]).addSize([0, 0], [[300, 250]]).build()).addService(googletag.pubads());googletag.pubads().enableSingleRequest();googletag.enableServices();googletag.pubads().addEventListener('impressionViewable', function(event) {hb_refresh(event); hb_sroll_pause(event);});googletag.pubads().addEventListener('slotRenderEnded', function(event) {waldoAddCloseBtn(event); waldoPassbackInit(event);waldoInterstitialInit(event);})});</script>
+	<!-- stylesheets -->
+    <link href="./Object Oriented Design Principles in Java_files/css" rel="stylesheet">
+	<link rel="stylesheet" href="./Object Oriented Design Principles in Java_files/bootstrap.min.css">
+	<link rel="stylesheet" href="./Object Oriented Design Principles in Java_files/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="./Object Oriented Design Principles in Java_files/screen.css">
+	<link rel="stylesheet" type="text/css" href="./Object Oriented Design Principles in Java_files/atom_one_dark.css">
+	<script>
+/*====================================================
+  THEME SETTINGS & GLOBAL VARIABLES
+====================================================*/
+//  1. Disqus comment settings
+var disqus_shortname = 'stackabuse'; // required: replace example with your forum shortname
+
+//	2. Sidebar Position
+var sidebar_left = false; // Set true or flase for positioning sidebar on left
+
+//  3. Recent Post count
+var recent_post_count = 3;
+
+//	4. Google+ badge settings
+var badge_type = 'page'; // person / page / community ----- three type of google badge
+var google_plus_url = 'https://plus.google.com/111813546240107028721';
+
+//	5. Facebook Page Setting
+var facebook_page_url = 'https://www.facebook.com/stackabuse';
+
+//	6. Twitter Setting
+var twitter_url = 'https://twitter.com/ScottWRobinson';
+var twitter_widget_id = '722928793669607425';
+var number_of_tweet = 3;
+
+//	7. Mailchimp signup form Setting
+var mailchimp_form_url = '//stackabuse.us10.list-manage.com/subscribe/post?u=90b216fdbe02b25619ec94fc3&amp;id=bc2bb312cd';
+var success_message = "Please check your inbox and confirm your email address. Thank you!";
+
+//	8. Flickr Setting
+//var flickr_id = '52617155@N08';
+var flickr_id = '';
+
+// 9. Adsense Channels
+var adsense_tag_to_channel_name = {
+    'node': 'sa-topic-node-js',
+    'javascript': 'sa-topic-javascript',
+    'python': 'sa-topic-python',
+    'java': 'sa-topic-java',
+    'machine learning': 'sa-topic-machine-learning',
+    'artificial intelligence': 'sa-topic-ai',
+    'tensorflow': 'sa-topic-tensorflow',
+    'scikit-learn': 'sa-topic-scikit-learn',
+    'algorithms': 'sa-topic-algorithms',
+    'data structures': 'sa-topic-data-structures',
+    'aws': 'sa-topic-aws',
+    'apache': 'sa-topic-apache',
+    'django': 'sa-topic-django',
+    'flask': 'sa-topic-flask',
+    'shell': 'sa-topic-shell',
+    'bash': 'sa-topic-bash',
+    'npm': 'sa-topic-npm',
+    'unix': 'sa-topic-unix',
+    'linux': 'sa-topic-linux',
+    'json': 'sa-topic-json',
+    'maven': 'sa-topic-maven',
+    'web framework': 'sa-topic-web-framework',
+    'security': 'sa-topic-security',
+    'arduino': 'sa-topic-arduino',
+    'express': 'sa-topic-express-js',
+    'es6': 'sa-topic-es6',
+    'mongodb': 'sa-topic-mongodb',
+    'how to': 'sa-topic-how-to',
+};
+var adsense_author_to_channel_name = {
+    'Scott Robinson': 'sa-author-scott-robinson',
+    'Frank Hofmann': 'sa-author-frank-hofmann',
+    'Adam McQuistan': 'sa-author-adam-mcquistan',
+    'Tendai Mutunhire': 'sa-author-tendai-mutunhire',
+    'Guest Contributor': 'sa-author-guest-contributor',
+    'Mihajlo Pavloski': 'sa-author-mihajlo-pavloski',
+    'Esther Vaati': 'sa-author-esther-vaati',
+    'Adnan Rahic': 'sa-author-adnan-rahic',
+    'Sam Galizia': 'sa-author-sam-galizia',
+};
+var adsense_channel_name_to_id = {
+    'sa-author-scott-robinson': '5091228512',
+    'sa-author-frank-hofmann': '5574923176',
+    'sa-author-adam-mcquistan': '5470502461',
+    'sa-author-tendai-mutunhire': '4157420794',
+    'sa-author-guest-contributor': '9218175780',
+    'sa-author-mihajlo-pavloski': '2081921796',
+    'sa-author-esther-vaati': '9026604091',
+    'sa-author-adnan-rahic': '5829595117',
+    'sa-author-sam-galizia': '1890350103',
+    'sa-topic-node-js': '9234966588',
+    'sa-topic-javascript': '4871736666',
+    'sa-topic-python': '6017776300',
+    'sa-topic-java': '4704694632',
+    'sa-topic-machine-learning': '2618830613',
+    'sa-topic-ai': '7679585600',
+    'sa-topic-tensorflow': '2325943302',
+    'sa-topic-scikit-learn': '8801095589',
+    'sa-topic-algorithms': '9664898345',
+    'sa-topic-data-structures': '8884856065',
+    'sa-topic-aws': '6294351744',
+    'sa-topic-apache': '4220999970',
+    'sa-topic-django': '2399338763',
+    'sa-topic-flask': '3357197212',
+    'sa-topic-shell': '7386698293',
+    'sa-topic-bash': '6588621943',
+    'sa-topic-npm': '8417952206',
+    'sa-topic-unix': '4912578190',
+    'sa-topic-linux': '4029428281',
+    'sa-topic-json': '7104870536',
+    'sa-topic-maven': '2286414858',
+    'sa-topic-web-framework': '4321551251',
+    'sa-topic-security': '8660251512',
+    'sa-topic-arduino': '2649376939',
+    'sa-topic-express-js': '3008469582',
+    'sa-topic-es6': '3447453289',
+    'sa-topic-mongodb': '9382306243',
+    'sa-topic-how-to': '5443061231',
+    'sa-position-sidebar-top': '9190734552',
+    'sa-position-sidebar-middle': '5600217174',
+    'sa-position-sidebar-bottom': '3770886911',
+    'sa-position-content-top': '4789698384',
+    'sa-position-content-middle': '7686081194',
+    'sa-position-content-bottom': '4576223195',
+};
+</script>    <link rel="shortcut icon" href="https://stackabuse.com/favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="https://stackabuse.com/object-oriented-design-principles-in-java/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta property="og:site_name" content="Stack Abuse">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Object Oriented Design Principles in Java">
+    <meta property="og:description" content="Introduction Design principles are generalized pieces of advice or proven good coding practices that are used as rules of thumb when making design choices. They&#39;re a similar concept to design patterns, the main difference being that design principles are more abstract and generalized. They are high-level pieces of advice, often">
+    <meta property="og:url" content="https://stackabuse.com/object-oriented-design-principles-in-java/">
+    <meta property="article:published_time" content="2019-11-04T17:39:31.000Z">
+    <meta property="article:modified_time" content="2019-11-04T17:39:31.000Z">
+    <meta property="article:tag" content="java">
+    <meta property="article:tag" content="oop">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Object Oriented Design Principles in Java">
+    <meta name="twitter:description" content="Introduction Design principles are generalized pieces of advice or proven good coding practices that are used as rules of thumb when making design choices. They&#39;re a similar concept to design patterns, the main difference being that design principles are more abstract and generalized. They are high-level pieces of advice, often">
+    <meta name="twitter:url" content="https://stackabuse.com/object-oriented-design-principles-in-java/">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Darinka Zobenica">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="java, oop">
+    <meta name="twitter:site" content="@ScottWRobinson">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Stack Abuse",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://stackabuse.com/favicon.ico",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Darinka Zobenica",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://stackabuse.com/content/images/2019/09/IMG_20190612_180634.png",
+            "width": 3228,
+            "height": 3228
+        },
+        "url": "https://stackabuse.com/author/darinka/",
+        "sameAs": []
+    },
+    "headline": "Object Oriented Design Principles in Java",
+    "url": "https://stackabuse.com/object-oriented-design-principles-in-java/",
+    "datePublished": "2019-11-04T17:39:31.000Z",
+    "dateModified": "2019-11-04T17:39:31.000Z",
+    "keywords": "java, oop",
+    "description": "Introduction Design principles are generalized pieces of advice or proven good coding practices that are used as rules of thumb when making design choices. They&#x27;re a similar concept to design patterns, the main difference being that design principles are more abstract and generalized. They are high-level pieces of advice, often",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://stackabuse.com/"
+    }
+}
+    </script>
+
+    <script src="./Object Oriented Design Principles in Java_files/ghost-sdk.min.js"></script>
+<script>
+ghost.init({
+	clientId: "ghost-frontend",
+	clientSecret: "952da4a040f4"
+});
+</script>
+    <meta name="generator" content="Ghost 2.23">
+    <link rel="alternate" type="application/rss+xml" title="Stack Abuse" href="https://stackabuse.com/rss/">
+    <script type="text/javascript" src="./Object Oriented Design Principles in Java_files/jquery.min.js"></script>
+<!-- Repixel Code -->
+<script>
+  (function(w, d, s, id, src){
+  w.Repixel = r = {
+    init: function(id) {
+      w.repixelId = id;
+    }
+  };
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)){ return; }
+  js = d.createElement(s); 
+  js.id = id;
+  js.async = true;
+  js.onload = function(){
+      Repixel.init(w.repixelId);
+  };
+  js.src = src;
+  fjs.parentNode.insertBefore(js, fjs);
+  }(window, document, 'script', 'repixel', 
+  'https://sdk.repixel.co/r.js'));
+  Repixel.init('5cefff7fce3aad00089e44e5');
+</script>
+<!-- Repixel Code -->
+<script type="text/javascript" async="" src="./Object Oriented Design Principles in Java_files/embed.js"></script><script async="" type="text/javascript" src="./Object Oriented Design Principles in Java_files/count.js"></script><style type="text/css">.hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}</style><link rel="preload" href="./Object Oriented Design Principles in Java_files/f(1).txt" as="script"><script type="text/javascript" src="./Object Oriented Design Principles in Java_files/f(1).txt"></script><link rel="preload" href="./Object Oriented Design Principles in Java_files/f(2).txt" as="script"><script type="text/javascript" src="./Object Oriented Design Principles in Java_files/f(2).txt"></script><script src="./Object Oriented Design Principles in Java_files/pubads_impl_2019121002.js" async=""></script><link rel="prefetch" as="style" href="https://c.disquscdn.com/next/embed/styles/lounge.91c71242b4acaa0ee7f9db125ef21f90.css"><link rel="prefetch" as="script" href="https://c.disquscdn.com/next/embed/common.bundle.0b9bbdb3bc568241a5d1d7626947e8b0.js"><link rel="prefetch" as="script" href="https://c.disquscdn.com/next/embed/lounge.bundle.0523614fef9787c3e3459e0602078385.js"><link rel="prefetch" as="script" href="https://disqus.com/next/config.js"><script src="./Object Oriented Design Principles in Java_files/count-data.js"></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover, .MJXp-munder {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><style>[data-ad-unit="LEFT_RAIL_DYNAMIC"]{display:none !important}</style><style>[data-ad-unit="LEFT_RAIL"]{display:none !important}</style><iframe src="./Object Oriented Design Principles in Java_files/serve.html" id="bidt-sra" scrolling="no" allowtransparency="true" frameborder="0" marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" sandbox="allow-forms allow-same-origin allow-scripts allow-top-navigation allow-popups" width="1" height="1"></iframe><style>[data-ad-unit="LEFT_RAIL_DYNAMIC"]{display:none !important}</style><style>[data-ad-unit="LEFT_RAIL"]{display:none !important}</style><img src="./Object Oriented Design Principles in Java_files/notify"><img src="./Object Oriented Design Principles in Java_files/notify(1)"><img src="./Object Oriented Design Principles in Java_files/notify(2)"><img src="./Object Oriented Design Principles in Java_files/notify(3)"></head>
+<body class="post-template tag-java tag-oop"><div id="MathJax_Message" style="display: none;"></div>
+	<nav class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <i class="fa fa-bars"></i>
+      </button>
+      <a class="navbar-brand" href="https://stackabuse.com/">Stack <span style="color:#f16334;">Abuse</span></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+	<li class="nav-node-js" role="presentation"><a href="https://stackabuse.com/tag/node/">Node.js</a></li>
+	<li class="nav-python" role="presentation"><a href="https://stackabuse.com/tag/python">Python</a></li>
+	<li class="nav-java" role="presentation"><a href="https://stackabuse.com/tag/java/">Java</a></li>
+    <li class="nav-hireremote" role="presentation">
+        <a rel="nofollow" target="_blank" href="https://hireremote.io/" ga-on="click" ga-event-category="Jobs" ga-event-action="Click" ga-event-label="HR-Nav-Link">
+            Jobs
+        </a>
+    </li>
+</ul>
+      <!--<ul class="nav navbar-nav pull-right">
+        <li role="presentation">
+          <a class="btn btn-success nav-btn" href="http://jobs.stackabuse.com">Find a Job</a>
+        </li>
+        <li role="presentation">
+          <a class="btn btn-danger nav-btn" href="http://jobs.stackabuse.com/post">Post a Job</a>
+        </li>
+      </ul>-->
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+	<!-- start site's main content area -->
+<section class="content-wrap">
+	<div class="container">
+		<div class="row">
+			<!-- start main post area -->
+			<div class="col-md-8 main-content">
+				<!-- start post -->
+				<article id="5d948539e06c9d4a699a598b" class="post tag-java tag-oop">
+					<div class="post-head">
+						<h2 class="post-title">Object Oriented Design Principles in Java</h2>
+						<div class="post-meta">
+							<span class="author">
+                                By
+                                Darinka Zobenica
+                            </span> •
+							<span class="date">November 04, 2019</span> •
+							<span class="comment-count"><a href="https://stackabuse.com/object-oriented-design-principles-in-java/#disqus_thread">1 Comment</a></span>
+						</div>
+					</div>
+                    <div class="post-ad">
+                        <!-- 728x90/320x50 -->
+<div id="waldo-tag-3878" data-processed="true"><script type="text/javascript">googletag.cmd.push(function() { googletag.display('waldo-tag-3878'); });</script><span id="_waldo-tag-3878-4-container"></span></div>                    </div>
+					<div class="post-content">
+						<!--kg-card-begin: markdown--><h3 id="introduction">Introduction</h3>
+<p><strong>Design principles</strong> are generalized pieces of advice or proven good coding practices that are used as rules of thumb when making design choices.</p>
+<p>They're a similar concept to <a target="_blank" href="https://stackabuse.com/design-patterns-in-java">design patterns</a>, the main difference being that design principles are more abstract and generalized. They are <em>high-level</em> pieces of advice, often applicable to many different programming languages or even different paradigms.</p>
+<p>Design patterns are also abstractions or generalized good practices, but they provide much more concrete and practical <em>low-level</em> advice, and are related to entire classes of problems rather than just generalized coding practices.</p>
+<p>Some of the most important design principles in the object oriented paradigm are listed in this article, but this is by no means an exhaustive list.</p>
+<ul>
+<li><a href="https://stackabuse.com/object-oriented-design-principles-in-java/#dontrepeatyourselfdryprinciple">Don't Repeat Yourself (DRY) Principle</a></li>
+<li><a href="https://stackabuse.com/object-oriented-design-principles-in-java/#keepitsimpleandstupidkissprinciple">Keep It Simple and Stupid (KISS) Principle</a></li>
+<li><a href="https://stackabuse.com/object-oriented-design-principles-in-java/#thesinglerepositoryprinciplesrp">The Single Responsibility Principle (SRP)</a></li>
+<li><a href="https://stackabuse.com/object-oriented-design-principles-in-java/#theopenclosedprinciple">The Open/Closed Principle</a></li>
+<li><a href="https://stackabuse.com/object-oriented-design-principles-in-java/#liskovsubstitutionprinciplelsp">Liskov Substitution Principle (LSP)</a></li>
+<li><a href="https://stackabuse.com/object-oriented-design-principles-in-java/#theinterfacesegregationprincipleisp">The Interface Segregation Principle (ISP)</a></li>
+<li><a href="https://stackabuse.com/object-oriented-design-principles-in-java/#thedependencyinversionprincipledip">The Dependency Inversion Principle (DIP)</a></li>
+<li><a href="https://stackabuse.com/object-oriented-design-principles-in-java/#thecompositionoverinheritanceprinciple">The Composition Over Inheritance Principle</a></li>
+</ul>
+<p>The SRP, LSP, Open/Closed, and DIP principles are often bundled together and called <em>SOLID</em> principles.</p>
+<h3 id="dontrepeatyourselfdryprinciple">Don't Repeat Yourself (DRY) Principle</h3>
+<p>The <em>Don't Repeat Yourself</em> (DRY) principle is a common principle across programming paradigms, but it is especially important in OOP. According to the principle:</p>
+<blockquote>
+<p><em>Every piece of knowledge or logic must have a single, unambiguous representation within a system</em>.</p>
+</blockquote>
+<p>When it comes to OOP, this means utilizing abstract classes, interfaces, and public constants. Whenever there's a functionality common across classes, it either might make sense to abstract them away into a common parent class or use interfaces to couple their functionality:</p>
+<pre><code class="language-java hljs"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Animal</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">eatFood</span><span class="hljs-params">()</span> </span>{
+        System.out.println(<span class="hljs-string">"Eating food..."</span>);
+    }
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Cat</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Animal</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">meow</span><span class="hljs-params">()</span> </span>{
+        System.out.println(<span class="hljs-string">"Meow! *purrs*"</span>);
+    }
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Dog</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Animal</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">woof</span><span class="hljs-params">()</span> </span>{
+        System.out.println(<span class="hljs-string">"Woof! *wags tail*"</span>);
+    }
+}
+</code></pre>
+<p>Both a <code>Cat</code> and a <code>Dog</code> need to eat food, but they speak differently. Since eating food is a common functionality for them, we can abstract it into a parent class such as <code>Animal</code> and then have them extend the class.</p>
+<p>Now, instead of both classes implementing the same functionality of eating food, each can focus on their own unique logic.</p>
+<pre><code class="language-java hljs">Cat cat = <span class="hljs-keyword">new</span> Cat();
+cat.eatFood();
+cat.meow();
+
+Dog dog = <span class="hljs-keyword">new</span> Dog();
+dog.eatFood();
+dog.woof();
+</code></pre>
+<p>The output would be:</p>
+<pre><code class="language-console hljs shell">Eating food...
+Meow! *purrs*
+Eating food...
+Woof! *wags tail*
+</code></pre>
+<p>Whenever there's a constant that's used multiple times, it's good practice to define it as a public constant:</p>
+<pre><code class="language-java hljs"><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> GENERATION_SIZE = <span class="hljs-number">5000</span>;
+<span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> REPRODUCTION_SIZE = <span class="hljs-number">200</span>;
+<span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> MAX_ITERATIONS = <span class="hljs-number">1000</span>;
+<span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">float</span> MUTATION_SIZE = <span class="hljs-number">0.1f</span>;
+<span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> TOURNAMENT_SIZE = <span class="hljs-number">40</span>;
+</code></pre>
+<p>For an example, we'll be using these constants several times, and eventually we'll be changing their values manually to optimize a genetic algorithm. It would be easy to make a mistake if we had to update each of these values at multiple places.</p>
+<p>Also, we don't want to make a mistake and programmatically change these values during execution, so we're also introducing the <code>final</code> modifier.</p>
+<p><strong>Note:</strong> Due to the naming convention in Java, these should be capitalized with words separated by an underscore ("_").</p>
+<p>The purpose of this principle is to ensure easy <strong>maintenance</strong> of code, because when a functionality or a constant changes you have to edit the code only in one place. This not only makes the job easier, but ensures that mistakes won't happen in the future. You may forget to edit the code in multiple places, or somebody else who's not as familiar with your project may not know that you've repeated code and may end up editing it in just one place.</p>
+<p>However, it's important to apply common sense when using this principle. If you use the same piece of code to do two different things initially, that doesn't mean those two things will always need to be dealt with in the same way.</p>
+<p>This usually happens if structures are actually dissimilar, despite the same code being used to handle them. The code can also be 'over-dried', making it essentially unreadable because methods are called form unrelated, incomprehensible places.</p>
+<p>A good architecture can amortize this, but the problem can crop up in practice nonetheless.</p>
+<h4 id="violationsofthedryprinciple">Violations of the DRY Principle</h4>
+<p>Violations of the DRY Principle are often referred to as <a rel="nofollow" target="_blank" href="https://en.wikipedia.org/wiki/Don&#39;t_repeat_yourself#DRY_vs_WET_solutions">WET solutions</a>. WET can be an abbreviation for multiple things:</p>
+<ul>
+<li>We Enjoy Typing</li>
+<li>Waste Everyone's Time</li>
+<li>Write Every Time</li>
+<li>Write Everything Twice</li>
+</ul>
+<p>WET solutions aren't always bad, as repetition is sometimes advisable in inherently dissimilar classes, or in order to make code more readable, less inter-dependent, etc.</p>
+<h3 id="keepitsimpleandstupidkissprinciple">Keep It Simple and Stupid (KISS) Principle</h3>
+<p>The <em>Keep it Simple and Stupid</em> (KISS) principle is a reminder to keep your code simple and readable for humans. If your method handles multiple use-cases, split them into smaller functions. If it performs multiple functionalities, make multiple methods instead.</p>
+<p>The core of this principle is that for <em>most</em> cases, unless efficiency is <em>extremely</em> crucial, another stack call isn't going to severely affect the performance of your program. In fact, some compilers or runtime environments will even simplify a method call into an inline execution.</p>
+<p>On the other hand, unreadable and long methods will be very hard to maintain for human programmers, bugs will be harder to find, and you might find yourself violating DRY as well because if a function does two things, you can't call it to do just one of them, so you'll make another method.</p>
+<p>All in all, if you find yourself tangled up in your own code and unsure what each part does, it's time for reevaluation.</p>
+<p>It's almost certain that the design could be tweaked to make it more readable. And if you are having trouble as the one who designed it while it's all still fresh in your mind, think about how somebody who sees it for the first time in the future will perform.</p>
+<h3 id="thesingleresponsibilityprinciplesrp">The Single Responsibility Principle (SRP)</h3>
+<p>The <em>Single Responsibility Principle</em> (SRP) states that there should never be two functionalities in one class. Sometimes, it's paraphrased as:</p>
+<blockquote>
+<p>"A class should only have one, and only one, reason to be changed."</p>
+</blockquote>
+<p>Where a "reason to be changed" is the responsibility of the class. If there are more than one responsibilities, there are more reasons to change that class at some point.</p>
+<p>This means that in the event of a functionality needing an update, there shouldn't be multiple separate functionalities in that same class that may be affected.</p>
+<p>This principle makes it easier to deal with bugs, to implement changes without confusing co-dependencies, and to inherit from a class without having to implement or inherit methods your class doesn't need.</p><div><!-- 728x90/300x250/320x50 --><div id="waldo-tag-3880"><div id="_waldo-tag-3880-2-container" style="margin: auto; text-align: center;"><iframe id="waldo-tag-3880-2" scrolling="no" allowtransparency="true" frameborder="0" marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" sandbox="allow-forms allow-same-origin allow-scripts allow-top-navigation allow-popups" width="728" height="90" src="./Object Oriented Design Principles in Java_files/render.html">
+    </iframe></div></div></div>
+<p>While it may seem that this encourages you to rely on dependencies a lot, this sort of modularity is much more important. Some level of dependency between classes is inevitable, which is why we also have principles and patterns to deal with that.</p>
+<p>For an example, say our application should retrieve some product information from the database, then process it and finally display it to the end-user.</p>
+<p>We could use a single class to handle the database call, process the information and push the information to the presentation layer. Though, bundling these functionalities makes our code unreadable and illogical.</p>
+<p>What we'd do instead is defining a class, such as <code>ProductService</code> that would fetch the product from the database, a <code>ProductController</code> to process the info and then we'd display it in a presentation layer - either an HTML page or another class/GUI.</p>
+<h3 id="theopenclosedprinciple">The Open/Closed Principle</h3>
+<p>The <em>Open/Closed</em> principle states that classes or objects and methods should be open for extension, but closed for modifications.</p>
+<p>What this means in essence is that you should design your classes and modules with possible future updates in mind, so they should have a generic design that you won't need to change the class itself in order to extend their behavior.</p>
+<p>You can add more fields or methods, but in such a way that you don't need to rewrite old methods, delete old fields and modify the old code in order to make it work again. Thinking ahead will help you write stable code, before and after an update of requirements.</p>
+<p>This principle is important in order to ensure backwards compatibility and prevent <a rel="nofollow" target="_blank" href="https://en.wikipedia.org/wiki/Software_regression">regressions</a> - a bug which happens when your programs features or efficiency breaks after an update.</p>
+<h3 id="liskovsubstitutionprinciplelsp">Liskov Substitution Principle (LSP)</h3>
+<p>According to the <em>Liskov Substitution Principle</em> (LSP), derived classes should be able to substitute their base classes without the behavior of your code changing.</p>
+<p>This principle is closely related to <em>The Interface Segregation Principle</em> and <em>The Single Responsibility Principle</em>, meaning that a violation of either of those is likely to be (or become) a violation of LSP as well. This is because if a class does more than one thing, subclasses extending it are less likely to meaningfully implement those two or more functionalities.</p>
+<p>A common way people think about object relationships (which can be a bit misleading at times) is that there needs to be an <em>is relationship</em> between classes.</p>
+<p>For example:</p>
+<ul>
+<li><code>Car</code> is a <code>Vehicle</code></li>
+<li><code>TeachingAssistaint</code> is a <code>CollegeEmployee</code></li>
+</ul>
+<p>It's important to note that these relationships don't go in both directions. The fact that <code>Car</code> is a <code>Vehicle</code> might not mean that <code>Vehicle</code> is a <code>Car</code> - it can be a <code>Motorcycle</code>, <code>Bicycle</code>, <code>Truck</code>...</p>
+        <!-- start newsletter section -->
+<div class="section">
+    <div class="newsletter text-center">
+        <h4 class="title">Subscribe to our Newsletter</h4>
+        <div class="content">        
+            <form action="https://stackabuse.com/object-oriented-design-principles-in-java/#" method="post" class="form-inline validate" novalidate="">
+                <div class="row">
+                    <div class="col-md-9 col-md-offset-1 col-xs-12">
+                        <p>Get occassional tutorials, guides, and reviews in your inbox. No spam ever. Unsubscribe at any time.</p>
+                    </div>
+                    <div class="col-md-2 col-xs-12"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-7 col-md-offset-1 col-xs-12">
+                        <input type="email" value="" name="email" class="form-control input-lg required email" placeholder="Enter your email..." style="width:100%;">
+                    </div>
+                    <div class="col-md-4 col-xs-12 text-left">
+                        <button type="submit" name="subscribe" class="btn btn-default btn-lg btn-subscribe" ga-on="click" ga-event-category="Newsletter" ga-event-action="Signup" ga-event-label="General-Newsletter-Signup">
+                            <i class="fa fa-spinner fa-pulse fa-fw" style="display:none;"></i>
+                            Subscribe
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <div class="message"></div>
+        </div>
+    </div>
+</div>
+<!-- end newsletter section -->    
+<p>The reason this can be misleading is a common mistake people make when thinking about it in natural language. For example, if I asked you if <code>Square</code> has an "is relationship" with <code>Rectangle</code>, you might automatically say yes.</p>
+<p>After all, we know from geometry that a square <em>is</em> a special case of rectangle. But depending on how your structures are implemented, this might not be the case:</p>
+<pre><code class="language-java hljs"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Rectangle</span> </span>{
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">double</span> a;
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">double</span> b;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Rectangle</span><span class="hljs-params">(<span class="hljs-keyword">double</span> a, <span class="hljs-keyword">double</span> b)</span> </span>{
+        <span class="hljs-keyword">this</span>.a = a;
+        <span class="hljs-keyword">this</span>.b = b;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setA</span><span class="hljs-params">(<span class="hljs-keyword">double</span> a)</span> </span>{
+        <span class="hljs-keyword">this</span>.a = a;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setB</span><span class="hljs-params">(<span class="hljs-keyword">double</span> b)</span> </span>{
+        <span class="hljs-keyword">this</span>.b = b;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">calculateArea</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> a*b;
+    }
+}
+</code></pre>
+<p>Now let's try inheriting from it for our <code>Square</code> within the same package:</p>
+<pre><code class="language-java hljs"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Square</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Rectangle</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Square</span><span class="hljs-params">(<span class="hljs-keyword">double</span> a)</span> </span>{
+        <span class="hljs-keyword">super</span>(a, a);
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setA</span><span class="hljs-params">(<span class="hljs-keyword">double</span> a)</span> </span>{
+        <span class="hljs-keyword">this</span>.a = a;
+        <span class="hljs-keyword">this</span>.b = a;
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setB</span><span class="hljs-params">(<span class="hljs-keyword">double</span> b)</span> </span>{
+        <span class="hljs-keyword">this</span>.a = b;
+        <span class="hljs-keyword">this</span>.b = b;
+    }
+}
+</code></pre>
+<p>You'll notice that setters here actually set both <code>a</code> and <code>b</code>. Some of you may already guess the problem. Let's say we initialized our <code>Square</code> and applied polymorphism to contain it within a <code>Rectangle</code> variable:</p>
+<pre><code class="language-java hljs">Rectangle rec = <span class="hljs-keyword">new</span> Square(<span class="hljs-number">5</span>);
+</code></pre>
+<p>And let's say that sometime later in the program, maybe in an entirely separate function, another programmer who had nothing to do with implementing these classes, decides that they want to resize their rectangle. They may try something like this:</p>
+<pre><code class="language-java hljs">rec.setA(<span class="hljs-number">6</span>);
+rec.setB(<span class="hljs-number">3</span>);
+</code></pre>
+<p>They'll get completely unexpected behavior and it might be difficult to trace back what the problem is.</p>
+<p>If they try to use <code>rec.calculateArea()</code> the result won't be <code>18</code> as they might expect from a rectangle with sides of lengths <code>6</code> and <code>3</code>.</p>
+<p>The result would instead be <code>9</code> because their rectangle is actually a square and has two equal sides - of length <code>3</code>.</p>
+<p>You may say that this is exactly the behavior you wanted because that's how a square works, but it's nonetheless not the expected behavior from a rectangle.</p>
+<p>So when we're inheriting we have to keep in mind the <em>behavior</em> of our classes and are they really <em>functionally interchangeable</em> within the code, rather than just the concepts being similar outside of the context of their usage in the program.</p>
+<h3 id="theinterfacesegregationprincipleisp">The Interface Segregation Principle (ISP)</h3>
+<p>The <em>Interface Segregation Principle</em> (ISP) states that the client should never be forced to depend on an interface they aren't using in their entirety. This means that an interface should have a minimum set of methods necessary for the functionality it ensures, and should be limited to only one functionality.</p>
+<p>For example, a <code>Pizza</code> interface shouldn't be required to implement an <code>addPepperoni()</code> method, because this doesn't have to be available for every type of pizza. For the sake of this tutorial, let's assume that all pizzas have a sauce and need to be baked and there's not a single exception.</p>
+<p>This is when we can define an interface:</p>
+<pre><code class="language-java hljs"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Pizza</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">addSauce</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">bake</span><span class="hljs-params">()</span></span>;
+}
+</code></pre>
+<p>And then, let's implement this through a couple of classes:</p>
+<pre><code class="language-java hljs"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">VegetarianPizza</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Pizza</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addMushrooms</span><span class="hljs-params">()</span> </span>{System.out.println(<span class="hljs-string">"Adding mushrooms"</span>);}
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addSauce</span><span class="hljs-params">()</span> </span>{System.out.println(<span class="hljs-string">"Adding sauce"</span>);}
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">bake</span><span class="hljs-params">()</span> </span>{System.out.println(<span class="hljs-string">"Baking the vegetarian pizza"</span>);}
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PepperoniPizza</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Pizza</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addPepperoni</span><span class="hljs-params">()</span> </span>{System.out.println(<span class="hljs-string">"Adding pepperoni"</span>);}
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addSauce</span><span class="hljs-params">()</span> </span>{System.out.println(<span class="hljs-string">"Adding sauce"</span>);}
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">bake</span><span class="hljs-params">()</span> </span>{System.out.println(<span class="hljs-string">"Baking the pepperoni pizza"</span>);}
+}
+</code></pre><div><!-- 728x90/300x250/320x50 --><div id="waldo-tag-3884"><div id="_waldo-tag-3884-4-container" style="margin: auto; text-align: center;"><iframe id="waldo-tag-3884-4" scrolling="no" allowtransparency="true" frameborder="0" marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" sandbox="allow-forms allow-same-origin allow-scripts allow-top-navigation allow-popups" width="728" height="90" src="./Object Oriented Design Principles in Java_files/render(1).html">
+    </iframe></div></div></div>
+<p>The <code>VegetarianPizza</code> has mushrooms whereas the <code>PepperoniPizza</code> has pepperoni. Both, of course, need sauce and need to be baked, which is also defined in the interface.</p>
+<p>If the <code>addMushrooms()</code> or <code>addPepperoni()</code> methods were located in the interface, both classes would have to implement them even though they don't need both, but rather only one each.</p>
+<p>We should strip interfaces of all but absolutely necessary functionalities.</p>
+<h3 id="thedependencyinversionprincipledip">The Dependency Inversion Principle (DIP)</h3>
+<p>According to the <em>Dependency Inversion Principle</em> (DIP), high-level and low-level modules should be decoupled in such a way that changing (or even replacing) low-level modules doesn't require (much) rework of high-level modules. Given that, both low-level and high-level modules shouldn't depend on each other, but rather they should depend on abstractions, such as interfaces.</p>
+<p>Another important thing DIP states is:</p>
+<blockquote>
+<p>Abstractions should not depend on details. Details (concrete implementations) should depend on abstractions.</p>
+</blockquote>
+<p>This principle is important because it decouples modules, making the system less complex, easier to maintain and update, easier to test, and more reusable. I can't stress enough how much of a game changer this is, especially for unit testing and reusability. If the code is written generically enough, it can easily find application in another project, while code that's too specific and interdependent with other modules of the original project will be hard to decouple from it.</p>
+<p>This principle is closely related to the <a rel="nofollow" target="_blank" href="https://en.wikipedia.org/wiki/Dependency_injection">dependency injection</a>, which is practically the implementation or rather, the goal of DIP. DI boils down to - if two classes are dependent, their features should be abstracted away and they should both depend on the abstraction, instead of on each other. This essentially should allow us to change details of the implementation while retaining its functionality.</p>
+<p><em>The Dependency Inversion Principle</em> and <em>Inversion of Control</em> (IoC) are used interchangeably by some people, although it is not technically true.</p>
+<p>Dependency Inversion guides us towards <strong>decoupling</strong> by using <em>dependency injection</em> through an <em>Inversion of Control Container</em>. Another name of IoC Containers could very well be <em>Dependency Injection Containers</em>, though the old name sticks around.</p>
+<h3 id="thecompositionoverinheritanceprinciple">The Composition Over Inheritance Principle</h3>
+<p>One should often prefer <em>composition</em> over <em>inheritance</em> when designing their systems. In Java, this means that we should more often define <em>interfaces</em> and implement them, rather than defining <em>classes</em> and extending them.</p>
+<p>We've already mentioned the <code>Car</code> is a <code>Vehicle</code> as a common guiding principle people use to determine whether classes should inherit one another or not.</p>
+<p>Despite being tricky to think about and tending to violate The Liskov Substitution Principle, this way of thinking is extremely problematic when it comes to reusing and repurposing code later in development.</p>
+<p>The problem here is illustrated by the following example:</p>
+<p><img src="./Object Oriented Design Principles in Java_files/object-oriented-design-principles-in-java.png" alt="img"></p>
+<p><code>Spaceship</code> and <code>Airplane</code> extend an abstract class <code>FlyingVehicle</code>, while <code>Car</code> and <code>Truck</code> extend <code>GroundVehicle</code>. Each have their respective methods which make sense for the type of vehicle, and we'd naturally group them together with abstraction when thinking of them in these terms.</p>
+<p>This inheritance structure is based on thinking about objects in terms of what they <em>are</em> instead of what they <em>do</em>.</p>
+<p>The problem with this is that new requirements can throw the whole hierarchy off balance. In this example, what if your boss waltzed in and informed you that a client wants a flying car now? If you inherit from <code>FlyingVehicle</code>, you'll have to implement <code>drive()</code> again even though that same functionality already exists, thereby violating the DRY Principle, and vice-versa:</p>
+<pre><code class="language-java hljs"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FlyingVehicle</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">fly</span><span class="hljs-params">()</span> </span>{}
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">land</span><span class="hljs-params">()</span> </span>{}
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GroundVehicle</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">drive</span><span class="hljs-params">()</span> </span>{}
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FlyingCar</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FlyingVehicle</span> </span>{
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">fly</span><span class="hljs-params">()</span> </span>{}
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">land</span><span class="hljs-params">()</span> </span>{}
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">drive</span><span class="hljs-params">()</span> </span>{}
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FlyingCar2</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">GroundVehicle</span> </span>{
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">drive</span><span class="hljs-params">()</span> </span>{}
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">fly</span><span class="hljs-params">()</span> </span>{}
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">land</span><span class="hljs-params">()</span> </span>{}
+}
+</code></pre>
+<p>Since most languages, including Java, don't allow multiple inheritance, we can opt to extend either one of these classes. Though, in both cases, we can't inherit the functionality of the other and have to rewrite it.</p>
+<p>You may figure out a way to change the whole architecture to fit around this new <code>FlyingCar</code> class, but depending on how deep in the development you are that can be a costly process.</p>
+<p>Given this problem, we could try and avoid this whole mess by basing our generalities on <em>common functionality</em> instead of <em>inherent similarity</em>. This is the way a lot of built-in Java mechanisms have been developed.</p>
+<blockquote>
+<p>If your class is going to implement all of the functionalities and your child class can be used as a substitute for your parent class, use <em>inheritance</em>.</p>
+<p>If you class is going to implement some specific functionalities, use <em>composition</em>.</p>
+</blockquote>
+<p>We use <code>Runnable</code>, <code>Comparable</code>, etc. instead of using some abstract classes implementing their methods because it's cleaner, it makes code more reusable, and it makes it easy to create a new class that conforms to what we need in order to use previously made functionalities.</p>
+<p>This also resolves the problem of dependencies destroying important functionalities and causing a chain reaction throughout our code. Instead of having a big problem when we need to make our code work for a new type of thing, we can simply make that new thing conform to previously set standards and work just as well as the old thing.</p>
+<p>In our vehicle example, we could just implement interfaces <code>Flyable</code> and <code>Drivable</code> instead of introducing abstraction and inheritance.</p>
+<p>Our <code>Airplane</code> and <code>Spaceship</code> could implement <code>Flyable</code>, our <code>Car</code> and <code>Truck</code> could implement <code>Drivable</code>, and our new <code>FlyingCar</code> could implement <strong>both</strong>.</p>
+<p>No changes in the class structure needed, no major DRY violations, no confusion of colleagues. If you happen to need <em>exact same</em> functionality in multiple classes, you can implement it using a <a rel="nofollow" target="_blank" href="https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html">default method</a> in your interface, to avoid violating DRY.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>Design principles are an important part of a developer's toolkit, and making more conscious choices when designing your software is going to help you nail down the nuances of careful, future-proof, design.</p>
+<p>Most developers truly learn these through experience rather than theory, but theory can help by giving you a new point of view and orient you towards more thoughtful design habits, especially on <em>that</em> interview in <em>that</em> company that built their whole systems on these principles.</p>
+<!--kg-card-end: markdown-->
+					</div>
+					<footer class="post-footer clearfix">
+						<div class="pull-left tag-list">
+							<i class="fa fa-folder-open-o"></i>
+							<a href="https://stackabuse.com/tag/java/">java</a>,<a href="https://stackabuse.com/tag/oop/">oop</a>
+						</div>
+						<div class="pull-right share">
+							<div>
+	<ul class="share-icons">
+		<!-- twitter -->
+		<li>
+			<a href="https://twitter.com/share?text=Object%20Oriented%20Design%20Principles%20in%20Java&amp;url=https://stackabuse.com/object-oriented-design-principles-in-java/" onclick="window.open(this.href, &#39;twitter-share&#39;, &#39;width=550,height=235&#39;);return false;"><i class="fa fa-twitter" style="color:#55acee;"></i></a>
+		</li>
+		<!-- facebook -->
+		<li>
+			<a href="https://www.facebook.com/sharer/sharer.php?u=https://stackabuse.com/object-oriented-design-principles-in-java/" onclick="window.open(this.href, &#39;facebook-share&#39;,&#39;width=580,height=296&#39;);return false;"><i class="fa fa-facebook" style="color:#3b5998;"></i></a>
+		</li>
+		<!-- google plus -->
+		<li>
+			<a href="https://plus.google.com/share?url=https://stackabuse.com/object-oriented-design-principles-in-java/" onclick="window.open(this.href, &#39;google-plus-share&#39;, &#39;width=490,height=530&#39;);return false;"><i class="fa fa-google-plus" style="color:#dc4e41;"></i></a>
+		</li>
+		<!-- linkedin -->
+		<li>
+			<a href="https://www.linkedin.com/shareArticle?mini=true%26url=https://stackabuse.com/object-oriented-design-principles-in-java/%26source=https://stackabuse.com" onclick="window.open(this.href, &#39;linkedin-share&#39;, &#39;width=490,height=530&#39;);return false;"><i class="fa fa-linkedin" style="color:#0077b5;"></i></a>
+		</li>
+	</ul>
+</div>						</div>
+					</footer>
+                    <!-- start about the author -->
+<div class="about-author clearfix">
+		<a href="https://stackabuse.com/author/darinka/"><img src="./Object Oriented Design Principles in Java_files/IMG_20190612_180634.png" alt="Author image" class="avatar pull-left"></a>
+	<div class="details">
+		<div class="author">
+			About <a href="https://stackabuse.com/author/darinka/">Darinka Zobenica</a>
+		</div>
+		<div class="meta-info" style="font-style: normal;">
+			<span class="location"><i class="fa fa-home"></i>Belgrade, Serbia</span>
+		</div>
+	</div>
+</div>
+<!-- end about the author -->				</article>
+                <!-- start newsletter section -->
+<div class="section">
+    <div class="newsletter text-center">
+        <h4 class="title">Subscribe to our Newsletter</h4>
+        <div class="content">        
+            <form action="https://stackabuse.com/object-oriented-design-principles-in-java/#" method="post" class="form-inline validate" novalidate="">
+                <div class="row">
+                    <div class="col-md-9 col-md-offset-1 col-xs-12">
+                        <p>Get occassional tutorials, guides, and reviews in your inbox. No spam ever. Unsubscribe at any time.</p>
+                    </div>
+                    <div class="col-md-2 col-xs-12"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-7 col-md-offset-1 col-xs-12">
+                        <input type="email" value="" name="email" class="form-control input-lg required email" placeholder="Enter your email..." style="width:100%;">
+                    </div>
+                    <div class="col-md-4 col-xs-12 text-left">
+                        <button type="submit" name="subscribe" class="btn btn-default btn-lg btn-subscribe" ga-on="click" ga-event-category="Newsletter" ga-event-action="Signup" ga-event-label="General-Newsletter-Signup">
+                            <i class="fa fa-spinner fa-pulse fa-fw" style="display:none;"></i>
+                            Subscribe
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <div class="message"></div>
+        </div>
+    </div>
+</div>
+<!-- end newsletter section -->				<div class="comment-wrap">
+					<!-- start disqus comment -->
+<div class="disqus-container">
+	<div id="disqus_thread"><iframe id="dsq-app4534" name="dsq-app4534" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./Object Oriented Design Principles in Java_files/saved_resource(9).html" style="width: 1px !important; min-width: 100% !important; border: none !important; overflow: hidden !important; height: 684px !important;" horizontalscrolling="no" verticalscrolling="no"></iframe></div>
+	    <script type="text/javascript">
+	        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+	        var disqus_shortname = disqus_shortname; // required: replace example with your forum shortname
+
+	        /* * * DON'T EDIT BELOW THIS LINE * * */
+	        (function() {
+	            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	        })();
+	    </script>
+	    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+<!-- end disqus comment -->				</div>
+				<!-- start prev next wrap -->
+<div class="prev-next-wrap clearfix">
+		<a class="btn btn-default pull-left" href="https://stackabuse.com/reading-and-writing-yaml-to-a-file-in-node-js-javascript/"><i class="fa fa-angle-left fa-fw"></i> Previous Post : Reading and Writing YAML to a File in Node.js/JavaScript</a>
+		&nbsp;
+        <a class="btn btn-default pull-right" href="https://stackabuse.com/understanding-opengl-through-python/">Next Post : Understanding OpenGL through Python <i class="fa fa-angle-right fa-fw"></i></a>
+</div>				<!-- end post -->
+			</div>
+			<!-- end main post area -->
+			<!-- start sidebar -->
+<div class="col-md-4 sidebar">
+    <!-- start widget -->
+<div class="widget">
+	<h4 class="title">
+        Ad
+    </h4>
+    <div class="content ad" style="min-height: 250px;">
+        <!-- 300x250/300x600 -->
+<div id="waldo-tag-3874" data-processed="true"><script type="text/javascript">googletag.cmd.push(function() { googletag.display('waldo-tag-3874'); });</script><div id="_waldo-tag-3874-3-container" style="margin: auto; text-align: center;"><iframe id="waldo-tag-3874-3" scrolling="no" allowtransparency="true" frameborder="0" marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" sandbox="allow-forms allow-same-origin allow-scripts allow-top-navigation allow-popups" width="300" height="250" src="./Object Oriented Design Principles in Java_files/render(2).html">
+    </iframe></div></div>    </div>
+</div>
+<!-- end widget -->    <!-- start widget -->
+<div class="widget">
+    <h4 class="title">Follow Us</h4>
+    <div class="content social">
+        <div class="row">
+            <div class="col-md-4 col-xs-12">
+                <a rel="nofollow" target="_blank" href="https://twitter.com/StackAbuse" style="color: #38A1F3;">
+                    <i class="fa fa-twitter fa-lg"></i>
+                    Twitter
+                </a>
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <a rel="nofollow" target="_blank" href="https://www.facebook.com/stackabuse" style="color: #3b5998;">
+                    <i class="fa fa-facebook fa-lg"></i>
+                    Facebook
+                </a>
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <a target="_blank" href="https://stackabuse.com/rss/" style="color: #f7a000;">
+                    <i class="fa fa-rss fa-lg"></i>
+                    RSS
+                </a>
+            </div>
+        </div>
+        <!-- <ul class="social">
+            <li><a href="https://twitter.com/StackAbuse"><i class="fa fa-twitter fa-lg"></i></a></li>
+            <li><a href="https://www.facebook.com/stackabuse"><i class="fa fa-facebook fa-lg"></i></a></li>
+            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+            <li><a href="#"><i class="fa fa-skype"></i></a></li>
+            <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+            <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+            <li><a href="#"><i class="fa fa-vimeo-square"></i></a></li>
+            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+            <li><a href="#"><i class="fa fa-flickr"></i></a></li>
+            <li><a href="#"><i class="fa fa-tumblr"></i></a></li>
+            <li><a href="https://github.com/scottwrobinson"><i class="fa fa-github"></i></a></li>
+            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+            <li><a href="#"><i class="fa fa-stack-overflow"></i></a></li>
+            <li><a href="#"><i class="fa fa-stack-exchange"></i></a></li>
+            <li><a href="#"><i class="fa fa-xing"></i></a></li>
+            <li><a href="#"><i class="fa fa-envelope"></i></a></li>
+            <li><a href="https://stackabuse.com/rss/"><i class="fa fa-rss fa-lg"></i></a></li>
+        </ul> -->
+    </div>
+</div>
+<!-- end widget -->    <!-- start newsletter widget -->
+<div class="widget">
+    <h4 class="title">Newsletter</h4>
+    <div class="content newsletter">
+        <p style="font-size: 16px;">Subscribe to our newsletter! Get occassional tutorials, guides, and reviews in your inbox.</p>
+        <form action="https://stackabuse.com/object-oriented-design-principles-in-java/#" method="post" class="validate" novalidate="">
+            <div class="input-group">
+                <input type="email" value="" name="email" class="required email input-lg" placeholder="Enter your email...">
+            </div>
+            <div class="input-group">
+                <button type="submit" name="subscribe" class="btn btn-lg btn-default" ga-on="click" ga-event-category="Newsletter" ga-event-action="Signup" ga-event-label="General-Newsletter-Signup">
+                    <i class="fa fa-spinner fa-pulse fa-fw" style="display:none;"></i>
+                    Subscribe
+                </button>
+            </div>
+            <span style="color: #7f7f7f;">No spam ever. Unsubscribe at any time.</span>
+        </form>
+        <div class="message"></div>
+    </div>
+</div>
+<!-- end tag cloud widget -->    <!-- start widget -->
+<div class="widget">
+    <h4 class="title">
+        Ad
+    </h4>
+    <div class="content ad" style="min-height: 250px;">
+        <!-- 300x250/300x600 -->
+<div id="waldo-tag-3876" data-processed="true"><script type="text/javascript">googletag.cmd.push(function() { googletag.display('waldo-tag-3876'); });</script><div id="_waldo-tag-3876-0-container" style="margin: auto; text-align: center;"><iframe id="waldo-tag-3876-0" scrolling="no" allowtransparency="true" frameborder="0" marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" sandbox="allow-forms allow-same-origin allow-scripts allow-top-navigation allow-popups" width="300" height="250" src="./Object Oriented Design Principles in Java_files/render(3).html">
+    </iframe></div></div>    </div>
+</div>
+<!-- end widget -->    <div class="widget-sticky" style="width: 360px; position: static; top: 0px;">
+        <!-- start widget -->
+<div class="widget">
+    <h4 class="title">Our Sponsors</h4>
+    <div class="content text-center">
+        <a class="do-link" rel="nofollow" target="_blank" href="https://stackabu.se/digitalocean" ga-on="click" ga-event-category="Sponsorship" ga-event-action="Click" ga-event-label="DO-Link">
+            <img style="margin-left: auto;margin-right: auto;" alt="DigitalOcean" src="./Object Oriented Design Principles in Java_files/do-logo-horizontal-blue.svg">
+        </a>
+        <div style="margin: 15px 30px 0px 30px;font-size: 1.1em;">
+            The simplest cloud platform for developers and teams.
+        </div>
+        <div>
+            <a class="do-link" rel="nofollow" target="_blank" href="https://stackabu.se/digitalocean" ga-on="click" ga-event-category="Sponsorship" ga-event-action="Click" ga-event-label="DO-Link">Learn More</a>
+        </div>
+    </div>
+</div>
+<!-- end widget -->        <!-- start widget -->
+<div class="widget">
+    <h4 class="title">Want a remote job?</h4>
+    <div class="content jobs">
+        <ul style="margin-bottom: 0px; display: block;">
+        <li><a rel="nofollow" target="_blank" href="https://hireremote.io/remote-job/0880-senior-software-engineer-at-income-discovery" ga-on="click" ga-event-category="Jobs" ga-event-action="Click" ga-event-label="HR-Job-Link">Senior Software Engineer<br><span class="job-company">Income Discovery</span>&nbsp;<span class="job-posted-at">15 hours ago</span></a><div><a rel="nofollow" target="_blank" href="https://hireremote.io/remote-job/0880-senior-software-engineer-at-income-discovery" ga-on="click" ga-event-category="Jobs" ga-event-action="Click" ga-event-label="HR-Job-Link"></a><a rel="nofollow" target="_blank" ga-on="click" ga-event-category="Jobs" ga-event-action="Click" ga-event-label="HR-Tag-Link" href="https://hireremote.io/remote-java-jobs"><span class="job-tag">java</span></a><a rel="nofollow" target="_blank" ga-on="click" ga-event-category="Jobs" ga-event-action="Click" ga-event-label="HR-Tag-Link" href="https://hireremote.io/remote-javascript-jobs"><span class="job-tag">javascript</span></a><a rel="nofollow" target="_blank" ga-on="click" ga-event-category="Jobs" ga-event-action="Click" ga-event-label="HR-Tag-Link" href="https://hireremote.io/remote-aws-jobs"><span class="job-tag">aws</span></a><a rel="nofollow" target="_blank" ga-on="click" ga-event-category="Jobs" ga-event-action="Click" ga-event-label="HR-Tag-Link" href="https://hireremote.io/remote-computational-finance-jobs"><span class="job-tag">computational-finance</span></a></div><hr></li><li><a rel="nofollow" target="_blank" href="https://hireremote.io/remote-job/0879-senior-machine-learning-series-a-funded-startup-at-source-coders-inc" ga-on="click" ga-event-category="Jobs" ga-event-action="Click" ga-event-label="HR-Job-Link">Senior Machine Learning - Series A Funded Sta...<br><span class="job-company">Source Coders Inc</span>&nbsp;<span class="job-posted-at">16 hours ago</span></a><div><a rel="nofollow" target="_blank" href="https://hireremote.io/remote-job/0879-senior-machine-learning-series-a-funded-startup-at-source-coders-inc" ga-on="click" ga-event-category="Jobs" ga-event-action="Click" ga-event-label="HR-Job-Link"></a><a rel="nofollow" target="_blank" ga-on="click" ga-event-category="Jobs" ga-event-action="Click" ga-event-label="HR-Tag-Link" href="https://hireremote.io/remote-machine-learning-jobs"><span class="job-tag">machine-learning</span></a><a rel="nofollow" target="_blank" ga-on="click" ga-event-category="Jobs" ga-event-action="Click" ga-event-label="HR-Tag-Link" href="https://hireremote.io/remote-scala-jobs"><span class="job-tag">scala</span></a><a rel="nofollow" target="_blank" ga-on="click" ga-event-category="Jobs" ga-event-action="Click" ga-event-label="HR-Tag-Link" href="https://hireremote.io/remote-python-jobs"><span class="job-tag">python</span></a><a rel="nofollow" target="_blank" ga-on="click" ga-event-category="Jobs" ga-event-action="Click" ga-event-label="HR-Tag-Link" href="https://hireremote.io/remote-tensorflow-jobs"><span class="job-tag">tensorflow</span></a></div><hr></li><li><a rel="nofollow" target="_blank" href="https://hireremote.io/remote-job/0866-senior-full-stack-developer-to-challenge-convention-at-oreilly-auto-parts" ga-on="click" ga-event-category="Jobs" ga-event-action="Click" ga-event-label="HR-Job-Link">Senior Full-stack Developer To Challenge Conv...<br><span class="job-company">O'Reilly Auto Parts</span>&nbsp;<span class="job-posted-at">3 days ago</span></a><div><a rel="nofollow" target="_blank" href="https://hireremote.io/remote-job/0866-senior-full-stack-developer-to-challenge-convention-at-oreilly-auto-parts" ga-on="click" ga-event-category="Jobs" ga-event-action="Click" ga-event-label="HR-Job-Link"></a><a rel="nofollow" target="_blank" ga-on="click" ga-event-category="Jobs" ga-event-action="Click" ga-event-label="HR-Tag-Link" href="https://hireremote.io/remote-javascript-jobs"><span class="job-tag">javascript</span></a><a rel="nofollow" target="_blank" ga-on="click" ga-event-category="Jobs" ga-event-action="Click" ga-event-label="HR-Tag-Link" href="https://hireremote.io/remote-java-jobs"><span class="job-tag">java</span></a><a rel="nofollow" target="_blank" ga-on="click" ga-event-category="Jobs" ga-event-action="Click" ga-event-label="HR-Tag-Link" href="https://hireremote.io/remote-css-jobs"><span class="job-tag">css</span></a><a rel="nofollow" target="_blank" ga-on="click" ga-event-category="Jobs" ga-event-action="Click" ga-event-label="HR-Tag-Link" href="https://hireremote.io/remote-java-8-jobs"><span class="job-tag">java-8</span></a></div></li></ul>
+        <div class="row">
+            <div class="col-md-4">
+                <strong>
+                    <a rel="nofollow" target="_blank" class="btn btn-default" href="https://hireremote.io/" style="margin-top: 10px;" ga-on="click" ga-event-category="Jobs" ga-event-action="Click" ga-event-label="HR-More-Link">
+                        <i class="fa fa-arrow-circle-right"></i>&nbsp; More jobs
+                    </a>
+                </strong>
+            </div>
+            <div class="col-md-8 text-right" style="margin-top: 18px;">
+                Jobs via
+                <a rel="nofollow" target="_blank" href="https://hireremote.io/" class="hr-link" style="color: #f16334;" ga-on="click" ga-event-category="Affiliate" ga-event-action="Click" ga-event-label="HR-Link">
+                    HireRemote.io
+                </a>
+            </div>
+            <!-- <div class="col-md-9 text-right">
+                <span>Jobs by</span>
+                <a
+                    rel="nofollow" target="_blank"
+                    href="https://www.hireremote.io/"
+                    id="jobs_widget_link"
+                    ga-on="click"
+                    ga-event-category="Jobs"
+                    ga-event-action="Click"
+                    ga-event-label="HR-Jobs-By"
+                >
+                    <span id="hr_logo_container">
+                        <img
+                            id="hr_logo"
+                            src="https://www.ziprecruiter.com/img/logos/logo-sm-black-304px.png" alt="HireRemote.io"
+                            width="100"
+                        />
+                    </span>
+                </a>
+            </div> -->
+        </div>
+    </div>
+</div>
+<!-- end widget -->    </div>
+</div>
+<!-- end sidebar -->		</div>
+	</div>
+</section>
+<!-- end site's main content area -->
+
+	<!-- start main-footer -->
+	<footer class="main-footer">
+		<div class="container">
+			<div class="row">
+				<!-- start first footer widget area -->
+				<div class="col-sm-4">
+					<!-- start widget -->
+<div class="widget">
+    <h4 class="title">Recent Posts</h4>
+    <div class="content recent-post">
+        <div class="recent-single-post">
+            <a href="https://stackabuse.com/heap-sort-in-python/" class="post-title">Heap Sort in Python</a>
+            <!--<div class="date">December 26, 2019</div>-->
+        </div>
+        <div class="recent-single-post">
+            <a href="https://stackabuse.com/working-with-postgresql-in-java/" class="post-title">Working with PostgreSQL in Java</a>
+            <!--<div class="date">December 25, 2019</div>-->
+        </div>
+        <div class="recent-single-post">
+            <a href="https://stackabuse.com/how-to-get-the-current-date-and-time-in-python/" class="post-title">How to Get the Current Date and Time in Python</a>
+            <!--<div class="date">December 24, 2019</div>-->
+        </div>
+    </div>
+</div>
+<!-- end widget -->				</div>
+				<!-- end first footer widget area -->
+				<!-- start second footer widget area -->
+				<div class="col-sm-4">
+					<!-- start tag cloud widget -->
+<div class="widget">
+    <h4 class="title">Tags</h4>
+    <div class="content tag-cloud">
+        <a href="https://stackabuse.com/tag/ai/">ai</a><a href="https://stackabuse.com/tag/algorithms/">algorithms</a><a href="https://stackabuse.com/tag/amqp/">amqp</a><a href="https://stackabuse.com/tag/angular/">angular</a><a href="https://stackabuse.com/tag/announcements/">announcements</a><a href="https://stackabuse.com/tag/apache/">apache</a><a href="https://stackabuse.com/tag/api/">api</a><a href="https://stackabuse.com/tag/arduino/">arduino</a><a href="https://stackabuse.com/tag/artificial-intelligence/">artificial intelligence</a><a href="https://stackabuse.com/tag/asynchronous/">asynchronous</a>
+    </div>
+</div>
+<!-- end tag cloud widget -->
+				</div>
+				<!-- end second footer widget area -->
+				<!-- start third footer widget area -->
+				<div class="col-sm-4">
+					<!-- start widget -->
+<div class="widget">
+    <h4 class="title">Follow Us</h4>
+    <div class="content social">
+        <div class="row">
+            <div class="col-md-4 col-xs-12">
+                <a rel="nofollow" target="_blank" href="https://twitter.com/StackAbuse" style="color: #38A1F3;">
+                    <i class="fa fa-twitter fa-lg"></i>
+                    Twitter
+                </a>
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <a rel="nofollow" target="_blank" href="https://www.facebook.com/stackabuse" style="color: #3b5998;">
+                    <i class="fa fa-facebook fa-lg"></i>
+                    Facebook
+                </a>
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <a target="_blank" href="https://stackabuse.com/rss/" style="color: #f7a000;">
+                    <i class="fa fa-rss fa-lg"></i>
+                    RSS
+                </a>
+            </div>
+        </div>
+        <!-- <ul class="social">
+            <li><a href="https://twitter.com/StackAbuse"><i class="fa fa-twitter fa-lg"></i></a></li>
+            <li><a href="https://www.facebook.com/stackabuse"><i class="fa fa-facebook fa-lg"></i></a></li>
+            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+            <li><a href="#"><i class="fa fa-skype"></i></a></li>
+            <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+            <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+            <li><a href="#"><i class="fa fa-vimeo-square"></i></a></li>
+            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+            <li><a href="#"><i class="fa fa-flickr"></i></a></li>
+            <li><a href="#"><i class="fa fa-tumblr"></i></a></li>
+            <li><a href="https://github.com/scottwrobinson"><i class="fa fa-github"></i></a></li>
+            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+            <li><a href="#"><i class="fa fa-stack-overflow"></i></a></li>
+            <li><a href="#"><i class="fa fa-stack-exchange"></i></a></li>
+            <li><a href="#"><i class="fa fa-xing"></i></a></li>
+            <li><a href="#"><i class="fa fa-envelope"></i></a></li>
+            <li><a href="https://stackabuse.com/rss/"><i class="fa fa-rss fa-lg"></i></a></li>
+        </ul> -->
+    </div>
+</div>
+<!-- end widget -->				</div>
+				<!-- end third footer widget area -->
+			</div>
+		</div>
+	</footer>
+	<!-- end main-footer -->
+	<!-- start copyright section -->
+<div class="copyright">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				Copyright © 2019, <a href="https://stackabuse.com/">Stack Abuse</a>.  All Rights Reserved.
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end copyright section -->	<div class="footer-links">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<a href="https://stackabuse.com/disclosure">Disclosure</a>
+					•
+					<a href="https://stackabuse.com/privacy-policy">Privacy Policy</a>
+					•
+					<a href="https://stackabuse.com/terms-of-service">Terms of Service</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<a href="https://stackabuse.com/object-oriented-design-principles-in-java/#" id="back-to-top" style="display: none;"><i class="fa fa-angle-up"></i></a>
+	<!--
+<script src="//my.hellobar.com/4dd9990be00532b0fc7961824b7d7a0930e9e2b7.js" type="text/javascript" charset="utf-8" async="async"></script>
+-->
+	<!-- scripts -->
+	<script type="text/javascript">
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+    </script>
+
+    <!-- HTML templates for use in JS code -->
+    <script id="newsletter-template" type="text/x-custom-template">
+        <!-- start newsletter section -->
+<div class="section">
+    <div class="newsletter text-center">
+        <h4 class="title">Subscribe to our Newsletter</h4>
+        <div class="content">        
+            <form action="#" method="post" class="form-inline validate" novalidate>
+                <div class="row">
+                    <div class="col-md-9 col-md-offset-1 col-xs-12">
+                        <p>Get occassional tutorials, guides, and reviews in your inbox. No spam ever. Unsubscribe at any time.</p>
+                    </div>
+                    <div class="col-md-2 col-xs-12"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-7 col-md-offset-1 col-xs-12">
+                        <input type="email" value="" name="email" class="form-control input-lg required email" placeholder="Enter your email..." style="width:100%;">
+                    </div>
+                    <div class="col-md-4 col-xs-12 text-left">
+                        <button type="submit" name="subscribe" class="btn btn-default btn-lg btn-subscribe"
+                            ga-on="click"
+                            ga-event-category="Newsletter"
+                            ga-event-action="Signup"
+                            ga-event-label="General-Newsletter-Signup"
+                        >
+                            <i class="fa fa-spinner fa-pulse fa-fw" style="display:none;"></i>
+                            Subscribe
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <div class="message"></div>
+        </div>
+    </div>
+</div>
+<!-- end newsletter section -->    </script>
+
+    <!-- <script src="/assets/js/jquery.adsenseloader.js?v=8b761e8043"></script> -->
+	<script src="./Object Oriented Design Principles in Java_files/jquery.fitvids.js"></script>
+	<script src="./Object Oriented Design Principles in Java_files/bootstrap.min.js"></script>
+    <!-- <script src="/assets/js/jflickrfeed.min.js?v=8b761e8043"></script> -->
+	<!-- <script src="/assets/js/highlight.pack.js?v=8b761e8043"></script> -->
+    <script src="./Object Oriented Design Principles in Java_files/highlight.min.js"></script>
+    <script src="./Object Oriented Design Principles in Java_files/dockerfile.min.js"></script>
+    <script src="./Object Oriented Design Principles in Java_files/yaml.min.js"></script>
+    <script src="./Object Oriented Design Principles in Java_files/highlightjs-line-numbers.min.js"></script>
+    <script src="./Object Oriented Design Principles in Java_files/moment.min.js"></script>
+	<!-- <script src="/assets/js/indeed.js?v=8b761e8043"></script> -->
+	<script src="./Object Oriented Design Principles in Java_files/main.js"></script>
+	<!-- <script src="//gdc.indeed.com/ads/apiresults.js" type="text/javascript"></script> -->
+    <script src="./Object Oriented Design Principles in Java_files/MathJax.js" type="text/javascript" async=""></script>
+	<!-- Add your analytic code below -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  if (window.location.hostname !== 'localhost') {
+    ga('create', 'UA-43140675-1', 'auto');
+    ga('require', 'eventTracker');
+    ga('send', 'pageview');
+  }
+
+</script>
+<script async="" src="./Object Oriented Design Principles in Java_files/autotrack.js"></script>
+<iframe style="display: none;" src="./Object Oriented Design Principles in Java_files/saved_resource(10).html"></iframe></body></html>
