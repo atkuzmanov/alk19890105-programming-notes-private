@@ -2049,12 +2049,325 @@ https://www.geeksforgeeks.org/different-ways-method-overloading-java/
 |-------|-----|-------|
 |       |  x  |   x   |
 
+`Reference:`
+https://stackoverflow.com/questions/16313649/what-is-method-hiding-in-java-even-the-javadoc-explanation-is-confusing
 
+```java
+public class Animal {
+    public static void foo() {
+        System.out.println("Animal");
+    }
+}
 
+public class Cat extends Animal {
+    public static void foo() {  // hides Animal.foo()
+        System.out.println("Cat");
+    }
+}
+```
 
+Here, Cat.foo() is said to hide Animal.foo(). Hiding does not work like overriding, because static methods are not polymorphic. So the following will happen:
 
+```java
+Animal.foo(); // prints Animal
+Cat.foo(); // prints Cat
 
+Animal a = new Animal();
+Animal b = new Cat();
+Cat c = new Cat();
+Animal d = null;
 
+a.foo(); // should not be done. Prints Animal because the declared type of a is Animal
+b.foo(); // should not be done. Prints Animal because the declared type of b is Animal
+c.foo(); // should not be done. Prints Cat because the declared type of c is Cat
+d.foo(); // should not be done. Prints Animal because the declared type of d is Animal
+```
+
+**Calling static methods on instances rather than classes is a very bad practice, and should never be done.**
+
+Compare this with instance methods, which are polymorphic and are thus overridden. The method called depends on the concrete, runtime type of the object:
+
+```java
+public class Animal {
+    public void foo() {
+        System.out.println("Animal");
+    }
+}
+
+public class Cat extends Animal {
+    public void foo() { // overrides Animal.foo()
+        System.out.println("Cat");
+    }
+}
+```
+
+Then the following will happen:
+
+```java
+Animal a = new Animal();
+Animal b = new Cat();
+Animal c = new Cat();
+Animal d = null;
+
+a.foo(); // prints Animal
+b.foo(); // prints Cat
+c.foo(); // prints Cat
+d.foo(): // throws NullPointerException
+```
+
+```text
+edited Jun 14 '18 at 13:13
+
+Honey Yadav
+1501010 bronze badges
+```
+
+```text
+answered May 1 '13 at 6:30
+
+JB Nizet
+583k7272 gold badges980980 silver badges1082
+```
+
+----
+
+`Reference:`
+https://www.baeldung.com/java-variable-method-hiding
+
+**Variable Hiding**
+
+Variable hiding happens when we declare a property in a local scope that has the same name as the one we already have in the outer scope.
+
+Before jumping to the examples, let's briefly recap the possible variable scopes in Java. We can define them with the following categories:
+
+- local variables – declared in a piece of code such as methods, constructors, in any block of code with curly braces
+
+- instance variables – defined inside of a class and belong to the instance of the object
+
+- class or static variables – are declared in the class with the static keyword. They have a class level scope.
+Now, let's describe the hiding with examples, for each individual category of variables.
+
+**The Power of Local**
+
+Let's have a look at the HideVariable class:
+
+```java
+public class HideVariable {
+ 
+    private String message = "this is instance variable";
+ 
+    HideVariable() {
+        String message = "constructor local variable";
+        System.out.println(message);
+    }
+ 
+    public void printLocalVariable() {
+        String message = "method local variable";
+        System.out.println(message);
+    }
+ 
+    public void printInstanceVariable() {
+        String message = "method local variable";
+        System.out.println(this.message);
+    }
+}
+```
+
+Here we have the message variable declared in 4 different places. The local variables declared inside of the constructor and the two methods are shadowing the instance variable.
+
+Let's test the initialization of an object and calling the methods:
+
+```java
+HideVariable variable = new HideVariable();
+variable.printLocalVariable();
+ 
+variable.printInstanceVariable();
+```
+
+The output of the code above is:
+
+```text
+constructor local variable
+method local variable
+this is instance variable
+```
+
+Here, the first 2 calls are retrieving the local variables.
+
+To access the instance variable from the local scope, we can use this keyword like it is shown in printInstanceVariable() method.
+
+**Hiding and The Hierarchy**
+
+Similarly, when both the child and the parent classes have a variable with the same name, the child's variable hides the one from the parent.
+
+Let's suppose we have the parent class:
+
+```java
+public class ParentVariable {
+ 
+    String instanceVariable = "parent variable";
+ 
+    public void printInstanceVariable() {
+        System.out.println(instanceVariable);
+    }
+}
+```
+
+After that we define a child class:
+
+```java
+public class ChildVariable extends ParentVariable {
+ 
+    String instanceVariable = "child variable";
+ 
+    public void printInstanceVariable() {
+        System.out.println(instanceVariable);
+    }
+}
+```
+
+To test it, let's initialize two instances. One with parent class and another with the child, then invoke the printInstanceVariable() methods on each of them:
+
+```java
+ParentVariable parentVariable = new ParentVariable();
+ParentVariable childVariable = new ChildVariable();
+ 
+parentVariable.printInstanceVariable();
+childVariable.printInstanceVariable();
+```
+
+The output shows the property hiding:
+
+```text
+parent variable
+child variable
+```
+
+In most cases, we should avoid creating variables with the same name both in parent and child classes. Instead, we should use a proper access modifier like private and provide getter/setter methods for that purpose.
+
+# Encapsulation
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
+
+`Reference:`
+https://www.geeksforgeeks.org/encapsulation-in-java/
+
+**Encapsulation in Java**
+
+Encapsulation is defined as the wrapping up of data under a single unit. It is the mechanism that binds together code and the data it manipulates.Other way to think about encapsulation is, it is a protective shield that prevents the data from being accessed by the code outside this shield.
+
+- Technically in encapsulation, the variables or data of a class is hidden from any other class and can be accessed only through any member function of own class in which they are declared.
+
+- As in encapsulation, the data in a class is hidden from other classes, so it is also known as data-hiding.
+
+- Encapsulation can be achieved by: Declaring all the variables in the class as private and writing public methods in the class to set and get the values of variables.
+
+```java
+// Java program to demonstrate encapsulation 
+public class Encapsulate 
+{ 
+	// private variables declared 
+	// these can only be accessed by 
+	// public methods of class 
+	private String geekName; 
+	private int geekRoll; 
+	private int geekAge; 
+
+	// get method for age to access 
+	// private variable geekAge 
+	public int getAge() 
+	{ 
+	return geekAge; 
+	} 
+
+	// get method for name to access 
+	// private variable geekName 
+	public String getName() 
+	{ 
+	return geekName; 
+	} 
+	
+	// get method for roll to access 
+	// private variable geekRoll 
+	public int getRoll() 
+	{ 
+	return geekRoll; 
+	} 
+
+	// set method for age to access 
+	// private variable geekage 
+	public void setAge( int newAge) 
+	{ 
+	geekAge = newAge; 
+	} 
+
+	// set method for name to access 
+	// private variable geekName 
+	public void setName(String newName) 
+	{ 
+	geekName = newName; 
+	} 
+	
+	// set method for roll to access 
+	// private variable geekRoll 
+	public void setRoll( int newRoll) 
+	{ 
+	geekRoll = newRoll; 
+	} 
+} 
+```
+
+In the above program the class EncapsulateDemo is encapsulated as the variables are declared as private. The get methods like getAge() , getName() , getRoll() are set as public, these methods are used to access these variables. The setter methods like setName(), setAge(), setRoll() are also declared as public and are used to set the values of the variables.
+
+The program to access variables of the class EncapsulateDemo is shown below:
+
+```java
+public class TestEncapsulation 
+{	 
+	public static void main (String[] args) 
+	{ 
+		Encapsulate obj = new Encapsulate(); 
+		
+		// setting values of the variables 
+		obj.setName("Harsh"); 
+		obj.setAge(19); 
+		obj.setRoll(51); 
+		
+		// Displaying values of the variables 
+		System.out.println("Geek's name: " + obj.getName()); 
+		System.out.println("Geek's age: " + obj.getAge()); 
+		System.out.println("Geek's roll: " + obj.getRoll()); 
+		
+		// Direct access of geekRoll is not possible 
+		// due to encapsulation 
+		// System.out.println("Geek's roll: " + obj.geekName);		 
+	} 
+} 
+```
+
+Output:
+
+```text
+Geek's name: Harsh
+Geek's age: 19
+Geek's roll: 51
+```
+
+Advantages of Encapsulation:
+
+- Data Hiding: The user will have no idea about the inner implementation of the class. It will not be visible to the user that how the class is storing values in the variables. He only knows that we are passing the values to a setter method and variables are getting initialized with that value.
+
+- Increased Flexibility: We can make the variables of the class as read-only or write-only depending on our requirement. If we wish to make the variables as read-only then we have to omit the setter methods like setName(), setAge() etc. from the above program or if we wish to make the variables as write-only then we have to omit the get methods like getName(), getAge() etc. from the above program
+
+- Reusability: Encapsulation also improves the re-usability and easy to change with new requirements.
+
+- Testing code is easy: Encapsulated code is easy to test for unit testing.
+
+```text
+This article is contributed by Harsh Agarwal. If you like GeeksforGeeks and would like to contribute, you can also write an article using contribute.geeksforgeeks.org or mail your article to contribute@geeksforgeeks.org. See your article appearing on the GeeksforGeeks main page and help other Geeks.
+```
 
 # Abstraction
 
@@ -2080,6 +2393,13 @@ There are two ways to achieve abstraction in java
 - Interface (100%)
 
 ----
+
+# Java Object Oriented Programming (OOP) Principals and Concepts
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
+
 
 
 
