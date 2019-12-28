@@ -3681,7 +3681,7 @@ The finally block is an optional block to use with a try/catch statement. In thi
 
 It's even possible to use it with the try block without any catch block provided we include a finally block. The code will then be executed after the try or after an exception is thrown.
 
-We have an in-depth article about exception handling in Java here.
+We have an in-depth article about exception handling in Java [here](https://www.baeldung.com/java-exceptions).
 
 Now let's demonstrate a finally block in a short example. We'll create a dummy main() method with a try/catch/finally structure:
 
@@ -3734,7 +3734,7 @@ And finally, the finalize method is a protected method, defined in the Object cl
 
 Like any other non-final method we can override this method to define the behavior an object must have when collected by the garbage collector.
 
-Again, a detailed article covering the finalize method can be found here.
+Again, a detailed article covering the finalize method can be found [here](https://www.baeldung.com/java-finalize).
 
 Let's see an example of how it works. We'll use System.gc() to suggest the JVM to trigger garbage collection:
 
@@ -3766,6 +3766,219 @@ Execute finalize method
 Note that it's considered bad practice to override finalize() method as its execution depends on garbage collection which is in the hand of the JVM. Plus, this method has been deprecated since Java 9.
 
 ----
+
+`Reference:`
+https://www.geeksforgeeks.org/g-fact-24-finalfinally-and-finalize-in-java/
+
+[final-finally-and-finalize-in-Java-GeeksforGeeks](reference-websites/final-finally-and-finalize-in-Java-GeeksforGeeks)
+
+----
+
+`Reference:`
+https://hackernoon.com/java-lang-object-finalize-is-finally-deprecated-f99df40fa71
+
+**java.lang.Object.finalize() is finally deprecated**
+
+----
+
+**When is the finally clause not executed?**
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
+
+`Reference:`
+https://stackoverflow.com/questions/464098/does-a-finally-block-always-run/464102
+
+from the [Sun Tutorials](http://docs.oracle.com/javase/tutorial/essential/exceptions/finally.html)
+
+_Note: If the JVM exits while the try or catch code is being executed, then the finally block may not execute. Likewise, if the thread executing the try or catch code is interrupted or killed, the finally block may not execute even though the application as a whole continues._
+
+I don't know of any other ways the finally block wouldn't execute...
+
+```text
+edited Dec 19 '12 at 0:26
+
+mt0321
+8344 bronze badges
+answered Jan 21 '09 at 4:42
+
+hhafez
+33.8k3333 gold badges105105 silver badges139
+```
+
+----
+
+System.exit shuts down the Virtual Machine.
+
+_Terminates the currently running Java Virtual Machine. The argument serves as a status code; by convention, a nonzero status code indicates abnormal termination._
+
+_This method calls the exit method in class Runtime. This method never returns normally._
+
+    try {
+        System.out.println("hello");
+        System.exit(0);
+    }
+    finally {
+        System.out.println("bye");
+    } // try-finally
+"bye" does not print out in above code.
+
+```text
+edited Jan 21 '09 at 4:46
+answered Jan 21 '09 at 4:41
+
+Eugene Yokota
+86k4141 gold badges194194 silver badges286
+```
+
+----
+
+`Reference:`
+https://stackoverflow.com/questions/17424801/when-does-the-finally-block-not-execute-while-try-or-catch-block-is-interrupted
+
+Good answers can be found [here](https://stackoverflow.com/questions/65035/does-finally-always-execute-in-java).
+
+Besides a System.exit(), the finally block will not run if the JVM crashes for some reason (e.g. infinite loop in your try block).
+
+As far as the thread itself, only if it is stopped using the stop() method (or suspend() without resume()) will the finally block not be executed. A call to interrupt() will still result in the finally block being executed.
+
+It's also worth noting that, since any return statement in the finally block will override any returns or exception throws in the try/catch blocks, program behavior can quickly become erratic and hard to debug if this happens to you. Not really anything worth taking precaution against (as it only happens in extremely rare cases), but worth being aware of so you can recognize it when it happens.
+
+```text
+edited May 23 '17 at 12:24
+
+Community♦
+111 silver badge
+answered Jul 2 '13 at 11:59
+
+Pat Lillis
+99155 silver badges18
+```
+
+```text
+thanks for your answering, but what i really want to find is the meaning of interrupted in the sentence if the thread executing the try or catch code is interrupted or killed, the finally block may not execute even though the application as a whole continues.. Does it means stop for stop() or suspend(). As in your answer, A call to interrupt() does not stop the finally from being executed. – andy Jul 2 '13 at 13:26 
+----
+Is [this](http://stackoverflow.com/questions/3590000/what-does-java-lang-thread-interrupt-do) what you're looking for? – Pat Lillis Jul 2 '13 at 13:29 
+----
+1
+This is wrong. If a thread is stopped via Thread.stop, finally blocks are executed. – Holger Nov 12 '14 at 15:20
+```
+
+----
+
+`Reference:`
+https://stackoverflow.com/questions/12430642/what-are-the-circumstances-under-which-a-finally-block-will-not-execute
+
+If you call System.exit() the program exits immediately without finally being called.
+
+A JVM Crash e.g. Segmentation Fault, will also prevent finally being called. i.e. the JVM stops immediately at this point and produces a crash report.
+
+An infinite loop would also prevent a finally being called.
+
+The finally block is always called when a Throwable is thrown. Even if you call Thread.stop() which triggers a ThreadDeath to be thrown in the target thread. This can be caught (it's an Error) and the finally block will be called.
+
+```java
+public static void main(String[] args) {
+    testOutOfMemoryError();
+    testThreadInterrupted();
+    testThreadStop();
+    testStackOverflow();
+}
+
+private static void testThreadStop() {
+    try {
+        try {
+            final Thread thread = Thread.currentThread();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    thread.stop();
+                }
+            }).start();
+            while(true)
+                Thread.sleep(1000);
+        } finally {
+            System.out.print("finally called after ");
+        }
+    } catch (Throwable t) {
+        System.out.println(t);
+    }
+}
+
+private static void testThreadInterrupted() {
+    try {
+        try {
+            final Thread thread = Thread.currentThread();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    thread.interrupt();
+                }
+            }).start();
+            while(true)
+                Thread.sleep(1000);
+        } finally {
+            System.out.print("finally called after ");
+        }
+    } catch (Throwable t) {
+        System.out.println(t);
+    }
+}
+
+private static void testOutOfMemoryError() {
+    try {
+        try {
+            List<byte[]> bytes = new ArrayList<byte[]>();
+            while(true)
+                bytes.add(new byte[8*1024*1024]);
+        } finally {
+            System.out.print("finally called after ");
+        }
+    } catch (Throwable t) {
+        System.out.println(t);
+    }
+}
+
+private static void testStackOverflow() {
+    try {
+        try {
+            testStackOverflow0();
+        } finally {
+            System.out.print("finally called after ");
+        }
+    } catch (Throwable t) {
+        System.out.println(t);
+    }
+}
+
+private static void testStackOverflow0() {
+    testStackOverflow0();
+}
+```
+
+prints
+
+```text
+finally called after java.lang.OutOfMemoryError: Java heap space
+finally called after java.lang.InterruptedException: sleep interrupted
+finally called after java.lang.ThreadDeath
+finally called after java.lang.StackOverflowError
+```
+
+```text
+edited Jun 5 '16 at 13:08
+
+RAnders00
+3,80944 gold badges2626 silver badges5555 bronze badges
+answered Sep 14 '12 at 19:22
+
+Peter Lawrey
+470k6666 gold badges632632 silver badges1013
+```
+
+----
+
 
 
 
