@@ -4030,9 +4030,21 @@ https://www.baeldung.com/java-exceptions
 |-------|-----|-------|
 |   x   |  x  |   x   |
 
+`Reference:`
 
+https://www.javamex.com/tutorials/exceptions/exceptions_hierarchy.shtml
 
+**Checked vs unchecked exceptions**
 
+We mentioned above that certain exceptions are generally indicative of a programming error rather than errors that we'd expect to occur in the normal course of events. (Whereas, it is reasonable for the programmer to expect that a networking or file system error will occur from time to time.) We also mentioned that subclasses of Error are not necessarily programming errors, but still errors that we wouldn't really expect to occur in the normal course of events.
+
+A feature built into the Java language is that Errors and RuntimeExceptions (and their subclasses– marked in red in Figure 1) are what are called unchecked exceptions:
+
+- unchecked exceptions can be thrown "at any time";
+- methods don't explicitly have to declare that - they can throw an unchecked exception;
+callers don't have to handle them explicitly.
+
+----
 
 
 
