@@ -3557,6 +3557,224 @@ jfpoilpret
 
 ----
 
+# final/finally/finalize keywords usage
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
+`Reference:`
+https://www.tutorialspoint.com/final-finally-and-finalize-in-Java
+
+- The **final** ___keyword___ can be used with class method and variable. A final class cannot be instantiated, a final method cannot be overridden and a final variable cannot be reassigned.
+
+- The **finally** ___keyword___ is used to create a block of code that follows a try block. A finally block of code always executes, whether or not an exception has occurred. Using a finally block allows you to run any cleanup-type statements that you just wish to execute, despite what happens within the protected code.
+
+- The **finalize()** ___method___ is used just before object is destroyed and can be called just prior to object creation.
+
+----
+
+`Reference:`
+https://www.baeldung.com/java-final-finally-finalize
+
+**Differences Between Final, Finally and Finalize in Java**
+
+___final Keyword___
+
+Let's first take a look at the final keyword, where to use it and why. We can apply the final keyword to class, method, field, variable and method parameter declarations.
+
+It doesn't have the same effect on each of them though:
+
+- Making a class final means that it won't be possible to extend that class
+
+- Adding final to a method means that it won't be possible to override that method
+
+- Finally, putting final in front of a field, a variable or a parameter means that once the reference has been assigned then it cannot be changed (however, if the reference is to a mutable object, it's internal state could change despite being final)
+
+A detailed article about the final keyword can be found [here](https://www.baeldung.com/java-final).
+
+Let's see how the final keyword works through some examples.
+
+___final Fields, Parameters, and Variables___
+
+Let's create a Parent class with two int fields, a final one, and a regular non-final one:
+
+```java
+public class Parent {
+ 
+    int field1 = 1;
+    final int field2 = 2;
+ 
+    Parent() {
+        field1 = 2; // OK
+        field2 = 3; // Compilation error
+    }
+ 
+}
+```
+
+As we can see, the compiler forbids us to assign a new value to field2.
+
+Let's now add a method with a regular and a final argument:
+
+```java
+void method1(int arg1, final int arg2) {
+    arg1 = 2; // OK
+    arg2 = 3; // Compilation error
+}
+```
+
+Similarly to fields, it's not possible to assign something to arg2 as it's declared final.
+
+We can now add a second method to illustrate how this works with local variables:
+
+```java
+void method2() {
+    final int localVar = 2; // OK
+    localVar = 3; // Compilation error
+}
+```
+
+Nothing surprising happens, the compiler doesn't let us assign a new value to localVar after its first assignation.
+
+___final Method___
+
+Now suppose we make method2 final and create a subclass of Parent, let's say Child, in which we try to override both its superclass methods:
+
+```java
+public class Child extends Parent {
+ 
+    @Override
+    void method1(int arg1, int arg2) {
+        // OK
+    }
+     
+    @Override
+    final void method2() {
+        // Compilation error
+    }
+ 
+}
+```
+
+As we can see, there's no problem with overriding method1(), but we get a compilation error when trying to override method2().
+
+___final Class___
+
+And finally, let's make the Child class final and try to create a subclass of it, GrandChild:
+
+```java
+public final class Child extends Parent { 
+    // ... 
+}
+
+public class GrandChild extends Child {
+    // Compilation error
+}
+```
+
+Once again, the compiler complains. The Child class is final and therefore impossible to extend.
+
+___finally Block___
+
+The finally block is an optional block to use with a try/catch statement. In this block, we include code to execute after the try/catch structure, whether an exception is thrown or not.
+
+It's even possible to use it with the try block without any catch block provided we include a finally block. The code will then be executed after the try or after an exception is thrown.
+
+We have an in-depth article about exception handling in Java here.
+
+Now let's demonstrate a finally block in a short example. We'll create a dummy main() method with a try/catch/finally structure:
+
+```java
+public static void main(String args[]) {
+    try {
+        System.out.println("Execute try block");
+        throw new Exception();
+    } catch (Exception e) {
+        System.out.println("Execute catch block");
+    } finally {
+        System.out.println("Execute finally block");
+    }
+}
+```
+
+If we run this code, it'll output the following:
+
+```java
+Execute try block
+Execute catch block
+Execute finally block
+```
+
+Let's now modify the method by removing the catch block (and add throws Exception to the signature):
+
+```java
+public static void main(String args[]) throws Exception {
+    try {
+        System.out.println("Execute try block");
+        throw new Exception();
+    } finally {
+        System.out.println("Execute finally block");
+    }
+}
+```
+
+The output is now:
+
+```text
+Execute try block
+Execute finally block
+```
+
+If we now remove the throw new Exception() instruction, we can observe that the output stays the same. Our finally block execution occurs every time.
+
+___finalize Method___
+
+And finally, the finalize method is a protected method, defined in the Object class. It's called by the garbage collector on objects that aren't referenced anymore and have been selected for garbage collection.
+
+Like any other non-final method we can override this method to define the behavior an object must have when collected by the garbage collector.
+
+Again, a detailed article covering the finalize method can be found here.
+
+Let's see an example of how it works. We'll use System.gc() to suggest the JVM to trigger garbage collection:
+
+```java
+@Override
+protected void finalize() throws Throwable {
+    System.out.println("Execute finalize method");
+    super.finalize();
+}
+
+public static void main(String[] args) throws Exception {
+    FinalizeObject object = new FinalizeObject();
+    object = null;
+    System.gc();
+    Thread.sleep(1000);
+}
+```
+
+In this example, we override finalize() method in our object and create a main() method which instantiates our object and immediately drops the reference by setting the created variable to null.
+
+After that, we call System.gc() to run the garbage collector (at least we expect it to run) and wait for a second (just to ensure that the JVM doesn't shut down before garbage collector has the chance to call finalize() method).
+
+The output of this code execution should be:
+
+```text
+Execute finalize method
+```
+
+Note that it's considered bad practice to override finalize() method as its execution depends on garbage collection which is in the hand of the JVM. Plus, this method has been deprecated since Java 9.
+
+----
+
+
+
+
+
+
+
+
+
 
 
 
