@@ -3979,14 +3979,56 @@ Peter Lawrey
 
 ----
 
+# Exceptions hierarchy
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
+`Reference:`
+https://www.javamex.com/tutorials/exceptions/exceptions_hierarchy.shtml
+
+![ExceptionHierarchy](ExceptionHierarchy.png)
+
+----
+
+`Reference:`
+https://www.geeksforgeeks.org/exceptions-in-java/
+
+[Exceptions-in-Java-GeeksforGeeks](reference-websites/Exceptions-in-Java-GeeksforGeeks)
 
 
+----
 
+`Reference:`
+https://www.tutorialspoint.com/java/java_exceptions.htm
 
+![exceptions1.jpg](exceptions1.jpg)
 
+----
 
+`Reference:`
+https://www.javatpoint.com/exception-handling-in-java
 
+![throwable.png](throwable.png)
 
+----
+
+`Reference:`
+
+https://www.baeldung.com/java-exceptions
+
+**Exception Handling in Java**
+
+[Exception-Handling-in-Java_Baeldung](reference-websites/Exception-Handling-in-Java_Baeldung)
+
+----
+
+# Checked vs Unchecked exceptions
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
 
 
 
