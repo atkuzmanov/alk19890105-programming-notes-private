@@ -3469,10 +3469,93 @@ Hence, although we can achieve the same results by using a typical interface as 
 
 ----
 
+# Why constructor in abstract class?
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
+`Reference:`
+https://www.java67.com/2013/02/can-abstract-class-have-constructor-in-java.html
+
+**Can abstract class have Constructor in Java - Interview Question**
+
+Yes, an abstract class can have a constructor in Java. You can either explicitly provide a constructor to abstract class or if you don't, the compiler will add default constructor of no argument in abstract class. This is true for all classes and it also applies to an abstract class. For those who want to recall what is an abstract class in Java, it's a class which can not be instantiated with new() operator or any other ways. In order to use an abstract class in Java,  You need to extend it and provide a concrete class. Abstract class is commonly used to define a base class for a type hierarchy with default implementation, which is applicable to all child classes.
+
+___Why can an abstract class have a constructor in Java?___
+
+Now if we say we can not create an instance of an abstract class then why do Java adds a constructor in the abstract class. One of the reasons which make sense is  when any class extends an abstract class, the constructor of sub class will invoke the constructor of super class either implicitly or explicitly. This chaining of constructors is one of the reasons abstract class can have constructors in Java.
+
+Here is an example Java program, which proves that abstract class can have constructors in Java:
+
+```java
+/**
+ * Simple Java program to prove that abstract class can have constructor in Java.
+ * @author http://java67.blogspot.com
+ */
+public class AbstractConstructorTest {
+
+    public static void main(String args[]) {
+       Server server = new Tomcat("Apache Tomcat");
+       server.start();
+    }
+}
+
+abstract class Server{
+    protected final String name;
+   
+    public Server(String name){
+        this.name = name;
+    }
+   
+    public abstract boolean start();
+}
+
+class Tomcat extends Server{
+   
+    public Tomcat(String name){
+        super(name);
+    }
+
+    @Override
+    public boolean start() {
+       System.out.println( this.name + " started successfully");
+       return true;
+    }
+   
+}
+
+Output:
+Apache Tomcat started successfully
+```
+
+In this example Java program, we have an abstract class Server, which has a constructor with one parameter, which accepts the name. Subclass provides that name to superclass while creating a concrete instance of Server and overriding abstract method starts(). Since this program compiles and run fine you can definitely say abstract class can have constructors in Java.
+
+----
+
+`Reference:`
+https://stackoverflow.com/questions/260666/can-an-abstract-class-have-a-constructor
 
 
+You would define a constructor in an abstract class if you are in one of these situations:
 
+you want to perform some initialization (to fields of the abstract class) before the instantiation of a subclass actually takes place
+you have defined final fields in the abstract class but you did not initialize them in the declaration itself; in this case, you MUST have a constructor to initialize these fields
+Note that:
 
+you may define more than one constructor (with different arguments)
+you can (should?) define all your constructors protected (making them public is pointless anyway)
+your subclass constructor(s) can call one constructor of the abstract class; it may even have to call it (if there is no no-arg constructor in the abstract class)
+In any case, don't forget that if you don't define a constructor, then the compiler will automatically generate one for you (this one is public, has no argument, and does nothing).
+
+```text
+answered Nov 4 '08 at 7:30
+
+jfpoilpret
+9,81022 gold badges2424 silver badges29
+```
+
+----
 
 
 
