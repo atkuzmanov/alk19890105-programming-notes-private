@@ -4279,6 +4279,17 @@ https://www.java67.com/2012/11/difference-between-operator-and-equals-method-in.
 
 ----
 
+# hashCode() in Java
+
+`Reference:`
+https://stackabuse.com/javas-object-methods-hashcode/
+
+[Java's-Object-Methods_hashCode](reference-websites/Java's-Object-Methods_hashCode)
+
+----
+
+
+
 
 
 
