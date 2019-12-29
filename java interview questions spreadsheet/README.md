@@ -4086,7 +4086,158 @@ _NullPointerException, IllegalArgumentException, and SecurityException_
 
 ----
 
+# Exceptions supressing when throwing exception from finally clause?
 
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
+
+Please see: 
+
+[Checked vs Unchecked exceptions](#Checked-vs-Unchecked-exceptions)
+
+[Exceptions hierarchy](#Exceptions-hierarchy)
+
+----
+
+`Reference:`
+https://stackoverflow.com/questions/40503733/suppressed-exception-disappeared-when-using-finally
+
+Here is code that does what you would expect:
+
+```java
+public class TestTest {
+    public static void main (String[] args) throws Exception {
+        try {
+            run();
+        } catch(Exception e) {
+            printSuppressedExceptions(e);
+        }
+    }
+
+    public static void printSuppressedExceptions(Throwable t) {
+        System.out.println(t);
+        System.out.println("suppressed exceptions (" + t.getSuppressed().length + "):");
+        for (Throwable suppressed : t.getSuppressed()) {
+            System.out.println("  - " + suppressed);
+        }
+    }
+
+    public static void run() throws Exception {
+        Exception exceptionFromCatch = null;
+        try(MyResource r = new MyResource("resource");) {
+            System.out.println("try");
+            System.getProperty("").length(); // throws illegalArgumentException
+        } catch(Exception e) {
+            exceptionFromCatch = e;
+            printSuppressedExceptions(e);
+            throw e;
+        } finally {
+            try {
+                new MyResource("finally").close();
+            } catch (Exception e) {
+                if (exceptionFromCatch!=null) {
+                    e.addSuppressed(exceptionFromCatch);
+                }
+                throw e;
+            }
+        }
+    }   
+}
+
+class MyResource implements AutoCloseable {
+    private final String name;
+
+    public MyResource(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public void close() throws Exception {
+        throw new Exception("exception" + " from " + this.name);
+    }
+}
+```
+
+So lets go trough the try-with-resource part of your code (as introduced in JDK 1.7.0) and see what happens (see What is the Java 7 try-with-resources bytecode equivalent using try-catch-finally? for more details):
+
+- the try-with-resource block MyResource r = new MyResource("resource") is executed
+
+- the try block is executed and throws an IllegalArgumentException
+
+- the try-with-resource block calls close() for all resources (in your example only one)
+
+- close() throws an exception, but since the exception from the try block has priority the exception from thrown by close() is suppressed and added via addSuppressed(..)
+
+So that part works like you expected from reading the tutorial.
+
+And now the try-catch-finally part of your code (as in JDK 1.6 and earlier):
+
+- the try block is executed and throws an IllegalArgumentException
+
+- (the catch block behaves the same way as if there was no catch block)
+
+- the finally block is executed and throws an Exception
+
+- the exception from the finally block has priority and the one from the try block is suppressed
+
+But this time the word suppressed used in the java tutorial does not stand for "suppressed and added to the actually thrown exception" but "suppressed and lost to nirvana". So it still behaves as in JDK 1.6 and earlier and does not make use of the newly introduced addSuppressed(..) getSuppressed() functionality. That's the reason it doesn't behave like you expected.
+
+I would argue the behaviour you expected wouldn't be logical either. I would like it to behave like this:
+
+```java
+...
+        } finally {
+            try {
+                new MyResource("finally").close();
+            } catch (Exception e) {
+                if (exceptionFromCatch!=null) {
+                    exceptionFromCatch.addSuppressed(e);
+                } else {
+                    throw e;
+                }
+            }
+        }
+...
+```
+
+That would always give priority to the exception from the try block (as implemented with the new try-with-resource feature) and add the exception from the catch block as suppressed to the list. But that would break compatibility with JDK 1.6, so I guess that's the reason why it doesn't behave like that.
+
+```text
+edited May 23 '17 at 12:13
+
+Community♦
+111 silver badge
+answered Nov 9 '16 at 12:23
+
+tuempl
+692
+```
+
+----
+
+`Reference:`
+https://howtodoinjava.com/java7/java-suppressed-exceptions/
+[Java-suppressed-exceptions-with-example-HowToDoInJava](reference-websites/Java-suppressed-exceptions-with-example-HowToDoInJava)
+
+I think this is phrased wrong:
+
+
+_Suppressed exceptions, as name suggest, are exceptions thrown in the code but were ignored somehow. If you remember try-catch-finally block execution sequence and how they return any value or exceptions, you will recall that exceptions thrown in finally block are suppressed if an exception is thrown in try block also._
+
+
+And should be:
+
+
+_Suppressed exceptions, as name suggest, are exceptions thrown in the code but were ignored somehow. If you remember try-catch-finally block execution sequence and how they return any value or exceptions, you will recall that **exceptions thrown in `try` block are suppressed if an exception is thrown in `finally` block also**._
+
+----
+
+`Reference:`
+https://eclipsesource.com/blogs/2013/04/25/when-an-exception-gets-lost/
+
+----
 
 
 
