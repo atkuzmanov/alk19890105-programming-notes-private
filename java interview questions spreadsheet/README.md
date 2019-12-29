@@ -4313,11 +4313,60 @@ http://tutorials.jenkov.com/java/annotations.html
 
 ----
 
+`Reference:`
+https://www.javaworld.com/blog/java-101/
+
+# JAVA 101: LEARN JAVA By Jeff Friesen
+
+^ Do not know how good are these?
+
+----
+
 # String pool affecting String comparison
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
 |       |  x  |   x   |
+
+`Reference:`
+https://www.baeldung.com/java-string-pool
+
+[Guide-to-Java-String-Pool_Baeldung](reference-websites/Guide-to-Java-String-Pool_Baeldung)
+
+----
+
+`Reference:`
+https://medium.com/@sameira/java-string-pool-25c5484c7206
+
+![0_iEbpUt-eu-ScohcK.png](0_iEbpUt-eu-ScohcK.png)
+
+```java
+firstHelloWorld == secondHelloWorld => false
+
+firstHelloWorld == thirdHelloWorld => false
+
+firstHelloWorld == forthHelloWorld => false
+
+secondHelloWorld == thirdHelloWorld => true
+
+secondHelloWorld == forthHelloWorld => false
+```
+
+----
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
