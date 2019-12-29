@@ -4370,6 +4370,18 @@ https://www.javaworld.com/article/3276354/string-comparisons-in-java.html#key
 |       |  x  |   x   |
 
 `Reference:`
+https://www.javatpoint.com/collections-in-java
+
+![java-collection-hierarchy.png](java-collection-hierarchy.png)
+
+----
+
+`Reference:`
+http://www.falkhausen.de/Java-8/java.util/Collection-Hierarchy.html
+
+![Collection-Hierarchy.png](Collection-Hierarchy.png)
+
+----
 
 
 
