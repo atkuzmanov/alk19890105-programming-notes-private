@@ -4239,7 +4239,45 @@ https://eclipsesource.com/blogs/2013/04/25/when-an-exception-gets-lost/
 
 ----
 
+# equals() vs "=="
 
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
+
+`Reference:`
+https://www.javaworld.com/article/3305792/comparing-java-objects-with-equals-and-hashcode.html
+[Comparing-Java-objects-with-equals-and-hashcode_JavaWorld](reference-websites/Comparing-Java-objects-with-equals-and-hashcode_JavaWorld)
+
+----
+
+`Reference:`
+https://stackabuse.com/javas-object-methods-equals-object/
+
+[Java's-Object-Methods_equals(Object)](reference-websites/Java's-Object-Methods_equals(Object))
+
+----
+
+`Reference:`
+https://www.geeksforgeeks.org/difference-equals-method-java/
+
+In general both equals() and “==” operator in Java are used to compare objects to check equality but here are some of the differences between the two:
+
+- Main difference between .equals() method and == operator is that one is method and other is operator.
+
+- We can use == operators for reference comparison (address comparison) and .equals() method for content comparison. In simple words, 
+== checks if both objects point to the same memory location whereas .equals() evaluates to the comparison of values in the objects.
+
+- If a class does not override the equals method, then by default it uses equals(Object o) method of the closest parent class that has overridden this method. See this for detail
+
+----
+
+`Reference:`
+https://www.java67.com/2012/11/difference-between-operator-and-equals-method-in.html
+
+![equals-vs-equality-operator-in-Java](equals-vs-equality-operator-in-Java.png)
+
+----
 
 
 
