@@ -4411,7 +4411,25 @@ https://www.geeksforgeeks.org/collections-in-java-2/
 
 ----
 
+# List and Set extending Collection, Map not?
 
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
+
+Please see:
+
+[Collections hierarchy](#Collections-hierarchy)
+
+`List` and `Set` **do not** extend `Map`, they extend `Collection`.
+
+----
+
+# List vs ArrayList
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
 
 
 
