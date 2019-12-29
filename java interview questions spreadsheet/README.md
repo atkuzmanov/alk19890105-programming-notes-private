@@ -4288,11 +4288,36 @@ https://stackabuse.com/javas-object-methods-hashcode/
 
 ----
 
+# Why overriding both equals() and hashCode()? Uses in Hash collections?
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
+
+Please see:
+
+[equals() vs "=="](#equals()-vs-"==")
+
+----
+
+`Reference:`
+https://www.geeksforgeeks.org/annotations-in-java/
+
+# Annotations in Java
 
 
+`Reference:`
+http://tutorials.jenkov.com/java/annotations.html
 
+**Java Annotations**
 
+----
 
+# String pool affecting String comparison
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
 
 
 
