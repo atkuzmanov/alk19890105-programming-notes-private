@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="46px" height="46px" viewBox="0 0 46 46" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 56 (81588) - https://sketch.com -->
+    <title>Group 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#B4EC51" offset="0%"></stop>
+            <stop stop-color="#429321" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="blog-July-register-for-webinar-success" transform="translate(-216.000000, -153.000000)">
+            <g id="Group-2" transform="translate(216.000000, 153.000000)">
+                <circle id="Oval" fill="url(#linearGradient-1)" cx="23" cy="23" r="23"></circle>
+                <polygon id="Shape" stroke="#FFFFFF" fill="#FFFFFF" points="18.9545455 28.0298507 12.9886364 22.0746269 11 24.0597015 18.9545455 32 36 14.9850746 34.0113636 13"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

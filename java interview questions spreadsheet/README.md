@@ -4372,6 +4372,8 @@ https://www.javaworld.com/article/3276354/string-comparisons-in-java.html#key
 `Reference:`
 https://www.javatpoint.com/collections-in-java
 
+[Collections-in-Java-javatpoint](reference-websites/Collections-in-Java-javatpoint)
+
 ![java-collection-hierarchy.png](java-collection-hierarchy.png)
 
 ----
@@ -4383,9 +4385,31 @@ http://www.falkhausen.de/Java-8/java.util/Collection-Hierarchy.html
 
 ----
 
+`Reference:`
+https://www.scientecheasy.com/2018/09/collection-hierarchy-in-java.html
 
+[Collection-Hierarchy-in-Java_Collections-class_ScientechEasy](reference-websites/Collection-Hierarchy-in-Java_Collections-class_ScientechEasy)
 
+----
 
+`Reference:`
+https://www.edureka.co/blog/java-collections/
+[Java-Collections-Framework_Collections-in-Java-With-Examples_Edureka](reference-websites/Java-Collections-Framework_Collections-in-Java-With-Examples_Edureka)
+
+----
+
+`Reference:`
+https://dzone.com/articles/an-introduction-to-the-java-collections-framework
+[An-Introduction-to-the-Java-Collections-Framework-DZone-Java](reference-websites/An-Introduction-to-the-Java-Collections-Framework-DZone-Java)
+
+----
+
+`Reference:`
+https://www.geeksforgeeks.org/collections-in-java-2/
+
+[Collections-in-Java-GeeksforGeeks](reference-websites/Collections-in-Java-GeeksforGeeks)
+
+----
 
 
 
