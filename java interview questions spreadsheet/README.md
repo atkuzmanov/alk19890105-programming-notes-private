@@ -4354,6 +4354,22 @@ secondHelloWorld == forthHelloWorld => false
 
 ----
 
+`Reference:`
+https://www.javaworld.com/article/3276354/string-comparisons-in-java.html#key
+
+[String-comparisons-in-Java_JavaWorld](reference-websites/String-comparisons-in-Java_JavaWorld)
+
+**String comparisons in Java**
+
+----
+
+# Collections hierarchy
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
+`Reference:`
 
 
 
