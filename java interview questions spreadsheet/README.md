@@ -4411,6 +4411,20 @@ https://www.geeksforgeeks.org/collections-in-java-2/
 
 ----
 
+`Reference:`
+https://www.geeksforgeeks.org/java-collection-tutorial/
+
+**Java Collection Tutorial**
+
+----
+
+`Reference:`
+https://www.baeldung.com/java-collections
+
+**Java Collections**
+
+----
+
 # List and Set extending Collection, Map not?
 
 |Junior |Mid  |Senior |
