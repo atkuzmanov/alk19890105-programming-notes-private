@@ -4497,6 +4497,20 @@ ArrayList is a part of collection framework and is present in java.util package.
 
 - Allows `null`.
 
+# Guide to the Java ArrayList
+
+`Reference:`
+https://www.baeldung.com/java-arraylist
+
+List represents an ordered sequence of values where some value may occur more than one time.
+
+ArrayList is one of the List implementations built atop an array, which is able to dynamically grow and shrink as you add/remove elements. Elements could be easily accessed by their indexes starting from zero. This implementation has the following properties:
+
+- Random access takes O(1) time
+- Adding element takes amortized constant time O(1)
+- Inserting/Deleting takes O(n) time
+- Searching takes O(n) time for unsorted array and O(log n) for a sorted one
+
 ----
 
 # Java LinkedList class
