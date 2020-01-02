@@ -4439,6 +4439,43 @@ Please see:
 
 ----
 
+# Java List Interface
+
+`Reference:`
+https://www.javatpoint.com/java-list
+
+List Interface is the subinterface of Collection. It contains index-based methods to insert and delete elements. It is a factory of ListIterator interface.
+
+# List Interface in Java with Examples
+
+`Reference:`
+https://www.geeksforgeeks.org/list-interface-java-examples/
+
+The Java.util.List is a child interface of Collection. It is an ordered collection of objects in which duplicate values can be stored. Since List preserves the insertion order, it allows positional access and insertion of elements. List Interface is implemented by the classes of ArrayList, LinkedList, Vector and Stack.
+
+----
+
+# Java ArrayList class
+
+`Reference:`
+https://www.javatpoint.com/java-arraylist
+
+Java ArrayList class uses a dynamic array for storing the elements. It inherits AbstractList class and implements List interface.
+
+The important points about Java ArrayList class are:
+
+- Java ArrayList class can contain duplicate elements.
+
+- Java ArrayList class maintains insertion order.
+
+- Java ArrayList class is non synchronized.
+
+- Java ArrayList allows random access because array works at the index basis.
+
+- In Java ArrayList class, manipulation is slow because a lot of shifting needs to occur if any element is removed from the array list.
+
+- Can contain null.
+
 # ArrayList in Java
 
 `Reference:`
@@ -4448,16 +4485,78 @@ ArrayList in Java
 
 ArrayList is a part of collection framework and is present in java.util package. It provides us dynamic arrays in Java. Though, it may be slower than standard arrays but can be helpful in programs where lots of manipulation in the array is needed.
 
-- ArrayList inherits AbstractList class and implements List interface.
+- ArrayList inherits `AbstractList class` and implements `List interface`.
 
 - ArrayList is initialized by a size, however the size can increase if collection grows or shrunk if objects are removed from the collection.
 
-- Java ArrayList allows us to randomly access the list.
+- Java ArrayList allows us to `randomly access` the list.
 
-- ArrayList can not be used for primitive types, like int, char, etc. We need a wrapper class for such cases (see this for details).
+- ArrayList can not be used for `primitive types`, like `int`, `char`, etc. We need a wrapper class for such cases (see [this](https://www.geeksforgeeks.org/array-vs-arraylist-in-java/) for details).
 
 - ArrayList in Java can be seen as similar to vector in C++.
 
+- Allows `null`.
+
+----
+
+# Java LinkedList class
+
+`Reference:`
+https://www.javatpoint.com/java-linkedlist
+
+Java LinkedList class uses a doubly linked list to store the elements. It provides a linked-list data structure. It inherits the AbstractList class and implements List and Deque interfaces.
+
+The important points about Java LinkedList are:
+
+- Java LinkedList class can contain duplicate elements.
+
+- Java LinkedList class maintains insertion order.
+
+- Java LinkedList class is non synchronized.
+
+- In Java LinkedList class, manipulation is fast because no shifting needs to occur.
+
+- Java LinkedList class can be used as a list, stack or queue.
+
+# LinkedList in Java
+
+`Reference:`
+https://www.geeksforgeeks.org/linked-list-in-java/
+
+Linked List are linear data structures where the elements are not stored in contiguous locations and every element is a separate object with a data part and address part. The elements are linked using pointers and addresses. Each element is known as a node. Due to the dynamicity and ease of insertions and deletions, they are preferred over the arrays. It also has few disadvantages like **the nodes cannot be accessed directly** instead we need to start from the head and follow through the link to reach to a node we wish to access.
+To store the elements in a linked list we use a doubly linked list which provides a linear data structure and also used to inherit an abstract class and implement list and deque interfaces.
+
+In Java, LinkedList class implements the list interface. The LinkedList class also consists of various constructors and methods like other java collections.
+
+
+----
+
+# Difference between ArrayList and LinkedList
+
+`Refernce:`
+https://www.javatpoint.com/difference-between-arraylist-and-linkedlist
+
+
+# ArrayList vs LinkedList in Java
+
+`Reference:`
+https://www.geeksforgeeks.org/arraylist-vs-linkedlist-java/
+
+
+
+----
+----
+----
+
+----
+----
+----
+----
+----
+----
+----
+----
+----
 ----
 
 # List vs ArrayList
