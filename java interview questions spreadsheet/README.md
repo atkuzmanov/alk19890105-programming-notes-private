@@ -4550,27 +4550,13 @@ In Java, LinkedList class implements the list interface. The LinkedList class al
 `Refernce:`
 https://www.javatpoint.com/difference-between-arraylist-and-linkedlist
 
+[Difference-between-ArrayList-LinkedList-javatpoint](reference-websites/Difference-between-ArrayList-LinkedList-javatpoint)
 
 # ArrayList vs LinkedList in Java
 
 `Reference:`
 https://www.geeksforgeeks.org/arraylist-vs-linkedlist-java/
 
-
-
-----
-----
-----
-
-----
-----
-----
-----
-----
-----
-----
-----
-----
 ----
 
 # List vs ArrayList
@@ -4579,13 +4565,45 @@ https://www.geeksforgeeks.org/arraylist-vs-linkedlist-java/
 |-------|-----|-------|
 |   x   |  x  |   x   |
 
+## Difference Between List and ArrayList in Java
+
 `Reference:`
+https://techdifferences.com/difference-between-list-and-arraylist-in-java.html
+
+[Difference-Between-List-ArrayList-Java-Tech-Differences](reference-websites/Difference-Between-List-ArrayList-Java-Tech-Differences)
+
+## Array vs ArrayList in Java
+
+`Reference:`
+https://www.geeksforgeeks.org/array-vs-arraylist-in-java/
+
+[Array-vs-ArrayList-Java-GeeksforGeeks](reference-websites/Array-vs-ArrayList-Java-GeeksforGeeks)
 
 
 
+----
+----
+----
+----
+----
+----
+----
+----
 
 
+----
+----
 
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
 
 
 

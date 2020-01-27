@@ -1,0 +1,133 @@
+@font-face {
+  font-family: 'csscfont';
+  src: url('../font/csscfont.eot?44942080');
+  src: url('../font/csscfont.eot?44942080#iefix') format('embedded-opentype'),
+       url('../font/csscfont.woff2?44942080') format('woff2'),
+       url('../font/csscfont.woff?44942080') format('woff'),
+       url('../font/csscfont.ttf?44942080') format('truetype'),
+       url('../font/csscfont.svg?44942080#csscfont') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+[class^="c-icon-cresta-"]:before, [class*=" c-icon-cresta-"]:before {
+	font-family: 'csscfont' !important;
+	font-style: normal !important;
+	font-weight: normal !important;
+	speak: none !important;
+	display: inline-block !important;
+	text-decoration: inherit !important;
+	text-align: center !important;
+	line-height: 1em !important;
+}
+.cs {
+	display: inline-block !important;
+	font: normal normal normal 14px/1 csscfont !important;
+	font-size: inherit !important;
+	text-rendering: auto !important;
+	-webkit-font-smoothing: antialiased !important;
+	-moz-osx-font-smoothing: grayscale !important;
+}
+.c-icon-cresta-mail:before { content: '\e800'; } /* '' */
+.c-icon-cresta-plus:before { content: '\e801'; } /* '' */
+.c-icon-cresta-minus:before { content: '\e802'; } /* '' */
+.c-icon-cresta-whatsapp:before { content: '\e803'; } /* '' */
+.c-icon-cresta-vkontakte:before { content: '\e804'; } /* '' */
+.c-icon-cresta-stumbleupon:before { content: '\e805'; } /* '' */
+.c-icon-cresta-pinterest:before { content: '\e806'; } /* '' */
+.c-icon-cresta-facebook:before { content: '\e807'; } /* '' */
+.c-icon-cresta-twitter:before { content: '\e808'; } /* '' */
+.c-icon-cresta-linkedin:before { content: '\e809'; } /* '' */
+.c-icon-cresta-reddit:before { content: '\e80a'; } /* '' */
+.c-icon-cresta-buffer:before { content: '\e80b'; } /* '' */
+.c-icon-cresta-print:before { content: '\e80d'; } /* '' */
+.c-icon-cresta-xing:before { content: '\e80e'; } /* '' */
+.c-icon-cresta-spinner:before { content: '\e80f'; } /* '' */
+.c-icon-cresta-gplus:before { content: '\f0d5'; } /* '' */
+.c-icon-cresta-ok:before { content: '\f263'; } /* '' */
+.c-icon-cresta-telegram:before { content: '\f2c6'; } /* '' */
+.c-icon-cresta-tumblr:before { content: '\f173'; } /* '' */
+/*
+   Animation for spinners
+*/
+.animate-spin {
+  -moz-animation: spin 2s infinite linear;
+  -o-animation: spin 2s infinite linear;
+  -webkit-animation: spin 2s infinite linear;
+  animation: spin 2s infinite linear;
+  display: inline-block;
+}
+@-moz-keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -moz-transform: rotate(359deg);
+    -o-transform: rotate(359deg);
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+@-webkit-keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -moz-transform: rotate(359deg);
+    -o-transform: rotate(359deg);
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+@-o-keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -moz-transform: rotate(359deg);
+    -o-transform: rotate(359deg);
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+@-ms-keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -moz-transform: rotate(359deg);
+    -o-transform: rotate(359deg);
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+@keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -moz-transform: rotate(359deg);
+    -o-transform: rotate(359deg);
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
