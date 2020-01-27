@@ -4579,25 +4579,18 @@ https://www.geeksforgeeks.org/array-vs-arraylist-in-java/
 
 [Array-vs-ArrayList-Java-GeeksforGeeks](reference-websites/Array-vs-ArrayList-Java-GeeksforGeeks)
 
+----
+# HashMap vs TreeMap vs LinkedHashMap
 
+`Reference:`
+https://www.geeksforgeeks.org/differences-treemap-hashmap-linkedhashmap-java/
 
-----
-----
-----
-----
-----
-----
-----
-----
-
+[Differences-between-TreeMap-HashMap-LinkedHashMap-GeeksforGeeks](reference-websites/Differences-between-TreeMap-HashMap-LinkedHashMap-GeeksforGeeks)
 
 ----
-----
 
-----
-----
-----
-----
+
+
 ----
 ----
 ----
@@ -4606,8 +4599,25 @@ https://www.geeksforgeeks.org/array-vs-arraylist-in-java/
 ----
 
 
+----
+----
+
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
 
 
+
+`Reference:`
+
+[](reference-websites/)
 
 
 
