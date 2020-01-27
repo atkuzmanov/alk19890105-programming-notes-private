@@ -580,7 +580,7 @@ Java interfaces are a way to achieve polymorphism. Polymorphism is a concept tha
 
 Look at this simple class diagram:
 
-![interfaces](interfaces-1.png)
+![interfaces](resources/interfaces-1.png)
 
 *Two parallel class hierarchies used in the same application.*
 
@@ -1070,7 +1070,7 @@ In above program, when an object of MountainBike class is created, a copy of the
 
 Please note that during inheritance only object of subclass is created, not the superclass. 
 
-![inheritence1](inheritence1.png)
+![inheritence1](resources/inheritence1.png)
 
 In practice, inheritance and polymorphism are used together in java to achieve fast performance and readability of code.
 
@@ -1080,7 +1080,7 @@ Below are the different types of inheritance which is supported by Java.
 
 - Single Inheritance : In single inheritance, subclasses inherit the features of one superclass. In image below, the class A serves as a base class for the derived class B.
 
-![inheritance1-single](inheritance1-single.png)
+![inheritance1-single](resources/inheritance1-single.png)
 
 ```java
 //Java program to illustrate the  
@@ -1127,7 +1127,7 @@ Geeks
 
 - Multilevel Inheritance : In Multilevel Inheritance, a derived class will be inheriting a base class and as well as the derived class also act as the base class to other class. In below image, the class A serves as a base class for the derived class B, which in turn serves as a base class for the derived class C. In Java, a class cannot directly access the grandparent’s members.
 
-![inheritance3-multilevel](inheritance3-multilevel.png)
+![inheritance3-multilevel](resources/inheritance3-multilevel.png)
 
 ```java
 // Java program to illustrate the  
@@ -1183,7 +1183,7 @@ Geeks
 
 - Hierarchical Inheritance : In Hierarchical Inheritance, one class serves as a superclass (base class) for more than one sub class.In below image, the class A serves as a base class for the derived class B,C and D.
 
-![inheritance4-hierarchical](inheritance4-hierarchical.png)
+![inheritance4-hierarchical](resources/inheritance4-hierarchical.png)
 
 ```java
 // Java program to illustrate the  
@@ -1237,7 +1237,7 @@ Geeks
 
 - Multiple Inheritance (Through Interfaces) : In Multiple inheritance ,one class can have more than one superclass and inherit features from all parent classes. Please note that Java does not support multiple inheritance with classes. In java, we can achieve multiple inheritance only through Interfaces. In image below, Class C is derived from interface A and B.
 
-![inheritance2-1-multiple-through-interfaces](inheritance2-1-multiple-through-interfaces.png)
+![inheritance2-1-multiple-through-interfaces](resources/inheritance2-1-multiple-through-interfaces.png)
 
 ```java
 // Java program to illustrate the  
@@ -1296,7 +1296,7 @@ Geeks
 
 - Hybrid Inheritance(Through Interfaces) : It is a mix of two or more of the above types of inheritance. Since java doesn’t support multiple inheritance with classes, the hybrid inheritance is also not possible with classes. In java, we can achieve hybrid inheritance only through Interfaces.
 
-![inheritance-1-hybrid](inheritance-1-hybrid.png)
+![inheritance-1-hybrid](resources/inheritance-1-hybrid.png)
 
 Important facts about inheritance in Java
 
@@ -1937,7 +1937,7 @@ GrandChild's show()
 
     1. Overloading is about same method have different signatures. Overriding is about same method, same signature but different classes connected through inheritance.
 
-    ![OverridingVsOverloading](OverridingVsOverloading.png)
+    ![OverridingVsOverloading](resources/OverridingVsOverloading.png)
 
     2. Overloading is an example of compiler-time polymorphism and overriding is an example of run time polymorphism.
 
@@ -1955,7 +1955,7 @@ Overriding and Inheritance : Part of the key to successfully applying polymorphi
 
 Let’s look at a more practical example that uses method overriding. Consider an employee management software for an organization, let the code has a simple base class Employee, the class has methods like raiseSalary(), transfer(), promote(), .. etc. Different types of employees like Manager, Engineer, ..etc may have their implementations of the methods present in base class Employee. In our complete software, we just need to pass a list of employees everywhere and call appropriate methods without even knowing the type of employee. For example, we can easily raise the salary of all employees by iterating through the list of employees. Every type of employee may have its logic in its class, we don’t need to worry because if raiseSalary() is present for a specific employee type, only that method would be called.
 
-![JavaOVerriding](JavaOVerriding.jpg)
+![JavaOVerriding](resources/JavaOVerriding.jpg)
 
 ```java
 // A Simple Java program to demonstrate application 
@@ -3082,7 +3082,7 @@ In the Java programming language, the keyword static indicates that the particul
 
 This means that only one instance of that static member is created which is shared across all instances of the class.
 
-![Static_variables_shared_in_Java](Static_variables_shared_in_Java.jpg)
+![Static_variables_shared_in_Java](resources/Static_variables_shared_in_Java.jpg)
 
 The keyword can be applied to variables, methods, blocks and nested class.
 
@@ -3988,7 +3988,7 @@ Peter Lawrey
 `Reference:`
 https://www.javamex.com/tutorials/exceptions/exceptions_hierarchy.shtml
 
-![ExceptionHierarchy](ExceptionHierarchy.png)
+![ExceptionHierarchy](resources/ExceptionHierarchy.png)
 
 ----
 
@@ -4003,14 +4003,14 @@ https://www.geeksforgeeks.org/exceptions-in-java/
 `Reference:`
 https://www.tutorialspoint.com/java/java_exceptions.htm
 
-![exceptions1.jpg](exceptions1.jpg)
+![exceptions1.jpg](resources/exceptions1.jpg)
 
 ----
 
 `Reference:`
 https://www.javatpoint.com/exception-handling-in-java
 
-![throwable.png](throwable.png)
+![throwable.png](resources/throwable.png)
 
 ----
 
@@ -4275,7 +4275,7 @@ In general both equals() and “==” operator in Java are used to compare objec
 `Reference:`
 https://www.java67.com/2012/11/difference-between-operator-and-equals-method-in.html
 
-![equals-vs-equality-operator-in-Java](equals-vs-equality-operator-in-Java.png)
+![equals-vs-equality-operator-in-Java](resources/equals-vs-equality-operator-in-Java.png)
 
 ----
 
@@ -4338,7 +4338,7 @@ https://www.baeldung.com/java-string-pool
 `Reference:`
 https://medium.com/@sameira/java-string-pool-25c5484c7206
 
-![0_iEbpUt-eu-ScohcK.png](0_iEbpUt-eu-ScohcK.png)
+![0_iEbpUt-eu-ScohcK.png](resources/0_iEbpUt-eu-ScohcK.png)
 
 ```java
 firstHelloWorld == secondHelloWorld => false
@@ -4374,14 +4374,14 @@ https://www.javatpoint.com/collections-in-java
 
 [Collections-in-Java-javatpoint](reference-websites/Collections-in-Java-javatpoint)
 
-![java-collection-hierarchy.png](java-collection-hierarchy.png)
+![java-collection-hierarchy.png](resources/java-collection-hierarchy.png)
 
 ----
 
 `Reference:`
 http://www.falkhausen.de/Java-8/java.util/Collection-Hierarchy.html
 
-![Collection-Hierarchy.png](Collection-Hierarchy.png)
+![Collection-Hierarchy.png](resources/Collection-Hierarchy.png)
 
 ----
 
