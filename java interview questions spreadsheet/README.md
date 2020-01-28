@@ -4582,6 +4582,10 @@ https://www.geeksforgeeks.org/array-vs-arraylist-in-java/
 ----
 # HashMap vs TreeMap vs LinkedHashMap
 
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
 `Reference:`
 https://www.geeksforgeeks.org/differences-treemap-hashmap-linkedhashmap-java/
 [Differences-between-TreeMap-HashMap-LinkedHashMap-GeeksforGeeks](reference-websites/Differences-between-TreeMap-HashMap-LinkedHashMap-GeeksforGeeks)
@@ -4605,7 +4609,31 @@ All three classes implement the Map interface and offer mostly the same function
 
 ----
 
+# NATURAL ordering - implementing Comparable interface VS CUSTOM ordering - implementing Comparator
 
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
+
+## Comparable vs Comparator in Java
+
+`Reference:`
+https://www.geeksforgeeks.org/comparable-vs-comparator-in-java/
+
+[Comparable-vs-Comparator-Java-GeeksforGeeks](reference-websites/Comparable-vs-Comparator-Java-GeeksforGeeks)
+
+
+`Reference:`
+https://hellokoding.com/java-comparable-vs-comparator-examples/
+
+`Reference:`
+https://docs.oracle.com/javase/tutorial/collections/interfaces/order.html
+
+`Reference:`
+http://zetcode.com/java/comparablecomparator/
+
+[Java-Comparable-Comparator-zetcode](reference-websites/Java-Comparable-Comparator-zetcode)
 
 ----
 ----

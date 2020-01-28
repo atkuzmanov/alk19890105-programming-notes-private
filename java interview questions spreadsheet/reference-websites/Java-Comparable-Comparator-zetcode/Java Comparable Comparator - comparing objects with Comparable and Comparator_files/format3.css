@@ -1,0 +1,184 @@
+/* cfg  */
+body {
+  margin-bottom:30px; margin-top:10px;
+  font-family:georgia; font-size:1em;
+  line-height:1.6em;
+  background: #333;
+  text-align:center;
+}
+
+.note { border-radius: 4px; background-color: #d9e8f4; padding: 15px 12px}
+
+.custom_ad { border-radius: 4px; padding: 15px 12px; border: 1px dotted #222 }
+
+code { font-family: Consolas }
+
+pre {
+  font-family: Consolas, monospace;  
+  font-size:10pt;
+/*   white-space: pre-wrap; */
+  overflow: auto;
+}
+
+caption { text-align:left; font-style:italic; }
+
+h1 {font-family: serif; margin:25px 0 25px 0 }
+
+h2 { font-family: serif; margin:25px 0 25px 0 }
+h4 { margin:15px 0 15px 0 }
+a { color:#0099f7 }
+
+ul {line-height: 1.7em}
+
+.explanation { line-height:1.5; padding: 5px 0 5px 10px; border-radius:4px; background:#edeff4 }
+.definition { margin-top:25px; padding-top:10px;padding-bottom:10px; background:#8DFF87 }
+.container { width:100%; margin-left:auto; margin-right:auto;}
+/* .container2 { margin-left:auto; margin-right:auto;width:1120px;} */
+.content { width:100%; margin-left:auto; margin-right:auto; padding:35px 25px 5px 25px; background:white; text-align:left;} /*background: #f9fff9*/
+/* .content2 { width:705px; margin-left:auto; margin-right:auto; padding:35px 20px 5px 20px; background:white; text-align:left; } */
+
+img {object-fit: cover}
+
+img.medium { width:75%; height:75%}
+
+/* .figure { font-family:Verdana; margin-top:15px; color:#7b7070 } */
+figcaption { color:#7b7070 }
+figure { margin:0; max-width: 700px; /*background: green;*/ display:inline-block}
+/* .figure_right { font-family:Verdana; margin-left:375px; margin-top:-25px; color:#7b7070 } */
+
+.table { margin-top:15px; margin-bottom:20px; color:#7b7070 }
+
+.footer { /*margin-top:35px;*/ }
+.signature { margin-top:35px; font-size:0.8em; color:#636363; display:inline; }
+.copyright { margin-left:15px; margin-right:15px }
+
+.botNav { padding-top:10px }
+.botNavItem {padding:0 7px; font-size:1em; color:#610061; height:18px;}
+
+.bookmarks { position:absolute; right:17%;  display:inline} 
+
+.code 
+{     
+line-height:1.4; margin-top:0;  
+padding-bottom:10px; padding-left:10px; background:#edeff4;
+color:black; padding-top:10px; 
+border-bottom-left-radius: 4px; border-bottom-right-radius: 4px;
+}
+
+.codehead { font-family: Consolas; font-weight:500; color:#599a60; background:#d5e8d7; border-top-left-radius:4px; border-top-right-radius:4px; padding: 4px 15px; margin-bottom:0 ; }
+.output { padding-left: 15px; color: white; font-family: monospace; background: #94A694; border: 1px solid #94A694 }
+
+.center { text-align:center }
+
+.nav_r { float:right }
+nav a { margin-right: 0.4em}
+
+/* hr.btm { width:550px; margin-top:35px; margin-bottom:35px } */
+
+.gray {
+background-color: #efefef;
+}
+
+table {
+    border-top: 1px solid #999;
+    border-left: 1px solid #999;
+    border-collapse: collapse;
+   /* float:left;*/
+/*     margin:15px; */
+}
+
+tr:nth-child(odd) {background: #efefef}
+
+
+td, th {
+
+    border-right: 1px solid #999;
+    border-bottom: 1px solid #999;
+}
+
+th {
+    padding: 8px;
+    font-family: Georgia;
+    font-size: 1em;
+    background: url(/img/cmn/stripe.jpg);
+}
+
+td {
+/*     font-family: monospace; */
+    font-size: 1em;
+    padding:5px;
+}
+
+.keyword {
+ color: #074685
+}
+
+.compact {
+ line-height:1.3 
+}
+
+
+.ltow { float:left; background:white; width:160px; height:300px; }
+.big_hor { position:relative; left:-11px }
+.resp {}
+.hor { text-align:center }
+.large_rec {}
+.med_rec {}
+
+.social {}
+.fb-like { top:-7px; padding-right:1em }
+.twitter { display:inline-block }
+
+.rtow { float:right }
+
+#ebooks ul { list-style-type: none; padding-left:0; }
+
+
+@media (min-width: 705px) {
+         
+   .content {
+        width:705px;
+   }    
+}
+
+
+@media (max-width: 1119px) {
+         
+   #wide_ad {
+        display: none;
+   }    
+   
+   #ebooks {
+        display: none;
+   }
+}
+
+@media (min-width: 1120px) {
+    
+   .container {
+       width:1120px; 
+   }
+      
+   #wide_ad {
+        display: block;
+   }  
+   
+   #ebooks {
+        display: block;
+   } 
+}
+
+/*@media (min-width: 1410px) {
+    
+   .container {
+       width:1410px; 
+   }
+      
+   #max_ad {
+        display: block;
+   }   
+}*/
+
+
+
+
