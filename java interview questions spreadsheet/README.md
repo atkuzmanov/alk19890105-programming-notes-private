@@ -4623,6 +4623,10 @@ https://www.geeksforgeeks.org/comparable-vs-comparator-in-java/
 
 [Comparable-vs-Comparator-Java-GeeksforGeeks](reference-websites/Comparable-vs-Comparator-Java-GeeksforGeeks)
 
+`Reference:`
+http://zetcode.com/java/comparablecomparator/
+
+[Java-Comparable-Comparator-zetcode](reference-websites/Java-Comparable-Comparator-zetcode)
 
 `Reference:`
 https://hellokoding.com/java-comparable-vs-comparator-examples/
@@ -4631,12 +4635,44 @@ https://hellokoding.com/java-comparable-vs-comparator-examples/
 https://docs.oracle.com/javase/tutorial/collections/interfaces/order.html
 
 `Reference:`
-http://zetcode.com/java/comparablecomparator/
-
-[Java-Comparable-Comparator-zetcode](reference-websites/Java-Comparable-Comparator-zetcode)
+https://www.codejava.net/java-core/collections/understanding-object-ordering-in-java-with-comparable-and-comparator
 
 ----
+
+# Tree collections created with Comparator as an argument or naturally ordered entities
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
+`Reference:`
+https://stackoverflow.com/questions/29699103/treeset-constructor-with-comparator-parameter
+
+```text
+The elements in a TreeSet are kept sorted.
+
+If you use a constructor that has no Comparator, the natural ordering of the element class (defined by the implementation of Comparable) would be used to sort the elements of the TreeSet.
+
+If you want a different ordering, you supply a Comparator in the constructor.
+```
+
+`Reference:`
+https://www.geeksforgeeks.org/treeset-comparator-method-in-java/
+
+
+See [NATURAL ordering - implementing Comparable interface VS CUSTOM ordering - implementing Comparator](#NATURAL-ordering-implementing-Comparable-interface-VS-CUSTOM-ordering-implementing-Comparator).
+
 ----
+
+# generics - type erasure and polymorphism?
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
+`Reference:`
+
+
 ----
 ----
 ----
