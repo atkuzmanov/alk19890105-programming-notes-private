@@ -4671,7 +4671,12 @@ See [NATURAL ordering - implementing Comparable interface VS CUSTOM ordering - i
 |       |  x  |   x   |
 
 `Reference:`
+https://www.baeldung.com/java-type-erasure
 
+[Type-Erasure-in-Java-Explained-Baeldung](reference-websites/Type-Erasure-in-Java-Explained-Baeldung)
+
+`Reference:`
+https://docs.oracle.com/javase/tutorial/java/generics/genTypes.html
 
 ----
 ----
