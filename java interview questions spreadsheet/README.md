@@ -4679,7 +4679,37 @@ https://www.baeldung.com/java-type-erasure
 https://docs.oracle.com/javase/tutorial/java/generics/genTypes.html
 
 ----
+# autoboxing/unboxing of primitives and their wrapper classes
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
+
+`Reference:`
+https://docs.oracle.com/javase/tutorial/java/data/autoboxing.html
+
+|Primitive type|Wrapper class|
+|-------|-------|
+|boolean    |Boolean|
+|byte       |Byte|
+|char       |Character|
+|float      |Float|
+|int        |Integer|
+|long       |Long|
+|short      |Short|
+|double     |Double|
+
+
+`Reference:`
+https://www.geeksforgeeks.org/autoboxing-unboxing-java/
+
+[Autoboxing-and-Unboxing-Java-GeeksforGeeks](reference-websites/Autoboxing-and-Unboxing-Java-GeeksforGeeks)
+
 ----
+
+
+
+
 ----
 ----
 
