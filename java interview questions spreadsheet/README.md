@@ -5090,10 +5090,199 @@ https://www.javaworld.com/article/3512039/does-java-pass-by-reference-or-pass-by
 
 ----
 
+# final parameters as objects? What can change?
 
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
+
+```text
+Sometimes it's nice to be explicit (for readability) that the variable doesn't change. Here's a simple example where using final can save some possible headaches:
+
+public void setTest(String test) {
+    test = test;
+}
+
+If you forget the 'this' keyword on a setter, then the variable you want to set doesn't get set. However, if you used the final keyword on the parameter, then the bug would be caught at compile time.
+```
+
+```text
+Stop a Variable’s Reassignment
+While these answers are intellectually interesting, I've not read the short simple answer:
+
+Use the keyword final when you want the compiler to prevent a variable from being re-assigned to a different object.
+
+Whether the variable is a static variable, member variable, local variable, or argument/parameter variable, the effect is entirely the same.
+
+Example
+Let’s see the effect in action.
+
+Consider this simple method, where the two variables (arg and x) can both be re-assigned different objects.
+
+// Example use of this method: 
+//   this.doSomething( "tiger" );
+void doSomething( String arg ) {
+  String x = arg;   // Both variables now point to the same String object.
+  x = "elephant";   // This variable now points to a different String object.
+  arg = "giraffe";  // Ditto. Now neither variable points to the original passed String.
+}
+Mark the local variable as final. This results in a compiler error.
+
+void doSomething( String arg ) {
+  final String x = arg;  // Mark variable as 'final'.
+  x = "elephant";  // Compiler error: The final local variable x cannot be assigned. 
+  arg = "giraffe";  
+}
+Instead, let’s mark the parameter variable as final. This too results in a compiler error.
+
+void doSomething( final String arg ) {  // Mark argument as 'final'.
+  String x = arg;   
+  x = "elephant"; 
+  arg = "giraffe";  // Compiler error: The passed argument variable arg cannot be re-assigned to another object.
+}
+Moral of the story:
+
+If you want to ensure a variable always points to the same object, mark the variable final.
+
+Never Reassign Arguments
+As good programming practice (in any language), you should never re-assign a parameter/argument variable to an object other than the object passed by the calling method. In the examples above, one should never write the line arg =. Since humans make mistakes, and programmers are human, let’s ask the compiler to assist us. Mark every parameter/argument variable as 'final' so that the compiler may find and flag any such re-assignments.
+
+In Retrospect
+As noted in other answers… Given Java's original design goal of helping programmers to avoid dumb mistakes such as reading past the end of an array, Java should have been designed to automatically enforce all parameter/argument variables as 'final'. In other words, Arguments should not be variables. But hindsight is 20/20 vision, and the Java designers had their hands full at the time.
+
+So, always add final to all arguments?
+Should we add final to each and every method parameter being declared?
+
+In theory, yes.
+In practice, no.
+➥ Add final only when the method’s code is long or complicated, where the argument may be mistaken for a local or member variable and possibly re-assigned.
+If you buy into the practice of never re-assigning an argument, you will be inclined to add a final to each. But this is tedious and makes the declaration a bit harder to read.
+
+For short simple code where the argument is obviously an argument, and not a local variable nor a member variable, I do not bother adding the final. If the code is quite obvious, with no chance of me nor any other programmer doing maintenance or refactoring accidentally mistaking the argument variable as something other than an argument, then don’t bother. In my own work, I add final only in longer or more involved code where an argument might mistaken for a local or member variable.
+
+Another case added for the completeness
+public class MyClass {
+    private int x;
+    //getters and setters
+}
+
+void doSomething( final MyClass arg ) {  // Mark argument as 'final'.
+
+   arg =  new MyClass();  // Compiler error: The passed argument variable arg  cannot be re-assigned to another object.
+
+   arg.setX(20); // allowed
+  // We can re-assign properties of argument which is marked as final
+ }
+```
+
+`References:`
+https://stackoverflow.com/questions/500508/why-should-i-use-the-keyword-final-on-a-method-parameter-in-java
 
 ----
+
+# The “final” Keyword in Java
+
+`References:`
+https://www.baeldung.com/java-final
+
+- Use final liberally
+
+```text
+Use the final keyword liberally to communicate your intent.
+The final keyword has more than one meaning:
+
+a final class cannot be extended
+a final method cannot be overridden
+final fields, parameters, and local variables cannot change their value once set
+In the last case, "value" for primitives is understood in the usual sense, while "value" for objects means the object's identity, not its state. Once the identity of a final object reference is set, it can still change its state, but not its identity (that is, you can't re-point the object reference to some other object).
+Declaring primitive fields as final automatically ensures thread-safety for that field.
+
+Some habitually declare parameters as final, since this is almost always the desired behaviour. Others find this verbose, and of little real benefit.
+
+Consistently using final with local variables (when appropriate) can be useful as well. It brings attention to the non-final local variables, which usually have more logic associated with them (for example, result variables, accumulators, loop variables). Many find this verbose. A reasonable approach is to occasionally use final for local variables, but only if there is some unusual condition, whereby making final explicit can call attention to at least one non-final local variable in the method; this serves to quickly distinguish the non-final local variables from the others.
+
+Using final:
+
+clearly communicates your intent
+allows the compiler and virtual machine to perform minor optimizations
+clearly flags items which are simpler in behaviour - final says, "If you are looking for complexity, you won't find it here."
+Example
+import java.util.*;
+
+/** This class cannot be extended, since it's final. */
+public final class Boat {
+
+  public Boat(final String name, final int length, final Date dateManufactured){
+    this.name = name;
+    this.length = length;
+    //make a defensive copy of the date
+    this.dateManufactured = new Date(dateManufactured.getTime());
+
+    //does not compile, since the items are final:
+    //aDateManufactured = null;
+    //aLength = 0;
+  }
+
+  /** Cannot be overridden, since the class itself is final. */
+  public void setDate(final Date newDate){
+    //even though the field is final, its state can change:
+    dateManufactured.setTime(newDate.getTime());
+
+    //does not compile, since field is final:
+    //fDateManufactured = aNewDate;
+  }
+
+  /** Return the highest race score. */
+  public Integer bestRaceScore(){
+    //the result reference can't be final, since it can be 
+    //re-pointed to different objects
+    Integer result = Integer.valueOf(0); 
+    //final Integer result = Integer.valueOf(0); //doesn't compile
+    
+    //this example is artificial, since raceScores could be 
+    //referenced directly here...
+    final List<Integer> scores = raceScores;
+    for(Integer score : scores){
+      if (score > result){
+        result = score; //re-point to the max value
+      }
+    }
+    return result;
+  }
+  
+  //..elided
+
+  // PRIVATE
+  private final String name;
+  private final int length;
+  private List<Integer> raceScores = new ArrayList<>();
+  /** 
+   New code should almost always use java.time, not java.util.Date.
+   java.util.Date is used here simply as an example of a mutable field.
+  */ 
+  private final Date dateManufactured;
+}  
+```
+
+`References:`
+http://www.javapractices.com/topic/TopicAction.do?Id=23
+
 ----
+
+# Too Many Parameters in Java Methods, Part 2: Parameters Object
+
+`References:`
+https://www.javaworld.com/article/2074935/too-many-parameters-in-java-methods--part-2--parameters-object.html
+
+- Too Many Parameters in Java Methods, Part 1: Custom Types
+
+`References:`
+https://www.javaworld.com/article/2074932/too-many-parameters-in-java-methods-part-1-custom-types.html
+
+----
+
+
+
 ----
 ----
 ----
