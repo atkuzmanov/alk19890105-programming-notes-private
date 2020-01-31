@@ -1,0 +1,1799 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)http://edayan.info/java/anonymous-inner-classes-in-java-what-and-why -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="pingback" href="http://edayan.info/xmlrpc.php">
+<title>Anonymous inner classes in Java. What and Why? – Edayan’s notes</title>
+<link rel="dns-prefetch" href="http://fonts.googleapis.com/">
+<link rel="dns-prefetch" href="http://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="Edayan&#39;s notes » Feed" href="http://edayan.info/feed">
+<link rel="alternate" type="application/rss+xml" title="Edayan&#39;s notes » Comments Feed" href="http://edayan.info/comments/feed">
+<link rel="alternate" type="application/rss+xml" title="Edayan&#39;s notes » Anonymous inner classes in Java. What and Why? Comments Feed" href="http://edayan.info/java/anonymous-inner-classes-in-java-what-and-why/feed">
+<script src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/sdk.js" async="" crossorigin="anonymous"></script><script src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/cb=gapi.loaded_1" async=""></script><script src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/cb=gapi.loaded_0" async=""></script><script id="facebook-jssdk" src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/sdk(1).js"></script><script async="" src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/analytics.js"></script><script type="text/javascript">
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/edayan.info\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.9.1"}};
+!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55358,56794,8205,9794,65039],[55358,56794,8203,9794,65039]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+</script>
+<style type="text/css">
+img.wp-smiley,
+img.emoji {
+display: inline !important;
+border: none !important;
+box-shadow: none !important;
+height: 1em !important;
+width: 1em !important;
+margin: 0 .07em !important;
+vertical-align: -0.1em !important;
+background: none !important;
+padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="crayon-css" href="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/1512488890index.css" type="text/css" media="all">
+<link rel="stylesheet" id="expanding-archives-css" href="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/1512488890index(1).css" type="text/css" media="all">
+<link rel="stylesheet" id="pc_google_analytics-frontend-css" href="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/frontend.css" type="text/css" media="all">
+<link rel="stylesheet" id="font-awesome-css" href="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/1512488890index(2).css" type="text/css" media="all">
+<link rel="stylesheet" id="scrollup-css-css" href="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/1512488890index(3).css" type="text/css" media="all">
+<link rel="stylesheet" id="wpex-style-css" href="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/1512488890index(4).css" type="text/css" media="all">
+<link rel="stylesheet" id="wpex-responsive-css" href="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/1512488890index(5).css" type="text/css" media="all">
+<link rel="stylesheet" id="wpex-font-awesome-css" href="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/1512488890index(6).css" type="text/css" media="all">
+<link rel="stylesheet" id="wpex-google-font-noto-serif-css" href="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/css" type="text/css" media="all">
+<link rel="stylesheet" id="wpex-google-font-source-sans-pro-css" href="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/css(1)" type="text/css" media="all">
+<link rel="stylesheet" id="gem-base-css" href="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/1512488890index(7).css" type="text/css" media="all">
+<script type="text/javascript" src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/jquery.js"></script>
+<script type="text/javascript" src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/jquery-migrate.min.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var CrayonSyntaxSettings = {"version":"_2.7.2_beta","is_admin":"0","ajaxurl":"http:\/\/edayan.info\/wp-admin\/admin-ajax.php","prefix":"crayon-","setting":"crayon-setting","selected":"crayon-setting-selected","changed":"crayon-setting-changed","special":"crayon-setting-special","orig_value":"data-orig-value","debug":""};
+var CrayonSyntaxStrings = {"copy":"Press %s to Copy, %s to Paste","minimize":"Click To Expand Code"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/crayon.min.js"></script>
+<script type="text/javascript" src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/frontend.min.js"></script>
+<link rel="https://api.w.org/" href="http://edayan.info/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://edayan.info/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://edayan.info/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Problem of comparing wrapper objects with == operator" href="http://edayan.info/java/problem-of-comparing-wrapper-objects-with-operator">
+<link rel="next" title="anonymous inner class as an approach of passing functions to other functions" href="http://edayan.info/java/anonymous-inner-class-as-an-approach-of-passing-functions-to-other-functions">
+<meta name="generator" content="WordPress 4.9.1">
+<link rel="canonical" href="http://edayan.info/java/anonymous-inner-classes-in-java-what-and-why">
+<link rel="shortlink" href="http://edayan.info/?p=382">
+<link rel="alternate" type="application/json+oembed" href="http://edayan.info/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fedayan.info%2Fjava%2Fanonymous-inner-classes-in-java-what-and-why">
+<link rel="alternate" type="text/xml+oembed" href="http://edayan.info/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fedayan.info%2Fjava%2Fanonymous-inner-classes-in-java-what-and-why&amp;format=xml">
+<script type="text/javascript" data-cfasync="false">var _mmunch = {'front': false, 'page': false, 'post': false, 'category': false, 'author': false, 'search': false, 'attachment': false, 'tag': false};_mmunch['post'] = true; _mmunch['postData'] = {"ID":382,"post_name":"anonymous-inner-classes-in-java-what-and-why","post_title":"Anonymous inner classes in Java. What and Why?","post_type":"post","post_author":"1","post_status":"publish"}; _mmunch['postCategories'] = [{"term_id":6,"name":"java","slug":"java","term_group":0,"term_taxonomy_id":6,"taxonomy":"category","description":"","parent":0,"count":12,"filter":"raw","cat_ID":6,"category_count":12,"category_description":"","cat_name":"java","category_nicename":"java","category_parent":0}]; _mmunch['postTags'] = [{"term_id":28,"name":"anonymous functions in javascript","slug":"anonymous-functions-in-javascript","term_group":0,"term_taxonomy_id":28,"taxonomy":"post_tag","description":"","parent":0,"count":2,"filter":"raw"},{"term_id":81,"name":"anonymous inner classes","slug":"anonymous-inner-classes","term_group":0,"term_taxonomy_id":81,"taxonomy":"post_tag","description":"","parent":0,"count":1,"filter":"raw"},{"term_id":84,"name":"functions as arguments in java","slug":"functions-as-arguments-in-java","term_group":0,"term_taxonomy_id":84,"taxonomy":"post_tag","description":"","parent":0,"count":1,"filter":"raw"},{"term_id":82,"name":"inner classes","slug":"inner-classes","term_group":0,"term_taxonomy_id":82,"taxonomy":"post_tag","description":"","parent":0,"count":1,"filter":"raw"},{"term_id":83,"name":"interfaces in java","slug":"interfaces-in-java","term_group":0,"term_taxonomy_id":83,"taxonomy":"post_tag","description":"","parent":0,"count":1,"filter":"raw"}]; _mmunch['postAuthor'] = {"name":"","ID":""};</script><script data-cfasync="false" src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/site.js" id="mailmunch-script" data-plugin="mailmunch" data-mailmunch-site-id="274016" async=""></script>	<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-85753340-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!--[if lt IE 9]><script src="http://edayan.info/wp-content/themes/wpex-blogger/js/html5.js"></script><![endif]--><link rel="icon" href="http://edayan.info/wp-content/uploads/2016/10/cropped-logo-32x32.png" sizes="32x32">
+<link rel="icon" href="http://edayan.info/wp-content/uploads/2016/10/cropped-logo-192x192.png" sizes="192x192">
+<link rel="apple-touch-icon-precomposed" href="http://edayan.info/wp-content/uploads/2016/10/cropped-logo-180x180.png">
+<meta name="msapplication-TileImage" content="http://edayan.info/wp-content/uploads/2016/10/cropped-logo-270x270.png">
+<link rel="stylesheet" type="text/css" href="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/styles.css"><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_dialog_advanced{border-radius:8px;padding:10px}.fb_dialog_content{background:#fff;color:#373737}.fb_dialog_close_icon{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{left:5px;right:auto;top:5px}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent}.fb_dialog_close_icon:active{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #365899;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{height:100%;left:0;margin:0;overflow:visible;position:absolute;top:-10000px;transform:none;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{background:none;height:auto;min-height:initial;min-width:initial;width:auto}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{clear:both;color:#fff;display:block;font-size:18px;padding-top:20px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .4);bottom:0;left:0;min-height:100%;position:absolute;right:0;top:0;width:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_mobile .fb_dialog_iframe{position:sticky;top:0}.fb_dialog_content .dialog_header{background:linear-gradient(from(#738aba), to(#2c4987));border-bottom:1px solid;border-color:#043b87;box-shadow:white 0 1px 1px -1px inset;color:#fff;font:bold 14px Helvetica, sans-serif;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:linear-gradient(from(#4267B2), to(#2a4887));background-clip:padding-box;border:1px solid #29487d;border-radius:3px;display:inline-block;line-height:18px;margin-top:3px;max-width:85px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{background:none;border:none;color:#fff;font:bold 12px Helvetica, sans-serif;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #4a4a4a;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f5f6f7;border:1px solid #4a4a4a;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/t-wz8gw1xG1.png);background-position:50% 50%;background-repeat:no-repeat;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}</style></head>
+<body class="post-template-default single single-post postid-382 single-format-standard"><div class="mailmunch-scrollbox mailmunch-scrollbox-16ffd08c4d110217" style="position: fixed; bottom: -300px; right: 0px; z-index: 999999; line-height: 0px; transition: bottom 0.4s ease 0s; opacity: 1; display: block;"><iframe class="mailmunch-scrollbox-iframe mailmunch-scrollbox-iframe-16ffd08c4d110217" frameborder="0" scrolling="no" allowtransparency="true" style="background: transparent; border: 0px; width: 100%; height: 300px; z-index: 18000; margin-bottom: 0px;" src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/saved_resource.html"></iframe></div>
+<div id="site-navigation-wrap">
+<div id="sidr-close"><a href="http://edayan.info/java/anonymous-inner-classes-in-java-what-and-why#sidr-close" class="toggle-sidr-close"></a></div>
+<nav id="site-navigation" class="navigation main-navigation clr container" role="navigation">
+<a href="http://edayan.info/java/anonymous-inner-classes-in-java-what-and-why#sidr-main" id="navigation-toggle"><span class="fa fa-bars"></span>Menu</a>
+<div class="menu-edayans-menu-container"><ul id="menu-edayans-menu" class="dropdown-menu sf-menu sf-js-enabled"><li id="menu-item-323" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-323"><a href="http://edayan.info/">Home</a></li>
+<li id="menu-item-345" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-345"><a href="http://edayan.info/category/java">java</a></li>
+<li id="menu-item-299" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-299"><a href="http://edayan.info/category/javascript">javascript</a></li>
+<li id="menu-item-294" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-294"><a href="http://edayan.info/about">About me</a></li>
+</ul></div>
+</nav><!-- #site-navigation -->
+</div><!-- #site-navigation-wrap -->
+<div id="header-wrap" class="clr">
+<header id="header" class="site-header container clr" role="banner">
+<div class="site-branding clr">
+<div id="logo" class="clr">
+<div class="site-text-logo clr">
+<a href="http://edayan.info/" title="Edayan&#39;s notes" rel="home">
+Edayan's notes                </a>
+<div class="site-description">It's all about coding</div>
+</div><!-- .site-text-logo -->
+</div><!-- #logo -->
+</div><!-- .site-branding -->
+<aside id="header-aside" class="clr">
+<a href="https://twitter.com/sajupauledayan" title="Twitter"><span class="fa fa-twitter"></span></a>
+<a href="https://www.facebook.com/edayan.info" title="Facebook"><span class="fa fa-facebook"></span></a>
+<a href="https://plus.google.com/+Sajupauledayanblog" title="Googleplus"><span class="fa fa-google-plus"></span></a>
+<a href="https://in.linkedin.com/in/saju-edayapurackel-paul-1b422241" title="Linkedin"><span class="fa fa-linkedin"></span></a>
+</aside><!-- .header-aside -->
+</header><!-- #header -->
+</div><!-- #header-wrap -->
+<div id="main" class="site-main clr container">
+<div id="primary" class="content-area clr">
+<main id="content" class="site-content left-content clr" role="main">
+<article class="boxed clr">
+<div class="post-thumbnail">
+<img width="590" height="253" src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/anonymous-inner-java-590x253.png" class="attachment-wpex-post size-wpex-post wp-post-image" alt="Anonymous inner classes in Java. What and Why?" srcset="http://edayan.info/wp-content/uploads/2016/10/anonymous-inner-java-590x253.png 590w, http://edayan.info/wp-content/uploads/2016/10/anonymous-inner-java-300x129.png 300w, http://edayan.info/wp-content/uploads/2016/10/anonymous-inner-java.png 691w" sizes="(max-width: 590px) 100vw, 590px"></div><!-- .post-entry-thumbnail -->	
+<header class="page-header clr">
+<h1 class="page-header-title">Anonymous inner classes in Java. What and Why?</h1>
+<ul class="post-meta clr">
+<li class="meta-date">
+Posted on		<span class="meta-date-text">October 15, 2016</span>
+</li>
+<li class="meta-category">
+<span class="meta-seperator">/</span>Under			<a href="http://edayan.info/category/java" title="java">java</a>		</li>
+<li class="meta-comments comment-scroll">
+<span class="meta-seperator">/</span>With			<a href="http://edayan.info/java/anonymous-inner-classes-in-java-what-and-why#respond" class="comments-link">0 Comments</a>		</li>
+</ul><!-- .post-meta -->	
+</header><!-- #page-header -->	
+<div class="entry clr">
+<div class="mailmunch-forms-before-post" style="display: none !important;"></div><h2>
+What is Anonymous inner classes in Java?<br>
+</h2>
+<p>Anonymous classes are classes which are “anonymous” in  nature. Anonymous means they don’t have any name. Anonymous classes and anonymous inner classes are same as the anonymous classes are always “inner” classes.</p>
+<p>
+Anonymous classes can be created in different ways.</p>
+<ol>
+<li><a href="http://edayan.info/java/anonymous-inner-classes-in-java-what-and-why#frmClass">From a class</a></li>
+<li><a href="http://edayan.info/java/anonymous-inner-classes-in-java-what-and-why#frmInterface">From an interface</a></li>
+</ol>
+<p>  Ok, Lets look in detail about these methods.
+</p>
+<div id="frmClass">
+<h4>Anonymous inner class from a class</h4>
+<p>
+Let’s create a simple example.<br>
+<script src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/27fd1c8898357e4a0f6b.js"></script><link rel="stylesheet" href="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/gist-embed-13f839f7454b3a5b3bfbfd6d1e34ec9d.css"></p><div id="gist28656404" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-anonymousinnerclassexample-java" class="file">
+    
+
+  <div itemprop="text" class="Box-body p-0 blob-wrapper data type-java ">
+      
+<table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-anonymousinnerclassexample-java-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-anonymousinnerclassexample-java-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">package</span> <span class="pl-smi">com.example.edayan</span>;</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-anonymousinnerclassexample-java-LC2" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-anonymousinnerclassexample-java-LC3" class="blob-code blob-code-inner js-file-line"><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">AnonymousInnerClassExample</span> {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-anonymousinnerclassexample-java-LC4" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-anonymousinnerclassexample-java-LC5" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">private</span> <span class="pl-k">static</span> <span class="pl-k">void</span> <span class="pl-en">printName</span>(<span class="pl-smi">Person</span> <span class="pl-v">person</span>) {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-anonymousinnerclassexample-java-LC6" class="blob-code blob-code-inner js-file-line">        <span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(person<span class="pl-k">.</span>getName());</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-anonymousinnerclassexample-java-LC7" class="blob-code blob-code-inner js-file-line">    }</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-anonymousinnerclassexample-java-LC8" class="blob-code blob-code-inner js-file-line">    </td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="file-anonymousinnerclassexample-java-LC9" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">void</span> <span class="pl-en">main</span>(<span class="pl-k">String</span>[] <span class="pl-v">args</span>) {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="file-anonymousinnerclassexample-java-LC10" class="blob-code blob-code-inner js-file-line">    }</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L11" class="blob-num js-line-number" data-line-number="11"></td>
+        <td id="file-anonymousinnerclassexample-java-LC11" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L12" class="blob-num js-line-number" data-line-number="12"></td>
+        <td id="file-anonymousinnerclassexample-java-LC12" class="blob-code blob-code-inner js-file-line">}</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/edayan/27fd1c8898357e4a0f6b/raw/5a2d3aa280974f6f0073395c305b479e48678758/AnonymousInnerClassExample.java" style="float:right">view raw</a>
+        <a href="https://gist.github.com/edayan/27fd1c8898357e4a0f6b#file-anonymousinnerclassexample-java">AnonymousInnerClassExample.java</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-person-java" class="file">
+    
+
+  <div itemprop="text" class="Box-body p-0 blob-wrapper data type-java ">
+      
+<table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-person-java-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-person-java-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">package</span> <span class="pl-smi">com.example.edayan</span>;</td>
+      </tr>
+      <tr>
+        <td id="file-person-java-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-person-java-LC2" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-person-java-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-person-java-LC3" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">/**</span></span></td>
+      </tr>
+      <tr>
+        <td id="file-person-java-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-person-java-LC4" class="blob-code blob-code-inner js-file-line"><span class="pl-c"> * Created by edayans.</span></td>
+      </tr>
+      <tr>
+        <td id="file-person-java-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-person-java-LC5" class="blob-code blob-code-inner js-file-line"><span class="pl-c"> <span class="pl-c">*/</span></span></td>
+      </tr>
+      <tr>
+        <td id="file-person-java-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-person-java-LC6" class="blob-code blob-code-inner js-file-line"><span class="pl-k">public</span> <span class="pl-k">abstract</span> <span class="pl-k">class</span> <span class="pl-en">Person</span> {</td>
+      </tr>
+      <tr>
+        <td id="file-person-java-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-person-java-LC7" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">public</span> <span class="pl-k">abstract</span> <span class="pl-smi">String</span> <span class="pl-en">getName</span>();</td>
+      </tr>
+      <tr>
+        <td id="file-person-java-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-person-java-LC8" class="blob-code blob-code-inner js-file-line">}</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/edayan/27fd1c8898357e4a0f6b/raw/5a2d3aa280974f6f0073395c305b479e48678758/Person.java" style="float:right">view raw</a>
+        <a href="https://gist.github.com/edayan/27fd1c8898357e4a0f6b#file-person-java">Person.java</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+
+<p></p>
+<p>
+In the above example, the <code>Person</code> is an abstract class. The class <code>AnonymousInnerClassExample</code> has a method <code>printName</code> which accepts an instance of <code>Person</code> class. So to use this method, we can create an instance of class <code>Person</code> and pass that object to the method <code>printName</code>. As <code>Person</code> is an abstract class we need to create a subclass for <code>Person</code> say <code>JavaPerson</code>, implement its methods then create an object of <code>JavaPerson</code> and pass the instance to the method <code>printName</code> as shown below.<br>
+<br><br>
+<script src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/8e0f27963c9b0e72916f.js"></script><link rel="stylesheet" href="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/gist-embed-13f839f7454b3a5b3bfbfd6d1e34ec9d.css"></p><div id="gist28656703" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-anonymousinnerclassexample-java" class="file">
+    
+
+  <div itemprop="text" class="Box-body p-0 blob-wrapper data type-java ">
+      
+<table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-anonymousinnerclassexample-java-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-anonymousinnerclassexample-java-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">package</span> <span class="pl-smi">com.example.edayan</span>;</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-anonymousinnerclassexample-java-LC2" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-anonymousinnerclassexample-java-LC3" class="blob-code blob-code-inner js-file-line"><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">AnonymousInnerClassExample</span> {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-anonymousinnerclassexample-java-LC4" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-anonymousinnerclassexample-java-LC5" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">private</span> <span class="pl-k">static</span> <span class="pl-k">void</span> <span class="pl-en">printName</span>(<span class="pl-smi">Person</span> <span class="pl-v">person</span>) {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-anonymousinnerclassexample-java-LC6" class="blob-code blob-code-inner js-file-line">        <span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(person<span class="pl-k">.</span>getName());</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-anonymousinnerclassexample-java-LC7" class="blob-code blob-code-inner js-file-line">    }</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-anonymousinnerclassexample-java-LC8" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="file-anonymousinnerclassexample-java-LC9" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">void</span> <span class="pl-en">main</span>(<span class="pl-k">String</span>[] <span class="pl-v">args</span>) {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="file-anonymousinnerclassexample-java-LC10" class="blob-code blob-code-inner js-file-line">        <span class="pl-smi">JavaPerson</span> jPerson <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">JavaPerson</span>();</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L11" class="blob-num js-line-number" data-line-number="11"></td>
+        <td id="file-anonymousinnerclassexample-java-LC11" class="blob-code blob-code-inner js-file-line">        printName(jPerson);</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L12" class="blob-num js-line-number" data-line-number="12"></td>
+        <td id="file-anonymousinnerclassexample-java-LC12" class="blob-code blob-code-inner js-file-line">    }</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L13" class="blob-num js-line-number" data-line-number="13"></td>
+        <td id="file-anonymousinnerclassexample-java-LC13" class="blob-code blob-code-inner js-file-line">}</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/edayan/8e0f27963c9b0e72916f/raw/4a66ffb9dfebd398f69e5168542c590734bc52d6/AnonymousInnerClassExample.java" style="float:right">view raw</a>
+        <a href="https://gist.github.com/edayan/8e0f27963c9b0e72916f#file-anonymousinnerclassexample-java">AnonymousInnerClassExample.java</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-javaperson-java" class="file">
+    
+
+  <div itemprop="text" class="Box-body p-0 blob-wrapper data type-java ">
+      
+<table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-javaperson-java-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-javaperson-java-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">package</span> <span class="pl-smi">com.example.edayan</span>;</td>
+      </tr>
+      <tr>
+        <td id="file-javaperson-java-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-javaperson-java-LC2" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-javaperson-java-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-javaperson-java-LC3" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">/**</span></span></td>
+      </tr>
+      <tr>
+        <td id="file-javaperson-java-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-javaperson-java-LC4" class="blob-code blob-code-inner js-file-line"><span class="pl-c"> * Created by edayans on 12/5/15.</span></td>
+      </tr>
+      <tr>
+        <td id="file-javaperson-java-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-javaperson-java-LC5" class="blob-code blob-code-inner js-file-line"><span class="pl-c"> <span class="pl-c">*/</span></span></td>
+      </tr>
+      <tr>
+        <td id="file-javaperson-java-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-javaperson-java-LC6" class="blob-code blob-code-inner js-file-line"><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">JavaPerson</span> <span class="pl-k">extends</span> <span class="pl-e">Person</span>{</td>
+      </tr>
+      <tr>
+        <td id="file-javaperson-java-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-javaperson-java-LC7" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">@Override</span></td>
+      </tr>
+      <tr>
+        <td id="file-javaperson-java-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-javaperson-java-LC8" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">public</span> <span class="pl-smi">String</span> <span class="pl-en">getName</span>() {</td>
+      </tr>
+      <tr>
+        <td id="file-javaperson-java-L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="file-javaperson-java-LC9" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">"</span>Java<span class="pl-pds">"</span></span>;</td>
+      </tr>
+      <tr>
+        <td id="file-javaperson-java-L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="file-javaperson-java-LC10" class="blob-code blob-code-inner js-file-line">    }</td>
+      </tr>
+      <tr>
+        <td id="file-javaperson-java-L11" class="blob-num js-line-number" data-line-number="11"></td>
+        <td id="file-javaperson-java-LC11" class="blob-code blob-code-inner js-file-line">}</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/edayan/8e0f27963c9b0e72916f/raw/4a66ffb9dfebd398f69e5168542c590734bc52d6/JavaPerson.java" style="float:right">view raw</a>
+        <a href="https://gist.github.com/edayan/8e0f27963c9b0e72916f#file-javaperson-java">JavaPerson.java</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+
+<p></p>
+<p>
+Now lets check the code, Do we really need an class <code>JavaPerson</code>? We only need to extend the <code>Person</code>. Why cant we change the code in a way which serves the same purpose of the above program but without an additional class <code>JavaPerson</code> ? Yes it is possible. We can completely avoid the class <code>JavaPerson</code> if we change the code as below.<br>
+<script src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/436c9d1c64ab881ab96a.js"></script><link rel="stylesheet" href="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/gist-embed-13f839f7454b3a5b3bfbfd6d1e34ec9d.css"></p><div id="gist28656891" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-anonymousinnerclassexample-java" class="file">
+    
+
+  <div itemprop="text" class="Box-body p-0 blob-wrapper data type-java ">
+      
+<table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-anonymousinnerclassexample-java-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-anonymousinnerclassexample-java-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">package</span> <span class="pl-smi">com.example.edayan</span>;</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-anonymousinnerclassexample-java-LC2" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-anonymousinnerclassexample-java-LC3" class="blob-code blob-code-inner js-file-line"><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">AnonymousInnerClassExample</span> {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-anonymousinnerclassexample-java-LC4" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-anonymousinnerclassexample-java-LC5" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-anonymousinnerclassexample-java-LC6" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">private</span> <span class="pl-k">static</span> <span class="pl-k">void</span> <span class="pl-en">printName</span>(<span class="pl-smi">Person</span> <span class="pl-v">person</span>) {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-anonymousinnerclassexample-java-LC7" class="blob-code blob-code-inner js-file-line">        <span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(person<span class="pl-k">.</span>getName());</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-anonymousinnerclassexample-java-LC8" class="blob-code blob-code-inner js-file-line">    }</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="file-anonymousinnerclassexample-java-LC9" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="file-anonymousinnerclassexample-java-LC10" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">void</span> <span class="pl-en">main</span>(<span class="pl-k">String</span>[] <span class="pl-v">args</span>) {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L11" class="blob-num js-line-number" data-line-number="11"></td>
+        <td id="file-anonymousinnerclassexample-java-LC11" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L12" class="blob-num js-line-number" data-line-number="12"></td>
+        <td id="file-anonymousinnerclassexample-java-LC12" class="blob-code blob-code-inner js-file-line">        <span class="pl-smi">Person</span> p <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">Person</span>() {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L13" class="blob-num js-line-number" data-line-number="13"></td>
+        <td id="file-anonymousinnerclassexample-java-LC13" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">@Override</span></td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L14" class="blob-num js-line-number" data-line-number="14"></td>
+        <td id="file-anonymousinnerclassexample-java-LC14" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">public</span> <span class="pl-smi">String</span> <span class="pl-en">getName</span>() {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L15" class="blob-num js-line-number" data-line-number="15"></td>
+        <td id="file-anonymousinnerclassexample-java-LC15" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">"</span>Java<span class="pl-pds">"</span></span>;</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L16" class="blob-num js-line-number" data-line-number="16"></td>
+        <td id="file-anonymousinnerclassexample-java-LC16" class="blob-code blob-code-inner js-file-line">            }</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L17" class="blob-num js-line-number" data-line-number="17"></td>
+        <td id="file-anonymousinnerclassexample-java-LC17" class="blob-code blob-code-inner js-file-line">        };</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L18" class="blob-num js-line-number" data-line-number="18"></td>
+        <td id="file-anonymousinnerclassexample-java-LC18" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L19" class="blob-num js-line-number" data-line-number="19"></td>
+        <td id="file-anonymousinnerclassexample-java-LC19" class="blob-code blob-code-inner js-file-line">        printName(p);</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L20" class="blob-num js-line-number" data-line-number="20"></td>
+        <td id="file-anonymousinnerclassexample-java-LC20" class="blob-code blob-code-inner js-file-line">    }</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L21" class="blob-num js-line-number" data-line-number="21"></td>
+        <td id="file-anonymousinnerclassexample-java-LC21" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L22" class="blob-num js-line-number" data-line-number="22"></td>
+        <td id="file-anonymousinnerclassexample-java-LC22" class="blob-code blob-code-inner js-file-line">}</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/edayan/436c9d1c64ab881ab96a/raw/8b356c3bb288abbb414604dedaad367601604145/AnonymousInnerClassExample.java" style="float:right">view raw</a>
+        <a href="https://gist.github.com/edayan/436c9d1c64ab881ab96a#file-anonymousinnerclassexample-java">AnonymousInnerClassExample.java</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+
+<p></p>
+<p>
+Now we can see that we passed a new “instance” of class <code>Person</code> to the method <code>printName</code>. Wait a minute!. From the beginning of java learning we are studying that we cannot create an instance of abstract class. But then how this is possible here? The answer is we didn’t create an instance of class <code>Person</code>. <strong>We actually created a new “class which extend” the class <code>Person</code> but without a name</strong>. We provided the implementation for the method <code>getName</code> along with the creation of new instance of the class <code>Person</code>. So we have effectively created an anonymous class.
+</p>
+<p>
+In the last example what happens internally is even though we are not creating a class like <code>JavaPerson</code> that we created previously, java compiler is creating a class with an arbitrary name and extends the class <code>Person</code> and gives the implementation that we provided. The pseudo code generated by compiler is given below.<br>
+<script src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/4386ab36fc1f08505421.js"></script><link rel="stylesheet" href="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/gist-embed-13f839f7454b3a5b3bfbfd6d1e34ec9d.css"></p><div id="gist28657586" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-anonymousinnerclassexample-java" class="file">
+    
+
+  <div itemprop="text" class="Box-body p-0 blob-wrapper data type-java ">
+      
+<table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-anonymousinnerclassexample-java-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-anonymousinnerclassexample-java-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">package</span> <span class="pl-smi">com.example.edayan</span>;</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-anonymousinnerclassexample-java-LC2" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-anonymousinnerclassexample-java-LC3" class="blob-code blob-code-inner js-file-line"><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">AnonymousInnerClassExample</span> {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-anonymousinnerclassexample-java-LC4" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-anonymousinnerclassexample-java-LC5" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">private</span> <span class="pl-k">static</span> <span class="pl-k">void</span> <span class="pl-en">printName</span>(<span class="pl-smi">Person</span> <span class="pl-v">person</span>) {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-anonymousinnerclassexample-java-LC6" class="blob-code blob-code-inner js-file-line">        <span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(person<span class="pl-k">.</span>getName());</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-anonymousinnerclassexample-java-LC7" class="blob-code blob-code-inner js-file-line">    }</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-anonymousinnerclassexample-java-LC8" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="file-anonymousinnerclassexample-java-LC9" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">void</span> <span class="pl-en">main</span>(<span class="pl-k">String</span>[] <span class="pl-v">args</span>) {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="file-anonymousinnerclassexample-java-LC10" class="blob-code blob-code-inner js-file-line">        <span class="pl-smi">Person</span> p <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">AnonymousInnerClassExample</span>$();</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L11" class="blob-num js-line-number" data-line-number="11"></td>
+        <td id="file-anonymousinnerclassexample-java-LC11" class="blob-code blob-code-inner js-file-line">        printName(p);</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L12" class="blob-num js-line-number" data-line-number="12"></td>
+        <td id="file-anonymousinnerclassexample-java-LC12" class="blob-code blob-code-inner js-file-line">    }</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L13" class="blob-num js-line-number" data-line-number="13"></td>
+        <td id="file-anonymousinnerclassexample-java-LC13" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L14" class="blob-num js-line-number" data-line-number="14"></td>
+        <td id="file-anonymousinnerclassexample-java-LC14" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">static</span> <span class="pl-k">class</span> <span class="pl-en">AnonymousInnerClassExample</span>$ <span class="pl-k">extends</span> <span class="pl-e">Person</span> {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L15" class="blob-num js-line-number" data-line-number="15"></td>
+        <td id="file-anonymousinnerclassexample-java-LC15" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">@Override</span></td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L16" class="blob-num js-line-number" data-line-number="16"></td>
+        <td id="file-anonymousinnerclassexample-java-LC16" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">public</span> <span class="pl-smi">String</span> <span class="pl-en">getName</span>() {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L17" class="blob-num js-line-number" data-line-number="17"></td>
+        <td id="file-anonymousinnerclassexample-java-LC17" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">"</span>Java<span class="pl-pds">"</span></span>;</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L18" class="blob-num js-line-number" data-line-number="18"></td>
+        <td id="file-anonymousinnerclassexample-java-LC18" class="blob-code blob-code-inner js-file-line">        }</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L19" class="blob-num js-line-number" data-line-number="19"></td>
+        <td id="file-anonymousinnerclassexample-java-LC19" class="blob-code blob-code-inner js-file-line">    }</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L20" class="blob-num js-line-number" data-line-number="20"></td>
+        <td id="file-anonymousinnerclassexample-java-LC20" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L21" class="blob-num js-line-number" data-line-number="21"></td>
+        <td id="file-anonymousinnerclassexample-java-LC21" class="blob-code blob-code-inner js-file-line">}</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/edayan/4386ab36fc1f08505421/raw/659f95518eea454f06de3fb1b1ad57ca128446e2/AnonymousInnerClassExample$.java" style="float:right">view raw</a>
+        <a href="https://gist.github.com/edayan/4386ab36fc1f08505421#file-anonymousinnerclassexample-java">AnonymousInnerClassExample$.java</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+
+<p></p>
+</div>
+<div id="frmInterface">
+<h4>Anonymous inner class from an interface</h4>
+<p>
+Anonymous inner class from interface is same as that from abstract or concrete class. This can be explained by the following code.<br>
+<script src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/5ef5fc764f7348b1ea12.js"></script><link rel="stylesheet" href="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/gist-embed-13f839f7454b3a5b3bfbfd6d1e34ec9d.css"></p><div id="gist28657845" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-anonymousinnerclassexample-java" class="file">
+    
+
+  <div itemprop="text" class="Box-body p-0 blob-wrapper data type-java ">
+      
+<table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-anonymousinnerclassexample-java-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-anonymousinnerclassexample-java-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">package</span> <span class="pl-smi">com.example.edayan</span>;</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-anonymousinnerclassexample-java-LC2" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-anonymousinnerclassexample-java-LC3" class="blob-code blob-code-inner js-file-line"><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">AnonymousInnerClassExample</span> {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-anonymousinnerclassexample-java-LC4" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-anonymousinnerclassexample-java-LC5" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">private</span> <span class="pl-k">static</span> <span class="pl-k">void</span> <span class="pl-en">printName</span>(<span class="pl-smi">Person</span> <span class="pl-v">person</span>) {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-anonymousinnerclassexample-java-LC6" class="blob-code blob-code-inner js-file-line">        <span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(person<span class="pl-k">.</span>getName());</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-anonymousinnerclassexample-java-LC7" class="blob-code blob-code-inner js-file-line">    }</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-anonymousinnerclassexample-java-LC8" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="file-anonymousinnerclassexample-java-LC9" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">void</span> <span class="pl-en">main</span>(<span class="pl-k">String</span>[] <span class="pl-v">args</span>) {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="file-anonymousinnerclassexample-java-LC10" class="blob-code blob-code-inner js-file-line">        <span class="pl-smi">Person</span> p <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">Person</span>() {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L11" class="blob-num js-line-number" data-line-number="11"></td>
+        <td id="file-anonymousinnerclassexample-java-LC11" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">@Override</span></td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L12" class="blob-num js-line-number" data-line-number="12"></td>
+        <td id="file-anonymousinnerclassexample-java-LC12" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">public</span> <span class="pl-smi">String</span> <span class="pl-en">getName</span>() {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L13" class="blob-num js-line-number" data-line-number="13"></td>
+        <td id="file-anonymousinnerclassexample-java-LC13" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">"</span>Java person from interface<span class="pl-pds">"</span></span>;</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L14" class="blob-num js-line-number" data-line-number="14"></td>
+        <td id="file-anonymousinnerclassexample-java-LC14" class="blob-code blob-code-inner js-file-line">            }</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L15" class="blob-num js-line-number" data-line-number="15"></td>
+        <td id="file-anonymousinnerclassexample-java-LC15" class="blob-code blob-code-inner js-file-line">        };</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L16" class="blob-num js-line-number" data-line-number="16"></td>
+        <td id="file-anonymousinnerclassexample-java-LC16" class="blob-code blob-code-inner js-file-line">        printName(p);</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L17" class="blob-num js-line-number" data-line-number="17"></td>
+        <td id="file-anonymousinnerclassexample-java-LC17" class="blob-code blob-code-inner js-file-line">    }</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L18" class="blob-num js-line-number" data-line-number="18"></td>
+        <td id="file-anonymousinnerclassexample-java-LC18" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L19" class="blob-num js-line-number" data-line-number="19"></td>
+        <td id="file-anonymousinnerclassexample-java-LC19" class="blob-code blob-code-inner js-file-line">}</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/edayan/5ef5fc764f7348b1ea12/raw/68c01a77e981eabd5fcde695d73851e7b7190f57/AnonymousInnerClassExample.java" style="float:right">view raw</a>
+        <a href="https://gist.github.com/edayan/5ef5fc764f7348b1ea12#file-anonymousinnerclassexample-java">AnonymousInnerClassExample.java</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-person-java" class="file">
+    
+
+  <div itemprop="text" class="Box-body p-0 blob-wrapper data type-java ">
+      
+<table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-person-java-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-person-java-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">package</span> <span class="pl-smi">com.example.edayan</span>;</td>
+      </tr>
+      <tr>
+        <td id="file-person-java-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-person-java-LC2" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">/**</span></span></td>
+      </tr>
+      <tr>
+        <td id="file-person-java-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-person-java-LC3" class="blob-code blob-code-inner js-file-line"><span class="pl-c"> * Created by edayans on 12/5/15.</span></td>
+      </tr>
+      <tr>
+        <td id="file-person-java-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-person-java-LC4" class="blob-code blob-code-inner js-file-line"><span class="pl-c"> <span class="pl-c">*/</span></span></td>
+      </tr>
+      <tr>
+        <td id="file-person-java-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-person-java-LC5" class="blob-code blob-code-inner js-file-line"><span class="pl-k">public</span> <span class="pl-k">interface</span>  <span class="pl-en">Person</span> {</td>
+      </tr>
+      <tr>
+        <td id="file-person-java-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-person-java-LC6" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">public</span> <span class="pl-smi">String</span> <span class="pl-en">getName</span>();</td>
+      </tr>
+      <tr>
+        <td id="file-person-java-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-person-java-LC7" class="blob-code blob-code-inner js-file-line">}</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/edayan/5ef5fc764f7348b1ea12/raw/68c01a77e981eabd5fcde695d73851e7b7190f57/Person.java" style="float:right">view raw</a>
+        <a href="https://gist.github.com/edayan/5ef5fc764f7348b1ea12#file-person-java">Person.java</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<p></p>
+<p>
+Here instead of creating a class which extends <code>Person</code>, <strong>java compiler creates a class which implements</strong> class <code>Person</code> (of course with the implementation we provided) and passes the instance of that class to method <code>printName</code>.
+</p>
+</div>
+<div id="aInnerClassWhy">
+<h2>Anonymous inner class… Why?</h2>
+<p>
+Because some times we just need functionality, not a separate entity. In the previous examples we dont need a separate class <code>JavaPerson</code> just to pass an instance which extends/implements <code>Person</code> to the method <code>printName</code>. There is no point in creating additional classes/code for just this piece of functionality if we are able to achieve the same with less number of keystrokes.
+</p><div class="mailmunch-forms-in-post-middle" style="display: none !important;"></div>
+<p>
+Another advantage of anonymous classes is that because of their “inner” nature, they can access members of their enclosing class. See the example below.<br>
+<script src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/96cea04511e1ea5bf459.js"></script><link rel="stylesheet" href="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/gist-embed-13f839f7454b3a5b3bfbfd6d1e34ec9d.css"></p><div id="gist28658457" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-anonymousinnerclassexample-java" class="file">
+    
+
+  <div itemprop="text" class="Box-body p-0 blob-wrapper data type-java ">
+      
+<table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-anonymousinnerclassexample-java-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-anonymousinnerclassexample-java-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">package</span> <span class="pl-smi">com.example.edayan</span>;</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-anonymousinnerclassexample-java-LC2" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-anonymousinnerclassexample-java-LC3" class="blob-code blob-code-inner js-file-line"><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">AnonymousInnerClassExample</span> {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-anonymousinnerclassexample-java-LC4" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-anonymousinnerclassexample-java-LC5" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">private</span> <span class="pl-k">static</span> <span class="pl-smi">String</span> myName <span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>Java Program<span class="pl-pds">"</span></span>;</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-anonymousinnerclassexample-java-LC6" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-anonymousinnerclassexample-java-LC7" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">private</span> <span class="pl-k">static</span> <span class="pl-k">void</span> <span class="pl-en">printName</span>(<span class="pl-smi">Person</span> <span class="pl-v">person</span>) {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-anonymousinnerclassexample-java-LC8" class="blob-code blob-code-inner js-file-line">        <span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(person<span class="pl-k">.</span>getName());</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="file-anonymousinnerclassexample-java-LC9" class="blob-code blob-code-inner js-file-line">    }</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="file-anonymousinnerclassexample-java-LC10" class="blob-code blob-code-inner js-file-line">    </td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L11" class="blob-num js-line-number" data-line-number="11"></td>
+        <td id="file-anonymousinnerclassexample-java-LC11" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">void</span> <span class="pl-en">main</span>(<span class="pl-k">String</span>[] <span class="pl-v">args</span>) {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L12" class="blob-num js-line-number" data-line-number="12"></td>
+        <td id="file-anonymousinnerclassexample-java-LC12" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L13" class="blob-num js-line-number" data-line-number="13"></td>
+        <td id="file-anonymousinnerclassexample-java-LC13" class="blob-code blob-code-inner js-file-line">        <span class="pl-smi">Person</span> p <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">Person</span>() {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L14" class="blob-num js-line-number" data-line-number="14"></td>
+        <td id="file-anonymousinnerclassexample-java-LC14" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">@Override</span></td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L15" class="blob-num js-line-number" data-line-number="15"></td>
+        <td id="file-anonymousinnerclassexample-java-LC15" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">public</span> <span class="pl-smi">String</span> <span class="pl-en">getName</span>() {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L16" class="blob-num js-line-number" data-line-number="16"></td>
+        <td id="file-anonymousinnerclassexample-java-LC16" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">return</span> myName;</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L17" class="blob-num js-line-number" data-line-number="17"></td>
+        <td id="file-anonymousinnerclassexample-java-LC17" class="blob-code blob-code-inner js-file-line">            }</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L18" class="blob-num js-line-number" data-line-number="18"></td>
+        <td id="file-anonymousinnerclassexample-java-LC18" class="blob-code blob-code-inner js-file-line">        };</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L19" class="blob-num js-line-number" data-line-number="19"></td>
+        <td id="file-anonymousinnerclassexample-java-LC19" class="blob-code blob-code-inner js-file-line">        printName(p);</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L20" class="blob-num js-line-number" data-line-number="20"></td>
+        <td id="file-anonymousinnerclassexample-java-LC20" class="blob-code blob-code-inner js-file-line">    }</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L21" class="blob-num js-line-number" data-line-number="21"></td>
+        <td id="file-anonymousinnerclassexample-java-LC21" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L22" class="blob-num js-line-number" data-line-number="22"></td>
+        <td id="file-anonymousinnerclassexample-java-LC22" class="blob-code blob-code-inner js-file-line">}</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/edayan/96cea04511e1ea5bf459/raw/de2e8ad008676cad5c2fdb0b0134a56cc7146877/AnonymousInnerClassExample.java" style="float:right">view raw</a>
+        <a href="https://gist.github.com/edayan/96cea04511e1ea5bf459#file-anonymousinnerclassexample-java">AnonymousInnerClassExample.java</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+
+<p></p>
+<p>
+Accessing of member variable <code>myName</code> is possible only because of we created an anonymous inner class of <code>Person</code>. This would not be possible if we created a new separate class which extends/implements <code>Person</code> (like <code>JavaPerson</code>).
+</p>
+<p>
+Anonymous inner classes are widely used for adding event listeners in java swing, javafx etc.. See the code snippet below.<br>
+<script src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/46a7df9c1426a4031733.js"></script><link rel="stylesheet" href="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/gist-embed-13f839f7454b3a5b3bfbfd6d1e34ec9d.css"></p><div id="gist28658702" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-buttonaction-java" class="file">
+    
+
+  <div itemprop="text" class="Box-body p-0 blob-wrapper data type-java ">
+      
+<table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-buttonaction-java-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-buttonaction-java-LC1" class="blob-code blob-code-inner js-file-line">button<span class="pl-k">.</span>setOnAction(<span class="pl-k">new</span> <span class="pl-k">EventHandler&lt;<span class="pl-smi">ActionEvent</span>&gt;</span>() {</td>
+      </tr>
+      <tr>
+        <td id="file-buttonaction-java-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-buttonaction-java-LC2" class="blob-code blob-code-inner js-file-line">      <span class="pl-k">@Override</span></td>
+      </tr>
+      <tr>
+        <td id="file-buttonaction-java-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-buttonaction-java-LC3" class="blob-code blob-code-inner js-file-line">      <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">handle</span>(<span class="pl-smi">ActionEvent</span> <span class="pl-v">event</span>) {</td>
+      </tr>
+      <tr>
+        <td id="file-buttonaction-java-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-buttonaction-java-LC4" class="blob-code blob-code-inner js-file-line">          <span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(<span class="pl-s"><span class="pl-pds">"</span>Button Clicked!<span class="pl-pds">"</span></span>);</td>
+      </tr>
+      <tr>
+        <td id="file-buttonaction-java-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-buttonaction-java-LC5" class="blob-code blob-code-inner js-file-line">      }</td>
+      </tr>
+      <tr>
+        <td id="file-buttonaction-java-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-buttonaction-java-LC6" class="blob-code blob-code-inner js-file-line">});</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/edayan/46a7df9c1426a4031733/raw/6bebf0fd6ade2beb6a19bc8b8dddd019e52d32df/buttonAction.java" style="float:right">view raw</a>
+        <a href="https://gist.github.com/edayan/46a7df9c1426a4031733#file-buttonaction-java">buttonAction.java</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+
+<p></p>
+</div>
+<div id="anInnerClassesProperties">
+<h2>Anonymous inner class… Properties</h2>
+<ul>
+<li>As we have already seen, anonymous inner class can access members of enclosing class</li>
+<li>
+<p>
+An anonymous class cannot access local variables in its enclosing scope that are not declared as final or effectively final. For example the code below will not compile.
+</p>
+<p>    <script src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/321d38fd0025f58deb2b.js"></script><link rel="stylesheet" href="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/gist-embed-13f839f7454b3a5b3bfbfd6d1e34ec9d.css"></p><div id="gist28659377" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-anonymousinnerclassexample-java" class="file">
+    
+
+  <div itemprop="text" class="Box-body p-0 blob-wrapper data type-java ">
+      
+<table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-anonymousinnerclassexample-java-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-anonymousinnerclassexample-java-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">void</span> main(<span class="pl-k">String</span>[] args) {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-anonymousinnerclassexample-java-LC2" class="blob-code blob-code-inner js-file-line">        <span class="pl-k">int</span> count;</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-anonymousinnerclassexample-java-LC3" class="blob-code blob-code-inner js-file-line">        <span class="pl-smi">Person</span> p <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">Person</span>() {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-anonymousinnerclassexample-java-LC4" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">@Override</span></td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-anonymousinnerclassexample-java-LC5" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">public</span> <span class="pl-smi">String</span> <span class="pl-en">getName</span>() {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-anonymousinnerclassexample-java-LC6" class="blob-code blob-code-inner js-file-line">               <span class="pl-k">int</span> localCount<span class="pl-k">=</span>count;<span class="pl-c"><span class="pl-c">//</span>compiler error</span></td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-anonymousinnerclassexample-java-LC7" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-anonymousinnerclassexample-java-LC8" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">return</span> myName;</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="file-anonymousinnerclassexample-java-LC9" class="blob-code blob-code-inner js-file-line">            }</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="file-anonymousinnerclassexample-java-LC10" class="blob-code blob-code-inner js-file-line">        };</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L11" class="blob-num js-line-number" data-line-number="11"></td>
+        <td id="file-anonymousinnerclassexample-java-LC11" class="blob-code blob-code-inner js-file-line">        </td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L12" class="blob-num js-line-number" data-line-number="12"></td>
+        <td id="file-anonymousinnerclassexample-java-LC12" class="blob-code blob-code-inner js-file-line">        printName(p);</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L13" class="blob-num js-line-number" data-line-number="13"></td>
+        <td id="file-anonymousinnerclassexample-java-LC13" class="blob-code blob-code-inner js-file-line">    }</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/edayan/321d38fd0025f58deb2b/raw/12f1494058c10b1f52c15db9f81f6fb0fd345342/AnonymousInnerClassExample.java" style="float:right">view raw</a>
+        <a href="https://gist.github.com/edayan/321d38fd0025f58deb2b#file-anonymousinnerclassexample-java">AnonymousInnerClassExample.java</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<p></p>
+<p>To make above code compile either make variable <code>count</code> “final” or initialize the variable <code>count</code> with any value and then do not assign with a new value (which makes that variable effectively final).</p>
+</li>
+<li>
+<p>
+An anonymous class shadows member variables from its enclosing scope if the anonymous class has local variables with same name. An example is given below.
+</p>
+<p>    <script src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/69c040ac185b4688132d.js"></script><link rel="stylesheet" href="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/gist-embed-13f839f7454b3a5b3bfbfd6d1e34ec9d.css"></p><div id="gist28659485" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-anonymousinnerclassexample-java" class="file">
+    
+
+  <div itemprop="text" class="Box-body p-0 blob-wrapper data type-java ">
+      
+<table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-anonymousinnerclassexample-java-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-anonymousinnerclassexample-java-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">package</span> <span class="pl-smi">com.example.edayan</span>;</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-anonymousinnerclassexample-java-LC2" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-anonymousinnerclassexample-java-LC3" class="blob-code blob-code-inner js-file-line"><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">AnonymousInnerClassExample</span> {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-anonymousinnerclassexample-java-LC4" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-anonymousinnerclassexample-java-LC5" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">private</span> <span class="pl-k">static</span> <span class="pl-smi">String</span> myName<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>Java Program<span class="pl-pds">"</span></span> ;</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-anonymousinnerclassexample-java-LC6" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-anonymousinnerclassexample-java-LC7" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">private</span> <span class="pl-k">static</span> <span class="pl-k">void</span> <span class="pl-en">printName</span>(<span class="pl-smi">Person</span> <span class="pl-v">person</span>) {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-anonymousinnerclassexample-java-LC8" class="blob-code blob-code-inner js-file-line">        <span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(person<span class="pl-k">.</span>getName());<span class="pl-c"><span class="pl-c">//</span>Groovy</span></td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="file-anonymousinnerclassexample-java-LC9" class="blob-code blob-code-inner js-file-line">    }</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="file-anonymousinnerclassexample-java-LC10" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L11" class="blob-num js-line-number" data-line-number="11"></td>
+        <td id="file-anonymousinnerclassexample-java-LC11" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">void</span> <span class="pl-en">main</span>(<span class="pl-k">String</span>[] <span class="pl-v">args</span>) {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L12" class="blob-num js-line-number" data-line-number="12"></td>
+        <td id="file-anonymousinnerclassexample-java-LC12" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L13" class="blob-num js-line-number" data-line-number="13"></td>
+        <td id="file-anonymousinnerclassexample-java-LC13" class="blob-code blob-code-inner js-file-line">        <span class="pl-smi">Person</span> p <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">Person</span>() {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L14" class="blob-num js-line-number" data-line-number="14"></td>
+        <td id="file-anonymousinnerclassexample-java-LC14" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">private</span> <span class="pl-smi">String</span> myName<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>Groovy<span class="pl-pds">"</span></span>;</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L15" class="blob-num js-line-number" data-line-number="15"></td>
+        <td id="file-anonymousinnerclassexample-java-LC15" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">@Override</span></td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L16" class="blob-num js-line-number" data-line-number="16"></td>
+        <td id="file-anonymousinnerclassexample-java-LC16" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">public</span> <span class="pl-smi">String</span> <span class="pl-en">getName</span>() {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L17" class="blob-num js-line-number" data-line-number="17"></td>
+        <td id="file-anonymousinnerclassexample-java-LC17" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">return</span> myName;</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L18" class="blob-num js-line-number" data-line-number="18"></td>
+        <td id="file-anonymousinnerclassexample-java-LC18" class="blob-code blob-code-inner js-file-line">            }</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L19" class="blob-num js-line-number" data-line-number="19"></td>
+        <td id="file-anonymousinnerclassexample-java-LC19" class="blob-code blob-code-inner js-file-line">        };</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L20" class="blob-num js-line-number" data-line-number="20"></td>
+        <td id="file-anonymousinnerclassexample-java-LC20" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L21" class="blob-num js-line-number" data-line-number="21"></td>
+        <td id="file-anonymousinnerclassexample-java-LC21" class="blob-code blob-code-inner js-file-line">        printName(p);</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L22" class="blob-num js-line-number" data-line-number="22"></td>
+        <td id="file-anonymousinnerclassexample-java-LC22" class="blob-code blob-code-inner js-file-line">    }</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L23" class="blob-num js-line-number" data-line-number="23"></td>
+        <td id="file-anonymousinnerclassexample-java-LC23" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L24" class="blob-num js-line-number" data-line-number="24"></td>
+        <td id="file-anonymousinnerclassexample-java-LC24" class="blob-code blob-code-inner js-file-line">}</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/edayan/69c040ac185b4688132d/raw/327bc78fe246e39d1163054d4051ac0d43a8704e/AnonymousInnerClassExample.java" style="float:right">view raw</a>
+        <a href="https://gist.github.com/edayan/69c040ac185b4688132d#file-anonymousinnerclassexample-java">AnonymousInnerClassExample.java</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+
+</li>
+<li>
+<p>
+An anonymous class can have static members only  when they are constant variables. So in effectively you have to provide <code>final</code> modifier if you are declaring a static variable.
+</p>
+<p>    <script src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/c241c9d0ca40f11c3670.js"></script><link rel="stylesheet" href="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/gist-embed-13f839f7454b3a5b3bfbfd6d1e34ec9d.css"></p><div id="gist28659593" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-anonymousinnerclassexample-java" class="file">
+    
+
+  <div itemprop="text" class="Box-body p-0 blob-wrapper data type-java ">
+      
+<table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-anonymousinnerclassexample-java-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-anonymousinnerclassexample-java-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">void</span> main(<span class="pl-k">String</span>[] args) {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-anonymousinnerclassexample-java-LC2" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-anonymousinnerclassexample-java-LC3" class="blob-code blob-code-inner js-file-line">        <span class="pl-smi">Person</span> person <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">Person</span>() {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-anonymousinnerclassexample-java-LC4" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">private</span> <span class="pl-k">static</span> <span class="pl-k">final</span> <span class="pl-smi">String</span> myName<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>Groovy<span class="pl-pds">"</span></span>;<span class="pl-c"><span class="pl-c">//</span> This line compiles fine</span></td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-anonymousinnerclassexample-java-LC5" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">private</span> <span class="pl-k">static</span> <span class="pl-smi">String</span> myNewName<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>Scala<span class="pl-pds">"</span></span>;<span class="pl-c"><span class="pl-c">//</span>compilation error</span></td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-anonymousinnerclassexample-java-LC6" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-anonymousinnerclassexample-java-LC7" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">@Override</span></td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-anonymousinnerclassexample-java-LC8" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">public</span> <span class="pl-smi">String</span> <span class="pl-en">getName</span>() {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="file-anonymousinnerclassexample-java-LC9" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">return</span> myName;</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="file-anonymousinnerclassexample-java-LC10" class="blob-code blob-code-inner js-file-line">            }</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L11" class="blob-num js-line-number" data-line-number="11"></td>
+        <td id="file-anonymousinnerclassexample-java-LC11" class="blob-code blob-code-inner js-file-line">        };</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L12" class="blob-num js-line-number" data-line-number="12"></td>
+        <td id="file-anonymousinnerclassexample-java-LC12" class="blob-code blob-code-inner js-file-line">        </td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L13" class="blob-num js-line-number" data-line-number="13"></td>
+        <td id="file-anonymousinnerclassexample-java-LC13" class="blob-code blob-code-inner js-file-line">    }</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/edayan/c241c9d0ca40f11c3670/raw/a0608f54b1d8e205f61fe399dab353036689dd80/AnonymousInnerClassExample.java" style="float:right">view raw</a>
+        <a href="https://gist.github.com/edayan/c241c9d0ca40f11c3670#file-anonymousinnerclassexample-java">AnonymousInnerClassExample.java</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+</li>
+<li>
+<p>
+You cannot declare static initializers or member interfaces in an anonymous class.
+</p>
+<p>    <script src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/7e8eaa73bfd719203e2f.js"></script><link rel="stylesheet" href="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/gist-embed-13f839f7454b3a5b3bfbfd6d1e34ec9d.css"></p><div id="gist28659672" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-anonymousinnerclassexample-java" class="file">
+    
+
+  <div itemprop="text" class="Box-body p-0 blob-wrapper data type-java ">
+      
+<table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-anonymousinnerclassexample-java-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-anonymousinnerclassexample-java-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">void</span> main(<span class="pl-k">String</span>[] args) {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-anonymousinnerclassexample-java-LC2" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-anonymousinnerclassexample-java-LC3" class="blob-code blob-code-inner js-file-line">        <span class="pl-smi">Person</span> person <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">Person</span>() {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-anonymousinnerclassexample-java-LC4" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">static</span> {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-anonymousinnerclassexample-java-LC5" class="blob-code blob-code-inner js-file-line">                <span class="pl-c"><span class="pl-c">//</span>compile error</span></td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-anonymousinnerclassexample-java-LC6" class="blob-code blob-code-inner js-file-line">            }</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-anonymousinnerclassexample-java-LC7" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">interface</span>  <span class="pl-en">testInterface</span>{</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-anonymousinnerclassexample-java-LC8" class="blob-code blob-code-inner js-file-line">                <span class="pl-c"><span class="pl-c">//</span>compile error</span></td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="file-anonymousinnerclassexample-java-LC9" class="blob-code blob-code-inner js-file-line">            }</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="file-anonymousinnerclassexample-java-LC10" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L11" class="blob-num js-line-number" data-line-number="11"></td>
+        <td id="file-anonymousinnerclassexample-java-LC11" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">@Override</span></td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L12" class="blob-num js-line-number" data-line-number="12"></td>
+        <td id="file-anonymousinnerclassexample-java-LC12" class="blob-code blob-code-inner js-file-line">            <span class="pl-k">public</span> <span class="pl-smi">String</span> <span class="pl-en">getName</span>() {</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L13" class="blob-num js-line-number" data-line-number="13"></td>
+        <td id="file-anonymousinnerclassexample-java-LC13" class="blob-code blob-code-inner js-file-line">                <span class="pl-k">return</span> myName;</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L14" class="blob-num js-line-number" data-line-number="14"></td>
+        <td id="file-anonymousinnerclassexample-java-LC14" class="blob-code blob-code-inner js-file-line">            }</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L15" class="blob-num js-line-number" data-line-number="15"></td>
+        <td id="file-anonymousinnerclassexample-java-LC15" class="blob-code blob-code-inner js-file-line">        };</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L16" class="blob-num js-line-number" data-line-number="16"></td>
+        <td id="file-anonymousinnerclassexample-java-LC16" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-anonymousinnerclassexample-java-L17" class="blob-num js-line-number" data-line-number="17"></td>
+        <td id="file-anonymousinnerclassexample-java-LC17" class="blob-code blob-code-inner js-file-line">    }</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/edayan/7e8eaa73bfd719203e2f/raw/2759bfa38fb821cfe0aa3881324040013a920e8c/AnonymousInnerClassExample.java" style="float:right">view raw</a>
+        <a href="https://gist.github.com/edayan/7e8eaa73bfd719203e2f#file-anonymousinnerclassexample-java">AnonymousInnerClassExample.java</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+</li>
+</ul>
+</div>
+<div id="conclusion">
+<p>
+And so we can see that using anonymous inner class can give us several advantages over a standard class which extends/implements a class. If we don’t need a method of a class called from outside, we can go for anonymous inner classes.
+</p>
+</div>
+<p></p><div class="mailmunch-forms-after-post" style="display: none !important;"></div></div><!-- .entry -->		
+<footer class="entry-footer">
+</footer><!-- .entry-footer --></article>
+<div id="comments" class="comments-area boxed">
+<div id="respond" class="comment-respond">
+<h3 id="reply-title" class="comment-reply-title"><div class="heading"><span>Leave a Comment</span></div> <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://edayan.info/java/anonymous-inner-classes-in-java-what-and-why#respond" style="display:none;">Cancel reply</a></small></h3>			<form action="http://edayan.info/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+<p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> Required fields are marked <span class="required">*</span></p><p class="comment-form-comment"><label for="comment">Comment</label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" aria-required="true" required="required"></textarea></p><p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" aria-required="true" required="required"></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="text" value="" size="30" maxlength="100" aria-describedby="email-notes" aria-required="true" required="required"></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="text" value="" size="30" maxlength="200"></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment"> <input type="hidden" name="comment_post_ID" value="382" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="7005edbc28"></p><p style="display: none;"></p>			<input type="hidden" id="ak_js" name="ak_js" value="1580498207139"></form>
+</div><!-- #respond -->
+</div><!-- #comments -->			
+</main><!-- #content -->
+<aside id="secondary" class="sidebar-container" role="complementary">
+<div class="sidebar-inner">
+<div class="widget-area">
+<div class="sidebar-widget widget_search clr">
+<form method="get" id="searchform" class="searchform" action="http://edayan.info/" role="search">
+<input type="search" class="field" name="s" value="" id="s" placeholder="To search type and hit enter">
+</form></div><div class="sidebar-widget mts_googleplus clr"><h5 class="widget-title">Find us on Google Plus</h5>			<script src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/platform.js" async="" defer="" gapi_processed="true"></script>
+<div id="___page_0" style="position: absolute; width: 450px; left: -10000px;"><iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position:absolute;top:-10000px;width:450px;margin:0px;border-style:none" tabindex="0" vspace="0" width="100%" id="I0_1580498206793" name="I0_1580498206793" src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/page.html" data-gapiattached="true"></iframe></div><div class="g-page" data-width="330" data-href="https://plus.google.com/u/0/b/100244963052906473760/?pageId=100244963052906473760" data-layout="portrait" data-theme="light" data-rel="publisher" data-showtagline="true" data-showcoverphoto="true" data-gapiscan="true" data-onload="true" data-gapistub="true"></div>
+</div><div class="sidebar-widget widget_text clr">			<div class="textwidget"><script async="" src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/f.txt"></script>
+<!-- rectangle-side-menu-text-image -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-6396352896491981" data-ad-slot="3513295955"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+</div>		<div class="sidebar-widget widget_recent_entries clr">		<h5 class="widget-title">Recent Posts</h5>		<ul>
+<li>
+<a href="http://edayan.info/java/anonymous-inner-class-as-an-approach-of-passing-functions-to-other-functions">anonymous inner class as an approach of passing functions to other functions</a>
+</li>
+<li>
+<a href="http://edayan.info/java/anonymous-inner-classes-in-java-what-and-why">Anonymous inner classes in Java. What and Why?</a>
+</li>
+<li>
+<a href="http://edayan.info/java/problem-of-comparing-wrapper-objects-with-operator">Problem of comparing wrapper objects with == operator</a>
+</li>
+<li>
+<a href="http://edayan.info/java/4-things-to-remember-on-autoboxing-and-unboxing">4 things to remember on autoboxing and unboxing</a>
+</li>
+<li>
+<a href="http://edayan.info/java/autoboxing-and-unboxing-in-java">Autoboxing and unboxing in java</a>
+</li>
+</ul>
+</div><div class="sidebar-widget widget_fbw_id clr"><h5 class="widget-title">Like Us On Facebook</h5><div class="fb_loader" style="text-align: center !important; display: none;"><img src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/loader.gif"></div><div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; width: 0px; height: 0px;"><div></div></div></div>
+<div class="fb-page fb_iframe_widget" data-href="https://www.facebook.com/edayan.info/" data-width="320" data-height="350" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="false" style="" hide_cta="false" fb-xfbml-state="rendered" fb-iframe-plugin-query="adapt_container_width=true&amp;app_id=778721985537582&amp;container_width=330&amp;height=350&amp;hide_cover=false&amp;hide_cta=false&amp;href=https%3A%2F%2Fwww.facebook.com%2Fedayan.info%2F&amp;locale=en_US&amp;sdk=joey&amp;show_facepile=true&amp;show_posts=false&amp;small_header=false&amp;width=320"><span style="vertical-align: bottom; width: 320px; height: 180px;"><iframe name="f4e6217d8bb74" width="320px" height="350px" title="fb:page Facebook Social Plugin" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/page(1).html" style="border: none; visibility: visible; width: 320px; height: 180px;" class=""></iframe></span></div></div>        <!-- A WordPress plugin developed by Milap Patel -->
+<div class="sidebar-widget widget_text clr">			<div class="textwidget"><script async="" src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/f.txt"></script>
+<!-- side-menu-text-only -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-6396352896491981" data-ad-slot="3234094356"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+</div><div class="sidebar-widget widget_ng_expanding_archives clr">		<div class="ng-expanding-archives-wrap">
+<div class="expanding-archives-section">
+<h3 class="expanding-archives-title">
+<a data-toggle="collapse" href="http://edayan.info/java/anonymous-inner-classes-in-java-what-and-why#collapse2016">2016</a>
+</h3>
+<div id="collapse2016" class="expanding-archives-collapse-section">
+<ul>
+<li>
+<a href="http://edayan.info/2016/11" data-month="11" data-year="2016" class="clear expanding-archives-clickable-month ">
+<span class="expanding-archive-month">
+<span class="expand-collapse">
++</span> November                    </span>
+<i class="fa"></i>
+<span class="expanding-archive-count">(1)</span>
+</a>
+<div class="expanding-archive-month-results" style="display:none;"></div>
+</li>
+<li>
+<a href="http://edayan.info/2016/10" data-month="10" data-year="2016" class="clear expanding-archives-clickable-month ">
+<span class="expanding-archive-month">
+<span class="expand-collapse">
++</span> October                    </span>
+<i class="fa"></i>
+<span class="expanding-archive-count">(17)</span>
+</a>
+<div class="expanding-archive-month-results" style="display:none;"></div>
+</li>
+</ul>
+</div><!-- .expanding-archives-collapse-section -->
+</div><!-- .expanding-archives-section -->
+</div>
+</div><div class="sidebar-widget widget_text clr">			<div class="textwidget"><script async="" src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/f.txt"></script>
+<!-- side-menu-image-only -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6396352896491981" data-ad-slot="6187560750" data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+</div><div class="sidebar-widget widget_tag_cloud clr"><h5 class="widget-title">Tags</h5><div class="tagcloud"><a href="http://edayan.info/tag/in-javascript" class="tag-cloud-link tag-link-30 tag-link-position-1" style="font-size: 8pt;" aria-label="() in javascript (1 item)">() in javascript</a>
+<a href="http://edayan.info/tag/equal-in-java" class="tag-cloud-link tag-link-37 tag-link-position-2" style="font-size: 8pt;" aria-label=".equal in java (1 item)">.equal in java</a>
+<a href="http://edayan.info/tag/java" class="tag-cloud-link tag-link-36 tag-link-position-3" style="font-size: 8pt;" aria-label="== java (1 item)">== java</a>
+<a href="http://edayan.info/tag/anonymous" class="tag-cloud-link tag-link-26 tag-link-position-4" style="font-size: 8pt;" aria-label="anonymous (1 item)">anonymous</a>
+<a href="http://edayan.info/tag/anonymous-functions" class="tag-cloud-link tag-link-27 tag-link-position-5" style="font-size: 16.4pt;" aria-label="anonymous functions (2 items)">anonymous functions</a>
+<a href="http://edayan.info/tag/anonymous-functions-in-javascript" class="tag-cloud-link tag-link-28 tag-link-position-6" style="font-size: 16.4pt;" aria-label="anonymous functions in javascript (2 items)">anonymous functions in javascript</a>
+<a href="http://edayan.info/tag/callbacks" class="tag-cloud-link tag-link-7 tag-link-position-7" style="font-size: 8pt;" aria-label="callbacks (1 item)">callbacks</a>
+<a href="http://edayan.info/tag/callbacks-in-javascript" class="tag-cloud-link tag-link-8 tag-link-position-8" style="font-size: 8pt;" aria-label="callbacks in javascript (1 item)">callbacks in javascript</a>
+<a href="http://edayan.info/tag/checked-exception" class="tag-cloud-link tag-link-41 tag-link-position-9" style="font-size: 8pt;" aria-label="checked exception (1 item)">checked exception</a>
+<a href="http://edayan.info/tag/compile-time-binding" class="tag-cloud-link tag-link-46 tag-link-position-10" style="font-size: 8pt;" aria-label="compile time binding (1 item)">compile time binding</a>
+<a href="http://edayan.info/tag/equality-in-java" class="tag-cloud-link tag-link-38 tag-link-position-11" style="font-size: 8pt;" aria-label="equality in java (1 item)">equality in java</a>
+<a href="http://edayan.info/tag/error-in-java" class="tag-cloud-link tag-link-45 tag-link-position-12" style="font-size: 8pt;" aria-label="Error in java (1 item)">Error in java</a>
+<a href="http://edayan.info/tag/exception-in-java" class="tag-cloud-link tag-link-43 tag-link-position-13" style="font-size: 8pt;" aria-label="Exception in java (1 item)">Exception in java</a>
+<a href="http://edayan.info/tag/falsy" class="tag-cloud-link tag-link-16 tag-link-position-14" style="font-size: 8pt;" aria-label="falsy (1 item)">falsy</a>
+<a href="http://edayan.info/tag/falsy-in-javascript" class="tag-cloud-link tag-link-17 tag-link-position-15" style="font-size: 8pt;" aria-label="falsy in javascript (1 item)">falsy in javascript</a>
+<a href="http://edayan.info/tag/final-in-java" class="tag-cloud-link tag-link-32 tag-link-position-16" style="font-size: 8pt;" aria-label="final in java (1 item)">final in java</a>
+<a href="http://edayan.info/tag/functions" class="tag-cloud-link tag-link-22 tag-link-position-17" style="font-size: 16.4pt;" aria-label="functions (2 items)">functions</a>
+<a href="http://edayan.info/tag/functions-in-javascript" class="tag-cloud-link tag-link-25 tag-link-position-18" style="font-size: 16.4pt;" aria-label="functions in javascript (2 items)">functions in javascript</a>
+<a href="http://edayan.info/tag/hiding-static-methods" class="tag-cloud-link tag-link-47 tag-link-position-19" style="font-size: 8pt;" aria-label="hiding static methods (1 item)">hiding static methods</a>
+<a href="http://edayan.info/tag/hoisting-in-javascript" class="tag-cloud-link tag-link-20 tag-link-position-20" style="font-size: 8pt;" aria-label="hoisting in javascript (1 item)">hoisting in javascript</a>
+<a href="http://edayan.info/tag/how-to-write-callbacks" class="tag-cloud-link tag-link-9 tag-link-position-21" style="font-size: 8pt;" aria-label="how to write callbacks (1 item)">how to write callbacks</a>
+<a href="http://edayan.info/tag/immutable-in-java" class="tag-cloud-link tag-link-34 tag-link-position-22" style="font-size: 8pt;" aria-label="immutable in java (1 item)">immutable in java</a>
+<a href="http://edayan.info/tag/inheritance-inm-java" class="tag-cloud-link tag-link-48 tag-link-position-23" style="font-size: 8pt;" aria-label="inheritance inm java (1 item)">inheritance inm java</a>
+<a href="http://edayan.info/tag/javascript" class="tag-cloud-link tag-link-21 tag-link-position-24" style="font-size: 22pt;" aria-label="javascript (3 items)">javascript</a>
+<a href="http://edayan.info/tag/javascript-scopes" class="tag-cloud-link tag-link-11 tag-link-position-25" style="font-size: 8pt;" aria-label="javascript scopes (1 item)">javascript scopes</a>
+<a href="http://edayan.info/tag/javascript-this" class="tag-cloud-link tag-link-12 tag-link-position-26" style="font-size: 8pt;" aria-label="javascript this (1 item)">javascript this</a>
+<a href="http://edayan.info/tag/javascripttruthy" class="tag-cloud-link tag-link-18 tag-link-position-27" style="font-size: 8pt;" aria-label="javascripttruthy (1 item)">javascripttruthy</a>
+<a href="http://edayan.info/tag/jquery-callbacks" class="tag-cloud-link tag-link-10 tag-link-position-28" style="font-size: 8pt;" aria-label="jquery-callbacks (1 item)">jquery-callbacks</a>
+<a href="http://edayan.info/tag/object-comparison-in-java" class="tag-cloud-link tag-link-39 tag-link-position-29" style="font-size: 16.4pt;" aria-label="object comparison in java (2 items)">object comparison in java</a>
+<a href="http://edayan.info/tag/overriding-in-java" class="tag-cloud-link tag-link-49 tag-link-position-30" style="font-size: 8pt;" aria-label="overriding in java (1 item)">overriding in java</a>
+<a href="http://edayan.info/tag/private-variables-in-javascript" class="tag-cloud-link tag-link-31 tag-link-position-31" style="font-size: 8pt;" aria-label="private variables in javascript (1 item)">private variables in javascript</a>
+<a href="http://edayan.info/tag/run-time-binding" class="tag-cloud-link tag-link-50 tag-link-position-32" style="font-size: 8pt;" aria-label="run time binding (1 item)">run time binding</a>
+<a href="http://edayan.info/tag/runtime-exception-in-java" class="tag-cloud-link tag-link-44 tag-link-position-33" style="font-size: 8pt;" aria-label="Runtime exception in java (1 item)">Runtime exception in java</a>
+<a href="http://edayan.info/tag/scope-in-javascript" class="tag-cloud-link tag-link-23 tag-link-position-34" style="font-size: 8pt;" aria-label="scope in javascript (1 item)">scope in javascript</a>
+<a href="http://edayan.info/tag/scopes-in-javascript" class="tag-cloud-link tag-link-13 tag-link-position-35" style="font-size: 8pt;" aria-label="scopes in javascript (1 item)">scopes in javascript</a>
+<a href="http://edayan.info/tag/self-executiong-functions-in-javascript" class="tag-cloud-link tag-link-29 tag-link-position-36" style="font-size: 8pt;" aria-label="self executiong functions in javascript (1 item)">self executiong functions in javascript</a>
+<a href="http://edayan.info/tag/static-methods-in-java" class="tag-cloud-link tag-link-51 tag-link-position-37" style="font-size: 8pt;" aria-label="static methods in java (1 item)">static methods in java</a>
+<a href="http://edayan.info/tag/string-equals-in-java" class="tag-cloud-link tag-link-40 tag-link-position-38" style="font-size: 8pt;" aria-label="String equals in java (1 item)">String equals in java</a>
+<a href="http://edayan.info/tag/string-is-final-in-java" class="tag-cloud-link tag-link-35 tag-link-position-39" style="font-size: 8pt;" aria-label="String is final in java (1 item)">String is final in java</a>
+<a href="http://edayan.info/tag/strings-in-java" class="tag-cloud-link tag-link-33 tag-link-position-40" style="font-size: 8pt;" aria-label="Strings in java (1 item)">Strings in java</a>
+<a href="http://edayan.info/tag/this-in-javascript" class="tag-cloud-link tag-link-14 tag-link-position-41" style="font-size: 8pt;" aria-label="this in javascript (1 item)">this in javascript</a>
+<a href="http://edayan.info/tag/this-keyword-in-javascript" class="tag-cloud-link tag-link-15 tag-link-position-42" style="font-size: 8pt;" aria-label="this keyword in javascript (1 item)">this keyword in javascript</a>
+<a href="http://edayan.info/tag/truthyinjavascript" class="tag-cloud-link tag-link-19 tag-link-position-43" style="font-size: 8pt;" aria-label="truthyinjavascript (1 item)">truthyinjavascript</a>
+<a href="http://edayan.info/tag/unchecked-exception" class="tag-cloud-link tag-link-42 tag-link-position-44" style="font-size: 8pt;" aria-label="unchecked exception (1 item)">unchecked exception</a>
+<a href="http://edayan.info/tag/variable-hoisting-in-javascript" class="tag-cloud-link tag-link-24 tag-link-position-45" style="font-size: 8pt;" aria-label="variable hoisting in javascript (1 item)">variable hoisting in javascript</a></div>
+</div><div class="sidebar-widget widget_text clr">			<div class="textwidget"><script async="" src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/f.txt"></script>
+<!-- side-menu-sky-scraper -->
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:600px" data-ad-client="ca-pub-6396352896491981" data-ad-slot="9001426354"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+</div><div class="sidebar-widget widget_calendar clr"><div id="calendar_wrap" class="calendar_wrap"><table id="wp-calendar">
+<caption>December 2017</caption>
+<thead>
+<tr>
+<th scope="col" title="Sunday">S</th>
+<th scope="col" title="Monday">M</th>
+<th scope="col" title="Tuesday">T</th>
+<th scope="col" title="Wednesday">W</th>
+<th scope="col" title="Thursday">T</th>
+<th scope="col" title="Friday">F</th>
+<th scope="col" title="Saturday">S</th>
+</tr>
+</thead>
+<tfoot>
+<tr>
+<td colspan="3" id="prev"><a href="http://edayan.info/2016/11">« Nov</a></td>
+<td class="pad">&nbsp;</td>
+<td colspan="3" id="next" class="pad">&nbsp;</td>
+</tr>
+</tfoot>
+<tbody>
+<tr>
+<td colspan="5" class="pad">&nbsp;</td><td>1</td><td>2</td>
+</tr>
+<tr>
+<td>3</td><td>4</td><td id="today">5</td><td>6</td><td>7</td><td>8</td><td>9</td>
+</tr>
+<tr>
+<td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td>
+</tr>
+<tr>
+<td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td>
+</tr>
+<tr>
+<td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td>
+</tr>
+<tr>
+<td>31</td>
+<td class="pad" colspan="6">&nbsp;</td>
+</tr>
+</tbody>
+</table></div></div><div class="sidebar-widget widget_text clr">			<div class="textwidget"><script async="" src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/f.txt"></script>
+<!-- side-menu-text-only -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-6396352896491981" data-ad-slot="3234094356"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+</div>			</div><!-- .widget-area -->
+</div><!-- .sidebar-inner -->
+</aside><!-- #secondary -->
+</div><!-- #primary -->
+<ul class="single-post-pagination clr">
+<li class="post-prev"><a href="http://edayan.info/java/anonymous-inner-class-as-an-approach-of-passing-functions-to-other-functions" rel="next"><i class="fa fa-arrow-left"></i>anonymous inner class as an approach of passing functions to other functions</a></li>	<li class="post-next"><a href="http://edayan.info/java/problem-of-comparing-wrapper-objects-with-operator" rel="prev">Problem of comparing wrapper objects with == operator<i class="fa fa-arrow-right"></i></a></li></ul><!-- .post-post-pagination -->
+
+</div><!-- #main-content -->
+<div id="footer-wrap" class="site-footer clr">
+<div id="footer" class="clr container">
+<div id="footer-widgets" class="wpex-row clr">
+<div class="footer-box span_1_of_3 col col-1">
+<div class="footer-widget widget_categories clr"><h6 class="widget-title">Categories</h6>		<ul>
+<li class="cat-item cat-item-6"><a href="http://edayan.info/category/java">java</a> (12)
+</li>
+<li class="cat-item cat-item-5"><a href="http://edayan.info/category/javascript">javascript</a> (6)
+</li>
+</ul>
+</div>	</div><!-- .footer-box -->
+<div class="footer-box span_1_of_3 col col-2">
+<div class="footer-widget widget_calendar clr"><div class="calendar_wrap"><table id="wp-calendar">
+<caption>December 2017</caption>
+<thead>
+<tr>
+<th scope="col" title="Sunday">S</th>
+<th scope="col" title="Monday">M</th>
+<th scope="col" title="Tuesday">T</th>
+<th scope="col" title="Wednesday">W</th>
+<th scope="col" title="Thursday">T</th>
+<th scope="col" title="Friday">F</th>
+<th scope="col" title="Saturday">S</th>
+</tr>
+</thead>
+<tfoot>
+<tr>
+<td colspan="3" id="prev"><a href="http://edayan.info/2016/11">« Nov</a></td>
+<td class="pad">&nbsp;</td>
+<td colspan="3" id="next" class="pad">&nbsp;</td>
+</tr>
+</tfoot>
+<tbody>
+<tr>
+<td colspan="5" class="pad">&nbsp;</td><td>1</td><td>2</td>
+</tr>
+<tr>
+<td>3</td><td>4</td><td id="today">5</td><td>6</td><td>7</td><td>8</td><td>9</td>
+</tr>
+<tr>
+<td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td>
+</tr>
+<tr>
+<td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td>
+</tr>
+<tr>
+<td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td>
+</tr>
+<tr>
+<td>31</td>
+<td class="pad" colspan="6">&nbsp;</td>
+</tr>
+</tbody>
+</table></div></div>	</div><!-- .footer-box -->
+<div class="footer-box span_1_of_3 col col-3">
+<div class="footer-widget widget_recent_entries clr">		<h6 class="widget-title">Recent Posts</h6>		<ul>
+<li>
+<a href="http://edayan.info/java/anonymous-inner-class-as-an-approach-of-passing-functions-to-other-functions">anonymous inner class as an approach of passing functions to other functions</a>
+<span class="post-date">November 6, 2016</span>
+</li>
+<li>
+<a href="http://edayan.info/java/anonymous-inner-classes-in-java-what-and-why">Anonymous inner classes in Java. What and Why?</a>
+<span class="post-date">October 15, 2016</span>
+</li>
+<li>
+<a href="http://edayan.info/java/problem-of-comparing-wrapper-objects-with-operator">Problem of comparing wrapper objects with == operator</a>
+<span class="post-date">October 15, 2016</span>
+</li>
+<li>
+<a href="http://edayan.info/java/4-things-to-remember-on-autoboxing-and-unboxing">4 things to remember on autoboxing and unboxing</a>
+<span class="post-date">October 15, 2016</span>
+</li>
+<li>
+<a href="http://edayan.info/java/autoboxing-and-unboxing-in-java">Autoboxing and unboxing in java</a>
+<span class="post-date">October 15, 2016</span>
+</li>
+</ul>
+</div>	</div><!-- .footer-box -->
+</div><!-- #footer-widgets -->
+</div><!-- #footer -->
+</div><!-- #footer-wrap -->
+<footer id="copyright-wrap" class="clr">
+<div id="copyright" role="contentinfo" class="clr">
+Copyright by <a href="http://edayan.info/about" title="saju paul edayan" target="_blank">Saju Paul Edayan.</a>
+<a href="http://edayan.info/privacy-policy" target="_blank">Privacy Policy</a>		
+</div><!-- #copyright -->
+</footer><!-- #footer-wrap -->
+<!-- #wrap -->
+<div id="mobile-search">
+<form method="get" action="http://edayan.info/" role="search" id="mobile-search-form">
+<input type="search" class="field" name="s" value="" placeholder="To search type and hit enter">
+</form>
+</div>
+<script> var $nocnflct = jQuery.noConflict();
+$nocnflct(function () {
+$nocnflct.scrollUp({
+scrollName: 'scrollUp', // Element ID
+scrollClass: 'scrollUp scrollup-link scrollup-right', // Element Class
+scrollDistance: 300, // Distance from top/bottom before showing element (px)
+scrollFrom: 'top', // top or bottom
+scrollSpeed: 300, // Speed back to top (ms )
+easingType: 'linear', // Scroll to top easing (see http://easings.net/)
+animation: 'slide', // Fade, slide, none
+animationInSpeed: 200, // Animation in speed (ms )
+animationOutSpeed: 200, // Animation out speed (ms )
+scrollText: '<id class="fa fa-arrow-circle-up fa-3x"></id>', // Text for element, can contain HTML
+scrollTitle: false, // Set a custom link title if required. Defaults to scrollText
+scrollImg: false, // Set true to use image
+activeOverlay: false, // Set CSS color to display scrollUp active point
+zIndex: 2147483647 // Z-Index for the overlay
+});
+});</script><script type="text/javascript">
+/* <![CDATA[ */
+var expanding_archives = {"ajaxurl":"http:\/\/edayan.info\/wp-admin\/admin-ajax.php","nonce":"fae4221974"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/expanding-archives.min.js"></script>
+<script type="text/javascript" src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/jquery.scrollUp.min.js"></script>
+<script type="text/javascript" src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/comment-reply.min.js"></script>
+<script type="text/javascript" src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/plugins.js"></script>
+<script type="text/javascript" src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/global.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var GEM = {"thankyou":"Thank you for signing up!","thankyou_suppressed":"Thank you for signing up! Please check your email to confirm your subscription.","oops":"Oops! There was a problem. Please try again.","email":"Please enter a valid email address.","required":"%s is a required field."};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/gem.min.js"></script>
+<script type="text/javascript" src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/wp-embed.min.js"></script>
+<script async="async" type="text/javascript" src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/form.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var milapfbwidgetvars = {"app_id":"778721985537582","select_lng":"en_US"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/fb.js"></script>
+<!-- We need this for debugging themes using Speed Booster Pack Plugin v3.6.1 -->
+
+<a id="scrollUp" class="scrollUp scrollup-link scrollup-right" href="http://edayan.info/java/anonymous-inner-classes-in-java-what-and-why#top" style="display: none; position: fixed; z-index: 2147483647;"><id class="fa fa-arrow-circle-up fa-3x"></id></a><div id="sidr-main" class="sidr left"><div class="sidr-inner"><a href="http://edayan.info/java/anonymous-inner-classes-in-java-what-and-why#sidr-close" class="sidr-class-toggle-sidr-close"></a></div><div class="sidr-inner">
+<a href="http://edayan.info/java/anonymous-inner-classes-in-java-what-and-why#sidr-main" id="sidr-id-navigation-toggle"><span class="sidr-class-fa sidr-class-fa-bars"></span>Menu</a>
+<div class="sidr-class-menu-edayans-menu-container"><ul id="sidr-id-menu-edayans-menu" class="sidr-class-dropdown-menu sidr-class-sf-menu sidr-class-sf-js-enabled"><li id="sidr-id-menu-item-323" class="sidr-class-menu-item sidr-class-menu-item-type-custom sidr-class-menu-item-object-custom sidr-class-menu-item-home sidr-class-menu-item-323"><a href="http://edayan.info/">Home</a></li>
+<li id="sidr-id-menu-item-345" class="sidr-class-menu-item sidr-class-menu-item-type-taxonomy sidr-class-menu-item-object-category sidr-class-current-post-ancestor sidr-class-current-menu-parent sidr-class-current-post-parent sidr-class-menu-item-345"><a href="http://edayan.info/category/java">java</a></li>
+<li id="sidr-id-menu-item-299" class="sidr-class-menu-item sidr-class-menu-item-type-taxonomy sidr-class-menu-item-object-category sidr-class-menu-item-299"><a href="http://edayan.info/category/javascript">javascript</a></li>
+<li id="sidr-id-menu-item-294" class="sidr-class-menu-item sidr-class-menu-item-type-post_type sidr-class-menu-item-object-page sidr-class-menu-item-294"><a href="http://edayan.info/about">About me</a></li>
+</ul></div>
+</div><div class="sidr-inner">
+<form method="get" action="http://edayan.info/" role="search" id="sidr-id-mobile-search-form">
+<input type="search" class="sidr-class-field" name="s" value="" placeholder="To search type and hit enter">
+</form>
+</div></div><iframe name="oauth2relay790664882" id="oauth2relay790664882" src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/postmessageRelay.html" tabindex="-1" aria-hidden="true" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe><img src="./Anonymous inner classes in Java. What and Why_ – Edayan’s notes_files/saved_resource" width="1" height="1" style="display: none;"></body></html>
