@@ -1,0 +1,23 @@
+.expanding-archives-title {
+background: #f1f1f1;
+margin: 0; }
+.expanding-archives-title a {
+display: block;
+padding: 5px 10px; } .expanding-archives-collapse-section {
+border: 1px solid #f1f1f1;
+display: none;
+padding: 10px; }
+.expanding-archives-collapse-section.expanding-archives-expanded {
+display: block; }
+.expanding-archives-collapse-section ul {
+list-style: none;
+margin: 0;
+padding: 0; }
+.expanding-archives-collapse-section ul li {
+background: none;
+clear: both;
+padding: 0; }
+.expanding-archives-collapse-section ul li:before {
+display: none; } .expanding-archive-count {
+float: right; } .expanding-archive-month-results {
+padding-left: 30px; }

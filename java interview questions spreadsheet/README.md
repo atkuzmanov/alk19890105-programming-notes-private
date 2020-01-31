@@ -5046,7 +5046,7 @@ http://tutorials.jenkov.com/java/nested-classes.html
 - Nested class: Use it if your requirements are similar to those of a local class, you want to make the type more widely available, and you don't require access to local variables or method parameters.
 
     - Use a non-static nested class (or inner class) if you require access to an enclosing instance's non-public fields and methods. Use a static nested class if you don't require this access."
-    
+
 `References:`
 https://docs.oracle.com/javase/tutorial/java/javaOO/whentouse.html
 
@@ -5059,6 +5059,16 @@ https://dzone.com/articles/what-are-nested-classes-and
 
 `References:`
 https://www.stackchief.com/tutorials/The%20Ultimate%20Guide%20to%20Nested%20Classes%20in%20Java
+
+- [Anonymous-inner-classes-in-Java-What-and-Why–Edayans-notes](ref-sites/Anonymous-inner-classes-in-Java-What-and-Why–Edayans-notes)
+
+`References:`
+http://edayan.info/java/anonymous-inner-classes-in-java-what-and-why
+
+- [Nested-Classes-in-Java-Baeldung](ref-sites/Nested-Classes-in-Java-Baeldung)
+
+`References:`
+https://www.baeldung.com/java-nested-classes
 
 ----
 
