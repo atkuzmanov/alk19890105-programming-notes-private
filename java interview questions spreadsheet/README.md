@@ -5072,11 +5072,26 @@ https://www.baeldung.com/java-nested-classes
 
 ----
 
+# Parameters passing - parameters to methods passing by val; For objects reference is passed by val?
 
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
 
+- [Pass-By-Value-a-Parameter-Passing-Mechanism-Java-Baeldung](ref-sites/Pass-By-Value-a-Parameter-Passing-Mechanism-Java-Baeldung)
 
+`References:`
+https://www.baeldung.com/java-pass-by-value-or-pass-by-reference
+
+- [Does-Java-pass-by-reference-or-pass-by-value-JavaWorld](ref-sites/Does-Java-pass-by-reference-or-pass-by-value-JavaWorld)
+
+`References:`
+https://www.javaworld.com/article/3512039/does-java-pass-by-reference-or-pass-by-value.html
 
 ----
+
+
+
 ----
 ----
 ----
