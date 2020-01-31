@@ -4977,17 +4977,61 @@ https://www.geeksforgeeks.org/local-inner-class-java/
 `References:`
 https://www.geeksforgeeks.org/anonymous-inner-class-java/
 
+- Please see: 
+[Nested class as a normal outer class?](#Nested-class-as-a-normal-outer-class?)
+
 ----
 
-# 
+# Nested class as a normal outer class?
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
 |       |  x  |   x   |
 
+- Please see: 
+[Inner/Nested/Local classes](#Inner/Nested/Local-classes)
+
+- Static Nested Classes
+
+```text
+Static Nested Classes
+As with class methods and variables, a static nested class is associated with its outer class. And like static class methods, a static nested class cannot refer directly to instance variables or methods defined in its enclosing class: it can use them only through an object reference.
+
+Note: A static nested class interacts with the instance members of its outer class (and other classes) just like any other top-level class. In effect, a static nested class is behaviorally a top-level class that has been nested in another top-level class for packaging convenience.
+Static nested classes are accessed using the enclosing class name:
+
+OuterClass.StaticNestedClass
+For example, to create an object for the static nested class, use this syntax:
+
+OuterClass.StaticNestedClass nestedObject =
+     new OuterClass.StaticNestedClass();
+```
+
+`References:`
+https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html
+
+- Static Nested Classes
+
+[Java-Nested-Classes](ref-sites/Java-Nested-Classes)
+
+`References:`
+http://tutorials.jenkov.com/java/nested-classes.html
 
 ----
+
+# Nested vs Anonymous Inner classes?
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
+- Please see:
+    - [Inner/Nested/Local classes](#Inner/Nested/Local-classes)
+    - [Nested class as a normal outer class?](#Nested-class-as-a-normal-outer-class?)
+
 ----
+
+
 ----
 ----
 ----
