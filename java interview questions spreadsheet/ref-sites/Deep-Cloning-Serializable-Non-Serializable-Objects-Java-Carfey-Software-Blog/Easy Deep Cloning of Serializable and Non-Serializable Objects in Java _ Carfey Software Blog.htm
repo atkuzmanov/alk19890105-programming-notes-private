@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<!-- saved from url=(0110)https://www.obsidianscheduler.com/blog/easy-deep-cloning-of-serializable-and-non-serializable-objects-in-java/ -->
+<html lang="en-US"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width">
+<title>Easy Deep Cloning of Serializable and Non-Serializable Objects in Java | Carfey Software Blog</title>
+<link rel="profile" href="https://gmpg.org/xfn/11">
+<link rel="stylesheet" type="text/css" media="all" href="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/style.css">
+<link rel="pingback" href="https://www.obsidianscheduler.com/blog/xmlrpc.php">
+<!--[if lt IE 9]>
+<script src="https://www.obsidianscheduler.com/blog/wp-content/themes/twentyeleven/js/html5.js" type="text/javascript"></script>
+<![endif]-->
+<link rel="alternate" type="application/rss+xml" title="Carfey Software Blog » Feed" href="https://www.obsidianscheduler.com/blog/feed/">
+<link rel="alternate" type="application/rss+xml" title="Carfey Software Blog » Comments Feed" href="https://www.obsidianscheduler.com/blog/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Carfey Software Blog » Easy Deep Cloning of Serializable and Non-Serializable Objects in Java Comments Feed" href="https://www.obsidianscheduler.com/blog/easy-deep-cloning-of-serializable-and-non-serializable-objects-in-java/feed/">
+<link rel="stylesheet" id="tfg_style-css" href="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/tfg_style.css" type="text/css" media="all">
+<link rel="stylesheet" id="cptchStylesheet-css" href="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/style_wp_before_3.8.css" type="text/css" media="all">
+<script src="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/cb=gapi.loaded_1" async=""></script><script src="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/cb=gapi.loaded_0" async=""></script><script type="text/javascript" async="" src="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/ga.js"></script><script id="twitter-wjs" src="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/widgets.js"></script><script type="text/javascript" async="" src="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/ga.js"></script><script type="text/javascript" src="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/jquery.js"></script>
+<script type="text/javascript" src="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/jquery.bgiframe.js"></script>
+<script type="text/javascript" src="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/jquery.tooltip.min.js"></script>
+<script type="text/javascript" src="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/comment-reply.min.js"></script>
+<script type="text/javascript" src="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/external-tracking.min.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.obsidianscheduler.com/blog/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.obsidianscheduler.com/blog/wp-includes/wlwmanifest.xml">
+<link rel="prev" title="Ignoring Self-Signed Certificates in Java" href="https://www.obsidianscheduler.com/blog/ignoring-self-signed-certificates-in-java/">
+<link rel="next" title="Why you shouldn’t use Quartz Scheduler" href="https://www.obsidianscheduler.com/blog/why-you-shouldnt-use-quartz-scheduler/">
+<meta name="generator" content="WordPress 3.5.1">
+<link rel="canonical" href="https://www.obsidianscheduler.com/blog/easy-deep-cloning-of-serializable-and-non-serializable-objects-in-java/">
+<link rel="shortlink" href="https://www.obsidianscheduler.com/blog/?p=150">
+
+
+
+<link type="text/css" rel="stylesheet" href="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/thickbox.css">
+<link type="text/css" rel="stylesheet" href="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/events-calendar.css">
+<script type="text/javascript">
+	// <![CDATA[
+	var ecd = {};
+	ecd.jq = jQuery.noConflict(false);
+	//]]>
+ </script>
+
+<style type="text/css">
+
+pre {
+border: 1px solid #DADADA;
+background: #F0F0F0;
+padding: 11px;
+margin-bottom: 22px;
+font-family: Consolas, Monaco, "Courier New", Courier, monospace;
+font-size: 12px;
+font-weight: inherit;
+overflow-x: auto;
+}
+
+
+
+
+
+
+#secondary {
+margin-right: 4.6% !important;
+width: 21.8% !important;
+}
+
+
+#content {
+margin: 0 34% 0 5.6% !important;
+width: 60.4% !important;
+}
+
+
+#access div {
+margin: 0 5.6% !important;
+}
+
+#site-description {
+margin: 0 !important;
+}
+
+
+#site-title {
+padding: 2em 0 0 !important;
+}
+
+
+#branding #searchform {
+top: 2.8em !important;
+}
+
+
+#page {
+margin: 1.2em auto !important;
+}
+
+
+.singular #primary {
+	margin: 0 -26.4% 0 0;
+}
+
+
+#nav-single {
+	display: none;
+}
+
+
+.singular .entry-header .entry-meta {
+	position: relative;
+}
+
+
+.singular .hentry {
+	padding: 0;
+}
+
+
+.singular .entry-header, .singular .entry-content, .singular footer.entry-meta, .singular #comments-title {
+	width: 100%;
+}
+
+
+.singular #content, .left-sidebar.singular #content {
+	margin: 0 34% 0 7.6%;
+}
+
+
+.singular article .entry-title {
+	padding-top: 0;
+}
+
+
+.singular .entry-meta .edit-link a {
+	right: 0;
+	top: 0;
+	left: auto;
+}
+
+</style>
+<style>
+		/* Link color */
+		a,
+		#site-title a:focus,
+		#site-title a:hover,
+		#site-title a:active,
+		.entry-title a:hover,
+		.entry-title a:focus,
+		.entry-title a:active,
+		.widget_twentyeleven_ephemera .comments-link a:hover,
+		section.recent-posts .other-recent-posts a[rel="bookmark"]:hover,
+		section.recent-posts .other-recent-posts .comments-link a:hover,
+		.format-image footer.entry-meta a:hover,
+		#site-generator a:hover {
+			color: #1c73b5;
+		}
+		section.recent-posts .other-recent-posts .comments-link a:hover {
+			border-color: #1c73b5;
+		}
+		article.feature-image.small .entry-summary p a:hover,
+		.entry-header .comments-link a:hover,
+		.entry-header .comments-link a:focus,
+		.entry-header .comments-link a:active,
+		.feature-slider a.active {
+			background-color: #1c73b5;
+		}
+	</style>
+
+<script type="text/javascript">window.google_analytics_uacct = "435-147-2590";</script>
+<script type="text/javascript">
+                var analyticsFileTypes = [''];
+                            var analyticsSnippet = 'enabled';
+                var analyticsEventTracking = 'enabled';
+            </script>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+  
+	_gaq.push(['_setAccount', 'UA-22078548-1']);
+    _gaq.push(['_addDevId', 'i9k95']); // Google Analyticator App ID with Google
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+<script charset="utf-8" src="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/rate.php"></script><script charset="utf-8" src="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/rate(1).php"></script><script charset="utf-8" src="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/rate(2).php"></script><script charset="utf-8" src="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/rate(3).php"></script><style type="text/css">.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q{display:block!important;border:1px solid #cdcfd2!important;background-color:#fff!important;color:#373a3d!important;width:100vw!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-24GeGuJgk9LrMLp7qVvlyz{background:#6a7e89!important;color:#fff!important;padding:10px!important;font-size:18px!important;font-family:sans-serif!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-KVjdulkCFfUZps29EbgAC{background:#f3f6f8!important;border-bottom:1px solid #cdcfd2!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-KVjdulkCFfUZps29EbgAC>*{margin-right:10px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1OeZ2PQ98oAp6Vc5mMc6V5{list-style:none!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-vCwYmWF_l83ScZBrGnRoi,.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1OeZ2PQ98oAp6Vc5mMc6V5{margin:0!important;padding:0!important;width:100%!important;display:block!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-vCwYmWF_l83ScZBrGnRoi:not(:last-child){border-bottom:1px solid #cdcfd2!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1XQZkb-FlHWABUp4_uShaZ{color:inherit!important;cursor:pointer!important;width:100%!important;display:inline-block!important;margin:10px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1XTzMvb2XKitWz0mFLlyyp{margin:5px!important;display:block!important;width:auto!important;white-space:pre!important;overflow-x:scroll!important;background:inherit!important;color:inherit!important;font-family:monospace}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1XTzMvb2XKitWz0mFLlyyp:not(.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-39QUvFFn5B7GMcqMQkOXZ3){display:none!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-295DY3nO0DbJWMsOqmjCli{background:#f5f5f5!important;color:#5a5a5a!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1aQZwu6CUzAf2zUcI7tg0Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-295DY3nO0DbJWMsOqmjCli{display:none!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-38EPFyKXMtoP12rPlmrHxs{background:#e6f7ff!important;color:#006097!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3W4ZnQjhoGfT1gTNcqRXdi .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-38EPFyKXMtoP12rPlmrHxs{display:none!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-HGYnfzlmgOZ-l7eANhQe_{background:#fff3ea!important;color:#993a00!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-24e52A11B1UIErbKHtBmqc .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-HGYnfzlmgOZ-l7eANhQe_{display:none!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-jji74ZzulHScD0OAD_G7h{background:#fef2f1!important;color:#b10823!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3npS60y-EvfF7G_lioSx2Q.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-28jAOA7cDee-95LvwGsOP- .IN-2bc0215c-7188-4274-b598-1969e06d4d7c-jji74ZzulHScD0OAD_G7h{display:none!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu{background-color:#0073b1!important;border:0!important;border-radius:2px!important;box-sizing:border-box!important;color:#fff!important;cursor:pointer!important;display:inline-block!important;font-family:-apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Fira Sans,Ubuntu,Oxygen,Oxygen Sans,Cantarell,Droid Sans,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Lucida Grande,Helvetica,Arial,sans-serif!important;font-weight:600!important;overflow:hidden!important;outline-width:2px!important;position:relative!important;text-align:center!important;text-decoration:none!important;vertical-align:middle!important;white-space:nowrap!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu:disabled{cursor:not-allowed!important;opacity:.7!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu:not(:disabled):not(.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1zhzkayakwEXovVYUbq5Gy):hover{background-color:#006097!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu:not(:disabled):not(.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1zhzkayakwEXovVYUbq5Gy):active{background-color:#004b7c!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1zhzkayakwEXovVYUbq5Gy{background-color:#fff!important;color:#0073b1!important;box-shadow:inset 0 0 0 1px rgba(0,0,0,.3)!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1zhzkayakwEXovVYUbq5Gy:not(:disabled):hover{color:#006097!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1zhzkayakwEXovVYUbq5Gy:not(:disabled):active{color:#004b7c!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu>xdoor-icon{display:inline-block!important;height:100%!important;vertical-align:top!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu>xdoor-icon>svg{pointer-events:none!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-7inSbaAsvG5bf7w6lJTEr{font-size:10px!important;height:16px!important;line-height:16px!important;padding:0 6px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-7inSbaAsvG5bf7w6lJTEr>xdoor-icon{margin-left:-6px!important;margin-right:3px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-7inSbaAsvG5bf7w6lJTEr>xdoor-icon>svg{height:16px!important;width:16px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-7inSbaAsvG5bf7w6lJTEr.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-2lrEjt4SOTxqrYsv1piG4c>xdoor-icon{margin-right:-6px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu,.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3uCBSbQNVNf2QjqHe1rfb6{font-size:11px!important;height:20px!important;line-height:20px!important;padding:0 7px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3uCBSbQNVNf2QjqHe1rfb6>xdoor-icon,.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu>xdoor-icon{margin-left:-7px!important;margin-right:3.5px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3uCBSbQNVNf2QjqHe1rfb6>xdoor-icon>svg,.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu>xdoor-icon>svg{height:20px!important;width:20px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-3uCBSbQNVNf2QjqHe1rfb6.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-2lrEjt4SOTxqrYsv1piG4c>xdoor-icon,.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-2lrEjt4SOTxqrYsv1piG4c>xdoor-icon{margin-right:-7px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-21Smv9YG-5V6M6KP-5v2WG{font-size:14px!important;height:24px!important;line-height:24px!important;padding:0 12px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-21Smv9YG-5V6M6KP-5v2WG>xdoor-icon{margin-left:-12px!important;margin-right:6px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-21Smv9YG-5V6M6KP-5v2WG>xdoor-icon>svg{height:24px!important;width:24px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-21Smv9YG-5V6M6KP-5v2WG.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-2lrEjt4SOTxqrYsv1piG4c>xdoor-icon{margin-right:-12px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1TGdQUTLZdNG4R87OfAB-q{font-size:16px!important;height:32px!important;line-height:32px!important;padding:0 16px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1TGdQUTLZdNG4R87OfAB-q>xdoor-icon{margin-left:-16px!important;margin-right:8px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1TGdQUTLZdNG4R87OfAB-q>xdoor-icon>svg{height:32px!important;width:32px!important}.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1TGdQUTLZdNG4R87OfAB-q.IN-2bc0215c-7188-4274-b598-1969e06d4d7c-2lrEjt4SOTxqrYsv1piG4c>xdoor-icon{margin-right:-16px!important}</style><script charset="utf-8" src="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/moment_timeline_tweet.a1aa0f6410f7eaada23e6b16a38824b8.js"></script><script charset="utf-8" src="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/timeline.f7ace10bb00711bb451dd36523152463.js"></script><script charset="utf-8" src="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/button.550007e6cc79c00bac51111d8131d860.js"></script><style type="text/css" id="pd_popup_holder_style_3724155_comm_64564">#pd_popup_holder_3724155_comm_64564 { position:absolute; display:none; width:350px; height:auto; top:0px; left:0px; z-index:10000; border:solid 1px #CCC; background-color:white; padding:0px 15px;font-family:Arial,Sans;box-shadow: -10px 10px 20px rgba(0, 0, 0, .5);-webkit-box-shadow: 0px 0px 6px rgba(0, 0, 0, .25);-moz-box-shadow: 0px 0px 6px rgba(0, 0, 0, .25); }</style><style type="text/css" id="pd_popup_holder_style_3724155_comm_64504">#pd_popup_holder_3724155_comm_64504 { position:absolute; display:none; width:350px; height:auto; top:0px; left:0px; z-index:10000; border:solid 1px #CCC; background-color:white; padding:0px 15px;font-family:Arial,Sans;box-shadow: -10px 10px 20px rgba(0, 0, 0, .5);-webkit-box-shadow: 0px 0px 6px rgba(0, 0, 0, .25);-moz-box-shadow: 0px 0px 6px rgba(0, 0, 0, .25); }</style><style type="text/css" id="pd_popup_holder_style_3724155_comm_64457">#pd_popup_holder_3724155_comm_64457 { position:absolute; display:none; width:350px; height:auto; top:0px; left:0px; z-index:10000; border:solid 1px #CCC; background-color:white; padding:0px 15px;font-family:Arial,Sans;box-shadow: -10px 10px 20px rgba(0, 0, 0, .5);-webkit-box-shadow: 0px 0px 6px rgba(0, 0, 0, .25);-moz-box-shadow: 0px 0px 6px rgba(0, 0, 0, .25); }</style><style type="text/css" id="pd_popup_holder_style_3724155_comm_64563">#pd_popup_holder_3724155_comm_64563 { position:absolute; display:none; width:350px; height:auto; top:0px; left:0px; z-index:10000; border:solid 1px #CCC; background-color:white; padding:0px 15px;font-family:Arial,Sans;box-shadow: -10px 10px 20px rgba(0, 0, 0, .5);-webkit-box-shadow: 0px 0px 6px rgba(0, 0, 0, .25);-moz-box-shadow: 0px 0px 6px rgba(0, 0, 0, .25); }</style></head>
+<body class="single single-post postid-150 single-format-standard singular two-column right-sidebar">
+<div id="page" class="hfeed">
+<header id="branding" role="banner">
+<hgroup>
+<h1 id="site-title"><span><a href="https://www.obsidianscheduler.com/blog/" title="Carfey Software Blog" rel="home">Carfey Software Blog</a></span></h1>
+<h2 id="site-description">The official Carfey Software Blog</h2>
+</hgroup>
+<a href="https://www.obsidianscheduler.com/blog/">
+<img src="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/ObsidianLogo_Angle-WithCarfey3.png" width="1000" height="288" alt="">
+</a>
+<form method="get" id="searchform" action="https://www.obsidianscheduler.com/blog/">
+<label for="s" class="assistive-text">Search</label>
+<input type="text" class="field" name="s" id="s" placeholder="Search">
+<input type="submit" class="submit" name="submit" id="searchsubmit" value="Search">
+</form>
+<nav id="access" role="navigation">
+<h3 class="assistive-text">Main menu</h3>
+<div class="skip-link"><a class="assistive-text" href="https://www.obsidianscheduler.com/blog/easy-deep-cloning-of-serializable-and-non-serializable-objects-in-java/#content" title="Skip to primary content">Skip to primary content</a></div>
+<div class="skip-link"><a class="assistive-text" href="https://www.obsidianscheduler.com/blog/easy-deep-cloning-of-serializable-and-non-serializable-objects-in-java/#secondary" title="Skip to secondary content">Skip to secondary content</a></div>
+<div class="menu"><ul><li><a href="https://www.obsidianscheduler.com/blog/" title="Home">Home</a></li><li class="page_item page-item-121"><a href="https://www.obsidianscheduler.com/blog/obsidian-scheduler/">Obsidian Scheduler</a></li><li class="page_item page-item-2"><a href="https://www.obsidianscheduler.com/blog/about/">About Us</a></li></ul></div>
+</nav>
+</header>
+<div id="main">
+<div id="primary">
+<div id="content" role="main">
+<nav id="nav-single">
+<h3 class="assistive-text">Post navigation</h3>
+<span class="nav-previous"><a href="https://www.obsidianscheduler.com/blog/ignoring-self-signed-certificates-in-java/" rel="prev"><span class="meta-nav">←</span> Previous</a></span>
+<span class="nav-next"><a href="https://www.obsidianscheduler.com/blog/why-you-shouldnt-use-quartz-scheduler/" rel="next">Next <span class="meta-nav">→</span></a></span>
+</nav>
+<article id="post-150" class="post-150 post type-post status-publish format-standard hentry category-java tag-clone tag-java-2 tag-serializable">
+<header class="entry-header">
+<h1 class="entry-title">Easy Deep Cloning of Serializable and Non-Serializable Objects in Java</h1>
+<div class="entry-meta">
+<span class="sep">Posted on </span><a href="https://www.obsidianscheduler.com/blog/easy-deep-cloning-of-serializable-and-non-serializable-objects-in-java/" title="9:15 pm" rel="bookmark"><time class="entry-date" datetime="2011-12-11T21:15:36+00:00">December 11, 2011</time></a><span class="by-author"> <span class="sep"> by </span> <span class="author vcard"><a class="url fn n" href="https://www.obsidianscheduler.com/blog/author/carey-flichel/" title="View all posts by carey" rel="author">carey</a></span></span> </div>
+</header>
+<div class="entry-content">
+<div class="bottomcontainerBox" style="border:1px solid #808080;background-color:#F0F4F9;">
+<div style="float:left; width:85px;padding-right:10px; margin:4px 4px 4px 4px;height:30px;">
+<iframe src="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/like.html" scrolling="no" frameborder="0" allowtransparency="true" style="border:none; overflow:hidden; width:85px; height:21px;"></iframe></div>
+<div style="float:left; width:80px;padding-right:10px; margin:4px 4px 4px 4px;height:30px;">
+<div id="___plusone_0" style="position: absolute; width: 450px; left: -10000px;"><iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position:absolute;top:-10000px;width:450px;margin:0px;border-style:none" tabindex="0" vspace="0" width="100%" id="I0_1580477014243" name="I0_1580477014243" src="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/fastbutton.html" data-gapiattached="true"></iframe></div><g:plusone size="medium" href="https://www.obsidianscheduler.com/blog/easy-deep-cloning-of-serializable-and-non-serializable-objects-in-java/" data-gapiscan="true" data-onload="true" data-gapistub="true"></g:plusone>
+</div>
+<div style="float:left; width:95px;padding-right:10px; margin:4px 4px 4px 4px;height:30px;">
+<iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button" style="position: static; visibility: visible; width: 61px; height: 20px;" title="Twitter Tweet Button" src="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/tweet_button.4f8aea4342a4ada72cba2bdffcff6b4d.en.html" data-url="https://www.obsidianscheduler.com/blog/easy-deep-cloning-of-serializable-and-non-serializable-objects-in-java/"></iframe>
+</div><div style="float:left; width:105px;padding-right:10px; margin:4px 4px 4px 4px;height:30px;"><span class="IN-widget" data-lnkd-debug="&lt;script type=&quot;in/share+init&quot; data-url=&quot;https://www.obsidianscheduler.com/blog/easy-deep-cloning-of-serializable-and-non-serializable-objects-in-java/&quot; data-counter=&quot;right&quot;&gt;&lt;/script&gt;" style="display: inline-block; line-height: 1; vertical-align: bottom; padding: 0px; margin: 0px; text-indent: 0px; text-align: center;"><span style="padding: 0px !important; margin: 0px !important; text-indent: 0px !important; display: inline-block !important; vertical-align: bottom !important; font-size: 1px !important;"><button class="IN-2bc0215c-7188-4274-b598-1969e06d4d7c-1G9ISYhSF8XoOmdcl0yKDu"><xdoor-icon aria-hidden="true"><svg viewBox="0 0 24 24" width="24px" height="24px" x="0" y="0" preserveAspectRatio="xMinYMin meet">
+      <g style="fill: currentColor">
+        <rect x="-0.003" style="fill:none;" width="24" height="24"></rect>
+        <path style="" d="M20,2h-16c-1.1,0-2,0.9-2,2v16c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2V4C22,2.9,21.1,2,20,2zM8,19h-3v-9h3V19zM6.5,8.8C5.5,8.8,4.7,8,4.7,7s0.8-1.8,1.8-1.8S8.3,6,8.3,7S7.5,8.8,6.5,8.8zM19,19h-3v-4c0-1.4-0.6-2-1.5-2c-1.1,0-1.5,0.8-1.5,2.2V19h-3v-9h2.9v1.1c0.5-0.7,1.4-1.3,2.6-1.3c2.3,0,3.5,1.1,3.5,3.7V19z"></path>
+      </g>
+    </svg></xdoor-icon>Share</button></span></span></div>
+<div style="float:left; width:85px;padding-right:10px; margin:4px 4px 4px 4px;height:30px;"><script src="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/hostedbadge.php"></script></div>
+</div><div style="clear:both"></div><div style="padding-bottom:4px;"></div><p>Frequently developers rely on 3d party libraries to avoid reinventing the wheel, particularly in the Java world, with projects like Apache and Spring so prevalent. When dealing with these frameworks, we often have little or no control of the behaviour of their classes.<br>
+This can sometimes lead to problems. For instance, if you want to deep clone an object that doesn’t provide a suitable clone method, what are your options, short of writing a bunch of code?</p>
+<p><strong>Clone through Serialization </strong><br>
+The simplest approach is to clone by taking advantage of an object being <code>Serializable</code>. Apache Commons provides a method to do this, but for completeness, code to do it yourself is below also.</p>
+<pre>@SuppressWarnings("unchecked")
+public static <t extends="" serializable=""> T cloneThroughSerialize(T t) throws Exception {
+   ByteArrayOutputStream bos = new ByteArrayOutputStream();
+   serializeToOutputStream(t, bos);
+   byte[] bytes = bos.toByteArray();
+   ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(bytes));
+   return (T)ois.readObject();
+}
+
+private static void serializeToOutputStream(Serializable ser, OutputStream os) 
+                                                          throws IOException {
+   ObjectOutputStream oos = null;
+   try {
+      oos = new ObjectOutputStream(os);
+      oos.writeObject(ser);
+      oos.flush();
+   } finally {
+      oos.close();
+   }
+}
+
+// using our custom method
+Object cloned = cloneThroughSerialize (someObject);
+
+// or with Apache Commons
+cloned = org.apache.commons.lang. SerializationUtils.clone(someObject);
+
+</t></pre>
+<p>But what if the class we want to clone isn’t <code>Serializable</code> and we have no control over the source code or can’t make it <code>Serializable</code>?</p>
+<p><strong>Option 1 – Java Deep Cloning Library</strong><br>
+There’s a nice little library which can deep clone virtually any Java Object – <a href="https://code.google.com/p/cloning/" title="Java Deep Cloning library">cloning</a>. It takes advantage of Java’s excellent reflection capabilities to provide optimized deep-cloned versions of objects.</p>
+<pre>Cloner cloner=new Cloner();
+Object cloned = cloner.deepClone(someObject);
+</pre>
+<p>As you can see, it’s very simple and effective, and requires minimal code. It has some more advanced abilities beyond this simple example, which you can check out <a href="http://code.google.com/p/cloning/wiki/Usage" title="Cloning Usage">here</a>.</p>
+<p><strong>Option 2 – JSON Cloning</strong><br>
+What about if we are not able to introduce a new library to our codebase? Some of us deal with approval processes to introduce new libraries, and it may not be worth it for a simple use case. </p>
+<p>Well, as long as we have <i>some</i> way to serialize and restore an object, we can make a deep copy. JSON is commonly used, so it’s a good candidate,since most of us use one JSON library or another.</p>
+<p>Most JSON libraries in Java have the ability to effectively serialize any POJO without any configuration or mapping required. This means that if you have a JSON library and cannot or will not introduce more libraries to provide deep cloning, you can leverage an existing JSON library to get the same effect. Note this method will be slower than others, but for the vast majority of applications, this won’t cause any performance problems.</p>
+<p>Below is an example using the <a href="https://code.google.com/p/google-gson/" title="GSON">GSON</a> library.</p>
+<pre>@SuppressWarnings("unchecked")
+public static <t> T cloneThroughJson(T t) {
+   Gson gson = new Gson();
+   String json = gson.toJson(t);
+   return (T) gson.fromJson(json, t.getClass());
+}
+// ...
+Object cloned = cloneThroughJson(someObject);
+</t></pre>
+<p>Note that this is likely only to work if the copied object has a default no-argument constructor. In the case of GSON, you can use an <a href="https://sites.google.com/site/gson/gson-user-guide#TOC-Writing-an-Instance-Creator" title="GSON Instance Creator">instance creator</a> to get around this. Other frameworks have similar concepts, so you can use that if you hit an issue with an unmodifiable class having not having the default constructor.</p>
+<p><strong>Conclusion</strong><br>
+One thing I do recommend is that for any classes you need to clone, you should add some unit tests to ensure everything behaves as expected. This can prevent changes to the classes (e.g. upgrading library versions) from breaking your application without your knowledge, especially if you have a continuous integration environment set up.</p>
+<p>I’ve outlined a couple methods to clone an object outside of normal cases without any custom code. If you’ve used any other methods to get the same result, please share.</p>
+</div>
+<footer class="entry-meta">
+This entry was posted in <a href="https://www.obsidianscheduler.com/blog/category/java/" title="View all posts in Java" rel="category tag">Java</a> and tagged <a href="https://www.obsidianscheduler.com/blog/tag/clone/" rel="tag">clone</a>, <a href="https://www.obsidianscheduler.com/blog/tag/java-2/" rel="tag">java</a>, <a href="https://www.obsidianscheduler.com/blog/tag/serializable/" rel="tag">serializable</a> by <a href="https://www.obsidianscheduler.com/blog/author/carey-flichel/">carey</a>. Bookmark the <a href="https://www.obsidianscheduler.com/blog/easy-deep-cloning-of-serializable-and-non-serializable-objects-in-java/" title="Permalink to Easy Deep Cloning of Serializable and Non-Serializable Objects in Java" rel="bookmark">permalink</a>.
+</footer>
+</article>
+<div id="comments">
+<h2 id="comments-title">
+4 thoughts on “<span>Easy Deep Cloning of Serializable and Non-Serializable Objects in Java</span>” </h2>
+<ol class="commentlist">
+<li class="comment even thread-even depth-1" id="li-comment-64457">
+<article id="comment-64457" class="comment">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt="" src="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/ad516503a11cd5ca435acc9bb6523536.png" class="avatar avatar-68 photo" height="68" width="68"><span class="fn">Brian</span> on <a href="https://www.obsidianscheduler.com/blog/easy-deep-cloning-of-serializable-and-non-serializable-objects-in-java/#comment-64457"><time datetime="2014-03-04T18:36:40+00:00">March 4, 2014 at 6:36 pm</time></a> <span class="says">said:</span>
+</div>
+</footer>
+<div class="comment-content"><div class="pd-rating" id="pd_rating_holder_3724155_comm_64457" style="display: inline-block;"><div class="rating-icons" id="pd_rate_3724155_comm_64457" style="float:left;"><div class="rating-nero-icon" onmouseout="PDRTJS_3724155_comm_64457.rebuild();" onclick="PDRTJS_3724155_comm_64457.rate(1);" onmouseover="PDRTJS_3724155_comm_64457.hover(1);" id="PDRTJS_3724155_comm_64457_nero_1" style="background-size: 32px 32px !important; cursor: pointer; width: 16px; height: 16px;  line-height: 16px; background: url(https://polldaddy.com/images/ratings/nero-hand-sml@2x.png) bottom left; float: left; padding: 0px; margin: 0px; margin: 0px;">&nbsp;</div><div class="rating-nero-value" id="PDRTJS_3724155_comm_64457_msg_1" style="text-align: center; font:normal normal /16px ; color: #; float:left; padding: 0px 4px;">0</div><div class="rating-nero-icon" onmouseout="PDRTJS_3724155_comm_64457.rebuild();" onclick="PDRTJS_3724155_comm_64457.rate(2);" onmouseover="PDRTJS_3724155_comm_64457.hover(2);" id="PDRTJS_3724155_comm_64457_nero_2" style="background-size: 32px 32px !important; cursor: pointer; width: 16px; height: 16px;  line-height: 16px; background: url(https://polldaddy.com/images/ratings/nero-hand-sml@2x.png) bottom right; float: left; padding: 0px; margin: 0px; margin: 0px;">&nbsp;</div><div class="rating-nero-value" id="PDRTJS_3724155_comm_64457_msg_2" style="text-align: center; font:normal normal /16px ; color: #; float:left; padding: 0px 4px;">0</div></div><span style="float:left;">&nbsp;</span><div id="rating_info_3724155_comm_64457" style="display:block;float:left;background:url(https://polldaddy.com/images/ratings/info@2x.png) no-repeat 3px 2px;width:16px;height:16px;cursor:pointer; background-size:12px 12px; " onclick="javascript:PDRTJS_3724155_comm_64457.togglePopup();return false;"><span style="display:none;">i</span></div><div class="pd_popup_holder" id="pd_popup_holder_3724155_comm_64457">&nbsp;</div><div class="rating-msg" id="PDRTJS_3724155_comm_64457_msg" style="float:left; padding-left: 5px; text-align: left; font:normal normal /16px ; color: #;">Rate This</div><p style="padding: 0px; margin: 0px; clear: both;"></p></div><br><p>This doesn’t work for Apache’s Digester. Any ideas on how to clone that? It’s not Thread safe and I’m trying to avoid synchronizing it.</p>
+</div>
+<div class="reply">
+<a class="comment-reply-link" href="https://www.obsidianscheduler.com/blog/easy-deep-cloning-of-serializable-and-non-serializable-objects-in-java/?replytocom=64457#respond" onclick="return addComment.moveForm(&quot;comment-64457&quot;, &quot;64457&quot;, &quot;respond&quot;, &quot;150&quot;)">Reply <span>↓</span></a> </div>
+</article>
+<ul class="children">
+<li class="comment byuser comment-author-carey-flichel bypostauthor odd alt depth-2" id="li-comment-64564">
+<article id="comment-64564" class="comment">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt="" src="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/ad516503a11cd5ca435acc9bb6523536(1).png" class="avatar avatar-39 photo" height="39" width="39"><span class="fn"><a href="http://carfey.com/blog" rel="external nofollow" class="url">carey</a></span> on <a href="https://www.obsidianscheduler.com/blog/easy-deep-cloning-of-serializable-and-non-serializable-objects-in-java/#comment-64564"><time datetime="2014-04-06T22:16:41+00:00">April 6, 2014 at 10:16 pm</time></a> <span class="says">said:</span>
+</div>
+</footer>
+<div class="comment-content"><div class="pd-rating" id="pd_rating_holder_3724155_comm_64564" style="display: inline-block;"><div class="rating-icons" id="pd_rate_3724155_comm_64564" style="float:left;"><div class="rating-nero-icon" onmouseout="PDRTJS_3724155_comm_64564.rebuild();" onclick="PDRTJS_3724155_comm_64564.rate(1);" onmouseover="PDRTJS_3724155_comm_64564.hover(1);" id="PDRTJS_3724155_comm_64564_nero_1" style="background-size: 32px 32px !important; cursor: pointer; width: 16px; height: 16px;  line-height: 16px; background: url(https://polldaddy.com/images/ratings/nero-hand-sml@2x.png) bottom left; float: left; padding: 0px; margin: 0px; margin: 0px;">&nbsp;</div><div class="rating-nero-value" id="PDRTJS_3724155_comm_64564_msg_1" style="text-align: center; font:normal normal /16px ; color: #; float:left; padding: 0px 4px;">0</div><div class="rating-nero-icon" onmouseout="PDRTJS_3724155_comm_64564.rebuild();" onclick="PDRTJS_3724155_comm_64564.rate(2);" onmouseover="PDRTJS_3724155_comm_64564.hover(2);" id="PDRTJS_3724155_comm_64564_nero_2" style="background-size: 32px 32px !important; cursor: pointer; width: 16px; height: 16px;  line-height: 16px; background: url(https://polldaddy.com/images/ratings/nero-hand-sml@2x.png) bottom right; float: left; padding: 0px; margin: 0px; margin: 0px;">&nbsp;</div><div class="rating-nero-value" id="PDRTJS_3724155_comm_64564_msg_2" style="text-align: center; font:normal normal /16px ; color: #; float:left; padding: 0px 4px;">0</div></div><span style="float:left;">&nbsp;</span><div id="rating_info_3724155_comm_64564" style="display:block;float:left;background:url(https://polldaddy.com/images/ratings/info@2x.png) no-repeat 3px 2px;width:16px;height:16px;cursor:pointer; background-size:12px 12px; " onclick="javascript:PDRTJS_3724155_comm_64564.togglePopup();return false;"><span style="display:none;">i</span></div><div class="pd_popup_holder" id="pd_popup_holder_3724155_comm_64564">&nbsp;</div><div class="rating-msg" id="PDRTJS_3724155_comm_64564_msg" style="float:left; padding-left: 5px; text-align: left; font:normal normal /16px ; color: #;">Rate This</div><p style="padding: 0px; margin: 0px; clear: both;"></p></div><br><p>This might be tricky to do. What’s your use case exactly?</p>
+</div>
+<div class="reply">
+<a class="comment-reply-link" href="https://www.obsidianscheduler.com/blog/easy-deep-cloning-of-serializable-and-non-serializable-objects-in-java/?replytocom=64564#respond" onclick="return addComment.moveForm(&quot;comment-64564&quot;, &quot;64564&quot;, &quot;respond&quot;, &quot;150&quot;)">Reply <span>↓</span></a> </div>
+</article>
+</li>
+</ul>
+</li>
+<li class="comment even thread-odd thread-alt depth-1" id="li-comment-64504">
+<article id="comment-64504" class="comment">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt="" src="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/ad516503a11cd5ca435acc9bb6523536(2).png" class="avatar avatar-68 photo" height="68" width="68"><span class="fn">JavaJimFl</span> on <a href="https://www.obsidianscheduler.com/blog/easy-deep-cloning-of-serializable-and-non-serializable-objects-in-java/#comment-64504"><time datetime="2014-03-19T10:45:13+00:00">March 19, 2014 at 10:45 am</time></a> <span class="says">said:</span>
+</div>
+</footer>
+<div class="comment-content"><div class="pd-rating" id="pd_rating_holder_3724155_comm_64504" style="display: inline-block;"><div class="rating-icons" id="pd_rate_3724155_comm_64504" style="float:left;"><div class="rating-nero-icon" onmouseout="PDRTJS_3724155_comm_64504.rebuild();" onclick="PDRTJS_3724155_comm_64504.rate(1);" onmouseover="PDRTJS_3724155_comm_64504.hover(1);" id="PDRTJS_3724155_comm_64504_nero_1" style="background-size: 32px 32px !important; cursor: pointer; width: 16px; height: 16px;  line-height: 16px; background: url(https://polldaddy.com/images/ratings/nero-hand-sml@2x.png) bottom left; float: left; padding: 0px; margin: 0px; margin: 0px;">&nbsp;</div><div class="rating-nero-value" id="PDRTJS_3724155_comm_64504_msg_1" style="text-align: center; font:normal normal /16px ; color: #; float:left; padding: 0px 4px;">0</div><div class="rating-nero-icon" onmouseout="PDRTJS_3724155_comm_64504.rebuild();" onclick="PDRTJS_3724155_comm_64504.rate(2);" onmouseover="PDRTJS_3724155_comm_64504.hover(2);" id="PDRTJS_3724155_comm_64504_nero_2" style="background-size: 32px 32px !important; cursor: pointer; width: 16px; height: 16px;  line-height: 16px; background: url(https://polldaddy.com/images/ratings/nero-hand-sml@2x.png) bottom right; float: left; padding: 0px; margin: 0px; margin: 0px;">&nbsp;</div><div class="rating-nero-value" id="PDRTJS_3724155_comm_64504_msg_2" style="text-align: center; font:normal normal /16px ; color: #; float:left; padding: 0px 4px;">0</div></div><span style="float:left;">&nbsp;</span><div id="rating_info_3724155_comm_64504" style="display:block;float:left;background:url(https://polldaddy.com/images/ratings/info@2x.png) no-repeat 3px 2px;width:16px;height:16px;cursor:pointer; background-size:12px 12px; " onclick="javascript:PDRTJS_3724155_comm_64504.togglePopup();return false;"><span style="display:none;">i</span></div><div class="pd_popup_holder" id="pd_popup_holder_3724155_comm_64504">&nbsp;</div><div class="rating-msg" id="PDRTJS_3724155_comm_64504_msg" style="float:left; padding-left: 5px; text-align: left; font:normal normal /16px ; color: #;">Rate This</div><p style="padding: 0px; margin: 0px; clear: both;"></p></div><br><p>The JSON cloning approach will only work if the class being cloned doesn’t have a bidirectional reference to another class. Otherwise, it’s a great solution.</p>
+</div>
+<div class="reply">
+<a class="comment-reply-link" href="https://www.obsidianscheduler.com/blog/easy-deep-cloning-of-serializable-and-non-serializable-objects-in-java/?replytocom=64504#respond" onclick="return addComment.moveForm(&quot;comment-64504&quot;, &quot;64504&quot;, &quot;respond&quot;, &quot;150&quot;)">Reply <span>↓</span></a> </div>
+</article>
+<ul class="children">
+<li class="comment byuser comment-author-carey-flichel bypostauthor odd alt depth-2" id="li-comment-64563">
+<article id="comment-64563" class="comment">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt="" src="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/ad516503a11cd5ca435acc9bb6523536(1).png" class="avatar avatar-39 photo" height="39" width="39"><span class="fn"><a href="http://carfey.com/blog" rel="external nofollow" class="url">carey</a></span> on <a href="https://www.obsidianscheduler.com/blog/easy-deep-cloning-of-serializable-and-non-serializable-objects-in-java/#comment-64563"><time datetime="2014-04-06T22:15:07+00:00">April 6, 2014 at 10:15 pm</time></a> <span class="says">said:</span>
+</div>
+</footer>
+<div class="comment-content"><div class="pd-rating" id="pd_rating_holder_3724155_comm_64563" style="display: inline-block;"><div class="rating-icons" id="pd_rate_3724155_comm_64563" style="float:left;"><div class="rating-nero-icon" onmouseout="PDRTJS_3724155_comm_64563.rebuild();" onclick="PDRTJS_3724155_comm_64563.rate(1);" onmouseover="PDRTJS_3724155_comm_64563.hover(1);" id="PDRTJS_3724155_comm_64563_nero_1" style="background-size: 32px 32px !important; cursor: pointer; width: 16px; height: 16px;  line-height: 16px; background: url(https://polldaddy.com/images/ratings/nero-hand-sml@2x.png) bottom left; float: left; padding: 0px; margin: 0px; margin: 0px;">&nbsp;</div><div class="rating-nero-value" id="PDRTJS_3724155_comm_64563_msg_1" style="text-align: center; font:normal normal /16px ; color: #; float:left; padding: 0px 4px;">0</div><div class="rating-nero-icon" onmouseout="PDRTJS_3724155_comm_64563.rebuild();" onclick="PDRTJS_3724155_comm_64563.rate(2);" onmouseover="PDRTJS_3724155_comm_64563.hover(2);" id="PDRTJS_3724155_comm_64563_nero_2" style="background-size: 32px 32px !important; cursor: pointer; width: 16px; height: 16px;  line-height: 16px; background: url(https://polldaddy.com/images/ratings/nero-hand-sml@2x.png) bottom right; float: left; padding: 0px; margin: 0px; margin: 0px;">&nbsp;</div><div class="rating-nero-value" id="PDRTJS_3724155_comm_64563_msg_2" style="text-align: center; font:normal normal /16px ; color: #; float:left; padding: 0px 4px;">0</div></div><span style="float:left;">&nbsp;</span><div id="rating_info_3724155_comm_64563" style="display:block;float:left;background:url(https://polldaddy.com/images/ratings/info@2x.png) no-repeat 3px 2px;width:16px;height:16px;cursor:pointer; background-size:12px 12px; " onclick="javascript:PDRTJS_3724155_comm_64563.togglePopup();return false;"><span style="display:none;">i</span></div><div class="pd_popup_holder" id="pd_popup_holder_3724155_comm_64563">&nbsp;</div><div class="rating-msg" id="PDRTJS_3724155_comm_64563_msg" style="float:left; padding-left: 5px; text-align: left; font:normal normal /16px ; color: #;">Rate This</div><p style="padding: 0px; margin: 0px; clear: both;"></p></div><br><p>Very good point and a good thing to note when serializing large object graphs.</p>
+</div>
+<div class="reply">
+<a class="comment-reply-link" href="https://www.obsidianscheduler.com/blog/easy-deep-cloning-of-serializable-and-non-serializable-objects-in-java/?replytocom=64563#respond" onclick="return addComment.moveForm(&quot;comment-64563&quot;, &quot;64563&quot;, &quot;respond&quot;, &quot;150&quot;)">Reply <span>↓</span></a> </div>
+</article>
+</li>
+</ul>
+</li>
+</ol>
+<div id="respond">
+<h3 id="reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="https://www.obsidianscheduler.com/blog/easy-deep-cloning-of-serializable-and-non-serializable-objects-in-java/#respond" style="display:none;">Cancel reply</a></small></h3>
+<form action="https://www.obsidianscheduler.com/blog/wp-comments-post.php" method="post" id="commentform">
+<p class="comment-notes">Your email address will not be published. Required fields are marked <span class="required">*</span></p> <p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" aria-required="true"></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="text" value="" size="30" aria-required="true"></p>
+<p class="comment-form-url"><label for="url">Website</label><input id="url" name="url" type="text" value="" size="30"></p>
+<p class="cptch_block"><br> <input type="hidden" name="cptch_result" value="gxg=">
+<input type="hidden" name="cptch_time" value="1580477011">
+<input type="hidden" value="Version: 2.4">
+<input id="cptch_input" type="text" autocomplete="off" name="cptch_number" value="" maxlength="2" size="2" aria-required="true" required="required" style="margin-bottom:0;display:inline;font-size: 12px;width: 40px;"> + three = 11 </p> <p class="comment-form-comment"><label for="comment">Comment</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p> <p class="form-allowed-tags">You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes: <code>&lt;a href="" title=""&gt; &lt;abbr title=""&gt; &lt;acronym title=""&gt; &lt;b&gt; &lt;blockquote cite=""&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=""&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=""&gt; &lt;strike&gt; &lt;strong&gt; </code></p> <p class="form-submit">
+<input name="submit" type="submit" id="submit" value="Post Comment">
+<input type="hidden" name="comment_post_ID" value="150" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p>
+</form>
+</div>
+</div>
+</div>
+</div>
+<div id="secondary" class="widget-area" role="complementary">
+<aside id="text-3" class="widget widget_text"><h3 class="widget-title">Obsidian Scheduler</h3> <div class="textwidget"><div style="border: 1px solid #DADADA;  padding:5px;">
+Try our flagship product today! Obsidian is a job/task scheduler with advanced fail-over and load-sharing capabilities. The <a href="http://demo.obsidianscheduler.com/" title="live demo">live demo</a> is always available and Obsidian is free to use on one node with no restrictions for as long as you like, and a second clustering node is free for a full year. See our <a href="http://obsidianscheduler.com/" title="Obsidian Scheduler">main website</a> for full details.
+</div>
+<div style="padding-top: 15px;">
+<iframe id="twitter-widget-1" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="twitter-timeline twitter-timeline-rendered" style="position: static; visibility: visible; display: inline-block; width: 520px; height: 600px; padding: 0px; border: none; max-width: 100%; min-width: 180px; margin-top: 0px; margin-bottom: 0px; min-height: 200px;" data-widget-id="profile:CarfeySoftware" title="Twitter Timeline" src="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/saved_resource.html"></iframe>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</div></div>
+</aside><aside id="adrotate_widgets-5" class="widget widget_adrotate_widgets"><script type="text/javascript"><!--
+google_ad_client = "ca-pub-5395896438673029";
+/* Wide Skyscraper */
+google_ad_slot = "7209803319";
+google_ad_width = 160;
+google_ad_height = 600;
+//-->
+</script>
+<script type="text/javascript" src="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/f.txt">
+</script></aside><aside id="tag_cloud-2" class="widget widget_tag_cloud"><h3 class="widget-title">Tags</h3><div class="tagcloud"><a href="https://www.obsidianscheduler.com/blog/tag/blockingqueue/" class="tag-link-16" title="1 topic" style="font-size: 8pt;">blockingqueue</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/calendar/" class="tag-link-29" title="1 topic" style="font-size: 8pt;">calendar</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/callable/" class="tag-link-20" title="1 topic" style="font-size: 8pt;">callable</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/carfeydate/" class="tag-link-32" title="1 topic" style="font-size: 8pt;">carfeydate</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/collection/" class="tag-link-14" title="2 topics" style="font-size: 10.032258064516pt;">collection</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/concurrency-2/" class="tag-link-13" title="8 topics" style="font-size: 15.338709677419pt;">concurrency</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/cron4j/" class="tag-link-94" title="2 topics" style="font-size: 10.032258064516pt;">cron4j</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/database-2/" class="tag-link-38" title="4 topics" style="font-size: 12.516129032258pt;">database</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/date-2/" class="tag-link-28" title="1 topic" style="font-size: 8pt;">date</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/dateformat/" class="tag-link-30" title="1 topic" style="font-size: 8pt;">dateformat</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/deadlock/" class="tag-link-27" title="2 topics" style="font-size: 10.032258064516pt;">deadlock</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/development/" class="tag-link-91" title="2 topics" style="font-size: 10.032258064516pt;">development</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/dirty-read/" class="tag-link-40" title="1 topic" style="font-size: 8pt;">dirty read</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/dirty-write/" class="tag-link-41" title="2 topics" style="font-size: 10.032258064516pt;">dirty write</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/failover/" class="tag-link-35" title="1 topic" style="font-size: 8pt;">failover</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/file/" class="tag-link-102" title="2 topics" style="font-size: 10.032258064516pt;">file</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/future/" class="tag-link-19" title="1 topic" style="font-size: 8pt;">future</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/grails-2/" class="tag-link-73" title="3 topics" style="font-size: 11.387096774194pt;">grails</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/groovy-2/" class="tag-link-62" title="5 topics" style="font-size: 13.41935483871pt;">groovy</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/immutable/" class="tag-link-31" title="1 topic" style="font-size: 8pt;">immutable</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/java-2/" class="tag-link-12" title="34 topics" style="font-size: 22pt;">java</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/java-7/" class="tag-link-69" title="2 topics" style="font-size: 10.032258064516pt;">java 7</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/junit/" class="tag-link-64" title="3 topics" style="font-size: 11.387096774194pt;">jUnit</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/locks/" class="tag-link-23" title="1 topic" style="font-size: 8pt;">locks</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/mongodb/" class="tag-link-56" title="2 topics" style="font-size: 10.032258064516pt;">mongodb</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/nosql/" class="tag-link-57" title="2 topics" style="font-size: 10.032258064516pt;">nosql</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/obsidian/" class="tag-link-79" title="12 topics" style="font-size: 17.145161290323pt;">obsidian</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/optimistic/" class="tag-link-43" title="2 topics" style="font-size: 10.032258064516pt;">optimistic</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/orm/" class="tag-link-77" title="3 topics" style="font-size: 11.387096774194pt;">orm</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/performance/" class="tag-link-25" title="4 topics" style="font-size: 12.516129032258pt;">performance</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/pessimistic/" class="tag-link-39" title="2 topics" style="font-size: 10.032258064516pt;">pessimistic</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/quartz/" class="tag-link-93" title="6 topics" style="font-size: 14.209677419355pt;">quartz</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/queue/" class="tag-link-15" title="1 topic" style="font-size: 8pt;">queue</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/recovery/" class="tag-link-36" title="1 topic" style="font-size: 8pt;">recovery</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/reentrant/" class="tag-link-24" title="1 topic" style="font-size: 8pt;">reentrant</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/reliable/" class="tag-link-34" title="1 topic" style="font-size: 8pt;">reliable</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/runnable/" class="tag-link-22" title="2 topics" style="font-size: 10.032258064516pt;">runnable</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/scheduler-2/" class="tag-link-33" title="14 topics" style="font-size: 17.935483870968pt;">scheduler</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/semaphore/" class="tag-link-26" title="1 topic" style="font-size: 8pt;">semaphore</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/software/" class="tag-link-92" title="2 topics" style="font-size: 10.032258064516pt;">software</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/spring-2/" class="tag-link-74" title="2 topics" style="font-size: 10.032258064516pt;">spring</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/testing-2/" class="tag-link-72" title="4 topics" style="font-size: 12.516129032258pt;">testing</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/thread-safe/" class="tag-link-18" title="4 topics" style="font-size: 12.516129032258pt;">thread-safe</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/thread-pool/" class="tag-link-21" title="2 topics" style="font-size: 10.032258064516pt;">thread pool</a>
+<a href="https://www.obsidianscheduler.com/blog/tag/transparency/" class="tag-link-37" title="1 topic" style="font-size: 8pt;">transparency</a></div>
+</aside><aside id="meta-4" class="widget widget_meta"><h3 class="widget-title">Meta</h3> <ul>
+<li><a href="https://www.obsidianscheduler.com/blog/wp-login.php">Log in</a></li>
+<li><a href="https://www.obsidianscheduler.com/blog/feed/" title="Syndicate this site using RSS 2.0">Entries <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+<li><a href="https://www.obsidianscheduler.com/blog/comments/feed/" title="The latest comments to all posts in RSS">Comments <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+<li><a href="https://wordpress.org/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress.org</a></li>
+</ul>
+</aside><aside id="calendar-3" class="widget widget_calendar"><div id="calendar_wrap"><table id="wp-calendar">
+<caption>January 2020</caption>
+<thead>
+<tr>
+<th scope="col" title="Monday">M</th>
+<th scope="col" title="Tuesday">T</th>
+<th scope="col" title="Wednesday">W</th>
+<th scope="col" title="Thursday">T</th>
+<th scope="col" title="Friday">F</th>
+<th scope="col" title="Saturday">S</th>
+<th scope="col" title="Sunday">S</th>
+</tr>
+</thead>
+<tfoot>
+<tr>
+<td colspan="3" id="prev"><a href="https://www.obsidianscheduler.com/blog/2014/11/" title="View posts for November 2014">« Nov</a></td>
+<td class="pad">&nbsp;</td>
+<td colspan="3" id="next" class="pad">&nbsp;</td>
+</tr>
+</tfoot>
+<tbody>
+<tr>
+<td colspan="2" class="pad">&nbsp;</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td>
+</tr>
+<tr>
+<td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td>
+</tr>
+<tr>
+<td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td>
+</tr>
+<tr>
+<td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td>
+</tr>
+<tr>
+<td>27</td><td>28</td><td>29</td><td>30</td><td id="today">31</td>
+<td class="pad" colspan="2">&nbsp;</td>
+</tr>
+</tbody>
+</table></div></aside> </div>
+</div>
+<footer id="colophon" role="contentinfo">
+<div id="supplementary" class="one">
+<div id="first" class="widget-area" role="complementary">
+<aside id="adrotate_widgets-4" class="widget widget_adrotate_widgets"><script type="text/javascript"><!--
+google_ad_client = "ca-pub-5395896438673029";
+/* 728x15 text ads */
+google_ad_slot = "4860004944";
+google_ad_width = 728;
+google_ad_height = 15;
+//-->
+</script>
+<script type="text/javascript" src="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/f.txt">
+</script></aside> </div>
+</div>
+<div id="site-generator">
+<a href="https://wordpress.org/" title="Semantic Personal Publishing Platform">Proudly powered by WordPress</a>
+</div>
+</footer>
+</div>
+<script type="text/javascript">
+
+ var _gaq = _gaq || [];
+ _gaq.push(['_setAccount', 'UA-22078548-1']);
+ _gaq.push(['_setDomainName', '.carfey.com']);
+ _gaq.push(['_trackPageview']);
+
+ (function() {
+   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+   ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+ })();
+
+</script>
+<script type="text/javascript" charset="UTF-8" id="polldaddyRatings"><!--//--><![CDATA[//><!--
+PDRTJS_settings_3724155_comm_64457={"id":3724155,"unique_id":"wp-comment-64457","title":"This%20doesn%26%23039%3Bt%20work%20for%20Apache%26%23039%3Bs%20Digester.%20%20Any%20ideas%20on%20how%20to%20clone%20that%3F%20%20It%26%23039%3Bs%20not%20Thread%20safe%20and%20I%26%23039%3Bm%20trying%20to%20avoid%20synchronizing%20it.%E2%80%A6","permalink":"https:\/\/www.obsidianscheduler.com\/blog\/easy-deep-cloning-of-serializable-and-non-serializable-objects-in-java\/#comment-64457","item_id":"_comm_64457"}; if ( typeof PDRTJS_RATING !== 'undefined' ){if ( typeof PDRTJS_3724155_comm_64457 == 'undefined' ){PDRTJS_3724155_comm_64457 = new PDRTJS_RATING( PDRTJS_settings_3724155_comm_64457 );}}PDRTJS_settings_3724155_comm_64564={"id":3724155,"unique_id":"wp-comment-64564","title":"This%20might%20be%20tricky%20to%20do.%20What%26%23039%3Bs%20your%20use%20case%20exactly%3F%E2%80%A6","permalink":"https:\/\/www.obsidianscheduler.com\/blog\/easy-deep-cloning-of-serializable-and-non-serializable-objects-in-java\/#comment-64564","item_id":"_comm_64564"}; if ( typeof PDRTJS_RATING !== 'undefined' ){if ( typeof PDRTJS_3724155_comm_64564 == 'undefined' ){PDRTJS_3724155_comm_64564 = new PDRTJS_RATING( PDRTJS_settings_3724155_comm_64564 );}}PDRTJS_settings_3724155_comm_64504={"id":3724155,"unique_id":"wp-comment-64504","title":"The%20JSON%20cloning%20approach%20will%20only%20work%20if%20the%20class%20being%20cloned%20doesn%26%23039%3Bt%20have%20a%20bidirectional%20reference%20to%20another%20class.%20%20Otherwise%2C%20it%26%23039%3Bs%20a%20great%20solution.%E2%80%A6","permalink":"https:\/\/www.obsidianscheduler.com\/blog\/easy-deep-cloning-of-serializable-and-non-serializable-objects-in-java\/#comment-64504","item_id":"_comm_64504"}; if ( typeof PDRTJS_RATING !== 'undefined' ){if ( typeof PDRTJS_3724155_comm_64504 == 'undefined' ){PDRTJS_3724155_comm_64504 = new PDRTJS_RATING( PDRTJS_settings_3724155_comm_64504 );}}PDRTJS_settings_3724155_comm_64563={"id":3724155,"unique_id":"wp-comment-64563","title":"Very%20good%20point%20and%20a%20good%20thing%20to%20note%20when%20serializing%20large%20object%20graphs.%E2%80%A6","permalink":"https:\/\/www.obsidianscheduler.com\/blog\/easy-deep-cloning-of-serializable-and-non-serializable-objects-in-java\/#comment-64563","item_id":"_comm_64563"}; if ( typeof PDRTJS_RATING !== 'undefined' ){if ( typeof PDRTJS_3724155_comm_64563 == 'undefined' ){PDRTJS_3724155_comm_64563 = new PDRTJS_RATING( PDRTJS_settings_3724155_comm_64563 );}}
+//--><!]]></script><script type="text/javascript" charset="UTF-8" src="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/rating.js"></script><script type="text/javascript">
+/* <![CDATA[ */
+var thickboxL10n = {"next":"Next >","prev":"< Prev","image":"Image","of":"of","close":"Close","noiframes":"This feature requires inline frames. You have iframes disabled or your browser does not support them.","loadingAnimation":"https:\/\/www.obsidianscheduler.com\/blog\/wp-includes\/js\/thickbox\/loadingAnimation.gif","closeImage":"https:\/\/www.obsidianscheduler.com\/blog\/wp-includes\/js\/thickbox\/tb-close.png"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/thickbox.js"></script>
+<script type="text/javascript" src="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/widgets(1).js"></script>
+<script type="text/javascript" src="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/plusone.js" gapi_processed="true"></script>
+<script type="text/javascript" src="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/in.js"></script>
+
+
+<iframe scrolling="no" frameborder="0" allowtransparency="true" src="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/widget_iframe.4f8aea4342a4ada72cba2bdffcff6b4d.html" title="Twitter settings iframe" style="display: none;"></iframe><iframe name="oauth2relay761034556" id="oauth2relay761034556" src="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/postmessageRelay.html" tabindex="-1" aria-hidden="true" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe><iframe id="rufous-sandbox" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: none;" title="Twitter analytics iframe" src="./Easy Deep Cloning of Serializable and Non-Serializable Objects in Java _ Carfey Software Blog_files/saved_resource(1).html"></iframe></body></html>
