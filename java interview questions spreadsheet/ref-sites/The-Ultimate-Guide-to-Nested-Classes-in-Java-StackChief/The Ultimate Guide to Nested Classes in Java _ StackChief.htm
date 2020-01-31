@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<!-- saved from url=(0095)https://www.stackchief.com/tutorials/The%20Ultimate%20Guide%20to%20Nested%20Classes%20in%20Java -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="canonical" href="https://www.stackchief.com/tutorials/The%20Ultimate%20Guide%20to%20Nested%20Classes%20in%20Java">
+  <meta name="p:domain_verify" content="6627bd46c5d915f0fca091a74e112e91">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script type="text/javascript" async="" src="./The Ultimate Guide to Nested Classes in Java _ StackChief_files/analytics.js"></script><script async="" src="./The Ultimate Guide to Nested Classes in Java _ StackChief_files/js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-87134716-1');
+</script>
+  <title>The Ultimate Guide to Nested Classes in Java | StackChief</title>
+  <meta name="description" content="The inner class in Java with explanations and examples for java nested classes and inner nested classes.">
+  <meta name="keywords" content="java tutorial, java nested classes, local classes, static nested classes, anonymous classes, shadowing">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@stackchief">
+  <meta name="twitter:title" content="StackChief">
+  <meta name="twitter:description" content="The inner class in Java with explanations and examples for java nested classes and inner nested classes.">
+  <meta name="twitter:creator" content="@stackchief">
+  <meta name="twitter:image:src" content="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNeU-rcUXxM2GdvV9ID6mH2AfCdP0sgFDQoyYcEO3_YnPyUZQ0">
+  <meta property="og:title" content="The inner class in Java with explanations and examples for java nested classes and inner nested classes.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNeU-rcUXxM2GdvV9ID6mH2AfCdP0sgFDQoyYcEO3_YnPyUZQ0">
+  <meta property="og:description" content="The inner class in Java with explanations and examples for java nested classes and inner nested classes.">
+  <meta property="og:site_name" content="Stackchief">
+  <meta property="article:modified_time" content="">
+  <meta property="article:section" content="">
+  <meta property="article:tag" content="">
+  <link rel="icon" href="https://www.stackchief.com/images/favicon.ico" type="image/x-icon">
+  <!-- <link rel="stylesheet" href="/dist/app.bundle.css" /> -->
+  <link rel="stylesheet" href="./The Ultimate Guide to Nested Classes in Java _ StackChief_files/app.bundle.css">
+
+  <script async="" src="./The Ultimate Guide to Nested Classes in Java _ StackChief_files/f.txt"></script>
+
+  <script>
+       (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3458378356223494",
+            enable_page_level_ads: true
+       });
+  </script>
+
+</head>
+  <body>
+    <div class="wrapper">
+    <script type="text/x-template" id="modal-template">
+      <transition name="modal">
+        <div class="modal-mask">
+          <div class="modal-wrapper" @click="$emit('close')">
+            <div class="modal-container" @click.stop  >
+              <div class="modal-header">
+                <slot name="header">
+                  <h2>Sign up | Sign in</h2>
+                </slot>
+                <p>Use your favorite social media platform to sign up or sign back in.</p>
+              </div>
+              <div class="modal-body">
+                <slot name="body">
+                  <a class="sb" href="/authFacebook"><i class='fa fa-facebook'></i> Facebook</a>
+                  <!-- <a class="sb sbg" href="/authGoogle"><i class='fa fa-google'></i> Gmail</a> -->
+                  <a class="sb sbt" href="/authtwitter"><i class='fa fa-twitter'></i> Twitter</a>
+                </slot>
+              </div>
+              <div class="modal-footer">
+                <slot name="footer">
+                </slot>
+              </div>
+            </div>
+          </div>
+        </div>
+      </transition>
+    </script>
+    <div id="app">
+      <div id="header"><!----> <div class=" flex-between headwrap"><div id="logo"><a href="https://www.stackchief.com/"><img alt="StackChief - Learn how to code" id="logoImg" src="data:image/png;base64,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"></a><h2>Learn how to code. Share ideas.</h2></div> <div class="mobile-menu"><a><i class="fa fa-bars"></i></a></div> <div class="navbar desktop"><ul><li><a class="search-icon"><i class="fa fa-search"></i></a></li> <li><div class="searchinput"><!----> <!----></div></li> <li><a id="login-btn" class="red">Log in</a></li> <li><a class="btn btn-red">Sign up</a></li></ul></div></div> <div class=" flex-center desktop"><ul class="navbar "><li><a href="https://www.stackchief.com/">Most Recent</a><i class="mobile icon fa fa-arrow-circle-right"></i></li> <li><a href="https://www.stackchief.com/search/angular">Angular</a><i class="mobile icon fa fa-arrow-circle-right"></i></li> <li><a href="https://www.stackchief.com/search/vue">Vue</a><i class="mobile icon fa fa-arrow-circle-right"></i></li> <li><a href="https://www.stackchief.com/search/react">React</a><i class="mobile icon fa fa-arrow-circle-right"></i></li> <li><a href="https://www.stackchief.com/search/node">Node</a><i class="mobile icon fa fa-arrow-circle-right"></i></li> <li><a href="https://www.stackchief.com/search/mean">MEAN</a><i class="mobile icon fa fa-arrow-circle-right"></i></li> <li><a href="https://www.stackchief.com/search/hadoop">Hadoop</a><i class="mobile icon fa fa-arrow-circle-right"></i></li> <li><a href="https://www.stackchief.com/search/mongodb">MongoDb</a><i class="mobile icon fa fa-arrow-circle-right"></i></li> <li><a href="https://www.stackchief.com/search/java">Java</a><i class="mobile icon fa fa-arrow-circle-right"></i></li></ul></div> <div class="flex-center mobile"><!----></div></div>
+
+<div class="post wrapper">
+    <!-- <img alt="The Ultimate Guide to Nested Classes in Java" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNeU-rcUXxM2GdvV9ID6mH2AfCdP0sgFDQoyYcEO3_YnPyUZQ0" /> -->
+    <div class="sidebar">
+      <div class="header">
+           You will also enjoy... 
+          
+
+      </div>
+      <ul>
+        
+                
+                    <li>
+          
+              <a href="https://www.stackchief.com/blog/Page%20Rendering%3A%20Client%20Side%20vs.%20Server%20Side">
+            
+            Page Rendering: Client Side vs. Server Side
+          </a>
+          </li>
+          
+        
+                
+                    <li>
+          
+              <a href="https://www.stackchief.com/blog/Time%20for%20Angular%202%3F">
+            
+            Time for Angular 2?
+          </a>
+          </li>
+          
+        
+                
+                    <li>
+          
+              <a href="https://www.stackchief.com/blog/MVC%20vs%20MVVM">
+            
+            MVC vs MVVM
+          </a>
+          </li>
+          
+        
+                
+                    <li>
+          
+              <a href="https://www.stackchief.com/blog/The%20Node.js%20Event%20Loop">
+            
+            The Node.js Event Loop
+          </a>
+          </li>
+          
+        
+                
+                    <li>
+          
+              <a href="https://www.stackchief.com/blog/Best%20Comparison%3A%20Angular%202%20vs%20Angular%201">
+            
+            Best Comparison: Angular 2 vs Angular 1
+          </a>
+          </li>
+          
+        
+                
+                    <li>
+          
+              <a href="https://www.stackchief.com/blog/Top%20ES6%20Concepts%20for%202018">
+            
+            Top ES6 Concepts for 2018
+          </a>
+          </li>
+          
+        
+                
+                    <li>
+          
+              <a href="https://www.stackchief.com/blog/Tips%20and%20Tricks%20-%20Using%20Web%20APIs">
+            
+            Tips and Tricks - Using Web APIs
+          </a>
+          </li>
+          
+        
+                
+                    <li>
+          
+              <a href="https://www.stackchief.com/blog/Angular%20%26%20Performance%3A%20Best%20Practices">
+            
+            Angular &amp; Performance: Best Practices
+          </a>
+          </li>
+          
+        
+                
+                    <li>
+          
+              <a href="https://www.stackchief.com/blog/Express%20Error%20Handling%3A%20Tips%20%26%20Tricks">
+            
+            Express Error Handling: Tips &amp; Tricks
+          </a>
+          </li>
+          
+        
+                
+                    <li>
+          
+              <a href="https://www.stackchief.com/blog/JavaScript%20var%20let%20const">
+            
+            JavaScript var let const
+          </a>
+          </li>
+          
+        
+      </ul>
+
+      <!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
+  <!-- responsive -->
+
+
+
+    </div>
+    <div class="article">
+      <div class="header-ad">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3458378356223494" data-ad-slot="6013436095" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
+    <h1>The Ultimate Guide to Nested Classes in Java</h1>
+
+    <p class="date-p"><i>Last modified: February 20, 2019</i>
+      
+        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.stackchief.com/tutorials/The%20Ultimate%20Guide%20to%20Nested%20Classes%20in%20Java"><i class="fa fa-facebook"></i></a>
+        <a target="_blank" href="http://twitter.com/share?url=https%3A//www.stackchief.com">
+<i class="fa fa-twitter"></i></a>
+
+        <!-- <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A//www.stackchief.com/tutorials/The Ultimate Guide to Nested Classes in Java&title=The Ultimate Guide to Nested Classes in Java"><i class='fa fa-linkedin'></i></a> -->
+        
+    </p>
+    
+    <div class="body">
+      <p>Nested classes are simply classes defined inside other classes.  Nested classes can be used to increase encapsulation and make your code more readable and maintainable.  If you have a class that is only being used in one place, then making it a nested class may be a good idea.</p>
+
+      <p>In this tutorial, we'll explore nested classes in depth.  We'll explain what a nested class is and why it can be useful.  We'll look at the different types of nested classes including static nested classes, inner classes, local classes and anonymous classes.  We'll explain what makes these classes different and provide examples of each.  We'll also explain the best use case for each and why.</p>
+
+      <h2>What is a nested class?</h2>
+      <p>A nested class is a class that is defined and used within another class.  There are two types of nested classes:</p>
+      <h3>static nested class</h3>
+      <p>A static nested class is a nested class that is <span class="code-bite">static</span>.  A static nested class has the <span class="code-bite">static</span> access modifier in it's declaration.</p>
+      <h3>inner class</h3>
+      <p>Any nested class that isn't static is considered an inner class.  In other words, an inner class is any class that doesn't have the <span class="code-bite">static</span> modifier and is defined within another class.</p>
+      <p>There are two types of inner classes.  They are:</p>
+      <h4>Local class</h4>
+      <p>These are inner classes defined inside a method or scope block.</p>
+      <h4>Anonymous class</h4>
+      <p>These are inner classes that are defined as part of an expression.</p>
+
+      <p>Let's look at each type of nested class in more detail including examples and suggestions for best use cases...</p>
+      <h2>Static nested classes</h2>
+      <p>A static nested class is any class that's defined within another class and declared <span class="code-bite">static</span>.  Specifically, a static nested class abides by the following rules:</p>
+      <ul>
+        <li>can have any type of access modifier in its declaration (public, private, etc)</li>
+        <li>can only access other static members of it's parent class</li>
+        <li>can define both static and non-static members</li>
+      </ul>
+      <h4>Example of a static nested class:</h4>
+
+<pre class="code"><code>public&nbsp;class&nbsp;MainClass&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;static&nbsp;int&nbsp;mainCount&nbsp;=&nbsp;0;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;class&nbsp;NestedClass&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;static&nbsp;int&nbsp;classCount&nbsp;=&nbsp;4;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;instanceCount&nbsp;=&nbsp;5;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;printCount(){<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(mainCount);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}</code></pre>
+
+<p>Notice how we've defined a static nested class <span class="code-bite">NestedClass</span> within an enclosing <span class="code-bite">MainClass</span>.  Remember that the <span class="code-bite">static</span> keyword makes the <span class="code-bite">NestedClass</span> a class member.  This means it only has access to other static members of the <span class="code-bite">MainClass</span> but can define both static and non-static members within its own definition.</p>
+<p>Since the <span class="code-bite">mainCount</span> variable is static, we are able to reference it inside the <span class="code-bite">printCount()</span> method of our <span class="code-bite">NestedClass</span>.  If <span class="code-bite">mainCount</span> was not a static member, we would not be able to reference it within <span class="code-bite">printCount()</span> like we can in this example.</p>
+
+<h3>When should I use a static nested class in Java?</h3>
+<p>Apart from being defined inside another class, a static nested class behaves just like a regular top-level class.  It can define both static/non-static members and can only access other static members of it's enclosing class.  Use static-nested classes when you are using the class in only one place but want to treat it as a regular class otherwise.</p>
+
+<h2>Inner classes</h2>
+<p>Any nested class that is not static is considered an inner class.  Specifically, an inner class abides by the following rules:</p>
+<ul>
+  <li>can have any type of access modifier in its declaration (public, private, etc)</li>
+  <li>can access both static and non-static members of its parent class</li>
+  <li>can only define non-static members</li>
+</ul>
+<h4>Example of a non-static inner class:</h4>
+<pre class="code"><code>public&nbsp;class&nbsp;MainClass&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;static&nbsp;int&nbsp;mainCount&nbsp;=&nbsp;0;<br>&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;pubCount&nbsp;=&nbsp;0;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;class&nbsp;NestedClass&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;instanceCount&nbsp;=&nbsp;5;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;printCount(){<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(mainCount&nbsp;+&nbsp;pubCount);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}</code></pre>
+<p>Notice how this looks very similar to our first example with a few key differences.  Since the <span class="code-bite">NestedClass</span> doesn't include the <span class="code-bite">static</span> keyword, it's considered an inner class.  This means we can access both static and non-static members of the parent class <span class="code-bite">MainClass</span>.  Notice how we are able to reference both <span class="code-bite">mainCount</span> and <span class="code-bite">pubCount</span> in the <span class="code-bite">printCount()</span> method.</p>
+<p>Since inner classes are instance members of their parent class, they can't declare their own static members.  If we were to try and declare <span class="code-bite">instanceCount</span> as static, we would get a compile time error.</p>
+<h3>When should I use an inner class in Java?</h3>
+<p>Unlike the static nested class, an inner class is able to access both static/non-static members of it's enclosing parent class.  Use an inner class when you need to access the enclosing class's members, regardless of whether they are static/non-static.</p>
+<p>Also remember that an inner class requires it's parent class to be instantiated before it can be used:</p>
+<pre class="code"><code>MainClass mC = new MainClass();<br>MainClass.NestedClass nC = mC.new NestedClass();</code></pre>
+<p>If you want to access a nested class without instantiating it's parent first, a static nested class may be a better option...</p>
+<h3>Local classes</h3>
+<p>A local class is a type of inner class. A local class is defined and used inside a method or code block.  The same rules for inner classes apply to local classes, with the following exception:</p>
+<ul>
+  <li>can't have access modifiers in its declaration</li>
+</ul>
+<h4>Example of a local class:</h4>
+<pre class="code"><code>public&nbsp;class&nbsp;MainClass&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;static&nbsp;int&nbsp;mainCount&nbsp;=&nbsp;4;<br>&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;int&nbsp;pubCount&nbsp;=&nbsp;2;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;addCounts(){<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class&nbsp;LocalClass&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void&nbsp;addMembers(){<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(mainCount&nbsp;+&nbsp;pubCount);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LocalClass&nbsp;lc&nbsp;=&nbsp;new&nbsp;LocalClass();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lc.addMembers();<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;void&nbsp;main(String[]&nbsp;args){<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MainClass&nbsp;mc&nbsp;=&nbsp;new&nbsp;MainClass();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mc.addCounts(); //prints 6<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}</code></pre>
+
+<p>Notice how we define a class <span class="code-bite">LocalClass</span> inside of an <span class="code-bite">addCounts()</span> method.  Remember that inner classes have access to both static/non-static members of the enclosing class.  For this reason, we are able to reference both <span class="code-bite">mainCount</span> and <span class="code-bite">pubcount</span> from within the <span class="code-bite">addMembers()</span> method.</p>
+
+<h3>When should I use a local class in Java?</h3>
+<p>The need for a local class is similar to any inner class.  You want to use a local class when you need access to the parent class members (both static and non-static) but only need to use the class within a particular method.  Additionally, local classes allow you to modify and access the class constructor.  This is an important distinction to anonymous classes, which we will cover next.</p>
+
+
+<h4>Anonymous classes</h4>
+<p>The anonymous class allows you to declare and instantiate a class at the same time.  Unlike a local class, an anonymous class does not have a name assigned to it.  The same rules for inner classes apply to anonymous classes with the following exceptions:</p>
+<ul>
+  <li>can't have access modifiers in its declaration</li>
+  <li>can't define constructors or extend/implement other classes or interfaces</li>
+</ul>
+<h4>Example of an anonymous class:</h4>
+
+<pre class="code"><code>public&nbsp;class&nbsp;MainClass&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;interface&nbsp;Math&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;add();<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Math&nbsp;math&nbsp;=&nbsp;new&nbsp;Math(){<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;add(){<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(mainCount&nbsp;+&nbsp;pubCount);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;};<br><br>&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;static&nbsp;int&nbsp;mainCount&nbsp;=&nbsp;4;<br>&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;int&nbsp;pubCount&nbsp;=&nbsp;2;<br><br><br>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;void&nbsp;main(String[]&nbsp;args){<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MainClass&nbsp;mc&nbsp;=&nbsp;new&nbsp;MainClass();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mc.math.add();<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}</code></pre>
+
+<p>Notice how we first define an interface <span class="code-bite">Math</span>.  Instead of explicitly defining a new class with the <span class="code-bite">class</span> keyword, we simply implement the <span class="code-bite">Math</span> interface with an anonymous class.  Specifically, we set a variable <span class="code-bite">math</span> of type <span class="code-bite">Math</span> to an anonymous class definition which implements the <span class="code-bite">add()</span> method defined in the interface.</p>
+
+<h3>When should I use an anonymous class in Java?</h3>
+<p>Use the anonymous class when you need functionality but not necessarily a separate entity.  The example above demonstrates this concept.  Creating a new class that implements the <span class="code-bite">Math</span> interface would be overkill (especially since we are using the <span class="code-bite">math</span> variable in only one place).</p>
+<p>For more information on when to use anonymous classes, check out <a href="http://edayan.info/java/anonymous-inner-classes-in-java-what-and-why">Edayan's notes on anonymous classes</a>.  This article explores anonymous classes in depth and provides some great rational for appropriate use cases, etc.</p>
+
+<h2>Shadowing</h2>
+<p>Members of an inner class having the same name as members of their enclosing class are said to "shadow" their enclosing counterparts.  This means you can't reference a shadowed declaration by the name itself.</p>
+<h4>An example of shadowing and inner classes:</h4>
+<pre class="code"><code>public&nbsp;class&nbsp;MainClass&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;myInt&nbsp;=&nbsp;1;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;class&nbsp;NestedClass&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;myInt&nbsp;=&nbsp;5;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;print(){<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(myInt);&nbsp;//print&nbsp;5<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(this.myInt);&nbsp;//prints&nbsp;5<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(MainClass.this.myInt);&nbsp;//prints&nbsp;1<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;void&nbsp;main(String[]&nbsp;args){<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MainClass&nbsp;mc&nbsp;=&nbsp;new&nbsp;MainClass();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MainClass.NestedClass&nbsp;nc&nbsp;=&nbsp;mc.new&nbsp;NestedClass();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nc.print();<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}</code></pre>
+
+<p>Notice how we have to reference the parent class in <span class="code-bite">MainClass.this.myInt</span> to access the parent class member <span class="code-bite">myInt</span>.  Using <span class="code-bite">this</span> inside an inner class references the inner class instance and not the parent class.</p>
+
+<p><a href="http://www.baeldung.com/">Baeldung</a> does a good job of illustrating this concept in his article <a href="http://www.baeldung.com/java-nested-classes">Nested Classes in Java</a> if you want any additional examples of how shadowing works.</p>
+
+<h2>Conclusion</h2>
+<p>Nested classes provide an easier way to organize your code.  While static nested classes behave just like regular classes, inner classes have access to both the non-static/static members of their enclosing class.</p>
+<p>  There are two types of inner classes, anonymous and local classes.  You define local classes within methods and code blocks.  You define anonymous classes as expressions that implement a certain abstract class or interface.  The main advantage of abstract classes is adding functionality without creating a separate entity that you only use once.</p>
+
+<p>For more information on the benefits of nested classes, be sure to check out Jakob Jenkov's <a href="http://tutorials.jenkov.com/java/nested-classes.html">Java Nested Classes</a>.</p>
+
+<h4>Other references:</h4>
+<ul>
+<li><a href="https://www.developer.com/java/data/understanding-java-nested-classes-and-java-inner-classes.html">Understanding Java Nested Classes and Java Inner Classes</a></li>
+<li><a href="http://math.hws.edu/javanotes/c5/s8.html">Nested Classes</a></li>
+</ul>
+<hr>
+
+
+     </div>
+     
+    <div class="comment-box">
+      
+        <a onclick="login()">Write a response...</a>
+      
+
+      <div id="comment-input">
+        <textarea id="comment-input-text"></textarea>
+        <a id="comment-submit-btn" onclick="submitComment(&#39;5ad4eb9b87c9bb12fce30b0f&#39;)" class="btn btn-red">Submit</a>
+
+      </div>
+
+    </div>
+    
+
+    
+
+    <h2>You might also like:</h2>
+    <div class="recs">
+    
+          
+              <a href="https://www.stackchief.com/blog/Page%20Rendering%3A%20Client%20Side%20vs.%20Server%20Side">
+            
+            Page Rendering: Client Side vs. Server Side
+          </a>
+        
+          
+              <a href="https://www.stackchief.com/blog/Time%20for%20Angular%202%3F">
+            
+            Time for Angular 2?
+          </a>
+        
+          
+              <a href="https://www.stackchief.com/blog/MVC%20vs%20MVVM">
+            
+            MVC vs MVVM
+          </a>
+        
+          
+              <a href="https://www.stackchief.com/blog/The%20Node.js%20Event%20Loop">
+            
+            The Node.js Event Loop
+          </a>
+        
+          
+              <a href="https://www.stackchief.com/blog/Best%20Comparison%3A%20Angular%202%20vs%20Angular%201">
+            
+            Best Comparison: Angular 2 vs Angular 1
+          </a>
+        
+          
+              <a href="https://www.stackchief.com/blog/Top%20ES6%20Concepts%20for%202018">
+            
+            Top ES6 Concepts for 2018
+          </a>
+        
+          
+              <a href="https://www.stackchief.com/blog/Tips%20and%20Tricks%20-%20Using%20Web%20APIs">
+            
+            Tips and Tricks - Using Web APIs
+          </a>
+        
+          
+              <a href="https://www.stackchief.com/blog/Angular%20%26%20Performance%3A%20Best%20Practices">
+            
+            Angular &amp; Performance: Best Practices
+          </a>
+        
+          
+              <a href="https://www.stackchief.com/blog/Express%20Error%20Handling%3A%20Tips%20%26%20Tricks">
+            
+            Express Error Handling: Tips &amp; Tricks
+          </a>
+        
+          
+              <a href="https://www.stackchief.com/blog/JavaScript%20var%20let%20const">
+            
+            JavaScript var let const
+          </a>
+        
+
+    </div>
+
+  </div>
+  <div class="side-ads">
+
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3458378356223494" data-ad-slot="6013436095" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+</div>
+
+  <div class="wrapper">
+      <div id="footer">
+        <ul>
+          <li>© 2019 Stackchief LLC</li>
+          <li><a href="https://www.facebook.com/stackchief/"><i class="fa fa-facebook"></i></a></li>
+          <li><a href="https://twitter.com/stackchief?lang=en"><i class="fa fa-twitter"></i></a></li>
+          <li><a href="https://plus.google.com/u/1/108215591856448487087"><i class="fa fa-google"></i></a></li>
+        </ul>
+      </div>
+  </div>
+</div>
+</div>
+
+
+<!-- <script src="/dist/bundle.js"></script> -->
+<script src="./The Ultimate Guide to Nested Classes in Java _ StackChief_files/bundle.js"></script>
+
+
+
+</body></html>

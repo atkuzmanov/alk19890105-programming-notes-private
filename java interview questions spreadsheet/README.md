@@ -5029,7 +5029,27 @@ http://tutorials.jenkov.com/java/nested-classes.html
     - [Inner/Nested/Local classes](#Inner/Nested/Local-classes)
     - [Nested class as a normal outer class?](#Nested-class-as-a-normal-outer-class?)
 
+- When to Use Nested Classes, Local Classes, Anonymous Classes, and Lambda Expressions
+
+
+
+`References:`
+https://docs.oracle.com/javase/tutorial/java/javaOO/whentouse.html
+
+- [What-are-Nested-Classes-and-Why-Do-We-Need-Them-DZone](ref-sites/What-are-Nested-Classes-and-Why-Do-We-Need-Them-DZone)
+
+`References:`
+https://dzone.com/articles/what-are-nested-classes-and
+
+- [The-Ultimate-Guide-to-Nested-Classes-in-Java-StackChief](ref-sites/The-Ultimate-Guide-to-Nested-Classes-in-Java-StackChief)
+
+`References:`
+https://www.stackchief.com/tutorials/The%20Ultimate%20Guide%20to%20Nested%20Classes%20in%20Java
+
 ----
+
+
+
 
 
 ----
