@@ -4941,7 +4941,6 @@ https://www.baeldung.com/jackson-object-mapper-tutorial
 
 # Deep and Shallow cloning; Deep cloning - how to?
 
-
 |Junior |Mid  |Senior |
 |-------|-----|-------|
 |       |  x  |   x   |
@@ -4952,9 +4951,41 @@ Please see:
 
 ----
 
+# Inner/Nested/Local classes
 
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
+- [Nested-Classes-in-Java-GeeksforGeeks](ref-sites/Nested-Classes-in-Java-GeeksforGeeks)
+
+`References:`
+https://www.geeksforgeeks.org/nested-classes-java/
+
+- [Inner-class-in-java-GeeksforGeeks](ref-sites/Inner-class-in-java-GeeksforGeeks)
+
+`References:`
+https://www.geeksforgeeks.org/inner-class-java/
+
+- [Local-Inner-Class-in-Java-GeeksforGeeks](ref-sites/Local-Inner-Class-in-Java-GeeksforGeeks)
+
+`References:`
+https://www.geeksforgeeks.org/local-inner-class-java/
+
+- [Anonymous-Inner-Class-in-Java-GeeksforGeeks](ref-sites/Anonymous-Inner-Class-in-Java-GeeksforGeeks)
+
+`References:`
+https://www.geeksforgeeks.org/anonymous-inner-class-java/
 
 ----
+
+# 
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
+
 ----
 ----
 ----
