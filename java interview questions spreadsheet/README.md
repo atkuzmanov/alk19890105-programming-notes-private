@@ -1,5 +1,73 @@
 # java interview questions spreadsheet 2019-12-22-1502
 
+- [java interview questions spreadsheet 2019-12-22-1502](#java-interview-questions-spreadsheet-2019-12-22-1502)
+- [Java CORE](#java-core)
+- [How does multiple inheritance work in Java?](#how-does-multiple-inheritance-work-in-java-)
+- [What is an interface?](#what-is-an-interface-)
+- [What is an Abstract class?](#what-is-an-abstract-class-)
+- [What is the difference between an interface and an abstract class?](#what-is-the-difference-between-an-interface-and-an-abstract-class-)
+- [Access modifiers](#access-modifiers)
+- [Inheritance](#inheritance)
+- [Polymorphism](#polymorphism)
+- [Method overriding](#method-overriding)
+- [Method hiding](#method-hiding)
+- [Encapsulation](#encapsulation)
+- [Abstraction](#abstraction)
+- [Java Object Oriented Programming (OOP) Principals and Concepts](#java-object-oriented-programming--oop--principals-and-concepts)
+- [Static keyword](#static-keyword)
+- [instance members accessed from within static context?](#instance-members-accessed-from-within-static-context-)
+- [Marker interfaces](#marker-interfaces)
+- [Why constructor in abstract class?](#why-constructor-in-abstract-class-)
+- [final/finally/finalize keywords usage](#final-finally-finalize-keywords-usage)
+- [Exceptions hierarchy](#exceptions-hierarchy)
+- [Checked vs Unchecked exceptions](#checked-vs-unchecked-exceptions)
+- [Exceptions supressing when throwing exception from finally clause?](#exceptions-supressing-when-throwing-exception-from-finally-clause-)
+- [equals() vs "=="](#equals---vs-----)
+- [hashCode() in Java](#hashcode---in-java)
+- [Why overriding both equals() and hashCode()? Uses in Hash collections?](#why-overriding-both-equals---and-hashcode----uses-in-hash-collections-)
+- [Annotations in Java](#annotations-in-java)
+- [JAVA 101: LEARN JAVA By Jeff Friesen](#java-101--learn-java-by-jeff-friesen)
+- [String pool affecting String comparison](#string-pool-affecting-string-comparison)
+- [Collections hierarchy](#collections-hierarchy)
+- [List and Set extending Collection, Map not?](#list-and-set-extending-collection--map-not-)
+- [Java List Interface](#java-list-interface)
+- [List Interface in Java with Examples](#list-interface-in-java-with-examples)
+- [Java ArrayList class](#java-arraylist-class)
+- [ArrayList in Java](#arraylist-in-java)
+- [Guide to the Java ArrayList](#guide-to-the-java-arraylist)
+- [Java LinkedList class](#java-linkedlist-class)
+- [LinkedList in Java](#linkedlist-in-java)
+- [Difference between ArrayList and LinkedList](#difference-between-arraylist-and-linkedlist)
+- [ArrayList vs LinkedList in Java](#arraylist-vs-linkedlist-in-java)
+- [List vs ArrayList](#list-vs-arraylist)
+  * [Difference Between List and ArrayList in Java](#difference-between-list-and-arraylist-in-java)
+  * [Array vs ArrayList in Java](#array-vs-arraylist-in-java)
+- [HashMap vs TreeMap vs LinkedHashMap](#hashmap-vs-treemap-vs-linkedhashmap)
+  * [Difference between HashMap, LinkedHashMap and TreeMap](#difference-between-hashmap--linkedhashmap-and-treemap)
+- [NATURAL ordering - implementing Comparable interface VS CUSTOM ordering - implementing Comparator](#natural-ordering---implementing-comparable-interface-vs-custom-ordering---implementing-comparator)
+  * [Comparable vs Comparator in Java](#comparable-vs-comparator-in-java)
+- [Tree collections created with Comparator as an argument or naturally ordered entities](#tree-collections-created-with-comparator-as-an-argument-or-naturally-ordered-entities)
+- [generics - type erasure and polymorphism?](#generics---type-erasure-and-polymorphism-)
+- [autoboxing/unboxing of primitives and their wrapper classes](#autoboxing-unboxing-of-primitives-and-their-wrapper-classes)
+  * [Autoboxing and Unboxing](#autoboxing-and-unboxing)
+  * [Autoboxing and Unboxing in Java](#autoboxing-and-unboxing-in-java)
+- [order of initialization in a class](#order-of-initialization-in-a-class)
+  * [Java Initialization order](#java-initialization-order)
+- [Order of execution of Initialization blocks and Constructors in Java](#order-of-execution-of-initialization-blocks-and-constructors-in-java)
+- [initialization and static blocks](#initialization-and-static-blocks)
+- [Clone and Serialize objects](#clone-and-serialize-objects)
+- [Deep and Shallow cloning; Deep cloning - how to?](#deep-and-shallow-cloning--deep-cloning---how-to-)
+- [Inner/Nested/Local classes](#inner-nested-local-classes)
+- [Nested class as a normal outer class?](#nested-class-as-a-normal-outer-class-)
+- [Nested vs Anonymous Inner classes?](#nested-vs-anonymous-inner-classes-)
+- [Parameters passing - parameters to methods passing by val; For objects reference is passed by val?](#parameters-passing---parameters-to-methods-passing-by-val--for-objects-reference-is-passed-by-val-)
+- [final parameters as objects? What can change?](#final-parameters-as-objects--what-can-change-)
+- [The “final” Keyword in Java](#the--final--keyword-in-java)
+- [Too Many Parameters in Java Methods, Part 2: Parameters Object](#too-many-parameters-in-java-methods--part-2--parameters-object)
+- [Varargs vs Arrays when overloading](#varargs-vs-arrays-when-overloading)
+- [Arrays as objects](#arrays-as-objects)
+- [creating objects without "new"; Reflection - Class.newInstance() vs Constructor.newInstance(...)](#creating-objects-without--new---reflection---classnewinstance---vs-constructornewinstance--)
+
 # Java CORE
 
 # How does multiple inheritance work in Java?
@@ -4903,11 +4971,6 @@ https://stackoverflow.com/questions/869033/how-do-i-copy-an-object-in-java
 `References:`
 https://dzone.com/articles/java-cloning-copy-constructor-vs-cloning
 
-- [5-Different-Ways-To-Create-Objects-In-Java-Programming-Mitra](ref-sites/5-Different-Ways-To-Create-Objects-In-Java-Programming-Mitra)
-
-`References:`
-https://www.programmingmitra.com/2016/05/different-ways-to-create-objects-in-java-with-example.html
-
 - What is object serialization?
 
 ```text
@@ -5313,9 +5376,41 @@ https://www.geeksforgeeks.org/array-primitive-type-object-java/
 |-------|-----|-------|
 |       |  x  |   x   |
 
+- [5-Different-Ways-to-Create-Objects-Java-DZone](ref-sites/5-Different-Ways-to-Create-Objects-Java-DZone)
 
+`References:`
+https://dzone.com/articles/5-different-ways-to-create-objects-in-java-with-ex
+
+- [5-Different-Ways-To-Create-Objects-In-Java-Programming-Mitra](ref-sites/5-Different-Ways-To-Create-Objects-In-Java-Programming-Mitra)
+
+`References:`
+https://www.programmingmitra.com/2016/05/different-ways-to-create-objects-in-java-with-example.html
+
+- [reflection-Java-newInstance-of-class-that-has-no-default-constructor-Stack-Overflow](ref-sites/reflection-Java-newInstance-of-class-that-has-no-default-constructor-Stack-Overflow)
+
+`References:`
+https://stackoverflow.com/questions/3671649/java-newinstance-of-class-that-has-no-default-constructor
+
+- [Different-ways-to-create-objects-in-Java-GeeksforGeeks](ref-sites/Different-ways-to-create-objects-in-Java-GeeksforGeeks)
+
+`References:`
+https://www.geeksforgeeks.org/different-ways-create-objects-java/
+
+- [new-operator-vs-newInstance-method-in-Java-GeeksforGeeks](ref-sites/new-operator-vs-newInstance-method-in-Java-GeeksforGeeks)
+
+`References:`
+https://www.geeksforgeeks.org/new-operator-vs-newinstance-method-java/
 
 ----
+
+# accessing private fields and constructors using reflection?
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |     |   x   |
+
+
+
 ----
 ----
 ----
