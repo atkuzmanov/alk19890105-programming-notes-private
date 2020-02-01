@@ -5281,23 +5281,79 @@ https://www.javaworld.com/article/2074932/too-many-parameters-in-java-methods-pa
 
 ----
 
+# Varargs vs Arrays when overloading
 
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
 
-----
-----
-----
-----
-----
-----
-----
-----
-----
-----
-----
-----
-----
+- [Method-Overloading-and-Ambiguity-in-Varargs-Java-GeeksforGeeks](ref-sites/Method-Overloading-and-Ambiguity-in-Varargs-Java-GeeksforGeeks)
+
+`References:`
+https://www.geeksforgeeks.org/method-overloading-ambiguity-varargs-java/
+
 ----
 
+# Arrays as objects
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
+
+
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
 
 `References:`
 
