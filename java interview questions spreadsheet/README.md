@@ -5300,9 +5300,21 @@ https://www.geeksforgeeks.org/method-overloading-ambiguity-varargs-java/
 |-------|-----|-------|
 |       |  x  |   x   |
 
+- [Is-an-array-a-primitive-type-or-an-object-Java-GeeksforGeeks](ref-sites/Is-an-array-a-primitive-type-or-an-object-Java-GeeksforGeeks)
 
+`References:`
+https://www.geeksforgeeks.org/array-primitive-type-object-java/
 
 ----
+
+# creating objects without "new"; Reflection - Class.newInstance() vs Constructor.newInstance(...)
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
+
+
 ----
 ----
 ----
