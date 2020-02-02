@@ -5415,29 +5415,83 @@ https://www.geeksforgeeks.org/new-operator-vs-newinstance-method-java/
 `References:`
 https://www.geeksforgeeks.org/reflection-in-java/
 
-<!--
-
-- [How-to-Access-Private-Fields-Methods-and-Constructors-Java-Reflection](ref-sites/How-to-Access-Private-Fields-Methods-and-Constructors-Java-Reflection)
-
-`References:`
-https://www.concretepage.com/java/how-to-access-all-private-fields-methods-and-constructors-using-java-reflection-with-example#private-constructor
-
--->
-
 - [Java-Reflection-Example-Tutorial-JournalDev](ref-sites/Java-Reflection-Example-Tutorial-JournalDev)
 
 `References:`
 https://www.journaldev.com/1789/java-reflection-example-tutorial
 
-- [Java-Reflection-Private-Fields-and-Methods](ref-sites/Java-Reflection-Private-Fields-and-Methods)
+```text
+```
 
-`References:`
-http://tutorials.jenkov.com/java-reflection/private-fields-and-methods.html
+- [jenkov-Java-Reflection-Tutorial](ref-sites/jenkov-Java-Reflection-Tutorial)
 
 `References:`
 http://tutorials.jenkov.com/java-reflection/index.html
 
+- [jenkov-Java-Reflection-Classes](ref-sites/jenkov-Java-Reflection-Classes)
+
+`References:`
+http://tutorials.jenkov.com/java-reflection/classes.html
+
+- [jenkov-Java-Reflection-Constructors](ref-sites/jenkov-Java-Reflection-Constructors)
+
+`References:`
+http://tutorials.jenkov.com/java-reflection/constructors.html
+
+- [jenkov-Java-Reflection-Fields](ref-sites/jenkov-Java-Reflection-Fields)
+
+`References:`
+http://tutorials.jenkov.com/java-reflection/fields.html
+
+- [jenkov-Java-Reflection-Methods](ref-sites/jenkov-Java-Reflection-Methods)
+
+`References:`
+http://tutorials.jenkov.com/java-reflection/methods.html
+
+- [jenkov-Java-Reflection-Getters-and-Setters](ref-sites/jenkov-Java-Reflection-Getters-and-Setters)
+
+`References:`
+http://tutorials.jenkov.com/java-reflection/getters-setters.html
+
+- [jenkov-Java-Reflection-Private-Fields-and-Methods](ref-sites/jenkov-Java-Reflection-Private-Fields-and-Methods)
+
+`References:`
+http://tutorials.jenkov.com/java-reflection/private-fields-and-methods.html
+
+- [jenkov-Java-Reflection-Annotations](ref-sites/jenkov-Java-Reflection-Annotations)
+
+`References:`
+http://tutorials.jenkov.com/java-reflection/annotations.html
+
+- [jenkov-Java-Reflection-Generics](ref-sites/jenkov-Java-Reflection-Generics)
+
+`References:`
+http://tutorials.jenkov.com/java-reflection/generics.html
+
+- [jenkov-Java-Reflection-Arrays](ref-sites/jenkov-Java-Reflection-Arrays)
+
+`References:`
+http://tutorials.jenkov.com/java-reflection/arrays.html
+
+- [jenkov-Java-Reflection-Dynamic-Proxies](ref-sites/jenkov-Java-Reflection-Dynamic-Proxies)
+
+`References:`
+http://tutorials.jenkov.com/java-reflection/dynamic-proxies.html
+
+- [jenkov-Java-Reflection-Dynamic-Class-Loading-and-Reloading](ref-sites/jenkov-Java-Reflection-Dynamic-Class-Loading-and-Reloading)
+
+`References:`
+http://tutorials.jenkov.com/java-reflection/dynamic-class-loading-reloading.html
+
+- [jenkov-JavaReflection-Modules](ref-sites/jenkov-JavaReflection-Modules)
+
+`References:`
+http://tutorials.jenkov.com/java-reflection/modules.html
+
 ----
+
+
+
 ----
 ----
 ----
