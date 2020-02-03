@@ -5647,6 +5647,9 @@ http://tutorials.jenkov.com/java-concurrency/volatile.html
 |-------|-----|-------|
 |       |  x  |   x   |
 
+
+## why make private fields also final if they cannot be accessed if getters and setters not provided?
+
 - [final-keyword-java-GeeksforGeeks](refs/final-keyword-java-GeeksforGeeks)
 
 `references:`
@@ -5662,7 +5665,37 @@ https://stackoverflow.com/questions/19577079/why-declare-a-copy-of-a-private-fie
 `references:`
 https://en.wikipedia.org/wiki/Final_(Java)
 
+## How does Spring inject private object fields?
 
+- [dependency-injection-How-does-Spring-annotation-Autowired-work-Stack-Overflow](refs/dependency-injection-How-does-Spring-annotation-Autowired-work-Stack-Overflow)
+
+`references:`
+https://stackoverflow.com/questions/3536674/how-does-spring-annotation-autowired-work
+
+- [Field-injection-is-not-recommended-Spring-IOC-Marc-Nuri](refs/Field-injection-is-not-recommended-Spring-IOC-Marc-Nuri)
+
+`references:`
+https://blog.marcnuri.com/field-injection-is-not-recommended/
+
+- [Field-Dependency-Injection-Considered-Harmful-VojtechRuzickas-Programming-Blog](refs/Field-Dependency-Injection-Considered-Harmful-VojtechRuzickas-Programming-Blog)
+
+`references:`
+https://www.vojtechruzicka.com/field-dependency-injection-considered-harmful/
+
+- [To-field-inject-or-not-to-field-inject-in-Spring-That-which-inspires-awe](refs/To-field-inject-or-not-to-field-inject-in-Spring-That-which-inspires-awe)
+
+`references:`
+https://blog.indrek.io/articles/to-field-inject-or-not-to/
+
+- Spring Dependency Injection – Field vs Setter vs Constructor Injection
+
+`references:`
+
+https://www.amitph.com/spring-field-injection-example/
+
+https://www.amitph.com/spring-field-setter-constructor-injection/
+
+https://dzone.com/articles/spring-di-patterns-the-good-the-bad-and-the-ugly
 
 ----
 
