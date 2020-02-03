@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<!-- saved from url=(0058)https://blog.indrek.io/articles/to-field-inject-or-not-to/ -->
+<html lang="en-US" class="js fontawesome-i2svg-active fontawesome-i2svg-complete"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+    
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>To field inject, or not to field inject in Spring? | That which inspires awe</title>
+<meta name="generator" content="Jekyll v3.8.5">
+<meta property="og:title" content="To field inject, or not to field inject in Spring?">
+<meta name="author" content="Indrek Ots">
+<meta property="og:locale" content="en_US">
+<meta name="description" content="Nearly all Spring projects that I have worked with make heavy use of field injection. This must be a popular approach because it is concise and reads well. But have you ever considered the downsides of field injection?">
+<meta property="og:description" content="Nearly all Spring projects that I have worked with make heavy use of field injection. This must be a popular approach because it is concise and reads well. But have you ever considered the downsides of field injection?">
+<style type="text/css">svg:not(:root).svg-inline--fa{overflow:visible}.svg-inline--fa{display:inline-block;font-size:inherit;height:1em;overflow:visible;vertical-align:-.125em}.svg-inline--fa.fa-lg{vertical-align:-.225em}.svg-inline--fa.fa-w-1{width:.0625em}.svg-inline--fa.fa-w-2{width:.125em}.svg-inline--fa.fa-w-3{width:.1875em}.svg-inline--fa.fa-w-4{width:.25em}.svg-inline--fa.fa-w-5{width:.3125em}.svg-inline--fa.fa-w-6{width:.375em}.svg-inline--fa.fa-w-7{width:.4375em}.svg-inline--fa.fa-w-8{width:.5em}.svg-inline--fa.fa-w-9{width:.5625em}.svg-inline--fa.fa-w-10{width:.625em}.svg-inline--fa.fa-w-11{width:.6875em}.svg-inline--fa.fa-w-12{width:.75em}.svg-inline--fa.fa-w-13{width:.8125em}.svg-inline--fa.fa-w-14{width:.875em}.svg-inline--fa.fa-w-15{width:.9375em}.svg-inline--fa.fa-w-16{width:1em}.svg-inline--fa.fa-w-17{width:1.0625em}.svg-inline--fa.fa-w-18{width:1.125em}.svg-inline--fa.fa-w-19{width:1.1875em}.svg-inline--fa.fa-w-20{width:1.25em}.svg-inline--fa.fa-pull-left{margin-right:.3em;width:auto}.svg-inline--fa.fa-pull-right{margin-left:.3em;width:auto}.svg-inline--fa.fa-border{height:1.5em}.svg-inline--fa.fa-li{width:2em}.svg-inline--fa.fa-fw{width:1.25em}.fa-layers svg.svg-inline--fa{bottom:0;left:0;margin:auto;position:absolute;right:0;top:0}.fa-layers{display:inline-block;height:1em;position:relative;text-align:center;vertical-align:-.125em;width:1em}.fa-layers svg.svg-inline--fa{-webkit-transform-origin:center center;transform-origin:center center}.fa-layers-counter,.fa-layers-text{display:inline-block;position:absolute;text-align:center}.fa-layers-text{left:50%;top:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);-webkit-transform-origin:center center;transform-origin:center center}.fa-layers-counter{background-color:#ff253a;border-radius:1em;-webkit-box-sizing:border-box;box-sizing:border-box;color:#fff;height:1.5em;line-height:1;max-width:5em;min-width:1.5em;overflow:hidden;padding:.25em;right:0;text-overflow:ellipsis;top:0;-webkit-transform:scale(.25);transform:scale(.25);-webkit-transform-origin:top right;transform-origin:top right}.fa-layers-bottom-right{bottom:0;right:0;top:auto;-webkit-transform:scale(.25);transform:scale(.25);-webkit-transform-origin:bottom right;transform-origin:bottom right}.fa-layers-bottom-left{bottom:0;left:0;right:auto;top:auto;-webkit-transform:scale(.25);transform:scale(.25);-webkit-transform-origin:bottom left;transform-origin:bottom left}.fa-layers-top-right{right:0;top:0;-webkit-transform:scale(.25);transform:scale(.25);-webkit-transform-origin:top right;transform-origin:top right}.fa-layers-top-left{left:0;right:auto;top:0;-webkit-transform:scale(.25);transform:scale(.25);-webkit-transform-origin:top left;transform-origin:top left}.fa-lg{font-size:1.33333em;line-height:.75em;vertical-align:-.0667em}.fa-xs{font-size:.75em}.fa-sm{font-size:.875em}.fa-1x{font-size:1em}.fa-2x{font-size:2em}.fa-3x{font-size:3em}.fa-4x{font-size:4em}.fa-5x{font-size:5em}.fa-6x{font-size:6em}.fa-7x{font-size:7em}.fa-8x{font-size:8em}.fa-9x{font-size:9em}.fa-10x{font-size:10em}.fa-fw{text-align:center;width:1.25em}.fa-ul{list-style-type:none;margin-left:2.5em;padding-left:0}.fa-ul>li{position:relative}.fa-li{left:-2em;position:absolute;text-align:center;width:2em;line-height:inherit}.fa-border{border:solid .08em #eee;border-radius:.1em;padding:.2em .25em .15em}.fa-pull-left{float:left}.fa-pull-right{float:right}.fa.fa-pull-left,.fab.fa-pull-left,.fal.fa-pull-left,.far.fa-pull-left,.fas.fa-pull-left{margin-right:.3em}.fa.fa-pull-right,.fab.fa-pull-right,.fal.fa-pull-right,.far.fa-pull-right,.fas.fa-pull-right{margin-left:.3em}.fa-spin{-webkit-animation:fa-spin 2s infinite linear;animation:fa-spin 2s infinite linear}.fa-pulse{-webkit-animation:fa-spin 1s infinite steps(8);animation:fa-spin 1s infinite steps(8)}@-webkit-keyframes fa-spin{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes fa-spin{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}.fa-rotate-90{-webkit-transform:rotate(90deg);transform:rotate(90deg)}.fa-rotate-180{-webkit-transform:rotate(180deg);transform:rotate(180deg)}.fa-rotate-270{-webkit-transform:rotate(270deg);transform:rotate(270deg)}.fa-flip-horizontal{-webkit-transform:scale(-1,1);transform:scale(-1,1)}.fa-flip-vertical{-webkit-transform:scale(1,-1);transform:scale(1,-1)}.fa-flip-horizontal.fa-flip-vertical{-webkit-transform:scale(-1,-1);transform:scale(-1,-1)}:root .fa-flip-horizontal,:root .fa-flip-vertical,:root .fa-rotate-180,:root .fa-rotate-270,:root .fa-rotate-90{-webkit-filter:none;filter:none}.fa-stack{display:inline-block;height:2em;position:relative;width:2em}.fa-stack-1x,.fa-stack-2x{bottom:0;left:0;margin:auto;position:absolute;right:0;top:0}.svg-inline--fa.fa-stack-1x{height:1em;width:1em}.svg-inline--fa.fa-stack-2x{height:2em;width:2em}.fa-inverse{color:#fff}.sr-only{border:0;clip:rect(0,0,0,0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}.sr-only-focusable:active,.sr-only-focusable:focus{clip:auto;height:auto;margin:0;overflow:visible;position:static;width:auto}</style><link rel="canonical" href="https://blog.indrek.io/articles/to-field-inject-or-not-to/">
+<meta property="og:url" content="https://blog.indrek.io/articles/to-field-inject-or-not-to/">
+<meta property="og:site_name" content="That which inspires awe">
+<meta property="og:image" content="https://blog.indrek.io/images/2017-05-31-to-field-inject-or-not-to/cover.jpg">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2017-05-31T00:00:00+00:00">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:image" content="https://blog.indrek.io/images/2017-05-31-to-field-inject-or-not-to/cover.jpg">
+<meta property="twitter:title" content="To field inject, or not to field inject in Spring?">
+<meta name="twitter:site" content="@otsindrek">
+<meta name="twitter:creator" content="@otsindrek">
+<script type="application/ld+json">
+{"@type":"BlogPosting","url":"https://blog.indrek.io/articles/to-field-inject-or-not-to/","headline":"To field inject, or not to field inject in Spring?","dateModified":"2017-05-31T00:00:00+00:00","datePublished":"2017-05-31T00:00:00+00:00","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://blog.indrek.io/images/logo.png"},"name":"Indrek Ots"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.indrek.io/articles/to-field-inject-or-not-to/"},"author":{"@type":"Person","name":"Indrek Ots"},"image":{"thumbnail":"/images/2017-05-31-to-field-inject-or-not-to/cover_thumb.jpg","caption":"Photo by [Pauline Tayag](https://unsplash.com/@3amcoffeebuns?photo=j3SZYtfIjLM)","url":"https://blog.indrek.io/images/2017-05-31-to-field-inject-or-not-to/cover.jpg","@type":"imageObject"},"description":"Nearly all Spring projects that I have worked with make heavy use of field injection. This must be a popular approach because it is concise and reads well. But have you ever considered the downsides of field injection?","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ( 'querySelector' in document && 'addEventListener' in window ) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="./To field inject, or not to field inject in Spring_ _ That which inspires awe_files/main.css">
+  
+    <link rel="stylesheet" href="./To field inject, or not to field inject in Spring_ _ That which inspires awe_files/css">
+  <link rel="alternate" type="application/atom+xml" title="That which inspires awe" href="https://blog.indrek.io/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="https://blog.indrek.io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://blog.indrek.io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://blog.indrek.io/favicon-16x16.png">
+<link rel="manifest" href="https://blog.indrek.io/site.webmanifest">
+<link rel="mask-icon" href="https://blog.indrek.io/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#000000">
+<!-- end custom head snippets -->
+
+<script src="./To field inject, or not to field inject in Spring_ _ That which inspires awe_files/embed.js" data-timestamp="1580755045039"></script><link rel="prefetch" as="style" href="https://c.disquscdn.com/next/embed/styles/lounge.15d8f2a22cfa6b9f96345c682b01a08f.css"><link rel="prefetch" as="script" href="https://c.disquscdn.com/next/embed/common.bundle.0d424497492a7a96477653dedbd1462f.js"><link rel="prefetch" as="script" href="https://c.disquscdn.com/next/embed/lounge.bundle.a0b0b564b806112a1c4571475f829256.js"><link rel="prefetch" as="script" href="https://disqus.com/next/config.js"></head>
+
+
+  <body class="layout--post  to-field-inject-or-not-to-field-inject-in-spring">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="https://blog.indrek.io/articles/to-field-inject-or-not-to/#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="https://blog.indrek.io/articles/to-field-inject-or-not-to/#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="https://blog.indrek.io/articles/to-field-inject-or-not-to/#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="https://blog.indrek.io/articles/to-field-inject-or-not-to/#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="https://blog.indrek.io/">Home</a></li><li><a href="https://blog.indrek.io/posts/">Post Archive</a></li><li><a href="https://blog.indrek.io/tags/">Tags</a></li><li><a href="https://blog.indrek.io/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+      <a href="https://blog.indrek.io/" class="site-logo" rel="home" title="That which inspires awe">
+        <img src="./To field inject, or not to field inject in Spring_ _ That which inspires awe_files/logo.png" class="site-logo-img animated fadeInDown" alt="That which inspires awe">
+      </a>
+    
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+  
+  
+  
+
+  <div class="page-image">
+    <img src="./To field inject, or not to field inject in Spring_ _ That which inspires awe_files/cover.jpg" class="entry-feature-image u-photo" alt="To field inject, or not to field inject in Spring?">
+    
+      <div class="page-image-caption"><p>Photo by <a href="https://unsplash.com/@3amcoffeebuns?photo=j3SZYtfIjLM">Pauline Tayag</a></p>
+</div>
+    
+  </div>
+
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+          <h1 id="page-title" class="page-title p-name">To field inject, or not to field inject in Spring?
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="./To field inject, or not to field inject in Spring_ _ That which inspires awe_files/avatar4.jpg" class="author-avatar u-photo" alt="Indrek Ots"><div class="author-info"><div class="author-name">
+        <em>by</em> <span class="p-name">Indrek Ots</span>
+      </div><ul class="author-links"><li class="author-link">
+            <a class="u-url" rel="me" href="https://twitter.com/otsindrek"><svg class="svg-inline--fa fa-twitter fa-w-16 fa-lg" title="Twitter" aria-labelledby="svg-inline--fa-title-1" data-prefix="fab" data-icon="twitter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><title id="svg-inline--fa-title-1">Twitter</title><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg><!-- <i class="fab fa-twitter fa-lg" title="Twitter"></i> --></a>
+          </li><li class="author-link">
+            <a class="u-url" rel="me" href="https://github.com/indrekots"><svg class="svg-inline--fa fa-github fa-w-16 fa-lg" title="Github" aria-labelledby="svg-inline--fa-title-2" data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" data-fa-i2svg=""><title id="svg-inline--fa-title-2">Github</title><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg><!-- <i class="fab fa-github fa-lg" title="Github"></i> --></a>
+          </li><li class="author-link">
+            <a class="u-url" rel="me" href="https://stackoverflow.com/users/2928051/indrek-ots"><svg class="svg-inline--fa fa-stack-overflow fa-w-12 fa-lg" title="Stackoverflow" aria-labelledby="svg-inline--fa-title-3" data-prefix="fab" data-icon="stack-overflow" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><title id="svg-inline--fa-title-3">Stackoverflow</title><path fill="currentColor" d="M293.7 300l-181.2-84.5 16.7-36.5 181.3 84.7-16.8 36.3zm48-76L188.2 95.7l-25.5 30.8 153.5 128.3 25.5-30.8zm39.6-31.7L262 32l-32 24 119.3 160.3 32-24zM290.7 311L95 269.7 86.8 309l195.7 41 8.2-39zm31.6 129H42.7V320h-40v160h359.5V320h-40v120zm-39.8-80h-200v39.7h200V360z"></path></svg><!-- <i class="fab fa-stack-overflow fa-lg" title="Stackoverflow"></i> --></a>
+          </li></ul>
+
+<span class="read-time">11 min read</span>
+
+    <time class="page-date dt-published" datetime="2017-05-31T00:00:00+00:00"><a class="u-url" href="https://blog.indrek.io/articles/to-field-inject-or-not-to/">May 31, 2017</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  <ul class="page-taxonomies"><li class="page-taxonomy">articles</li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  <ul class="page-taxonomies"><li class="page-taxonomy">java</li><li class="page-taxonomy">spring</li><li class="page-taxonomy">autowire</li><li class="page-taxonomy">inject</li><li class="page-taxonomy">dependency injection</li>
+  </ul>
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          
+          <p>Whether you’re a new to <a href="https://projects.spring.io/spring-framework/" title="Spring Framework">Spring Framework</a> or have been using it for some time, you’re probably familiar with one of it’s most notable features—<a href="https://martinfowler.com/articles/injection.html" title="Inversion of Control Containers and the Dependency Injection pattern">dependency injection</a>. Nearly all Spring projects that I have worked with make heavy use of field injection, that is using <code class="language-plaintext highlighter-rouge">@Autowired</code>/<code class="language-plaintext highlighter-rouge">@Inject</code> annotation on an instance field. I guess this is a popular approach because it is concise and reads well. But have you ever considered the <a href="https://softwareengineering.stackexchange.com/questions/300706/dependency-injection-field-injection-vs-constructor-injection" title="Dependency Injection: Field Injection vs Constructor Injection?">downsides of field injection</a>?</p>
+
+<h2 id="what-downsides">What downsides?</h2>
+
+<p>If you’re wondering what downsides I’m referring to, then you’re like me. Let me explain.</p>
+
+<p>I used to use Spring’s field injection all the time. Although I was well aware that Spring framework supports constructor and setter injection, I did not consider using them. There were multiple reasons. But mainly I liked the brevity of adding <code class="language-plaintext highlighter-rouge">@Autowired</code> or <code class="language-plaintext highlighter-rouge">@Inject</code> annotation to a private field. Spring Framework would do the heavy lifting. Required dependencies were injected to instances of classes without me having to do much work at all. That’s what frameworks are supposed to do, right? To save us from doing the ugly work.</p>
+
+<p>New classes started out small. Maybe they had one or two dependencies but not more than that. Over time though, like in many code bases, classes started to grow larger. And the larger the class, the more dependencies it had. Spring makes it quite convenient. Just <em>autowire</em> them. This process continued until, lo and behold, I realized I had created a monolith. But that’s normal? Right? Raise your hand if you’ve seen a service class with ten or more dependencies with no single responsibility.</p>
+
+<h2 id="large-classes-arent-the-fault-of-field-injection">Large classes aren’t the fault of field injection</h2>
+
+<p>Of course, field injection is not <em>the</em> reason why classes grow too large. On the whole, I guess it comes down to bad programming practices. But I think field injection can contribute to it. <a href="https://www.petrikainulainen.net/software-development/design/the-biggest-flaw-of-spring-web-applications/">I see this happening especially in many Spring applications</a>.</p>
+
+<p>I’m sure you’ve seen this before. Let’s imagine a Spring application with an <code class="language-plaintext highlighter-rouge">Invoice</code> entity. An entity class is not useful unless you have a way to persist it. Therefore our imaginary Spring app has an <code class="language-plaintext highlighter-rouge">InvoiceRepository</code>. Where do we put our business logic? Let’s create an <code class="language-plaintext highlighter-rouge">InvoiceService</code>. What usually ends up happening is that everything that is slightly related to invoices is implemented in <code class="language-plaintext highlighter-rouge">InvoiceService</code> and the service class grows out of hand.</p>
+
+<p>Field injection only amplifies that in my opinion. It takes away the pain of introducing a new dependency. I’m not saying that programming should be painful but <em>autowiring</em> a new field is so easy that we stop thinking about whether we should actually do it.</p>
+
+<h2 id="so-is-there-anything-else">So, is there anything else?</h2>
+
+<p>The fact that a class can grow out of hand if we <em>autowire</em> too much collaborators into a single class is, of course, a weak argument against field injection. Good discipline can prevent issues like that. So is there anything else?</p>
+
+<p>As <a href="http://olivergierke.de/2013/11/why-field-injection-is-evil/">Oliver Gierke put in his blog</a>, using field injection is begging for <em>NullPointerExceptions</em> to happen. Say you create an instance of your class without a DI container. You don’t know, without looking at the source, which dependencies are needed for the class to behave correctly. So it’s just a matter of time until you call a method which in turn calls a dependency that is not initialized. He argues that <a href="http://blog.schauderhaft.de/2012/01/01/the-one-correct-way-to-do-dependency-injection/#comment-2825180814">dependencies need to be communicated publically</a>.</p>
+
+<p><strong>The problem with field injection is that you are allowed to instantiate a class in an invalid state</strong>. The class does not enforce invariants. I personally feel that objects should be ready to be worked with after construction. Everything the object needs to do its job should be provided via the constructor. If the object needs a dependency to behave correctly, it seems only logical that it publicly advertises it as one of the required constructor parameters. It’s like making a promise. As long as <em>you</em> provide me the required tools to work with, <em>I</em> make sure the job is done.</p>
+
+<p>In <a href="https://amzn.to/2JPxIrr" title="Growing Object-Oriented Software, Guided by Tests">Growing Object-Oriented Software, Guided by Tests</a>, the authors <a href="http://higherorderlogic.com/" title="Higher order logic">Steve Freeman</a> &amp; <a href="http://www.natpryce.com/">Nat Price</a> have this to say:</p>
+
+<blockquote>
+  <p>Partially creating an object and then finishing it off by setting properties is brittle because the programmer has to remember to set all the dependencies. When the object changes to add new dependencies, the existing client code will still compile even though it no longer constructs a valid instance. At best this will cause a <code class="language-plaintext highlighter-rouge">NullPointerException</code>, at worst it will fail misleadingly.</p>
+</blockquote>
+
+<p>If we’re talking about the Spring Framework, you might be thinking that there’s no need to instantiate Spring beans manually. More on that later.</p>
+
+<h2 id="to-hide-or-expose-dependencies">To hide or expose dependencies?</h2>
+
+<p>When you use field injection, you’re essentially <a href="https://twitter.com/olivergierke/status/314704198908403713">hiding dependencies</a>. Without looking at the source code, you don’t really know what collaborators a class needs when you instantiate it. This job is left for the DI container. Now, whether this is a good thing or not, is another question.</p>
+
+<p>I’m going to reference <a href="https://amzn.to/2Wiz1FZ" title="Code Complete">Code Complete</a>. <a href="https://en.wikipedia.org/wiki/Steve_McConnell" title="Steve McConnell">Steve McConnell</a> wrote the following on formalizing class contracts.</p>
+
+<blockquote>
+  <p>At a more detailed level, thinking of each class’s interface as a contract with the rest of the program can yield good insights. Typically, the contract is something like “If you promise to provide data x, y and z and you promise they’ll have characteristics a, b and c, I promise to perform operations 1, 2 and 3 within constraints 8, 9 and 10.” The promises the clients of the class make to the class are typically called “preconditions,” and the promises the object makes to its clients are called the “postconditions.”</p>
+</blockquote>
+
+<p>If you think of a contract of any kind, I’m 100% sure that you agree that it should clearly state the responsibilities of all the parties involved. When we take this metaphor to class design, the contract should declare what the class <em>needs from</em> the client and what the class <em>promises to</em> the client. As part of the contract, the client needs to know what collaborators the class needs to fill its promises. For that reason dependencies should be communicated publicly.</p>
+
+<p>On the other hand, maybe collaborators are just an implementation detail and the calling code should not know anything about them? <a href="https://stackoverflow.com/questions/1005473/must-dependency-injection-come-at-the-expense-of-encapsulation" title="Must Dependency Injection come at the expense of Encapsulation?">Does dependency injection break encapsulation?</a>. I guess this is a more wider topic which I don’t want to touch in this article.</p>
+
+<h2 id="constructor-gets-awkwardly-big">Constructor gets awkwardly big</h2>
+
+<p>Let’s say you decide to refactor a class to use constructor injection instead. To make it more challenging, suppose that you chose a class that has ten or more dependencies. You’ll quickly realize that using constructor injection would create a considerable amount of boilerplate code and in the end the constructor looks uncomfortably massive. It would be very difficult to remember the order of the parameters that need to be passed to the constructor. And above all, it just looks ugly. Field injection seems much easier, doesn’t it?</p>
+
+<p>The fact that a constructor is big is actually a good thing. Well, kind of. This is a <a href="http://vojtechruzicka.com/field-dependency-injection-considered-harmful/">clear indication that your class has probably too many responsibilities</a>. <a href="https://en.wikipedia.org/wiki/Robert_Cecil_Martin">Robert C. Martin (a.k.a Uncle Bob)</a> has said the following</p>
+
+<blockquote>
+  <p>A class should have only one reason to change</p>
+</blockquote>
+
+<p>Meaning that if a class as multiple responsibilities, it also has multiple reasons to change. And that is clear a violation of the <a href="https://en.wikipedia.org/wiki/Single_responsibility_principle">Single Responsibility Principle</a>. Field injection makes it very easy to add new dependencies. At the same time, it makes it very easy to grow your class until it becomes a <a href="https://en.wikipedia.org/wiki/God_object" title="God Object">god object</a>.</p>
+
+<blockquote>
+  <p><a href="http://olivergierke.de/2013/11/why-field-injection-is-evil/">You want to really cure the pain, not blindly apply pain killers to it, don’t you?</a></p>
+</blockquote>
+
+<p><a href="https://en.wikipedia.org/wiki/Steve_McConnell" title="Steve McConnell">Steve McConnell</a>, in his book <a href="https://amzn.to/2Wiz1FZ" title="Code Complete">Code Complete</a>, mentions low-to-medium <a href="http://it.toolbox.com/blogs/enterprise-solutions/design-principles-fanin-vs-fanout-16088" title="Design Principles: Fan-In vs Fan-Out">fan-out</a> as a desirable characteristic of a design.</p>
+
+<blockquote>
+  <p>Low-to-medium fan-out means having a given class use a low-to-medium number of other classes. High fan-out (more than about seven) indicates that a class uses a large number of other classes and may therefore be overly complex.</p>
+</blockquote>
+
+<p>Seeing a big constructor is a sign that your class has too many collaborators and it is a good opportunity to think about splitting the class into smaller pieces. Arguably, field injection does not give you a visual cue that a class might be overly complex. Of course, experience, good developer discipline and potentially static analysis tools could remedy this situation as well.</p>
+
+<h2 id="declaring-instance-fields-final">Declaring instance fields <code class="language-plaintext highlighter-rouge">final</code></h2>
+
+<p>In his book <a href="https://amzn.to/2Wep7Fn" title="Effective Java 3rd Edition">Effective Java</a>, <a href="https://twitter.com/joshbloch">Joshua Bloch</a> recommends to favor immutable classes.</p>
+
+<blockquote>
+  <p>Classes should be immutable unless there’s a very good reason to make them mutable….If a class cannot be made immutable, limit its mutability as much as possible.</p>
+</blockquote>
+
+<p>In Java, we usually <a href="http://www.journaldev.com/129/how-to-create-immutable-class-in-java" title="How to Create immutable Class in java?">achieve immutability by not providing setters and declaring fields with the <code class="language-plaintext highlighter-rouge">final</code> keyword</a>. In Spring, however, <a href="https://stackoverflow.com/questions/5732195/mutability-and-spring">we usually don’t care about immutability because nearly all Spring beans are singletons</a> with no real state (except the injected dependencies) and, most of the time, we know that we should not mutate a Spring bean. Setters are only provided for optional dependencies.</p>
+
+<p>But I think there’s still a benefit from using the <code class="language-plaintext highlighter-rouge">final</code> keyword in your Spring beans. <a href="http://olivergierke.de/2013/11/why-field-injection-is-evil/">Readers of the class can clearly distinguish between mandatory (<code class="language-plaintext highlighter-rouge">final</code>) and optional dependencies (non-<code class="language-plaintext highlighter-rouge">final</code>)</a>.</p>
+
+<p>When we use field injection, we are required that our instance fields are non-<code class="language-plaintext highlighter-rouge">final</code>. We cannot declare our private fields to be <code class="language-plaintext highlighter-rouge">final</code> and not initialize them in the construction. This would result in a compiler error saying that a variable might not have been initialized.</p>
+
+<h2 id="testing">Testing</h2>
+
+<p>You may be thinking that you will never have the need to instantiate your application classes yourself. Therefore you cannot accidentally create an object in an invalid state. The DI container will make sure all the required collaborators are injected. After all, frameworks should make our lives easier. I think this is a completely valid argument. In the end, the classes you’re designing are probably never used outside of the application you’re working on.</p>
+
+<p>This leads us to my next topic—testing. <a href="http://blog.schauderhaft.de/2012/01/01/the-one-correct-way-to-do-dependency-injection/" title="The One Correct Way to do Dependency Injection">How will you provide mocked dependencies in unit tests when field injection is used?</a>. I have seen that in this case reflection is used a lot to assign values to private fields. Come to think of it, doesn’t this seem like a workaround? <a href="http://rapaul.com/2011/07/10/constructor-injection-unit-tests/" title="Constructor Injection, and How It Simplifies Unit Test Setup">What if a class was designed with constructor injection in mind?</a> Then you would be able to create a new instance of a class and pass in the required mocks. No need to perform <em>magic</em> with reflection. It’s as if the class was designed to be testable.</p>
+
+<h2 id="reducing-boilerplate">Reducing boilerplate</h2>
+
+<p>You have to add additional lines of code to replace field injection with constructor injection. Java is considered a verbose language already, so why bother adding the extra weight?</p>
+
+<p>Firstly, constructors are an integral part of the language. I think it’s completely fine to include a constructor in a class. But I do agree that a large constructor looks like it should not belong there. Which leads me to my next point. <a href="https://www.petrikainulainen.net/software-development/design/why-i-changed-my-mind-about-field-injection/">If a constructor is too big, take a step back and examine your class from a higher level</a>. Ask yourself, is the class overly complex perhaps? Does it violate the <a href="https://en.wikipedia.org/wiki/Single_responsibility_principle" title="Single Responsibility Principle">single responsibility principle</a>? Could I split the class into smaller ones?</p>
+
+<p>If your answer to those questions was “no”, then read further. There’s a couple of tricks which you can use to remedy the ugly looking constructor. <a href="https://spring.io/blog/2016/03/04/core-container-refinements-in-spring-framework-4-3">As of Spring 4.3</a>, implicit constructor injection for single-constructor classes is available. This means that there’s no need to provide <code class="language-plaintext highlighter-rouge">@Autowired</code>/<code class="language-plaintext highlighter-rouge">@Inject</code> annotations on constructors. And if you’re a fan of <a href="https://projectlombok.org/features/Constructor.html" title="@NoArgsConstructor, @RequiredArgsConstructor, @AllArgsConstructor">Lombok</a> and code generation in general, you could use the <code class="language-plaintext highlighter-rouge">@RequiredArgsConstructor</code> to generate a constructor for all your <code class="language-plaintext highlighter-rouge">final</code> fields. Of course this implies you use the <code class="language-plaintext highlighter-rouge">final</code> keyword for all your required dependencies.</p>
+
+<h2 id="where-the-industry-is-moving">Where the industry is moving?</h2>
+
+<p>Maybe it’s my <a href="https://en.wikipedia.org/wiki/Confirmation_bias">confirmation bias</a> at play here but I have seen the theme of favoring constructor injection popping up in many places. At first I started to notice that IntelliJ IDEA began to display warnings if I was using field injection.</p>
+
+<p><img src="./To field inject, or not to field inject in Spring_ _ That which inspires awe_files/idea.jpg" alt="IntelliJ IDEA warning"></p>
+
+<p>It says that the Spring team recommends to use constructor injection instead. Out of curiosity, I scanned through <a href="http://docs.spring.io/spring/docs/4.2.x/spring-framework-reference/html/beans.html#beans-constructor-injection" title="Spring&#39;s reference manual">Spring’s reference manual</a> and found the following section.</p>
+
+<blockquote>
+  <p>The Spring team generally advocates constructor injection as it enables one to implement application components as immutable objects and to ensure that required dependencies are not <code class="language-plaintext highlighter-rouge">null</code>. Furthermore constructor-injected components are always returned to client (calling) code in a fully initialized state. As a side note, a large number of constructor arguments is a bad code smell, implying that the class likely has too many responsibilities and should be refactored to better address proper separation of concerns.</p>
+</blockquote>
+
+<p>In the release notes of <a href="https://jhipster.github.io/2017/02/02/jhipster-release-4.0.0.html">JHipster 4.0.0</a>, an application generator for creating Spring Boot + Angular projects, we can find that they have moved away from field-based injection as well.</p>
+
+<blockquote>
+  <p>JHipster is a complete upgrade of Spring libraries, with some major refactoring. The most important one is our switch from field-based injection to constructor-based injection.</p>
+</blockquote>
+
+<p>One of the reasons for the change is pointed out to be the following.</p>
+
+<blockquote>
+  <p>Constructor-based injection is considered cleaner by many people, in particular as it eases testing</p>
+</blockquote>
+
+<h2 id="summary">Summary</h2>
+
+<p>I have this impression that field injection has become the <em>de facto</em> way to inject dependencies in Spring applications and we don’t even consider the alternatives. But maybe it’s just me. Maybe I have encountered a bad set of projects where constructor injection has been avoided.</p>
+
+<p>The goal of this post was not to persuade you to convert your application to use constructor injection but to make you aware of the benefits that constructor injection provides. Arguably, it makes testing easier and a large constructor, in most cases, is an indication of a violation of the <a href="https://en.wikipedia.org/wiki/Single_responsibility_principle">single responsibility principle</a>.</p>
+
+<p>I know the world is not black and white. For some of you field injection is a completely fine method of injecting dependencies and constructor injection could be considered a <em>purist</em> way of thinking. Real life is far from pure and at the end of the day, what’s most important is getting the job done.</p>
+
+<p>Don’t be a <a href="https://en.wikipedia.org/wiki/Cargo_cult_programming" title="Cargo Cult Programming">cargo cult programmer</a>. Understand the pros and cons and use what works for you in your particular situation.</p>
+
+        </div>
+
+        
+          <div class="page-share">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.indrek.io%2Farticles%2Fto-field-inject-or-not-to%2F" onclick="window.open(this.href, &#39;window&#39;, &#39;left=20,top=20,width=500,height=500,toolbar=1,resizable=0&#39;); return false;" class="btn btn--facebook btn--small"><svg class="svg-inline--fa fa-facebook fa-w-14 fa-fw" aria-hidden="true" data-prefix="fab" data-icon="facebook" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M448 56.7v398.5c0 13.7-11.1 24.7-24.7 24.7H309.1V306.5h58.2l8.7-67.6h-67v-43.2c0-19.6 5.4-32.9 33.5-32.9h35.8v-60.5c-6.2-.8-27.4-2.7-52.2-2.7-51.6 0-87 31.5-87 89.4v49.9h-58.4v67.6h58.4V480H24.7C11.1 480 0 468.9 0 455.3V56.7C0 43.1 11.1 32 24.7 32h398.5c13.7 0 24.8 11.1 24.8 24.7z"></path></svg><!-- <i class="fab fa-fw fa-facebook" aria-hidden="true"></i> --> <span>Share</span></a>
+  <a href="https://twitter.com/intent/tweet?text=To+field+inject%2C+or+not+to+field+inject+in+Spring%3F%20https%3A%2F%2Fblog.indrek.io%2Farticles%2Fto-field-inject-or-not-to%2F" onclick="window.open(this.href, &#39;window&#39;, &#39;left=20,top=20,width=500,height=500,toolbar=1,resizable=0&#39;); return false;" class="btn btn--twitter btn--small"><svg class="svg-inline--fa fa-twitter fa-w-16 fa-fw" aria-hidden="true" data-prefix="fab" data-icon="twitter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg><!-- <i class="fab fa-fw fa-twitter" aria-hidden="true"></i> --> <span>Tweet</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fblog.indrek.io%2Farticles%2Fto-field-inject-or-not-to%2F" onclick="window.open(this.href, &#39;window&#39;, &#39;left=20,top=20,width=500,height=500,toolbar=1,resizable=0&#39;); return false;" class="btn btn--linkedin btn--small"><svg class="svg-inline--fa fa-linkedin fa-w-14 fa-fw" aria-hidden="true" data-prefix="fab" data-icon="linkedin" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"></path></svg><!-- <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> --> <span>LinkedIn</span></a>
+  <a href="https://reddit.com/submit?title=To+field+inject%2C+or+not+to+field+inject+in+Spring%3F&amp;url=https%3A%2F%2Fblog.indrek.io%2Farticles%2Fto-field-inject-or-not-to%2F" onclick="window.open(this.href, &#39;window&#39;, &#39;left=20,top=20,width=500,height=500,toolbar=1,resizable=0&#39;); return false;" class="btn btn--reddit btn--small"><svg class="svg-inline--fa fa-reddit fa-w-16 fa-fw" aria-hidden="true" data-prefix="fab" data-icon="reddit" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M201.5 305.5c-13.8 0-24.9-11.1-24.9-24.6 0-13.8 11.1-24.9 24.9-24.9 13.6 0 24.6 11.1 24.6 24.9 0 13.6-11.1 24.6-24.6 24.6zM504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-132.3-41.2c-9.4 0-17.7 3.9-23.8 10-22.4-15.5-52.6-25.5-86.1-26.6l17.4-78.3 55.4 12.5c0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.3 24.9-24.9s-11.1-24.9-24.9-24.9c-9.7 0-18 5.8-22.1 13.8l-61.2-13.6c-3-.8-6.1 1.4-6.9 4.4l-19.1 86.4c-33.2 1.4-63.1 11.3-85.5 26.8-6.1-6.4-14.7-10.2-24.1-10.2-34.9 0-46.3 46.9-14.4 62.8-1.1 5-1.7 10.2-1.7 15.5 0 52.6 59.2 95.2 132 95.2 73.1 0 132.3-42.6 132.3-95.2 0-5.3-.6-10.8-1.9-15.8 31.3-16 19.8-62.5-14.9-62.5zM302.8 331c-18.2 18.2-76.1 17.9-93.6 0-2.2-2.2-6.1-2.2-8.3 0-2.5 2.5-2.5 6.4 0 8.6 22.8 22.8 87.3 22.8 110.2 0 2.5-2.2 2.5-6.1 0-8.6-2.2-2.2-6.1-2.2-8.3 0zm7.7-75c-13.6 0-24.6 11.1-24.6 24.9 0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.1 24.9-24.6 0-13.8-11-24.9-24.9-24.9z"></path></svg><!-- <i class="fab fa-fw fa-reddit" aria-hidden="true"></i> --> <span>Reddit</span></a>
+</div>
+
+        
+
+        
+          
+  <div class="page-comments">
+    <div id="disqus_thread"><iframe id="dsq-app7745" name="dsq-app7745" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./To field inject, or not to field inject in Spring_ _ That which inspires awe_files/saved_resource.html" style="width: 1px !important; min-width: 100% !important; border: none !important; overflow: hidden !important; height: 394px !important;" horizontalscrolling="no" verticalscrolling="no"></iframe></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://blog.indrek.io/articles/to-field-inject-or-not-to/';
+        this.page.identifier = 'https://blog.indrek.io/articles/to-field-inject-or-not-to/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://thatwhichinspiresawe.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+        
+        
+          <i style="font-size: 85%">
+This website is a participant in the Amazon Services LLC Associates Program,
+an affiliate advertising program designed to provide a means for sites to earn advertising
+fees by advertising and linking to Amazon.com.
+</i>
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="https://blog.indrek.io/articles/javas-while-and-do-while-loops-in-five-minutes/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <svg class="svg-inline--fa fa-arrow-left fa-w-14" aria-hidden="true" data-prefix="fas" data-icon="arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"></path></svg><!-- <i class="fas fa-arrow-left"></i> --> Java’s While and Do-While Loops in Five Minutes
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="https://blog.indrek.io/articles/whats-new-in-java-9-streams/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        takeWhile and dropWhile in Java 9 Streams
+ <svg class="svg-inline--fa fa-arrow-right fa-w-14" aria-hidden="true" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path></svg><!-- <i class="fas fa-arrow-right"></i> -->
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+    </div>
+  </article>
+</main>
+
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="https://twitter.com/otsindrek"><svg class="svg-inline--fa fa-twitter fa-w-16 fa-2x" title="Twitter" aria-labelledby="svg-inline--fa-title-4" data-prefix="fab" data-icon="twitter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><title id="svg-inline--fa-title-4">Twitter</title><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg><!-- <i class="fab fa-twitter fa-2x" title="Twitter"></i> --></a><a class="social-icon" href="https://github.com/indrekots"><svg class="svg-inline--fa fa-github fa-w-16 fa-2x" title="Github" aria-labelledby="svg-inline--fa-title-5" data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" data-fa-i2svg=""><title id="svg-inline--fa-title-5">Github</title><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg><!-- <i class="fab fa-github fa-2x" title="Github"></i> --></a><a class="social-icon" href="https://stackoverflow.com/users/2928051/indrek-ots"><svg class="svg-inline--fa fa-stack-overflow fa-w-12 fa-2x" title="Stackoverflow" aria-labelledby="svg-inline--fa-title-6" data-prefix="fab" data-icon="stack-overflow" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><title id="svg-inline--fa-title-6">Stackoverflow</title><path fill="currentColor" d="M293.7 300l-181.2-84.5 16.7-36.5 181.3 84.7-16.8 36.3zm48-76L188.2 95.7l-25.5 30.8 153.5 128.3 25.5-30.8zm39.6-31.7L262 32l-32 24 119.3 160.3 32-24zM290.7 311L95 269.7 86.8 309l195.7 41 8.2-39zm31.6 129H42.7V320h-40v160h359.5V320h-40v120zm-39.8-80h-200v39.7h200V360z"></path></svg><!-- <i class="fab fa-stack-overflow fa-2x" title="Stackoverflow"></i> --></a><a class="social-icon" href="https://blog.indrek.io/atom.xml"><svg class="svg-inline--fa fa-rss-square fa-w-14 fa-2x" title="Feed" aria-labelledby="svg-inline--fa-title-7" data-prefix="fas" data-icon="rss-square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><title id="svg-inline--fa-title-7">Feed</title><path fill="currentColor" d="M400 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM112 416c-26.51 0-48-21.49-48-48s21.49-48 48-48 48 21.49 48 48-21.49 48-48 48zm157.533 0h-34.335c-6.011 0-11.051-4.636-11.442-10.634-5.214-80.05-69.243-143.92-149.123-149.123-5.997-.39-10.633-5.431-10.633-11.441v-34.335c0-6.535 5.468-11.777 11.994-11.425 110.546 5.974 198.997 94.536 204.964 204.964.352 6.526-4.89 11.994-11.425 11.994zm103.027 0h-34.334c-6.161 0-11.175-4.882-11.427-11.038-5.598-136.535-115.204-246.161-251.76-251.76C68.882 152.949 64 147.935 64 141.774V107.44c0-6.454 5.338-11.664 11.787-11.432 167.83 6.025 302.21 141.191 308.205 308.205.232 6.449-4.978 11.787-11.432 11.787z"></path></svg><!-- <i class="fas fa-rss-square fa-2x" title="Feed"></i> --></a></div><div class="copyright">
+    
+      <p>© 2020 That which inspires awe. Powered by <a href="https://jekyllrb.com/" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="./To field inject, or not to field inject in Spring_ _ That which inspires awe_files/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="./To field inject, or not to field inject in Spring_ _ That which inspires awe_files/main.min.js"></script>
+  <script src="./To field inject, or not to field inject in Spring_ _ That which inspires awe_files/all.js"></script><script>
+  if(!(window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1")) {
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-62219982-1', 'auto');
+    ga('send', 'pageview');
+  }
+  </script>
+
+
+  
+
+
+<iframe style="display: none;" src="./To field inject, or not to field inject in Spring_ _ That which inspires awe_files/saved_resource(1).html"></iframe></body></html>
