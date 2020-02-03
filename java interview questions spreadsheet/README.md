@@ -76,7 +76,7 @@
 |-------|-----|-------|
 |   x   |  x  |   x   |
 
-`References:`
+`references:`
 https://www.interviewsansar.com/2017/06/29/implement-multiple-inheritance-in-java/
 
 Multiple inheritance in Java programming is achieved or implemented using interfaces. Java does not support multiple inheritance using classes.
@@ -86,7 +86,7 @@ In simple term, a class can inherit only one class and multiple interfaces in a 
 
 ----
 
-`References:`
+`references:`
 https://www.geeksforgeeks.org/java-and-multiple-inheritance/
 
 Multiple Inheritance is a feature of object oriented concept, where a class can inherit properties of more than one parent class. The problem occurs when there exist methods with same signature in both the super classes and subclass. On calling the method, the compiler cannot determine which class method to be called and even on calling which class method gets the priority.
@@ -246,7 +246,7 @@ Please write comments if you find anything incorrect, or you want to share more 
 
 ----
 
-`References:`
+`references:`
 https://www.journaldev.com/1775/multiple-inheritance-in-java
 
 **Composition to the rescue**
@@ -380,7 +380,7 @@ That’s all for multiple inheritances in java and a brief look at composition.
 |-------|-----|-------|
 |   x   |  x  |   x   |
 
-`References:` https://blog.udemy.com/java-interface-example/
+`references:` https://blog.udemy.com/java-interface-example/
 
 **What is a Java Interface?**
 
@@ -390,7 +390,7 @@ The most significant similarity between interfaces and classes is that they both
 
 ----
 
-`References:`
+`references:`
 http://tutorials.jenkov.com/java/interfaces.html
 
 Java includes a concept called interfaces. A Java interface is a bit like a class, except a Java interface can only contain method signatures and fields. An Java interface cannot contain an implementation of the methods, only the signature (name, parameters and exceptions) of the method.
@@ -803,7 +803,7 @@ Functional interfaces are often intended to be implemented by a [Java Lambda Exp
 |-------|-----|-------|
 |   x   |  x  |   x   |
 
-`References:` https://www.techopedia.com/definition/24335/abstract-class-java
+`references:` https://www.techopedia.com/definition/24335/abstract-class-java
 
 **Definition - What does Abstract Class mean?**
 
@@ -813,7 +813,7 @@ Subclasses extended from an abstract class have all the abstract class's attribu
 
 ----
 
-`References:` https://www.javatpoint.com/abstract-class-in-java
+`references:` https://www.javatpoint.com/abstract-class-in-java
 
 **Points to Remember**
 
@@ -920,7 +920,7 @@ Please see:
 - What is an Abstract class?
     - Abstract Classes Compared to Interfaces
 
-`References:` https://blog.udemy.com/difference-between-abstract-class-and-interface
+`references:` https://blog.udemy.com/difference-between-abstract-class-and-interface
 
 - Abstract Classes
 
@@ -936,7 +936,7 @@ An interface is not a class, like the abstract class, but it is very similar to 
 |-------|-----|-------|
 |   x   |  x  |   x   |
 
-`References:` https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html
+`references:` https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html
 
 **Controlling Access to Members of a Class** 
 
@@ -959,7 +959,7 @@ The following table shows the access to members permitted by each modifier.
 
 ----
 
-`References:` https://www.geeksforgeeks.org/access-modifiers-java/
+`references:` https://www.geeksforgeeks.org/access-modifiers-java/
 
 **Default**: When no access modifier is specified for a class , method or data member – It is said to be having the default access modifier by default.
 
@@ -967,7 +967,9 @@ The data members, class or methods which are not declared using any access modif
 
 ----
 
-`References:` https://www.javatpoint.com/access-modifiers
+- [Access-modifiers-java-Javatpoint](refs/Access-modifiers-java-Javatpoint)
+
+`references:` https://www.javatpoint.com/access-modifiers
 
 **Access Modifiers in Java**
 
@@ -987,7 +989,7 @@ There are four types of Java access modifiers:
 
 ----
 
-`References:` https://www.w3schools.com/java/java_modifiers.asp
+`references:` https://www.w3schools.com/java/java_modifiers.asp
 
 We divide modifiers into two groups:
 
@@ -1020,7 +1022,7 @@ For attributes and methods, you can use the one of the following:
 |-------|-----|-------|
 |   x   |  x  |   x   |
 
-`References:` https://www.geeksforgeeks.org/inheritance-in-java/
+`references:` https://www.geeksforgeeks.org/inheritance-in-java/
 
 Inheritance is an important pillar of OOP(Object Oriented Programming). It is the mechanism in java by which one class is allow to inherit the features(fields and methods) of another class.
 Important terminology:
@@ -1394,12 +1396,12 @@ We can write a new instance method in the subclass that has the same signature a
 
 ----
 
-`References:`
+`references:`
 http://tutorials.jenkov.com/java/inheritance.html
 
 ----
 
-`References:`
+`references:`
 https://docs.oracle.com/javase/tutorial/java/IandI/subclasses.html
 
 ----
@@ -1410,7 +1412,7 @@ https://docs.oracle.com/javase/tutorial/java/IandI/subclasses.html
 |-------|-----|-------|
 |   x   |  x  |   x   |
 
-`References:`
+`references:`
 https://www.geeksforgeeks.org/polymorphism-in-java/
 
 **Polymorphism in Java**
@@ -1607,7 +1609,7 @@ subclass2
 ```
 
 ----
-`References:`
+`references:`
 https://docs.oracle.com/javase/tutorial/java/IandI/polymorphism.html
 
 
@@ -1617,7 +1619,7 @@ https://docs.oracle.com/javase/tutorial/java/IandI/polymorphism.html
 |-------|-----|-------|
 |   x   |  x  |   x   |
 
-`References:`
+`references:`
 https://www.geeksforgeeks.org/overriding-in-java/
 
 **Overriding in Java**
@@ -2092,7 +2094,7 @@ Clerk's salary : 20000
 
 **Dynamic Method Dispatch or Runtime Polymorphism in Java**
 
-`References:`
+`references:`
 https://www.geeksforgeeks.org/dynamic-method-dispatch-runtime-polymorphism-java/
 [Dynamic-Method-Dispatch-or-Runtime-Polymorphism-Java-GeeksforGeeks](refs/Dynamic-Method-Dispatch-or-Runtime-Polymorphism-Java-GeeksforGeeks)
 
@@ -2100,7 +2102,7 @@ https://www.geeksforgeeks.org/dynamic-method-dispatch-runtime-polymorphism-java/
 
 **Overloading in Java**
 
-`References:`
+`references:`
 https://www.geeksforgeeks.org/overloading-in-java/
 
 [Overloading-Java-GeeksforGeeks](refs/Overloading-Java-GeeksforGeeks)
@@ -2109,7 +2111,7 @@ https://www.geeksforgeeks.org/overloading-in-java/
 
 **Different ways of Method Overloading in Java**
 
-`References:`
+`references:`
 https://www.geeksforgeeks.org/different-ways-method-overloading-java/
 
 [Different-ways-of-Method-Overloading-Java -GeeksforGeeks](refs/Different-ways-of-Method-Overloading-Java -GeeksforGeeks)
@@ -2122,7 +2124,7 @@ https://www.geeksforgeeks.org/different-ways-method-overloading-java/
 |-------|-----|-------|
 |       |  x  |   x   |
 
-`References:`
+`references:`
 https://stackoverflow.com/questions/16313649/what-is-method-hiding-in-java-even-the-javadoc-explanation-is-confusing
 
 ```java
@@ -2204,7 +2206,7 @@ JB Nizet
 
 ----
 
-`References:`
+`references:`
 https://www.baeldung.com/java-variable-method-hiding
 
 **Variable Hiding**
@@ -2324,7 +2326,7 @@ In most cases, we should avoid creating variables with the same name both in par
 |-------|-----|-------|
 |   x   |  x  |   x   |
 
-`References:`
+`references:`
 https://www.geeksforgeeks.org/encapsulation-in-java/
 
 **Encapsulation in Java**
@@ -2448,7 +2450,7 @@ This article is contributed by Harsh Agarwal. If you like GeeksforGeeks and woul
 |-------|-----|-------|
 |   x   |  x  |   x   |
 
-`References:` https://www.javatpoint.com/abstract-class-in-java
+`references:` https://www.javatpoint.com/abstract-class-in-java
 
 **Abstraction in Java**
 
@@ -2473,7 +2475,7 @@ There are two ways to achieve abstraction in java
 |-------|-----|-------|
 |   x   |  x  |   x   |
 
-`References:`
+`references:`
 https://howtodoinjava.com/oops/object-oriented-principles/
 [Java-OOPs-Concepts-Object-Oriented-Principles-HowToDoInJava](refs/Java-OOPs-Concepts-Object-Oriented-Principles-HowToDoInJava)
 
@@ -2614,7 +2616,7 @@ In java language, polymorphism is essentially considered into two versions:
 
 ----
 
-`References:`
+`references:`
 https://raygun.com/blog/oop-concepts-java/#association
 
 [6-OOP-Concepts-in-Java-with-examples-2020-Raygun-Blog](refs/6-OOP-Concepts-in-Java-with-examples-2020-Raygun-Blog)
@@ -2655,7 +2657,7 @@ Composition in Java:
 
 ----
 
-`References:`
+`references:`
 https://www.geeksforgeeks.org/object-oriented-programming-oops-concept-in-java/
 [Object-Oriented-Programming-OOPs-Concept-in-Java-GeeksforGeeks](refs/Object-Oriented-Programming-OOPs-Concept-in-Java-GeeksforGeeks)
 
@@ -2681,7 +2683,7 @@ Object: It is a basic unit of Object Oriented Programming and represents the rea
 
 ----
 
-`References:`
+`references:`
 https://www.javatpoint.com/java-oops-concepts
 
 [Java-OOPs-Concepts-Javatpoint](refs/Java-OOPs-Concepts-Javatpoint)
@@ -2696,7 +2698,7 @@ Cohesion refers to the level of a component which performs a single well-defined
 
 ----
 
-`References:`
+`references:`
 https://stackabuse.com/object-oriented-design-principles-in-java/
 
 [Object-Oriented-Design-Principles-in-Java](refs/Object-Oriented-Design-Principles-in-Java)
@@ -3057,7 +3059,7 @@ No changes in the class structure needed, no major DRY violations, no confusion 
 
 ----
 
-`References:`
+`references:`
 https://dev.to/javinpaul/top-10-object-oriented-design-principles-for-writing-clean-code-4pe1
 
 [Top-10-Object-Oriented-Design-Principles-for-writing-Clean-Code-DEV-Community](refs/Top-10-Object-Oriented-Design-Principles-for-writing-Clean-Code-DEV-Community)
@@ -3096,7 +3098,7 @@ This has also been advised in many Java books including in "Effective Java" and 
 
 ----
 
-`References:`
+`references:`
 https://en.wikipedia.org/wiki/SOLID
 
 **SOLID**
@@ -3122,7 +3124,7 @@ One should "depend upon abstractions, not concretions."
 
 ----
 
-`References:`
+`references:`
 https://en.wikipedia.org/wiki/GRASP_(object-oriented_design)
 
 GRASP (object-oriented design)
@@ -3137,7 +3139,7 @@ General Responsibility Assignment Software Patterns (or Principles), abbreviated
 |-------|-----|-------|
 |   x   |  x  |   x   |
 
-`References:`
+`references:`
 https://www.baeldung.com/java-static
 
 [A-Guide-to-the-Static-Keyword-in-Java_Baeldung](refs/A-Guide-to-the-Static-Keyword-in-Java_Baeldung)
@@ -3356,7 +3358,7 @@ _Key Points to Remember_
 
 See [Static keyword](#Static-keyword).
 
-`References:`
+`references:`
 https://stackoverflow.com/questions/27252915/static-method-cannot-access-instance-members-of-a-class
 
 Accessing an instance member means accessing a field or attribute of the instance, not the instance itself since that would not compile. A dot does not literally mean "accessing" in the exact way you think and I guess that's the source of confusion you have. The dot is used to call a method on a certain object (see this link) or to access a field of an object (or class if the field is static).
@@ -3391,7 +3393,7 @@ manouti
 |-------|-----|-------|
 |       |  x  |   x   |
 
-`References:`
+`references:`
 https://www.baeldung.com/java-marker-interfaces
 
 [Marker-Interfaces-in-Java_Baeldung](refs/Marker-Interfaces-in-Java_Baeldung)
@@ -3543,7 +3545,7 @@ Hence, although we can achieve the same results by using a typical interface as 
 |-------|-----|-------|
 |       |  x  |   x   |
 
-`References:`
+`references:`
 https://www.java67.com/2013/02/can-abstract-class-have-constructor-in-java.html
 
 **Can abstract class have Constructor in Java - Interview Question**
@@ -3601,7 +3603,7 @@ In this example Java program, we have an abstract class Server, which has a cons
 
 ----
 
-`References:`
+`references:`
 https://stackoverflow.com/questions/260666/can-an-abstract-class-have-a-constructor
 
 
@@ -3631,7 +3633,7 @@ jfpoilpret
 |-------|-----|-------|
 |       |  x  |   x   |
 
-`References:`
+`references:`
 https://www.tutorialspoint.com/final-finally-and-finalize-in-Java
 
 - The **final** ___keyword___ can be used with class method and variable. A final class cannot be instantiated, a final method cannot be overridden and a final variable cannot be reassigned.
@@ -3642,7 +3644,7 @@ https://www.tutorialspoint.com/final-finally-and-finalize-in-Java
 
 ----
 
-`References:`
+`references:`
 https://www.baeldung.com/java-final-finally-finalize
 
 **Differences Between Final, Finally and Finalize in Java**
@@ -3835,14 +3837,14 @@ Note that it's considered bad practice to override finalize() method as its exec
 
 ----
 
-`References:`
+`references:`
 https://www.geeksforgeeks.org/g-fact-24-finalfinally-and-finalize-in-java/
 
 [final-finally-and-finalize-in-Java-GeeksforGeeks](refs/final-finally-and-finalize-in-Java-GeeksforGeeks)
 
 ----
 
-`References:`
+`references:`
 https://hackernoon.com/java-lang-object-finalize-is-finally-deprecated-f99df40fa71
 
 **java.lang.Object.finalize() is finally deprecated**
@@ -3855,7 +3857,7 @@ https://hackernoon.com/java-lang-object-finalize-is-finally-deprecated-f99df40fa
 |-------|-----|-------|
 |   x   |  x  |   x   |
 
-`References:`
+`references:`
 https://stackoverflow.com/questions/464098/does-a-finally-block-always-run/464102
 
 from the [Sun Tutorials](http://docs.oracle.com/javase/tutorial/essential/exceptions/finally.html)
@@ -3902,7 +3904,7 @@ Eugene Yokota
 
 ----
 
-`References:`
+`references:`
 https://stackoverflow.com/questions/17424801/when-does-the-finally-block-not-execute-while-try-or-catch-block-is-interrupted
 
 Good answers can be found [here](https://stackoverflow.com/questions/65035/does-finally-always-execute-in-java).
@@ -3935,7 +3937,7 @@ This is wrong. If a thread is stopped via Thread.stop, finally blocks are execut
 
 ----
 
-`References:`
+`references:`
 https://stackoverflow.com/questions/12430642/what-are-the-circumstances-under-which-a-finally-block-will-not-execute
 
 If you call System.exit() the program exits immediately without finally being called.
@@ -4053,14 +4055,14 @@ Peter Lawrey
 |-------|-----|-------|
 |       |  x  |   x   |
 
-`References:`
+`references:`
 https://www.javamex.com/tutorials/exceptions/exceptions_hierarchy.shtml
 
 ![ExceptionHierarchy](resources/ExceptionHierarchy.png)
 
 ----
 
-`References:`
+`references:`
 https://www.geeksforgeeks.org/exceptions-in-java/
 
 [Exceptions-in-Java-GeeksforGeeks](refs/Exceptions-in-Java-GeeksforGeeks)
@@ -4068,21 +4070,21 @@ https://www.geeksforgeeks.org/exceptions-in-java/
 
 ----
 
-`References:`
+`references:`
 https://www.tutorialspoint.com/java/java_exceptions.htm
 
 ![exceptions1.jpg](resources/exceptions1.jpg)
 
 ----
 
-`References:`
+`references:`
 https://www.javatpoint.com/exception-handling-in-java
 
 ![throwable.png](resources/throwable.png)
 
 ----
 
-`References:`
+`references:`
 https://www.baeldung.com/java-exceptions
 
 **Exception Handling in Java**
@@ -4091,7 +4093,7 @@ https://www.baeldung.com/java-exceptions
 
 ----
 
-`References:`
+`references:`
 https://4comprehension.com/sneakily-throwing-exceptions-in-lambda-expressions-in-java/
 
 **Sneakily Throwing Exceptions in Lambda Expressions in Java**
@@ -4104,7 +4106,7 @@ https://4comprehension.com/sneakily-throwing-exceptions-in-lambda-expressions-in
 |-------|-----|-------|
 |   x   |  x  |   x   |
 
-`References:`
+`references:`
 
 https://www.javamex.com/tutorials/exceptions/exceptions_hierarchy.shtml
 
@@ -4120,7 +4122,7 @@ callers don't have to handle them explicitly.
 
 ----
 
-`References:`
+`references:`
 https://docs.oracle.com/javase/tutorial/essential/exceptions/runtime.html
 
 **Unchecked Exceptions — The Controversy**
@@ -4169,7 +4171,7 @@ Please see:
 
 ----
 
-`References:`
+`references:`
 https://stackoverflow.com/questions/40503733/suppressed-exception-disappeared-when-using-finally
 
 Here is code that does what you would expect:
@@ -4285,7 +4287,7 @@ tuempl
 
 ----
 
-`References:`
+`references:`
 https://howtodoinjava.com/java7/java-suppressed-exceptions/
 [Java-suppressed-exceptions-with-example-HowToDoInJava](refs/Java-suppressed-exceptions-with-example-HowToDoInJava)
 
@@ -4302,7 +4304,7 @@ _Suppressed exceptions, as name suggest, are exceptions thrown in the code but w
 
 ----
 
-`References:`
+`references:`
 https://eclipsesource.com/blogs/2013/04/25/when-an-exception-gets-lost/
 
 ----
@@ -4313,20 +4315,20 @@ https://eclipsesource.com/blogs/2013/04/25/when-an-exception-gets-lost/
 |-------|-----|-------|
 |   x   |  x  |   x   |
 
-`References:`
+`references:`
 https://www.javaworld.com/article/3305792/comparing-java-objects-with-equals-and-hashcode.html
 [Comparing-Java-objects-with-equals-and-hashcode_JavaWorld](refs/Comparing-Java-objects-with-equals-and-hashcode_JavaWorld)
 
 ----
 
-`References:`
+`references:`
 https://stackabuse.com/javas-object-methods-equals-object/
 
 [Java's-Object-Methods_equals(Object)](refs/Java's-Object-Methods_equals(Object))
 
 ----
 
-`References:`
+`references:`
 https://www.geeksforgeeks.org/difference-equals-method-java/
 
 In general both equals() and “==” operator in Java are used to compare objects to check equality but here are some of the differences between the two:
@@ -4340,7 +4342,7 @@ In general both equals() and “==” operator in Java are used to compare objec
 
 ----
 
-`References:`
+`references:`
 https://www.java67.com/2012/11/difference-between-operator-and-equals-method-in.html
 
 ![equals-vs-equality-operator-in-Java](resources/equals-vs-equality-operator-in-Java.png)
@@ -4349,7 +4351,7 @@ https://www.java67.com/2012/11/difference-between-operator-and-equals-method-in.
 
 # hashCode() in Java
 
-`References:`
+`references:`
 https://stackabuse.com/javas-object-methods-hashcode/
 
 [Java's-Object-Methods_hashCode](refs/Java's-Object-Methods_hashCode)
@@ -4368,20 +4370,20 @@ Please see:
 
 ----
 
-`References:`
+`references:`
 https://www.geeksforgeeks.org/annotations-in-java/
 
 # Annotations in Java
 
 
-`References:`
+`references:`
 http://tutorials.jenkov.com/java/annotations.html
 
 **Java Annotations**
 
 ----
 
-`References:`
+`references:`
 https://www.javaworld.com/blog/java-101/
 
 # JAVA 101: LEARN JAVA By Jeff Friesen
@@ -4396,14 +4398,14 @@ https://www.javaworld.com/blog/java-101/
 |-------|-----|-------|
 |       |  x  |   x   |
 
-`References:`
+`references:`
 https://www.baeldung.com/java-string-pool
 
 [Guide-to-Java-String-Pool_Baeldung](refs/Guide-to-Java-String-Pool_Baeldung)
 
 ----
 
-`References:`
+`references:`
 https://medium.com/@sameira/java-string-pool-25c5484c7206
 
 ![0_iEbpUt-eu-ScohcK.png](resources/0_iEbpUt-eu-ScohcK.png)
@@ -4422,7 +4424,7 @@ secondHelloWorld == forthHelloWorld => false
 
 ----
 
-`References:`
+`references:`
 https://www.javaworld.com/article/3276354/string-comparisons-in-java.html#key
 
 [String-comparisons-in-Java_JavaWorld](refs/String-comparisons-in-Java_JavaWorld)
@@ -4437,7 +4439,7 @@ https://www.javaworld.com/article/3276354/string-comparisons-in-java.html#key
 |-------|-----|-------|
 |       |  x  |   x   |
 
-`References:`
+`references:`
 https://www.javatpoint.com/collections-in-java
 
 [Collections-in-Java-javatpoint](refs/Collections-in-Java-javatpoint)
@@ -4446,47 +4448,47 @@ https://www.javatpoint.com/collections-in-java
 
 ----
 
-`References:`
+`references:`
 http://www.falkhausen.de/Java-8/java.util/Collection-Hierarchy.html
 
 ![Collection-Hierarchy.png](resources/Collection-Hierarchy.png)
 
 ----
 
-`References:`
+`references:`
 https://www.scientecheasy.com/2018/09/collection-hierarchy-in-java.html
 
 [Collection-Hierarchy-in-Java_Collections-class_ScientechEasy](refs/Collection-Hierarchy-in-Java_Collections-class_ScientechEasy)
 
 ----
 
-`References:`
+`references:`
 https://www.edureka.co/blog/java-collections/
 [Java-Collections-Framework_Collections-in-Java-With-Examples_Edureka](refs/Java-Collections-Framework_Collections-in-Java-With-Examples_Edureka)
 
 ----
 
-`References:`
+`references:`
 https://dzone.com/articles/an-introduction-to-the-java-collections-framework
 [An-Introduction-to-the-Java-Collections-Framework-DZone-Java](refs/An-Introduction-to-the-Java-Collections-Framework-DZone-Java)
 
 ----
 
-`References:`
+`references:`
 https://www.geeksforgeeks.org/collections-in-java-2/
 
 [Collections-in-Java-GeeksforGeeks](refs/Collections-in-Java-GeeksforGeeks)
 
 ----
 
-`References:`
+`references:`
 https://www.geeksforgeeks.org/java-collection-tutorial/
 
 **Java Collection Tutorial**
 
 ----
 
-`References:`
+`references:`
 https://www.baeldung.com/java-collections
 
 **Java Collections**
@@ -4509,14 +4511,14 @@ Please see:
 
 # Java List Interface
 
-`References:`
+`references:`
 https://www.javatpoint.com/java-list
 
 List Interface is the subinterface of Collection. It contains index-based methods to insert and delete elements. It is a factory of ListIterator interface.
 
 # List Interface in Java with Examples
 
-`References:`
+`references:`
 https://www.geeksforgeeks.org/list-interface-java-examples/
 
 The Java.util.List is a child interface of Collection. It is an ordered collection of objects in which duplicate values can be stored. Since List preserves the insertion order, it allows positional access and insertion of elements. List Interface is implemented by the classes of ArrayList, LinkedList, Vector and Stack.
@@ -4525,7 +4527,7 @@ The Java.util.List is a child interface of Collection. It is an ordered collecti
 
 # Java ArrayList class
 
-`References:`
+`references:`
 https://www.javatpoint.com/java-arraylist
 
 Java ArrayList class uses a dynamic array for storing the elements. It inherits AbstractList class and implements List interface.
@@ -4546,7 +4548,7 @@ The important points about Java ArrayList class are:
 
 # ArrayList in Java
 
-`References:`
+`references:`
 https://www.geeksforgeeks.org/arraylist-in-java/
 
 ArrayList in Java
@@ -4567,7 +4569,7 @@ ArrayList is a part of collection framework and is present in java.util package.
 
 # Guide to the Java ArrayList
 
-`References:`
+`references:`
 https://www.baeldung.com/java-arraylist
 
 List represents an ordered sequence of values where some value may occur more than one time.
@@ -4583,7 +4585,7 @@ ArrayList is one of the List implementations built atop an array, which is able 
 
 # Java LinkedList class
 
-`References:`
+`references:`
 https://www.javatpoint.com/java-linkedlist
 
 Java LinkedList class uses a doubly linked list to store the elements. It provides a linked-list data structure. It inherits the AbstractList class and implements List and Deque interfaces.
@@ -4602,7 +4604,7 @@ The important points about Java LinkedList are:
 
 # LinkedList in Java
 
-`References:`
+`references:`
 https://www.geeksforgeeks.org/linked-list-in-java/
 
 Linked List are linear data structures where the elements are not stored in contiguous locations and every element is a separate object with a data part and address part. The elements are linked using pointers and addresses. Each element is known as a node. Due to the dynamicity and ease of insertions and deletions, they are preferred over the arrays. It also has few disadvantages like **the nodes cannot be accessed directly** instead we need to start from the head and follow through the link to reach to a node we wish to access.
@@ -4622,7 +4624,7 @@ https://www.javatpoint.com/difference-between-arraylist-and-linkedlist
 
 # ArrayList vs LinkedList in Java
 
-`References:`
+`references:`
 https://www.geeksforgeeks.org/arraylist-vs-linkedlist-java/
 
 ----
@@ -4635,14 +4637,14 @@ https://www.geeksforgeeks.org/arraylist-vs-linkedlist-java/
 
 ## Difference Between List and ArrayList in Java
 
-`References:`
+`references:`
 https://techdifferences.com/difference-between-list-and-arraylist-in-java.html
 
 [Difference-Between-List-ArrayList-Java-Tech-Differences](refs/Difference-Between-List-ArrayList-Java-Tech-Differences)
 
 ## Array vs ArrayList in Java
 
-`References:`
+`references:`
 https://www.geeksforgeeks.org/array-vs-arraylist-in-java/
 
 [Array-vs-ArrayList-Java-GeeksforGeeks](refs/Array-vs-ArrayList-Java-GeeksforGeeks)
@@ -4654,14 +4656,14 @@ https://www.geeksforgeeks.org/array-vs-arraylist-in-java/
 |-------|-----|-------|
 |       |  x  |   x   |
 
-`References:`
+`references:`
 https://www.geeksforgeeks.org/differences-treemap-hashmap-linkedhashmap-java/
 [Differences-between-TreeMap-HashMap-LinkedHashMap-GeeksforGeeks](refs/Differences-between-TreeMap-HashMap-LinkedHashMap-GeeksforGeeks)
 
 
 ## Difference between HashMap, LinkedHashMap and TreeMap
 
-`References:`
+`references:`
 https://stackoverflow.com/questions/2889777/difference-between-hashmap-linkedhashmap-and-treemap
 
 ```text
@@ -4686,23 +4688,23 @@ All three classes implement the Map interface and offer mostly the same function
 
 ## Comparable vs Comparator in Java
 
-`References:`
+`references:`
 https://www.geeksforgeeks.org/comparable-vs-comparator-in-java/
 
 [Comparable-vs-Comparator-Java-GeeksforGeeks](refs/Comparable-vs-Comparator-Java-GeeksforGeeks)
 
-`References:`
+`references:`
 http://zetcode.com/java/comparablecomparator/
 
 [Java-Comparable-Comparator-zetcode](refs/Java-Comparable-Comparator-zetcode)
 
-`References:`
+`references:`
 https://hellokoding.com/java-comparable-vs-comparator-examples/
 
-`References:`
+`references:`
 https://docs.oracle.com/javase/tutorial/collections/interfaces/order.html
 
-`References:`
+`references:`
 https://www.codejava.net/java-core/collections/understanding-object-ordering-in-java-with-comparable-and-comparator
 
 ----
@@ -4713,7 +4715,7 @@ https://www.codejava.net/java-core/collections/understanding-object-ordering-in-
 |-------|-----|-------|
 |       |  x  |   x   |
 
-`References:`
+`references:`
 https://stackoverflow.com/questions/29699103/treeset-constructor-with-comparator-parameter
 
 ```text
@@ -4724,7 +4726,7 @@ If you use a constructor that has no Comparator, the natural ordering of the ele
 If you want a different ordering, you supply a Comparator in the constructor.
 ```
 
-`References:`
+`references:`
 https://www.geeksforgeeks.org/treeset-comparator-method-in-java/
 
 
@@ -4738,12 +4740,12 @@ See [NATURAL ordering - implementing Comparable interface VS CUSTOM ordering - i
 |-------|-----|-------|
 |       |  x  |   x   |
 
-`References:`
+`references:`
 https://www.baeldung.com/java-type-erasure
 
 [Type-Erasure-in-Java-Explained-Baeldung](refs/Type-Erasure-in-Java-Explained-Baeldung)
 
-`References:`
+`references:`
 https://docs.oracle.com/javase/tutorial/java/generics/genTypes.html
 
 ----
@@ -4755,7 +4757,7 @@ https://docs.oracle.com/javase/tutorial/java/generics/genTypes.html
 
 ## Autoboxing and Unboxing
 
-`References:`
+`references:`
 https://docs.oracle.com/javase/tutorial/java/data/autoboxing.html
 
 |Primitive type|Wrapper class|
@@ -4771,7 +4773,7 @@ https://docs.oracle.com/javase/tutorial/java/data/autoboxing.html
 
 ## Autoboxing and Unboxing in Java
 
-`References:`
+`references:`
 https://www.geeksforgeeks.org/autoboxing-unboxing-java/
 
 [Autoboxing-and-Unboxing-Java-GeeksforGeeks](refs/Autoboxing-and-Unboxing-Java-GeeksforGeeks)
@@ -4786,7 +4788,7 @@ https://www.geeksforgeeks.org/autoboxing-unboxing-java/
 
 ## Java Initialization order
 
-`References:`
+`references:`
 https://farenda.com/java/java-initialization-order/
 
 - Ordering rules
@@ -4902,7 +4904,7 @@ References:
 
 # Order of execution of Initialization blocks and Constructors in Java
 
-`References:`
+`references:`
 https://www.geeksforgeeks.org/order-execution-initialization-blocks-constructors-java/
 [Order-of-execution-of-Initialization-blocks-Constructors-Java-GeeksforGeeks](refs/Order-of-execution-of-Initialization-blocks-Constructors-Java-GeeksforGeeks)
 
@@ -4933,42 +4935,42 @@ The (simple) clone() method of Object performs a shallow copy of an object. This
 That's why for deep cloning we first serialize (to copy primitive and non-primitive type objects) and then deserialize (to get and return object from bytes) the object so that we get every thing within the object not just primitive type.
 ```
 
-`References:`
+`references:`
 https://stackoverflow.com/questions/31825009/clone-serializable-object-java/31825429
 
 - [Java-deep-copy-in-memory-serialization-HowToDoInJava](refs/Java-deep-copy-in-memory-serialization-HowToDoInJava)
 
-`References:`
+`references:`
 https://howtodoinjava.com/java/serialization/how-to-do-deep-cloning-using-in-memory-serialization-in-java/
 
 - [How-to-Make-a-Deep-Copy-of-an-Object-Java-Baeldung](refs/How-to-Make-a-Deep-Copy-of-an-Object-Java-Baeldung)
 
-`References:`
+`references:`
 https://www.baeldung.com/java-deep-copy
 
 - [Deep-Clone-an-Object -Java-In-Memory-Serialization-DZone](refs/Deep-Clone-an-Object -Java-In-Memory-Serialization-DZone)
 
-`References:`
+`references:`
 https://dzone.com/articles/how-to-deep-clone-an-object-using-java-in-memory-s
 
 - [Deep-Clone-an-Object -Java-In-Memory-Serialization-DZone](refs/Deep-Clone-an-Object -Java-In-Memory-Serialization-DZone)
 
-`References:`
+`references:`
 https://www.obsidianscheduler.com/blog/easy-deep-cloning-of-serializable-and-non-serializable-objects-in-java/
 
 - [Clone-method-in-Java-GeeksforGeeks](refs/Clone-method-in-Java-GeeksforGeeks)
 
-`References:`
+`references:`
 https://www.geeksforgeeks.org/clone-method-in-java-2/
 
 - [Copy-an-object-in-Java-Stack-Overflow](refs/Copy-an-object-in-Java-Stack-Overflow)
 
-`References:`
+`references:`
 https://stackoverflow.com/questions/869033/how-do-i-copy-an-object-in-java
 
 - [Java-Cloning-Copy-Constructors-vs-Cloning-DZone](refs/Java-Cloning-Copy-Constructors-vs-Cloning-DZone)
 
-`References:`
+`references:`
 https://dzone.com/articles/java-cloning-copy-constructor-vs-cloning
 
 - What is object serialization?
@@ -4977,27 +4979,27 @@ https://dzone.com/articles/java-cloning-copy-constructor-vs-cloning
 Serialization is the conversion of an object to a series of bytes, so that the object can be easily saved to persistent storage or streamed across a communication link. The byte stream can then be deserialized - converted into a replica of the original object.
 ```
 
-`References:`
+`references:`
 https://stackoverflow.com/questions/447898/what-is-object-serialization
 
 - [Java-Serialization-Tutorialspoint](refs/Java-Serialization-Tutorialspoint)
 
-`References:`
+`references:`
 https://www.tutorialspoint.com/java/java_serialization.htm
 
 - [Serialization-and-Deserialization-in-Java-GeeksforGeeks](refs/Serialization-and-Deserialization-in-Java-GeeksforGeeks)
 
-`References:`
+`references:`
 https://www.geeksforgeeks.org/serialization-in-java/
 
 - [Introduction-to-Java-Serialization-Baeldung](refs/Introduction-to-Java-Serialization-Baeldung)
 
-`References:`
+`references:`
 https://www.baeldung.com/java-serialization
 
 - [Intro-to-the-Jackson-ObjectMapper-Baeldung](refs/Intro-to-the-Jackson-ObjectMapper-Baeldung)
 
-`References:`
+`references:`
 https://www.baeldung.com/jackson-object-mapper-tutorial
 
 ----
@@ -5022,22 +5024,22 @@ Please see:
 
 - [Nested-Classes-in-Java-GeeksforGeeks](refs/Nested-Classes-in-Java-GeeksforGeeks)
 
-`References:`
+`references:`
 https://www.geeksforgeeks.org/nested-classes-java/
 
 - [Inner-class-in-java-GeeksforGeeks](refs/Inner-class-in-java-GeeksforGeeks)
 
-`References:`
+`references:`
 https://www.geeksforgeeks.org/inner-class-java/
 
 - [Local-Inner-Class-in-Java-GeeksforGeeks](refs/Local-Inner-Class-in-Java-GeeksforGeeks)
 
-`References:`
+`references:`
 https://www.geeksforgeeks.org/local-inner-class-java/
 
 - [Anonymous-Inner-Class-in-Java-GeeksforGeeks](refs/Anonymous-Inner-Class-in-Java-GeeksforGeeks)
 
-`References:`
+`references:`
 https://www.geeksforgeeks.org/anonymous-inner-class-java/
 
 - Please see: 
@@ -5070,14 +5072,14 @@ OuterClass.StaticNestedClass nestedObject =
      new OuterClass.StaticNestedClass();
 ```
 
-`References:`
+`references:`
 https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html
 
 - Static Nested Classes
 
 [Java-Nested-Classes](refs/Java-Nested-Classes)
 
-`References:`
+`references:`
 http://tutorials.jenkov.com/java/nested-classes.html
 
 ----
@@ -5110,27 +5112,27 @@ http://tutorials.jenkov.com/java/nested-classes.html
 
     - Use a non-static nested class (or inner class) if you require access to an enclosing instance's non-public fields and methods. Use a static nested class if you don't require this access."
 
-`References:`
+`references:`
 https://docs.oracle.com/javase/tutorial/java/javaOO/whentouse.html
 
 - [What-are-Nested-Classes-and-Why-Do-We-Need-Them-DZone](refs/What-are-Nested-Classes-and-Why-Do-We-Need-Them-DZone)
 
-`References:`
+`references:`
 https://dzone.com/articles/what-are-nested-classes-and
 
 - [The-Ultimate-Guide-to-Nested-Classes-in-Java-StackChief](refs/The-Ultimate-Guide-to-Nested-Classes-in-Java-StackChief)
 
-`References:`
+`references:`
 https://www.stackchief.com/tutorials/The%20Ultimate%20Guide%20to%20Nested%20Classes%20in%20Java
 
 - [Anonymous-inner-classes-in-Java-What-and-Why–Edayans-notes](refs/Anonymous-inner-classes-in-Java-What-and-Why–Edayans-notes)
 
-`References:`
+`references:`
 http://edayan.info/java/anonymous-inner-classes-in-java-what-and-why
 
 - [Nested-Classes-in-Java-Baeldung](refs/Nested-Classes-in-Java-Baeldung)
 
-`References:`
+`references:`
 https://www.baeldung.com/java-nested-classes
 
 ----
@@ -5143,12 +5145,12 @@ https://www.baeldung.com/java-nested-classes
 
 - [Pass-By-Value-a-Parameter-Passing-Mechanism-Java-Baeldung](refs/Pass-By-Value-a-Parameter-Passing-Mechanism-Java-Baeldung)
 
-`References:`
+`references:`
 https://www.baeldung.com/java-pass-by-value-or-pass-by-reference
 
 - [Does-Java-pass-by-reference-or-pass-by-value-JavaWorld](refs/Does-Java-pass-by-reference-or-pass-by-value-JavaWorld)
 
-`References:`
+`references:`
 https://www.javaworld.com/article/3512039/does-java-pass-by-reference-or-pass-by-value.html
 
 ----
@@ -5238,14 +5240,14 @@ void doSomething( final MyClass arg ) {  // Mark argument as 'final'.
  }
 ```
 
-`References:`
+`references:`
 https://stackoverflow.com/questions/500508/why-should-i-use-the-keyword-final-on-a-method-parameter-in-java
 
 ----
 
 # The “final” Keyword in Java
 
-`References:`
+`references:`
 https://www.baeldung.com/java-final
 
 - Use final liberally
@@ -5327,19 +5329,19 @@ public final class Boat {
 }  
 ```
 
-`References:`
+`references:`
 http://www.javapractices.com/topic/TopicAction.do?Id=23
 
 ----
 
 # Too Many Parameters in Java Methods, Part 2: Parameters Object
 
-`References:`
+`references:`
 https://www.javaworld.com/article/2074935/too-many-parameters-in-java-methods--part-2--parameters-object.html
 
 - Too Many Parameters in Java Methods, Part 1: Custom Types
 
-`References:`
+`references:`
 https://www.javaworld.com/article/2074932/too-many-parameters-in-java-methods-part-1-custom-types.html
 
 ----
@@ -5352,7 +5354,7 @@ https://www.javaworld.com/article/2074932/too-many-parameters-in-java-methods-pa
 
 - [Method-Overloading-and-Ambiguity-in-Varargs-Java-GeeksforGeeks](refs/Method-Overloading-and-Ambiguity-in-Varargs-Java-GeeksforGeeks)
 
-`References:`
+`references:`
 https://www.geeksforgeeks.org/method-overloading-ambiguity-varargs-java/
 
 ----
@@ -5365,7 +5367,7 @@ https://www.geeksforgeeks.org/method-overloading-ambiguity-varargs-java/
 
 - [Is-an-array-a-primitive-type-or-an-object-Java-GeeksforGeeks](refs/Is-an-array-a-primitive-type-or-an-object-Java-GeeksforGeeks)
 
-`References:`
+`references:`
 https://www.geeksforgeeks.org/array-primitive-type-object-java/
 
 ----
@@ -5378,27 +5380,27 @@ https://www.geeksforgeeks.org/array-primitive-type-object-java/
 
 - [5-Different-Ways-to-Create-Objects-Java-DZone](refs/5-Different-Ways-to-Create-Objects-Java-DZone)
 
-`References:`
+`references:`
 https://dzone.com/articles/5-different-ways-to-create-objects-in-java-with-ex
 
 - [5-Different-Ways-To-Create-Objects-In-Java-Programming-Mitra](refs/5-Different-Ways-To-Create-Objects-In-Java-Programming-Mitra)
 
-`References:`
+`references:`
 https://www.programmingmitra.com/2016/05/different-ways-to-create-objects-in-java-with-example.html
 
 - [reflection-Java-newInstance-of-class-that-has-no-default-constructor-Stack-Overflow](refs/reflection-Java-newInstance-of-class-that-has-no-default-constructor-Stack-Overflow)
 
-`References:`
+`references:`
 https://stackoverflow.com/questions/3671649/java-newinstance-of-class-that-has-no-default-constructor
 
 - [Different-ways-to-create-objects-in-Java-GeeksforGeeks](refs/Different-ways-to-create-objects-in-Java-GeeksforGeeks)
 
-`References:`
+`references:`
 https://www.geeksforgeeks.org/different-ways-create-objects-java/
 
 - [new-operator-vs-newInstance-method-in-Java-GeeksforGeeks](refs/new-operator-vs-newInstance-method-in-Java-GeeksforGeeks)
 
-`References:`
+`references:`
 https://www.geeksforgeeks.org/new-operator-vs-newinstance-method-java/
 
 ----
@@ -5412,12 +5414,12 @@ https://www.geeksforgeeks.org/new-operator-vs-newinstance-method-java/
 
 - [Reflection-in-Java-GeeksforGeeks](refs/Reflection-in-Java-GeeksforGeeks)
 
-`References:`
+`references:`
 https://www.geeksforgeeks.org/reflection-in-java/
 
 - [Java-Reflection-Example-Tutorial-JournalDev](refs/Java-Reflection-Example-Tutorial-JournalDev)
 
-`References:`
+`references:`
 https://www.journaldev.com/1789/java-reflection-example-tutorial
 
 ```text
@@ -5425,67 +5427,67 @@ https://www.journaldev.com/1789/java-reflection-example-tutorial
 
 - [jenkov-Java-Reflection-Tutorial](refs/jenkov-Java-Reflection-Tutorial)
 
-`References:`
+`references:`
 http://tutorials.jenkov.com/java-reflection/index.html
 
 - [jenkov-Java-Reflection-Classes](refs/jenkov-Java-Reflection-Classes)
 
-`References:`
+`references:`
 http://tutorials.jenkov.com/java-reflection/classes.html
 
 - [jenkov-Java-Reflection-Constructors](refs/jenkov-Java-Reflection-Constructors)
 
-`References:`
+`references:`
 http://tutorials.jenkov.com/java-reflection/constructors.html
 
 - [jenkov-Java-Reflection-Fields](refs/jenkov-Java-Reflection-Fields)
 
-`References:`
+`references:`
 http://tutorials.jenkov.com/java-reflection/fields.html
 
 - [jenkov-Java-Reflection-Methods](refs/jenkov-Java-Reflection-Methods)
 
-`References:`
+`references:`
 http://tutorials.jenkov.com/java-reflection/methods.html
 
 - [jenkov-Java-Reflection-Getters-and-Setters](refs/jenkov-Java-Reflection-Getters-and-Setters)
 
-`References:`
+`references:`
 http://tutorials.jenkov.com/java-reflection/getters-setters.html
 
 - [jenkov-Java-Reflection-Private-Fields-and-Methods](refs/jenkov-Java-Reflection-Private-Fields-and-Methods)
 
-`References:`
+`references:`
 http://tutorials.jenkov.com/java-reflection/private-fields-and-methods.html
 
 - [jenkov-Java-Reflection-Annotations](refs/jenkov-Java-Reflection-Annotations)
 
-`References:`
+`references:`
 http://tutorials.jenkov.com/java-reflection/annotations.html
 
 - [jenkov-Java-Reflection-Generics](refs/jenkov-Java-Reflection-Generics)
 
-`References:`
+`references:`
 http://tutorials.jenkov.com/java-reflection/generics.html
 
 - [jenkov-Java-Reflection-Arrays](refs/jenkov-Java-Reflection-Arrays)
 
-`References:`
+`references:`
 http://tutorials.jenkov.com/java-reflection/arrays.html
 
 - [jenkov-Java-Reflection-Dynamic-Proxies](refs/jenkov-Java-Reflection-Dynamic-Proxies)
 
-`References:`
+`references:`
 http://tutorials.jenkov.com/java-reflection/dynamic-proxies.html
 
 - [jenkov-Java-Reflection-Dynamic-Class-Loading-and-Reloading](refs/jenkov-Java-Reflection-Dynamic-Class-Loading-and-Reloading)
 
-`References:`
+`references:`
 http://tutorials.jenkov.com/java-reflection/dynamic-class-loading-reloading.html
 
 - [jenkov-JavaReflection-Modules](refs/jenkov-JavaReflection-Modules)
 
-`References:`
+`references:`
 http://tutorials.jenkov.com/java-reflection/modules.html
 
 ----
@@ -5498,22 +5500,22 @@ http://tutorials.jenkov.com/java-reflection/modules.html
 
 - [Difference-between-transient-and-volatile-keyword-Java](refs/Difference-between-transient-and-volatile-keyword-Java)
 
-`References:`
+`references:`
 https://javarevisited.blogspot.com/2012/03/difference-between-transient-and.html
 
 - [Difference-between-transient-vs-volatile-Java-Java67](refs/Difference-between-transient-vs-volatile-Java-Java67)
 
-`References:`
+`references:`
 https://www.java67.com/2012/11/difference-between-transient-vs-volatile-modifier-variable-java.html
 
 - [Difference-between-Serializable-and-Externalizable-Java-Serialization](refs/Difference-between-Serializable-and-Externalizable-Java-Serialization)
 
-`References:`
+`references:`
 https://javarevisited.blogspot.com/2012/01/serializable-externalizable-in-java.html
 
 - [Why-Enum-Singleton-are-better-Java](refs/Why-Enum-Singleton-are-better-Java)
 
-`References:`
+`references:`
 https://javarevisited.blogspot.com/2012/07/why-enum-singleton-are-better-in-java.html
 
 - What are Transient and Volatile Modifiers?
@@ -5545,22 +5547,22 @@ For more information, see my blog:
 http://javaexplorer03.blogspot.in/2015/07/difference-between-volatile-and.html
 ```
 
-`References:`
+`references:`
 https://stackoverflow.com/questions/3544919/what-are-transient-and-volatile-modifiers
 
 - [transient-keyword-Java-GeeksforGeeks](refs/transient-keyword-Java-GeeksforGeeks)
 
-`References:`
+`references:`
 https://www.geeksforgeeks.org/transient-keyword-java/
 
 - [volatile-keyword-Java-GeeksforGeeks](refs/volatile-keyword-Java-GeeksforGeeks)
 
-`References:`
+`references:`
 https://www.geeksforgeeks.org/volatile-keyword-in-java/
 
 - [Volatile-Keyword-Java-Javatpoint](refs/Volatile-Keyword-Java-Javatpoint)
 
-`References:`
+`references:`
 https://www.javatpoint.com/volatile-keyword-in-java
 
 ```text
@@ -5568,12 +5570,12 @@ https://www.javatpoint.com/volatile-keyword-in-java
 
 - [diff-between-static-and-transient-variable-Java-Coderanch](refs/diff-between-static-and-transient-variable-Java-Coderanch)
 
-`References:`
+`references:`
 https://coderanch.com/t/375926/java/diff-static-transient-variable
 
 - [Transient-and-final-instance-variables-Java-Clement-Pinchedez](refs/Transient-and-final-instance-variables-Java-Clement-Pinchedez)
 
-`References:`
+`references:`
 http://blog.clempinch.com/transient-and-final-instance-variables-in-java/
 
 ```text
@@ -5619,12 +5621,12 @@ private void concurrentMethodRight() {
 Or use the AtomicInteger class.
 ```
 
-`References:`
+`references:`
 https://stackoverflow.com/questions/2423622/volatile-vs-static-in-java
 
 - [java-final-vs-volatile-Stack-Overflow](refs/java-final-vs-volatile-Stack-Overflow)
 
-`References:`
+`references:`
 https://stackoverflow.com/questions/14790478/final-vs-volatile-guaranntee-w-rt-to-safe-publication-of-objects
 
 - [java-volatile-vs-final-use-of-final-over-here-Stack-Overflow](refs/java-volatile-vs-final-use-of-final-over-here-Stack-Overflow)
@@ -5645,9 +5647,30 @@ http://tutorials.jenkov.com/java-concurrency/volatile.html
 |-------|-----|-------|
 |       |  x  |   x   |
 
+- [final-keyword-java-GeeksforGeeks](refs/final-keyword-java-GeeksforGeeks)
+
+`references:`
+https://www.geeksforgeeks.org/final-keyword-java/
+
+- [java-Why-declare-a-copy-of-a-private-field-final-Stack-Overflow](refs/java-Why-declare-a-copy-of-a-private-field-final-Stack-Overflow)
+
+`references:`
+https://stackoverflow.com/questions/19577079/why-declare-a-copy-of-a-private-field-as-final
+
+- final (Java)
+
+`references:`
+https://en.wikipedia.org/wiki/Final_(Java)
 
 
+
 ----
+
+# Defensive copying
+
+`references:`
+http://www.javapractices.com/topic/TopicAction.do?Id=15
+
 ----
 ----
 ----
@@ -5696,7 +5719,7 @@ http://tutorials.jenkov.com/java-concurrency/volatile.html
 ----
 ----
 
-`References:`
+`references:`
 
 [](refs/)
 
