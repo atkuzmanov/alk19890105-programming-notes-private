@@ -1,0 +1,9 @@
+Adform=window.Adform||{};
+Adform.host="https://track.adform.net";
+Adform.shost="https://s1.adform.net";
+Adform.scriptBase=Adform.shost+"/banners/scripts/";
+Adform.cache="620";
+Adform.ADFBannerData={"URL":"https://track.adform.net/adfserve/?bn=35132988;rtbwp=0.022386;rtbdata=IwlOOSbmFqDmzVFbx4502MwtPKYqAD7pscjXp25vdRv_xmB1kCd7BFc5jhOWm-QKVX5ptffESU0hDHQDeb9xH2KEoAx7DsQdMnvuqjPMEmhNGQnRdeOxPGq-bh5wQmRIXizGTYPKV5u8DyMB9aooO1aOxDWOFJ83lYDY-Im5YwjMsA32s3n5a3Vb-HF8YPamVuMGhjl0NnI5Yw9DXLvahTQaUT5GzbCTSTuJhIWjRfcGJVRFNEU5zlyMRYXgtYB6bkDZ5_zpFW_hJEYBC8Hk2-97jgtM7cMX3Her_vp_5q1SkFjq6kunj2sTO5-OCkRfaFwEZJ2ue6S8cb-JxrQFMYXqNr7bHUq2WNxJ3JFWgHaiY3X5zpS9Sg2","CREFURL":"https%3a%2f%2fdelivery.adrecover.com%2frecover.html","BN":35132988};
+if(!Adform.ADFBannerParams)Adform.ADFBannerParams=[];
+Adform.ADFBannerParams.push(Adform.ADFBannerData);
+typeof Adform.ADFUtilInstance=="undefined"?document.write('<scr'+'ipt type="text/javascript" src="https://s1.adform.net/stoat/620/s1.adform.net/bootstrap.js"></scr'+'ipt>'):new Adform.ADFBanner();

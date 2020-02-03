@@ -5497,12 +5497,146 @@ http://tutorials.jenkov.com/java-reflection/modules.html
 |-------|-----|-------|
 |       |     |   x   |
 
-
-- []
+- [Difference-between-transient-and-volatile-keyword-Java](refs/Difference-between-transient-and-volatile-keyword-Java)
 
 `References:`
 https://javarevisited.blogspot.com/2012/03/difference-between-transient-and.html
 
+- [Difference-between-transient-vs-volatile-Java-Java67](refs/Difference-between-transient-vs-volatile-Java-Java67)
+
+`References:`
+https://www.java67.com/2012/11/difference-between-transient-vs-volatile-modifier-variable-java.html
+
+- [Difference-between-Serializable-and-Externalizable-Java-Serialization](refs/Difference-between-Serializable-and-Externalizable-Java-Serialization)
+
+`References:`
+https://javarevisited.blogspot.com/2012/01/serializable-externalizable-in-java.html
+
+- [Why-Enum-Singleton-are-better-Java](refs/Why-Enum-Singleton-are-better-Java)
+
+`References:`
+https://javarevisited.blogspot.com/2012/07/why-enum-singleton-are-better-in-java.html
+
+- What are Transient and Volatile Modifiers?
+
+```text
+The volatile and transient modifiers can be applied to fields of classes1 irrespective of field type. Apart from that, they are unrelated.
+
+The transient modifier tells the Java object serialization subsystem to exclude the field when serializing an instance of the class. When the object is then deserialized, the field will be initialized to the default value; i.e. null for a reference type, and zero or false for a primitive type. Note that the JLS (see 8.3.1.3) does not say what transient means, but defers to the Java Object Serialization Specification. Other serialization mechanisms may pay attention to a field's transient-ness. Or they may ignore it.
+
+(Note that the JLS permits a static field to be declared as transient. This combination doesn't make sense for Java Object Serialization, since it doesn't serialize statics anyway. However, it could make sense in other contexts, so there is some justification for not forbidding it outright.)
+
+The volatile modifier tells the JVM that writes to the field should always be synchronously flushed to memory, and that reads of the field should always read from memory. This means that fields marked as volatile can be safely accessed and updated in a multi-thread application without using native or standard library-based synchronization. Similarly, reads and writes to volatile fields are atomic. (This does not apply to >>non-volatile<< long or double fields, which may be subject to "word tearing" on some JVMs.) The relevant parts of the JLS are 8.3.1.4, 17.4 and 17.7.
+```
+
+```text
+volatile and transient keywords
+
+1) transient keyword is used along with instance variables to exclude them from serialization process. If a field is transient its value will not be persisted.
+
+On the other hand, volatile keyword is used to mark a Java variable as "being stored in main memory".
+
+Every read of a volatile variable will be read from the computer's main memory, and not from the CPU cache, and that every write to a volatile variable will be written to main memory, and not just to the CPU cache.
+
+2) transient keyword cannot be used along with static keyword but volatile can be used along with static.
+
+3) transient variables are initialized with default value during de-serialization and there assignment or restoration of value has to be handled by application code.
+
+For more information, see my blog:
+http://javaexplorer03.blogspot.in/2015/07/difference-between-volatile-and.html
+```
+
+`References:`
+https://stackoverflow.com/questions/3544919/what-are-transient-and-volatile-modifiers
+
+- [transient-keyword-Java-GeeksforGeeks](refs/transient-keyword-Java-GeeksforGeeks)
+
+`References:`
+https://www.geeksforgeeks.org/transient-keyword-java/
+
+- [volatile-keyword-Java-GeeksforGeeks](refs/volatile-keyword-Java-GeeksforGeeks)
+
+`References:`
+https://www.geeksforgeeks.org/volatile-keyword-in-java/
+
+- [Volatile-Keyword-Java-Javatpoint](refs/Volatile-Keyword-Java-Javatpoint)
+
+`References:`
+https://www.javatpoint.com/volatile-keyword-in-java
+
+```text
+```
+
+- [diff-between-static-and-transient-variable-Java-Coderanch](refs/diff-between-static-and-transient-variable-Java-Coderanch)
+
+`References:`
+https://coderanch.com/t/375926/java/diff-static-transient-variable
+
+- [Transient-and-final-instance-variables-Java-Clement-Pinchedez](refs/Transient-and-final-instance-variables-Java-Clement-Pinchedez)
+
+`References:`
+http://blog.clempinch.com/transient-and-final-instance-variables-in-java/
+
+```text
+```
+
+- Volatile vs Static in Java
+
+```text
+Declaring a static variable in Java, means that there will be only one copy, no matter how many objects of the class are created. The variable will be accessible even with no Objects created at all. However, threads may have locally cached values of it.
+
+When a variable is volatile and not static, there will be one variable for each Object. So, on the surface it seems there is no difference from a normal variable but totally different from static. However, even with Object fields, a thread may cache a variable value locally.
+
+This means that if two threads update a variable of the same Object concurrently, and the variable is not declared volatile, there could be a case in which one of the thread has in cache an old value.
+
+Even if you access a static value through multiple threads, each thread can have its local cached copy! To avoid this you can declare the variable as static volatile and this will force the thread to read each time the global value.
+
+However, volatile is not a substitute for proper synchronisation!
+For instance:
+
+private static volatile int counter = 0;
+
+private void concurrentMethodWrong() {
+  counter = counter + 5;
+  //do something
+  counter = counter - 5;
+}
+Executing concurrentMethodWrong concurrently many times may lead to a final value of counter different from zero!
+To solve the problem, you have to implement a lock:
+
+private static final Object counterLock = new Object();
+
+private static volatile int counter = 0;
+
+private void concurrentMethodRight() {
+  synchronized (counterLock) {
+    counter = counter + 5;
+  }
+  //do something
+  synchronized (counterLock) {
+    counter = counter - 5;
+  }
+}
+Or use the AtomicInteger class.
+```
+
+`References:`
+https://stackoverflow.com/questions/2423622/volatile-vs-static-in-java
+
+- [java-final-vs-volatile-Stack-Overflow](refs/java-final-vs-volatile-Stack-Overflow)
+
+`References:`
+https://stackoverflow.com/questions/14790478/final-vs-volatile-guaranntee-w-rt-to-safe-publication-of-objects
+
+- [java-volatile-vs-final-use-of-final-over-here-Stack-Overflow](refs/java-volatile-vs-final-use-of-final-over-here-Stack-Overflow)
+
+`references:`
+https://stackoverflow.com/questions/25657770/volatile-vs-final-what-is-the-use-of-final-over-here/25657877
+
+- [jenkovJava-Volatile-Keyword](refs/jenkovJava-Volatile-Keyword)
+
+`references:`
+http://tutorials.jenkov.com/java-concurrency/volatile.html
 
 ----
 ----

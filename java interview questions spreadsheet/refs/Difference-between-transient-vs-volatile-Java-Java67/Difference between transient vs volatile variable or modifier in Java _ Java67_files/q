@@ -1,0 +1,1317 @@
+
+
+
+
+		    	    
+		
+	function AmznLinkEnhancementWidget(lewObj){
+		var that = this;	// Save this reference to be used in other objects context
+		var amazonShortLinks = {},
+		amazonShortLinksAsinMap = {},
+		amazonShortLinkAsins = "",
+		asinDetails = {},
+		creativeName = "LinkEnhancementImageTemplate",
+		amazonAsins = "",
+		amznURL = lewObj.amznUrl.replace(/(http:\/\/|https:\/\/)/ig, ''),
+		asinRegex = new RegExp(lewObj.asinRegex, "i"),
+		lcRegex1 = new RegExp(lewObj.linkCodeRegex, "igm"),
+		lcRegex2 = new RegExp(lewObj.linkCodeRegex+"("+lewObj.textLinksLinkCode+")", "igm"),
+		widgetServerURLParams = lewObj.widgetServerURL+'/widgets/q?ServiceVersion=20070822&marketplace='+lewObj.marketplace+'&region='+lewObj.region+'&slotNum='+lewObj.slotNum+'&tracking_id='+lewObj.trackingId+'&viewerCountry='+lewObj.viewerCountry,
+		arrowImgUrl = lewObj.mediaServerURL+"/20070822/"+lewObj.region+"/img/amzn-widgets-sprite",
+		widgetServerURL = widgetServerURLParams+'&Operation=GetLinkEnhancementResults&InstanceId=0&TemplateId=LinkEnhancementResults&ItemId=',
+		shortLinkWidgetServerURL = widgetServerURLParams+'&OneJS=1&Operation=GetShortenUrlDetails&ad_type=link_enhancement_widget&placement=adunit&url=',
+		amznUrlParams =  '',
+		allASINs = [],
+		allShortLinks = [],
+		adsDisplayTimer = null,
+		isEventListenerAttached = false,
+		trackingUtils = window.amznLewTracking,
+		adUnitData = {
+			"adUnitType": lewObj.ad_type,
+			"trackingId": lewObj.trackingId,
+			"region": lewObj.region,
+			"deviceType": lewObj.deviceType,
+			"logType": "lew_impressions",
+			"viewerCountry": lewObj.viewerCountry,
+			"marketplace" : lewObj.marketplace,
+			"link_id" : lewObj.linkId,
+			"impressionId": lewObj.impressionId,
+			"action": "impressions",
+			"regionId": lewObj.regionInt,
+			"ref": lewObj.refTag
+		};
+
+		that.isMobileOptmizedSite = false,
+		that.initialScale = 1,
+		that.adMoveHide = false,
+		that.scrollCheck = false,
+		that.isFirstASINLoaded = false,
+		that.isIframeLoaded = false,
+		that.firstAsinObj = null,
+		that.showAdTimer = null,
+		that.isFirstAdLoad = true,
+		that.userClicked = false,
+		that.selectedAsinObj = null,
+		that.timerStep = 15000,
+		that.startTimeMS = 0,
+		that.lewObj = lewObj,
+		that.asinLoaded = null,
+		that.appendChild = false,
+		that.amzn_expDetails = {},
+		that.isChrome = lewObj.isChrome,
+		that.isNativeAndroidBrowser = lewObj.isNativeAndroidBrowser,
+		that.clickUrl = "",
+		that.amazonLinks = [];
+
+		that.initialize = function(){
+			that.isMobileOptmizedSite = checkMobileOptmizedSite();
+			that.clickUrl = that.parseURL(trackingUtils.getClickUrl());
+			createAdHolder();
+			that.initialAdScale();
+			that.amazonLinks = that.fetchAmazonLinks();
+			that.trigger();
+		};
+
+		that.lewExpDetails = function(amzn_experiment_details) {
+			if(lewObj.region == "JP"){
+				that.amzn_expDetails['showWidget'] = "true";
+				that.amzn_expDetails['linkCodeWidget'] = "w33";
+				that.amzn_expDetails['showCues'] = "true";
+			} else {
+				that.amzn_expDetails['showWidget'] = amzn_experiment_details.showWidget || "true";
+				that.amzn_expDetails['linkCodeWidget'] = amzn_experiment_details.linkcode_widget || "w33";
+				that.amzn_expDetails['experimentCode'] =  amzn_experiment_details.experimentCode || "WIDGETSERVER-LINK-ENHANCEMENT-SHOULDSHOW_4034_AAX";
+				that.amzn_expDetails['treatmentCode'] =  amzn_experiment_details.treatmentCode || "T1";
+				that.amzn_expDetails['showCues'] = amzn_experiment_details.showCues || "true";
+			}
+		};
+
+		that.fetchAmazonLinks = function(){
+			var links = document.getElementsByTagName('a'),
+			amazonLinks = [], url, asinMatch, asinLinkCodeMatch;
+			for(var i=0; i<links.length; i++) {
+				 if(links[i].href) {
+					 url = that.parseURL(links[i].href);
+					if(url.hostname.match(amznURL)){
+						asinMatch = ( url.pathname.match(asinRegex) || url.search.match(asinRegex) );
+						asinLinkCodeMatch = (url.search.search(lcRegex2) != -1 || url.search.search(lcRegex1) == -1 );
+						if( asinMatch && asinLinkCodeMatch) {
+							amazonLinks.push({"asin": asinMatch[1].toUpperCase(), "linkElement": links[i]});
+							amazonAsins += asinMatch[1].toUpperCase() + ",";
+						}
+					} else if(lewObj.region == "US" && url.hostname.search("amzn.to") != -1){
+						amazonLinks.push({"asin": "", "linkElement": links[i]});
+						amazonShortLinks[url] = links[i];
+					} else if(lewObj.region == "US" && url.hostname.search(that.clickUrl.hostname) != -1){
+						asinLinkCodeMatch = (url.search.search(lcRegex2) != -1 || url.search.search(lcRegex1) == -1 );
+						asinMatch = links[i].getAttribute('data-amzn-asin');
+						if(asinLinkCodeMatch && asinMatch) {
+							amazonLinks.push({"asin": asinMatch.toUpperCase(), "linkElement": links[i]});
+							amazonAsins += asinMatch.toUpperCase() + ",";
+						}
+					}
+				}
+			}
+			amazonAsins = amazonAsins.substring(0, amazonAsins.length - 1);
+			return amazonLinks;
+		};
+
+		that.trigger = function(){
+			if(amazonAsins == "" && !that.amazonLinks.length){
+				that.foresterCall({action:'onexit', amazonAsins: amazonAsins});
+				return;
+			} else {
+				amznUrlParams =  '?tag='+lewObj.trackingId+'&linkCode='+that.amzn_expDetails['linkCodeWidget']+'&linkId='+lewObj.linkId+'&ref_='+lewObj.refTag+(that.isMobileOptmizedSite?'_mo':'_no')
+				+'_'+that.amzn_expDetails.treatmentCode+'&ref-refURL='+encodeURIComponent(document.location.href);
+				amznUrlParams = trackingUtils.addImpressionTokenStr(amznUrlParams);
+				window.display_callback = callback;
+				window.display_callback_shortlink = shortLinkCallback;
+				loadShortLinks();
+				that.done();
+				that.foresterCall({action:'onload', amazonAsins: amazonAsins});
+			}
+		};
+
+		that.foresterCall = function(foresterParams) {
+			adUnitData.link_code = that.amzn_expDetails['linkCodeWidget'];
+			adUnitData.amzn_expDetails = that.amzn_expDetails;
+			adUnitData.amazonAsins = foresterParams.amazonAsins;
+			adUnitData.dismissedTime = foresterParams.dismissedTime;
+			adUnitData.action = foresterParams.action;
+			adUnitData.isMobileOptmizedSite = that.isMobileOptmizedSite.toString();
+
+			trackingUtils.makeForesterCall(adUnitData);
+		};
+
+		that.convertToAAXClickUrls = function(){
+			var allLinks = document.querySelectorAll("#"+ lewObj.widgetId+" a");
+			trackingUtils.addAAXClickUrls(allLinks);
+		};
+
+		that.calculateScaleFactor = function() {
+			return window.innerWidth/document.documentElement.clientWidth;
+		};
+
+		that.checkDeviceOrientation = function() {
+			var deviceOrientation;
+			if(window.innerHeight > window.innerWidth){
+				deviceOrientation = "portrait";
+			} else {
+				deviceOrientation = "landscape";
+			}
+			return deviceOrientation;
+		};
+
+		//Function to return Width of the screen
+		that.findWidth = function(){
+			var deviceOrientation = that.checkDeviceOrientation(),
+			height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0),
+			width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+
+			if(deviceOrientation == "landscape") {
+				height = Math.max(height, Math.min(screen.width, screen.height));
+			}
+
+			return (width < height ? width : height);
+		};
+
+		that.setTransition = function(transitions) {
+			that.adsDiv.style['-webkit-transition'] = transitions;
+			that.adsDiv.style['-moz-transition'] = transitions;
+			that.adsDiv.style['-o-transition'] = transitions;
+			that.adsDiv.style['-ms-transition'] = transitions;
+			that.adsDiv.style['transition'] = transitions;
+		};
+
+		that.done = function() {
+		    var data = {};
+		    for(var i in adUnitData) {
+		        if(adUnitData.hasOwnProperty(i)) { data[i] = adUnitData[i]; }
+		    }
+		    data.action = 'impressions';
+
+			trackingUtils.recordImpression(adUnitData.link_code, adUnitData.trackingId, data);
+
+		    window["amzn_assoc_client_cb_" + lewObj.slotNum]({
+		        "type": "onload",
+		        "data": {}
+		    });
+		};
+
+		that.updateTextWidget = function(){
+			var currentAsinObj = that.selectedAsinObj;
+
+			for(var i=0; i < that.amazonLinks.length; i++) {
+				var asinObj = that.amazonLinks[i];
+				if(asinDetails[asinObj.asin] && isElementInViewport(asinObj.linkElement)) {
+					that.selectedAsinObj = asinObj;
+					break;	
+				} else {
+					that.selectedAsinObj = null;
+				}
+			}
+			
+			if(that.selectedAsinObj != null && asinDetails[that.selectedAsinObj.asin].Title != ''){
+				if((currentAsinObj == null || currentAsinObj.asin != that.selectedAsinObj.asin)) {
+					postMessage({
+						'operation' : 'update',
+						'info' : asinDetails[that.selectedAsinObj.asin],
+						'expDetails' : that.amzn_expDetails,
+						'creativeName' : creativeName
+					});
+
+					if(!(that.isFirstASINLoaded && that.isIframeLoaded)) {
+						that.closeButton.style.display = 'block';
+						that.isFirstASINLoaded = true;
+						that.isIframeLoaded = true;
+					}
+					that.toggleDisplay(true);
+					that.foresterCall({action:'onASINload', amazonAsins: that.selectedAsinObj.asin });
+					that.widgetTimer();
+				}
+			} else {
+				that.toggleDisplay(false);
+			}
+		};
+
+		that.widgetTimer = function() {
+			if(adsDisplayTimer != null) {
+					clearTimeout(adsDisplayTimer);
+			}
+			that.startTimeMS = (new Date()).getTime();
+			adsDisplayTimer = setTimeout(function(){
+				that.toggleDisplay(false);
+			}, that.timerStep);
+		};
+
+		that.transformScaleStyles = function(element, scaleFactor, transformOrigin) {
+			element.style['-webkit-transform'] = 'scale(' + scaleFactor + ')';
+			element.style['-moz-transform'] = 'scale(' + scaleFactor + ')';
+			element.style['-o-transform'] = 'scale(' + scaleFactor + ')';
+			element.style['-ms-transform'] = 'scale(' + scaleFactor + ')';
+			element.style['transform'] = 'scale(' + scaleFactor + ')';
+
+			element.style['-webkit-transform-origin'] = transformOrigin;
+			element.style['-moz-transform-origin'] = transformOrigin;
+			element.style['-o-transform-origin'] = transformOrigin;
+			element.style['-ms-transform-origin'] = transformOrigin;
+			element.style['transform-origin'] = transformOrigin;
+		};
+
+		that.doesElementHaveChildNodes = function(el, tagName) {
+			var length = el.getElementsByTagName(tagName).length;
+			return (length > 0);
+		};
+
+		that.scaleAdUnit = function(scaleFactor, transformOrigin) {			
+			that.transformScaleStyles(that.closeButton, scaleFactor, '100% 100%');
+			that.transformScaleStyles(that.iframe, scaleFactor, '0% 0%');
+			that.closeButton.style.right = 10*scaleFactor + 'px';
+		}
+
+		that.parseURL = function(url) {
+			var parser = document.createElement('a');
+				 parser.href = url;
+				 return parser;
+		}
+
+		var createAdHolder = function(){
+			var optimalWidth = that.findWidth();
+			that.adsDiv = document.createElement('div');
+			that.adsDiv.id = lewObj.widgetId;
+			that.adsDiv.className = "amzn-lew-adsDiv";
+			that.adsDiv.style.width = optimalWidth + 'px';
+
+			that.closeButton = document.createElement('button');
+			that.closeButton.id="amzn-lew-closeButton";
+			if(isRetina()){
+				that.closeButton.style.backgroundImage = 'url(' + arrowImgUrl +'-2x.png)';
+				that.closeButton.style.backgroundSize ='349px 291px';
+			} else {
+				that.closeButton.style.backgroundImage = 'url(' + arrowImgUrl +'-1x.png)';
+			}
+
+			that.cues = document.createElement('img');
+			that.cues.src = lewObj.mediaServerURL+"/20070822/"+lewObj.region+"/img/popover-anchor-star-2x.png";
+			that.cues.id = "amzn-lew-cues";
+
+			that.anchorTag = document.createElement('a');
+			that.anchorTag.href = "";
+			that.anchorTag.target = "_blank";
+			that.anchorTag.id = lewObj.widgetId + "_a";
+			that.anchorTag.setAttribute('rel', 'nofollow');
+			that.anchorTag.setAttribute('data-asin', '');
+			that.anchorTag.setAttribute('class', 'amznTextLinkWidget_a amzn-lew-a');
+
+			that.iframe = document.createElement('iframe');
+			that.iframe.id = lewObj.widgetId+"_lew";
+			that.iframe.className = "amzn-lew-iframe";
+
+			that.iframe.src = widgetServerURLParams+'&Operation=GetPlaceholder'
+			                  + '&TemplateId=LinkEnhancementPlaceholder&deviceWidth='+Math.min(screen.width, screen.height)+'&creativeName='+creativeName+'&link_code='
+			                  +that.amzn_expDetails["linkCodeWidget"]+ '&minShippingPrice='+lewObj.minShippingPrice+'&ref_tag='+lewObj.refTag+'&debug='+lewObj.debug;
+
+			window.addEventListener('message', function(event){
+				if(!(event.data || event.data.operation)) return;
+
+				if(event.origin == lewObj.widgetServerURL) {
+					that.isIframeLoaded = event.data.isIframeLoaded;
+					loadFirstAsin();
+				}
+			}, false);
+			
+			
+			that.anchorTag.appendChild(that.iframe);
+			that.adsDiv.appendChild(that.closeButton);
+			that.adsDiv.appendChild(that.anchorTag);
+			document.getElementsByTagName('body')[0].appendChild(that.adsDiv);
+		}
+
+		var isRetina = function(){
+			return (window.matchMedia && (window.matchMedia('all and (-webkit-min-device-pixel-ratio: 2),(min-resolution: 2dppx),(min-resolution: 192dpi)').matches));
+		}
+
+		var loadFirstAsin = function() {
+			if(that.isFirstASINLoaded && that.isIframeLoaded && that.firstAsinObj) {
+				that.isFirstASINLoaded = false;
+				that.updateTextWidget();
+			}
+		}
+
+		var loadASINDetails = function(){
+			if(!that.amazonLinks.length){
+			 return;
+			}
+
+			that.amazonLinks.forEach(function(asinInfo){
+				if(asinInfo.asin == '') {
+					asinInfo.asin = amazonShortLinksAsinMap[asinInfo.linkElement.href];
+				}
+			});
+
+			that.amazonLinks.forEach(function(asinInfo){
+				if(asinInfo.asin && asinInfo.asin!= '' && allASINs.indexOf(asinInfo.asin) == -1){
+					allASINs.push(asinInfo.asin);
+				}
+			});
+
+			makeWidgetServerCall();
+		}
+
+		var loadShortLinks = function(){
+			for (var key in amazonShortLinks) {
+				  if (amazonShortLinks.hasOwnProperty(key)) {
+					allShortLinks.push(key);
+				  } else {
+					return;
+				  }
+			}
+			
+			makeShortenUrlCall();
+		}
+
+		var makeWidgetServerCall = function() {
+			if(allASINs.length) {
+				var url = '';
+				var count = 0;
+				while(allASINs.length && count<10) {
+					url += allASINs.shift() + ",";
+					count++; 
+				}
+				if(url.length) {
+					url = url.substring(0, url.length - 1);
+					url = widgetServerURL + url;
+					amzn_assoc_utils.loadRemoteScript(url, function() {});
+				}
+			}
+		}
+
+		var makeShortenUrlCall = function() {
+			if(lewObj.region == "US" && allShortLinks.length ) {
+				var url = '', links = [], count = 0;
+				while(allShortLinks.length && count<10) {
+					links.push(allShortLinks.shift());
+					count++; 
+				}
+				if(links.length) {
+					url = shortLinkWidgetServerURL + JSON.stringify(links);
+					amzn_assoc_utils.loadRemoteScript(url, function() {});
+					that.foresterCall({action:'onShortLinksLoad', amazonAsins: links.toString()});
+				}
+			} else{
+				loadASINDetails();
+				that.foresterCall({action:'onShortLinksAsins', amazonAsins: amazonShortLinkAsins});
+			}
+		}
+
+		var attachCoreEventHandlers = function() {
+			window.addEventListener("resize", function() {
+				that.repositionAdUnit();
+			}, false);
+
+			window.addEventListener("orientationchange", function() {
+				that.repositionAdUnit();
+			}, false);
+
+			that.closeButton.onclick = function(event){
+				event.preventDefault();
+
+				if(that.adsDiv.clientHeight == 0){
+					that.userClicked = false;
+					that.toggleDisplay(true);
+					that.widgetTimer();
+					that.foresterCall({action:'onRecall', amazonAsins: (that.selectedAsinObj ? that.selectedAsinObj.asin : "")});
+				} else {
+					that.toggleDisplay(false);
+					that.userClicked = true;
+					that.foresterCall({action:'onDismiss', amazonAsins: (that.selectedAsinObj ? that.selectedAsinObj.asin : ""), dismissedTime: (that.timerStep - ( (new Date()).getTime() - that.startTimeMS )) });
+				}
+			};	
+	
+			document.getElementById( that.lewObj.widgetId + "_a").onclick = function() {
+				that.foresterCall({action:'onClick', amazonAsins: this.getAttribute('data-asin')});
+			};		
+
+			//attach platform specific event handlers
+			that.attachEventHandlers();
+		}
+
+		var callback = function(res){
+			if(res && res.results && res.results.length) {
+				res.results.forEach(function(info) {
+					if(!that.isFirstASINLoaded) {
+						if(info.Title != '' ){
+							that.firstAsinObj = {
+								'operation' : 'update',
+								'info' : info,
+								'expDetails' : that.amzn_expDetails,
+								'creativeName' : creativeName
+							};
+						}
+						that.isFirstASINLoaded = true;
+						loadFirstAsin();
+					}
+					asinDetails[info.ASIN] = info;
+				});
+				
+				if(!isEventListenerAttached) {
+					attachCoreEventHandlers();
+					isEventListenerAttached = true;
+				}
+			}
+			makeWidgetServerCall();
+		}
+
+		var shortLinkCallback = function(res){
+			if(res && res.results && res.results.length) {
+				res.results.forEach(function(info) {
+					if(info.asin && info.asin != ''){
+						amazonShortLinksAsinMap[info.shortUrl] = info.asin;
+						amazonAsins += info.asin + ",";
+						amazonShortLinkAsins += info.asin + ",";	
+					}
+				});
+			}
+			amazonAsins = amazonAsins.substring(0, amazonAsins.length - 1);
+			amazonShortLinkAsins = amazonShortLinkAsins.substring(0, amazonShortLinkAsins.length - 1);
+			makeShortenUrlCall();
+		}
+
+		var isElementInViewport = function(el) {
+			var rect = el.getBoundingClientRect();
+			var height = (window.innerHeight || document.documentElement.clientHeight) * 0.85;
+			var width =  (window.innerWidth || document.documentElement.clientWidth);
+			if( rect.top == 0 && rect.left == 0 && rect.bottom == 0 && rect.right == 0 ) {
+				return false;
+			}
+			return (rect.top >= 0 && rect.right >= 0 && rect.bottom <= height &&  rect.left <= width);
+		}
+
+		var postMessage = function(obj) {
+			if(that.iframe.contentWindow && obj) {
+			  that.iframe.contentWindow.postMessage(obj, "*");
+			  that.anchorTag.href = obj.info.DetailPageURL + amznUrlParams;
+			  that.anchorTag.setAttribute('data-asin',  obj.info.ASIN);
+			  that.convertToAAXClickUrls();
+			}
+		}
+
+		var checkMobileOptmizedSite = function() {
+			var deviceWidth = document.documentElement.clientWidth,
+			screenWidth = screen.width,
+			deviceOrientation = that.checkDeviceOrientation();
+
+			if(deviceOrientation == "landscape") {
+				deviceWidth = (deviceWidth > document.documentElement.clientHeight) ? deviceWidth : document.documentElement.clientHeight;
+				screenWidth = (screenWidth > screen.height) ? screenWidth : screen.height;
+			}
+
+			if (deviceWidth == screenWidth) {
+				return true;
+			} else if (screenWidth - deviceWidth == 42) {
+				//to account for the menu bar in Android which takes up 42px
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		return that;
+	}
+/**
+ * Created by pedapav on 4/1/15.
+ *
+ * Tracking utilities to be used by client side rendering templates.
+ */
+
+window["trackingUtils"] = function(regionInt, foresterChannelUrlPrefix, impressionRecorderPrefix, pixelUrl,
+                                   clickUrl, impressionToken, slotNum, subtag, ABPPixelURL, disableABPCheck, AESPixelUrl) {
+    var that = {},
+        refMatch = new RegExp("\/(ref=[\\w]+)\/\?", "i"),
+        TRANSIT_ID_KEY = "assocPayloadId",
+        encodeStr = function (b) {
+            return b && encodeURIComponent(b).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        },
+        rawRefURL = (function() {
+            var alink = document.createElement("a");
+            alink.href = (window.location !== window.parent.location) ? document.referrer : document.location;
+            // on IE, path name does not begin with a '/' - append it.
+            // on IE, 'host' property includes the port even if it is standard port 80/443
+            // but on IE, document.location.href does not include standard ports
+            // so we have to remove them before forming 'ref-refUrl'
+            return alink.protocol + "//" + alink.hostname +
+                ((alink.port === "" || alink.port === "80" || alink.port === "443") ? "" : (":" + alink.port)) +
+                (alink.pathname.indexOf("/") !== 0 ? ("/" + alink.pathname) : alink.pathname);
+        }()),
+        refRefURL = (function() {
+            return encodeStr(rawRefURL);
+        }()),
+        addQueryParameter = function(linkElem, paramName, paramValue, overwrite) {
+            if(typeof paramValue === "string" && paramValue !== "") {
+                if (linkElem.search === "") {
+                    linkElem.search = "?" + paramName + "=" + paramValue;
+                } else if(!linkElem.search.match(new RegExp("[?&]" + paramName + "="))) {
+                    linkElem.search = linkElem.search.replace(/\?/, "?" + paramName + "=" + paramValue + "&");
+                } else if(overwrite) {
+                    // query parameter already present - overwrite it, if forced
+                    linkElem.search = linkElem.search.replace(new RegExp(paramName + "=([^&]*)"), paramName + "=" + paramValue);
+                }
+            }
+            return linkElem;
+        },
+        addQueryParameterStr = function(linkTarget, paramName, paramValue) {
+            if(typeof paramValue === "string" && paramValue !== "") {
+                if (!linkTarget.match(/\?/)) {
+                    linkTarget = linkTarget + "?" + paramName + "=" + paramValue;
+                } else if(!linkTarget.match(paramName)) {
+                    linkTarget = linkTarget.replace(/\?/, "?" + paramName + "=" + paramValue + "&");
+                }
+            }
+            return linkTarget;
+        },
+        getEffectiveSlotNum = function(localSlotNum) {
+            var finalSlotNum = (typeof slotNum !== "undefined") ? slotNum : 0;
+            if(typeof localSlotNum !== "undefined") finalSlotNum = localSlotNum;
+            return finalSlotNum;
+        };
+
+    that.addRefUrls = function (allLinks, linkId, linkCode, trackingId) {
+        var amazonLinkPattern = new RegExp("^http://.*(amazon|endless|myhabit|amazonwireless|javari|smallparts)\\.(com|ca|co\\.jp|de|fr|co\\.uk|cn|it|es)/.*", "i"),
+            href, results, i;
+        for (i = 0; i < allLinks.length; i++) {
+            allLinks[i].rel = "nofollow";
+            href = String(allLinks[i].href);
+            if (results = href.match(amazonLinkPattern)) {
+                allLinks[i].href = that.addTrackingParameters(allLinks[i], linkId, linkCode, trackingId);
+            }
+        }
+    };
+
+    that.addRefRefUrl = function(linkElem) {
+        return addQueryParameter(linkElem, "ref-refURL", refRefURL);
+    };
+
+    that.getRefRefUrl = function() {
+        return refRefURL;
+    };
+
+    that.getRawRefUrl = function() {
+        return rawRefURL;
+    };
+
+    that.addSignature = function(linkElem, signature, signatureTimeStamp) {
+        return addQueryParameter(
+                addQueryParameter(linkElem, "sig", signature),
+            "sigts", signatureTimeStamp);
+    };
+
+    that.addLinkCode = function(linkElem, linkCode) {
+        return addQueryParameter(linkElem, "linkCode", linkCode);
+    };
+
+    that.addTrackingId = function(linkElem, trackingId) {
+        return addQueryParameter(linkElem, "tag", trackingId);
+    };
+
+    that.addLinkId = function(linkElem, linkId) {
+        return addQueryParameter(linkElem, "linkId", linkId);
+    };
+
+    that.addSubtag = function(linkElem, subtag) {
+        return addQueryParameter(linkElem, "ascsubtag", subtag);
+    };
+
+    that.addCreativeAsin = function(linkElem, adId){
+        return addQueryParameter(addQueryParameter(linkElem, "creativeASIN", adId), "adId", adId);
+    };
+
+    that.addAdType = function(linkElem, adType) {
+        return addQueryParameter(linkElem, 'adType', adType);
+    };
+
+    that.addAdMode = function(linkElem, adMode) {
+        return addQueryParameter(linkElem, 'adMode', adMode);
+    };
+
+    that.addAdFormat = function(linkElem, adFormat) {
+        return addQueryParameter(linkElem, 'adFormat', adFormat);
+    };
+
+    that.addImpressionTimestamp = function(linkElem, impressionTimestamp) {
+	if (typeof impressionTimestamp === "number") impressionTimestamp = impressionTimestamp.toString();
+        return addQueryParameter(linkElem, 'impressionTimestamp', impressionTimestamp);
+    };
+
+    that.convertToRedirectedUrl = function(linkElem, prefix, destParamName) {
+        var alink = document.createElement("a");
+        alink.setAttribute("href", prefix);
+        if(typeof destParamName !== "undefined") {
+            addQueryParameter(alink, destParamName, encodeStr(linkElem.getAttribute("href")), true);
+        } else {
+            alink.setAttribute("href", prefix + "/" + alink.getAttribute("href"));
+        }
+        linkElem.setAttribute("href", alink.getAttribute("href"));
+        return linkElem;
+    };
+
+    that.getImpressionToken = function() {
+        return impressionToken;
+    };
+
+    //we are using impressionToken as transitId right now,
+    //can be changed to GUID in future
+    that.generateTransitId = function() {
+        return that.getHashedImpressionToken();
+    };
+
+    that.getHashedImpressionToken = function(){
+        var pixelUrlParts = pixelUrl.split("/");
+        //pixelUrl is http://pixelurl.com/x/px/HASHEDIMPRESSIONTOKEN/
+        var hashedImpressionToken = pixelUrlParts[pixelUrlParts.length - 2]
+        return hashedImpressionToken;
+    };
+
+    that.getTransitId = function(){
+       if(typeof assoc_session_storage !== "undefined"){
+            var existingTransitId = assoc_session_storage.get(TRANSIT_ID_KEY);
+            return existingTransitId;
+        } 
+        return null;
+    };
+
+    that.getClickUrl = function() {
+        return clickUrl;
+    };
+
+    that.addImpressionToken = function(linkElem, localSlotNum) {
+        var finalSlotNum = getEffectiveSlotNum(localSlotNum);
+        if(typeof impressionToken === "string" && impressionToken !== "") {
+            addQueryParameter(linkElem, "imprToken", impressionToken);
+            if(typeof finalSlotNum !== "undefined") addQueryParameter(linkElem, "slotNum", finalSlotNum);
+        }
+        return linkElem;
+    };
+
+    that.addImpressionTokenStr = function(url, localSlotNum) {
+        var finalSlotNum = getEffectiveSlotNum(localSlotNum);
+        if(typeof impressionToken === "string" && impressionToken !== "") {
+            url = addQueryParameterStr(url, "imprToken", impressionToken);
+            if(typeof finalSlotNum !== "undefined") url = addQueryParameterStr(url, "slotNum", finalSlotNum);
+        }
+        return url;
+    };
+
+    that.addTrackingParameters = function(linkElem, linkId, linkCode, trackingId, refMarker, creativeASIN, signature, signatureTimeStamp, adType, adMode, adFormat, impressionTimestamp) {
+        return that.addSignature(
+            that.addCreativeAsin(
+                that.addLinkId(
+                    that.addTrackingId(
+                        that.addSubtag(
+                            that.addLinkCode(
+                                that.addRefRefUrl(
+                                    that.addImpressionToken(
+                                        that.addRefMarker(
+                                            that.addAdType(
+                                                that.addAdMode(
+                                                    that.addAdFormat(
+                                                        that.addImpressionTimestamp(linkElem, impressionTimestamp),
+                                                    adFormat),
+                                                adMode),
+                                            adType),
+                                        refMarker))),
+                                linkCode),
+                            subtag),
+                        trackingId),
+                    linkId),
+                creativeASIN),
+            signature, signatureTimeStamp
+        );
+    };
+
+    that.addRefMarker = function(linkElem, refMarker) {
+        var match, endsWithSlash = false;
+        if(typeof refMarker === "undefined") return linkElem;
+        if(match = linkElem.pathname.match(refMatch)) {
+            linkElem.pathname = linkElem.pathname.replace(match[1], "ref=" + refMarker);
+        } else {
+            endsWithSlash = (linkElem.pathname.charAt(linkElem.pathname.length - 1) === '/');
+            linkElem.pathname = linkElem.pathname + (endsWithSlash ? "" : "/") + "ref=" + refMarker;
+        }
+        return linkElem;
+    };
+
+    that.getRefMarker = function(linkElem) {
+        var match;
+        if(match = linkElem.pathname.match(refMatch)) {
+            return match[1].substr(4);
+        } else return undefined;
+    };
+
+    that.getCurrentURL = function(){
+        return (window.location !== window.parent.location) ? document.referrer : document.location.href;
+    }
+
+    that.makeForesterCall = function(data) {
+        var finalAAXPixelUrl = undefined, json;
+        if(typeof JSON !== 'undefined') json = JSON.stringify(data);
+        else if(typeof amzn_assoc_utils !== "undefined" && typeof amzn_assoc_utils["stringify"] === "function") json = amzn_assoc_utils.stringify(data);
+        else return;
+
+        if(typeof pixelUrl === "string") {
+            finalAAXPixelUrl = pixelUrl + "?assoc_payload=" + encodeURIComponent(json);
+            that.generateImage(finalAAXPixelUrl);
+        }
+    };
+
+    that.recordImpression = function(linkCode, trackingId, data, skipIRCall, slotNum) {
+        data["linkCode"] = linkCode;
+        data["trackingId"] = trackingId;
+        data["refUrl"] = that.getCurrentURL();
+        if(disableABPCheck || !ABPPixelURL) {
+            that.makeForesterCall(data);
+        } else {
+            that.addABPFlag(data, that.makeForesterCall);
+        }
+        if(typeof skipIRCall === 'undefined' || !skipIRCall) {
+            var currentTime = (new Date()).getTime();
+            var slotNumQueryParam = (typeof slotNum !== "undefined") ? slotNum : "";
+            var irUrl = impressionRecorderPrefix + "?l=" + linkCode + "&t=" + trackingId 
+            + "&o=" + regionInt + "&cb=" + currentTime + slotNumQueryParam;
+            that.generateImage(irUrl);
+        }
+    };
+
+    that.createAssocPayload = function(data, linkCode, trackingId, refUrl){
+        data["linkCode"] = linkCode;
+        data["trackingId"] = trackingId;
+        data["refUrl"] = refUrl;
+        var stringifiedData = "";
+        if(typeof amzn_assoc_utils !== "undefined" && typeof amzn_assoc_utils["stringify"] === "function")
+            stringifiedData = amzn_assoc_utils.stringify(data);
+        return stringifiedData;
+    }
+
+    that.recordAESImpression = function(linkCode, trackingId, data){
+        if(typeof AESPixelUrl === "string") {
+            var assocPayload = that.createAssocPayload(data, linkCode, trackingId, that.getCurrentURL());
+            var hashedImpressionToken = that.getHashedImpressionToken();
+            var finalAESPixelUrl = AESPixelUrl + hashedImpressionToken+"/pixel?assoc_payload=" + encodeURIComponent(assocPayload);
+            that.generateImage(finalAESPixelUrl);
+        }
+
+    };
+
+    that.recordTransit = function(){
+        //if transitId is not present or blog has utm_param in url, set new transitId
+        if(!(that.getTransitId()) || that.isUTMParamPresentInUrl(that.getCurrentURL())){
+            assoc_session_storage.set(TRANSIT_ID_KEY, that.generateTransitId());
+        }
+    }
+
+    that.isUTMParamPresentInUrl = function(url){
+        var utmParamExists = url.match(/utm_source=/i);
+        return (utmParamExists !== null);
+    }
+
+
+    that.addAAXClickUrls = function(links){
+        var aaxClickUrl, i, href;
+        //convert all given links with AAX click urls
+        if(typeof links === 'undefined' || typeof clickUrl === 'undefined') return;
+
+        for (i = 0; i < links.length; i++) {
+            href = String(links[i].href);
+            if(href.indexOf(clickUrl) < 0) {
+                aaxClickUrl = clickUrl + href;
+                links[i].href = aaxClickUrl;
+            }
+        }
+    };
+
+    that.addAAXClickUrl = function(url){
+        //append given url with AAX click url
+        if(typeof url === 'undefined' || url.indexOf(clickUrl) === 0) return url;
+        return clickUrl + url;
+    };
+
+    that.updateLinks = function(links, updaterFunc) {
+        var i, href;
+        if(typeof updaterFunc !== "function") return;
+        for(i = 0; i < links.length; i++) {
+            href = String(links[i].href);
+            links[i].href = updaterFunc(href);
+        }
+    };
+
+    that.elementInViewPort = function(el) {
+        var rect = el.getBoundingClientRect(),
+            inViewPort = (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+
+        return {
+            "posX": rect.left + window.pageXOffset,
+            "posY": rect.top + window.pageYOffset,
+            "inViewPort": inViewPort
+        };
+    };
+
+    that.recordViewability = function(slotNum, aboveTheFold, topPos, leftPos){
+        if(typeof pixelUrl === "string") {
+            var payload = that.createViewbilityPayload(slotNum, aboveTheFold, topPos, leftPos);
+            var finalAAXPixelUrl = pixelUrl + payload + "&cb=" + (new Date()).getTime();
+            that.generateImage(finalAAXPixelUrl);
+        }
+    };
+    that.recordAESViewability = function(slotNum, aboveTheFold, topPos, leftPos){
+        if(typeof AESPixelUrl === "string") {
+            var payload = that.createViewbilityPayload(slotNum, aboveTheFold, topPos, leftPos);
+            var hashedImpressionToken = that.getHashedImpressionToken();
+            var encodedPayload = encodeURIComponent(payload);
+            var finalAESPixelUrl = AESPixelUrl + hashedImpressionToken + "/pixel/"+encodedPayload
+                                    + "&cb=" + (new Date()).getTime();
+            that.generateImage(finalAESPixelUrl);
+        }
+    };
+
+    that.createViewbilityPayload = function(slotNum, aboveTheFold, topPos, leftPos){
+        var viewbilityAttr = {};
+        if(typeof aboveTheFold !== "undefined") viewbilityAttr["above_the_fold"] = aboveTheFold;
+        if(typeof topPos !== "undefined")       viewbilityAttr["topPos"] = topPos;
+        if(typeof leftPos !== "undefined")      viewbilityAttr["leftPos"] = leftPos;
+        if(typeof slotNum !== "undefined"){   
+            //handling case when only slotnum is passed
+            if (Object.keys(viewbilityAttr).length === 0)
+                viewbilityAttr["viewable"] = true;
+
+            viewbilityAttr["slotNum"] = slotNum;
+        }
+
+        var stringifiedData = "";
+        if(typeof amzn_assoc_utils !== "undefined" && typeof amzn_assoc_utils["stringify"] === "function")
+            stringifiedData = amzn_assoc_utils.stringify({"adViewability":[viewbilityAttr]});
+        return stringifiedData;
+    };
+
+    that.generateImage = function(imageSrc){
+        if(typeof imageSrc !== "undefined")
+            (new Image()).src = imageSrc;
+    };
+
+    that.addABPFlag = function(data, callback) {
+        var detected = false,
+        checksRemain = 2,
+        img1 = document.body ? document.body.appendChild(new Image()) : new Image(),
+        img2 = document.body ? document.body.appendChild(new Image()) : new Image(),
+        error1 = false,
+        error2 = false,
+        random = Math.random() * 11,
+        px = ABPPixelURL + "?ch=*&rn=*",
+        beforeCheck = function(callback, timeout) {
+            if (checksRemain === 0 || timeout > 1E3) {
+                data.supplySideMetadata = {
+                    ABPInstalled: checksRemain === 0 && detected
+                };
+                callback(data);
+            } else {
+                setTimeout(function() {
+                    beforeCheck(callback, timeout * 2);
+                }, timeout * 2);
+            }
+        },
+        checkImages = function() {
+            if(--checksRemain)
+                return;
+            detected = !error1 && error2;
+        };
+
+        img1.style.display = "none";
+        img2.style.display = "none";
+
+        img1.onload = checkImages;
+        img1.onerror = function() {
+            error1 = true;
+            checkImages();
+        };
+        img1.src = px.replace(/\*/, 1).replace(/\*/, random);
+
+        img2.onload = checkImages;
+        img2.onerror = function() {
+            error2 = true;
+            checkImages();
+        };
+        img2.src = px.replace(/\*/, 2).replace(/\*/, random);
+        beforeCheck(callback, 250);
+    };
+
+    return that;
+};
+			/**
+* Lew Positioning and scaling logic for iOS and other mobile devices
+*/
+
+AmznLinkEnhancementWidget.prototype.toggleDisplay = function(showAd) {
+	if(showAd && !this.userClicked) {
+		var scaleFactor = this.calculateScaleFactor();
+
+		if(!this.adMoveHide && this.isFirstAdLoad) {
+			this.isFirstAdLoad = false;
+			this.adsDiv.style.display = 'block';
+			this.cues.style.display = 'inline-block';
+		}
+
+		if(!this.isMobileOptmizedSite) {
+			scaleFactor = scaleFactor*this.initialScale;
+		}
+		this.adsDiv.style.height = 80 * scaleFactor + 'px';
+
+		this.closeButton.style.backgroundPosition = '-1px -102px';
+		if(this.selectedAsinObj && !this.doesElementHaveChildNodes(this.selectedAsinObj.linkElement, "img") && this.amzn_expDetails.showCues === "true"){
+			this.asinLoaded = this.selectedAsinObj.linkElement;
+			this.asinLoaded.appendChild(this.cues);
+			this.appendChild = true;
+		}
+	} else {
+		this.adsDiv.style.height = '0px';
+		this.closeButton.style.backgroundPosition = '-1px -85px';
+		if(this.asinLoaded && this.appendChild){
+			this.asinLoaded.removeChild(this.cues);
+			this.appendChild = false;
+			this.asinLoaded = null;
+		}
+	}
+	this.repositionAdUnit();
+};
+
+AmznLinkEnhancementWidget.prototype.repositionAdUnitMobileOptmized = function(scaleFactor, scaleFactorAbs, adWidth, adHeight, transformOrigin) {
+	var innerHeight = window.innerHeight,
+	innerWidth = window.innerWidth,
+	deviceOrientation = this.checkDeviceOrientation(),
+	optimalWidth = this.findWidth(),
+	that = this;
+
+	if(scaleFactorAbs < 1.1 && scaleFactorAbs >= 1) {	
+		that.adsDiv.style.bottom = 0;
+		that.adsDiv.style.top = 'initial';
+	} else {
+		that.adsDiv.style.top = (innerHeight + window.pageYOffset) - (adHeight * scaleFactor) + 'px';
+	}
+
+	that.adsDiv.style.width = adWidth * scaleFactor + 'px';
+
+	//2px * scaleFactor is for the left and right borders
+	that.iframe.style.width = 'calc('+100/scaleFactor+'% - ' + (2 * scaleFactor) + 'px)';
+				
+	if(deviceOrientation == "landscape") {
+		transformOrigin = '0% 0%';
+		that.adsDiv.style.left = (innerWidth - optimalWidth * scaleFactor)/2 + (window.pageXOffset) + 'px';
+	}
+
+	//scale to correct size
+	that.scaleAdUnit(scaleFactor, transformOrigin);
+}
+
+AmznLinkEnhancementWidget.prototype.repositionAdUnitNonMobileOptmized = function(scaleFactor, scaleFactorAbs, adWidth, adHeight, transformOrigin) {
+	var innerHeight = window.innerHeight,
+	innerWidth = window.innerWidth,
+	landscapeScaleFactor = 1,
+	deviceOrientation = this.checkDeviceOrientation();
+
+	if(deviceOrientation == "landscape") {
+		landscapeScaleFactor = document.documentElement.clientHeight/Math.max(window.screen.availHeight, window.screen.availWidth);
+		scaleFactor = scaleFactor/(this.initialScale - landscapeScaleFactor);
+		transformOrigin = '0% 0%';
+	}
+
+	if(scaleFactorAbs < 1.1 && scaleFactorAbs >= 1) {
+		this.adsDiv.style.bottom = 0;
+		this.adsDiv.style.top = 'initial';
+		this.anchorTag.style.height = (adHeight * scaleFactor) + 'px';
+
+		if(deviceOrientation == "landscape") {
+			this.adsDiv.style.left = (innerWidth - adWidth * scaleFactor)/2 + 'px';		
+			this.adsDiv.style.bottom = 0;
+			this.adsDiv.style.top = 'initial';
+		}
+	} else {
+		if(deviceOrientation == "landscape") {
+			this.adsDiv.style.left = (innerWidth - adWidth * scaleFactor)/2 + window.pageXOffset + 'px';
+		}
+
+		this.adsDiv.style.top = (innerHeight + window.pageYOffset) - (adHeight * scaleFactor) + 'px';
+		this.anchorTag.style.height = (adHeight * scaleFactor) + 'px';
+	}
+
+	this.adsDiv.style.height = (adHeight == 0)? 0 : (80 * scaleFactor + "px");
+	this.adsDiv.style.width = adWidth * scaleFactor + 'px';
+	this.iframe.style.width = 'calc('+100/scaleFactor+'% - ' + (2 * scaleFactor) + 'px)';
+
+	//scale to correct size
+	this.scaleAdUnit(scaleFactor, transformOrigin);
+}
+
+AmznLinkEnhancementWidget.prototype.repositionAdUnit = function() {	
+	var scaleFactor = this.calculateScaleFactor(),
+	transformOrigin = '0% 100%',
+	scaleFactorAbs = scaleFactor,
+	adWidth = Math.min(window.screen.availHeight, window.screen.availWidth),
+	adHeight = (this.adsDiv.style.height == '0px')? 0 : 80,
+	innerWidth = window.innerWidth,
+	innerHeight = window.innerHeight,
+	that = this;
+
+	if(!that.isMobileOptmizedSite)
+		scaleFactor = scaleFactor*that.initialScale;
+
+	if(scaleFactorAbs < 1.1 && scaleFactorAbs >= 1) {
+		that.adsDiv.style.position = 'fixed';
+		that.adsDiv.style.left = 0;
+		that.adsDiv.style.height = adHeight + 'px';
+	} else {
+		transformOrigin = '0% 0%';
+		that.adsDiv.style.position = 'absolute';
+		that.adsDiv.style.left = window.pageXOffset + 'px';
+	}
+
+	if(that.isMobileOptmizedSite) {				
+		that.repositionAdUnitMobileOptmized(scaleFactor, scaleFactorAbs, adWidth, adHeight, transformOrigin);
+	} else {
+		that.repositionAdUnitNonMobileOptmized(scaleFactor, scaleFactorAbs, adWidth, adHeight, transformOrigin);
+	}
+
+}
+
+AmznLinkEnhancementWidget.prototype.setOverflowProps = function() {
+	var deviceOrientation = this.checkDeviceOrientation();
+
+	if(deviceOrientation == "portrait") {
+		this.iframe.style['min-width'] = "100%";
+		this.anchorTag.style['overflow-x'] = "hidden";
+	} else {
+		this.iframe.style['min-width'] = "initial";
+		this.anchorTag.style['overflow-x'] = "visible";
+	}
+
+}
+
+AmznLinkEnhancementWidget.prototype.initialAdScale = function(){
+	var scaleWidth = document.documentElement.clientWidth/Math.min(window.screen.availWidth, window.screen.availHeight);
+	this.initialScale = scaleWidth;
+
+	//hide before loading first ASIN details
+	this.adsDiv.style.display = 'none';
+
+	if(!this.isMobileOptmizedSite) { 
+		//set correct dimensions
+		this.adsDiv.style.width = 100/scaleWidth + '%';
+		this.adsDiv.style.left = 0;
+		this.adsDiv.style.marginLeft = 0;
+
+		//2px * scaleFactor is for the left and right borders
+		this.iframe.style.width = 'calc('+100/scaleWidth+'% - ' + (2 * scaleWidth) + 'px)';
+
+		//scale to correct size
+		this.scaleAdUnit(scaleWidth, '0 top');
+		this.setOverflowProps();
+		this.repositionAdUnit();
+	}
+}
+
+AmznLinkEnhancementWidget.prototype.repositionThrottle = function(showAdTimeScroll, positionX, positionY, scaleFactor) {
+	var that = this;
+
+	that.repositionAdUnit();
+	
+	if(showAdTimeScroll != null) {
+		clearTimeout(showAdTimeScroll);
+	}
+
+	showAdTimeScroll = setTimeout(function() {
+		if ((Math.abs(positionY - window.pageYOffset) < 5 * scaleFactor) && (Math.abs(positionX - window.pageXOffset) < 5 * scaleFactor) && that.isFirstASINLoaded && that.isIframeLoaded && that.firstAsinObj) {
+			that.adsDiv.style.display = 'block';
+			that.cues.style.display = 'inline-block';
+			that.adMoveHide = false;
+			that.scrollCheck = false;
+		}
+	}, 100); 
+}
+
+AmznLinkEnhancementWidget.prototype.unHideAdUnit = function() {	
+	var that = this;
+
+	if(that.showAdTimer != null) {
+		clearTimeout(that.showAdTimer);
+	}
+	that.showAdTimer = setTimeout(function() {
+		that.repositionAdUnit();
+
+		if(that.isFirstAdLoad) {
+			if(that.isFirstASINLoaded && that.isIframeLoaded && that.firstAsinObj) {
+				that.adsDiv.style.display = 'block';
+				that.cues.style.display = 'inline-block';
+				that.adMoveHide = false;
+				that.isFirstAdLoad = false;
+			}
+		} else {
+			if(!that.scrollCheck) {
+				that.adsDiv.style.display = 'block';
+				that.cues.style.display = 'inline-block';
+				that.adMoveHide = false;
+			}
+		}
+	}, 100);
+}
+
+AmznLinkEnhancementWidget.prototype.attachEventHandlers = function(){	
+	var timer = null,
+	scrollTimer = null,
+	showAdTimeScroll = null,
+	tapped = null,
+	that = this;
+
+	window.addEventListener('scroll', function() {
+		var positionY = window.pageYOffset,
+		positionX = window.pageXOffset,
+		scaleFactor = that.calculateScaleFactor(),
+		deviceOrientation = that.checkDeviceOrientation();
+
+		that.scrollCheck = true;
+
+		if(scaleFactor > 1.1 || scaleFactor < 1) {
+			scaleFactor = that.initialScale * scaleFactor;
+			that.adsDiv.style.display = 'none';
+			that.cues.style.display = 'none';
+			that.adMoveHide = true;
+		}
+
+		if(timer != null) {
+			clearTimeout(timer);
+		}
+		timer = setTimeout(that.updateTextWidget, 500);
+                 
+		//throttle reposition calculation
+		if(scrollTimer != null) {
+			clearTimeout(scrollTimer);
+		}
+
+		scrollTimer = setTimeout(function() {
+			that.repositionThrottle(showAdTimeScroll, positionX, positionY, scaleFactor);
+		}, 100);
+
+		that.setOverflowProps();
+
+	}, false);
+
+	window.addEventListener('touchmove', function(e) {
+		var scaleFactor = that.calculateScaleFactor();
+
+		if((scaleFactor > 1.1 || scaleFactor < 1) && e.target != that.closeButton) {
+			scaleFactor = that.initialScale * scaleFactor;
+			that.adsDiv.style.display = 'none';
+			that.cues.style.display = 'none';
+			that.adMoveHide = true;
+		}
+
+	}, false);
+
+	window.addEventListener('touchstart', function(e) {
+		var scaleFactor = that.calculateScaleFactor(),
+		pinchTimer = null;
+
+		if(!tapped){
+			tapped=setTimeout(function(){
+				tapped=null;
+			},300);
+		} else {
+			if(tapped != null)
+				clearTimeout(tapped);
+			tapped=null;
+					
+			//Double tapped
+			that.repositionAdUnit();
+
+			setTimeout(function() {
+				that.adsDiv.style.display = 'block';
+				that.cues.style.display = 'inline-block';
+				that.adMoveHide = false;
+			}, 400);
+		}	
+
+		//user is using more than 1 finger
+		if (e.touches.length > 1) {
+			that.adsDiv.style.display = 'none';
+
+			if(pinchTimer != null) {
+				clearTimeout(pinchTimer);
+			}
+
+			pinchTimer = setTimeout(function() {
+				that.repositionAdUnit();
+				that.adsDiv.style.display = 'block';
+			}, 1000);
+		} else {
+			that.adsDiv.style.display = 'block';
+		}
+
+		if(e.target != that.adsDiv && e.target != that.closeButton && !that.adsDiv.contains(e.target)) {
+			if(scaleFactor > 1.1 || scaleFactor < 1) {
+				that.adsDiv.style.display = 'none';
+				that.cues.style.display = 'none';
+				that.adMoveHide = true;
+			}
+		}
+
+	}, false);
+
+	window.addEventListener('touchend', function() {
+		that.unHideAdUnit();
+	}, false);
+
+}
+	
+	if(typeof window.amznLinkWidget === 'undefined') {
+		(function() {
+			amzn_lew_styleElement = document.createElement("STYLE");
+			amzn_lew_styleContent = document.createTextNode(".amzn-lew-adsDiv{position:fixed;display:none;left:0;z-index:999;background:#FFF;margin:0;padding:0;outline:0;height:80px;-webkit-transition:height .3s ease;-moz-transition:height .3s ease;-o-transition:height .3s ease;-ms-transition:height .3s ease;transition:height .3s ease}.amzn-lew-adsDiv #amzn-lew-closeButton{cursor:pointer;width:40px;height:15px;display:none;position:absolute;right:10px;top:-15px;outline:0;margin:0;padding:0;border:1px solid rgba(255,255,255,0);border-radius:5px 5px 0 0;background-color:rgba(245,156,56,0.35);background-repeat:no-repeat;background-position:-1px -85px;z-index:999}button#amzn-lew-closeButton::before{position:absolute;content:'';left:-10px;right:-10px;top:-10px;bottom:-10px}img#amzn-lew-cues{display:inline-block;height:1em;border:0;padding:0;margin:0;outline:0;width:auto;-moz-box-shadow:none;-webkit-box-shadow:none;box-shadow:none}img.amzn_view_checked{-moz-box-shadow:none;-webkit-box-shadow:none;box-shadow:none}button::-moz-focus-inner{border:0}.amznTextLinkWidget_a::after{content:' ';display:block;position:absolute;top:0;left:0;right:0;bottom:0}.amzn-lew-a{display:block;width:100%;overflow:visible}.amzn-lew-iframe{border:1px solid #f59c38;border-bottom:0;max-height:80px;width:calc(100% - 2px)}");
+			amzn_lew_styleElement.appendChild(amzn_lew_styleContent);
+			document.head.appendChild(amzn_lew_styleElement);
+
+			window.amzn_lew_params ={ "marketplace": "amazon",
+				"region": "US",
+				"trackingId": "javamysqlanta-20",
+				"mediaServerURL": "//wms-na.amazon-adsystem.com/panda",
+				"amznUrl": "https://www.amazon.com",
+				"widgetId": "amznTextLinkWidget_adunit_0",
+				"ad_type": "link_enhancement_widget",
+				"minShippingPrice": "35",
+				"deviceType": "BROWSER",
+				"widgetServerURL": "https://ws-na.amazon-adsystem.com",
+				"textLinksLinkCode": "am1|am2|am3|as1|as2|as3|as4|asm|df0|df1|df2|df4|asn|at1|btl|ptl|ktl|em1|pat|xm2|qcb|qs|tre|ur2|ure|sl1|sl2|ll1|w50|w61|w62|w63|g11|g12|g13|g14",
+				"asinRegex": "(?:[/=])([A-Z0-9]{10})(?:[/?&]|$)",
+				"linkCodeRegex": "(linkcode|lc|link_code)=",
+				"widgetId" : "amznTextLinkWidget_adunit_0",
+				"debug" : "false",
+				"regionInt" : "1",
+				"viewerCountry": "",
+				"linkId": "3db5ef67a5b6922385a09c6bde5e7134",
+				"refTag": "assoc_res_lew_np_",
+				"slotNum": "0",
+				"marketplace": "amazon",
+				"exp_details": "",
+				"amznLewACAPSource": "",
+				"isChrome": "",
+				"isNativeAndroidBrowser": ""
+			};
+			window.amzn_lew_experiment_details  = new Object();
+							window.runtimeManager = amzn_assoc_utils.assocRuntime["0"];
+				amzn_lew_params.exp_details = JSON.stringify(runtimeManager.getValue("exp_details"));
+				amzn_lew_params.amznLewACAPSource = runtimeManager.getValue("amznLewACAPSource");
+				amzn_lew_experiment_details =  runtimeManager.getValue("exp_details");
+			
+			window.amznLinkWidget = new AmznLinkEnhancementWidget(amzn_lew_params);
+			window.amznLinkWidget.foresterCall({action:'onPageLoad', deviceType:'BROWSER'});
+					}());
+	}

@@ -1,0 +1,1 @@
+/**/Tynt.sc({"b":true,"domain":"javarevisited.blogspot.com","ss":"fglpt"})
