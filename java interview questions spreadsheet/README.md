@@ -5492,10 +5492,9 @@ http://tutorials.jenkov.com/java-reflection/modules.html
 
 # transient/volatile keywords
 
-
 |Junior |Mid  |Senior |
 |-------|-----|-------|
-|       |     |   x   |
+|       |  x  |   x   |
 
 - [Difference-between-transient-and-volatile-keyword-Java](refs/Difference-between-transient-and-volatile-keyword-Java)
 
@@ -5639,6 +5638,15 @@ https://stackoverflow.com/questions/25657770/volatile-vs-final-what-is-the-use-o
 http://tutorials.jenkov.com/java-concurrency/volatile.html
 
 ----
+
+# why make private fields also final if they cannot be accessed if getters and setters not provided? How do Spring inject private object fields?
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
+
+
 ----
 ----
 ----
