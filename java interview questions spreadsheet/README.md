@@ -5765,9 +5765,35 @@ https://betsol.com/2017/06/java-memory-management-for-java-virtual-machine-jvm
 
 ----
 
+# How does GC free the memory for circular references?
 
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |     |   x   |
+
+Please see:
+
+- [GC algorithm (mark and sweep)](#GC-algorithm-(mark-and-sweep))
+
+- [Heap zones for GC](#Heap-zones-for-GC)
+
+```text
+```
+
+- [How-does-Java-GC-work-with-Circular-References-Stack-Overflow](refs/How-does-Java-GC-work-with-Circular-References-Stack-Overflow)
+
+`references:`
+https://stackoverflow.com/questions/1910194/how-does-java-garbage-collection-work-with-circular-references
 
 ----
+
+# ClassLoaders
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |     |   x   |
+
+
 ----
 ----
 ----
