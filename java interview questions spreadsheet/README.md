@@ -5793,8 +5793,32 @@ https://stackoverflow.com/questions/1910194/how-does-java-garbage-collection-wor
 |-------|-----|-------|
 |       |     |   x   |
 
+- [ClassLoader-Java-GeeksforGeeks](refs/ClassLoader-Java-GeeksforGeeks)
+
+`references:`
+https://www.geeksforgeeks.org/classloader-in-java/
+
+- [Class-Loaders-Explained-Java-Tutorial-Network](refs/Class-Loaders-Explained-Java-Tutorial-Network)
+
+`references:`
+https://javatutorial.net/java-class-loaders-explained
+
+- [Java-ClassLoader-JournalDev](refs/Java-ClassLoader-JournalDev)
+
+`references:`
+https://www.journaldev.com/349/java-classloader
 
 ----
+
+XML DOM vs SAX vs Stax
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
+
+
+
 ----
 ----
 ----
