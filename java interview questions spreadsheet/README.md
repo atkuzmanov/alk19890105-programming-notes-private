@@ -5810,16 +5810,61 @@ https://www.journaldev.com/349/java-classloader
 
 ----
 
-XML DOM vs SAX vs Stax
+# XML DOM vs SAX vs Stax
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
 |       |  x  |   x   |
 
+- `DOM` - Document Object Model,
+- `SAX` - Simple API for XML,
+- `StAX` - Streaming API for XML
+
+- [java-differences-between-DOM-SAX-StAX-XML-parsers-StackOverflow](refs/java-differences-between-DOM-SAX-StAX-XML-parsers-StackOverflow)
+
+```text
+It mostly depends on your needs. Each has it's own features.
+
+DOM - pull the whole thing into memory and walk around inside it. Good for comparatively small chunks of XML that you want to do complex stuff with. XSLT uses DOM.
+
+SAX - Walk the XML as it arrives watching for things as they fly past. Good for large amounts of data or comparatively simple processing.
+
+StAX - Much like SAX but instead of responding to events found in the stream you iterate through the xml - See When should I choose SAX over StAX? for discussion of which is best.
+
+There's a good discussion here Parsing XML using DOM, SAX and StAX Parser in Java - By Mohamed Sanaulla. NB: There's a fault in his SAX parser - he should append characters, not replace them as character data is cumulative and may arrive in chunks.
+
+  content = String.copyValueOf(ch, start, length);
+should be
+
+  content += String.copyValueOf(ch, start, length);
+Also a blog post by Kaan Yamanyar Differences between DOM, SAX or StAX.
+```
+
+`references:`
+https://stackoverflow.com/questions/21019509/what-are-the-differences-between-dom-sax-and-stax-xml-parsers
+
+- [java-When-should-I-choose-SAX-over-StAX-StackOverflow](refs/java-When-should-I-choose-SAX-over-StAX-StackOverflow)
+
+`references:`
+https://stackoverflow.com/questions/7521803/when-should-i-choose-sax-over-stax
 
 
+- [DOM-Vs-SAX-Vs-StAX-parsers-My-learnings-and-experience-with-Java](refs/DOM-Vs-SAX-Vs-StAX-parsers-My-learnings-and-experience-with-Java)
+
+![xml-parsers-summary.jpg](refs/DOM-Vs-SAX-Vs-StAX-parsers-My-learnings-and-experience-with-Java/DOM%20Vs%20SAX%20Vs%20StAX%20parsers%20_%20My%20learnings%20and%20experience%20with%20Java.._files/xml-parsers-summary.jpg)
+
+`references:`
+https://rdayala.wordpress.com/dom-vs-sax-parsers/
+
+- [jenkov-Java-SAX-vs-StAX](refs/jenkov-Java-SAX-vs-StAX)
+
+`references:`
+http://tutorials.jenkov.com/java-xml/sax-vs-stax.html
 
 ----
+
+
+
 ----
 ----
 ----
