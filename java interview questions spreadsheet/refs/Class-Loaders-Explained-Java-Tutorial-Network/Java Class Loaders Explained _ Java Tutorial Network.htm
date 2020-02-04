@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)https://javatutorial.net/java-class-loaders-explained -->
+<html lang="en-US" slick-uniqueid="3"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Java Class Loaders Explained | Java Tutorial Network</title>
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="https://javatutorial.net/xmlrpc.php">
+
+		<script src="./Java Class Loaders Explained _ Java Tutorial Network_files/sdk.js" async="" crossorigin="anonymous"></script><script async="" src="./Java Class Loaders Explained _ Java Tutorial Network_files/analytics.js"></script><script id="facebook-jssdk" src="./Java Class Loaders Explained _ Java Tutorial Network_files/sdk(1).js"></script><script async="" src="./Java Class Loaders Explained _ Java Tutorial Network_files/28f593b5398fb87d83c0d29b1.js"></script><script type="text/javascript" async="" src="./Java Class Loaders Explained _ Java Tutorial Network_files/atrk.js"></script><script type="text/javascript">
+		var ajaxurl = 'https://javatutorial.net/wp-admin/admin-ajax.php';
+		</script>
+   <link rel="amphtml" href="https://javatutorial.net/java-class-loaders-explained/amp"><meta name="generator" content="AMP for WP 1.0.20"><link rel="dns-prefetch" href="https://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="Java Tutorial Network » Feed" href="https://javatutorial.net/feed">
+<link rel="alternate" type="application/rss+xml" title="Java Tutorial Network » Comments Feed" href="https://javatutorial.net/comments/feed">
+<link rel="alternate" type="application/rss+xml" title="Java Tutorial Network » Java Class Loaders Explained Comments Feed" href="https://javatutorial.net/java-class-loaders-explained/feed">
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/javatutorial.net\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.3.2"}};
+			!function(e,a,t){var r,n,o,i,p=a.createElement("canvas"),s=p.getContext&&p.getContext("2d");function c(e,t){var a=String.fromCharCode;s.clearRect(0,0,p.width,p.height),s.fillText(a.apply(this,e),0,0);var r=p.toDataURL();return s.clearRect(0,0,p.width,p.height),s.fillText(a.apply(this,t),0,0),r===p.toDataURL()}function l(e){if(!s||!s.fillText)return!1;switch(s.textBaseline="top",s.font="600 32px Arial",e){case"flag":return!c([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])&&(!c([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!c([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]));case"emoji":return!c([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340])}return!1}function d(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(i=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},o=0;o<i.length;o++)t.supports[i[o]]=l(i[o]),t.supports.everything=t.supports.everything&&t.supports[i[o]],"flag"!==i[o]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[i[o]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(r=t.source||{}).concatemoji?d(r.concatemoji):r.wpemoji&&r.twemoji&&(d(r.twemoji),d(r.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="./Java Class Loaders Explained _ Java Tutorial Network_files/wp-emoji-release.min.js" type="text/javascript" defer=""></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel="stylesheet" id="wp-block-library-css" href="./Java Class Loaders Explained _ Java Tutorial Network_files/style.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="cookie-notice-front-css" href="./Java Class Loaders Explained _ Java Tutorial Network_files/front.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="dashicons-css" href="./Java Class Loaders Explained _ Java Tutorial Network_files/dashicons.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="post-views-counter-frontend-css" href="./Java Class Loaders Explained _ Java Tutorial Network_files/frontend.css" type="text/css" media="all">
+<link rel="stylesheet" id="sfmsb-style-css" href="./Java Class Loaders Explained _ Java Tutorial Network_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="sfmsb-icons-css" href="./Java Class Loaders Explained _ Java Tutorial Network_files/icons.css" type="text/css" media="all">
+<link rel="stylesheet" id="wsl-widget-css" href="./Java Class Loaders Explained _ Java Tutorial Network_files/style(1).css" type="text/css" media="all">
+<link rel="stylesheet" id="wpdiscuz-font-awesome-css" href="./Java Class Loaders Explained _ Java Tutorial Network_files/fontawesome-all.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="wpdiscuz-frontend-css-css" href="./Java Class Loaders Explained _ Java Tutorial Network_files/wpdiscuz.css" type="text/css" media="all">
+<link rel="stylesheet" id="wpdiscuz-user-content-css-css" href="./Java Class Loaders Explained _ Java Tutorial Network_files/wpdiscuz-user-content.css" type="text/css" media="all">
+<link rel="stylesheet" id="bizmo-style-css" href="./Java Class Loaders Explained _ Java Tutorial Network_files/style(2).css" type="text/css" media="all">
+<link rel="stylesheet" id="enlighter-local-css" href="./Java Class Loaders Explained _ Java Tutorial Network_files/EnlighterJS.min.css" type="text/css" media="all">
+<script type="text/javascript">
+/* <![CDATA[ */
+var cnArgs = {"ajaxurl":"https:\/\/javatutorial.net\/wp-admin\/admin-ajax.php","hideEffect":"fade","onScroll":"no","onScrollOffset":"100","onClick":"","cookieName":"cookie_notice_accepted","cookieValue":"true","cookieTime":"2592000","cookiePath":"\/","cookieDomain":"","redirection":"","cache":"","refuse":"no","revoke_cookies":"0","revoke_cookies_opt":"automatic","secure":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Java Class Loaders Explained _ Java Tutorial Network_files/front.min.js"></script>
+<script type="text/javascript" src="./Java Class Loaders Explained _ Java Tutorial Network_files/jquery.js"></script>
+<script type="text/javascript" src="./Java Class Loaders Explained _ Java Tutorial Network_files/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="./Java Class Loaders Explained _ Java Tutorial Network_files/front-widget.js"></script>
+<script type="text/javascript" src="./Java Class Loaders Explained _ Java Tutorial Network_files/wpdcc.js"></script>
+<script type="text/javascript" src="./Java Class Loaders Explained _ Java Tutorial Network_files/jquery.autogrowtextarea.min.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var wpdiscuzAjaxObj = {"url":"https:\/\/javatutorial.net\/wp-admin\/admin-ajax.php","customAjaxUrl":"https:\/\/javatutorial.net\/wp-content\/plugins\/wpdiscuz\/utils\/ajax\/wpdiscuz-ajax.php","wpdiscuz_options":{"wc_hide_replies_text":"Hide Replies","wc_show_replies_text":"View Replies","wc_msg_required_fields":"Please fill out required fields","wc_invalid_field":"Some of field value is invalid","wc_error_empty_text":"please fill out this field to comment","wc_error_url_text":"url is invalid","wc_error_email_text":"email address is invalid","wc_invalid_captcha":"Invalid Captcha Code","wc_login_to_vote":"You Must Be Logged In To Vote","wc_deny_voting_from_same_ip":"You are not allowed to vote for this comment","wc_self_vote":"You cannot vote for your comment","wc_vote_only_one_time":"You've already voted for this comment","wc_voting_error":"Voting Error","wc_held_for_moderate":"Comment awaiting moderation","wc_comment_edit_not_possible":"Sorry, this comment no longer possible to edit","wc_comment_not_updated":"Sorry, the comment was not updated","wc_comment_not_edited":"You've not made any changes","wc_new_comment_button_text":"new comment","wc_new_comments_button_text":"new comments","wc_new_reply_button_text":"new reply on your comment","wc_new_replies_button_text":"new replies on your comments","wc_msg_input_min_length":"Input is too short","wc_msg_input_max_length":"Input is too long","wc_follow_user":"Follow this user","wc_unfollow_user":"Unfollow this user","wc_follow_success":"You started following this comment author","wc_follow_canceled":"You stopped following this comment author.","wc_follow_email_confirm":"Please check your email and confirm the user following request.","wc_follow_email_confirm_fail":"Sorry, we couldn't send confirmation email.","wc_follow_login_to_follow":"Please login to follow users.","wc_follow_impossible":"We are sorry, but you can't follow this user.","wc_follow_not_added":"Following failed. Please try again later.","is_user_logged_in":false,"commentListLoadType":"0","commentListUpdateType":"0","commentListUpdateTimer":"30","liveUpdateGuests":"1","wc_comment_bg_color":"#FEFEFE","wc_reply_bg_color":"#F8F8F8","wpdiscuzCommentsOrder":"asc","wpdiscuzCommentOrderBy":"comment_date_gmt","commentsVoteOrder":false,"wordpressThreadCommentsDepth":"5","wordpressIsPaginate":"","commentTextMaxLength":null,"storeCommenterData":100000,"isCaptchaInSession":true,"isGoodbyeCaptchaActive":false,"socialLoginAgreementCheckbox":0,"enableFbLogin":0,"enableFbShare":0,"facebookAppID":"","facebookUseOAuth2":0,"enableGoogleLogin":0,"googleAppID":"","cookiehash":"d4fa6a8fb7d7312a1b3b62dc0f439cb4","isLoadOnlyParentComments":0,"ahk":"","enableDropAnimation":0,"isNativeAjaxEnabled":1,"cookieCommentsSorting":"wpdiscuz_comments_sorting","enableLastVisitCookie":0,"version":"5.3.5","wc_post_id":1873,"loadLastCommentId":0,"lastVisitKey":"wpdiscuz_last_visit","isCookiesEnabled":true,"wc_captcha_show_for_guest":1,"wc_captcha_show_for_members":"0","is_email_field_required":1}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Java Class Loaders Explained _ Java Tutorial Network_files/wpdiscuz.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var wpdiscuzUCObj = {"msgConfirmDeleteComment":"Are you sure you want to delete this comment?","msgConfirmCancelSubscription":"Are you sure you want to cancel this subscription?","msgConfirmCancelFollow":"Are you sure you want to cancel this follow?"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Java Class Loaders Explained _ Java Tutorial Network_files/wpdiscuz-user-content.js"></script>
+<script type="text/javascript" src="./Java Class Loaders Explained _ Java Tutorial Network_files/lity.js"></script>
+<link rel="https://api.w.org/" href="https://javatutorial.net/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://javatutorial.net/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://javatutorial.net/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Java Enum Example" href="https://javatutorial.net/java-enum-example">
+<link rel="next" title="Java Control Flow Statements" href="https://javatutorial.net/java-control-flow-statements">
+<meta name="generator" content="WordPress 5.3.2">
+<link rel="canonical" href="https://javatutorial.net/java-class-loaders-explained">
+<link rel="shortlink" href="https://javatutorial.net/?p=1873">
+<link rel="alternate" type="application/json+oembed" href="https://javatutorial.net/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fjavatutorial.net%2Fjava-class-loaders-explained">
+<link rel="alternate" type="text/xml+oembed" href="https://javatutorial.net/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fjavatutorial.net%2Fjava-class-loaders-explained&amp;format=xml">
+            <style>
+                #wpcomm .wc_new_comment{background:#00B38F;}
+                #wpcomm .wc_new_reply{background:#00B38F;}
+                #wpcomm .wc-form-wrapper{ background:none; } /* ->formBGColor */
+                #wpcomm .wpdiscuz-front-actions{background:#F9F9F9;}
+                #wpcomm .wpdiscuz-subscribe-bar{background:#F9F9F9;}
+                #wpcomm select,
+                #wpcomm input[type="text"],
+                #wpcomm input[type="email"],
+                #wpcomm input[type="url"],
+                #wpcomm input[type="date"],
+                #wpcomm input[type="color"]{border:#D9D9D9 1px solid;}
+                #wpcomm .wc-comment .wc-comment-right{background:#FEFEFE;}
+                #wpcomm .wc-reply .wc-comment-right{background:#F8F8F8;}
+                #wpcomm .wc-comment-right .wc-comment-text, 
+                #wpcomm .wc-comment-right .wc-comment-text *{
+                    font-size:14px;
+                }
+                #wpcomm .wc-blog-administrator > .wc-comment-right .wc-comment-author, #wpcomm .wc-blog-administrator > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-administrator > .wc-comment-left .wc-comment-label{color:#00B38F; border:none; border-bottom: 1px solid #dddddd; }#wpcomm .wc-blog-editor > .wc-comment-right .wc-comment-author, #wpcomm .wc-blog-editor > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-editor > .wc-comment-left .wc-comment-label{color:#00B38F; border:none; border-bottom: 1px solid #dddddd; }#wpcomm .wc-blog-author > .wc-comment-right .wc-comment-author, #wpcomm .wc-blog-author > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-author > .wc-comment-left .wc-comment-label{color:#00B38F; border:none; border-bottom: 1px solid #dddddd; }#wpcomm .wc-blog-contributor > .wc-comment-right .wc-comment-author, #wpcomm .wc-blog-contributor > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-contributor > .wc-comment-left .wc-comment-label{color:#00B38F; border:none; border-bottom: 1px solid #dddddd; }#wpcomm .wc-blog-subscriber > .wc-comment-right .wc-comment-author, #wpcomm .wc-blog-subscriber > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-subscriber > .wc-comment-left .wc-comment-label{color:#00B38F; border:none; border-bottom: 1px solid #dddddd; }#wpcomm .wc-blog-post_author > .wc-comment-right .wc-comment-author, #wpcomm .wc-blog-post_author > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-post_author > .wc-comment-left .wc-comment-label{color:#00B38F; border:none; border-bottom: 1px solid #dddddd; }#wpcomm .wc-blog-guest > .wc-comment-right .wc-comment-author, #wpcomm .wc-blog-guest > .wc-comment-right .wc-comment-author a{color:#555757;}#wpcomm .wc-blog-guest > .wc-comment-left .wc-comment-label{color:#555757; border:none; border-bottom: 1px solid #dddddd; }                #wpcomm .wc-comment .wc-comment-left .wc-comment-label{ background: #ffffff;}
+                #wpcomm .wc-comment-left .wc-follow-user{color:#00B38F;}
+                #wpcomm .wc-load-more-submit{border:1px solid #D9D9D9;}
+                #wpcomm .wc-new-loaded-comment > .wc-comment-right{background:#FFFAD6;}
+                #wpcomm .wpdiscuz-subscribe-bar{color:#777;}
+                #wpcomm .wpdiscuz-front-actions .wpdiscuz-sbs-wrap span{color: #777;}
+                #wpcomm .page-numbers{color:#555;border:#555 1px solid;}
+                #wpcomm span.current{background:#555;}
+                #wpcomm .wpdiscuz-readmore{cursor:pointer;color:#00B38F;}
+                #wpcomm .wpdiscuz-textarea-wrap{border:#D9D9D9 1px solid;} .wpd-custom-field .wcf-pasiv-star, #wpcomm .wpdiscuz-item .wpdiscuz-rating > label {color: #DDDDDD;}
+                #wpcomm .wpdiscuz-item .wpdiscuz-rating:not(:checked) > label:hover,.wpdiscuz-rating:not(:checked) > label:hover ~ label {   }#wpcomm .wpdiscuz-item .wpdiscuz-rating > input ~ label:hover, #wpcomm .wpdiscuz-item .wpdiscuz-rating > input:not(:checked) ~ label:hover ~ label, #wpcomm .wpdiscuz-item .wpdiscuz-rating > input:not(:checked) ~ label:hover ~ label{color: #FFED85;} 
+                #wpcomm .wpdiscuz-item .wpdiscuz-rating > input:checked ~ label:hover, #wpcomm .wpdiscuz-item .wpdiscuz-rating > input:checked ~ label:hover, #wpcomm .wpdiscuz-item .wpdiscuz-rating > label:hover ~ input:checked ~ label, #wpcomm .wpdiscuz-item .wpdiscuz-rating > input:checked + label:hover ~ label, #wpcomm .wpdiscuz-item .wpdiscuz-rating > input:checked ~ label:hover ~ label, .wpd-custom-field .wcf-active-star, #wpcomm .wpdiscuz-item .wpdiscuz-rating > input:checked ~ label{ color:#FFD700;}
+                #wpcomm .wc-comment-header{border-top: 1px solid #dedede;}
+                #wpcomm .wc-reply .wc-comment-header{border-top: 1px solid #dedede;}
+                /* Buttons */
+                #wpcomm button, 
+                #wpcomm input[type="button"], 
+                #wpcomm input[type="reset"], 
+                #wpcomm input[type="submit"]{ border: 1px solid ; color: ; background-color: ; }
+                #wpcomm button:hover, 
+                #wpcomm button:focus,
+                #wpcomm input[type="button"]:hover, 
+                #wpcomm input[type="button"]:focus, 
+                #wpcomm input[type="reset"]:hover, 
+                #wpcomm input[type="reset"]:focus, 
+                #wpcomm input[type="submit"]:hover, 
+                #wpcomm input[type="submit"]:focus{ border: 1px solid #333333; background-color: #333333;  }
+                #wpcomm .wpdiscuz-sort-buttons{color:#777777;}
+                #wpcomm .wpdiscuz-sort-button{color:; cursor:pointer;}
+                #wpcomm .wpdiscuz-sort-button:hover{color:#00B38F!important;cursor:pointer;}
+                #wpcomm .wpdiscuz-sort-button-active{color:#00B38F!important;cursor:default!important;}
+                #wpcomm .wc-cta-button, 
+                #wpcomm .wc-cta-button-x{color:; }
+                #wpcomm .wc-vote-link.wc-up{color:;}
+                #wpcomm .wc-vote-link.wc-down{color:;}
+                #wpcomm .wc-vote-result{color:#999999;}
+                #wpcomm .wpf-cta{color:#999999; }
+                #wpcomm .wc-comment-link .wc-share-link .wpf-cta{color:#eeeeee;}
+                #wpcomm .wc-footer-left .wc-reply-button{border:1px solid #00B38F!important; color: #00B38F;}
+                #wpcomm .wpf-cta:hover{background:#00B38F!important; color:#FFFFFF;}
+                #wpcomm .wc-footer-left .wc-reply-button.wc-cta-active, #wpcomm .wc-cta-active{background:#00B38F!important; color:#FFFFFF;}
+                #wpcomm .wc-cta-button:hover{background:#00B38F!important; color:#FFFFFF;}
+                #wpcomm .wc-footer-right .wc-toggle,
+                #wpcomm .wc-footer-right .wc-toggle a,
+                #wpcomm .wc-footer-right .wc-toggle i{color:#00B38F;}
+                /* STICKY COMMENT HEADER */
+                #wpcomm .wc-sticky-comment.wc-comment .wc-comment-header .wpd-sticky{background: #1ecea8; color: #ffffff; }
+                #wpcomm .wc-closed-comment.wc-comment .wc-comment-header .wpd-closed{background: #aaaaaa; color: #ffffff;}
+                /* PRIVATE COMMENT HEADER */
+                #wpcomm .wc-private-comment.wc-comment .wc-comment-header .wpd-private{background: #999999; color: #ffffff;}
+                /* FOLLOW LINK */
+
+                #wpcomm .wc-follow{color:;}
+                #wpcomm .wc-follow-active{color:#ff7a00;}
+                #wpcomm .wc-follow:hover i,
+                #wpcomm .wc-unfollow:hover i,
+                #wpcomm .wc-follow-active:hover i{color:#00B38F;}
+                                .wpd-wrapper .wpd-list-item.wpd-active{border-top: 3px solid #00B38F;}
+                                .comments-area{width:auto;}
+            </style>
+            <style type="text/css">.rp4wp-related-posts ul{width:100%;padding:0;margin:0;float:left;margin-top:20px}
+.rp4wp-related-posts ul>li{list-style:none;padding:0;margin:0;padding-bottom:20px;clear:both;}
+.rp4wp-related-posts ul>li>p{margin:0;padding:0;}
+.rp4wp-related-post-image{width:35%;padding-right:25px;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;float:left;}</style>
+<style>
+/* BODY */
+#top-bar {background:#004860;}.current_page_item a, #masthead {background:#5382a1;}a,#colophon .site-info a {color:#e76f00;}#topbar-search button:hover,.main-navigation li:hover a,.main-navigation a:hover,.button,button,
+input[type="button"],input[type="reset"],input[type="submit"] {background:#e76f00;}@media screen and (max-width: 600px) {.menu-toggle,#site-navigation li {background:#e76f00;}}.button:hover,button:hover,input[type="button"]:hover,input[type="reset"]:hover,input[type="submit"]:hover {background:#b95900;}html,#colophon,#breadcrumbs-wrap {background:#404040;}</style>
+<!-- All in one Favicon 4.7 --><link rel="shortcut icon" href="https://javatutorial.net/wp-content/uploads/2014/10/favicon.ico">
+<style type="text/css">.broken_link, a.broken_link {
+	text-decoration: line-through;
+}</style><link rel="icon" href="https://javatutorial.net/wp-content/uploads/2019/01/cropped-logo-big-32x32.png" sizes="32x32">
+<link rel="icon" href="https://javatutorial.net/wp-content/uploads/2019/01/cropped-logo-big-192x192.png" sizes="192x192">
+<link rel="apple-touch-icon-precomposed" href="https://javatutorial.net/wp-content/uploads/2019/01/cropped-logo-big-180x180.png">
+<meta name="msapplication-TileImage" content="https://javatutorial.net/wp-content/uploads/2019/01/cropped-logo-big-270x270.png">
+
+<!-- Start Alexa Certify Javascript -->
+<script type="text/javascript">
+_atrk_opts = { atrk_acct:"qRyNm1a4KM+2/9", domain:"javatutorial.net",dynamic: true};
+(function() { var as = document.createElement('script'); as.type = 'text/javascript'; as.async = true; as.src = "https://d31qbv1cthcecs.cloudfront.net/atrk.js"; var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(as, s); })();
+</script>
+<noscript><img src="https://d5nxst8fruw4z.cloudfront.net/atrk.gif?account=qRyNm1a4KM+2/9" style="display:none" height="1" width="1" alt="" /></noscript>
+<!-- End Alexa Certify Javascript --> 
+
+<script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/868741e20a9581dcda673fd57/28f593b5398fb87d83c0d29b1.js");</script> 
+
+<style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_dialog_advanced{border-radius:8px;padding:10px}.fb_dialog_content{background:#fff;color:#373737}.fb_dialog_close_icon{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{left:5px;right:auto;top:5px}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent}.fb_dialog_close_icon:active{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #365899;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{height:100%;left:0;margin:0;overflow:visible;position:absolute;top:-10000px;transform:none;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{background:none;height:auto;min-height:initial;min-width:initial;width:auto}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{clear:both;color:#fff;display:block;font-size:18px;padding-top:20px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .4);bottom:0;left:0;min-height:100%;position:absolute;right:0;top:0;width:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_mobile .fb_dialog_iframe{position:sticky;top:0}.fb_dialog_content .dialog_header{background:linear-gradient(from(#738aba), to(#2c4987));border-bottom:1px solid;border-color:#043b87;box-shadow:white 0 1px 1px -1px inset;color:#fff;font:bold 14px Helvetica, sans-serif;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:linear-gradient(from(#4267B2), to(#2a4887));background-clip:padding-box;border:1px solid #29487d;border-radius:3px;display:inline-block;line-height:18px;margin-top:3px;max-width:85px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{background:none;border:none;color:#fff;font:bold 12px Helvetica, sans-serif;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #4a4a4a;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f5f6f7;border:1px solid #4a4a4a;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/t-wz8gw1xG1.png);background-position:50% 50%;background-repeat:no-repeat;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}</style></head>
+
+<body class="post-template-default single single-post postid-1873 single-format-standard group-blog wpdiscuz_5.3.5 cookies-set cookies-accepted">
+
+<div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; width: 0px; height: 0px;"><div></div></div></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7&appId=1537296699841449";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="page" class="hfeed site">
+
+	<div id="top-bar">
+		<nav id="site-navigation" class="main-navigation" role="navigation">
+		<div id="topbar-search"><form role="search" method="get" class="search-form" action="https://javatutorial.net/">
+	<button type="submit" class="search-submit"><i class="dashicons dashicons-search"></i></button>
+	<label>
+		<span class="screen-reader-text">Search for:</span>
+		<input type="search" class="search-field" placeholder="Search and hit enter" value="" name="s" title="Search for:">
+	</label>
+</form></div>
+			<h1 class="menu-toggle"><i class="dashicons dashicons-menu"></i></h1>
+			<a class="skip-link screen-reader-text" href="https://javatutorial.net/java-class-loaders-explained#content">Skip to content</a>
+			<div class="menu-menu-1-container"><ul id="menu-menu-1" class="menu nav-menu"><li id="menu-item-30" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-30"><a href="https://javatutorial.net/">All Tutorials</a></li>
+<li id="menu-item-92" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-92"><a href="https://javatutorial.net/category/java-basics">Java Basics</a></li>
+<li id="menu-item-13" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-13"><a href="https://javatutorial.net/category/java-core">Java Core</a></li>
+<li id="menu-item-336" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-336"><a href="https://javatutorial.net/category/java-ee">Java EE</a></li>
+<li id="menu-item-2183" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2183"><a href="https://javatutorial.net/category/spring">Spring</a></li>
+<li id="menu-item-1009" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1009"><a href="https://javatutorial.net/category/android">Android</a></li>
+<li id="menu-item-68" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-68"><a href="https://javatutorial.net/category/misc-tutorials">Misc Tutorials</a></li>
+<li id="menu-item-245" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-245"><a href="https://javatutorial.net/category/raspberry-pi-java">Raspberry Pi</a></li>
+</ul></div>		</nav><!-- #site-navigation -->
+		<div class="clear"></div>
+	</div>
+	
+	<header id="masthead" class="site-header" role="banner">
+		<div class="site-branding">
+	<h1 class="site-title"><a href="https://javatutorial.net/" rel="home">Java Tutorial Network</a></h1>
+	<h2 class="site-description">Java Tutorials for Beginners and Professionals</h2>
+</div>
+	</header><!-- #masthead -->
+
+
+	<div id="content" class="site-content">
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+			
+<article id="post-1873" class="post-1873 post type-post status-publish format-standard has-post-thumbnail hentry category-java-core tag-java-class-loader tag-java-job-interview-questions tag-jvm">
+	<header class="entry-header">
+		<h1 class="entry-title">Java Class Loaders Explained</h1>
+
+		<div class="entry-meta">
+			<span class="posted-on"><i class="dashicons dashicons-clock"></i> <a href="https://javatutorial.net/java-class-loaders-explained" rel="bookmark"><time class="entry-date published" datetime="2017-10-09T12:32:32+00:00">October 9, 2017</time><time class="updated" datetime="2019-10-25T09:24:25+00:00">October 25, 2019</time></a></span><span class="byline"> <i class="dashicons dashicons-admin-users"></i> <span class="author vcard"><a class="url fn n" href="https://javatutorial.net/author/filip">filip</a></span></span>		</div><!-- .entry-meta -->
+	</header><!-- .entry-header -->
+
+	<div class="entry-content">
+		<p>This article explains the key components of Java class loaders.</p>
+<p><span id="more-1873"></span></p>
+<p>Java Class Loaders are essential part of <a href="https://javatutorial.net/jvm-explained">Java Virtual Machine (JVM)</a>. They are used to load classes and interfaces. Althaout class loaders are integral part of JVM and they are very important for the internal working of Java it is unlikely you will need to create a custom class loader in your everyday work as a java developer. Real-life application of custom class loader is for example if you want to create&nbsp;application that will be executed on a container such as Tomcat. What Tomcat does is create a class loader for each web application (so that it can unload the webapps later and release memory).</p>
+<p>This article is written with the attempt to explain how class loaders work and to list the key components of a Java Class Loaders.&nbsp; You may&nbsp; encounter questions about class loaders on your next Java job interview.</p>
+<h2>What is Java ClassLoader</h2>
+<p>We know that Java programs run on&nbsp;<a href="https://javatutorial.net/jvm-explained">Java Virtual Machine&nbsp;(JVM)</a>. When we compile a Java Class, it transforms into bytecode that is platform and machine independent. Compiled classes are stored as a .class file. When we try to use a Class, Java ClassLoader loads that class into memory.&nbsp;Classes are introduced into the Java environment when they are referenced by name in a class that is already running. Future attempts at loading classes are done by the class loader, once the first class is running. Running the first class is usually done by declaring and using a static main() method.</p>
+<div id="attachment_1893" style="width: 690px" class="wp-caption alignnone"><a href="./Java Class Loaders Explained _ Java Tutorial Network_files/hierarchy-of-class-loaders.png"><img aria-describedby="caption-attachment-1893" class="size-full wp-image-1893" src="./Java Class Loaders Explained _ Java Tutorial Network_files/hierarchy-of-class-loaders.png" alt="hierarchy of class loaders" width="680" height="665" srcset="https://javatutorial.net/wp-content/uploads/2017/10/hierarchy-of-class-loaders.png 680w, https://javatutorial.net/wp-content/uploads/2017/10/hierarchy-of-class-loaders-300x293.png 300w" sizes="(max-width: 680px) 100vw, 680px"></a><p></p>
+<p id="caption-attachment-1893" class="wp-caption-text">hierarchy of class loaders</p>
+</div>
+<h2>Types of Java Class Loaders</h2>
+<ol>
+<li><strong>Bootstrap Class Loader</strong>&nbsp;– It loads JDK internal classes, typically loads rt.jar and other core classes for example java.lang.* package classes</li>
+<li><strong>Extensions Class Loader</strong>&nbsp;– It loads classes from the JDK extensions directory, usually lib/ext directory of the JRE.</li>
+<li><strong>System Class Loader</strong>&nbsp;–Loads classes from system classpath, that can be set while invoking a program using -cp or -classpath command line options.</li>
+</ol>
+<p><script async="" src="./Java Class Loaders Explained _ Java Tutorial Network_files/f.txt"></script><br>
+<!-- javatutorial.net_adaptive --><br>
+<ins class="adsbygoogle" style="display: block;" data-ad-client="ca-pub-9596119095390550" data-ad-slot="9664185040" data-ad-format="auto"></ins><br>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></p>
+<h2>When and How are Classes Loaded</h2>
+<p>When classes are loaded? There are exactly two cases:</p>
+<ol>
+<li>when the new bytecode is executed (for example,&nbsp;<strong>MyClass</strong>&nbsp;<i>mc</i>&nbsp;= new&nbsp;<strong>MyClass()</strong><img draggable="false" role="img" class="emoji" alt="😉" src="./Java Class Loaders Explained _ Java Tutorial Network_files/1f609.svg"></li>
+<li>when the bytecodes make a static reference to a class (for example,&nbsp;<strong>System.</strong><em>out</em>).</li>
+</ol>
+<p>Class loaders are hierarchical. The very first class is specially loaded with the help of static main() method declared in your class. All the subsequently loaded classes are loaded by the classes, which are already loaded and running.</p>
+<p>Further classloaders follow this rules when loading classes:</p>
+<ol>
+<li>Check if the class was already loaded.</li>
+<li>If not loaded, ask parent class loader to load the class.</li>
+<li>If parent class loader cannot load class, attempt to load it in this class loader.</li>
+</ol>
+<h2>Static vs. Dynamic class loading</h2>
+<p>Classes are statically loaded with Java’s “new” operator.&nbsp;Dynamic loading is a technique for programmatically invoking the functions of a class loader at run-time by using Class.forName()</p>
+<h2>Difference between loadClass and Class.forName</h2>
+<p><strong>loadClass</strong> only loads the class but doesn’t initialize the object whereas <strong>Class.forName</strong> initialize the object after loading it. For example, if you use <strong>ClassLoader.loadClass</strong> to load a JDBC driver, it won’t get registered, and you won’t be able to use JDBC</p>
+<p>The&nbsp;<b>java.lang.Class.forName(String className)&nbsp;</b>method returns the Class object associated with the class or interface with the given string name. This method throws&nbsp;ClassNotFoundException if the class is not found</p>
+<p>Following example demonstrates the usage of Class.forName</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="java" style="display: none;">package net.javatutorial;
+
+import java.lang.reflect.Method;
+
+public class ClassForNameExample {
+
+	public static void main(String[] args) {
+		try {
+			Class&lt;?&gt; c = Class.forName("java.awt.Point");
+			System.out.println("name = " + c.getName());
+			System.out.println("package = " + c.getPackage());
+			Method[] methods = c.getDeclaredMethods();
+			System.out.println("----- Class methods ---------------");
+			for (Method method : methods) {
+				System.out.println(method.getName());
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+}</pre><div class="EnlighterJSWrapper enlighterEnlighterJSWrapper"><ol class="hoverEnabled enlighterEnlighterJS EnlighterJS"><li class=" odd"><span class="kw3">package</span><span class=""> net.</span><span class="me0">javatutorial</span><span class="">;</span></li><li class=" even"><span class=""></span></li><li class=" odd"><span class=""></span><span class="kw3">import</span><span class=""> java.</span><span class="me0">lang</span><span class="">.</span><span class="me0">reflect</span><span class="">.</span><span class="me0">Method</span><span class="">;</span></li><li class=" even"><span class=""></span></li><li class=" odd"><span class=""></span><span class="kw3">public</span><span class=""> </span><span class="kw3">class</span><span class=""> ClassForNameExample </span><span class="br0">{</span><span class=""></span></li><li class=" even"><span class=""></span></li><li class=" odd"><span class="">	</span><span class="kw3">public</span><span class=""> </span><span class="kw3">static</span><span class=""> </span><span class="kw3">void</span><span class=""> </span><span class="kw1">main</span><span class="br0">(</span><span class="kw2">String</span><span class="br0">[</span><span class="br0">]</span><span class=""> args</span><span class="br0">)</span><span class=""> </span><span class="br0">{</span><span class=""></span></li><li class=" even"><span class="">		</span><span class="kw1">try</span><span class=""> </span><span class="br0">{</span><span class=""></span></li><li class=" odd"><span class="">			Class&lt;?&gt; c = Class.</span><span class="me0">forName</span><span class="br0">(</span><span class="st1">"java.awt.Point"</span><span class="br0">)</span><span class="">;</span></li><li class=" even"><span class="">			</span><span class="kw4">System</span><span class="">.</span><span class="me0">out</span><span class="">.</span><span class="me0">println</span><span class="br0">(</span><span class="st1">"name = "</span><span class=""> + c.</span><span class="me0">getName</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><span class="">;</span></li><li class=" odd"><span class="">			</span><span class="kw4">System</span><span class="">.</span><span class="me0">out</span><span class="">.</span><span class="me0">println</span><span class="br0">(</span><span class="st1">"package = "</span><span class=""> + c.</span><span class="me0">getPackage</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><span class="">;</span></li><li class=" even"><span class="">			Method</span><span class="br0">[</span><span class="br0">]</span><span class=""> methods = c.</span><span class="me0">getDeclaredMethods</span><span class="br0">(</span><span class="br0">)</span><span class="">;</span></li><li class=" odd"><span class="">			</span><span class="kw4">System</span><span class="">.</span><span class="me0">out</span><span class="">.</span><span class="me0">println</span><span class="br0">(</span><span class="st1">"----- Class methods ---------------"</span><span class="br0">)</span><span class="">;</span></li><li class=" even"><span class="">			</span><span class="kw1">for</span><span class=""> </span><span class="br0">(</span><span class="">Method method : methods</span><span class="br0">)</span><span class=""> </span><span class="br0">{</span><span class=""></span></li><li class=" odd"><span class="">				</span><span class="kw4">System</span><span class="">.</span><span class="me0">out</span><span class="">.</span><span class="me0">println</span><span class="br0">(</span><span class="">method.</span><span class="me0">getName</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><span class="">;</span></li><li class=" even"><span class="">			</span><span class="br0">}</span><span class=""></span></li><li class=" odd"><span class="">		</span><span class="br0">}</span><span class=""> </span><span class="kw1">catch</span><span class=""> </span><span class="br0">(</span><span class="">ClassNotFoundException e</span><span class="br0">)</span><span class=""> </span><span class="br0">{</span><span class=""></span></li><li class=" even"><span class="">			e.</span><span class="me0">printStackTrace</span><span class="br0">(</span><span class="br0">)</span><span class="">;</span></li><li class=" odd"><span class="">		</span><span class="br0">}</span><span class=""></span></li><li class=" even"><span class="">	</span><span class="br0">}</span><span class=""></span></li><li class=" odd"><span class=""></span></li><li class=" even"><span class=""></span><span class="br0">}</span></li></ol><pre style="display: none;">package net.javatutorial;
+
+import java.lang.reflect.Method;
+
+public class ClassForNameExample {
+
+	public static void main(String[] args) {
+		try {
+			Class&lt;?&gt; c = Class.forName("java.awt.Point");
+			System.out.println("name = " + c.getName());
+			System.out.println("package = " + c.getPackage());
+			Method[] methods = c.getDeclaredMethods();
+			System.out.println("----- Class methods ---------------");
+			for (Method method : methods) {
+				System.out.println(method.getName());
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+}</pre><div class="EnlighterJSToolbar"><a class="EnlighterJSInfoButton" title="EnlighterJS Syntax Highlighter"></a><a class="EnlighterJSRawButton" title="Toggle RAW Code"></a><a class="EnlighterJSWindowButton" title="Open Code in new Window"></a><span class="clear"></span></div></div>
+<p>java.awt.Point class is loaded. Than we print the class name, the package and the names of all available methods of this class. This is the result of executing the program in Java 8:</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="raw" style="display: none;">name = java.awt.Point
+package = package java.awt, Java Platform API Specification, version 1.8
+----- Class methods ---------------
+equals
+toString
+getLocation
+getX
+getY
+setLocation
+setLocation
+setLocation
+move
+translate</pre><div class="EnlighterJSWrapper enlighterEnlighterJSWrapper"><ol class="hoverEnabled enlighterEnlighterJS EnlighterJS"><li class=" odd"><span class="">name = java.awt.Point</span></li><li class=" even"><span class="">package = package java.awt, Java Platform API Specification, version 1.8</span></li><li class=" odd"><span class="">----- Class methods ---------------</span></li><li class=" even"><span class="">equals</span></li><li class=" odd"><span class="">toString</span></li><li class=" even"><span class="">getLocation</span></li><li class=" odd"><span class="">getX</span></li><li class=" even"><span class="">getY</span></li><li class=" odd"><span class="">setLocation</span></li><li class=" even"><span class="">setLocation</span></li><li class=" odd"><span class="">setLocation</span></li><li class=" even"><span class="">move</span></li><li class=" odd"><span class="">translate</span></li></ol><pre style="display: none;">name = java.awt.Point
+package = package java.awt, Java Platform API Specification, version 1.8
+----- Class methods ---------------
+equals
+toString
+getLocation
+getX
+getY
+setLocation
+setLocation
+setLocation
+move
+translate</pre><div class="EnlighterJSToolbar"><a class="EnlighterJSInfoButton" title="EnlighterJS Syntax Highlighter"></a><a class="EnlighterJSRawButton" title="Toggle RAW Code"></a><a class="EnlighterJSWindowButton" title="Open Code in new Window"></a><span class="clear"></span></div></div>
+<p>&nbsp;</p>
+<div class="post-views post-1873 entry-meta">
+			<span class="post-views-icon dashicons dashicons-chart-bar"></span><br>
+			<span class="post-views-label">Post Views: </span><br>
+			<span class="post-views-count">20,647</span>
+			</div>
+<div class="rp4wp-related-posts">
+<h3>Related Tutorials</h3>
+<ul>
+<li><div class="rp4wp-related-post-image">
+<a href="https://javatutorial.net/java-objects-and-classes-tutorial"><img width="150" height="150" src="./Java Class Loaders Explained _ Java Tutorial Network_files/class-object-featured-image-150x150.png" class="attachment-thumbnail size-thumbnail wp-post-image" alt=""></a></div>
+<div class="rp4wp-related-post-content">
+<a href="https://javatutorial.net/java-objects-and-classes-tutorial">Java Objects and Classes Tutorial</a><p>In this tutorial, I will explain the fundamentals of java classes and objects. Java is an object-oriented programming language. This means, that everything in Java,…</p></div>
+</li>
+<li><div class="rp4wp-related-post-image">
+<a href="https://javatutorial.net/java-iterate-hashmap-example"><img width="150" height="150" src="./Java Class Loaders Explained _ Java Tutorial Network_files/iterate-hashmap-featured-image-150x150.png" class="attachment-thumbnail size-thumbnail wp-post-image" alt=""></a></div>
+<div class="rp4wp-related-post-content">
+<a href="https://javatutorial.net/java-iterate-hashmap-example">Java Iterate through a HashMap Example</a><p>This examples shows you how to iterate through a HashMap in Java Iterate over a collection or data set in Java is a very common…</p></div>
+</li>
+<li><div class="rp4wp-related-post-image">
+<a href="https://javatutorial.net/java-interface-example"><img width="150" height="150" src="./Java Class Loaders Explained _ Java Tutorial Network_files/interfaces-featured-image-150x150.png" class="attachment-thumbnail size-thumbnail wp-post-image" alt=""></a></div>
+<div class="rp4wp-related-post-content">
+<a href="https://javatutorial.net/java-interface-example">Java Interface Example</a><p>In this tutorial I will show you how to create and work with Java Interfaces. As always I will demonstrate a practical example of Java…</p></div>
+</li>
+</ul>
+</div>
+			</div><!-- .entry-content -->
+
+	<footer class="entry-footer">
+		<i class="dashicons dashicons-category"></i> <a href="https://javatutorial.net/category/java-core" rel="category tag">Java Core</a> <i class="dashicons dashicons-tag"></i> <a href="https://javatutorial.net/tag/java-class-loader" rel="tag">java class loader</a>, <a href="https://javatutorial.net/tag/java-job-interview-questions" rel="tag">java job interview questions</a>, <a href="https://javatutorial.net/tag/jvm" rel="tag">jvm</a>. <i class="dashicons dashicons-admin-links"></i> <a href="https://javatutorial.net/java-class-loaders-explained" rel="bookmark">permalink</a>.
+			</footer><!-- .entry-footer -->
+</article><!-- #post-## -->
+
+				<nav class="navigation post-navigation" role="navigation">
+		<h1 class="screen-reader-text">Post navigation</h1>
+		<div class="nav-links">
+			<div class="nav-previous"><a href="https://javatutorial.net/java-control-flow-statements" rel="next"><span class="meta-nav">←</span> Java Control Flow Statements</a></div><div class="nav-next"><a href="https://javatutorial.net/java-enum-example" rel="prev">Java Enum Example <span class="meta-nav">→</span></a></div>		</div><!-- .nav-links -->
+	</nav><!-- .navigation -->
+	
+			    <div class="wpdiscuz_top_clearing"></div>
+    <div id="comments" class="comments-area"><div id="respond" style="width: 0;height: 0;clear: both;margin: 0;padding: 0;"></div>            <h3 id="wc-comment-header">
+                                    <div class="wpdiscuz-comment-count">
+                        <div class="wpd-cc-value">1</div>
+                        <div class="wpd-cc-arrow"></div>
+                    </div>
+                                Leave a Reply            </h3>
+                    <div id="wpcomm" class="wpdiscuz_unauth wpd-default">
+            <div class="wpdiscuz-form-top-bar">
+                <div class="wpdiscuz-ftb-left">
+                                                            <div id="wc_show_hide_loggedin_username">
+                                            </div>
+                </div>
+                                <div class="wpd-clear"></div>
+            </div>
+
+
+                        <div class="wc_social_plugin_wrapper">
+                
+<!--
+	wsl_render_auth_widget
+	WordPress Social Login 2.3.3.
+	http://wordpress.org/plugins/wordpress-social-login/
+-->
+
+<style type="text/css">
+.wp-social-login-connect-with{}.wp-social-login-provider-list{}.wp-social-login-provider-list a{}.wp-social-login-provider-list img{}.wsl_connect_with_provider{}</style>
+
+<div class="wp-social-login-widget">
+
+	<div class="wp-social-login-connect-with">Connect with:</div>
+
+	<div class="wp-social-login-provider-list">
+
+		<a rel="nofollow" href="https://javatutorial.net/wp-login.php?action=wordpress_social_authenticate&amp;mode=login&amp;provider=Facebook&amp;redirect_to=https%3A%2F%2Fjavatutorial.net%2Fjava-class-loaders-explained" title="Connect with Facebook" class="wp-social-login-provider wp-social-login-provider-facebook" data-provider="Facebook">
+			<img alt="Facebook" title="Connect with Facebook" src="./Java Class Loaders Explained _ Java Tutorial Network_files/facebook.png">
+		</a>
+
+		<a rel="nofollow" href="https://javatutorial.net/wp-login.php?action=wordpress_social_authenticate&amp;mode=login&amp;provider=Twitter&amp;redirect_to=https%3A%2F%2Fjavatutorial.net%2Fjava-class-loaders-explained" title="Connect with Twitter" class="wp-social-login-provider wp-social-login-provider-twitter" data-provider="Twitter">
+			<img alt="Twitter" title="Connect with Twitter" src="./Java Class Loaders Explained _ Java Tutorial Network_files/twitter.png">
+		</a>
+
+		<a rel="nofollow" href="https://javatutorial.net/wp-login.php?action=wordpress_social_authenticate&amp;mode=login&amp;provider=Disqus&amp;redirect_to=https%3A%2F%2Fjavatutorial.net%2Fjava-class-loaders-explained" title="Connect with Disqus" class="wp-social-login-provider wp-social-login-provider-disqus" data-provider="Disqus">
+			<img alt="Disqus" title="Connect with Disqus" src="./Java Class Loaders Explained _ Java Tutorial Network_files/disqus.png">
+		</a>
+
+		<a rel="nofollow" href="https://javatutorial.net/wp-login.php?action=wordpress_social_authenticate&amp;mode=login&amp;provider=Stackoverflow&amp;redirect_to=https%3A%2F%2Fjavatutorial.net%2Fjava-class-loaders-explained" title="Connect with Stackoverflow" class="wp-social-login-provider wp-social-login-provider-stackoverflow" data-provider="Stackoverflow">
+			<img alt="Stackoverflow" title="Connect with Stackoverflow" src="./Java Class Loaders Explained _ Java Tutorial Network_files/stackoverflow.png">
+		</a>
+
+	</div>
+
+	<div class="wp-social-login-widget-clearing"></div>
+
+</div>
+
+<!-- wsl_render_auth_widget -->
+
+            </div>
+                    <div class="wc-form-wrapper wc-main-form-wrapper" id="wc-main-form-wrapper-0_0">
+            <div class="wpdiscuz-comment-message" style="display: block;"></div>
+                                        <form class="wc_comm_form wc_main_comm_form" method="post" enctype="multipart/form-data">
+                    <div class="wc-field-comment">
+                        <div class="wpdiscuz-item wc-field-textarea">
+                            <div class="wpdiscuz-textarea-wrap ">
+
+                                                                                                        <div class="wc-field-avatararea">
+                                        <img alt="avatar" src="./Java Class Loaders Explained _ Java Tutorial Network_files/none.png" srcset="https://secure.gravatar.com/avatar/?s=80&amp;d=mm&amp;r=g 2x" class="avatar avatar-40 photo avatar-default" height="40" width="40">                                    </div>
+                                
+                                <textarea id="wc-textarea-0_0" placeholder="Join the discussion..." required="" name="wc_comment" class="wc_comment wpd-field"></textarea>
+                                                                                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="wc-form-footer" style="display: none;"> 
+                                <div class="wpd-form-row">
+                    <div class="wpd-form-col-left">
+                        <div class="wpdiscuz-item wc_name-wrapper wpd-has-icon">
+                                <div class="wpd-field-icon"><i class="fas fa-user"></i></div>
+                                                <input value="" required="required" class="wc_name wpd-field" type="text" name="wc_name" placeholder="Name*" maxlength="50" pattern=".{3,50}" title="">
+                            </div>
+                        <div class="wpdiscuz-item wc_email-wrapper wpd-has-icon">
+                                    <div class="wpd-field-icon"><i class="fas fa-at"></i></div>
+                                                <input value="" required="required" class="wc_email wpd-field" type="email" name="wc_email" placeholder="Email*">
+                            </div>
+                            <div class="wpdiscuz-item wc_website-wrapper wpd-has-icon">
+                                            <div class="wpd-field-icon"><i class="fas fa-link"></i></div>
+                                        <input value="" class="wc_website wpd-field" type="text" name="wc_website" placeholder="Website">
+                                            </div>
+                        </div>
+                <div class="wpd-form-col-right">
+                    <div class="wc-field-captcha wpdiscuz-item wc_captcha-wrapper">
+            <div class="wc-captcha-input">
+                <input type="text" maxlength="5" value="" autocomplete="off" required="required" name="wc_captcha" class="wpd-field wc_field_captcha" placeholder="Code" title="Insert the CAPTCHA code">
+            </div>
+            <div class="wc-label wc-captcha-label">
+                                <a class="wpdiscuz-nofollow" href="https://javatutorial.net/java-class-loaders-explained#" rel="nofollow"><img alt="wpdiscuz_captcha" class="wc_captcha_img" src="./Java Class Loaders Explained _ Java Tutorial Network_files/captcha.php" width="80" height="26"></a><a class="wpdiscuz-nofollow wc_captcha_refresh_img" href="https://javatutorial.net/java-class-loaders-explained#" rel="nofollow"><img alt="refresh" class="" src="./Java Class Loaders Explained _ Java Tutorial Network_files/captcha-loading.png" width="16" height="16"></a>
+                <input type="hidden" id="c5e397390d2032" class="wpdiscuz-cnonce" name="cnonce" value="c5e397390d2032">
+            </div>
+            <div class="clearfix"></div>
+        </div>
+                <div class="wc-field-submit">
+                                            
+                                            <label class="wpd_label" title="Notify of new replies to this comment">
+                            <input id="wc_notification_new_comment-0_0" class="wc_notification_new_comment-0_0 wpd_label__checkbox" value="comment" type="checkbox" name="wpdiscuz_notification_type" checked="checked">
+                            <span class="wpd_label__text">
+                                <span class="wpd_label__check">
+                                    <i class="fas fa-bell wpdicon wpdicon-on"></i>
+                                    <i class="fas fa-bell-slash wpdicon wpdicon-off"></i>
+                                </span>
+                            </span>
+                        </label>
+                                                                <input class="wc_comm_submit wc_not_clicked button alt" type="submit" name="submit" value="Post Comment">
+        </div>
+                </div>
+                    <div class="clearfix"></div>
+        </div>
+                            </div>
+                    <div class="clearfix"></div>
+                    <input type="hidden" class="wpdiscuz_unique_id" value="0_0" name="wpdiscuz_unique_id">
+                </form>
+                    <div class="wpdiscuz-form-bottom-bar">
+                    <div class="wpdiscuz-fbb-left">
+                                                                        <div class="wpdiscuz-stat wpd-stat-threads wpd-tooltip-left">
+                        <i class="fas fa-align-left fa-rotate-180" data-fa-transform="rotate-180"></i><span class="wpd-stat-threads-count">1</span>
+                        <wpdtip>Comment threads</wpdtip>
+                    </div>
+                                                                                        <div class="wpdiscuz-stat wpd-stat-replies wpd-tooltip-left">
+                        <i class="far fa-comments"></i><span class="wpd-stat-replies-count">0</span>
+                        <wpdtip>Thread replies</wpdtip>
+                    </div>
+                                                                                        <div class="wpdiscuz-stat wpd-stat-subscribers wpd-tooltip-left">
+                        <i class="fas fa-rss"></i><span>1</span>
+                        <wpdtip>Followers</wpdtip>
+                    </div>&nbsp;
+                                                                    
+                    <div class="wpdiscuz-stat wpd-stat-reacted wpd-tooltip">
+                        <i class="fas fa-bolt"></i>
+                        <wpdtip>Most reacted comment</wpdtip>
+                    </div>
+                                                                    <div class="wpdiscuz-stat wpd-stat-hot wpd-tooltip">
+                        <i class="fab fa-hotjar"></i>
+                        <wpdtip>Hottest comment thread</wpdtip>
+                    </div>
+                            </div>
+                                        <div class="wpdiscuz-fbb-right">
+                                                        <div class="wpdiscuz-stat wpd-stat-users wpd-tooltip">
+                        <i class="fas fa-user-circle"></i> <span class="wpd-stat-authors-count">1</span>
+                        <wpdtip>Comment authors</wpdtip>
+                    </div>
+                                                                                                            <div class="wpdiscuz-users wpd-tooltip-right">
+                        <img alt="nico" src="./Java Class Loaders Explained _ Java Tutorial Network_files/357a20e8c56e69d6f9734d23ef9517e8.png" srcset="https://secure.gravatar.com/avatar/357a20e8c56e69d6f9734d23ef9517e8?s=128&amp;d=mm&amp;r=g 2x" class="avatar avatar-64 photo" height="64" width="64" title="nico">                        <wpdtip>Recent comment authors</wpdtip>
+                    </div>
+                            </div>
+                <div class="wpd-clear"></div>
+    </div>
+            </div>
+                <div id="wpdiscuz_hidden_secondary_form" style="display: none;">
+                    <div class="wc-form-wrapper wc-secondary-form-wrapper" id="wc-secondary-form-wrapper-wpdiscuzuniqueid" style="display: none;">
+            <div class="wpdiscuz-comment-message" style="display: block;"></div>
+                            <div class="wc-secondary-forms-social-content"><div class="wp-social-login-provider-list">
+
+		<a rel="nofollow" href="https://javatutorial.net/wp-login.php?action=wordpress_social_authenticate&amp;mode=login&amp;provider=Facebook&amp;redirect_to=https%3A%2F%2Fjavatutorial.net%2Fjava-class-loaders-explained" title="Connect with Facebook" class="wp-social-login-provider wp-social-login-provider-facebook" data-provider="Facebook">
+			<img alt="Facebook" title="Connect with Facebook" src="./Java Class Loaders Explained _ Java Tutorial Network_files/facebook.png">
+		</a>
+
+		<a rel="nofollow" href="https://javatutorial.net/wp-login.php?action=wordpress_social_authenticate&amp;mode=login&amp;provider=Twitter&amp;redirect_to=https%3A%2F%2Fjavatutorial.net%2Fjava-class-loaders-explained" title="Connect with Twitter" class="wp-social-login-provider wp-social-login-provider-twitter" data-provider="Twitter">
+			<img alt="Twitter" title="Connect with Twitter" src="./Java Class Loaders Explained _ Java Tutorial Network_files/twitter.png">
+		</a>
+
+		<a rel="nofollow" href="https://javatutorial.net/wp-login.php?action=wordpress_social_authenticate&amp;mode=login&amp;provider=Disqus&amp;redirect_to=https%3A%2F%2Fjavatutorial.net%2Fjava-class-loaders-explained" title="Connect with Disqus" class="wp-social-login-provider wp-social-login-provider-disqus" data-provider="Disqus">
+			<img alt="Disqus" title="Connect with Disqus" src="./Java Class Loaders Explained _ Java Tutorial Network_files/disqus.png">
+		</a>
+
+		<a rel="nofollow" href="https://javatutorial.net/wp-login.php?action=wordpress_social_authenticate&amp;mode=login&amp;provider=Stackoverflow&amp;redirect_to=https%3A%2F%2Fjavatutorial.net%2Fjava-class-loaders-explained" title="Connect with Stackoverflow" class="wp-social-login-provider wp-social-login-provider-stackoverflow" data-provider="Stackoverflow">
+			<img alt="Stackoverflow" title="Connect with Stackoverflow" src="./Java Class Loaders Explained _ Java Tutorial Network_files/stackoverflow.png">
+		</a>
+
+	</div></div><div class="clearfix"></div>
+                                        <form class="wc_comm_form wc-secondary-form-wrapper" method="post" enctype="multipart/form-data">
+                    <div class="wc-field-comment">
+                        <div class="wpdiscuz-item wc-field-textarea">
+                            <div class="wpdiscuz-textarea-wrap ">
+
+                                                                                                        <div class="wc-field-avatararea">
+                                        <img alt="avatar" src="./Java Class Loaders Explained _ Java Tutorial Network_files/none(1).png" srcset="https://secure.gravatar.com/avatar/?s=96&amp;d=mm&amp;r=g 2x" class="avatar avatar-48 photo avatar-default" height="48" width="48">                                    </div>
+                                
+                                <textarea id="wc-textarea-wpdiscuzuniqueid" placeholder="Join the discussion..." required="" name="wc_comment" class="wc_comment wpd-field"></textarea>
+                                                                                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="wc-form-footer" style="display: none;"> 
+                                <div class="wpd-form-row">
+                    <div class="wpd-form-col-left">
+                        <div class="wpdiscuz-item wc_name-wrapper wpd-has-icon">
+                                <div class="wpd-field-icon"><i class="fas fa-user"></i></div>
+                                                <input value="" required="required" class="wc_name wpd-field" type="text" name="wc_name" placeholder="Name*" maxlength="50" pattern=".{3,50}" title="">
+                            </div>
+                        <div class="wpdiscuz-item wc_email-wrapper wpd-has-icon">
+                                    <div class="wpd-field-icon"><i class="fas fa-at"></i></div>
+                                                <input value="" required="required" class="wc_email wpd-field" type="email" name="wc_email" placeholder="Email*">
+                            </div>
+                            <div class="wpdiscuz-item wc_website-wrapper wpd-has-icon">
+                                            <div class="wpd-field-icon"><i class="fas fa-link"></i></div>
+                                        <input value="" class="wc_website wpd-field" type="text" name="wc_website" placeholder="Website">
+                                            </div>
+                        </div>
+                <div class="wpd-form-col-right">
+                    <div class="wc-field-captcha wpdiscuz-item wc_captcha-wrapper">
+            <div class="wc-captcha-input">
+                <input type="text" maxlength="5" value="" autocomplete="off" required="required" name="wc_captcha" class="wpd-field wc_field_captcha" placeholder="Code" title="Insert the CAPTCHA code">
+            </div>
+            <div class="wc-label wc-captcha-label">
+                                <a class="wpdiscuz-nofollow" href="https://javatutorial.net/java-class-loaders-explained#" rel="nofollow"><img alt="wpdiscuz_captcha" class="wc_captcha_img" src="./Java Class Loaders Explained _ Java Tutorial Network_files/captcha(1).php" width="80" height="26"></a><a class="wpdiscuz-nofollow wc_captcha_refresh_img" href="https://javatutorial.net/java-class-loaders-explained#" rel="nofollow"><img alt="refresh" class="" src="./Java Class Loaders Explained _ Java Tutorial Network_files/captcha-loading.png" width="16" height="16"></a>
+                <input type="hidden" id="c5e397390d2733" class="wpdiscuz-cnonce" name="cnonce" value="c5e397390d2733">
+            </div>
+            <div class="clearfix"></div>
+        </div>
+                <div class="wc-field-submit">
+                                            
+                                            <label class="wpd_label" title="Notify of new replies to this comment">
+                            <input id="wc_notification_new_comment-wpdiscuzuniqueid" class="wc_notification_new_comment-wpdiscuzuniqueid wpd_label__checkbox" value="comment" type="checkbox" name="wpdiscuz_notification_type" checked="checked">
+                            <span class="wpd_label__text">
+                                <span class="wpd_label__check">
+                                    <i class="fas fa-bell wpdicon wpdicon-on"></i>
+                                    <i class="fas fa-bell-slash wpdicon wpdicon-off"></i>
+                                </span>
+                            </span>
+                        </label>
+                                                                <input class="wc_comm_submit wc_not_clicked button alt" type="submit" name="submit" value="Post Comment">
+        </div>
+                </div>
+                    <div class="clearfix"></div>
+        </div>
+                            </div>
+                    <div class="clearfix"></div>
+                    <input type="hidden" class="wpdiscuz_unique_id" value="wpdiscuzuniqueid" name="wpdiscuz_unique_id">
+                </form>
+                        </div>
+                </div>
+                                           
+
+                                    <div class="wpdiscuz-front-actions">
+                                                                        
+                            <div class="wpdiscuz-sort-buttons" style="font-size:14px; color: #777;">
+                                <i class="fas fa-caret-up" aria-hidden="true"></i> 
+                                <span class="wpdiscuz-sort-button wpdiscuz-date-sort-desc ">newest</span> <i class="fas fa-caret-up" aria-hidden="true"></i> 
+                                <span class="wpdiscuz-sort-button wpdiscuz-date-sort-asc wpdiscuz-sort-button-active">oldest</span>
+                                                                    <i class="fas fa-caret-up" aria-hidden="true"></i> <span class="wpdiscuz-sort-button wpdiscuz-vote-sort-up ">most voted</span>
+                                                            </div>
+                                                <div class="clearfix"></div>
+                    </div>
+                                
+                                <div id="wcThreadWrapper" class="wc-thread-wrapper">
+                    <div id="wc-comm-415_0" class="wc-comment wc-blog-guest wc_comment_level-1"><div class="wc-comment-left "><div class="wpd-xborder"></div><img alt="nico" src="./Java Class Loaders Explained _ Java Tutorial Network_files/357a20e8c56e69d6f9734d23ef9517e8.png" srcset="https://secure.gravatar.com/avatar/357a20e8c56e69d6f9734d23ef9517e8?s=128&amp;d=mm&amp;r=g 2x" class="avatar avatar-64 photo" height="64" width="64"><div class="wc-blog-guest wc-comment-label"><span>Guest</span></div></div><div id="comment-415" class="wc-comment-right"><div class="wc-comment-header"><div class="wc-comment-author ">nico</div><div class="wc-comment-link"></div><div class="wpdiscuz_clear"></div></div><div class="wc-comment-text"><p>It’s not clear what a parent class loader is. You refer at the *hierarchical* organization of class loader, but maybe you could be more detailed explaining it.</p>
+</div><div class="wc-comment-footer"><div class="wc-footer-left"><span class="wc-vote-link wc-up wc_vote wc_not_clicked"><i class="fas fa-plus wc-vote-img-up"></i><span>Vote Up</span></span><span class="wc-vote-result">2</span><span class="wc-vote-link wc-down wc_vote wc_not_clicked"><i class="fas fa-minus wc-vote-img-down"></i><span>Vote Down</span></span>&nbsp;<span class="wc-reply-button wc-cta-button" title="Reply"><i class="far fa-comments" aria-hidden="true"></i> Reply</span></div><div class="wc-footer-right"><div class="wc-comment-date"><i class="far fa-clock" aria-hidden="true"></i>1 year ago</div><div class="wc-toggle"></div></div><div class="wpdiscuz_clear"></div></div></div><div class="wpdiscuz-comment-message"></div><div id="wpdiscuz_form_anchor-415_0" class="wpdiscuz_clear"></div></div>                
+                    <div class="wpdiscuz-comment-pagination">
+                                            </div>
+                </div>
+                <div class="wpdiscuz_clear"></div>
+                                                                                </div>
+        </div>
+        <div id="wpdiscuz-loading-bar" class="wpdiscuz-loading-bar wpdiscuz-loading-bar-unauth"></div>
+        
+		
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+<div id="content-border"></div>
+	<div id="secondary" class="widget-area" role="complementary">
+		<aside id="sfmsb_settings-2" class="widget sfmsb_widget"><div class="sfmsb-follow-social-buttons sfmsb-under sfmsb-square 32 sfmsb-horizontal"><span class="sfmsb-text" style="font-size:19px;">Follow us on:</span><a target="_blank" href="https://twitter.com/javatutorialnet"><span class="sfmsb-icon-twitter sfmsb-square" style="color:#55acee;font-size:32px;" data-color="#55acee"></span></a><a target="_blank" href="https://www.facebook.com/javatutorialnet/"><span class="sfmsb-icon-facebook sfmsb-square" style="color:#3a5795;font-size:32px;" data-color="#3a5795"></span></a><a target="_blank" href="http://google.com/+JavatutorialNet"><span class="sfmsb-icon-googleplus sfmsb-square" style="color:#d73d32;font-size:32px;" data-color="#d73d32"></span></a><div class="sfmsb-clearfix"></div></div></aside><aside id="categories-2" class="widget widget_categories"><h1 class="widget-title">Categories</h1>		<ul>
+				<li class="cat-item cat-item-208"><a href="https://javatutorial.net/category/android" title="This section contains Android tutorials and examples.">Android</a> (21)
+</li>
+	<li class="cat-item cat-item-159"><a href="https://javatutorial.net/category/articles">Articles</a> (39)
+</li>
+	<li class="cat-item cat-item-328"><a href="https://javatutorial.net/category/get-involved" title="Thanks for Your Support!
+
+Java Tutorial Network receives a great deal of support from its community of users and we would like to thank each and every contributor for participating. We are growing fast and our tutorials and articles are getting better every day thanks to you.
+
+Depending on your skill set, your availability, and on your wealth you can help Java Tutorial Network in one or more of the following ways:">Get Involved</a> (5)
+</li>
+	<li class="cat-item cat-item-22"><a href="https://javatutorial.net/category/java-basics" title="This category contains a set of java tutorials for beginners. If you are new to Java read this first">Java Basics</a> (18)
+</li>
+	<li class="cat-item cat-item-2"><a href="https://javatutorial.net/category/java-core">Java Core</a> (85)
+</li>
+	<li class="cat-item cat-item-63"><a href="https://javatutorial.net/category/java-ee">Java EE</a> (18)
+</li>
+	<li class="cat-item cat-item-16"><a href="https://javatutorial.net/category/misc-tutorials">Misc Tutorials</a> (14)
+</li>
+	<li class="cat-item cat-item-55"><a href="https://javatutorial.net/category/raspberry-pi-java" title="Series of tutorials explaining how to use and control your Raspberry Pi with Java">Raspberry Pi</a> (9)
+</li>
+	<li class="cat-item cat-item-323"><a href="https://javatutorial.net/category/spring">Spring</a> (32)
+</li>
+	<li class="cat-item cat-item-1"><a href="https://javatutorial.net/category/uncategorized">Uncategorized</a> (8)
+</li>
+		</ul>
+			</aside><aside id="execphp-2" class="widget widget_execphp"><h1 class="widget-title">Sponsors</h1>			<div class="execphpwidget"><br>
+<a href="https://calcway.com/" target="_blank"><img src="./Java Class Loaders Explained _ Java Tutorial Network_files/calcway.jpg" title="Calcway Systems"></a><br>
+<a href="https://javatutorial.net/category/get-involved">become a sponsor</a>
+<br><br></div>
+		</aside><aside id="custom_html-2" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><!-- Begin MailChimp Signup Form -->
+<link href="./Java Class Loaders Explained _ Java Tutorial Network_files/slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background:#aac5d7; clear:left;
+margin-top: -30px;
+margin-bottom: -20px;}
+</style>
+<div id="mc_embed_signup">
+<form action="https://javatutorial.us16.list-manage.com/subscribe/post?u=868741e20a9581dcda673fd57&amp;id=88c5f35e89" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
+    <div id="mc_embed_signup_scroll">
+	<label for="mce-EMAIL" style="font-size: 16px;">Subscribe to our mailing list</label>
+	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required="">
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_868741e20a9581dcda673fd57_88c5f35e89" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button" style="background:#e76f00;"></div>
+    </div>
+</form>
+</div>
+
+<!--End mc_embed_signup--></div></aside><aside id="text-2" class="widget widget_text">			<div class="textwidget"><div class="fb-page fb_iframe_widget" data-href="https://www.facebook.com/javatutorialnet/" data-width="260" data-height="600" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" fb-xfbml-state="rendered" fb-iframe-plugin-query="adapt_container_width=true&amp;app_id=1537296699841449&amp;container_width=276&amp;height=600&amp;hide_cover=false&amp;href=https%3A%2F%2Fwww.facebook.com%2Fjavatutorialnet%2F&amp;locale=en_US&amp;sdk=joey&amp;show_facepile=true&amp;small_header=true&amp;width=260"><span style="vertical-align: bottom; width: 260px; height: 120px;"><iframe name="f207b9817efe6e8" width="260px" height="600px" title="fb:page Facebook Social Plugin" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="./Java Class Loaders Explained _ Java Tutorial Network_files/page.html" style="border: none; visibility: visible; width: 260px; height: 120px;" class=""></iframe></span></div></div>
+		</aside><aside id="wpai_widget-2" class="widget widget_wpai_widget"><!-- START-WP-ADS-ID: 1 --><div id="wpads-ad-block-1" style=""><script async="" src="./Java Class Loaders Explained _ Java Tutorial Network_files/f.txt"></script>
+<!-- javatutorial_160x600_text_image -->
+<ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-9596119095390550" data-ad-slot="5513154645"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div><!-- END-WP-ADS-PRIO --></aside><aside id="wpai_widget-3" class="widget widget_wpai_widget"><!-- START-WP-ADS-ID: 2 --><div id="wpads-ad-block-1" style=""><script async="" src="./Java Class Loaders Explained _ Java Tutorial Network_files/f.txt"></script>
+<!-- javatutorial_160x600_text_image -->
+<ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-9596119095390550" data-ad-slot="5513154645"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div><!-- END-WP-ADS-PRIO --></aside>	</div><!-- #secondary -->
+
+	</div><!-- #content -->
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="site-info">
+
+		Copyright © 2020 JavaTutorial.net, All rights reserved. | <a href="https://javatutorial.net/terms-of-use">Terms of Use</a> | <a href="https://javatutorial.net/privacy-policy">Privacy Policy</a> | <a href="https://javatutorial.net/contact">Contact Us</a> | <a href="https://javatutorial.net/submit-guest-post">Submit Guest Post</a>
+		</div>
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+
+<a id="wpdUserContentInfoAnchor" style="display:none;" rel="#wpdUserContentInfo" data-wpd-lity="">wpDiscuz</a><div id="wpdUserContentInfo" style="overflow:auto;background:#FDFDF6;padding:20px;width:600px;max-width:100%;border-radius:6px;" class="lity-hide"></div><script type="text/javascript" src="./Java Class Loaders Explained _ Java Tutorial Network_files/wp-advertize-it.js"></script>
+<script type="text/javascript" src="./Java Class Loaders Explained _ Java Tutorial Network_files/jquery.form.min.js"></script>
+<script type="text/javascript" src="./Java Class Loaders Explained _ Java Tutorial Network_files/navigation.js"></script>
+<script type="text/javascript" src="./Java Class Loaders Explained _ Java Tutorial Network_files/skip-link-focus-fix.js"></script>
+<script type="text/javascript" src="./Java Class Loaders Explained _ Java Tutorial Network_files/comment-reply.min.js"></script>
+<script type="text/javascript" src="./Java Class Loaders Explained _ Java Tutorial Network_files/mootools-core-yc.js"></script>
+<script type="text/javascript" src="./Java Class Loaders Explained _ Java Tutorial Network_files/EnlighterJS.min.js"></script>
+<script type="text/javascript" src="./Java Class Loaders Explained _ Java Tutorial Network_files/wp-embed.min.js"></script>
+<script type="text/javascript">/* <![CDATA[ */EnlighterJS_Config = {"selector":{"block":"pre.EnlighterJSRAW","inline":"code.EnlighterJSRAW"},"language":"java","theme":"enlighter","indent":-1,"hover":"hoverEnabled","showLinenumbers":true,"rawButton":true,"infoButton":true,"windowButton":true,"rawcodeDoubleclick":false,"grouping":true,"cryptex":{"enabled":false,"email":"mail@example.tld"}};!function(){var a=function(a){var b="Enlighter Error: ";console.error?console.error(b+a):console.log&&console.log(b+a)};return window.addEvent?"undefined"==typeof EnlighterJS?void a("Javascript Resources not loaded yet!"):"undefined"==typeof EnlighterJS_Config?void a("Configuration not loaded yet!"):void window.addEvent("domready",function(){EnlighterJS.Util.Init(EnlighterJS_Config.selector.block,EnlighterJS_Config.selector.inline,EnlighterJS_Config)}):void a("MooTools Framework not loaded yet!")}();;/* ]]> */</script>
+		<!-- Cookie Notice plugin v1.2.50 by Digital Factory https://dfactory.eu/ -->
+		<div id="cookie-notice" role="banner" class="cn-position-bottom cn-effect-fade cookie-notice-hidden cookie-revoke-visible" aria-label="Cookie Notice" style="background-color: #000;"><div class="cookie-notice-container" style="color: #fff;"><span id="cn-notice-text" class="cn-text-container">We use cookies to ensure that we give you the best experience on our website. If you continue to use this site we will assume that you are happy with it.</span><span id="cn-notice-buttons" class="cn-buttons-container"><a href="https://javatutorial.net/java-class-loaders-explained#" id="cn-accept-cookie" data-cookie-set="accept" class="cn-set-cookie cn-button bootstrap button">Ok</a><a href="https://javatutorial.net/privacy-policy" target="_blank" id="cn-more-info" class="cn-more-info cn-button bootstrap button">Read more</a></span></div>
+			
+		</div>
+		<!-- / Cookie Notice plugin -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55697923-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body></html>
