@@ -5727,12 +5727,46 @@ https://www.cubrid.org/blog/understanding-java-garbage-collection
 `references:`
 https://www.baeldung.com/jvm-garbage-collectors
 
+- [How-to-Tune-Java-Garbage-Collection-CUBRID-blog](refs/How-to-Tune-Java-Garbage-Collection-CUBRID-blog)
+
+`references:`
+https://www.cubrid.org/blog/how-to-tune-java-garbage-collection
+
+----
+
+# Heap zones for GC
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |     |   x   |
+
+Please see:
+
+- [GC algorithm (mark and sweep)](#GC-algorithm-(mark-and-sweep))
+
+```text
+```
+
+- [Java-Memory-Architecture-Cheat-Sheet-DZone](refs/Java-Memory-Architecture-Cheat-Sheet-DZone)
+
+![untitled.jpg](refs/Java-Memory-Architecture-Cheat-Sheet-DZone/Java%20Memory%20Architecture%20Cheat%20Sheet%20-%20DZone%20Java_files/untitled.jpg)
+
+`references:`
+https://dzone.com/articles/java-memory-architecture-model-garbage-collection
+
+----
+
+# java memory management for java virtual machine jvm
+
+- [Java-Memory-Management-JVM-Betsol](refs/Java-Memory-Management-JVM-Betsol)
+
+`references:`
+https://betsol.com/2017/06/java-memory-management-for-java-virtual-machine-jvm
+
 ----
 
 
 
-----
-----
 ----
 ----
 ----
