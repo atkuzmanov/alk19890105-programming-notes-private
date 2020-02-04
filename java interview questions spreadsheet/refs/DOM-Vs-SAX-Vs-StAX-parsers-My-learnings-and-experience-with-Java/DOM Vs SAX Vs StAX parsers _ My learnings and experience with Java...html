@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)https://rdayala.wordpress.com/dom-vs-sax-parsers/ -->
+<html lang="en"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width">
+<title>DOM Vs SAX Vs StAX parsers | My learnings and experience with Java.. </title>
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="https://rdayala.wordpress.com/xmlrpc.php">
+<!--[if lt IE 9]>
+<script src="https://s0.wp.com/wp-content/themes/pub/twentytwelve/js/html5.js" type="text/javascript"></script>
+<![endif]-->
+<link rel="dns-prefetch" href="https://s0.wp.com/">
+<link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+<link href="https://fonts.gstatic.com/" crossorigin="" rel="preconnect">
+<link rel="alternate" type="application/rss+xml" title="My learnings and experience with Java..  » Feed" href="https://rdayala.wordpress.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="My learnings and experience with Java..  » Comments Feed" href="https://rdayala.wordpress.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="My learnings and experience with Java..  » DOM Vs SAX Vs StAX parsers Comments Feed" href="https://rdayala.wordpress.com/dom-vs-sax-parsers/feed/">
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s0.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1573557586h&ver=5.3.2"}};
+			!function(e,a,t){var r,n,o,i,p=a.createElement("canvas"),s=p.getContext&&p.getContext("2d");function c(e,t){var a=String.fromCharCode;s.clearRect(0,0,p.width,p.height),s.fillText(a.apply(this,e),0,0);var r=p.toDataURL();return s.clearRect(0,0,p.width,p.height),s.fillText(a.apply(this,t),0,0),r===p.toDataURL()}function l(e){if(!s||!s.fillText)return!1;switch(s.textBaseline="top",s.font="600 32px Arial",e){case"flag":return!c([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])&&(!c([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!c([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]));case"emoji":return!c([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340])}return!1}function d(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(i=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},o=0;o<i.length;o++)t.supports[i[o]]=l(i[o]),t.supports.everything=t.supports.everything&&t.supports[i[o]],"flag"!==i[o]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[i[o]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(r=t.source||{}).concatemoji?d(r.concatemoji):r.wpemoji&&r.twemoji&&(d(r.twemoji),d(r.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="./DOM Vs SAX Vs StAX parsers _ My learnings and experience with Java.._files/wp-emoji-release.min.js" type="text/javascript" defer=""></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel="stylesheet" id="all-css-0-1" href="./DOM Vs SAX Vs StAX parsers _ My learnings and experience with Java.._files/saved_resource" type="text/css" media="all">
+<style id="wp-block-library-inline-css">
+.has-text-align-justify {
+	text-align:justify;
+}
+</style>
+<link crossorigin="anonymous" rel="stylesheet" id="twentytwelve-fonts-css" href="./DOM Vs SAX Vs StAX parsers _ My learnings and experience with Java.._files/css" media="all">
+<link rel="stylesheet" id="all-css-2-1" href="./DOM Vs SAX Vs StAX parsers _ My learnings and experience with Java.._files/saved_resource(1)" type="text/css" media="all">
+<!--[if lt IE 9]>
+<link rel='stylesheet' id='twentytwelve-ie-css'  href='https://s0.wp.com/wp-content/themes/pub/twentytwelve/css/ie.css?m=1423935238h&#038;ver=20121010' media='all' />
+<![endif]-->
+<link rel="stylesheet" id="all-css-4-1" href="./DOM Vs SAX Vs StAX parsers _ My learnings and experience with Java.._files/saved_resource(2)" type="text/css" media="all">
+<style id="jetpack-global-styles-frontend-style-inline-css">
+:root { --font-headings: unset; --font-base: unset; --font-headings-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; --font-base-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+</style>
+<script type="text/javascript" src="./DOM Vs SAX Vs StAX parsers _ My learnings and experience with Java.._files/saved_resource(3)"></script>
+<link rel="stylesheet" id="all-css-0-2" href="./DOM Vs SAX Vs StAX parsers _ My learnings and experience with Java.._files/style.css" type="text/css" media="all">
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='https://s0.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1351637563h&#038;ver=20110606' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://rdayala.wordpress.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s0.wp.com/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress.com">
+<link rel="canonical" href="https://rdayala.wordpress.com/dom-vs-sax-parsers/">
+<link rel="shortlink" href="https://wp.me/PoCGm-77">
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Frdayala.wordpress.com%2Fdom-vs-sax-parsers%2F&amp;for=wpcom-auto-discovery"><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Frdayala.wordpress.com%2Fdom-vs-sax-parsers%2F&amp;for=wpcom-auto-discovery">
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="DOM Vs SAX Vs StAX parsers">
+<meta property="og:url" content="https://rdayala.wordpress.com/dom-vs-sax-parsers/">
+<meta property="og:description" content="DOM -Tree model parser(Object based) (Tree of nodes). -DOM loads the file into the memory and then parse the file. -Has memory constraints since it loads the whole XML file before parsing. -DOM is …">
+<meta property="article:published_time" content="2014-11-20T06:01:38+00:00">
+<meta property="article:modified_time" content="2014-11-20T07:46:14+00:00">
+<meta property="og:site_name" content="My learnings and experience with Java.. ">
+<meta property="og:image" content="https://rdayala.files.wordpress.com/2014/11/xml-parsers-summary.jpg">
+<meta property="og:image:width" content="716">
+<meta property="og:image:height" content="503">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:text:title" content="DOM Vs SAX Vs StAX parsers">
+<meta name="twitter:card" content="summary">
+<meta property="fb:app_id" content="249643311490">
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom">
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="shortcut icon" type="image/x-icon" href="https://s0.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48">
+<link rel="icon" type="image/x-icon" href="https://s0.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48">
+<link rel="apple-touch-icon-precomposed" href="https://s0.wp.com/i/webclip.png">
+<link rel="openid.server" href="https://rdayala.wordpress.com/?openidserver=1">
+<link rel="openid.delegate" href="https://rdayala.wordpress.com/">
+<link rel="search" type="application/opensearchdescription+xml" href="https://rdayala.wordpress.com/osd.xml" title="My learnings and experience with Java.. ">
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com">
+		<script type="text/javascript">
+		function __ATA_CC() {var v = document.cookie.match('(^|;) ?personalized-ads-consent=([^;]*)(;|$)');return v ? 1 : 0;}
+		var __ATA_PP = { pt: 2, ht: 0, tn: 'twentytwelve', amp: false, siteid: 8982, blogid: 5868570, consent: __ATA_CC(), flag: 2 };
+		</script>
+		<script type="text/javascript">
+		!function(t){var n={};function e(r){if(n[r])return n[r].exports;var o=n[r]={i:r,l:!1,exports:{}};return t[r].call(o.exports,o,o.exports,e),o.l=!0,o.exports}e.m=t,e.c=n,e.d=function(t,n,r){e.o(t,n)||Object.defineProperty(t,n,{enumerable:!0,get:r})},e.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},e.t=function(t,n){if(1&n&&(t=e(t)),8&n)return t;if(4&n&&"object"==typeof t&&t&&t.__esModule)return t;var r=Object.create(null);if(e.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:t}),2&n&&"string"!=typeof t)for(var o in t)e.d(r,o,function(n){return t[n]}.bind(null,o));return r},e.n=function(t){var n=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(n,"a",n),n},e.o=function(t,n){return Object.prototype.hasOwnProperty.call(t,n)},e.p="https://c0.pubmine.com/2.2.01576584942509/",e(e.s=164)}({0:function(t,n){t.exports=function(t,n,e){return n in t?Object.defineProperty(t,n,{value:e,enumerable:!0,configurable:!0,writable:!0}):t[n]=e,t}},1:function(t,n){t.exports=function(t,n){if(!(t instanceof n))throw new TypeError("Cannot call a class as a function")}},10:function(t,n,e){"use strict";var r=e(17),o=e(8),i=e(20);t.exports=function(t,n,e){if(!r(t))return e;if(!o(n))return e;try{var u=n.split(".").reduce((function(t,n){return t[n]}),t);return i(u)?e:u}catch(t){return e}}},16:function(t,n,e){"use strict";t.exports=function(){}},164:function(t,n,e){"use strict";e.r(n);var r=e(0),o=e.n(r),i=e(29),u=e.n(i),c=e(16),f=e.n(c),s=e(34),a=e.n(s),p=e(45),l=e(46),d=e(23);function v(t,n){var e=Object.keys(t);if(Object.getOwnPropertySymbols){var r=Object.getOwnPropertySymbols(t);n&&(r=r.filter((function(n){return Object.getOwnPropertyDescriptor(t,n).enumerable}))),e.push.apply(e,r)}return e}function m(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},n=function(t){for(var n=1;n<arguments.length;n++){var e=null!=arguments[n]?arguments[n]:{};n%2?v(e,!0).forEach((function(n){o()(t,n,e[n])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(e)):v(e).forEach((function(n){Object.defineProperty(t,n,Object.getOwnPropertyDescriptor(e,n))}))}return t}({r:(new Date).getTime()},window.__ATA_PP,{},Object(p.a)(t),{us_privacy:Object(l.a)()}),e=a()("//s.pubmine.com/mhead.js",n);u()(e,f.a)}Object(d.b)()?Object(d.a)().then(m,m):m()},17:function(t,n,e){"use strict";t.exports=function(t){var n=typeof t;return"object"===n&&null!=t||"function"===n}},2:function(t,n){function e(t,n){for(var e=0;e<n.length;e++){var r=n[e];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(t,r.key,r)}}t.exports=function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}},20:function(t,n,e){"use strict";t.exports=function(t){return void 0===t}},21:function(t,n,e){"use strict";t.exports=function(t,n){for(var e=0,r=t.length;e<r;e++){var o=t[e];if(n(o,e))return o}return null}},23:function(t,n,e){"use strict";e.d(n,"a",(function(){return p})),e.d(n,"b",(function(){return l}));var r=e(35),o=e.n(r),i=e(10),u=e.n(i),c=e(9),f=e.n(c),s=e(3);function a(t){var n=Date.now();return function(t){return new o.a((function(n,e){if(window.__cmp){var r;window.setTimeout((function(){clearTimeout(r),e("cmp ping timeout")}),t),function t(){window.__cmp("ping",null,(function(o,i){i&&o.cmpLoaded?n():i?r=window.setTimeout(t,50):e("cmp ping returned error with data: ".concat(JSON.stringify(o)))}))}()}else e("CMP is not defined")}))}(t).then((function(){var e=Date.now()-n,r=t-e;return new o.a((function(t,n){window.__cmp("getConsentData",null,(function(e,r){r?t(e):n("cmp getConsentData returned error with data: ".concat(JSON.stringify(e)))})),setTimeout((function(){n("cmp getConsentData timeout")}),r)}))}))}function p(){return a(arguments.length>0&&void 0!==arguments[0]?arguments[0]:500).catch((function(t){return s.a.error(t),"boolean"==typeof(n=u()(window,"__ATA_PP.gdpr_applies"))?{gdprApplies:n}:{};var n}))}function l(){return f()(window.__cmp)}},25:function(t,n,e){"use strict";var r=e(21),o=e(33);t.exports=function(t,n){void 0===n&&(n=document.cookie);var e=n.split("; "),i=r(e,(function(n){return o(n,t+"=")}));return i?i.split("=")[1]:""}},29:function(t,n,e){"use strict";var r=e(16),o=e(9);t.exports=function(t,n,e){var i,u,c=document.createElement("script"),f=n instanceof HTMLElement&&n;if(i=o(n)?n:o(e)?e:r,c.src=t,c.onload=function(){i(void 0)},c.onerror=function(){i("error")},f)u=f;else{var s=document.getElementsByTagName("head");u=s&&0!==s.length?s[0]:document.documentElement}u.appendChild(c)}},3:function(t,n,e){"use strict";var r=e(1),o=e.n(r),i=e(2),u=e.n(i),c=e(0),f=e.n(c),s=function(){function t(){o()(this,t)}return u()(t,null,[{key:"configure",value:function(n){t.config=n}},{key:"error",value:function(t){function n(n,e){return t.apply(this,arguments)}return n.toString=function(){return t.toString()},n}((function(t,n){this.config&&this.config.onError?this.config.onError(t,n):window.console&&console.log(t,n)}))}]),t}();f()(s,"config",void 0),n.a=s},33:function(t,n,e){"use strict";t.exports=function(t,n){return t.indexOf(n)>-1}},34:function(t,n,e){"use strict";var r=e(33),o=e(76);t.exports=function(t,n){var e=o(n);return 0===e.length?t:t+(r(t,"?")?"&":"?")+e}},35:function(t,n,e){"use strict";var r,o=e(75),i=e(9);!function(t){t.REJECTED="rejected",t.RESOLVED="resolved",t.PENDING="pending"}(r||(r={}));var u=function(){function t(t,n){var e=this;this.status=r.PENDING,this.emitter=new o,this.onFulfilled=function(t){e.status===r.PENDING&&(e.status=r.RESOLVED,e.emitter.emit(r.RESOLVED,[t]))},this.onRejected=function(t){e.status===r.PENDING&&(e.status=r.REJECTED,e.emitter.emit(r.REJECTED,[t]))};var i=function(){return t(e.onFulfilled,e.onRejected)};n?i():setTimeout(i,0)}return t.resolve=function(n){return new t((function(t){t(n)}))},t.reject=function(n){return new t((function(t,e){e(n)}))},t.prototype.then=function(n,e){var o=this;return new t((function(u,c){o.emitter.on(r.RESOLVED,(function(e){if(i(n)){var r=n(e);r instanceof t?r.then(u,c):u(r)}else u(e)})),o.emitter.on(r.REJECTED,(function(n){if(i(e)){var r=e(n);r instanceof t?r.then(u,c):u(r)}else c(n)}))}),!0)},t.prototype.catch=function(n){var e=this;return new t((function(o){i(n)&&e.emitter.on(r.REJECTED,(function(e){var r=n(e);r instanceof t?r.then(o):o(r)})),e.emitter.on(r.RESOLVED,o)}),!0)},t}();t.exports=u},38:function(t,n,e){"use strict";t.exports=function(t){return"string"==typeof t&&t.length>0}},45:function(t,n,e){"use strict";e.d(n,"a",(function(){return i}));var r=e(8),o=e.n(r);function i(t){var n=t.gdprApplies,e=t.consentData;return{gdpr:"boolean"==typeof n?Number(n):void 0,gdpr_consent:o()(e)?e:void 0}}},46:function(t,n,e){"use strict";e.d(n,"a",(function(){return f}));var r=e(25),o=e.n(r),i=e(38),u=e.n(i),c="usprivacy";function f(){var t=o()(c);return u()(t)?t:null}},56:function(t,n,e){"use strict";t.exports=function(t){return null===t}},75:function(t,n,e){"use strict";var r=function(){function t(){this.events={}}return t.prototype.on=function(t,n){if(this.events[t]){if(-1!==(e=this.events[t]).indexOf(n))throw new Error('This handler has already been subcribed for "'+t+'" event');e.push(n)}else{var e;(e=[]).push(n),this.events[t]=e}},t.prototype.off=function(t,n){var e=this.events[t],r=e.indexOf(n);-1!==r&&e.splice(r,1)},t.prototype.emit=function(t,n){void 0===n&&(n=[]);var e=this.events[t];e&&e.map((function(t){n?t.apply(void 0,n):t()}))},t}();t.exports=r},76:function(t,n,e){"use strict";var r=e(56),o=e(20);t.exports=function(t){var n=Object.keys(t),e=[];return n.forEach((function(n){var i=t[n];r(i)||o(i)||e.push(n+"="+encodeURIComponent(t[n]))})),e.join("&")}},8:function(t,n,e){"use strict";t.exports=function(t){return"string"==typeof t}},9:function(t,n,e){"use strict";t.exports=function(t){return"function"==typeof t}}});
+		</script><script src="./DOM Vs SAX Vs StAX parsers _ My learnings and experience with Java.._files/mhead.js"></script><meta name="application-name" content="My learnings and experience with Java.. "><meta name="msapplication-window" content="width=device-width;height=device-height"><meta name="msapplication-tooltip" content="- Raghu"><meta name="msapplication-task" content="name=Subscribe;action-uri=https://rdayala.wordpress.com/feed/;icon-uri=https://s0.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s0.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s0.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s0.wp.com/i/favicon.ico"><meta name="description" content="DOM -Tree model parser(Object based) (Tree of nodes). -DOM loads the file into the memory and then parse the file. -Has memory constraints since it loads the whole XML file before parsing. -DOM is read and write (can insert or delete the node). -If the XML content is small then prefer DOM parser. -Backward and forward…">
+<style type="text/css"></style><link rel="stylesheet" type="text/css" id="gravatar-card-css" href="./DOM Vs SAX Vs StAX parsers _ My learnings and experience with Java.._files/hovercard.min.css"><link rel="stylesheet" type="text/css" id="gravatar-card-services-css" href="./DOM Vs SAX Vs StAX parsers _ My learnings and experience with Java.._files/services.min.css"></head>
+
+<body class="page-template-default page page-id-441 wp-embed-responsive customizer-styles-applied full-width custom-font-enabled single-author highlander-enabled highlander-light">
+<div id="page" class="hfeed site">
+	<header id="masthead" class="site-header" role="banner">
+				<hgroup>
+			<h1 class="site-title"><a href="https://rdayala.wordpress.com/" title="My learnings and experience with Java.. " rel="home">My learnings and experience with Java.. </a></h1>
+			<h2 class="site-description">– Raghu</h2>
+		</hgroup>
+
+		<nav id="site-navigation" class="main-navigation" role="navigation">
+			<button class="menu-toggle">Menu</button>
+			<a class="assistive-text" href="https://rdayala.wordpress.com/dom-vs-sax-parsers/#content" title="Skip to content">Skip to content</a>
+			<div class="menu-main-menu-container"><ul id="menu-main-menu" class="nav-menu"><li id="menu-item-13" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-has-children menu-item-13"><a href="https://rdayala.wordpress.com/">Home</a>
+<ul class="sub-menu">
+	<li id="menu-item-1199" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1199"><a href="https://rdayala.wordpress.com/github-pushing-code/">GitHub – pushing code</a></li>
+</ul>
+</li>
+<li id="menu-item-19" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-ancestor current_page_ancestor menu-item-has-children menu-item-19"><a href="https://rdayala.wordpress.com/core-java/">Core Java</a>
+<ul class="sub-menu">
+	<li id="menu-item-1112" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1112"><a href="https://rdayala.wordpress.com/about-java/">About Java</a>
+	<ul class="sub-menu">
+		<li id="menu-item-994" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-994"><a href="https://rdayala.wordpress.com/java-versions/">Java Versions</a></li>
+		<li id="menu-item-1075" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1075"><a href="https://rdayala.wordpress.com/what-is-jvm/">What is JVM</a></li>
+	</ul>
+</li>
+	<li id="menu-item-1202" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1202"><a href="https://rdayala.wordpress.com/equals-vs-contentequals/">equals vs contentEquals</a></li>
+	<li id="menu-item-1111" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1111"><a href="https://rdayala.wordpress.com/object-class/">Object class</a>
+	<ul class="sub-menu">
+		<li id="menu-item-1034" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1034"><a href="https://rdayala.wordpress.com/java-lang-object-class/">java.lang.Object class</a></li>
+		<li id="menu-item-1086" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1086"><a href="https://rdayala.wordpress.com/clone-method/">clone() method</a></li>
+		<li id="menu-item-1195" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1195"><a href="https://rdayala.wordpress.com/finalize-method/">finalize method</a></li>
+	</ul>
+</li>
+	<li id="menu-item-1223" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1223"><a href="https://rdayala.wordpress.com/java-questions/">Java questions</a></li>
+	<li id="menu-item-1208" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1208"><a href="https://rdayala.wordpress.com/java-notes/">Java – Notes</a></li>
+	<li id="menu-item-1110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1110"><a href="https://rdayala.wordpress.com/collection-framework/">Collection Framework</a>
+	<ul class="sub-menu">
+		<li id="menu-item-1094" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1094"><a href="https://rdayala.wordpress.com/collections/">Collection Framework</a></li>
+		<li id="menu-item-1031" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1031"><a href="https://rdayala.wordpress.com/array-to-arraylist-in-java/">array to ArrayList in Java</a></li>
+		<li id="menu-item-1030" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1030"><a href="https://rdayala.wordpress.com/arraylist-to-array-in-java/">ArrayList to array in Java</a></li>
+	</ul>
+</li>
+	<li id="menu-item-1085" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1085"><a href="https://rdayala.wordpress.com/create-instance-of-class-without-new-keyword/">create instance of class without new keyword</a></li>
+	<li id="menu-item-1205" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1205"><a href="https://rdayala.wordpress.com/regular-expressions/">Regular Expressions</a></li>
+	<li id="menu-item-249" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-249"><a href="https://rdayala.wordpress.com/exception-handling/">Exception Handling</a>
+	<ul class="sub-menu">
+		<li id="menu-item-1023" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1023"><a href="https://rdayala.wordpress.com/exception-handling-notes/">Exception Handling notes</a></li>
+	</ul>
+</li>
+	<li id="menu-item-1015" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1015"><a href="https://rdayala.wordpress.com/multithreading/">MultiThreading</a>
+	<ul class="sub-menu">
+		<li id="menu-item-1014" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1014"><a href="https://rdayala.wordpress.com/introduction-to-threads/">Introduction to Threads</a></li>
+		<li id="menu-item-1013" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1013"><a href="https://rdayala.wordpress.com/creating-threads-in-java/">Creating Threads in Java</a></li>
+		<li id="menu-item-1012" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1012"><a href="https://rdayala.wordpress.com/types-of-threads/">Types of Threads</a></li>
+	</ul>
+</li>
+	<li id="menu-item-779" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-779"><a href="https://rdayala.wordpress.com/serialization/">Serialization</a></li>
+	<li id="menu-item-246" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-246"><a href="https://rdayala.wordpress.com/annotations/">Annotations</a></li>
+	<li id="menu-item-470" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-470"><a href="https://rdayala.wordpress.com/jdbc-2/">JDBC</a>
+	<ul class="sub-menu">
+		<li id="menu-item-964" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-964"><a href="https://rdayala.wordpress.com/jdbc-my-notes/">JDBC my notes</a></li>
+		<li id="menu-item-241" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-241"><a href="https://rdayala.wordpress.com/jdbc/">JDBC Concepts</a></li>
+		<li id="menu-item-335" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-335"><a href="https://rdayala.wordpress.com/jdbc-best-practices/">JDBC Best Practices</a></li>
+	</ul>
+</li>
+	<li id="menu-item-465" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-465"><a href="https://rdayala.wordpress.com/xml-in-java/">XML in Java</a>
+	<ul class="sub-menu">
+		<li id="menu-item-359" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-359"><a href="https://rdayala.wordpress.com/xml-parsing/">XML Parsers in Java</a></li>
+		<li id="menu-item-443" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-441 current_page_item menu-item-443"><a href="https://rdayala.wordpress.com/dom-vs-sax-parsers/" aria-current="page">DOM Vs SAX Vs StAX parsers</a></li>
+	</ul>
+</li>
+	<li id="menu-item-813" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-813"><a href="https://rdayala.wordpress.com/log4j-2/">log4j</a>
+	<ul class="sub-menu">
+		<li id="menu-item-809" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-809"><a href="https://rdayala.wordpress.com/log4j/">log4j notes</a></li>
+		<li id="menu-item-1078" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1078"><a href="https://rdayala.wordpress.com/overview-log4j-levels/">Overview – log4j levels</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-514" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-514"><a href="https://rdayala.wordpress.com/j2ee/">J2EE</a>
+<ul class="sub-menu">
+	<li id="menu-item-513" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-513"><a href="https://rdayala.wordpress.com/servlets/">Servlets</a>
+	<ul class="sub-menu">
+		<li id="menu-item-620" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-620"><a href="https://rdayala.wordpress.com/servlets-introduction/">Servlets – Introduction</a></li>
+		<li id="menu-item-623" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-623"><a href="https://rdayala.wordpress.com/deployment-descriptor/">Deployment Descriptor</a></li>
+		<li id="menu-item-633" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-633"><a href="https://rdayala.wordpress.com/httpservletrequest/">Http Servlet Request</a></li>
+		<li id="menu-item-626" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-626"><a href="https://rdayala.wordpress.com/handling-request-form-data-3-styles/">Handling request – form data 3 styles</a></li>
+		<li id="menu-item-639" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-639"><a href="https://rdayala.wordpress.com/send-redirect/">Send Redirect</a></li>
+		<li id="menu-item-648" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-648"><a href="https://rdayala.wordpress.com/request-dispatcher/">Request Dispatcher</a></li>
+		<li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-617"><a href="https://rdayala.wordpress.com/requestdispatcher/">Request Dispatcher – forward vs include</a></li>
+		<li id="menu-item-643" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-643"><a href="https://rdayala.wordpress.com/servlet-config-and-context/">Servlet Config and Context</a></li>
+		<li id="menu-item-519" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-519"><a href="https://rdayala.wordpress.com/session-tracking/">Session Tracking</a></li>
+	</ul>
+</li>
+	<li id="menu-item-512" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-512"><a href="https://rdayala.wordpress.com/jsp/">JSP</a>
+	<ul class="sub-menu">
+		<li id="menu-item-880" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-880"><a href="https://rdayala.wordpress.com/jsp-introduction/">JSP Introduction</a>
+		<ul class="sub-menu">
+			<li id="menu-item-694" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-694"><a href="https://rdayala.wordpress.com/what-is-jsp/">What is JSP</a></li>
+			<li id="menu-item-701" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-701"><a href="https://rdayala.wordpress.com/jsp-architecture/">JSP Architecture</a></li>
+			<li id="menu-item-702" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-702"><a href="https://rdayala.wordpress.com/what-is-jsp-container/">What is JSP container</a></li>
+			<li id="menu-item-703" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-703"><a href="https://rdayala.wordpress.com/jsp-vs-servlets/">JSP Vs Servlets</a></li>
+		</ul>
+</li>
+		<li id="menu-item-849" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-849"><a href="https://rdayala.wordpress.com/writing-jsp-in-eclipse/">Writing JSP in Eclipse</a></li>
+		<li id="menu-item-706" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-706"><a href="https://rdayala.wordpress.com/first-jsp-program/">First JSP program</a></li>
+		<li id="menu-item-710" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-710"><a href="https://rdayala.wordpress.com/jsp-building-blocks/">JSP Building blocks</a></li>
+		<li id="menu-item-720" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-720"><a href="https://rdayala.wordpress.com/implicit-objects/">Implicit Objects</a>
+		<ul class="sub-menu">
+			<li id="menu-item-719" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-719"><a href="https://rdayala.wordpress.com/implicit-objects-in-jsp/">Implicit Objects in JSP</a></li>
+			<li id="menu-item-738" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-738"><a href="https://rdayala.wordpress.com/implicit-request-object/">request object</a></li>
+			<li id="menu-item-740" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-740"><a href="https://rdayala.wordpress.com/implicit-out-object/">Implicit out object</a></li>
+			<li id="menu-item-737" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-737"><a href="https://rdayala.wordpress.com/implicit-response-object/">response object</a></li>
+			<li id="menu-item-742" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-742"><a href="https://rdayala.wordpress.com/implicit-config-object/">Implicit config object</a></li>
+			<li id="menu-item-741" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-741"><a href="https://rdayala.wordpress.com/implicit-application-object/">application object</a></li>
+			<li id="menu-item-739" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-739"><a href="https://rdayala.wordpress.com/implicit-session-object/">Implicit session object</a></li>
+			<li id="menu-item-736" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-736"><a href="https://rdayala.wordpress.com/implicit-exception-object/">exception object</a></li>
+		</ul>
+</li>
+		<li id="menu-item-751" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-751"><a href="https://rdayala.wordpress.com/page-directive/">JSP directives</a>
+		<ul class="sub-menu">
+			<li id="menu-item-750" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-750"><a href="https://rdayala.wordpress.com/what-is-page-directive/">what is Page directive</a></li>
+			<li id="menu-item-749" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-749"><a href="https://rdayala.wordpress.com/jsp-page-directive-explained/">JSP page directive explained</a></li>
+			<li id="menu-item-758" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-758"><a href="https://rdayala.wordpress.com/jsp-include-directive/">JSP include directive</a></li>
+			<li id="menu-item-859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-859"><a href="https://rdayala.wordpress.com/jsp-taglib-directive/">JSP taglib directive</a></li>
+			<li id="menu-item-858" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-858"><a href="https://rdayala.wordpress.com/jsp-all-directive-example/">JSP all directive example</a></li>
+		</ul>
+</li>
+		<li id="menu-item-879" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-879"><a href="https://rdayala.wordpress.com/jsp-action-tags/">JSP Action tags</a>
+		<ul class="sub-menu">
+			<li id="menu-item-757" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-757"><a href="https://rdayala.wordpress.com/jsp-standard-action-tags/">JSP standard Action tags</a></li>
+			<li id="menu-item-862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-862"><a href="https://rdayala.wordpress.com/jsp-forward-action-tag/">JSP forward action tag</a></li>
+			<li id="menu-item-865" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-865"><a href="https://rdayala.wordpress.com/jsp-redirect-action-tag/">JSP redirect action tag</a></li>
+			<li id="menu-item-762" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-762"><a href="https://rdayala.wordpress.com/jsp-include-action-explained/">JSP include action tag explained</a></li>
+			<li id="menu-item-870" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-870"><a href="https://rdayala.wordpress.com/usebean-tag/">JSP useBean tag</a></li>
+		</ul>
+</li>
+		<li id="menu-item-874" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-874"><a href="https://rdayala.wordpress.com/jsp-scopes/">JSP scopes</a></li>
+	</ul>
+</li>
+	<li id="menu-item-931" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-931"><a href="https://rdayala.wordpress.com/jstl/">JSTL</a>
+	<ul class="sub-menu">
+		<li id="menu-item-932" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-932"><a href="https://rdayala.wordpress.com/jstl-introduction/">JSTL Introduction</a></li>
+		<li id="menu-item-930" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-930"><a href="https://rdayala.wordpress.com/jstl-core-tags/">JSTL core tags</a>
+		<ul class="sub-menu">
+			<li id="menu-item-929" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-929"><a href="https://rdayala.wordpress.com/cout-tag/">c:out tag</a></li>
+			<li id="menu-item-927" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-927"><a href="https://rdayala.wordpress.com/cset-tag/">c:set tag</a></li>
+			<li id="menu-item-928" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-928"><a href="https://rdayala.wordpress.com/cforeach-tag/">c:forEach tag</a></li>
+			<li id="menu-item-926" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-926"><a href="https://rdayala.wordpress.com/cif-tag/">c:if tag and c:choose tag</a></li>
+			<li id="menu-item-925" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-925"><a href="https://rdayala.wordpress.com/cremove-tag/">c:remove tag</a></li>
+			<li id="menu-item-924" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-924"><a href="https://rdayala.wordpress.com/cimport-tag/">c:import tag</a></li>
+			<li id="menu-item-923" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-923"><a href="https://rdayala.wordpress.com/cfortokens-tag/">c:forTokens tag</a></li>
+			<li id="menu-item-921" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-921"><a href="https://rdayala.wordpress.com/credirect-tag/">c:redirect tag</a></li>
+			<li id="menu-item-922" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-922"><a href="https://rdayala.wordpress.com/cparam-tag/">c:url and c:param tag</a></li>
+		</ul>
+</li>
+		<li id="menu-item-920" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-920"><a href="https://rdayala.wordpress.com/jstl-function-tags/">JSTL function tags</a></li>
+	</ul>
+</li>
+	<li id="menu-item-461" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-461"><a href="https://rdayala.wordpress.com/jaxb/">JAXB</a>
+	<ul class="sub-menu">
+		<li id="menu-item-460" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-460"><a href="https://rdayala.wordpress.com/what-is-jaxb/">What is JAXB</a></li>
+		<li id="menu-item-451" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-451"><a href="https://rdayala.wordpress.com/starting-with-jaxb/">Starting with JAXB</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-1260" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1260"><a href="https://rdayala.wordpress.com/frameworks/">Frameworks</a>
+<ul class="sub-menu">
+	<li id="menu-item-289" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-289"><a href="https://rdayala.wordpress.com/spring/">Spring</a>
+	<ul class="sub-menu">
+		<li id="menu-item-288" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-288"><a href="https://rdayala.wordpress.com/spring-framework/">Spring Framework</a></li>
+		<li id="menu-item-282" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-282"><a href="https://rdayala.wordpress.com/developing-spring-application/">Developing Spring Application</a></li>
+		<li id="menu-item-955" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-955"><a href="https://rdayala.wordpress.com/spring-ioc-and-di/">Spring IoC and DI</a></li>
+		<li id="menu-item-287" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-287"><a href="https://rdayala.wordpress.com/spring-core/">Spring Core</a>
+		<ul class="sub-menu">
+			<li id="menu-item-286" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-286"><a href="https://rdayala.wordpress.com/loose-coupling/">Loose Coupling</a></li>
+			<li id="menu-item-481" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-481"><a href="https://rdayala.wordpress.com/dependency-injection-2/">Dependency Injection</a>
+			<ul class="sub-menu">
+				<li id="menu-item-285" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-285"><a href="https://rdayala.wordpress.com/dependency-injection/">What is Dependency Injection</a></li>
+				<li id="menu-item-284" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-284"><a href="https://rdayala.wordpress.com/setter-injection-primitives/">Setter Injection-Primitives</a></li>
+				<li id="menu-item-283" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-283"><a href="https://rdayala.wordpress.com/setter-injection-objects/">Setter Injection-Objects</a></li>
+				<li id="menu-item-295" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-295"><a href="https://rdayala.wordpress.com/setter-injection-collections/">Setter Injection-Collections</a></li>
+				<li id="menu-item-294" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-294"><a href="https://rdayala.wordpress.com/constructor-injection/">Constructor Injection</a></li>
+				<li id="menu-item-298" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-298"><a href="https://rdayala.wordpress.com/setter-vs-constructor/">Setter Vs Constructor</a></li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li id="menu-item-960" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-960"><a href="https://rdayala.wordpress.com/spring-jdbc/">Spring JDBC</a></li>
+	</ul>
+</li>
+	<li id="menu-item-20" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-20"><a href="https://rdayala.wordpress.com/hibernate/">Hibernate</a>
+	<ul class="sub-menu">
+		<li id="menu-item-1037" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1037"><a href="https://rdayala.wordpress.com/hibernate-q-a/">Hibernate Q &amp; A</a></li>
+		<li id="menu-item-185" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-185"><a href="https://rdayala.wordpress.com/hibernate-intro/">Hibernate Intro</a>
+		<ul class="sub-menu">
+			<li id="menu-item-30" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-30"><a href="https://rdayala.wordpress.com/what-is-hibernate/">What is Hibernate</a></li>
+			<li id="menu-item-29" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-29"><a href="https://rdayala.wordpress.com/hibernate/hibernate-vs-jdbc/">Hibernate Vs JDBC</a></li>
+			<li id="menu-item-123" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-123"><a href="https://rdayala.wordpress.com/hibernate-setup/">Hibernate Setup</a></li>
+		</ul>
+</li>
+		<li id="menu-item-218" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-218"><a href="https://rdayala.wordpress.com/hibernate-programming/">Hibernate Programming</a>
+		<ul class="sub-menu">
+			<li id="menu-item-122" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-122"><a href="https://rdayala.wordpress.com/mapping-configuration-files/">Mapping &amp; Configuration files</a></li>
+			<li id="menu-item-121" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-121"><a href="https://rdayala.wordpress.com/hibernate-application-structure/">Application Structure</a></li>
+			<li id="menu-item-120" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-120"><a href="https://rdayala.wordpress.com/hibernate-hello-world-application/">Hello World application</a></li>
+		</ul>
+</li>
+		<li id="menu-item-473" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-473"><a href="https://rdayala.wordpress.com/hibernate-crud/">CRUD in Hibernate</a>
+		<ul class="sub-menu">
+			<li id="menu-item-119" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-119"><a href="https://rdayala.wordpress.com/hibernate-crud-operations/">CRUD Operations</a></li>
+			<li id="menu-item-166" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-166"><a href="https://rdayala.wordpress.com/save-vs-persist/">Save Vs Persist</a></li>
+			<li id="menu-item-171" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-171"><a href="https://rdayala.wordpress.com/load-vs-get/">load vs get</a></li>
+			<li id="menu-item-172" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-172"><a href="https://rdayala.wordpress.com/merge-vs-update/">merge vs update</a></li>
+			<li id="menu-item-176" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-176"><a href="https://rdayala.wordpress.com/flush-and-refresh/">flush and refresh</a></li>
+		</ul>
+</li>
+		<li id="menu-item-118" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-118"><a href="https://rdayala.wordpress.com/versioning-concept/">Versioning Concept</a></li>
+		<li id="menu-item-117" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-117"><a href="https://rdayala.wordpress.com/hibernate-object-states/">Object States</a></li>
+		<li id="menu-item-477" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-477"><a href="https://rdayala.wordpress.com/inheritance-relationships/">Inheritance – Relationships</a>
+		<ul class="sub-menu">
+			<li id="menu-item-116" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-116"><a href="https://rdayala.wordpress.com/inheritance-mapping/">Inheritance Mapping</a></li>
+			<li id="menu-item-154" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-154"><a href="https://rdayala.wordpress.com/table-per-class-hierarchy/">Table per Class Hierarchy</a></li>
+			<li id="menu-item-160" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-160"><a href="https://rdayala.wordpress.com/table-per-subclass-hierarchy/">Table per SubClass Hierarchy</a></li>
+			<li id="menu-item-159" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-159"><a href="https://rdayala.wordpress.com/table-per-concrete-class-hierarchy/">Table per Concrete Class Hierarchy</a></li>
+		</ul>
+</li>
+		<li id="menu-item-115" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-115"><a href="https://rdayala.wordpress.com/composite-primary-key/">Composite Primary key</a></li>
+		<li id="menu-item-114" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-114"><a href="https://rdayala.wordpress.com/generators/">Generators</a></li>
+		<li id="menu-item-204" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-204"><a href="https://rdayala.wordpress.com/hql-queries/">HQL Queries</a>
+		<ul class="sub-menu">
+			<li id="menu-item-203" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-203"><a href="https://rdayala.wordpress.com/hql-select-query/">HQL Select query</a></li>
+			<li id="menu-item-202" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-202"><a href="https://rdayala.wordpress.com/hql-select-3-ways/">HQL Select 3 ways</a></li>
+			<li id="menu-item-208" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-208"><a href="https://rdayala.wordpress.com/hql-parameters/">HQL Parameters</a></li>
+			<li id="menu-item-215" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-215"><a href="https://rdayala.wordpress.com/hql-delete-and-update/">HQL Delete and Update</a></li>
+			<li id="menu-item-221" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-221"><a href="https://rdayala.wordpress.com/hql-insert-query/">HQL Insert query</a></li>
+		</ul>
+</li>
+		<li id="menu-item-226" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-226"><a href="https://rdayala.wordpress.com/criteria-and-projections/">Criteria and Projections</a>
+		<ul class="sub-menu">
+			<li id="menu-item-227" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-227"><a href="https://rdayala.wordpress.com/criteria-queries/">Criteria Queries</a></li>
+			<li id="menu-item-230" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-230"><a href="https://rdayala.wordpress.com/projections/">Projections</a></li>
+		</ul>
+</li>
+		<li id="menu-item-188" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-188"><a href="https://rdayala.wordpress.com/hql-vs-criteria-queries/">HQL Vs Criteria Queries</a></li>
+		<li id="menu-item-233" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-233"><a href="https://rdayala.wordpress.com/native-sql-query/">Native SQL query</a></li>
+		<li id="menu-item-236" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-236"><a href="https://rdayala.wordpress.com/named-queries/">Named queries</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-408" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-408"><a href="https://rdayala.wordpress.com/webservices/">WebServices</a>
+<ul class="sub-menu">
+	<li id="menu-item-415" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-415"><a href="https://rdayala.wordpress.com/introduction-to-web-services/">Introduction to Web Services</a></li>
+	<li id="menu-item-425" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-425"><a href="https://rdayala.wordpress.com/why-webservices/">Why WebServices</a></li>
+	<li id="menu-item-561" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-561"><a href="https://rdayala.wordpress.com/soap-services/">SOAP Services</a>
+	<ul class="sub-menu">
+		<li id="menu-item-418" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-418"><a href="https://rdayala.wordpress.com/web-services-terminology/">SOAP – Terminology</a></li>
+		<li id="menu-item-421" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-421"><a href="https://rdayala.wordpress.com/writing-webservice-client/">Writing WebService Client</a></li>
+		<li id="menu-item-411" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-411"><a href="https://rdayala.wordpress.com/jax-ws-creating-simple-webservice/">JAX-WS Creating simple webservice</a></li>
+		<li id="menu-item-486" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-486"><a href="https://rdayala.wordpress.com/understanding-wsdl-file/">Understanding WSDL file</a></li>
+		<li id="menu-item-525" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-525"><a href="https://rdayala.wordpress.com/customizing-wsdl-file/">Customizing WSDL file</a></li>
+		<li id="menu-item-531" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-531"><a href="https://rdayala.wordpress.com/using-endpoint-interface/">Using Endpoint Class</a></li>
+	</ul>
+</li>
+	<li id="menu-item-558" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-558"><a href="https://rdayala.wordpress.com/restful-services/">RESTful Services</a>
+	<ul class="sub-menu">
+		<li id="menu-item-589" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-589"><a href="https://rdayala.wordpress.com/restful-services-intro/">RESTful Services – Intro</a>
+		<ul class="sub-menu">
+			<li id="menu-item-428" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-428"><a href="https://rdayala.wordpress.com/restful-webservices-what/">RESTful WebServices – What</a></li>
+			<li id="menu-item-536" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-536"><a href="https://rdayala.wordpress.com/restful-webservices-more/">RESTful Services – Overview</a></li>
+			<li id="menu-item-438" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-438"><a href="https://rdayala.wordpress.com/restful-webservices-when/">RESTful WebServices – When</a></li>
+			<li id="menu-item-557" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-557"><a href="https://rdayala.wordpress.com/restful-services-design-principles/">Design principles</a></li>
+			<li id="menu-item-568" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-568"><a href="https://rdayala.wordpress.com/restful-architecture/">RESTful Architecture</a></li>
+			<li id="menu-item-825" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-825"><a href="https://rdayala.wordpress.com/elements-of-restful-architecture/">Elements of RESTful Architecture</a></li>
+		</ul>
+</li>
+		<li id="menu-item-798" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-798"><a href="https://rdayala.wordpress.com/restful-annotations/">RESTful Annotations</a></li>
+		<li id="menu-item-611" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-611"><a href="https://rdayala.wordpress.com/restful-services-extract-input-params/">RESTful Services – Extract Input params</a>
+		<ul class="sub-menu">
+			<li id="menu-item-610" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-610"><a href="https://rdayala.wordpress.com/extract-params-overview/">Extract Params – Overview</a></li>
+			<li id="menu-item-609" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-609"><a href="https://rdayala.wordpress.com/extract-params-pathparam/">Extract Params – PathParam</a></li>
+			<li id="menu-item-608" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-608"><a href="https://rdayala.wordpress.com/extract-params-queryparam/">Extract Params – QueryParam</a></li>
+			<li id="menu-item-607" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-607"><a href="https://rdayala.wordpress.com/extract-params-matrixparam/">Extract Params – MatrixParam</a></li>
+			<li id="menu-item-606" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-606"><a href="https://rdayala.wordpress.com/extract-params-formparam/">Extract Params – FormParam</a></li>
+		</ul>
+</li>
+		<li id="menu-item-588" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-588"><a href="https://rdayala.wordpress.com/restful-services-crud-operations/">RESTful Services – CRUD operations</a>
+		<ul class="sub-menu">
+			<li id="menu-item-583" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-583"><a href="https://rdayala.wordpress.com/restful-service-using-get/">RESTful Service – Using GET</a></li>
+			<li id="menu-item-582" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-582"><a href="https://rdayala.wordpress.com/restful-service-using-post/">RESTful Service – Using POST</a></li>
+			<li id="menu-item-580" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-580"><a href="https://rdayala.wordpress.com/restful-service-using-put/">RESTful Service – Using PUT</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+	<li id="menu-item-545" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-545"><a href="https://rdayala.wordpress.com/restful-service-using-jersey/">RESTful Service using Jersey</a></li>
+	<li id="menu-item-605" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-605"><a href="https://rdayala.wordpress.com/restful-services-testing/">RESTful Services – testing</a></li>
+	<li id="menu-item-581" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-581"><a href="https://rdayala.wordpress.com/building-restful-client-in-jersey/">Building RESTful client in Jersey</a></li>
+</ul>
+</li>
+<li id="menu-item-316" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-316"><a href="https://rdayala.wordpress.com/design-patterns/">Design Concepts</a>
+<ul class="sub-menu">
+	<li id="menu-item-967" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-967"><a href="https://rdayala.wordpress.com/relationships/">Relationships</a></li>
+	<li id="menu-item-364" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-364"><a href="https://rdayala.wordpress.com/coupling/">Coupling</a></li>
+	<li id="menu-item-363" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-363"><a href="https://rdayala.wordpress.com/cohesion/">Cohesion</a></li>
+	<li id="menu-item-387" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-387"><a href="https://rdayala.wordpress.com/composition-over-inheritance/">Composition over Inheritance</a></li>
+	<li id="menu-item-978" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-978"><a href="https://rdayala.wordpress.com/uml-diagrams/">UML Diagrams</a></li>
+	<li id="menu-item-362" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-362"><a href="https://rdayala.wordpress.com/solid/">SOLID</a>
+	<ul class="sub-menu">
+		<li id="menu-item-981" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-981"><a href="https://rdayala.wordpress.com/solid-principles/">SOLID Principles</a></li>
+		<li id="menu-item-361" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-361"><a href="https://rdayala.wordpress.com/single-responsibility-principle/">Single Responsibility Principle</a></li>
+		<li id="menu-item-360" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-360"><a href="https://rdayala.wordpress.com/open-closed-principle/">Open Closed Principle</a></li>
+	</ul>
+</li>
+	<li id="menu-item-985" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-985"><a href="https://rdayala.wordpress.com/design-patterns-2/">Design Patterns</a>
+	<ul class="sub-menu">
+		<li id="menu-item-315" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-315"><a href="https://rdayala.wordpress.com/creational-patterns/">Creational Patterns</a>
+		<ul class="sub-menu">
+			<li id="menu-item-323" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-323"><a href="https://rdayala.wordpress.com/singleton/">Singleton</a></li>
+			<li id="menu-item-322" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-322"><a href="https://rdayala.wordpress.com/builder-pattern/">Builder Pattern</a></li>
+			<li id="menu-item-329" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-329"><a href="https://rdayala.wordpress.com/factory-method/">Factory Method</a></li>
+			<li id="menu-item-328" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-328"><a href="https://rdayala.wordpress.com/abstract-factory/">Abstract Factory</a></li>
+			<li id="menu-item-332" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-332"><a href="https://rdayala.wordpress.com/prototype-pattern/">Prototype Pattern</a></li>
+		</ul>
+</li>
+		<li id="menu-item-314" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-314"><a href="https://rdayala.wordpress.com/structural-patterns/">Structural Patterns</a>
+		<ul class="sub-menu">
+			<li id="menu-item-385" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-385"><a href="https://rdayala.wordpress.com/decorator/">Decorator Pattern</a></li>
+		</ul>
+</li>
+		<li id="menu-item-313" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-313"><a href="https://rdayala.wordpress.com/behavioral-patterns/">Behavioral Patterns</a>
+		<ul class="sub-menu">
+			<li id="menu-item-392" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-392"><a href="https://rdayala.wordpress.com/template-design-pattern/">Template Design Pattern</a></li>
+			<li id="menu-item-374" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-374"><a href="https://rdayala.wordpress.com/chain-of-responsibility/">Chain Of Responsibility</a></li>
+			<li id="menu-item-386" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-386"><a href="https://rdayala.wordpress.com/strategy-pattern/">Strategy pattern</a></li>
+			<li id="menu-item-373" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-373"><a href="https://rdayala.wordpress.com/observer/">Observer</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+	<li id="menu-item-989" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-989"><a href="https://rdayala.wordpress.com/mvc-pattern/">MVC Pattern</a></li>
+</ul>
+</li>
+<li id="menu-item-1241" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1241"><a href="https://rdayala.wordpress.com/misc/">Misc</a>
+<ul class="sub-menu">
+	<li id="menu-item-1120" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1120"><a href="https://rdayala.wordpress.com/android-development/">Android Development</a>
+	<ul class="sub-menu">
+		<li id="menu-item-1119" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1119"><a href="https://rdayala.wordpress.com/android-core/">Android Core</a>
+		<ul class="sub-menu">
+			<li id="menu-item-1165" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1165"><a href="https://rdayala.wordpress.com/welcome-to-android/">Welcome to Android</a></li>
+			<li id="menu-item-1168" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1168"><a href="https://rdayala.wordpress.com/android-os/">Android OS</a></li>
+			<li id="menu-item-1177" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1177"><a href="https://rdayala.wordpress.com/android-app-anatomy/">Android App – Anatomy</a></li>
+			<li id="menu-item-1176" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1176"><a href="https://rdayala.wordpress.com/android-apps-ways-to-develop/">Android Apps – ways to develop</a></li>
+			<li id="menu-item-1175" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1175"><a href="https://rdayala.wordpress.com/android-app-markets/">Android App markets</a></li>
+			<li id="menu-item-1159" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1159"><a href="https://rdayala.wordpress.com/android-development-system/">Android Development System</a>
+			<ul class="sub-menu">
+				<li id="menu-item-1134" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1134"><a href="https://rdayala.wordpress.com/setup-environment/">Setup Environment</a></li>
+				<li id="menu-item-1133" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1133"><a href="https://rdayala.wordpress.com/avd/">AVD</a></li>
+				<li id="menu-item-1135" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1135"><a href="https://rdayala.wordpress.com/helloworld/">HelloWorld</a></li>
+			</ul>
+</li>
+			<li id="menu-item-1184" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1184"><a href="https://rdayala.wordpress.com/android-usb-debugging/">Android – USB debugging</a></li>
+			<li id="menu-item-1158" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1158"><a href="https://rdayala.wordpress.com/app-components/">App Components</a>
+			<ul class="sub-menu">
+				<li id="menu-item-1138" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1138"><a href="https://rdayala.wordpress.com/core-concepts/">Core concepts</a></li>
+				<li id="menu-item-1126" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1126"><a href="https://rdayala.wordpress.com/common-concepts/">Common Concepts</a></li>
+				<li id="menu-item-1123" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1123"><a href="https://rdayala.wordpress.com/android-strings/">Android – Strings</a></li>
+			</ul>
+</li>
+		</ul>
+</li>
+		<li id="menu-item-1157" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1157"><a href="https://rdayala.wordpress.com/ui-interface/">UI Interface</a>
+		<ul class="sub-menu">
+			<li id="menu-item-1189" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1189"><a href="https://rdayala.wordpress.com/android-layouts-overview/">Android Layouts – overview</a></li>
+			<li id="menu-item-1192" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1192"><a href="https://rdayala.wordpress.com/linear-layout/">Linear Layout</a></li>
+		</ul>
+</li>
+		<li id="menu-item-1155" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1155"><a href="https://rdayala.wordpress.com/data-storage-and-db/">Data storage and DB</a></li>
+		<li id="menu-item-1156" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1156"><a href="https://rdayala.wordpress.com/camera-and-video/">Camera and Video</a>
+		<ul class="sub-menu">
+			<li id="menu-item-1162" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1162"><a href="https://rdayala.wordpress.com/media-intro/">Media – Intro</a></li>
+		</ul>
+</li>
+		<li id="menu-item-1153" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1153"><a href="https://rdayala.wordpress.com/animation-and-graphics/">Animation and Graphics</a></li>
+		<li id="menu-item-1154" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1154"><a href="https://rdayala.wordpress.com/location-and-sensors/">Location and sensors</a></li>
+	</ul>
+</li>
+	<li id="menu-item-404" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-404"><a href="https://rdayala.wordpress.com/json/">JSON</a>
+	<ul class="sub-menu">
+		<li id="menu-item-405" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-405"><a href="https://rdayala.wordpress.com/what-is-json/">What is JSON</a></li>
+		<li id="menu-item-435" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-435"><a href="https://rdayala.wordpress.com/read-and-write-json/">Read and Write JSON</a></li>
+		<li id="menu-item-806" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-806"><a href="https://rdayala.wordpress.com/json-to-javascript/">JSON to JavaScript</a></li>
+	</ul>
+</li>
+	<li id="menu-item-795" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-795"><a href="https://rdayala.wordpress.com/maven/">Maven</a>
+	<ul class="sub-menu">
+		<li id="menu-item-1102" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1102"><a href="https://rdayala.wordpress.com/installing-maven-tool/">Installing Maven tool</a></li>
+		<li id="menu-item-794" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-794"><a href="https://rdayala.wordpress.com/integrate-maven-with-eclipse/">Integrate Maven with Eclipse</a></li>
+	</ul>
+</li>
+	<li id="menu-item-262" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-262"><a href="https://rdayala.wordpress.com/sql/">SQL</a>
+	<ul class="sub-menu">
+		<li id="menu-item-261" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-261"><a href="https://rdayala.wordpress.com/intoduction-to-databases/">Introduction to Databases</a></li>
+		<li id="menu-item-260" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-260"><a href="https://rdayala.wordpress.com/normalization/">Normalization</a></li>
+		<li id="menu-item-259" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-259"><a href="https://rdayala.wordpress.com/sql-joins/">SQL Joins</a></li>
+	</ul>
+</li>
+	<li id="menu-item-51" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-51"><a href="https://rdayala.wordpress.com/javascriprt/">JavaScriprt</a>
+	<ul class="sub-menu">
+		<li id="menu-item-71" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-71"><a href="https://rdayala.wordpress.com/js-dev-setup/">JS Dev setup</a></li>
+		<li id="menu-item-74" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-74"><a href="https://rdayala.wordpress.com/alerts/">Alerts</a></li>
+		<li id="menu-item-82" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-82"><a href="https://rdayala.wordpress.com/js-variables/">Variables</a></li>
+		<li id="menu-item-832" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-832"><a href="https://rdayala.wordpress.com/java-script-notes/">Java Script Notes</a></li>
+	</ul>
+</li>
+	<li id="menu-item-835" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-835"><a href="https://rdayala.wordpress.com/jquery/">jQuery</a>
+	<ul class="sub-menu">
+		<li id="menu-item-838" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-838"><a href="https://rdayala.wordpress.com/jquery-notes/">jQuery notes</a></li>
+		<li id="menu-item-940" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-940"><a href="https://rdayala.wordpress.com/getting-started-with-jquery/">Getting started with jQuery</a></li>
+		<li id="menu-item-946" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-946"><a href="https://rdayala.wordpress.com/selecting-elements/">Selecting Elements</a></li>
+		<li id="menu-item-952" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-952"><a href="https://rdayala.wordpress.com/handling-events/">Handling events</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+</ul></div>		</nav><!-- #site-navigation -->
+
+			</header><!-- #masthead -->
+
+	<div id="main" class="wrapper">
+	<div id="primary" class="site-content">
+		<div id="content" role="main">
+
+							
+	<article id="post-441" class="post-441 page type-page status-publish hentry">
+		<header class="entry-header">
+												<h1 class="entry-title">DOM Vs SAX Vs StAX&nbsp;parsers</h1>
+		</header>
+
+		<div class="entry-content">
+			<p><strong>DOM</strong><span class="Apple-converted-space">&nbsp;</span>-Tree model parser(Object based) (Tree of nodes).<br>
+-DOM loads the file into the memory and then parse the file.<br>
+-Has memory constraints since it loads the whole XML file before parsing.<br>
+-DOM is read and write (can insert or delete the node).<br>
+-If the XML content is small then prefer DOM parser.<br>
+-Backward and forward search is possible for searching the tags and evaluation of the information inside the tags. So this gives the ease of navigation.<br>
+-Slower at run time.</p>
+<p><strong>SAX</strong></p>
+<p>-Event based parser (Sequence of events). Push model.<br>
+-SAX parses the file at it reads i.e. Parses node by node.<br>
+-No memory constraints as it does not store the XML content in the memory.<br>
+-SAX is read only i.e. can’t insert or delete the node.<br>
+-Use SAX parser when memory content is large.<br>
+-SAX reads the XML file from top to bottom and backward navigation is not possible.<br>
+-Faster at run time.</p>
+<p><strong>StAX<br>
+(<a href="http://www.vogella.com/tutorials/JavaXML/article.html" rel="nofollow">http://www.vogella.com/tutorials/JavaXML/article.html</a>)</strong></p>
+<p>– StaX is a Pull-Parsing model.<br>
+– <span class="Apple-converted-space">&nbsp;</span>Application can take the control over parsing the XML documents by pulling (taking) the events from the parser.<br>
+– Can be used for reading and writing XML Documents.<br>
+– StAX is a bidirectional API, meaning that it can both read and write XML documents. SAX is read only, so another API is needed if you want to write XML documents.<br>
+– SAX is a push API, whereas StAX is pull.</p>
+<p><a href="https://rdayala.files.wordpress.com/2014/11/xml-parsers-summary.jpg"><img data-attachment-id="449" data-permalink="https://rdayala.wordpress.com/dom-vs-sax-parsers/xml-parsers-summary/" data-orig-file="https://rdayala.files.wordpress.com/2014/11/xml-parsers-summary.jpg" data-orig-size="716,503" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="XML-Parsers-Summary" data-image-description="" data-medium-file="https://rdayala.files.wordpress.com/2014/11/xml-parsers-summary.jpg?w=300" data-large-file="https://rdayala.files.wordpress.com/2014/11/xml-parsers-summary.jpg?w=716" class="alignnone size-medium wp-image-449" src="./DOM Vs SAX Vs StAX parsers _ My learnings and experience with Java.._files/xml-parsers-summary.jpg" alt="XML-Parsers-Summary" width="300" height="210" srcset="https://rdayala.files.wordpress.com/2014/11/xml-parsers-summary.jpg?w=300&amp;h=210 300w, https://rdayala.files.wordpress.com/2014/11/xml-parsers-summary.jpg?w=598&amp;h=420 598w, https://rdayala.files.wordpress.com/2014/11/xml-parsers-summary.jpg?w=150&amp;h=105 150w" sizes="(max-width: 300px) 100vw, 300px"></a></p>
+<p>&nbsp;</p>
+<div id="Quillpad-Roaming-extension-is-installed"></div>
+<div id="textarea_simulator" style="position:absolute;top:0;left:0;visibility:hidden;"></div>
+<div id="textarea_simulator" style="position:absolute;top:0;left:0;visibility:hidden;"></div>
+<div id="textarea_simulator" style="position:absolute;top:0;left:0;visibility:hidden;"></div>
+<div id="textarea_simulator" style="position:absolute;top:0;left:0;visibility:hidden;"></div>
+					</div><!-- .entry-content -->
+		<footer class="entry-meta">
+					</footer><!-- .entry-meta -->
+	</article><!-- #post -->
+				
+<div id="comments" class="comments-area">
+
+	
+	
+		<div id="respond" class="comment-respond js">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="https://rdayala.wordpress.com/dom-vs-sax-parsers/#respond" style="display:none;">Cancel reply</a></small></h3><form action="https://rdayala.wordpress.com/wp-comments-post.php" method="post" id="commentform" class="comment-form"><input type="hidden" id="highlander_comment_nonce" name="highlander_comment_nonce" value="8cf7daa89e"><input type="hidden" name="_wp_http_referer" value="/dom-vs-sax-parsers/">
+<input type="hidden" name="hc_post_as" id="hc_post_as" value="guest">
+
+<div class="comment-form-field comment-textarea">
+	
+	<div id="comment-form-comment"><textarea aria-hidden="true" tabindex="-1" style="position: absolute; top: -999px; left: 0px; right: auto; bottom: auto; border: 0px; padding: 0px; box-sizing: content-box; overflow-wrap: break-word; overflow: hidden; transition: none 0s ease 0s; height: 0px !important; min-height: 0px !important; font-family: Arial, Helvetica, Tahoma, Verdana, sans-serif; font-size: 14px; font-weight: 400; font-style: normal; letter-spacing: 0px; text-transform: none; text-decoration: none solid rgba(0, 0, 0, 0.7); word-spacing: 0px; text-indent: 0px; line-height: 24px; width: 938px;" class="autosizejs "></textarea><textarea id="comment" name="comment" title="Enter your comment here..." placeholder="Enter your comment here..." style="height: 44px; overflow: hidden; overflow-wrap: break-word; resize: none;"></textarea></div>
+</div>
+
+<div id="comment-form-identity" style="display: none;">
+	<div id="comment-form-nascar">
+		<p>Fill in your details below or click an icon to log in:</p>
+		<ul>
+			<li class="selected" style="display:none;">
+				<a href="https://rdayala.wordpress.com/dom-vs-sax-parsers/#comment-form-guest" id="postas-guest" class="nascar-signin-link" title="Login via Guest">
+									</a>
+			</li>
+			<li>
+				<a href="https://rdayala.wordpress.com/dom-vs-sax-parsers/#comment-form-load-service:WordPress.com" id="postas-wordpress" class="nascar-signin-link" title="Login via WordPress.com">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24"><rect x="0" fill="none" width="24" height="24"></rect><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"></path></g></svg>				</a>
+			</li>
+			<li>
+			<iframe id="googleplus-sign-in" name="googleplus-sign-in" src="./DOM Vs SAX Vs StAX parsers _ My learnings and experience with Java.._files/saved_resource.html" width="24" height="24" scrolling="no" allowtransparency="true" seamless="seamless" frameborder="0"></iframe>
+			</li>
+			<li>
+				<a href="https://rdayala.wordpress.com/dom-vs-sax-parsers/#comment-form-load-service:Twitter" id="postas-twitter" class="nascar-signin-link" title="Login via Twitter">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24"><rect x="0" fill="none" width="24" height="24"></rect><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"></path></g></svg>				</a>
+			</li>
+			<li>
+				<a href="https://rdayala.wordpress.com/dom-vs-sax-parsers/#comment-form-load-service:Facebook" id="postas-facebook" class="nascar-signin-link" title="Login via Facebook">
+					<svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24"><rect x="0" fill="none" width="24" height="24"></rect><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"></path></g></svg>				</a>
+			</li>
+		</ul>
+	</div>
+
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+<a href="https://gravatar.com/site/signup/" target="_blank">				<img src="./DOM Vs SAX Vs StAX parsers _ My learnings and experience with Java.._files/ad516503a11cd5ca435acc9bb6523536" alt="Gravatar" width="25" class="no-grav">
+</a>			</div>
+
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Email <span class="required">(required)</span> <span class="nopublish">(Address never made public)</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="email" value=""></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Name <span class="required">(required)</span></label>
+					<div class="comment-form-input"><input id="author" name="author" type="text" value=""></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Website</label>
+					<div class="comment-form-input"><input id="url" name="url" type="url" value=""></div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="./DOM Vs SAX Vs StAX parsers _ My learnings and experience with Java.._files/ad516503a11cd5ca435acc9bb6523536" alt="WordPress.com Logo" width="25" class="no-grav">
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="wp_avatar" id="wordpress-avatar" class="comment-meta-wordpress" value="">
+				<input type="hidden" name="wp_user_id" id="wordpress-user_id" class="comment-meta-wordpress" value="">
+				<input type="hidden" name="wp_access_token" id="wordpress-access_token" class="comment-meta-wordpress" value="">
+						<p class="comment-form-posting-as pa-wordpress">
+			<strong></strong>
+			You are commenting using your WordPress.com account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( &#39;wordpress&#39; );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="https://rdayala.wordpress.com/dom-vs-sax-parsers/#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24"><rect x="0" fill="none" width="24" height="24"></rect><g><path fill="#0087be" d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.762-7.57zM3.008 12c0 3.56 2.07 6.634 5.068 8.092L3.788 8.342c-.5 1.117-.78 2.354-.78 3.658zm15.06-.454c0-1.112-.398-1.88-.74-2.48-.456-.74-.883-1.368-.883-2.11 0-.825.627-1.595 1.51-1.595.04 0 .078.006.116.008-1.598-1.464-3.73-2.36-6.07-2.36-3.14 0-5.904 1.613-7.512 4.053.21.008.41.012.58.012.94 0 2.395-.114 2.395-.114.484-.028.54.684.057.74 0 0-.487.058-1.03.086l3.275 9.74 1.968-5.902-1.4-3.838c-.485-.028-.944-.085-.944-.085-.486-.03-.43-.77.056-.742 0 0 1.484.114 2.368.114.94 0 2.397-.114 2.397-.114.486-.028.543.684.058.74 0 0-.488.058-1.03.086l3.25 9.665.897-2.997c.456-1.17.684-2.137.684-2.907zm1.82-3.86c.04.286.06.593.06.924 0 .912-.17 1.938-.683 3.22l-2.746 7.94c2.672-1.558 4.47-4.454 4.47-7.77 0-1.564-.4-3.033-1.1-4.314zM12 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"></path></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-googleplus" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="./DOM Vs SAX Vs StAX parsers _ My learnings and experience with Java.._files/ad516503a11cd5ca435acc9bb6523536" alt="Google photo" width="25" class="no-grav">
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="googleplus_avatar" id="googleplus-avatar" class="comment-meta-googleplus" value="">
+				<input type="hidden" name="googleplus_user_id" id="googleplus-user_id" class="comment-meta-googleplus" value="">
+				<input type="hidden" name="googleplus_access_token" id="googleplus-access_token" class="comment-meta-googleplus" value="">
+						<p class="comment-form-posting-as pa-googleplus">
+			<strong></strong>
+			You are commenting using your Google account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( &#39;googleplus&#39; );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="https://rdayala.wordpress.com/dom-vs-sax-parsers/#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" x="0px" y="0px" viewBox="0 0 60 60"><path fill="#519bf7" d="M56.3,30c0,-1.6 -0.2,-3.4 -0.6,-5h-3.1H42.2H30v10.6h14.8C44,39.3 42,42 39.1,43.9l8.8,6.8C53,46 56.3,39 56.3,30z"></path><path fill="#3db366" d="M30,57.5c6.7,0 13.1,-2.4 17.9,-6.8l-8.8,-6.8c-2.5,1.6 -5.6,2.4 -9.1,2.4c-7.2,0 -13.3,-4.7 -15.4,-11.2l-9.3,7.1C9.8,51.3 19.1,57.5 30,57.5z"></path><path fill="#fdc600" d="M5.3,42.2l9.3,-7.1c-0.5,-1.6 -0.8,-3.3 -0.8,-5.1s0.3,-3.5 0.8,-5.1l-9.3,-7.1C3.5,21.5 2.5,25.6 2.5,30S3.5,38.5 5.3,42.2z"></path><path fill="#f15b44" d="M40.1,17.4l8,-8C43.3,5.1 37,2.5 30,2.5C19.1,2.5 9.8,8.7 5.3,17.8l9.3,7.1c2.1,-6.5 8.2,-11.1 15.4,-11.1C33.9,13.7 37.4,15.1 40.1,17.4z"></path></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="./DOM Vs SAX Vs StAX parsers _ My learnings and experience with Java.._files/ad516503a11cd5ca435acc9bb6523536" alt="Twitter picture" width="25" class="no-grav">
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="">
+				<input type="hidden" name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="">
+				<input type="hidden" name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="">
+						<p class="comment-form-posting-as pa-twitter">
+			<strong></strong>
+			You are commenting using your Twitter account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( &#39;twitter&#39; );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="https://rdayala.wordpress.com/dom-vs-sax-parsers/#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24"><rect x="0" fill="none" width="24" height="24"></rect><g><path fill="#1DA1F2" d="M22.23 5.924c-.736.326-1.527.547-2.357.646.847-.508 1.498-1.312 1.804-2.27-.793.47-1.67.812-2.606.996C18.325 4.498 17.258 4 16.078 4c-2.266 0-4.103 1.837-4.103 4.103 0 .322.036.635.106.935-3.41-.17-6.433-1.804-8.457-4.287-.353.607-.556 1.312-.556 2.064 0 1.424.724 2.68 1.825 3.415-.673-.022-1.305-.207-1.86-.514v.052c0 1.988 1.415 3.647 3.293 4.023-.344.095-.707.145-1.08.145-.265 0-.522-.026-.773-.074.522 1.63 2.038 2.817 3.833 2.85-1.404 1.1-3.174 1.757-5.096 1.757-.332 0-.66-.02-.98-.057 1.816 1.164 3.973 1.843 6.29 1.843 7.547 0 11.675-6.252 11.675-11.675 0-.178-.004-.355-.012-.53.802-.578 1.497-1.3 2.047-2.124z"></path></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="./DOM Vs SAX Vs StAX parsers _ My learnings and experience with Java.._files/ad516503a11cd5ca435acc9bb6523536" alt="Facebook photo" width="25" class="no-grav">
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="">
+				<input type="hidden" name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="">
+				<input type="hidden" name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="">
+						<p class="comment-form-posting-as pa-facebook">
+			<strong></strong>
+			You are commenting using your Facebook account.			<span class="comment-form-log-out">
+				(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( &#39;facebook&#39; );">Log&nbsp;Out</a>&nbsp;/&nbsp;
+				<a href="https://rdayala.wordpress.com/dom-vs-sax-parsers/#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)
+			</span>
+			<span class="pa-icon"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24"><rect x="0" fill="none" width="24" height="24"></rect><g><path fill="#3B5998" d="M20.007 3H3.993C3.445 3 3 3.445 3 3.993v16.013c0 .55.445.994.993.994h8.62v-6.97H10.27V11.31h2.346V9.31c0-2.325 1.42-3.59 3.494-3.59.993 0 1.847.073 2.096.106v2.43h-1.438c-1.128 0-1.346.537-1.346 1.324v1.734h2.69l-.35 2.717h-2.34V21h4.587c.548 0 .993-.445.993-.993V3.993c0-.548-.445-.993-.993-.993z"></path></g></svg></span>
+		</p>
+					</div>
+	
+		</div>
+	</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service">
+		<div class="comment-form-posting-as-cancel"><a href="javascript:HighlanderComments.cancelExternalWindow();">Cancel</a></div>
+		<p>Connecting to %s</p>
+	</div>
+
+</div>
+
+<script type="text/javascript">
+var highlander_expando_javascript = function(){
+	var input = document.createElement( 'input' ),
+	    comment = jQuery( '#comment' );
+
+	if ( 'placeholder' in input ) {
+		comment.attr( 'placeholder', jQuery( '.comment-textarea label' ).remove().text() );
+	}
+
+	// Expando Mode: start small, then auto-resize on first click + text length
+	jQuery( '#comment-form-identity' ).hide();
+	jQuery( '#comment-form-subscribe' ).hide();
+	jQuery( '#commentform .form-submit' ).hide();
+
+	comment.css( { 'height':'10px' } ).one( 'focus', function() {
+		var timer = setInterval( HighlanderComments.resizeCallback, 10 )
+		jQuery( this ).animate( { 'height': HighlanderComments.initialHeight } ).delay( 100 ).queue( function(n) { clearInterval( timer ); HighlanderComments.resizeCallback(); n(); } );
+		jQuery( '#comment-form-identity' ).slideDown();
+		jQuery( '#comment-form-subscribe' ).slideDown();
+		jQuery( '#commentform .form-submit' ).slideDown();
+	});
+}
+jQuery(document).ready( highlander_expando_javascript );
+</script>
+
+<div id="comment-form-subscribe" style="display: none;">
+	<p class="comment-subscription-form"><input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;"> <label class="subscribe-label" id="subscribe-label" for="subscribe" style="display: inline;">Notify me of new comments via email.</label></p><p class="post-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto;"> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog" style="display: inline;">Notify me of new posts via email.</label></p></div>
+
+
+
+
+<p class="form-submit" style="display: none;"><input name="submit" type="submit" id="comment-submit" class="submit" value="Post Comment"> <input type="hidden" name="comment_post_ID" value="441" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="6031bdf2e4"></p>
+<input type="hidden" name="genseq" value="1580830153">
+<p style="display: none;"></p><input type="hidden" id="ak_js" name="ak_js" value="1580830280384"></form>	</div><!-- #respond -->
+	<div style="clear: both"></div>
+</div><!-- #comments .comments-area -->
+			
+		</div><!-- #content -->
+	</div><!-- #primary -->
+
+
+		</div><!-- #main .wrapper -->
+	<footer id="colophon" role="contentinfo">
+		<div class="site-info">
+									<a href="https://wordpress.com/?ref=footer_blog" rel="nofollow">Blog at WordPress.com.</a>
+		</div><!-- .site-info -->
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+
+<!--  -->
+<script src="./DOM Vs SAX Vs StAX parsers _ My learnings and experience with Java.._files/gprofiles.js"></script>
+<script>
+var WPGroHo = {"my_hash":""};
+</script>
+<script type="text/javascript" src="./DOM Vs SAX Vs StAX parsers _ My learnings and experience with Java.._files/wpgroho.js"></script>
+
+	<script>
+		//initialize and attach hovercards to all gravatars
+		jQuery( document ).ready( function( $ ) {
+
+			if (typeof Gravatar === "undefined"){
+				return;
+			}
+
+			if ( typeof Gravatar.init !== "function" ) {
+				return;
+			}			
+
+			Gravatar.profile_cb = function( hash, id ) {
+				WPGroHo.syncProfileData( hash, id );
+			};
+			Gravatar.my_hash = WPGroHo.my_hash;
+			Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+		});
+	</script>
+
+		<div style="display:none">
+	</div>
+<script>
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Posting Comment\u2026","postCommentText":"Post Comment","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Out","loginText":"Log In","connectURL":"https:\/\/rdayala.wordpress.com\/public.api\/connect\/?action=request","logoutURL":"https:\/\/rdayala.wordpress.com\/wp-login.php?action=logout&_wpnonce=17c59f18c6","homeURL":"https:\/\/rdayala.wordpress.com\/","postID":"441","gravDefault":"identicon","enterACommentError":"Please enter a comment","enterEmailError":"Please enter your email address here","invalidEmailError":"Invalid email address","enterAuthorError":"Please enter your name here","gravatarFromEmail":"This picture will show whenever you leave a comment. Click to customize it.","logInToExternalAccount":"Log in to use details from one of these accounts.","change":"Change","changeAccount":"Change Account","comment_registration":"0","userIsLoggedIn":"","isJetpack":"","text_direction":"ltr"};
+</script>
+<script type="text/javascript" src="./DOM Vs SAX Vs StAX parsers _ My learnings and experience with Java.._files/saved_resource(4)"></script>
+
+	<div id="carousel-reblog-box">
+		<form action="https://rdayala.wordpress.com/dom-vs-sax-parsers/#" name="carousel-reblog">
+			<textarea id="carousel-reblog-content" name="carousel-reblog-content" placeholder="Add your thoughts here... (optional)"></textarea>
+			<label for="carousel-reblog-to-blog-id" id="carousel-reblog-lblogid">Post to</label>
+			<select name="carousel-reblog-to-blog-id" id="carousel-reblog-to-blog-id">
+						</select>
+
+			<div class="submit">
+				<span class="canceltext"><a href="https://rdayala.wordpress.com/dom-vs-sax-parsers/#" class="cancel">Cancel</a></span>
+				<input type="submit" name="carousel-reblog-submit" class="button" id="carousel-reblog-submit" value="Reblog Post">
+				<input type="hidden" id="carousel-reblog-blog-id" value="5868570">
+				<input type="hidden" id="carousel-reblog-blog-url" value="https://rdayala.wordpress.com">
+				<input type="hidden" id="carousel-reblog-blog-title" value="My learnings and experience with Java.. ">
+				<input type="hidden" id="carousel-reblog-post-url" value="">
+				<input type="hidden" id="carousel-reblog-post-title" value="">
+			</div>
+
+			<input type="hidden" id="_wpnonce" name="_wpnonce" value="ef664b3373"><input type="hidden" name="_wp_http_referer" value="/dom-vs-sax-parsers/">		</form>
+
+		<div class="arrow"></div>
+	</div>
+<link rel="stylesheet" id="all-css-0-3" href="./DOM Vs SAX Vs StAX parsers _ My learnings and experience with Java.._files/saved_resource(5)" type="text/css" media="all">
+<script>
+var actionbardata = {"siteID":"5868570","siteName":"My learnings and experience with Java.. ","siteURL":"http:\/\/rdayala.wordpress.com","icon":"<img alt='' src='https:\/\/s0.wp.com\/i\/logo\/wpcom-gray-white.png' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/twentytwelve","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Frdayala.wordpress.com%2Fdom-vs-sax-parsers%2F&signup_flow=account","themeURL":"https:\/\/wordpress.com\/theme\/twentytwelve\/","xhrURL":"https:\/\/rdayala.wordpress.com\/wp-admin\/admin-ajax.php","nonce":"6461a9141b","isSingular":"1","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"3cfa404f69\" \/>","referer":"https:\/\/rdayala.wordpress.com\/dom-vs-sax-parsers\/","canFollow":"","feedID":"26332139","statusMessage":"","customizeLink":"https:\/\/rdayala.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Frdayala.wordpress.com%2Fdom-vs-sax-parsers%2F","postID":"441","shortlink":"https:\/\/wp.me\/PoCGm-77","canEditPost":"","editLink":"https:\/\/wordpress.com\/page\/rdayala.wordpress.com\/441","statsLink":"https:\/\/wordpress.com\/stats\/post\/441\/rdayala.wordpress.com","i18n":{"view":"View site","follow":"Follow","following":"Following","edit":"Edit","login":"Log in","signup":"Sign up","customize":"Customize","report":"Report this content","themeInfo":"Get theme: Twenty Twelve","shortlink":"Copy shortlink","copied":"Copied","followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/read\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","editSubs":"Manage subscriptions","viewReader":"View site in Reader","viewReadPost":"View post in Reader","subscribe":"Sign me up","enterEmail":"Enter your email address","followers":"","alreadyUser":"Already have a WordPress.com account? <a href=\"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Frdayala.wordpress.com%2Fdom-vs-sax-parsers%2F&signup_flow=account\">Log in now.<\/a>","stats":"Stats"}};
+</script>
+<script>
+var jetpackCarouselStrings = {"widths":[370,700,1000,1200,1400,2000],"is_logged_in":"","lang":"en","ajaxurl":"https:\/\/rdayala.wordpress.com\/wp-admin\/admin-ajax.php","nonce":"6e0549e2de","display_exif":"1","display_geo":"1","single_image_gallery":"1","single_image_gallery_media_file":"","background_color":"black","comment":"Comment","post_comment":"Post Comment","write_comment":"Write a Comment...","loading_comments":"Loading Comments...","download_original":"View full size <span class=\"photo-size\">{0}<span class=\"photo-size-times\">\u00d7<\/span>{1}<\/span>","no_comment_text":"Please be sure to submit some text with your comment.","no_comment_email":"Please provide an email address to comment.","no_comment_author":"Please provide your name to comment.","comment_post_error":"Sorry, but there was an error posting your comment. Please try again later.","comment_approved":"Your comment was approved.","comment_unapproved":"Your comment is in moderation.","camera":"Camera","aperture":"Aperture","shutter_speed":"Shutter Speed","focal_length":"Focal Length","copyright":"Copyright","comment_registration":"0","require_name_email":"1","login_url":"https:\/\/rdayala.wordpress.com\/wp-login.php?redirect_to=https%3A%2F%2Frdayala.wordpress.com%2Fdom-vs-sax-parsers%2F","blog_id":"5868570","meta_data":["camera","aperture","shutter_speed","focal_length","copyright"],"local_comments_commenting_as":"<fieldset><label for=\"email\">Email (Required)<\/label> <input type=\"text\" name=\"email\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-email-field\" \/><\/fieldset><fieldset><label for=\"author\">Name (Required)<\/label> <input type=\"text\" name=\"author\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-author-field\" \/><\/fieldset><fieldset><label for=\"url\">Website<\/label> <input type=\"text\" name=\"url\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-url-field\" \/><\/fieldset>","reblog":"Reblog","reblogged":"Reblogged","reblog_add_thoughts":"Add your thoughts here... (optional)","reblogging":"Reblogging...","post_reblog":"Post Reblog","stats_query_args":"blog=5868570&v=wpcom&tz=5&user_id=0&subd=rdayala","is_public":"1","reblog_enabled":""};
+</script>
+<script type="text/javascript" src="./DOM Vs SAX Vs StAX parsers _ My learnings and experience with Java.._files/saved_resource(6)"></script><div id="actionbar" class="actnbr-pub-twentytwelve actnbr-has-follow"><ul><li class="actnbr-ellipsis actnbr-hidden"> 			  <svg class="gridicon gridicon__ellipsis" height="24" width="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g><circle cx="5" cy="12" r="2"></circle><circle cx="19" cy="12" r="2"></circle><circle cx="12" cy="12" r="2"></circle></g></svg> 			  <div class="actnbr-popover tip tip-top-left actnbr-more"> 			  	<div class="tip-arrow"></div> 			  	<div class="tip-inner"> 				  <ul> 				    <li class="actnbr-sitename actnbr-hidden"><a href="http://rdayala.wordpress.com/"><img alt="" src="./DOM Vs SAX Vs StAX parsers _ My learnings and experience with Java.._files/wpcom-gray-white.png" class="avatar avatar-50" height="50" width="50"> My learnings and experience with Java.. </a></li> 				   	<li class="actnbr-folded-customize actnbr-hidden"><a href="https://rdayala.wordpress.com/wp-admin/customize.php?url=https%3A%2F%2Frdayala.wordpress.com%2Fdom-vs-sax-parsers%2F"><svg class="gridicon gridicon__customize" height="20px" width="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g><path d="M2 6c0-1.505.78-3.08 2-4 0 .845.69 2 2 2 1.657 0 3 1.343 3 3 0 .386-.08.752-.212 1.09.74.594 1.476 1.19 2.19 1.81L8.9 11.98c-.62-.716-1.214-1.454-1.807-2.192C6.753 9.92 6.387 10 6 10c-2.21 0-4-1.79-4-4zm12.152 6.848l1.34-1.34c.607.304 1.283.492 2.008.492 2.485 0 4.5-2.015 4.5-4.5 0-.725-.188-1.4-.493-2.007L18 9l-2-2 3.507-3.507C18.9 3.188 18.225 3 17.5 3 15.015 3 13 5.015 13 7.5c0 .725.188 1.4.493 2.007L3 20l2 2 6.848-6.848c1.885 1.928 3.874 3.753 5.977 5.45l1.425 1.148 1.5-1.5-1.15-1.425c-1.695-2.103-3.52-4.092-5.448-5.977z" data-reactid=".2.1.1:0.1b.0"></path></g></svg><span>Customize<span></span></span></a></li> 				     					<li class="actnbr-signup actnbr-hidden"><a href="https://wordpress.com/start/">Sign up</a></li> 				    <li class="actnbr-login actnbr-hidden"><a href="https://wordpress.com/log-in?redirect_to=https%3A%2F%2Frdayala.wordpress.com%2Fdom-vs-sax-parsers%2F&amp;signup_flow=account">Log in</a></li> 				     				    <li class="actnbr-shortlink actnbr-hidden"><a href="https://wp.me/PoCGm-77">Copy shortlink</a></li> 				    <li class="flb-report actnbr-hidden"><a href="http://en.wordpress.com/abuse/">Report this content</a></li> 				     				     				    <li class="actnbr-subs actnbr-hidden"><a href="https://subscribe.wordpress.com/">Manage subscriptions</a></li> 				     			      </ul> 			    </div> 		      </div> 		    </li> 	      </ul></div>
+<script type="text/javascript">
+( 'fetch' in window ) || document.write( '<script src="https://s0.wp.com/wp-includes/js/dist/vendor/wp-polyfill-fetch.min.js?m=1573572739h&#038;ver=3.0.0"></scr' + 'ipt>' );( document.contains ) || document.write( '<script src="https://s0.wp.com/wp-includes/js/dist/vendor/wp-polyfill-node-contains.min.js?m=1540208548h&#038;ver=3.26.0-0"></scr' + 'ipt>' );( window.FormData && window.FormData.prototype.keys ) || document.write( '<script src="https://s0.wp.com/wp-includes/js/dist/vendor/wp-polyfill-formdata.min.js?m=1550600082h&#038;ver=3.0.12"></scr' + 'ipt>' );( Element.prototype.matches && Element.prototype.closest ) || document.write( '<script src="https://s0.wp.com/wp-includes/js/dist/vendor/wp-polyfill-element-closest.min.js?m=1540208548h&#038;ver=2.0.2"></scr' + 'ipt>' );
+</script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script><script src="./DOM Vs SAX Vs StAX parsers _ My learnings and experience with Java.._files/w.js" type="text/javascript" async="" defer=""></script>
+<script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'5868570','blog_tz':'5','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'5868570','v':'wpcom','tz':'5','user_id':'0','post':'441','subd':'rdayala'}]);
+_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE0/bU8yQkx3RTR3RmZTSndoTltKYUtEYz9mTHN3MlJ2cWh3ZmwzZGYubUxraS83bFJ8by9SUXlTXWIrWEkxPVlFYj9qdEh6fjdSdHozNWQlVUE/L3l+WUl8fGwsSFhQKzl6Um9rejRNP05MLV02eXotMXkxRk9NPXplJUNXbVFFWGpFXyZMLEVFMWM2WnR5VGZhbVU/RzAtMWg2T3lVaTFhYV9FOXpMQW9GbGt1Zk9OVz9RZHNWRV9hMk1lNm5Zcm1NW3gzR3lQRi98R2s3OCVPV1UtN1NCbyxRenBCc3ZZTW5KNms2R1AwNWZ1Smp2SFNPYj85QXAwVlA3R3RGZFN1RXBHSVcwT1M='}]);
+_stq.push([ 'clickTrackerInit', '5868570', '441' ]);
+	</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:0px;width:0px;overflow:hidden" alt="" /></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script>
+<img src="./DOM Vs SAX Vs StAX parsers _ My learnings and experience with Java.._files/g.gif" alt=":)" id="wpstats"></body></html>
