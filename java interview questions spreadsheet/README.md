@@ -5861,7 +5861,19 @@ https://rdayala.wordpress.com/dom-vs-sax-parsers/
 `references:`
 http://tutorials.jenkov.com/java-xml/sax-vs-stax.html
 
+
+|                     |DOM    |SAX  |StAX   |
+|---------------------|-------|-----|-------|
+|**SCHEMA VALIDATION**|  yes  | yes |   no  |
+
 ----
+
+# XSD, XJC - serialize objects in xml
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
 
 
 
