@@ -5705,7 +5705,32 @@ https://dzone.com/articles/spring-di-patterns-the-good-the-bad-and-the-ugly
 http://www.javapractices.com/topic/TopicAction.do?Id=15
 
 ----
+
+# GC algorithm (mark and sweep)
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
+- [Mark-and-Sweep-Garbage-Collection-Algorithm-GeeksforGeeks](refs/Mark-and-Sweep-Garbage-Collection-Algorithm-GeeksforGeeks)
+
+`references:`
+https://www.geeksforgeeks.org/mark-and-sweep-garbage-collection-algorithm/
+
+- [Understanding-Java-Garbage-Collection-CUBRID-blog](refs/Understanding-Java-Garbage-Collection-CUBRID-blog)
+
+`references:`
+https://www.cubrid.org/blog/understanding-java-garbage-collection
+
+- [JVM-Garbage-Collectors-Baeldung](refs/JVM-Garbage-Collectors-Baeldung)
+
+`references:`
+https://www.baeldung.com/jvm-garbage-collectors
+
 ----
+
+
+
 ----
 ----
 ----

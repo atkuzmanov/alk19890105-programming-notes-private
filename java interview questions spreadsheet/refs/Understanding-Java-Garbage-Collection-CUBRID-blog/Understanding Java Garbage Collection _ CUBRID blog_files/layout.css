@@ -1,0 +1,157 @@
+.xe_content p{
+    margin-bottom:20px;
+}
+.first-time a:hover, .first-time a:focus{
+    color:#342f73;
+}
+/*.get-involved .more-link:hover {*/
+    /*color: #fedea5;*/
+/*}*/
+.owlHover .owl-with-ul { background: transparent; color: #000; }
+.search_btn{
+    background: transparent;
+}
+.nav-margin-left{
+    margin-left: 0;
+}
+@media (max-width: 1023px) {
+    .nav-margin-left{
+        margin-left: 176px;
+    }
+}
+
+.support_tab2 {
+    background-color: #ffffff;
+    background-image: url("../img/faq-support.png");
+    background-repeat: no-repeat;
+    cursor: pointer;
+    display: block;
+    height: 150px;
+    overflow: hidden;
+    position: absolute;
+    text-indent: -5000px;
+    /*top:73%;*/
+    /*bottom:33%;*/
+    width: 49px;
+    z-index: 10000;
+}
+@media (max-width:1024px) {
+    .support_tab2 {
+        background: #342f73 url("../img/support_tab_icon.png") no-repeat 40% 46%;
+        background-size: 37px 37px;
+        cursor: pointer;
+        display: block;
+        height: 45px;
+        width: 45px;
+        border-radius: 50%;
+        bottom: 15px;
+        right: 15px;
+        left: inherit;
+        overflow: hidden;
+        position: absolute;
+        text-indent: -5000px;
+        z-index: 10000;
+    }
+}
+.how_to_install{
+    margin-top: 30px;
+}
+.developer_icons .support-info .icons .fa {
+    font-size: 47px;
+}
+.developer_icons .support-info .feature{
+    margin-top: 0;
+}
+.developer_icons .support-info .jira-icon{
+    background-image: url("../icon/jira-black.png");
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    width: 47px;
+    height: 47px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+.developer_icons .support-info a.icons:hover ,
+.developer_icons .support-info a.icons:hover span{
+    color: #f68b2c;
+}
+.support-info a.icons:hover .jira-icon, .support-info .jira-icon:hover{
+    background-image: url("../icon/jira-orange.png");
+}
+.parallax-wrapper .support-info .feature {
+    display: inline-block;
+}
+.parallax-wrapper .support-info a.icons.feature:hover div.jira-icon {
+    background-image: url("../icon/jira-orange.png");
+}
+#header .header-inner .owl-contener, .cat-title{
+    top:0;
+}
+#features-rocket{
+    margin-bottom: 50px;
+}
+.documentation-div .steps-list {
+    margin-top: 30px;
+    padding-left: 45px;
+    padding-right: 45px;
+}
+.header-inner.sticky.nav-down ul.submenu-container{
+    top:61px;
+}
+@media (min-width:1024px) and (max-width: 1439px) {
+    .header-inner.sticky.nav-down ul.submenu-container{
+        top:64px;
+    }
+}
+@media (min-width:1440px) {
+    .header-inner.sticky.nav-down ul.submenu-container{
+        top:63px;
+    }
+}
+.heading-box.lined-title.contact_title_developer{
+    margin-top: 100px;
+}
+#accordion-to h3{
+    font-weight: 300;
+}
+/*Select2*/
+.select2-container--default .select2-selection--single .select2-selection__rendered{
+    text-align: left;
+    font-family: "Open Sans",sans-serif;
+    font-size: 15px;
+    font-style: italic;
+    font-weight: 500;
+    height: 50px;
+    color: #bbb !important;
+}
+.select2-container .select2-selection--single{
+    height: 50px !important;
+}
+.select2-container .select2-selection--single .select2-selection__rendered{
+    padding-top: 8px;
+}
+.select2-selection__arrow{
+    display: none;
+}
+.select2-container--default .select2-selection--single{
+    border-radius: 0 !important;
+}
+.select2-results__options .select2-results__option[aria-disabled="true"]{
+    display: none;
+}
+.select2-results__options li{
+    font-style: italic;
+    font-size: 15px;
+    color: #bbb !important;
+}
+
+@media (min-width: 1440px) {
+    .header-inner .logo img{
+        height: 56px;
+    }
+    .header-inner.sticky .logo img{
+        height: inherit;
+    }
+}
+
