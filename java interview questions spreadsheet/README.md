@@ -5948,8 +5948,14 @@ https://thoughts-on-java.org/generate-your-jaxb-classes-in-second/
 |-------|-----|-------|
 |       |  x  |   x   |
 
+- Please see:
+
+    - [XSD, XJC - serialize objects in xml](#xsd-xjc-serialize-objects-in-xml)
 
 ----
+
+
+
 ----
 ----
 ----
