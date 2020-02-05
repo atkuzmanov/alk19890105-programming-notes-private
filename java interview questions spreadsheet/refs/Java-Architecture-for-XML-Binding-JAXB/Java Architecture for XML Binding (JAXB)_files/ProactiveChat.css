@@ -1,0 +1,128 @@
+/* Apply the border to the right side */
+
+.rn_SyndicatedChatLogoImageDiv
+{
+    clear:right;
+    float: left;
+    vertical-align:top;
+    height: 40px;
+    margin-right: 10px;
+}
+.rn_SyndicatedChatHeaderLabelDiv
+{
+    height: 40px;
+    border-bottom: #036 1px solid;
+}
+
+.rn_SyndicatedChatHeaderLabel
+{
+    color: #036;
+    font-size:.875em;
+    font-weight:bold;
+    font-family:Verdana, Geneva, sans-serif;
+
+}
+.rn_SyndicatedChatQuestionDiv
+{
+    clear:right;
+    float: left;
+    width:180px;
+    height:100px;
+    padding-top:5px;
+}
+
+.rn_SyndicatedChatQuestionLabel
+{
+    font-size:.75em;
+    color: #666;
+    font-family:Verdana, Geneva, sans-serif;
+}
+
+.rn_SyndicatedChatAvatarDiv
+{
+    float: right;
+    height:100px;
+    width:100px;
+    padding-top:5px;
+}
+
+.rn_SyndicatedCheckbox
+{
+    margin: 5px 0px 5px 2px;
+    vertical-align:middle;
+}
+
+.rn_SyndicatedLabel
+{
+
+    margin: 0px 0px 0px 7px;
+    vertical-align:middle;
+}
+
+.yui-panel
+{
+    top:0pt;
+    position:relative;
+    border:2px solid #888;
+    overflow:hidden;
+}
+
+.rn_Dialog  .ft .yui-button button
+{
+    min-width: 50px;
+    margin-right:5px;
+}
+
+.yui-panel.rn_Dialog
+{
+    width:300px;
+}
+
+.yui-skin-sam .yui-panel .bd, .yui-skin-sam .yui-panel .ft
+{
+    background-color:#FFF;
+}
+
+.yui-skin-sam .yui-dialog .ft
+{
+    padding:5px 5px 5px 5px;
+    font-size:.75em;
+    font-family:Verdana, Geneva, sans-serif;
+}
+
+
+.yui-overlay, .yui-panel-container
+{
+    position: relative;
+}
+
+.yui-panel-container.yui-dialog.yui-simple-dialog
+{
+    /*position:absolute;*/  /*needed if dialog is modal*/
+}
+
+.yui-skin-sam .yui-panel .hd
+{
+    font-family:Verdana, Geneva, sans-serif;
+    font-size:.75em;
+    width: 290px;
+}
+
+.yui-skin-sam .yui-panel-container.shadow .underlay
+{
+    width:305px;
+    z-index: -9998;
+    filter: alpha(opacity=20);
+}
+
+.yui-skin-sam .mask
+{
+    background-color:#000000;
+    opacity:0.25;
+    filter: alpha(opacity=20);
+}
+
+
+
+
+
