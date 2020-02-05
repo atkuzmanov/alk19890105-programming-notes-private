@@ -1,0 +1,185 @@
+
+RightNow.Client.Controller.addCss(["https:\/\/sc-oal-en.widget.custhelp.com\/euf\/assets\/css\/syndicated_widgets\/standard\/ConditionalChatLink.css"]);RightNow.Client.Controller.includeCSS();if(!RightNow.Client.Event.evt_conditionalChatLinkAvailabilityResponse){RightNow.Client.Event.evt_conditionalChatLinkAvailabilityResponse=new RightNow.util.CustomEvent("evt_conditionalChatLinkAvailabilityResponse");}
+if(!RightNow.Client.Event.evt_conditionalChatLinkOffered){RightNow.Client.Event.evt_conditionalChatLinkOffered=new RightNow.util.CustomEvent("evt_conditionalChatLinkOffered");}
+if(!RightNow.Client.Event.evt_conditionalChatLinkClicked){RightNow.Client.Event.evt_conditionalChatLinkClicked=new RightNow.util.CustomEvent("evt_conditionalChatLinkClicked");}
+if(!RightNow.Client.Event.evt_updateOnCustomDataChange){RightNow.Client.Event.evt_updateOnCustomDataChange=new RightNow.util.CustomEvent("evt_updateOnCustomDataChange");}
+if(!RightNow.Client.Event.evt_updateWidgetData){RightNow.Client.Event.evt_updateWidgetData=new RightNow.util.CustomEvent("evt_updateWidgetData");}
+RightNow.Client.ConditionalChatLink=function()
+{var pollingOverrideMultiplier=1,count=25,interval=12000;function addChatDataParam(chatData,key,value)
+{if(chatData===undefined)
+chatData='';if(value===undefined||value===null||value.length===0)
+return chatData;if(chatData.length!==0)
+chatData+='&';chatData+=key+'='+value;return chatData;}
+function onChatLinkAvailabilityResponse(type,args,instance)
+{var result=args[0].data;var scope=args[1].scope;var eventScope=args[1];if(instance.instance_id!==eventScope.id)
+return;instance.queueId=result.q_id;instance.surveyData=result.survey_data;if(result&&result.pollingOverrideMultiplier!==undefined)
+{pollingOverrideMultiplier=result.pollingOverrideMultiplier;}
+if(result.rules!==undefined)
+{instance.escalation=result.rules.escalation;instance.ruleState=result.rules.state;}
+var minSessions=instance.attrs.min_sessions_avail;var waitThreshold=instance.attrs.wait_threshold;var availableSessionCount=0;var expectedWaitSeconds=0;var availableImmediately=false,availableWithWait=false,unavailableBusy=false,unavailableHours=false;if(result.stats)
+{availableSessionCount=result.stats.availableSessionCount;expectedWaitSeconds=parseInt(result.stats.expectedWaitSeconds,10);if(result.q_id>0&&availableSessionCount>=minSessions&&expectedWaitSeconds<=waitThreshold&&(availableSessionCount>0||expectedWaitSeconds>0))
+{if(expectedWaitSeconds===0)
+availableImmediately=true;else
+availableWithWait=true;}
+else
+{unavailableBusy=true;}}
+else if(result.out_of_hours)
+{unavailableHours=true;}
+var Dom=RightNow.util.Dom;if(availableImmediately)
+{if(instance._containerElement)
+{Dom.addClass(instance._containerElement,'rn_ChatAvailable');}
+if(instance._infoElement)
+{instance._infoSpan.innerHTML=parseMacro(instance.attrs.label_available_immediately_template,expectedWaitSeconds,instance);Dom.addClass(instance._infoElement,'rn_ChatAvailable');}
+if(instance._linkElement)
+{instance._linkElement.innerHTML=instance._chatLinkDiv.innerHTML;Dom.addClass(instance._linkElement,'rn_ChatAvailable');}}
+else if(availableWithWait)
+{if(instance._containerElement)
+{Dom.addClass(instance._containerElement,'rn_ChatAvailable');}
+if(instance._infoElement)
+{instance._infoSpan.innerHTML=parseMacro(instance.attrs.label_available_with_wait_template,expectedWaitSeconds,instance);Dom.addClass(instance._infoElement,'rn_ChatAvailable');}
+if(instance._linkElement)
+{instance._linkElement.innerHTML=instance._chatLinkDiv.innerHTML;Dom.addClass(instance._linkElement,'rn_ChatAvailable');}}
+else if(unavailableBusy)
+{if(instance._containerElement)
+{Dom.removeClass(instance._containerElement,'rn_ChatAvailable');}
+if(instance._infoElement)
+{instance._infoSpan.innerHTML=parseMacro(instance.attrs.label_unavailable_busy_template,expectedWaitSeconds,instance);Dom.removeClass(instance._infoElement,'rn_ChatAvailable');}
+if(instance._linkElement)
+{instance._linkElement.innerHTML=instance._chatLink.innerHTML;Dom.removeClass(instance._linkElement,'rn_ChatAvailable');}}
+else if(unavailableHours)
+{if(instance._containerElement)
+{Dom.removeClass(instance._containerElement,'rn_ChatAvailable');}
+if(instance._infoElement)
+{instance._infoSpan.innerHTML=instance.attrs.label_unavailable_hours;Dom.removeClass(instance._infoElement,'rn_ChatAvailable');}
+if(instance._linkElement)
+{instance._linkElement.innerHTML=instance._chatLink.innerHTML;Dom.removeClass(instance._linkElement,'rn_ChatAvailable');}}
+else
+{if(instance._containerElement)
+{Dom.removeClass(instance._containerElement,'rn_ChatAvailable');}
+if(instance._infoElement)
+{instance._infoSpan.innerHTML=instance.attrs.label_default;Dom.removeClass(instance._infoElement,'rn_ChatAvailable');}
+if(instance._linkElement)
+{instance._linkElement.innerHTML=instance._chatLinkDiv.innerHTML;Dom.removeClass(instance._linkElement,'rn_ChatAvailable');}}
+if(!instance._chatOffered&&(availableImmediately||availableWithWait)&&!instance.attrs.test)
+{instance._chatOffered=true;instance.CT.submitClickAction(instance.CT.DQA_WIDGET_STATS,{w:instance.attrs.type.toString(),offers:1});RightNow.Client.ActionCapture.record('conditionalChatLink','available');RightNow.Client.Event.evt_conditionalChatLinkOffered.fire(instance.eo);}
+if(pollingOverrideMultiplier&&instance.attrs.enable_polling)
+startPolling(instance);}
+function parseMacro(message,expectedWaitSeconds,instance)
+{var expectedWaitMinutes=Math.floor(expectedWaitSeconds/60);if(message.indexOf('{NUM_MINUTES}')!==-1)
+{expectedWaitSeconds=expectedWaitSeconds%60;message=message.replace('{NUM_MINUTES}',expectedWaitMinutes).replace('{MINUTES}',expectedWaitMinutes===1?instance.data.label_minute:instance.data.label_minutes);}
+var expectedWaitSecondsPadded=expectedWaitSeconds<10?'0'+expectedWaitSeconds.toString():expectedWaitSeconds;message=message.replace('{TIME}',expectedWaitMinutes+':'+expectedWaitSecondsPadded);return message.replace('{NUM_SECONDS}',expectedWaitSeconds).replace('{SECONDS}',expectedWaitSeconds===1?instance.data.label_second:instance.data.label_seconds);}
+function startPolling(instance)
+{if(count===0)
+{interval=60000;}
+count--;setTimeout(function(){instance.checkChatLinkAvailability(null,instance);},pollingOverrideMultiplier*interval);pollingOverrideMultiplier=1;}
+this.chatLinkClicked=function(context)
+{var path=this.attrs.chat_login_page+'/request_source/'+this.data.request_source;var chatData='';if(!this.attrs.ignore_preroute)
+{var surveyParms="",surveyData=this.surveyData;if(surveyData)
+{if(surveyData.send_id)
+surveyParms+="/survey_send_id/"+surveyData.send_id+"/survey_send_delay/"+surveyData.send_delay+(surveyData.send_auth?"/survey_send_auth/"+surveyData.send_auth:'');if(surveyData.comp_id)
+surveyParms+="/survey_comp_id/"+surveyData.comp_id+(surveyData.comp_auth?"/survey_comp_auth/"+surveyData.comp_auth:'');if(surveyData.term_id)
+surveyParms+="/survey_term_id/"+surveyData.term_id+(surveyData.term_auth?"/survey_term_auth/"+surveyData.term_auth:'');}
+path+=surveyParms;chatData=addChatDataParam(chatData,'q_id',this.queueId);}
+if(this.data.p)
+{path+='/p/'+this.data.p;}
+if(this.data.c)
+{path+='/c/'+this.data.c;}
+chatData=addChatDataParam(chatData,'referrerUrl',encodeURIComponent(window.location.href));chatData=addChatDataParam(chatData,'v_id',this.attrs.visitor_id);chatData=addChatDataParam(chatData,'ee_s_id',this.attrs.ee_session_id);chatData=addChatDataParam(chatData,'ee_id',this.attrs.ee_id);chatData=addChatDataParam(chatData,'es_id',this.attrs.estara_id);chatData=addChatDataParam(chatData,'state',this.ruleState);chatData=addChatDataParam(chatData,'escalation',this.escalation);if(chatData.length!==0)
+path+='/chat_data/'+RightNow.Client.Text.Encoding.base64Encode(chatData);if(this.data.common_fields_in_url)
+path+=this.data.common_fields_in_url;if(this.data.custom_fields_in_url)
+path+=this.data.custom_fields_in_url;if(RightNow.Client.Controller.session)
+path+=RightNow.Client.Controller.session;if(this.eo.pta)
+{if(path.match('/app/'))
+path=path.substr(4);path=this.data.base_url+'/ci/pta/login/redirect'+path+'/p_li/'+this.eo.pta;}
+else
+{path=this.data.base_url+path;}
+var callback=null;if(this.attrs.open_in_new_window)
+{window.open(path,'chatLauncher','width='+this.attrs.chat_login_page_width+',height='+this.attrs.chat_login_page_height+',scrollbars=1,resizable=1');}
+else
+{this.navigateToUrl=path;callback=function()
+{var callback=function(){window.location=this.navigateToUrl;}
+if(!this._chatLinkClicked&&!this.attrs.test)
+{RightNow.Client.ActionCapture.record('conditionalChatLink','click');RightNow.Client.ActionCapture.flush(callback,this);this._chatLinkClicked=true;}
+else
+{callback.apply(this);}}}
+if(!this._chatLinkClicked&&!this.attrs.test)
+{this.CT.submitClickAction(this.CT.DQA_WIDGET_STATS,{w:this.attrs.type.toString(),accepts:1},callback,this);if(!callback)
+{RightNow.Client.ActionCapture.record('conditionalChatLink','click');this._chatLinkClicked=true;}}
+else if(callback)
+{callback.apply(this);}
+RightNow.Client.Event.evt_conditionalChatLinkClicked.fire(this.eo);};this.init=function()
+{RightNow.Client.Event.evt_conditionalChatLinkAvailabilityResponse.subscribe(onChatLinkAvailabilityResponse,this);RightNow.Client.Event.evt_updateWidgetData.subscribe(updateWidgetData,this);if(window.location.protocol==='https:'&&this.data.uri.indexOf('http:')===0)
+this.data.uri=this.data.uri.replace(/http:/i,'https:');this.eo=new RightNow.Client.EventObject(this.name,this.instance_id);this.eo.uri=this.data.uri;this.eo.dsType=RightNow.Client.Const.INTERNAL_TRADITIONAL;this.eo.dsCallbackField="callback";this.eo.dsResponseField="responseType";this.eo.dsResponseValue="JSON";RightNow.Client.Event.evt_widgetLoaded.fire(this.eo);};this.render=function()
+{if(!this.attrs.test)
+{RightNow.Client.ActionCapture.record('conditionalChatLink','render');}
+this._containerElement=document.getElementById(this.attrs.container_element_id);this._linkElement=document.getElementById(this.attrs.link_element_id);this._infoElement=document.getElementById(this.attrs.info_element_id);if(!this._linkElement)
+return;this._linkElementHTML=this._linkElement.innerHTML;var Dom=RightNow.util.Dom;if(this._containerElement)
+Dom.addClass(this._containerElement,'rn_ConditionalChatLink');this._chatLinkDiv=document.createElement('div');this._chatLinkDiv.innerHTML=this.view;this._chatLink=this._chatLinkDiv.firstChild;while(this._linkElement.firstChild)
+{this._chatLink.appendChild(this._linkElement.removeChild(this._linkElement.firstChild));}
+if(this._infoElement)
+{this._infoSpan=document.createElement('span');this._infoElement.appendChild(this._infoSpan);}
+RightNow.Client.Event.evt_updateOnCustomDataChange.subscribe(OnCustomDataChange,this);if(!this.attrs.enable_availability_check||this.attrs.test)
+{if(this._containerElement)
+Dom.addClass(this._containerElement,'rn_ChatAvailable');if(this._linkElement)
+{this._linkElement.appendChild(this._chatLink);this._infoSpan.innerHTML=this.attrs.label_default;Dom.addClass(this._linkElement,'rn_ChatAvailable');}
+if(this._infoElement)
+Dom.addClass(this._infoElement,'rn_ChatAvailable');RightNow.Client.Event.evt_beforeDataRequest.fire(this.eo);this.CT.submitClickAction(this.CT.DQA_WIDGET_STATS,{w:this.attrs.type.toString(),offers:1});RightNow.Client.ActionCapture.record('conditionalChatLink','available');RightNow.Client.Event.evt_conditionalChatLinkOffered.fire(this.eo);}
+else
+{this.checkChatLinkAvailability(null,this);}};this.execute=function(){};this.checkChatLinkAvailability=function(callback,scope)
+{this.eo.onComplete=RightNow.Client.Event.evt_conditionalChatLinkAvailabilityResponse;this.eo.callback=callback;this.eo.scope=scope;this.eo.uri=scope.data.uri;RightNow.Client.Event.evt_dataRequest.fire(this.eo);};function OnCustomDataChange(type,args,instance)
+{if(instance.instance_id!==args[0].id)
+return;instance.updateCustomFieldUrl(args[0].data.dataFields,args[0].data.chatQueueCustomFields);}
+this.updateCustomFieldUrl=function(dataFields,chatQueueFields)
+{var customDataName=dataFields.name;var customDataValue=dataFields.value;var commonFields={};if(this.attrs.common_fields)
+commonFields=RightNow.lang.JSON.parse(this.attrs.common_fields);var customFields={};if(this.attrs.custom_fields)
+customFields=RightNow.lang.JSON.parse(this.attrs.custom_fields);if(customDataName.indexOf('contacts.')===0||customDataName.indexOf('incidents.')===0)
+{commonFields[customDataName]=customDataValue;this.attrs.common_fields=RightNow.lang.JSON.stringify(commonFields);if(customDataName.indexOf('incidents.prod')===0&&this.data.p)
+{this.data.p=commonFields['incidents.prod'];return;}
+if(customDataName.indexOf('incidents.cat')===0&&this.data.c)
+{this.data.c=commonFields['incidents.cat'];return;}
+this.data.common_fields_in_url="";for(var key in commonFields)
+{var urlValue=commonFields[key];if(urlValue!==undefined&&urlValue!=='')
+{this.data.common_fields_in_url+="/"+key+"/"+encodeURIComponent(urlValue);}}}
+else
+{customFields[customDataName]=customDataValue;this.attrs.custom_fields=RightNow.lang.JSON.stringify(customFields);this.data.custom_fields_in_url="";for(var key in this.data.customFields)
+{var customFieldValue=customFields[key];if(customFieldValue!==undefined&&customFieldValue!=='')
+{this.data.customFields[key]&&(this.data.custom_fields_in_url+="/incidents."+this.data.customFields[key].col_name+"/"+encodeURIComponent(customFieldValue));}}}
+if(chatQueueFields[customDataName]!==undefined)
+{chatQueueFields[customDataName]=customDataValue;this.data.uri=this.data.constant_uri;for(var key in commonFields)
+{if(chatQueueFields[key]!==undefined)
+{var uriKey="";var uriValue=commonFields[key];if(uriValue!==undefined&&uriValue!=='')
+{if(key==='contacts.last_name')
+{uriKey='contact_lname';}
+else if(key==='contacts.first_name')
+{uriKey='contact_fname';}
+else if(key==='contacts.email')
+{uriKey='contact_email';}
+if(uriKey!=='')
+{this.data.uri+="/"+uriKey+"/"+encodeURIComponent(uriValue)}}}}
+for(var key in this.data.customFields)
+{if(chatQueueFields[key]!==undefined)
+{urlValue=customFields[key];if(urlValue!==undefined&&urlValue!=='')
+{this.data.uri+="/_icf_"+this.data.customFields[key].custom_field_id+"/"+encodeURIComponent(urlValue);}}}}}
+function updateWidgetData(type,args,instance)
+{if(instance.instance_id!==args[0].id)
+return;instance.OnUpdateWidgetData(args[0].data.customFields,args[0].data.commonFields);}
+this.OnUpdateWidgetData=function(customFields,commonFields)
+{var currentCommonFields={};if(this.attrs.common_fields)
+currentCommonFields=RightNow.lang.JSON.parse(this.attrs.common_fields);for(var key in commonFields)
+{currentCommonFields[key]=commonFields[key]}
+this.attrs.common_fields=RightNow.lang.JSON.stringify(currentCommonFields);var currentCustomFields={};if(this.attrs.custom_fields)
+currentCustomFields=RightNow.lang.JSON.parse(this.attrs.custom_fields);for(var key in customFields)
+{currentCustomFields[key]=customFields[key];}
+this.attrs.custom_fields=RightNow.lang.JSON.stringify(currentCustomFields);this.data.custom_fields_in_url=this.data.common_fields_in_url="";for(var key in this.data.customFields)
+{var urlValue=currentCustomFields[key];if(urlValue!==undefined&&urlValue!=='')
+{this.data.custom_fields_in_url+="/_icf_"+this.data.customFields[key].custom_field_id+"/"+encodeURIComponent(urlValue)+"/incidents."+this.data.customFields[key].col_name+"/"+encodeURIComponent(urlValue);}}
+for(var key in currentCommonFields)
+{var urlValue=currentCommonFields[key];if(urlValue!==undefined&&urlValue!=='')
+{if(key.indexOf('incidents.prod')===0&&this.data.p)
+{this.data.p=urlValue;continue;}
+if(key.indexOf('incidents.cat')===0&&this.data.c)
+{this.data.c=urlValue;continue;}
+this.data.common_fields_in_url+="/"+key+"/"+encodeURIComponent(urlValue);}}}};var sccl_4499221=new RightNow.Client.ConditionalChatLink();sccl_4499221.instance_id="sccl_4499221";sccl_4499221.uri="https://sc-oal-en.custhelp.com/";sccl_4499221.ds="ci/ds/get";sccl_4499221.CT=new RightNow.Client.CT("https://sc-oal-en.custhelp.com/ci/dqa/publish");sccl_4499221.name="ConditionalChatLink";sccl_4499221.data={"base_url":"https:\/\/sc-oal-en.custhelp.com","request_source":8,"p":null,"c":"17","label_minute":"Minute","label_minutes":"Minutes","label_second":"Second","label_seconds":"Seconds","cached_content_server":"https:\/\/sc-oal-en.widget.custhelp.com","uri":"https:\/\/sc-oal-en.widget.custhelp.com\/ci\/ajaxRequestOptional\/checkChatQueue\/avail_type\/sessions\/cacheable\/true\/cat\/17\/prod\/0\/_icf_6\/170\/_icf_11\/Java%20Architecture%20for%20XML%20Binding%20%28JAXB%29\/_icf_21\/https%3A%2F%2Fwww.oracle.com%2Ftechnical-resources%2Farticles%2Fjavase%2Fjaxb.html\/_icf_14\/SC%20Ocom%20HQ","constant_uri":"https:\/\/sc-oal-en.widget.custhelp.com\/ci\/ajaxRequestOptional\/checkChatQueue\/avail_type\/sessions\/cacheable\/true\/cat\/17","common_fields_in_url":"\/incidents.prod\/0","customFields":{"1":{"attr":0,"col_name":"c$anonymous_chat","custom_field_id":1,"group_name":null,"lang_hint":"Did the end-user chatter supply their email address?","visibility":263214,"menu_items":null,"hint":null,"min_val":null,"max_val":null,"data_type":3,"default_value":null,"field_size":null,"lang_name":"Anonymous Chat","mask":null,"required":0,"value":null,"readonly":null},"2":{"attr":0,"col_name":"c$region","custom_field_id":2,"group_name":null,"lang_hint":"Region of Chat request","visibility":263215,"menu_items":{"1":"NAS","2":"LAD","3":"EMEA","4":"APAC"},"hint":null,"min_val":null,"max_val":null,"data_type":4,"default_value":null,"field_size":4,"lang_name":"Region","mask":null,"required":0,"value":null,"readonly":null},"3":{"attr":0,"col_name":"c$company","custom_field_id":3,"group_name":null,"lang_hint":"Company supplied by Chat visitor","visibility":263215,"menu_items":null,"hint":null,"min_val":null,"max_val":null,"data_type":8,"default_value":null,"field_size":255,"lang_name":"Company","mask":null,"required":0,"value":null,"readonly":null},"5":{"attr":0,"col_name":"c$language","custom_field_id":5,"group_name":null,"lang_hint":"Language of preference for chat request.","visibility":263215,"menu_items":{"8":"English","9":"Japanese","10":"Portuguese","11":"Simplified Chinese","12":"Spanish"},"hint":null,"min_val":null,"max_val":null,"data_type":4,"default_value":null,"field_size":18,"lang_name":"Language (CF)","mask":null,"required":0,"value":null,"readonly":null},"6":{"attr":0,"col_name":"c$sc_country","custom_field_id":6,"group_name":null,"lang_hint":null,"visibility":263343,"menu_items":{"515":"Albania","13":"Algeria","14":"Andorra","15":"Angola","16":"Anguilla","17":"Antigua and Barbuda","18":"Argentina","19":"Armenia","20":"Aruba","21":"Australia","22":"Austria","23":"Azerbaijan","24":"Bahamas","25":"Bahrain","26":"Bangladesh","27":"Barbados","514":"Belarus","28":"Belgium","29":"Belize","30":"Benin","31":"Bermuda","32":"Bhutan","33":"Bolivia","34":"Bosnia and Herzegovina","35":"Botswana","36":"Brazil","37":"Brunei Darussalam","38":"Bulgaria","39":"Burkina Faso","40":"Burundi","41":"Cambodia","42":"Cameroon","43":"Canada","44":"Cape Verde","45":"Cayman Islands","46":"Central African Republic","47":"Chad","48":"Chile","49":"China","50":"Colombia","51":"Comoros","52":"Congo","53":"Congo, The Democratic Republic of the","54":"Costa Rica","55":"Cote d'Ivoire","56":"Croatia","513":"Cyprus","57":"Czech Republic","58":"Denmark","59":"Djibouti","60":"Dominica","61":"Dominican Republic","62":"Ecuador","63":"Egypt","64":"El Salvador","65":"Equatorial Guinea","261":"Estonia","66":"Ethiopia","67":"Finland","68":"France","69":"French Guiana","70":"Gabon","71":"Georgia","72":"Germany","73":"Ghana","74":"Greece","75":"Grenada","76":"Guadeloupe","77":"Guatemala","78":"Guinea","79":"Guinea-Bissau","80":"Guyana","81":"Haiti","82":"Honduras","83":"Hong Kong","84":"Hungary","85":"India","86":"Indonesia","87":"Iraq","88":"Ireland","507":"Israel","89":"Italy","90":"Jamaica","260":"Japan","91":"Jordan","92":"Kazakhstan","93":"Kenya","512":"Kosovo","94":"Kuwait","95":"Kyrgyzstan","96":"Lao People's Democratic Republic","97":"Latvia","98":"Lebanon","99":"Lesotho","100":"Liberia","101":"Libyan Arab Jamahiriya","102":"Lithuania","103":"Luxembourg","104":"Madagascar","105":"Malawi","106":"Malaysia","107":"Maldives","108":"Mali","510":"Malta","109":"Martinique","110":"Mauritania","111":"Mauritius","112":"Mexico","509":"Moldova","113":"Mongolia","114":"Montenegro","115":"Morocco","116":"Mozambique","117":"Namibia","118":"Nepal","119":"Netherlands","120":"New Zealand","121":"Nicaragua","122":"Niger","123":"Nigeria","511":"North Macedonia","124":"Norway","125":"Oman","126":"Pakistan","127":"Panama","128":"Paraguay","129":"Peru","130":"Philippines","131":"Poland","132":"Portugal","133":"Puerto Rico","134":"Qatar","135":"Romania","136":"Russia","137":"Rwanda","138":"Saint Lucia","139":"Saint Vincent and the Grenadines","140":"Sao Tome and Principe","141":"Saudi Arabia","142":"Senegal","494":"Serbia","143":"Seychelles","144":"Sierra Leone","145":"Singapore","146":"Slovakia","147":"Slovenia","148":"Somalia","149":"South Africa","150":"South Korea","151":"Spain","152":"Sri Lanka","153":"Suriname","154":"Swaziland","155":"Sweden","156":"Switzerland","157":"Taiwan","158":"Tajikistan","159":"Tanzania","160":"Thailand","161":"Togo","162":"Trinidad and Tobago","163":"Tunisia","164":"Turkey","165":"Turkmenistan","166":"Uganda","167":"Ukraine","168":"United Arab Emirates","169":"United Kingdom","170":"United States","171":"Uruguay","172":"Uzbekistan","173":"Venezuela","174":"Vietnam","175":"Virgin Islands, British","176":"Virgin Islands, U.S.","177":"Western Sahara","178":"Yemen","179":"Zambia","180":"Zimbabwe"},"hint":null,"min_val":null,"max_val":null,"data_type":4,"default_value":null,"field_size":37,"lang_name":"SC_COUNTRY","mask":null,"required":0,"value":null,"readonly":null},"7":{"attr":0,"col_name":"c$sc_language","custom_field_id":7,"group_name":null,"lang_hint":"Language of preference for chat request.","visibility":263343,"menu_items":{"181":"English","182":"Chinese - Simplified","183":"Chinese - Traditional","184":"Dutch","185":"French","186":"German","187":"Italian","188":"Korean","189":"Polish","190":"Portuguese","191":"Russian","192":"Spanish","193":"Turkish"},"hint":null,"min_val":null,"max_val":null,"data_type":4,"default_value":null,"field_size":21,"lang_name":"SC_LANGUAGE","mask":null,"required":1,"value":null,"readonly":null},"10":{"attr":0,"col_name":"c$sc_source","custom_field_id":10,"group_name":null,"lang_hint":null,"visibility":263343,"menu_items":{"205":"Chat","206":"Email","207":"Internal Escalation","208":"Live Call","209":"Other","210":"Voicemail"},"hint":null,"min_val":null,"max_val":null,"data_type":4,"default_value":null,"field_size":19,"lang_name":"SC_SOURCE","mask":null,"required":0,"value":null,"readonly":null},"8":{"attr":16,"col_name":"c$sc_categories","custom_field_id":8,"group_name":null,"lang_hint":null,"visibility":263343,"menu_items":{"194":"Non-Sales Other","195":"Non-Sales Support","196":"Oracle Employee","197":"Partner","198":"Sales-Lead","199":"Sales-NoLead","200":"Sales-Reengagement","201":"Student","202":"Transfer"},"hint":null,"min_val":null,"max_val":null,"data_type":4,"default_value":null,"field_size":18,"lang_name":"SC_CATEGORIES","mask":null,"required":1,"value":null,"readonly":null},"9":{"attr":0,"col_name":"c$sc_sentiment","custom_field_id":9,"group_name":null,"lang_hint":null,"visibility":263343,"menu_items":{"203":"Negative","204":"Positive"},"hint":null,"min_val":null,"max_val":null,"data_type":4,"default_value":null,"field_size":8,"lang_name":"SC_SENTIMENT","mask":null,"required":1,"value":null,"readonly":null},"11":{"attr":0,"col_name":"c$sc_web_page_title","custom_field_id":11,"group_name":null,"lang_hint":null,"visibility":263343,"menu_items":null,"hint":null,"min_val":null,"max_val":null,"data_type":8,"default_value":null,"field_size":255,"lang_name":"SC_WEB_PAGE_TITLE","mask":null,"required":0,"value":null,"readonly":null},"21":{"attr":0,"col_name":"c$sc_web_page_url","custom_field_id":21,"group_name":null,"lang_hint":null,"visibility":263343,"menu_items":null,"hint":null,"min_val":null,"max_val":null,"data_type":8,"default_value":null,"field_size":255,"lang_name":"SC_WEB_PAGE_URL","mask":null,"required":0,"value":null,"readonly":null},"14":{"attr":0,"col_name":"c$sc_chat_invite_name","custom_field_id":14,"group_name":null,"lang_hint":null,"visibility":263343,"menu_items":null,"hint":null,"min_val":null,"max_val":null,"data_type":8,"default_value":null,"field_size":255,"lang_name":"SC_CHAT_INVITE_NAME","mask":null,"required":0,"value":null,"readonly":null},"32":{"attr":0,"col_name":"c$sc_qrchannel","custom_field_id":32,"group_name":null,"lang_hint":null,"visibility":263339,"menu_items":null,"hint":null,"min_val":null,"max_val":null,"data_type":8,"default_value":null,"field_size":255,"lang_name":"SC_QRCHANNEL","mask":null,"required":0,"value":null,"readonly":null},"33":{"attr":0,"col_name":"c$sc_lead_processed","custom_field_id":33,"group_name":null,"lang_hint":null,"visibility":263343,"menu_items":null,"hint":null,"min_val":null,"max_val":null,"data_type":3,"default_value":null,"field_size":null,"lang_name":"SC_LEAD_PROCESSED","mask":null,"required":0,"value":null,"readonly":null}},"custom_fields_in_url":"\/_icf_6\/170\/incidents.c$sc_country\/170\/_icf_11\/Java%20Architecture%20for%20XML%20Binding%20%28JAXB%29\/incidents.c$sc_web_page_title\/Java%20Architecture%20for%20XML%20Binding%20%28JAXB%29\/_icf_21\/https%3A%2F%2Fwww.oracle.com%2Ftechnical-resources%2Farticles%2Fjavase%2Fjaxb.html\/incidents.c$sc_web_page_url\/https%3A%2F%2Fwww.oracle.com%2Ftechnical-resources%2Farticles%2Fjavase%2Fjaxb.html\/_icf_14\/SC%20Ocom%20HQ\/incidents.c$sc_chat_invite_name\/SC%20Ocom%20HQ"};sccl_4499221.attrs={"enable_availability_check":false,"enable_polling":true,"ignore_preroute":false,"wait_threshold":40,"min_sessions_avail":0,"p":"","c":"17","custom_fields":"{\"11\":\"Java Architecture for XML Binding (JAXB)\",\"14\":\"SC Ocom HQ\",\"21\":\"https:\/\/www.oracle.com\/technical-resources\/articles\/javase\/jaxb.html\",\"6\":\"170\"}","chat_login_page":"\/app\/chat\/sc_launch_v3","chat_login_page_width":400,"chat_login_page_height":600,"open_in_new_window":true,"label_available_with_wait_template":"An agent should be available in {TIME} ({NUM_MINUTES} {MINUTES} and {NUM_SECONDS} {SECONDS}).","label_available_immediately_template":"Agents are available with no wait time.","label_unavailable_busy_template":"All agents are busy.","label_unavailable_hours":"We're sorry, chat is currently unavailable.","label_default":"Chat","container_element_id":"oReactiveChatContainer","link_element_id":"atgchat-flyout","info_element_id":"atgchat-flyout-info","common_fields":"{\"incidents.prod\":\"0\"}","instance_id":"sccl_4499221","module":"ConditionalChatLink","ruleid":"37959233","type":7,"vstype":4,"widget_id":"4499221","widget_name":"chat_conditional","instance":"conditionalchatlink"};sccl_4499221.view="<a id=\"rn_sccl_4499221_Link\" href=\"javascript:void(0);\" onclick=\"sccl_4499221.chatLinkClicked();\"><\/a>\n";RightNow.Client.Controller.verifyDiv(sccl_4499221.attrs.div_id);sccl_4499221.init();if(document.readyState==="complete"){sccl_4499221.render(sccl_4499221);}else{RightNow.util.Event.onDOMReady(sccl_4499221.render,sccl_4499221,true);}
+var _rnq=_rnq||[];_rnq.push({"uh":"542ff6e6","uc":"sc-oal-en.widget.custhelp.com\/ci\/widgetService\/get","b":"ca101394","i":"oal_ces:sc_oal_en","f":"rnw","p":"CP Syndicated Widget","v":"19.8.0.1-b253-sp4","th":"www.rnengage.com"});
+(function(e){var b,d,a=document.createElement("iframe"),c=document.getElementsByTagName("script");a.src="javascript:false";a.title="Action Capture";a.role="presentation";(a.frameElement||a).style.cssText="position:absolute;width:0;height:0;border:0";c=c[c.length-1];c.parentNode.insertBefore(a,c);try{b=a.contentWindow.document}catch(f){d=document.domain,a.src="javascript:var d=document.open();d.domain='"+d+"';void(0);",b=a.contentWindow.document}b.open()._l=function(){for(var a;e.length;)a=this.createElement("script"),
+d&&(this.domain=d),a.src=e.pop(),this.body.appendChild(a)};b.write('<body onload="document._l();">');b.close()})(["https://www.rnengage.com/api/e/ca101394/e.js","//www.rnengage.com/api/1/javascript/acs.js"]);

@@ -5874,6 +5874,66 @@ http://tutorials.jenkov.com/java-xml/sax-vs-stax.html
 |-------|-----|-------|
 |       |  x  |   x   |
 
+```text
+XSD
+```
+
+- XML Schema (W3C) (XSD)
+
+`references:`
+https://en.wikipedia.org/wiki/XML_Schema_(W3C)
+
+- XML Schema Tutorial
+
+`references:`
+https://www.w3schools.com/xml/schema_intro.asp
+
+- XSD Tutorial
+
+`references:`
+https://www.tutorialspoint.com/xsd/index.htm
+
+- XML TECHNOLOGY
+
+`references:`
+https://www.w3.org/standards/xml/
+
+```text
+Serialize Deserialize XML in Java with Jackson
+```
+
+- [Serialize-Deserialize-XML-Java-with-Jackson](refs/Serialize-Deserialize-XML-Java-with-Jackson)
+
+`references:`
+https://stackabuse.com/serialize-and-deserialize-xml-in-java-with-jackson/
+
+```text
+JAXB (Java Architecture for XML Binding)
+```
+
+- [Guide-to-JAXB-Baeldung](refs/Guide-to-JAXB-Baeldung)
+
+`references:`
+https://www.baeldung.com/jaxb
+
+- [Using-JAXB-for-XML-With-Java-DZone](refs/Using-JAXB-for-XML-With-Java-DZone)
+
+`references:`
+https://dzone.com/articles/using-jaxb-for-xml-with-java
+
+- [Java-Architecture-for-XML-Binding-JAXB](refs/Java-Architecture-for-XML-Binding-JAXB)
+
+`references:`
+https://www.oracle.com/technical-resources/articles/javase/jaxb.html
+
+```text
+XJC
+```
+
+- XJC
+
+`references:`
+https://docs.oracle.com/javase/9/tools/xjc.htm#JSWOR741
 
 
 

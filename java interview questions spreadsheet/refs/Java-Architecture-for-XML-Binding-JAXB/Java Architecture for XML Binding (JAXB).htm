@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)https://www.oracle.com/technical-resources/articles/javase/jaxb.html -->
+<html lang="en-US" class="js history hashchange cssgradients rgba no-touch boxshadow ishttps"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+	<title>Java Architecture for XML Binding (JAXB)</title>
+	<meta name="Title" content="Java Architecture for XML Binding (JAXB)">
+	
+		<meta name="Description" content="Overview of the JAXB API">
+	
+	<meta name="Keywords" content="Overview of the JAXB API">
+	
+<!-- Container/Display Start -->
+
+<!-- _Raw-Text -->
+	<!-- css / js files start -->
+	<iframe src="javascript:void(0)" title="" style="width: 0px; height: 0px; border: 0px; display: none;" src="./Java Architecture for XML Binding (JAXB)_files/saved_resource.html"></iframe><script type="text/javascript" async="" src="./Java Architecture for XML Binding (JAXB)_files/f.txt"></script><script type="text/javascript" async="" src="./Java Architecture for XML Binding (JAXB)_files/infinity_common.js"></script><script type="text/javascript" async="" src="./Java Architecture for XML Binding (JAXB)_files/elqCfg.min.js"></script><script async="" src="./Java Architecture for XML Binding (JAXB)_files/bk-coretag.js"></script><script type="text/javascript" charset="UTF-8" crossorigin="anonymous">window.apmeum||(window.apmeum = {});apmeum.commonInited||(function(){apmeum.responseStart=Number(new Date);apmeum.appKey='null';apmeum.customerId='7e2e90dc30bda';apmeum.agentId='2E53B3F5087BF6F72CFD304DD4F81C06CCE0CE26';apmeum.agentVersionKey='2E53B3F5087BF6F72CFD304DD4F81C06CCE0CE26';apmeum.baseCollectorUrl='https://omc-7e2e90dc30bda.eum.omc.ocp.oraclecloud.com/APMaaSCollector/external/collector?';apmeum.commonInited=true;}());</script><script src="./Java Architecture for XML Binding (JAXB)_files/apmeum.js" async="async" defer="defer" crossorigin="anonymous"></script><script type="text/javascript" charset="UTF-8" crossorigin="anonymous">window.apmeum||(window.apmeum = {});apmeum.dynamicInited||(function(){apmeum.sid='bNsRGqVFh63csVem_bH1ZSTjCDfF6fGVtBFl1MSit9aa2YSpZj0O!711719478!1771513669!1580834923845';apmeum.operationId='61640C39D32FAB19338428FE55631EA04FF5620D';apmeum.ecid='005bSBG5PA99Pdw70Fe9UF0002jz002b3F';apmeum.statusCode='200';apmeum.obs=31;apmeum.typeobs || (apmeum.typeobs={});apmeum.connectionCount=3;apmeum.connectionTimeout=2000;apmeum.rewriteRules=0;apmeum.webapp_tag='';apmeum.dynamicInited=true;}());</script><script>
+	!function(){
+		var d=document.documentElement;d.className=d.className.replace(/no-js/,'js');
+		if(document.location.href.indexOf('betamode=') > -1) document.write('<script src="https://www.oracle.com/asset/web/js/ocom-betamode.js"><\/script>');
+	}();
+	</script>
+	<link data-wscss="" href="./Java Architecture for XML Binding (JAXB)_files/ocom-v1-base.css" rel="stylesheet">
+	<link data-wscss="" href="./Java Architecture for XML Binding (JAXB)_files/ocom-v1-styles.css" rel="stylesheet" as="style" onload="this.rel=&#39;stylesheet&#39;" onerror="this.rel=&#39;stylesheet&#39;">
+	<noscript>
+	   <link href="https://www.oracle.com/asset/web/css/ocom-v1-styles.css" rel="stylesheet">
+	</noscript>
+	<script src="./Java Architecture for XML Binding (JAXB)_files/ocom-v1-base.js"></script><link data-wsjs="" data-reqjq="" href="./Java Architecture for XML Binding (JAXB)_files/ocom-v1-base.js" rel="preload" as="script">
+    <script src="./Java Architecture for XML Binding (JAXB)_files/ocom-v1-lib.js"></script><link data-wsjs="" data-reqjq="" href="./Java Architecture for XML Binding (JAXB)_files/ocom-v1-lib.js" rel="preload" as="script">
+    <script data-wsjs="" src="./Java Architecture for XML Binding (JAXB)_files/jquery-min.js" async="" onload="$(&#39;head link[data-reqjq][rel=preload]&#39;).each(function(){var a = document.createElement(&#39;script&#39;);a.async=false;a.src=$(this).attr(&#39;href&#39;);this.parentNode.insertBefore(a, this);});$(function(){$(&#39;script[data-reqjq][data-src]&#39;).each(function(){this.async=true;this.src=$(this).data(&#39;src&#39;);});});"></script>
+	<!-- end css / js files start -->
+<!-- / _Raw-Text -->
+
+<!-- Container/Display end -->
+
+
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	<meta name="siteid" content="us">
+	<meta name="countryid" content="US">
+	
+	<meta name="robots" content="index, follow">
+	
+	<meta name="country" content="United States">
+	<meta name="Language" content="en">
+	<meta name="Updated Date" content="2018-04-19T19:17:32Z">
+	
+	<script type="text/javascript">
+		var pageData = pageData || {};
+		//page info
+		pageData.pageInfo = pageData.pageInfo || {};
+		pageData.pageInfo.language = "en";
+		pageData.pageInfo.country = "United States";
+		pageData.pageInfo.pageTitle = "Java Architecture for XML Binding (JAXB)";
+		pageData.pageInfo.description = "Overview of the JAXB API";
+		pageData.pageInfo.keywords = "Overview of the JAXB API";
+		pageData.pageInfo.siteId = "us";
+		pageData.pageInfo.countryId = "US";
+		pageData.pageInfo.updatedDate = "2018-04-19T19:17:32Z";
+	</script>
+	<!-- start : ocom/common/global/components/seo-taxonomy-meta-data-->
+	
+	<script type="text/javascript">
+		var pageData = pageData || {};
+		//taxonmy
+		pageData.taxonomy = pageData.taxonomy || {};
+		pageData.taxonomy.productServices = [];
+		pageData.taxonomy.industry = [];
+		pageData.taxonomy.region = [];
+		pageData.taxonomy.contentType = ["WM179506"];
+		pageData.taxonomy.buyersJourney = [];
+		pageData.taxonomy.revenue = [];
+		pageData.taxonomy.title = [];
+		pageData.taxonomy.audience = [];
+		pageData.taxonomy.persona = ["WM178748"];
+	</script>
+<!-- end : ocom/common/global/components/seo-taxonomy-meta-data-->
+<!-- start : ocom/common/global/components/social-media-meta-tags -->
+<!-- end : ocom/common/global/components/social-media-meta-tags -->
+<!-- start : ocom/common/global/components/seo-hreflang-meta-tags --><link rel="canonical" href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html">
+					<link rel="alternate" hreflang="en-US" href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html">
+					<!-- end : ocom/common/global/components/seo-hreflang-meta-tags -->
+
+<!-- Container/Display Start -->
+
+<!-- _Raw-Text -->
+<!-- www-us HeadAdminContainer -->
+<link rel="icon" href="https://www.oracle.com/asset/web/favicons/favicon-32.png" sizes="32x32">
+<link rel="icon" href="https://www.oracle.com/asset/web/favicons/favicon-128.png" sizes="128x128">
+<link rel="icon" href="https://www.oracle.com/asset/web/favicons/favicon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="https://www.oracle.com/asset/web/favicons/favicon-120.png" sizes="120x120">
+<link rel="apple-touch-icon" href="https://www.oracle.com/asset/web/favicons/favicon-152.png" sizes="152x152">
+<link rel="apple-touch-icon" href="https://www.oracle.com/asset/web/favicons/favicon-180.png" sizes="180x180">
+<meta name="msapplication-TileColor" content="#fcfbfa">
+<meta name="msapplication-square70x70logo" content="favicon-128.png">
+<meta name="msapplication-square150x150logo" content="favicon-270.png">
+<meta name="msapplication-TileImage" content="favicon-270.png">
+<meta name="msapplication-config" content="none">
+<script async="async" type="text/javascript" src="./Java Architecture for XML Binding (JAXB)_files/notice" crossorigin="" id="truste_0.030710779995315907"></script>
+
+<style>
+#oReactiveChatContainer1 { display:none;}
+</style>
+<!--DTM embed code - Header -->
+<script src="./Java Architecture for XML Binding (JAXB)_files/satelliteLib-e598c5b61e39a10b402e048e87dd27b0f1cd2d4c.js"></script><script>_satellite["__runScript1"](function(event, target) {
+/* Function to get profile User Type and login status of User */
+function getUserInfo(){
+	var user = {};
+	
+	if (_satellite.cookie.get('ORA_WWW_MRKT')) { // Check for the cookie - use the ORA_WWW_MRKT first but if that doesn't exist then look to use ORA_UCM_INFO
+		var mrktCookie =  _satellite.cookie.get('ORA_WWW_MRKT');
+    	user.userType = (mrktCookie.toLowerCase().indexOf('employee') > 0 ) ? "O" : "P";
+		user.profileGUID = mrktCookie.split('~')[1].slice(2);
+		user.cookieName = 'www_mrkt';
+	} else if (_satellite.cookie.get('ORA_UCM_INFO')) { // If ORA_WWW_MRKT is not there, then look for the ORA_UCM_INFO cookie
+		var ucmCookie =  _satellite.cookie.get('ORA_UCM_INFO');
+		ucmCookie.split('~')[4] && (
+		  user.userType = (ucmCookie.split('~')[4] .toLowerCase().indexOf('@oracle') > 0) ? "O" : "P"
+		);
+		user.profileGUID = ucmCookie.split('~')[1];
+		user.cookieName = 'ucm_info';
+	} else { // If ora_www_mrkt and ora_ucm_info doesn't exist, its an Unsigned User.
+		user.userType = 'U';
+		user.cookieName = 'NoCookie';
+		user.profileGUID = 'NotSet';
+	}
+  
+    if (_satellite.cookie.get('ORA_WWW_PERSONALIZE')){
+      user.profileInfo = getPersonalizeObject();
+    }
+	return user;
+}	
+	
+var consent_level = _satellite.getVar('trusteConsent'); // Check for User's Truste consent preferences.
+var userInfo =  getUserInfo(); // Read User' profile information.
+
+dataLayerObject.user.isLoggedIn = (userInfo.userType == 'U') ? 'Not Logged In' : 'Logged In'; // Set login status to Data layer.
+
+// Check for Truste consent. Set ORA_WWW_MRKT and ORA_UCM_INFO only if the User has opted in for Functional cookies.
+if ((consent_level.truste_consent.indexOf(0) != -1 || consent_level.truste_consent.indexOf(2) != -1  || consent_level.truste_consent.indexOf(3) != -1) ) {
+  // Assign userType, cookieStatus and profileGUID to User object in Data Layer
+  dataLayerObject.user.userType = userInfo.userType;
+  dataLayerObject.user.cookieStatus = userInfo.cookieName;
+  if (consent_level.truste_consent.indexOf(0) != -1  || consent_level.truste_consent.indexOf(3) != -1) { // Set GUID, if the User consent is implied (consent level - 0) or explicit (consent level - 3)
+    dataLayerObject.user.profileGUID = userInfo.profileGUID;
+    
+    //Set ORA_WWW_PERSONALIZE cookie value 
+    if(userInfo.profileInfo){dataLayerObject.user.profile.profileInfo = userInfo.profileInfo;}
+  } else {  
+    dataLayerObject.user.profileGUID = 'NoConsent';
+    dataLayerObject.user.profile.profileInfo = 'NoConsent';
+  }
+} else {
+  dataLayerObject.user.userType = 'A'; //If no Truste consent, its an Anonymous User.
+  dataLayerObject.user.cookieStatus = 'NoConsent';
+  dataLayerObject.user.profileGUID = 'NoConsent';
+  dataLayerObject.user.profile.profileInfo = 'NoConsent';
+}
+
+// If the TRUSTe preference is not to have advertising OR functional cookies, then don't set Eloqua GUID.
+if ((consent_level.truste_consent.indexOf(0) != -1 || consent_level.truste_consent.indexOf(2) != -1  || consent_level.truste_consent.indexOf(3) != -1) ) {
+  if (_satellite.cookie.get('ELOQUA')){
+    dataLayerObject.user.eloqua.guid = _satellite.cookie.get('ELOQUA').replace('GUID=','');
+  } else {
+    setTimeout (function() {
+      _satellite.cookie.get('ELOQUA') && ( dataLayerObject.user.eloqua.guid = _satellite.cookie.get('ELOQUA').replace('GUID=','') )
+    }, 2000);
+  }
+} else { // No Truste Consent
+   dataLayerObject.user.eloqua.guid = 'NoConsent';
+}
+
+/* Function to check if the User is New or Return visitor, read it from Cookie s_nr */
+if (_satellite.cookie.get('s_nr')) {
+  dataLayerObject.user.isReturning = _satellite.cookie.get('s_nr').split('-')[1] == 'Repeat'? 'Repeat' : 'New';
+} else {
+  setTimeout (function() {
+      _satellite.cookie.get('s_nr') && (dataLayerObject.user.isReturning = _satellite.cookie.get('s_nr').split('-')[1] == 'Repeat'? 'Repeat' : 'New')
+  }, 2000);
+}  
+
+function getPersonalizeObject(){
+  var cookieValue = _satellite.cookie.get('ORA_WWW_PERSONALIZE');
+  var tempObj ={};
+  cookieValue.split('~').forEach(function(v,i){
+    var valArr = v.split(':');
+    if(valArr.length == 2){
+       tempObj[valArr[0]] = valArr[1];
+    }
+  });
+  if(Object.keys(tempObj).length > 0){
+    var obj = {};
+    obj.ind = tempObj.i;
+    obj.role = tempObj.r;
+    obj.reg = tempObj.g;
+    obj.lang = tempObj.l;
+    obj.cSize = tempObj.cs;
+    obj.cName = tempObj.cn;
+    
+    return obj;
+  }else{
+    return cookieValue;
+  }
+}
+});</script><script>_satellite["__runScript2"](function(event, target) {
+var cookieRegistry = [];
+//Get User Details
+function listenCookieChange(cookieName, callback) {
+    setInterval(function() {
+        if (cookieRegistry[cookieName]) {
+            var latestCookieVal = _satellite.cookie.get(cookieName) ? _satellite.cookie.get(cookieName) : 'NA'; 
+            if ( latestCookieVal != cookieRegistry[cookieName]) {
+                cookieRegistry[cookieName] = latestCookieVal;
+                return callback(latestCookieVal);
+            }
+        } else {
+            cookieRegistry[cookieName] = _satellite.cookie.get(cookieName) ? _satellite.cookie.get(cookieName) : 'NA';
+        }
+    }, 1000);
+}
+
+//listen for change in 'notice_gdpr_prefs' cookie and update changes to dataLayerObject
+listenCookieChange('notice_gdpr_prefs', function(cookie) {
+  console.log('Truste Consent Changed');
+  window.dataLayerObject.privacy.consentDecision = window.oracle.truste.api.getGdprConsentDecision().consentDecision;
+  window.dataLayerObject.privacy.consentSource = window.oracle.truste.api.getGdprConsentDecision().source;
+  console.log(window.dataLayerObject);
+});
+
+//add truste and Do Not Track values to dataLayer
+window.dataLayerObject.privacy.consentDecision = _satellite.getVar('trusteConsent')['truste_consent'];
+window.dataLayerObject.privacy.dnt = _satellite.getVar('trusteConsent')['dnt'];
+
+//Set campaigns status to "NoTrack" id DNT enabled
+if(window.dataLayerObject.privacy.dnt === true){
+  window.dataLayerObject.user.campaigns.status = "NoTrack";
+}
+
+//update country code
+window.addEventListener("load", function(){
+  //window.dataLayerObject.privacy.consentSource = window.oracle.truste.api.getGdprConsentDecision().source;
+  window.dataLayerObject.privacy.consentSource = window.oracle.truste.api.getGdprConsentDecision ? window.oracle.truste.api.getGdprConsentDecision().source : window.oracle.truste.api.getConsentDecision().source;
+  window.dataLayerObject.user.geoCountry = window.truste.eu.bindMap.country;
+}, false);
+});</script><script>_satellite["__runScript3"](function(event, target) {
+var iTag = document.createElement("script");
+iTag.src = "//c.oracleinfinity.io/acs/account/wh3g12c3gg/js/oracle/odc.js?_ora.context=analytics:production";
+iTag.async = true;
+iTag.type = 'text/javascript';
+document.head.appendChild(iTag);       
+});</script><script src="./Java Architecture for XML Binding (JAXB)_files/odc.js" async="" type="text/javascript"></script><script>
+// Declare Bluekai variables.
+window.bluekai = {};
+window.bluekai.loaded = "NotSet";
+var consent_level = _satellite.getVar('trusteConsent');
+
+var isStage = (  location.host.indexOf('-stage') != -1    ||
+				location.host.indexOf('-content') != -1  ||
+				location.host.indexOf('localhost') != -1 ||
+				location.host.indexOf('.us.oracle.com') != -1 ||
+				location.host.indexOf('127.0.0.1') != -1 ||				
+				location.host.indexOf('-dev') != -1 ||
+				location.host.indexOf('www-sites') != -1
+			 )
+
+var ora_bk_version = 'bkIn:1.0:v1.3:SentTo' + (isStage) ? 26595 : 25867;  
+window.bk_async = function() {
+  bkTagID = (isStage) ? 26595 : 25867;
+  bk_addPageCtx("contTop", (typeof(contTop) !== 'undefined') ? contTop : '');
+  bk_addPageCtx("contLang", (typeof(language_value) !== 'undefined') ? language_value : '');
+  bk_addPageCtx("prodInt", (typeof(prodInt) !== 'undefined') ? prodInt : '');
+  bk_addPageCtx("pgname", (typeof(bk_pgname) !== 'undefined') ? bk_pgname : '');
+  bk_allow_multiple_calls = true;
+  BKTAG.doTag(bkTagID, 1);
+	setTimeout(callBluekaiScript,1000); // load bluekai json script.
+};
+(function() {
+  // Check cached data is valid to use
+  if(validateBlukeCacheData()){
+    var cachedData = window.localStorage.getItem('BlueKaiCampaigns');
+    cachedData = JSON.parse(cachedData);
+    window.dataLayerObject.user.campaigns = cachedData.campaigns;
+    window.bluekai = cachedData.bluekai;
+  }else {
+    var bk_scripts = document.getElementsByTagName('script')[0];
+    var bk_s = document.createElement('script');
+    bk_s.async = true;
+    bk_s.src = "//tags.bkrtx.com/js/bk-coretag.js";
+    bk_scripts.parentNode.insertBefore(bk_s, bk_scripts);
+  }
+}());
+
+/* Function to call Bluekai 46606 json return */
+function callBluekaiScript() {
+  if(window.jQuery) {
+      // Create request object.
+			var xhr;
+
+			if(xhr && xhr.readyState != 4 && xhr.readyState != 0){
+			  xhr.abort();
+			}
+			// Ajax Request to get the Bluekai data.
+			xhr = jQuery.ajax({
+			  url: "//tags.bluekai.com/site/46606?ret=js",
+			  type: "GET" ,
+			  dataType:  "script",
+			  cache: true,
+			  crossDomain: true,
+			  timeout: 4000,
+			  success: function(a) {
+				if (window.bk_results) {
+					window.dataLayerObject.user.campaigns.status = "loaded";
+					bkCampaigns(); // Call the function to read data for Campaigns - 280341/280343/280348/280349
+					document.cookie = "ORA_WWW_ABMDATA="+JSON.stringify(window.bluekai) + "; path=/"; // Store data for Campaigns to Cookie - 280341/280343/280348/280349
+					maptoDataLayer(); // Call the function to map json data to Datalayer object.
+                    cacheBlueKaiData(); // Store bluekai data on browser local storage and set expire date ro 24 Hours 
+				}        
+			  },
+			  error: function(e) {
+				  window.bluekai.loaded = "NoResponse"; // Failed to load Bluekai data.
+				  window.dataLayerObject.user.campaigns.status = "NoResponse"; // If the bluekai API call fails, set Status to 'NoResponse'
+                  cacheBlueKaiData(); // Store bluekai data on browser local storage and set expire date ro 24 Hours
+			  }
+			});  
+	} else {
+	    // If jQuery is not found, use plain javascript to load bluekai json.
+			var s = document.createElement('script'); 
+			s.type = 'text/javascript'; 
+			s.async = true;
+			s.src = "//tags.bluekai.com/site/46606?ret=js";
+			s.onload = function() {
+        if (window.bk_results) {
+			      window.dataLayerObject.user.campaigns.status = "loaded";
+			      bkCampaigns(); // Call the function to read data for Campaigns - 280341/280343/280348/280349
+            document.cookie = "ORA_WWW_ABMDATA=" + JSON.stringify(window.bluekai) + "; path=/"; // Store data for Campaigns to Cookie - 280341/280343/280348/280349
+            maptoDataLayer(); // Call the function to map json data to Datalayer object.
+        } else {
+            window.bluekai.loaded = "NoResponse"; // Failed to load Bluekai data.
+            window.dataLayerObject.user.campaigns.status = "NoResponse"; // If the bluekai API call fails, set Status to 'NoResponse' 
+        }  
+      };
+      document.getElementsByTagName('script')[0].appendChild(s);
+      cacheBlueKaiData(); // Store bluekai data on browser local storage and set expire date ro 24 Hours
+  }
+}  
+
+/* Function to read the bluekai data to window.bluekai object. */
+function bkCampaigns() {
+    // Set the values to Bluekai object.
+    window.bluekai.loaded = (window.bk_results.campaigns.length > 0) ? "loaded" : window.bluekai.loaded;
+    window.bluekai.data = [];
+    window.bluekai.bkId = 'NoValue';
+
+    // Loop through the list of campaigns to retrieve the categories.
+    for (var x in window.bk_results.campaigns) {
+       var campaignId = window.bk_results.campaigns[x].campaign;
+       if (campaignId == '280343' || campaignId == '280341' || campaignId == '280349' || campaignId == '280348') {
+            var data_obj = {};
+            data_obj['campaignId'] = campaignId;
+            data_obj['categories'] = mapCategories(window.bk_results.campaigns[x]);
+            window.bluekai.data.push(data_obj);
+       }
+       // Set bk value to bkId.
+       if(window.bluekai.bkId == 'NoValue' && window.bk_results.campaigns[x].bk) {
+         window.bluekai.bkId = window.bk_results.campaigns[x].bk;
+       }
+    }  // End of for loop.
+}
+
+/* Function to map Bluekai json return data to DataLayer object */
+function maptoDataLayer() {
+	  //assign bk_result to dataLayerObject
+  	if(window.bk_results && window.dataLayerObject && window.dataLayerObject.user.campaigns.status == "loaded") {
+      if(window.bk_results.campaigns.length > 0) {
+        window.dataLayerObject.user.campaigns.data = window.bk_results.campaigns;
+      } else {
+      	window.dataLayerObject.user.campaigns.data = [];
+      }
+  	}
+}
+
+/* Function to map the categories for a campaign */
+function mapCategories(campaign) {
+	var campaignSet = [];
+	if(campaign.categories != null) {
+		for (var j = campaign.categories.length; j--;) {
+			campaignSet.push(campaign.categories[j].categoryID);
+    }
+  } else {
+		campaignSet = ["NoValue"];
+	}
+	return campaignSet;
+}
+
+/* Function to cache bluekai data */
+function cacheBlueKaiData() {
+   var expireDate = new Date().getTime() + (24 * 60 * 60 * 1000), // 24Hours
+   data = {
+     'campaigns': window.dataLayerObject.user.campaigns,
+     't': expireDate,
+     'privacy': {
+         'consentDecision': window.dataLayerObject.privacy.consentDecision,
+         'dnt': window.dataLayerObject.privacy.dnt
+      },
+     'bluekai': window.bluekai  
+  };
+  window.localStorage.setItem('BlueKaiCampaigns',JSON.stringify(data));
+}
+
+// Function to validate bluekai Cache object
+function validateBlukeCacheData() {
+  var status=false;
+  // Check cached data exists
+  if(window.localStorage.getItem('BlueKaiCampaigns')){
+      var cachedData = window.localStorage.getItem('BlueKaiCampaigns');
+      cachedData = JSON.parse(cachedData);
+      //check data expired?
+      if(new Date().getTime() < cachedData.t){
+        //Check for truste change
+        if(cachedData.privacy.dnt === window.dataLayerObject.privacy.dnt && ( JSON.stringify(window.dataLayerObject.privacy.consentDecision) == JSON.stringify(cachedData.privacy.consentDecision)) ){
+           status = true;
+         }
+      }
+  }
+  return status;
+}
+
+</script>
+
+<!-- Truste for RU -->
+<script type="text/javascript">
+ if (location.pathname.indexOf("/ru/") == 0){
+ document.write('\x3Cscript async="async" src=//consent.truste.com/notice?domain=oracleru.com&c=teconsent&js=bb&noticeType=bb&text=true&gtm=1&cdn=1&pcookie crossorigin="">\x3C/script>');
+ }
+ </script>
+<!--End-->
+
+<!-- / _Raw-Text -->
+
+<!-- Container/Display end -->
+
+   
+  <script>!function(){function o(n,i){if(n&&i)for(var r in i)i.hasOwnProperty(r)&&(void 0===n[r]?n[r]=i[r]:n[r].constructor===Object&&i[r].constructor===Object?o(n[r],i[r]):n[r]=i[r])}try{var n=decodeURIComponent("");if(n.length>0&&window.JSON&&"function"==typeof window.JSON.parse){var i=JSON.parse(n);void 0!==window.BOOMR_config?o(window.BOOMR_config,i):window.BOOMR_config=i}}catch(r){window.console&&"function"==typeof window.console.error&&console.error("mPulse: Could not parse configuration",r)}}();</script>
+  <script>!function(e){var a="https://s.go-mpulse.net/boomerang/",t="addEventListener";if("False"=="True")e.BOOMR_config=e.BOOMR_config||{},e.BOOMR_config.PageParams=e.BOOMR_config.PageParams||{},e.BOOMR_config.PageParams.pci=!0,a="https://s2.go-mpulse.net/boomerang/";if(window.BOOMR_API_key="DXNLE-YBWWY-AR74T-WMD99-77VRA",function(){function n(a){e.BOOMR_onload=a&&a.timeStamp||(new Date).getTime()}if(!e.BOOMR||!e.BOOMR.version&&!e.BOOMR.snippetExecuted){e.BOOMR=e.BOOMR||{},e.BOOMR.snippetExecuted=!0;var i,o,r,_=document.createElement("iframe");if(e[t])e[t]("load",n,!1);else if(e.attachEvent)e.attachEvent("onload",n);_.src="javascript:void(0)",_.title="",_.role="presentation",(_.frameElement||_).style.cssText="width:0;height:0;border:0;display:none;",r=document.getElementsByTagName("script")[0],r.parentNode.insertBefore(_,r);try{o=_.contentWindow.document}catch(O){i=document.domain,_.src="javascript:var d=document.open();d.domain='"+i+"';void(0);",o=_.contentWindow.document}o.open()._l=function(){var e=this.createElement("script");if(i)this.domain=i;e.id="boomr-if-as",e.src=a+"DXNLE-YBWWY-AR74T-WMD99-77VRA",BOOMR_lstart=(new Date).getTime(),this.body.appendChild(e)},o.write("<bo"+'dy onload="document._l();">'),o.close()}}(),"".length>0)if(e&&"performance"in e&&e.performance&&"function"==typeof e.performance.setResourceTimingBufferSize)e.performance.setResourceTimingBufferSize();!function(){if(BOOMR=e.BOOMR||{},BOOMR.plugins=BOOMR.plugins||{},!BOOMR.plugins.AK){var a=""=="true"?1:0,t="",n="fyfhz2yccjp46xr2u7sq-f-ae4d8d3ba-clientnsv4-s.akamaihd.net",i={"ak.v":25,"ak.cp":"82485","ak.ai":parseInt("165266",10),"ak.ol":"0","ak.cr":37,"ak.ipv":4,"ak.proto":"h2","ak.rid":"6602290","ak.r":15384,"ak.a2":a,"ak.m":"dscx","ak.n":"essl","ak.bpcip":"46.10.124.0","ak.cport":60994,"ak.gh":"2.16.19.22","ak.quicv":"","ak.tlsv":"tls1.3","ak.0rtt":"","ak.csrc":"-","ak.acc":"","ak.t":"1580902373"};if(""!==t)i["ak.ruds"]=t;var o={i:!1,av:function(a){var t="http.initiator";if(a&&(!a[t]||"spa_hard"===a[t]))i["ak.feo"]=void 0!==e.aFeoApplied?1:0,BOOMR.addVar(i)},rv:function(){var e=["ak.bpcip","ak.cport","ak.cr","ak.csrc","ak.gh","ak.ipv","ak.m","ak.n","ak.ol","ak.proto","ak.quicv","ak.tlsv","ak.0rtt","ak.r","ak.acc","ak.t"];BOOMR.removeVar(e)}};BOOMR.plugins.AK={akVars:i,akDNSPreFetchDomain:n,init:function(){if(!o.i){var e=BOOMR.subscribe;e("before_beacon",o.av,null,null),e("onbeacon",o.rv,null,null),o.i=!0}return this},is_complete:function(){return!0}}}}()}(window);</script><script src="./Java Architecture for XML Binding (JAXB)_files/atgsvcs.js" type="text/javascript"></script><link href="./Java Architecture for XML Binding (JAXB)_files/oracle-chat.css" rel="stylesheet"><script type="text/javascript" src="./Java Architecture for XML Binding (JAXB)_files/analytics-production.js" async="true" defer="true"></script><script src="./Java Architecture for XML Binding (JAXB)_files/vsapi.js" type="text/javascript"></script><script src="./Java Architecture for XML Binding (JAXB)_files/handlebars-ocom.js" type="text/javascript"></script><script src="./Java Architecture for XML Binding (JAXB)_files/vsopts.js" type="text/javascript"></script><script type="text/javascript" src="./Java Architecture for XML Binding (JAXB)_files/common.js" async="true" defer="true"></script><script type="text/javascript" src="./Java Architecture for XML Binding (JAXB)_files/analytics.js" async="true" defer="true"></script><script type="text/javascript" src="./Java Architecture for XML Binding (JAXB)_files/RightNow.Client.js"></script><script src="./Java Architecture for XML Binding (JAXB)_files/RC8eac750501274daaab18d2828f34137f-source.min.js" async=""></script><script src="./Java Architecture for XML Binding (JAXB)_files/RC9c8071d80d5d4e0b813023c120a115d0-source.min.js" async=""></script><script src="./Java Architecture for XML Binding (JAXB)_files/RC4e44f35ad6524fb899f94faddb68f8b1-source.min.js" async=""></script><script charset="utf-8" src="./Java Architecture for XML Binding (JAXB)_files/xd.js"></script><script type="text/javascript" async="" src="./Java Architecture for XML Binding (JAXB)_files/js"></script><script type="text/javascript" src="./Java Architecture for XML Binding (JAXB)_files/PAGE_LOAD"></script><script charset="utf-8" src="./Java Architecture for XML Binding (JAXB)_files/pp.js"></script><script src="./Java Architecture for XML Binding (JAXB)_files/atgsvcs.js" type="text/javascript"></script><script id="yui__dyn_0" type="text/javascript" charset="utf-8" src="./Java Architecture for XML Binding (JAXB)_files/1"></script><script id="yui__dyn_1" type="text/javascript" charset="utf-8" src="./Java Architecture for XML Binding (JAXB)_files/1(1)"></script><script src="./Java Architecture for XML Binding (JAXB)_files/f(1).txt"></script><script src="./Java Architecture for XML Binding (JAXB)_files/vsapi.js" type="text/javascript"></script><script src="./Java Architecture for XML Binding (JAXB)_files/vsopts.js" type="text/javascript"></script><script type="text/javascript" src="./Java Architecture for XML Binding (JAXB)_files/4"></script><link id="yui__dyn_2" type="text/css" charset="utf-8" rel="stylesheet" href="./Java Architecture for XML Binding (JAXB)_files/ConditionalChatLink.css"><link id="yui__dyn_4" type="text/css" charset="utf-8" rel="stylesheet" href="./Java Architecture for XML Binding (JAXB)_files/ConditionalChatLink.css"><link id="yui__dyn_5" type="text/css" charset="utf-8" rel="stylesheet" href="./Java Architecture for XML Binding (JAXB)_files/container.css"><link id="yui__dyn_6" type="text/css" charset="utf-8" rel="stylesheet" href="./Java Architecture for XML Binding (JAXB)_files/button.css"><link id="yui__dyn_7" type="text/css" charset="utf-8" rel="stylesheet" href="./Java Architecture for XML Binding (JAXB)_files/ProactiveChat.css"><script type="text/javascript" src="./Java Architecture for XML Binding (JAXB)_files/2"></script></head>
+   
+   <body class="f11 f11v6 ochat_slideout_loaded ready yui-skin-sam masked u10hide"><iframe id="_yuiResizeMonitor" title="Text Resize Monitor" style="position: absolute; visibility: visible; width: 2em; height: 2em; top: -33px; left: 0px; border-width: 0px;" src="./Java Architecture for XML Binding (JAXB)_files/saved_resource(1).html"></iframe><div id="consent_blackbar"></div>
+   		
+		<div class="f11w1">
+			
+<!-- start Common/Header -->
+ 
+	<!-- Dispatcher:null -->
+	
+<!-- BEGIN: oWidget_C/_Raw-Text/Display -->
+<!-- U28v0 -->
+<section class="u28 u28v0 u28adj dropdownloaded u28-past u28-down" id="u28" data-trackas="header"><span class="u28bttop"></span><span class="u28cover"></span>
+	<div class="u28w1">
+		<div class="cwidth">
+			<div class="u28s1">
+				<a class="u28home rw-logo" href="https://www.oracle.com/" tabindex="0">Home</a>
+				<a class="u28ham" href="https://www.oracle.com/universal-menu/" tabindex="0" data-trackas="menu" data-lbl="menu" aria-controls="u28navw1" aria-expanded="false" aria-haspopup="true">Menu</a>
+			</div>
+			<div class="u28s2">
+				<div class="u28w2">
+					<form name="askoracle" id="askoracle" class="askoracle" data-contentpaths="/content/Web/Shared/Auto-Suggest Panel Event" method="get" action="https://www.oracle.com/search/results">
+						<input type="hidden" name="Nty" value="1">
+						<input type="hidden" name="Dy" value="1">
+						<input type="hidden" name="Ntk" value="SI-ALL5">
+						<input type="hidden" name="cty" value="us">
+						<input type="hidden" name="lang" value="en">
+						<div class="u28w3">
+							<div class="u28logo rw-logo"><span>Oracle</span></div>
+							<a class="u28-back rw-cv-left" href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#back">
+								<span>Back</span>
+							</a>
+							<a class="u28-searchicon" href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#search" tabindex="-1">
+								<span>Search</span>
+							</a>
+							<span class="u28input">
+								<input id="askoracleinput" name="Ntt" value="" data-prefix="Ask" placeholder="Ask" autocomplete="off" role="" aria-label="Search Oracle.com" tabindex="0" type="text">
+								<span class="u28-microphone rw-microphone">
+									<span>Search by voice</span>
+								</span>
+								<span class="u28submit icn-search">
+									<input class="u28searchbttn" tabindex="0" type="submit" value="Submit Search">
+								</span>
+							<div class="u28placeholder"><span style="">Ask "Oracle vs AWS"</span></div></span>
+						</div>
+					</form>
+				<div class="u28suggestw1"><ul class="u28suggest"></ul></div></div>
+
+				<div class="u28-profile" tabindex="-1">
+					<a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#" class="u28prof" tabindex="0" aria-controls="u28-profilew1" aria-label="Sign In" aria-expanded="false" aria-haspopup="true"><div class="acttxt">View Accounts</div></a>
+					<div class="u28-profilew1" tabindex="-1" id="u28-profilew1" style="">
+					<span class="u28actbck u28back">Back</span>
+						<span class="u28acttitle">ORACLE ACCOUNT</span>
+						<ul class="u28l-out">
+							<li><a href="https://www.oracle.com/webapps/redirect/signon?nexturl=https://www.oracle.com/technical-resources/articles/javase/jaxb.html" data-lbl="profile:sign-in-account" class="u28btn1" tabindex="-1">Sign-In</a></li>
+							<li><a href="https://profile.oracle.com/myprofile/account/create-account.jspx" data-lbl="profile:create-account" class="u28btn2" tabindex="-1">Create an Account</a></li>
+						</ul>
+						<ul class="u28l-in">
+							<li><a href="https://www.oracle.com/corporate/contact/help.html" data-lbl="help" tabindex="-1">Help</a></li>
+							<li><a href="javascript:sso_sign_out();" id="u28pfile-sout" data-lbl="signout" tabindex="-1">Sign Out</a></li>
+						</ul>
+						<div class="u28-profilew2">
+							<span class="u28acttitle">CLOUD ACCOUNT</span>
+							<a data-lbl="sign-in-to-cloud" href="https://cloud.oracle.com/sign-in" class="u28cloudbg" tabindex="-1">Sign in to Cloud</a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="u28s3">
+				<a data-lbl="cloud-free-tier" href="https://www.oracle.com/cloud/free/?source=:ow:o:p:nav:0916BCButton&amp;intcmp=:ow:o:p:nav:0916BCButton" class="u28b1" tabindex="0">Try Oracle Cloud Free Tier</a>
+			</div>
+		</div>
+	</div>
+	<div class="u28w4" id="u28w4">
+		<div class="u28w1a u28w5 clstrgt">
+			<div class="u28w6">
+
+				<!-- Search Results -->
+				<div class="u28w8 u28trgt" style="width: 1018.55px; left: 264px;"><ul class="u28skel"><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul></div>
+				<div class="u28w9">
+					<div class="u28result u28noresults">
+						<div class="u28rw1">
+							<div class="u28rw2">
+								<h4>No results found</h4>
+								<p>Your search did not match any results.</p>
+								<p>We suggest you try the following to help find what you're looking for:</p>
+
+								<ul class="u28w7a">
+								<li>Check the spelling of your keyword search.</li>
+								<li>Use synonyms for the keyword you typed, for example, try “application” instead of “software.”</li>
+								<li>Try one of the popular searches shown below.</li>
+								<li>Start a new search.</li>
+								</ul>
+								<p>&nbsp;</p>
+
+								<p><strong>Trending Questions</strong></p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			<ul class="u28w7">
+	<li>Apply for a job</li>
+	<li>What cloud developer tools do you have?</li>
+	<li>Where do I download Java Runtime Environment?</li>
+	<li>Oracle Cloud Applications</li>
+	<li>Oracle vs AWS</li>
+	<li>Does Oracle offer free cloud trials?</li>
+	<li>Where do independent analysts rank Oracle’s software?</li>
+	<li>What is Oracle Autonomous Database?</li>
+	<li>Blockchain applications</li>
+	<li>Does Oracle have chatbots?</li>
+	<li>What does it mean to make work more human?</li>
+	<li>How do I know my data is safe in Oracle Cloud?</li>
+	</ul></div>
+		</div>
+
+	</div>
+
+	<nav id="u28nav" class="u28nav" data-trackas="menu" aria-role="menu" tabindex="-1">
+		<span class="mnavback u28back">Back</span>
+	<div class="u28navw1 cwidth">
+	
+	<ul>
+		<li><span class="mclose"></span><h3><a href="https://www.oracle.com/cloud/" data-lbl="gen2-cloud-infrastructure">Generation 2 Cloud Infrastructure</a></h3>
+			<ul>
+				<li><a href="https://www.oracle.com/database/autonomous-database.html" data-lbl="autonomous-database">Autonomous Database</a></li>
+				<li><a href="https://www.oracle.com/database/" data-lbl="data-management">Data Management</a></li>
+				<li><a href="https://www.oracle.com/business-analytics/products.html" data-lbl="analytics">Analytics</a></li>
+				<li><a href="https://www.oracle.com/cloud/compute/" data-lbl="compute">Compute</a></li>
+				<li><a href="https://www.oracle.com/cloud/cloud-at-customer.html" data-lbl="cloud-at-customer">Cloud@Customer</a></li>
+				<li><a href="https://www.oracle.com/application-development/" data-lbl="application-development">Application Development</a></li>
+				<li><a href="https://cloudmarketplace.oracle.com/marketplace/en_US/homePage.jspx" data-lbl="marketplace">MarketPlace</a></li>
+				<li><a href="https://www.oracle.com/cloud/products.html" data-lbl="all-cloud-infrastructure">All Cloud Infrastructure</a></li>
+			</ul>
+		</li>
+		
+		
+		<li><span class="mclose"></span><h3 style="opacity: 0.6;">On-Premise Infrastructure</h3>
+			<ul>
+				<li><a href="https://www.oracle.com/database/technologies/" data-lbl="oracle-database">Oracle Database</a></li>
+				<li><a href="https://www.oracle.com/java/" data-lbl="java">Java</a></li>
+				<li><a href="https://www.oracle.com/products/software.html" data-lbl="software">Software</a></li>
+				<li><a href="https://www.oracle.com/it-infrastructure/" data-lbl="hardware">Hardware</a></li>
+			</ul>
+		</li>
+		
+	</ul>
+	
+	<ul>
+		<li><span class="mclose"></span><h3><a href="https://www.oracle.com/applications/" data-lbl="cloud-applications">Cloud Applications</a></h3>
+			<ul>
+
+				<li><a href="https://www.oracle.com/applications/erp/" data-lbl="financials">Enterprise Resource Planning</a></li>
+				<li><a href="https://www.oracle.com/applications/human-capital-management/" data-lbl="human-resources">Human Capital Management</a></li>
+				<li><a href="https://www.oracle.com/applications/supply-chain-management/" data-lbl="supply-chain-management">Supply Chain Management</a></li>
+				<li><a href="https://www.oracle.com/applications/customer-experience/sales/" data-lbl="sales">Sales</a></li>
+				<li><a href="https://www.oracle.com/applications/customer-experience/service/" data-lbl="service">Service</a></li>
+				<li><a href="https://www.oracle.com/marketingcloud/" data-lbl="marketing">Marketing</a></li>
+				<li><a href="https://www.oracle.com/applications/customer-experience/data-cloud/" data-lbl="data-cloud">Data Cloud</a></li>
+				<li><a href="http://www.netsuite.com/portal/home.shtml" data-lbl="netSuite-application-suite">NetSuite Application Suite</a></li>
+				<li><a href="https://www.oracle.com/applications/products.html" data-lbl="all-cloud-applications">All Cloud Applications</a></li>
+			</ul>
+		</li>
+		<li><h3><a data-lbl="government-cloud" href="https://www.oracle.com/industries/public-sector/federal/">Government Cloud</a></h3></li>
+		
+		<li><h3><a href="https://www.oracle.com/industries/" data-lbl="industry-applications">Industry Applications</a></h3></li>
+		
+		
+		<li><h3><a href="https://www.oracle.com/applications/on-premise-products/" data-lbl="on-premises-applications">On-Premise Applications</a></h3></li>
+	</ul>
+	
+	
+	<ul>
+		<li><span class="mclose"></span><h3><a href="https://www.oracle.com/corporate/" data-lbl="our-company">Our Company</a></h3>
+			<ul>
+				
+				<li><a href="https://www.oracle.com/corporate/careers/" data-lbl="careers">Careers</a></li>
+				<li><a href="https://www.oracle.com/customers/" data-lbl="customer-references">Customer References</a></li>
+				<li><a href="https://developer.oracle.com/" data-lbl="developer-center">Developer Center</a></li>
+				<li><a href="https://investor.oracle.com/overview/highlights/default.aspx" data-lbl="investor-relations">Investor Relations</a></li>
+				<li><a href="https://www.oracle.com/partnernetwork/" data-lbl="oracle-partnernetwork-ocom">Oracle PartnerNetwork</a></li>
+				<li><a href="https://www.oracle.com/corporate/press/" data-lbl="news-and-events">News and Events</a></li>
+			</ul>
+		</li>
+
+		
+		<li><span class="mclose"></span><h3 style="opacity: 0.6;">Product Help</h3>
+			<ul>
+				<li><a href="https://www.oracle.com/downloads/" data-lbl="downloads">Downloads</a></li>
+				<li><a href="https://www.oracle.com/readiness/" data-lbl="cloud-readiness">Cloud Readiness</a></li>
+				<li><a href="https://docs.oracle.com/en/" data-lbl="documentation">Documentation</a></li>
+				<li><a href="https://www.oracle.com/support/" data-lbl="support">Support</a></li>
+				<li><a href="https://education.oracle.com/" data-lbl="training">Training</a></li>
+				<li><a href="https://community.oracle.com/welcome" data-lbl="community-forums">Community Forums</a></li>
+				<li><a href="https://www.oracle.com/consulting/" data-lbl="consulting">Consulting</a></li>
+			</ul>
+		</li>
+		
+	
+	</ul>
+	<!-- Suggested Search -->
+	
+</div></nav>
+
+</section>
+
+
+
+
+<!-- END: oWidget_C/_Raw-Text/Display -->
+
+<!-- end Common/Header -->
+
+<!-- _Raw-Text -->
+<section class="cb83 cb83v2 cb83credit cpad pghero bgvlightgrey" data-ocomid="cb83" data-trackas="cb83" style="background-image:url(/a/tech/img/ch12-otn-article-bg2.jpg);"><h1 class="hiddenpgtitle" style="position:absolute;left:-4000px;color:rgba(0,0,0,0)" tabindex="0">Technical Article</h1><h1 class="hiddenpgtitle" style="position:absolute;left:-4000px;color:rgba(0,0,0,0)" tabindex="0">Technical Article</h1>
+<div class="cb83w7 cwidth">
+<div class="cb83w3">
+<h1 class="herotitle txtwhite">Java Architecture for XML Binding (JAXB)</h1>
+
+<p><em>By <a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#author">Ed Ort and Bhakti Mehta</a>, <br>March 2003</em></p>
+
+</div>
+</div>
+
+</section>
+<!-- / _Raw-Text -->
+
+<!-- U03v5 -->
+
+	<nav class="u03 u03v5 u03bttns" data-trackas="breadcrumb" data-ocomid="u03">
+		<div class="cwidth">
+			<div class="u03w1">
+				<ul>
+					
+						<li><a href="https://www.oracle.com/java/">Java</a></li>
+						
+						<li><a href="https://www.oracle.com/java/technologies/">Technical Details</a></li>
+						
+				</ul>
+				<h1 aria-hidden="true">Technical Article</h1>
+			</div>
+			
+		</div>
+		<script type="text/javascript">
+			var pageData = pageData || {};
+			//page info
+			pageData.pageInfo = pageData.pageInfo || {};
+			pageData.pageInfo.breadCrumbs = "Java / Technical Details";
+		</script>
+	</nav>	
+	
+<!-- _Raw-Text -->
+<section class="cc01 cc01v0 cpad crule">
+  <div class="cc01w1 cwidth">
+
+<p>Using JAXB</p>
+<p>You will find the following topics covered in this article:</p>
+<!-- CN26v1 -->
+<div class="cn26 cn26v1" data-trackas="cn26" data-ocomid="cn26">
+  <div class="cn26w1 mwidth">
+    <h4>Contents</h4>
+    <nav data-selectlabel="Jump to category:">
+    <ul>
+    <li><a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#introjb"><span class="cn26w2"><span>What's JAXB?</span><i class="icn-img icn-arrow-down"></i></span></a></li>
+    <li><a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#xmp1"><span class="cn26w2"><span>An Example: Accessing an XML Document</span><i class="icn-img icn-arrow-down"></i></span></a></li>  
+    <li><a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#binsch"><span class="cn26w2"><span>Bind the Schema</span><i class="icn-img icn-arrow-down"></i></span></a></li>
+    <li><a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#unmars"><span class="cn26w2"><span>Unmarshal the Document</span><i class="icn-img icn-arrow-down"></i></span></a></li>
+    <li><a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#xmp2"><span class="cn26w2"><span>Another Example: Building an XML Document</span><i class="icn-img icn-arrow-down"></i></span></a></li>
+    <li><a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#binsch2"><span class="cn26w2"><span>Bind the Schema</span><i class="icn-img icn-arrow-down"></i></span></a></li>
+    <li><a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#crtree"><span class="cn26w2"><span>Create the Content Tree</span><i class="icn-img icn-arrow-down"></i></span></a></li>
+    <li><a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#mars"><span class="cn26w2"><span>Marshal the Content Tree</span><i class="icn-img icn-arrow-down"></i></span></a></li>
+    <li><a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#xmp3"><span class="cn26w2"><span>A Final Example: Updating an XML Document</span><i class="icn-img icn-arrow-down"></i></span></a></li>
+    <li><a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#custbind"><span class="cn26w2"><span>Binding Can Be Customized</span><i class="icn-img icn-arrow-down"></i></span></a></li>
+    <li><a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#disadv"><span class="cn26w2"><span>Distinct Advantages</span><i class="icn-img icn-arrow-down"></i></span></a></li>
+    <li><a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#runxmp" class=""><span class="cn26w2"><span>Run the Examples</span><i class="icn-img icn-arrow-down"></i></span></a></li>
+    </ul>
+    </nav>
+  <div class="cn26mobile"><select><option>Jump to category:</option><option value="introjb">What's JAXB?</option><option value="xmp1">An Example: Accessing an XML Document</option><option value="binsch">Bind the Schema</option><option value="unmars">Unmarshal the Document</option><option value="xmp2">Another Example: Building an XML Document</option><option value="binsch2">Bind the Schema</option><option value="crtree">Create the Content Tree</option><option value="mars">Marshal the Content Tree</option><option value="xmp3">A Final Example: Updating an XML Document</option><option value="custbind">Binding Can Be Customized</option><option value="disadv">Distinct Advantages</option><option value="runxmp">Run the Examples</option></select><div class="icn-img icn-cv-down"></div></div></div>
+</div>
+<!-- /CN26v1 -->
+
+
+<!-- CB104v1 -->
+<section class="cb104 cb104v1 cpad" data-trackas="cb104" data-ocomid="cb104">
+    <div class="cb104w1 cwidth">
+        <h4><a name="introjb" id="introjb"></a>What's JAXB?</h4>
+        <div class="col-framework col2 col2-thirds-col1 col-gutters col-justified inview">
+            <div class="col-w1">
+<div class="col-item">
+    <div class="col-item-w1">
+        
+        <p>The <a href="http://www.w3.org/XML/">Extensible Markup Language (XML)</a> and Java technology are natural partners in helping developers exchange data and programs across the Internet. That's because XML has emerged as the standard for exchanging data across disparate systems, and Java technology provides a platform for building portable applications. This partnership is particularly important for Web services, which promise users and application developers program functionality on demand from anywhere to anywhere on the Web. XML and Java technology are recognized as ideal building blocks for developing Web services and applications that access Web services.</p>
+        <p>But how do you couple these partners in practice? More specifically, how do you access and use an XML document (that is, a file containing XML-tagged data) through the Java programming language? One way to do this, perhaps the most typical way, is through parsers that conform to the               <a href="http://www.saxproject.org/">Simple API for XML (SAX)</a> or the               <a href="http://www.w3.org/DOM/">Document Object Model (DOM)</a>.</p>
+
+    </div>
+</div>
+<div class="col-item">
+    <div class="col-item-w1 bgvlightgrey">
+        <p><strong>XML and Java technology are recognized as ideal building blocks for developing Web services and applications that access Web services. A new Java API called Java Architecture for XML Binding (JAXB) can make it easier to access XML documents from applications written in the Java programming language.</strong></p>
+    </div>
+</div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /CB104v1 -->
+<p>Java developers can invoke a SAX or DOM parser in an application through the JAXP API to parse an XML document -- that is, scan the document and logically break it up into discrete pieces. The parsed content is then made available to the application. In the SAX approach, the parser starts at the beginning of the document and passes each piece of the document to the application in the sequence it finds it. Nothing is saved in memory. The application can take action on the data as it gets it from the parser, but it can't do any in-memory manipulation of the data. For example, it can't update the data in memory and return the updated data to the XML file.</p>
+
+<p>In the DOM approach, the parser creates a tree of objects that represents the content and organization of data in the document. In this case, the tree exists in memory. The application can then navigate through the tree to access the data it needs, and if appropriate, manipulate it.</p>
+<p>Now developers have another Java API at their disposal that can make it easier to access XML documents:               <a href="http://jaxb.java.net/">Java Architecture for XML Binding (JAXB)</a>. A Reference Implementation of the API is now available in the               <a href="https://www.oracle.com/technetwork/java/webservicespack-jsp-140788.html">Java Web Services Developer Pack V 1.1</a>.</p>
+<p>Let's look at JAXB in action, and compare it to SAX and DOM-based processing.</p>
+
+<h4><a name="xmp1" id="xmp1"></a>An Example: Accessing an XML Document</h4>
+<p>Suppose you need to develop a Java application that accesses and displays data in XML documents such as               <a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#">books.xml</a>. These documents contain data about books, such as book name, author, description, and ISBN identification number. You could use the SAX or DOM approach to access an XML document and then display the data. For example, suppose you took the SAX approach. In that case, you would need to:</p>
+<ul class="obullets">
+    <li>Write a program that creates a SAX parser and then uses that parser to parse the XML document. The SAX parser starts at the beginning of the document. When it encounters something significant (in SAX terms, an "event") such as the start of an XML tag, or the text inside of a tag, it makes that data available to the calling application.</li>
+    
+    <li>Create a content handler that defines the methods to be notified by the parser when it encounters an event. These methods, known as callback methods, take the appropriate action on the data they receive.</li>
+</ul>
+
+<!-- CB104v1 -->
+<section class="cb104 cb104v1 cpad" data-trackas="cb104" data-ocomid="cb104">
+    <div class="cb104w1 cwidth">
+        <div class="col-framework col2 col2-thirds-col1 col-gutters col-justified inview">
+            <div class="col-w1">
+<div class="col-item">
+    <div class="col-item-w1">
+        <p>As an example,               <a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#">here</a> is a program that uses JAXP to create and use a SAX parser to parse an XML document. The program uses a content handler,               <code class="ocode language-undefined ocode-initialized">MyContentHandler</code>, to display the data passed to it by the SAX parser.</p>
+
+        <p>Now let's look at how you use JAXB to access an XML document such as               <code class="ocode language-undefined ocode-initialized">books.xml</code> and display its data. Using JAXB, you would:</p>
+        <ul class="obullets">
+    <li><a href="https://www.oracle.com/technetwork/articles/javase/jaxb-141136.html#binsch">Bind the schema</a> for the XML document.</li>
+    
+    <li><a href="https://www.oracle.com/technetwork/articles/javase/jaxb-141136.html#unmars">Unmarshal the document</a> into Java content objects. The Java content objects represent the content and organization of the XML document, and are directly available to your program.</li>
+</ul>
+    </div>
+</div>
+<div class="col-item">
+    <div class="col-item-w1 bgvlightgrey">
+        <p><strong>JAXB allows Java developers to access and process XML data without having to know XML or XML processing. For example, there's no need to create or use a SAX parser or write callback methods.</strong></p>
+    </div>
+</div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /CB104v1 -->
+
+
+
+
+<p>After unmarshalling, your program can access and display the data in the XML document simply by accessing the data in the Java content objects and then displaying it. There is no need to create and use a parser and no need to write a content handler with callback methods. What this means is that developers can access and process XML data without having to know XML or XML processing.</p>
+
+
+<h4><a name="binsch" id="binsch"></a>Bind the Schema</h4>
+<p>Binding an XML Schema</p>
+<p>JAXB simplifies access to an XML document from a Java program by presenting the XML document to the program in a Java format. The first step in this process is to bind the schema for the XML document into a set of Java classes that represents the schema.</p>
+<p><strong>Schema</strong>: A schema is an XML specification that governs the allowable components of an XML document and the relationships between the components. For example, a schema identifies the elements that can appear in an XML document, in what order they must appear, what attributes they can have, and which elements are subordinate (that is, are child elements) to other elements. An XML document does not have to have a schema, but if it does, it must conform to that schema to be a valid XML document. JAXB requires that the XML document you want to access has a schema, and that schema is written in the               <a href="http://www.w3.org/TR/xmlschema-0">W3C XML Schema Language</a> (see the box "Why W3C XML Schema Language?").</p>
+
+<p>Assume, for this example, that the               <code class="ocode language-undefined ocode-initialized">books.xml</code> document has a schema,               <a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#">books.xsd</a>, that is written in the W3C XML Schema Language. This schema defines a               <code class="ocode language-undefined ocode-initialized">&lt;Collection&gt;</code> as an element that has a complex type. This means that it has child elements, in this case,               <code class="ocode language-undefined ocode-initialized">&lt;book&gt;</code> elements. Each               <code class="ocode language-undefined ocode-initialized">&lt;book&gt;</code> element also has a complex type named               <code class="ocode language-undefined ocode-initialized">bookType</code>. The               <code class="ocode language-undefined ocode-initialized">&lt;book&gt;</code> element has child elements such as               <code class="ocode language-undefined ocode-initialized">&lt;name&gt;</code>,               <code class="ocode language-undefined ocode-initialized">&lt;ISBN&gt;</code>, and               <code class="ocode language-undefined ocode-initialized">&lt;author&gt;</code>. Some of these have their own child elements.</p>
+
+<!-- CB104v1 -->
+<section class="cb104 cb104v1 cpad" data-trackas="cb104" data-ocomid="cb104">
+    <div class="cb104w1 cwidth">
+    <div class="col-item">
+        <div class="col-item-w1 bgvlightgrey">
+            <p><strong>Why W3C XML Schema Language?</strong></p>
+            <p><strong>The W3C XML Schema Language is not the only schema language. In fact, the XML specification describes document-type definitions (DTDs) as the way to express a schema. In addition, pre-release versions of the JAXB Reference Implementation worked only with DTDs -- that is, not with schemas written in the XML Schema Language. However, the XML Schema Language is much richer than DTDs. For example, schemas written in the XML Schema Language can describe structural relationships and data types that can't be expressed (or can't easily be expressed) in DTDs. There are tools available to convert DTDs to the W3C XML Schema Language, so if you have DTD-based schemas that you used with an earlier version of the JAXB Reference Implementation, you can use these tools to convert the schemas to XML Schema Language.</strong></p>
+        </div>
+    </div>
+</div>
+</section>
+<p><strong>Binding</strong>: Binding a schema means generating a set of Java classes that represents the schema. All JAXB implementations provide a tool called a binding compiler to bind a schema (the way the binding compiler is invoked can be implementation-specific). For example, the JAXB Reference Implementation provides a binding compiler that you can invoke through scripts. Suppose, for example, you want to bind the               <code class="ocode language-undefined ocode-initialized">books.xsd</code> schema using the binding compiler provided by the JAXB Reference Implementation. Suppose too that you're working in the Solaris Operating Environment. Here's a command you can use to run the script that binds the schema:</p>
+
+<p><code class="ocode language-undefined ocode-initialized">xjc.sh -p test.jaxb books.xsd -d work</code></p>
+
+
+<p>The               <code class="ocode language-undefined ocode-initialized">-p</code> option identifies a package for the generated classes, and the               <code class="ocode language-undefined ocode-initialized">-d</code> option identifies a target directory. So for this command, the classes are packaged in               <code class="ocode language-undefined ocode-initialized">test.jaxb</code> within the               <code class="ocode language-undefined ocode-initialized">work</code> directory.</p>
+<p>In response, the binding compiler generates a set of interfaces and a set of classes that implement the interfaces. Here are the interfaces it generates for the               <code class="ocode language-undefined ocode-initialized">books.xsd</code> schema:</p>
+<ul class="obullets">
+    <li>CollectionType.java Represents the unnamed complex type for the <code class="ocode language-undefined ocode-initialized">&lt;Collection&gt;</code> element.</li>
+    <li><code class="ocode language-undefined ocode-initialized">Collection.java</code>. Represents the <code class="ocode language-undefined ocode-initialized">&lt;Collection&gt;</code> element.</li>
+    <li><code class="ocode language-undefined ocode-initialized">BookType.java</code>. Represents the <code class="ocode language-undefined ocode-initialized">BookType</code> complex type.</li>
+    <li><code class="ocode language-undefined ocode-initialized">ObjectFactory.java</code>. Contains methods for generating instances of the interfaces.</li>
+</ul>
+
+<p>Here are the classes that implement the interfaces (these are generated in an               <code class="ocode language-undefined ocode-initialized">impl</code> subdirectory). Note that these classes are implementation-specific -- in this example, they are specific to the Reference Implementation. Because the classes are implementation-specific, classes generated by the binding compiler in one JAXB implementation will probably not work with another JAXB implementation. So if you change to another JAXB implementation, you should rebind the schema with the binding compiler provided by that implementation.</p>
+
+<ul class="obullets">
+    <li><code class="ocode language-undefined ocode-initialized">impl/CollectionTypeImpl.java</code>. Implements the <code class="ocode language-undefined ocode-initialized">CollectionType</code> interface described in <code class="ocode language-undefined ocode-initialized">CollectionType.java</code>.</li>
+    <li><code class="ocode language-undefined ocode-initialized">impl/CollectionImpl.java</code>. Implements the <code class="ocode language-undefined ocode-initialized">Collection</code> interface described in <code class="ocode language-undefined ocode-initialized">Collection.java</code>.</li>
+    <li><code class="ocode language-undefined ocode-initialized">impl/BookTypeImpl.java</code>. Implements the <code class="ocode language-undefined ocode-initialized">BookType</code> interface described in <code class="ocode language-undefined ocode-initialized">BookType.java</code>.</li>
+</ul>
+
+<p>In total, the generated classes represent the entire               <code class="ocode language-undefined ocode-initialized">books.xsd</code> schema. Notice that the classes define               <code class="ocode language-undefined ocode-initialized">get</code> and               <code class="ocode language-undefined ocode-initialized">set</code>methods that are used to respectively obtain and specify data for each type of element and attribute in the schema.</p>
+<p>You then compile the generated interfaces and classes. For example:</p>
+
+
+<p><code class="ocode language-undefined ocode-initialized">javac test/jaxb/*.java  test/jaxb/impl/*.java</code></p>
+
+<p>This compiles all of the interfaces and classes in the               <code class="ocode language-undefined ocode-initialized">test.jaxb</code> package generated by the binding compiler.</p>
+
+<h4><a name="unmars" id="unmars"></a>Unmarshal the Document</h4>
+<p>Unmarshalling</p>
+<p>Unmarshalling an XML document means creating a tree of content objects that represents the content and organization of the document. The content tree is not a DOM-based tree. In fact, content trees produced through JAXB can be more efficient in terms of memory use than DOM-based trees.</p>
+<p>The content objects are instances of the classes produced by the binding compiler. In addition to providing a binding compiler, a JAXB implementation must provide runtime APIs for JAXB-related operations such as marshalling. The APIs are provided as part of a binding framework. The binding framework comprises three packages. The primary package,               <code class="ocode language-undefined ocode-initialized">javax.xml.bind</code>, contains classes and interfaces for performing operations such as unmarshalling, marshalling, and validation (marshalling and validation will be covered later). A second package,               <code class="ocode language-undefined ocode-initialized">javax.xml.bind.util</code>, contains a number of utility classes. The third package,               <code class="ocode language-undefined ocode-initialized">javax.xml.bind.helper</code>, is designed for JAXB implementation providers.</p>
+<p>To unmarshal an XML document, you:</p>
+<ul class="obullets">
+    <li>Create a <code class="ocode language-undefined ocode-initialized">JAXBContext</code> object. This object provides the entry point to the JAXB API. When you create the object, you need to specify a context path. This is a list of one or more package names that contain interfaces generated by the binding compiler. By allowing multiple package names in the context path, JAXB allows you to unmarshal a combination of XML data elements that correspond to different schemas.
+    <p>For example, the following code snippet creates a <code class="ocode language-undefined ocode-initialized">JAXBContext</code> object whose context path is <code class="ocode language-undefined ocode-initialized">test.jaxb</code>, the package that contains the interfaces generated for the <code class="ocode language-undefined ocode-initialized">books.xsd</code> schema:</p>
+<div class="ocode ocode-initialized">
+<div class="ocode-bttn" data-error="Error: Could not Copy" data-success="Copied to Clipboard">
+<div><a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#copy">Copy</a></div>
+<div class="ocode-success">Copied to Clipboard</div><div class="ocode-error">Error: Could not Copy</div></div>
+<pre class=" language-undefined"><code class=" language-undefined">import javax.xml.bind.JAXBContext;
+
+JAXBContext jc = JAXBContext.newInstance("test.jaxb");</code></pre>
+<textarea readonly="readonly" tabindex="-1"></textarea></div>
+    </li>
+    <li>Create an <code class="ocode language-undefined ocode-initialized">Unmarshaller</code> object. This object controls the process of unmarshalling. In particular, it contains methods that perform the actual unmarshalling operation. For example, the following code snippet creates an <code class="ocode language-undefined ocode-initialized">Unmarshaller</code> object:
+<div class="ocode ocode-initialized">
+<div class="ocode-bttn" data-error="Error: Could not Copy" data-success="Copied to Clipboard">
+<div><a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#copy">Copy</a></div>
+<div class="ocode-success">Copied to Clipboard</div><div class="ocode-error">Error: Could not Copy</div></div>
+<pre class=" language-undefined"><code class=" language-undefined">import javax.xml.bind.Unmarshaller;
+
+Unmarshaller unmarshaller = jc.createUnmarshaller();</code></pre>
+<textarea readonly="readonly" tabindex="-1"></textarea></div>
+    </li>
+    <li>Call the <code class="ocode language-undefined ocode-initialized">unmarshal</code> method. This method does the actual unmarshalling of the XML document. For example, the following statement unmarshals the XML data in the <code class="ocode language-undefined ocode-initialized">books.xml</code> file:
+<div class="ocode ocode-initialized">
+<div class="ocode-bttn" data-error="Error: Could not Copy" data-success="Copied to Clipboard">
+<div><a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#copy">Copy</a></div>
+<div class="ocode-success">Copied to Clipboard</div><div class="ocode-error">Error: Could not Copy</div></div>
+<pre class=" language-undefined"><code class=" language-undefined">Collection collection= (Collection)
+    unmarshaller.unmarshal(new File( "books.xml"));</code></pre>
+<textarea readonly="readonly" tabindex="-1"></textarea></div>
+    Note that a <code class="ocode language-undefined ocode-initialized">Collection</code> here is a <code class="ocode language-undefined ocode-initialized">test.jaxb.Collection</code>, not a <code class="ocode language-undefined ocode-initialized">java.util.Collection</code>.</li>
+    
+    <li>Use the <code class="ocode language-undefined ocode-initialized">get</code> methods in the schema-derived classes to access the XML data. Recall that the classes that a JAXB compiler generates for a schema include <code class="ocode language-undefined ocode-initialized">get</code> and <code class="ocode language-undefined ocode-initialized">set</code> methods you can use to respectively obtain and specify data for each type of element and attribute in the schema. For example, the following statement gets the data in the <code class="ocode language-undefined ocode-initialized">books</code> and <code class="ocode language-undefined ocode-initialized">book</code> elements:
+<div class="ocode ocode-initialized">
+<div class="ocode-bttn" data-error="Error: Could not Copy" data-success="Copied to Clipboard">
+<div><a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#copy">Copy</a></div>
+<div class="ocode-success">Copied to Clipboard</div><div class="ocode-error">Error: Could not Copy</div></div>
+<pre class=" language-undefined"><code class=" language-undefined">CollectionType.BooksType booksType = collection.getBooks();
+List bookList = booksType.getBook();</code></pre>
+<textarea readonly="readonly" tabindex="-1"></textarea></div>
+    </li>
+</ul>
+<p>After obtaining the data, you can display it directly from your program. Here, for example, is a               <a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#">program</a> that unmarshals the data in the               <code class="ocode language-undefined ocode-initialized">books.xml</code> file and then displays the data. If you run the program, you should see the following result:</p>
+
+<div class="ocode ocode-initialized">
+<pre class=" language-undefined"><code class=" language-undefined">Book  details 
+Item id: 999
+Book Name: Learning JAXB
+Book ISBN: 123445
+Book Price: 34 $
+Book category: other
+Book promotion: 10% on this book if purchased by March 2003
+No of Authors 1
+Author Name Jane Doe
+
+Book  details 
+Item id: 129
+Book Name: Java Webservices today and Beyond
+Book ISBN: 522965
+Book Price: 29 $
+Book category: magazine
+Book promotion: Buy one get Learning webservices Part 1 free
+No of Authors 2
+Author Name John Brown
+Author Name Peter T.</code></pre>
+<textarea readonly="readonly" tabindex="-1"></textarea></div>
+
+
+<p><strong>Validating the Source Data</strong>: Notice that the program includes the following statement:</p>
+
+
+<p><code class="ocode language-undefined ocode-initialized">unmarshaller.setValidating(true);</code></p>
+
+<!-- CB104v1 -->
+<section class="cb104 cb104v1 cpad" data-trackas="cb104" data-ocomid="cb104">
+    <div class="cb104w1 cwidth">
+        <div class="col-framework col2 col2-thirds-col1 col-gutters col-justified inview">
+            <div class="col-w1">
+                <div class="col-item">
+                    <div class="col-item-w1">
+                        
+                        <p>This statement highlights an important feature of JAXB: you can have it validate the source data against the associated schema as part of the unmarshalling operation. In this case, the statement asks JAXB to validate the source data against its schema. If the data is found to be invalid (that is, it doesn't conform to the schema) the JAXB implementation can report it and might take further action. JAXB providers have a lot of flexibility here. The JAXB specification mandates that all provider implementations report validation errors when the errors are encountered, but the implementation does not have to stop processing the data. Some provider implementations might stop processing when the first error is found, others might stop even if many errors are found. In other words, it is possible for a JAXB implementation to successfully unmarshal an invalid XML document, and build a Java content tree. However, the result won't be valid. The main requirement is that all JAXB implementations must be able to unmarshal valid documents.</p>
+                    </div>
+                </div>
+                <div class="col-item">
+                    <div class="col-item-w1 bgvlightgrey">
+                       <p><strong>You can validate source data against an associated schema as part of the unmarshalling operation.</strong></p> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /CB104v1 -->
+
+<p>You also have the flexibility of turning the validation switch off if you don't want to incur the additional validation processing overhead.</p>
+<p><strong>Unmarshalling Other Sources</strong>: Although the example described in this section shows how to unmarshal XML data in a file, you can unmarshal XML data from other input sources such as an               <code class="ocode language-undefined ocode-initialized">InputStream object</code>, a URL, or a DOM node. You can even unmarshal transformed XML data. For example, you can unmarshal a               <code class="ocode language-undefined ocode-initialized">javax.xml.transform.sax.SAXSource</code> object. You can also unmarshal SAX events -- in other words, you can do a SAX parse of a document and then pass the events to JAXB for unmarshalling.</p>
+<p><strong>An Alternative: Accessing Data without Unmarshalling</strong>: JAXB also allows you to access XML data without having to unmarshal it. One of the classes generated from a schema,               <code class="ocode language-undefined ocode-initialized">ObjectFactory</code>, contains methods to generate objects for each of the schema-derived interfaces and classes. For example, the package generated for the               <code class="ocode language-undefined ocode-initialized">books.xsd</code> schema includes an               <code class="ocode language-undefined ocode-initialized">ObjectFactory</code> class that has methods such as               <code class="ocode language-undefined ocode-initialized">createCollection</code> to create a               <code class="ocode language-undefined ocode-initialized">Collection</code> object, and               <code class="ocode language-undefined ocode-initialized">createBookType</code> to create a               <code class="ocode language-undefined ocode-initialized">BookType</code> object. You can use these methods to create a tree of content objects without doing any unmarshalling. All your program needs is access to the               <code class="ocode language-undefined ocode-initialized">ObjectFactory</code> class that's in the package for the pertinent schema. Then you can use the appropriate methods in the               <code class="ocode language-undefined ocode-initialized">ObjectFactory</code> class to create the objects you need. After you create the objects, you need to provide their content. To do that, you use the               <code class="ocode language-undefined ocode-initialized">set</code> methods in the objects.</p>
+
+<h4><a name="xmp2" id="xmp2"></a>Another Example: Building an XML Document</h4>
+<p>Instead of accessing data in an XML document, suppose you need to build an XML document through a Java application. Here too using JAXB is easier. Let's investigate.</p>
+<p>You could use the DOM approach to build an XML document, but not SAX. That's because you would need to build and populate the content of the document in memory -- recall that SAX does not allow you to perform any in-memory manipulation of data. Using the DOM approach, your program needs to create and use DOM objects and methods to build the document. DOM is designed to represent the content and organization of data in a document as a tree of objects. To build the document, your program uses DOM to create a               <code class="ocode language-undefined ocode-initialized">Document</code> object that represents the document. Your program then uses               <code class="ocode language-undefined ocode-initialized">Document</code> object methods to create other objects that represent the nodes of the tree. Each node contains content for the XML document. You then append the nodes in an order that reflects the organization of the tree. In other words, your program uses DOM object methods to create a root node, and append the root node to the               <code class="ocode language-undefined ocode-initialized">Document</code> object. Then it creates child nodes and appends them to the root node. If a child node has children of its own, your program uses DOM object methods to create those nodes and append them to their parent node.</p>
+<p>Unlike the SAX approach, there is no need in DOM to write a content handler and callback methods. However the DOM approach requires you to understand the organization of the document tree. In fact, if you use DOM to access data, you create a parser that builds a tree, and then you use DOM methods to navigate to the appropriate object in the tree that contains the data you need. So an understanding of the tree's organization is a requirement. Compare this to JAXB, where you have direct access to unmarshalled XML data through objects in the content tree. As in DOM-based processing, JAXB allows access to data in non-sequential order, but it doesn't force an application to navigate through a tree to access the data. In addition, with all the creating and appending of objects that represent the nodes of the tree, the DOM approach can be tedious.</p>
+<!-- CB104v1 -->
+<section class="cb104 cb104v1 cpad" data-trackas="cb104" data-ocomid="cb104">
+    <div class="cb104w1 cwidth">
+        <div class="col-framework col2 col2-thirds-col1 col-gutters col-justified inview">
+            <div class="col-w1">
+                <div class="col-item">
+                    <div class="col-item-w1">
+                        
+                        <p><a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#">Here</a>, for example, is a program that uses DOM to build and populate a document, and then write the document to an XML file. Notice that the type of data that gets populated into the document is similar to the data in the               <code class="ocode language-undefined ocode-initialized">books.xml</code> file that was used in the first example,               <a href="https://www.oracle.com/technetwork/articles/javase/jaxb-141136.html#xmp1">Accessing an XML Document</a>. In fact, the program validates the document it builds against the               <a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#">books.xsd</a> schema that was used in the first example.</p>
+                        <p>Now let's look at how you use JAXB to build the same document, validate it against the               <code class="ocode language-undefined ocode-initialized">books.xsd</code> schema, and write the document to an XML file. Using JAXB, you would:</p>
+                    </div>
+                </div>
+                <div class="col-item">
+                    <div class="col-item-w1 bgvlightgrey">
+                       <p><strong>As in DOM-based processing, JAXB allows access to data in non-sequential order, but it doesn't force an application to navigate through a tree to access the data.</strong></p> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /CB104v1 -->
+
+
+
+
+<ul class="obullets">
+    <li><a href="https://www.oracle.com/technetwork/articles/javase/jaxb-141136.html#binsch2">Bind the schema</a> for the XML document (if it isn't already bound).</li>
+    
+    <li><a href="https://www.oracle.com/technetwork/articles/javase/jaxb-141136.html#crtree">Create the content tree</a>.</li>
+    
+    <li><a href="https://www.oracle.com/technetwork/articles/javase/jaxb-141136.html#mars">Marshal the content tree</a> into the XML document.</li>
+</ul>
+
+<p>In this process, you don't deal with the intricacies of the DOM object model or even need to know XML.</p>
+
+<h4><a name="binsch2" id="binsch2"></a>Bind the Schema</h4>
+<p>This is the               <a href="https://www.oracle.com/technetwork/articles/javase/jaxb-141136.html#binsch">same operation</a> you perform prior to unmarshalling a document. In this case, the schema is for the XML document you want to build. Of course, if you've already bound the schema (for instance, you unmarshalled an XML document, updated the data, and now want to write the updated data back to the XML document), you don't have to bind the schema again.</p>
+
+<h4><a name="crtree" id="crtree"></a>Create the Content Tree</h4>
+<p>The content tree represents the content that you want to build into the XML document. You can create the content tree by unmarshalling XML data, or you can create it using the               <code class="ocode language-undefined ocode-initialized">ObjectFactory</code> class that's generated by binding the appropriate schema. Let's use the               <code class="ocode language-undefined ocode-initialized">ObjectFactory</code> approach. First, create an instance of the               <code class="ocode language-undefined ocode-initialized">ObjectFactory</code> class:</p>
+
+<p><code class="ocode language-undefined ocode-initialized">ObjectFactory objFactory = new ObjectFactory();</code></p>
+
+
+<p>Next, use               <code class="ocode language-undefined ocode-initialized">create</code> methods in the               <code class="ocode language-undefined ocode-initialized">ObjectFactory</code> object to create each of the objects in the content tree. For example:</p>
+
+<div class="ocode ocode-initialized">
+<div class="ocode-bttn" data-error="Error: Could not Copy" data-success="Copied to Clipboard">
+<div><a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#copy">Copy</a></div>
+<div class="ocode-success">Copied to Clipboard</div><div class="ocode-error">Error: Could not Copy</div></div>
+<pre class=" language-undefined"><code class=" language-undefined">Collection collection= 
+   (Collection) objFactory.createCollection();
+Collection.BooksType booksType = objFactory.
+   createCollectionTypeBooksType();
+BookType book = objFactory.createBookType();</code></pre>
+<textarea readonly="readonly" tabindex="-1"></textarea></div>
+
+
+<p>Then use               <code class="ocode language-undefined ocode-initialized">set</code> methods in the created objects to specify data values. For example:</p>
+
+<div class="ocode ocode-initialized">
+<pre class=" language-undefined"><code class=" language-undefined">book.setItemId("307");
+book.setName("JAXB today and beyond");</code></pre>
+<textarea readonly="readonly" tabindex="-1"></textarea></div>
+
+
+<h4><a name="mars" id="mars"></a>Marshal the Content Tree</h4>
+<p>Marshalling</p>
+<p>Marshalling is the opposite of unmarshalling. It creates an XML document from a content tree. To marshal a content tree, you:</p>
+<ul class="obullets">
+    <li>Create a <code class="ocode language-undefined ocode-initialized">JAXBContext</code> object, and specify the appropriate context path -- that is, the package that contains the classes and interfaces for the bound schema. As is the case for unmarshalling, you can specify multiple package names in the context path. That gives you a way of building an XML document using a combination of XML data elements that correspond to different schemas.
+<div class="ocode ocode-initialized">
+<pre class=" language-undefined"><code class=" language-undefined">import javax.xml.bind.JAXBContext;
+
+JAXBContext jaxbContext = JAXBContext.newInstance("test.jaxb");</code></pre>
+<textarea readonly="readonly" tabindex="-1"></textarea></div>
+    </li>
+    <li>Create a <code class="ocode language-undefined ocode-initialized">Marshaller</code> object. This object controls the process of marshalling. In particular, it contains methods that perform the actual marshalling operation.
+
+<div class="ocode ocode-initialized">
+<pre class=" language-undefined"><code class=" language-undefined">import javax.xml.bind.Marshaller;
+
+Marshaller marshaller = jaxbContext.createMarshaller();</code></pre>
+<textarea readonly="readonly" tabindex="-1"></textarea></div>
+    The <code class="ocode language-undefined ocode-initialized">Marshaller</code> object has properties that you can set through the <code class="ocode language-undefined ocode-initialized">setProperty</code> method. For example, you can specify the output encoding to be used when marshalling the XML data. Or you can tell the <code class="ocode language-undefined ocode-initialized">Marshaller</code> to format the resulting XML data with line breaks and indentation. The following statement turns this output format property on -- line breaks and indentation will appear in the output format:
+<div class="ocode ocode-initialized">
+<pre class=" language-undefined"><code class=" language-undefined">marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,
+   new Boolean(true));</code></pre>
+<textarea readonly="readonly" tabindex="-1"></textarea></div>
+    </li>
+    <li>Call the <code class="ocode language-undefined ocode-initialized">marshal</code> method. This method does the actual marshalling of the content tree. When you call the method, you specify an object that contains the root of the content tree, and the output target. For example, the following statement marshals the content tree whose root is in the <code class="ocode language-undefined ocode-initialized">collection</code> object and writes it as an output stream to the XML file <code class="ocode language-undefined ocode-initialized">jaxbOutput.xml</code>:
+<div class="ocode ocode-initialized">
+<pre class=" language-undefined"><code class=" language-undefined">marshaller.marshal(collection,
+   new FileOutputStream("jaxbOutput.xml"));</code></pre>
+<textarea readonly="readonly" tabindex="-1"></textarea></div>
+    </li>
+</ul>
+<p>Here, for example, is a               <a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#">program</a> that creates a content tree, fills it with data, and then marshals the content tree to an XML file.</p>
+<p><strong>Validating the Content Tree</strong>: Notice that validation is not performed as part of the marshalling operation. In other words, unlike the case for unmarshalling, there is no               <code class="ocode language-undefined ocode-initialized">setValidating</code> method for marshalling. Instead, when marshalling data, you use the               <code class="ocode language-undefined ocode-initialized">Validator</code> class that is a part of the binding framework to validate a content tree against a schema. For example:</p>
+
+<div class="ocode ocode-initialized">
+<pre class=" language-undefined"><code class=" language-undefined">import javax.xml.bind.Validator;
+
+Validator validator = jaxbContext.createValidator();
+validator.validate(collection));</code></pre>
+<textarea readonly="readonly" tabindex="-1"></textarea></div>
+
+<p>Validating the data as a separate operation from marshalling gives you a lot of flexibility. For example, you can do the validating at one point in time, and do the marshalling at another time. Or you can do some additional processing in between the two operations. Note that the JAXB specification doesn't require a content tree to be valid before it's marshalled. That doesn't necessarily mean that a JAXB implementation will allow invalid data to be marshalled -- it might marshal part or all of the invalid data, or not. But all JAXB implementations must be able to marshal valid data.</p>
+<p><strong>Marshalling to Other Targets</strong>: Although the example described in this section shows how to marshal data to an XML file, you can marshal to other output formats such as an               <code class="ocode language-undefined ocode-initialized">OutputStream</code> object or a DOM node. You can also marshal to a transformed data format such as               <code class="ocode language-undefined ocode-initialized">javax.xml.transform.SAXResult</code>. You can even marshal to a content handler. This allows you to process the data as SAX events.</p>
+
+<h4><a name="xmp3" id="xmp3"></a>A Final Example: Updating an XML Document</h4>
+<p>Here's a final example, one that logically combines elements of accessing an XML document and building an XML document. Suppose you need to update an XML document. In the DOM approach, you would create and use a DOM parser to navigate to the appropriate object in the tree that contains the data you need, update the data, and then write the updated data to an XML file. Here, for example, is a               <a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#">program</a> that uses DOM to update an XML document. As discussed in               <a href="https://www.oracle.com/technetwork/articles/javase/jaxb-141136.html#xmp2">Building an XML Document</a>, the DOM approach is relatively tedious and forces you to know the organization of the content tree.</p>
+<p>Here, by comparison, is a               <a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#">JAXB program</a> that updates an XML document. Specifically, it updates an unmarshalled content tree and then marshals it back to an XML document. Notice how JAXB simplifies the process. The program has direct access to the object it needs to update. The program uses a               <code class="ocode language-undefined ocode-initialized">get</code> method to access the data it needs, and a               <code class="ocode language-undefined ocode-initialized">set</code> method to update the data.</p>
+<p>Although it's tempting to think that the XML data can make a "roundtrip" unchanged, there's no guarantee of that. In other words, if you use JAXB to unmarshal an XML document and then marshal it back to the same XML file, there's no guarantee that the XML document will look exactly the same at it did originally. For example, the indentation of the resulting XML document might be a bit different than the original. The JAXB specification does not require the preservation of the XML information set in a roundtrip from XML document-to-Java representation-to XML document. But it also doesn't forbid the preserving of it.</p>
+
+<!-- CB104v1 -->
+<section class="cb104 cb104v1 cpad" data-trackas="cb104" data-ocomid="cb104">
+    <div class="cb104w1 cwidth">
+        <h4><a name="custbind" id="custbind"></a>Binding Can Be Customized</h4>
+        <div class="col-framework col2 col2-thirds-col1 col-gutters col-justified inview">
+            <div class="col-w1">
+                <div class="col-item">
+                    <div class="col-item-w1">
+                      <p>The JAXB specification describes the default behavior for binding a subset of XML schema components to Java components. The specification identifies which XML schema components must be bound and to what Java representations these components are bound. For example, the XML built-in datatype               <code class="ocode language-undefined ocode-initialized">xsd:string</code> must be bound to the Java data type               <code class="ocode language-undefined ocode-initialized">java.lang.String</code>. All JAXB compiler implementations must implement the default binding specifications. However there are times when the default behavior might not be what you want. For example, suppose you want an XML data type mapped to a Java data type that is different than the type called for by the default binding specification. Or you want the binding compiler to assign a name of your choice to a class that it generates.</p>
+                      <p>To meet these and other customization needs, JAXB allows you to annotate a schema with binding declarations that override or extend the default binding behavior. JAXB allows these declarations to be made "inline" -- that is, in the schema, or in a separate document.</p>
+                    </div>
+                </div>
+                <div class="col-item">
+                    <div class="col-item-w1 bgvlightgrey">
+                      <p><strong>The JAXB specification describes the default behavior for binding a subset of XML schema components to Java components. However JAXB allows you to annotate a schema with binding declarations that override or extend the default binding behavior.</strong></p>  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /CB104v1 -->
+
+
+
+<p>Let's look at a customization example.               <a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#">Here</a> is an annotated version of the               <code class="ocode language-undefined ocode-initialized">books.xsd</code> schema that was used in the previous examples. The annotations in this example are inline.</p>
+
+<p>Notice the               <code class="ocode language-undefined ocode-initialized">annotation</code> element near the top of the schema:</p>
+
+<div class="ocode ocode-initialized">
+<div class="ocode-bttn" data-error="Error: Could not Copy" data-success="Copied to Clipboard">
+<div><a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#copy">Copy</a></div>
+<div class="ocode-success">Copied to Clipboard</div><div class="ocode-error">Error: Could not Copy</div></div>
+<pre class=" language-undefined"><code class=" language-undefined">&lt;xs:annotation&gt;
+   &lt;xs:appinfo&gt;
+      &lt;jaxb:globalBindings generateIsSetMethod="true"&gt;
+
+      bindingStyle="modelGroupBinding"
+         choiceContentProperty="true" &gt;
+         
+           &lt;xjc:serializable uid="12343"/&gt;
+           &lt;jaxb:javaType name="short" 
+              xmlType="xs:long" 
+              printMethod="javax.xml.bind.DatatypeConverter.printShort"   
+              parseMethod="javax.xml.bind.DatatypeConverter.parseShort"/&gt;
+
+      &lt;/jaxb:globalBindings&gt;
+   &lt;/xs:appinfo&gt;
+&lt;/xs:annotation&gt;</code></pre>
+<textarea readonly="readonly" tabindex="-1"></textarea></div>
+
+<p>All binding declarations are in an               <code class="ocode language-undefined ocode-initialized">annotation</code> element and its subordinate               <code class="ocode language-undefined ocode-initialized">appinfo</code> element. In fact, all inline binding declarations must be made this way.</p>
+<p>This block of code demonstrates a number of customizations that you can make to a schema:</p>
+<p><strong>Make global customizations</strong>: The               <code class="ocode language-undefined ocode-initialized">&lt;jaxb:globalBindings ...&gt;</code> element specifies binding declarations that have global scope. In JAXB, binding declarations can be specified at different levels, or "scopes." Each scope inherits from the scopes above it, and binding declarations in a scope override binding declarations in scopes above it. Global scope is at the top of the scope hierarchy. It covers all the schema elements in the source schema and (recursively) any schemas that are included or imported by the source schema. Global scope is followed in the hierarchy by Schema scope (covers all the schema elements in the target namespace of a schema), Definition scope (covers all schema elements that reference a specified type definition or a global declaration), and Component scope (applies only to a specific schema element that was annotated with a binding declaration).</p>
+<p>Notice that the namespace prefix (             <code class="ocode language-undefined ocode-initialized">jaxb</code>) for the               <code class="ocode language-undefined ocode-initialized">&lt;globalBindings&gt;</code> element is bound to http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/jaxb/index.html. This URI contains the core schema for binding declarations.</p>
+<p><strong>Add method signatures</strong>. The declaration               <code class="ocode language-undefined ocode-initialized">generateIsSetMethod="true"</code> tells the binding compiler to generate               <code class="ocode language-undefined ocode-initialized">isSet</code> methods for the properties of all generated classes. These methods are used to determine if a property in a class is set or has a default value.</p>
+<p><strong>Change binding style</strong>. By default, schema components that have complex types and that have a content type property of mixed or element-only are bound with a style called element binding. In element binding, each element in the complex type is mapped to a unique content property. Alternatively, you can change the binding style to model group binding by specifying               <code class="ocode language-undefined ocode-initialized">bindingStyle="modelGroupBinding" choiceContentProperty="true"</code>. In model group binding, schema components that have complex type and that are nested in the schema are mapped to Java interfaces. This gives users a way to specifically customize these nested components. For example, the following component is nested in the customized schema:</p>
+
+<div class="ocode ocode-initialized">
+<div class="ocode-bttn" data-error="Error: Could not Copy" data-success="Copied to Clipboard">
+<div><a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#copy">Copy</a></div>
+<div class="ocode-success">Copied to Clipboard</div><div class="ocode-error">Error: Could not Copy</div></div>
+<pre class=" language-undefined"><code class=" language-undefined">&lt;xs:element name="promotion"&gt;
+
+       &lt;xs:complexType&gt;
+         &lt;xs:choice&gt;
+           &lt;xs:element name="Discount" type="xs:string" /&gt;
+           &lt;xs:element name="None" type="xs:string"/&gt;
+
+         &lt;/xs:choice&gt;
+       &lt;/xs:complexType&gt;
+    &lt;/xs:element&gt;</code></pre>
+<textarea readonly="readonly" tabindex="-1"></textarea></div>
+
+
+<p>As result of the global declarations made earlier, the binding compiler will generate the following methods for the elements tagged as               <code class="ocode language-undefined ocode-initialized">choice</code>:</p>
+
+<div class="ocode ocode-initialized">
+<div class="ocode-bttn" data-error="Error: Could not Copy" data-success="Copied to Clipboard">
+<div><a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#copy">Copy</a></div>
+<div class="ocode-success">Copied to Clipboard</div><div class="ocode-error">Error: Could not Copy</div></div>
+<pre class=" language-undefined"><code class=" language-undefined">java.lang.Object getDiscountOrNone();
+void setDiscountOrNone(java.lang.Object value);
+boolean is SetDiscountOrNone();</code></pre>
+<textarea readonly="readonly" tabindex="-1"></textarea></div>
+
+<p><strong>Include vendor-specific extensions</strong>. The declaration               <code class="ocode language-undefined ocode-initialized">&lt;xjc:serializable uid="12343"/&gt;</code> is an extension binding declaration. The               <code class="ocode language-undefined ocode-initialized">xjc</code> prefix binds to a namespace for extension binding declarations. These declarations are vendor-specific extensions to the binding declarations defined in http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/jaxb/index.html. Here, the vendor-specific declaration covers the binding of classes that implement               <code class="ocode language-undefined ocode-initialized">java.io.Serializable</code>. The serial version uid 12343 will be assigned to each generated class.</p>
+<p><strong>Customize the binding of a simple data type</strong>. The declaration               <code class="ocode language-undefined ocode-initialized">&lt;jaxb:javaType name="short" xmlType="xs:long"</code> binds the XML datatype               <code class="ocode language-undefined ocode-initialized">xs:long</code> to the Java data type               <code class="ocode language-undefined ocode-initialized">short</code>. This overrides the default binding behavior, which is to bind               <code class="ocode language-undefined ocode-initialized">xs:long</code> to the Java primitive data type               <code class="ocode language-undefined ocode-initialized">long</code>. The additional declaration               <code class="ocode language-undefined ocode-initialized">printMethod="javax.xml.bind.DatatypeConverter.parseShort"</code> tells the binding compiler to use the               <code class="ocode language-undefined ocode-initialized">DatatypeConverter.parseShort</code> method in JAXB's               <code class="ocode language-undefined ocode-initialized">javax.xml.bind</code> package to convert a lexical representation of the XML data type into the Java data type. The parse method is invoked by the JAXB provider's implementation during unmarshalling. The additional declaration               <code class="ocode language-undefined ocode-initialized">printMethod="javax.xml.bind.DatatypeConverter.printShort"</code> tells the binding compiler to use the               <code class="ocode language-undefined ocode-initialized">DatatypeConverter.printShort</code> method in JAXB's               <code class="ocode language-undefined ocode-initialized">javax.xml.bin</code> package to convert the Java data type into a lexical representation of the XML data type. The print method is invoked by the JAXB provider's implementation during marshalling.</p>
+<p><strong>Additional customizations</strong>: Other annotations in the schema illustrate additional types of customization, such as annotating a specific schema element to a Java Content Interface or Java Element Interface. This is done through a               <code class="ocode language-undefined ocode-initialized">&lt;class&gt;</code> binding declaration. In the annotated schema example, a               <code class="ocode language-undefined ocode-initialized">&lt;class&gt;</code> binding declaration is used to specify the name               <code class="ocode language-undefined ocode-initialized">MyCollection</code> for the interface bound to the               <code class="ocode language-undefined ocode-initialized">&lt;Collection&gt;</code> class. Another binding declaration in the annotated schema example binds the               <code class="ocode language-undefined ocode-initialized">&lt;bookCategory&gt;</code> element to its Java representation as a typesafe enumeration class. Although not illustrated in the annotated schema, another type of customization you can make is to specify javadoc for a generated package or class. These are only some of the many binding customizations that JAXB allows.</p>
+<p>You can see the impact of the binding declarations by binding the annotated schema. When you do the binding, specify the               <code class="ocode language-undefined ocode-initialized">-extension</code> option, as in the following command:</p>
+
+<p><code class="ocode language-undefined ocode-initialized">xjc.sh -extension -p cust books_customization.xsd</code></p>
+
+
+<p>The               <code class="ocode language-undefined ocode-initialized">-extension</code> option allows you to use vendor-provided extensions. You need this to enable the extension binding declaration in the schema. If you don't specify the               <code class="ocode language-undefined ocode-initialized">-extension</code> option, the binding compiler will run in "strict" mode. In this mode, it allows only for default bindings, and will produce an error message when it comes to the extension binding declaration.</p>
+<p>After you run the program, examine the interfaces and classes that the binding compiler generates, and compare them to the interfaces and classes generated from the uncustomized schema. For example,               <a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#">here</a> is the               <code class="ocode language-undefined ocode-initialized">CollectionType.java</code> file generated for the unnamed complex type for the               <code class="ocode language-undefined ocode-initialized">&lt;Collection&gt;</code> element. Notice the additional methods that have been added because of the binding customizations.</p>
+
+<h4><a name="disadv" id="disadv"></a>Distinct Advantages</h4>
+<p>Let's reiterate a number of important advantages of using JAXB:</p>
+<ul class="obullets">
+    <li>JAXB simplifies access to an XML document from a Java program:</li>
+    <li>.
+    <ul class="obullets">
+        <li>JAXB allows you to access and process XML data without having to know XML or XML processing. Unlike SAX-based processing, there's no need to create a SAX parser or write callback methods.</li>
+        <li>JAXB allows you to access data in non-sequential order, but unlike DOM-based processing, it doesn't force you to navigate through a tree to access the data.</li>
+        <li>By unmarshalling XML data through JAXB, Java content objects that represent the content and organization of the data are directly available to your program.</li>
+    </ul>
+    </li>
+    <li>JAXB uses memory efficiently: The tree of content objects produced through JAXB tends can be more efficient in terms of memory use than DOM-based trees.</li>
+    <li>JAXB is flexible:
+    <ul class="obullets">
+        <li>You can unmarshal XML data from a variety of input sources, including a file, an     <code class="ocode language-undefined ocode-initialized">InputStream</code> object, a URL, a DOM node, or a transformed source object.</li>
+        <li>You can marshal a content tree to a variety of output targets, including an XML file, an     <code class="ocode language-undefined ocode-initialized">OutputStream</code> object, a DOM node, or a transformed data object</li>
+        <li>You can unmarshal SAX events -- for example, you can do a SAX parse of a document and then pass the events to JAXB for unmarshalling.</li>
+        <li>JAXB allows you to access XML data without having to unmarshal it. Once a schema is bound you can use the     <code class="ocode language-undefined ocode-initialized">ObjectFactory</code> methods to create the objects and then use     <code class="ocode language-undefined ocode-initialized">set</code> methods in the generated objects to create content.</li>
+        <li>You can validate source data against an associated schema as part of the unmarshalling operation, but you can turn validation off if you don't want to incur the additional validation overhead.</li>
+        <li>You can validate a content tree, using the     <code class="ocode language-undefined ocode-initialized">Validator</code> class, separately from marshalling. For example, you can do the validating at one point in time, and do the marshalling at another time.</li>
+    </ul>
+    </li>
+    <li>JAXB's binding behavior can be customized in a variety of ways.</li>
+</ul>
+<p>Java developers should find JAXB a welcome aid in developing Web services and other Java-XML applications.</p>
+
+<h4><a name="runxmp" id="runxmp"></a>Run the Examples</h4>
+<p>If you'd like to run the examples in this article with Java Web Services Developer Pack V 1.1, you need to:</p>
+
+<ol>
+    <li>Install Java Web Services Developer Pack V 1.1 (if you haven't already done so).</li>
+    
+    <li>Set the <code class="ocode language-undefined ocode-initialized">JWSDP_HOME</code> environment variable to the Java Web Services Developer Pack V 1.1 installation directory. For example, if you're using the C shell in the Solaris Operating Environment, enter the command:
+    <p><code class="ocode language-undefined ocode-initialized">setenv JWSDP_HOME install_dir</code></p>
+
+    <p>replace <em>install_dir</em> with the Java Web Services Developer Pack V 1.1 installation directory.</p>
+    </li>
+    <li>Set the class paths for JAXB, JAXP, and Java Web Services Developer Pack V 1.1. For example, if you're using the C shell in the Solaris Operating Environment, enter the commands:
+
+<div class="ocode ocode-initialized">
+<div class="ocode-bttn" data-error="Error: Could not Copy" data-success="Copied to Clipboard">
+<div><a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#copy">Copy</a></div>
+<div class="ocode-success">Copied to Clipboard</div><div class="ocode-error">Error: Could not Copy</div></div>
+<pre class=" language-undefined"><code class=" language-undefined">setenv jaxb_lib $JWSDP_HOME/jaxb-1.0/lib
+setenv jaxp_lib $JWSDP_HOME/jaxp-1.2.2/lib/endorsed
+setenv jwsdp_lib $JWSDP_HOME/jwsdp-shared/lib</code></pre>
+<textarea readonly="readonly" tabindex="-1"></textarea></div>
+    <p>and on one line:</p>
+<div class="ocode ocode-initialized">
+<div class="ocode-bttn" data-error="Error: Could not Copy" data-success="Copied to Clipboard">
+<div><a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#copy">Copy</a></div>
+<div class="ocode-success">Copied to Clipboard</div><div class="ocode-error">Error: Could not Copy</div></div>
+<pre class=" language-undefined"><code class=" language-undefined">setenv CLASSPATH  $jwsdp_lib/jax-qname.jar:
+$jwsdp_lib/namespace.jar:$jaxb_lib/jaxb-api.jar:
+$jaxb_lib/jaxb-libs.jar:$jaxb_lib/jaxb-ri.jar:
+$jaxb_lib/jaxb-xjc.jar:
+$jaxp_lib/dom.jar:$jaxp_lib/sax.jar:
+$jaxp_lib/xalan.jar:$jaxp_lib/xercesImpl.jar:
+$jaxp_lib/xsltc.jar:$jaxp_lib/../jaxp-api.jar:
+.:classes:work</code></pre>
+<textarea readonly="readonly" tabindex="-1"></textarea></div>
+    </li>
+    <li>Set the path for JAXB. For example, if you're using the C shell in the Solaris Operating Environment, enter the command:
+    <p><code class="ocode language-undefined ocode-initialized">setenv PATH $JWSDP_HOME/jaxb-1.0/bin:$PATH</code></p>
+
+    </li>
+</ol>
+<h4>For More Information</h4>
+
+<p><a href="http://www.w3.org/TR/xmlschema-0">W3C XML Schema Language</a></p>
+
+<h4><a name="author" id="author"></a>About the Authors</h4>
+<p><strong>Ed Ort</strong> is a Java staff member. He has written extensively about Java technology and Web services.</p>
+<p><strong>Bhakti Mehta</strong> is a Member of Technical Staff at Sun Microsystems Inc. She is in the Web Technologies and Standards Interoperability and Quality team, and has worked with JAXP, JAXB, JAXR and JAXM.</p>
+
+
+    </div>
+</section>
+
+<!-- / _Raw-Text -->
+
+<!-- U10v0 -->
+
+	<!-- Dispatcher:null -->
+	
+<!-- BEGIN: oWidget_C/_Raw-Text/Display -->
+<!-- U10v0 -->
+<div class="u10 u10v6" data-trackas="ffooter" data-ocomid="u10">
+	<div class="u10w1">
+		
+<div class="u10w2">
+<div class="u10w3">
+<h5>Resources for</h5>
+<ul>
+<li><a data-lbl="resources-for:developers" href="https://developer.oracle.com/">Developers</a></li>
+<li><a data-lbl="resources-for:startups" href="https://www.oracle.com/startup/">Startups</a></li>
+<li><a data-lbl="resources-for:students-educators" href="https://academy.oracle.com/en/oa-web-overview.html">Students and Educators</a></li>
+</ul>
+<a class="u10btn"></a></div>
+</div>
+
+<div class="u10w2">
+<div class="u10w3">
+<h5>Partners</h5>
+<ul>
+<li><a data-lbl="partners:oracle-partnernetwork-ocom" href="https://www.oracle.com/partnernetwork/">Oracle PartnerNetwork</a></li>
+<li><a data-lbl="partners:find-a-partner" href="https://partner-finder.oracle.com/">Find a Partner</a></li>
+<li><a data-lbl="partners:login-opn" href="https://www.oracle.com/opn/index.html">Log in to OPN</a></li>
+</ul>
+<a class="u10btn"></a></div>
+</div>	
+
+<div class="u10w2">
+<div class="u10w3">
+<h5>Emerging Technologies</h5>
+<ul>
+<li><a data-lbl="emerging-technlogy:artificial-intelligence" href="https://www.oracle.com/artificial-intelligence/">Artificial Intelligence</a></li>
+<li><a data-lbl="emerging-technlogy:iot" href="https://www.oracle.com/internet-of-things/">Internet of Things (IoT)</a></li>
+<li><a data-lbl="emerging-technlogy:solutions" href="https://www.oracle.com/emerging-technologies/">More Solutions</a></li>
+</ul>
+<a class="u10btn"></a></div>
+</div>
+
+<div class="u10w2">
+<div class="u10w3">
+<h5>How We Operate</h5>
+<ul>
+<li><a data-lbl="how-we-operate:corporate-security-practices" href="https://www.oracle.com/corporate/security-practices/">Corporate Security Practices</a></li>
+<li><a data-lbl="how-we-operate:doing-business-with-oracle" href="https://www.oracle.com/corporate/doing-business.html">Doing Business with Oracle</a></li>
+<li><a data-lbl="how-we-operate:oracle-at-oracle" href="https://www.oracle.com/cloud/oracle-at-oracle/">Oracle@Oracle</a></li>
+</ul>
+<a class="u10btn"></a></div>
+</div>
+
+<div class="u10w2">
+<div class="u10w3">
+<h5>Contact Us</h5>
+<ul>
+<li><a href="tel:18006330738">US Sales: +1.800.633.0738</a></li>
+<li><a data-lbl="contact-us:global-contacts" href="https://www.oracle.com/corporate/contact/global.html">Global Contacts</a></li>
+<!--<li><a data-lbl="contact-us:support-directory" href="/support/contact.html">Support Directory</a></li>-->
+<li><a data-lbl="contact-us:subscribe-to-emails" href="https://go.oracle.com/subscriptions">Subscribe to emails</a></li>
+</ul>
+<a class="u10btn"></a></div>
+</div>
+
+<div class="u10w4">
+<hr>
+</div>
+<div class="u10w5" data-trackas="footer">
+<ul class="scl-icons">
+<li class="scl-facebook"><a data-lbl="scl-icon:facebook" href="https://www.facebook.com/Oracle/" title="Oracle on Facebook"> </a></li>
+<li class="scl-twitter"><a data-lbl="scl-icon:twitter" href="https://twitter.com/oracle" title="Follow Oracle on Twitter"> </a></li>
+<li class="scl-linkedin"><a data-lbl="scl-icon:linkedin" href="https://www.linkedin.com/company/oracle/" title="Oracle on LinkedIn"> </a></li>
+<li class="scl-youtube"><a data-lbl="scl-icon:you-tube" href="http://www.youtube.com/oracle/" title="Watch Oracle on YouTube"> </a></li>
+</ul>
+
+<div class="u10-ologo"><a data-lbl="integrated-cloud-applications-and-platform-services" href="https://www.oracle.com/">Oracle</a></div>
+<h3>Integrated Cloud Applications &amp; Platform Services</h3>
+
+<ul class="u10-links">
+<li><a data-lbl="copyright" href="https://www.oracle.com/legal/copyright.html">© 2020 Oracle</a></li>
+<li><a data-lbl="site-map" href="https://www.oracle.com/sitemap.html">Site Map</a></li>
+<li><a data-lbl="privacy" href="https://www.oracle.com/legal/privacy/">Privacy</a><span>/</span><a data-lbl="do-not-sell-my-info" href="https://www.oracle.com/legal/privacy/privacy-choices.html">Do Not Sell My Info</a></li><li class="u10break"></li>
+<li class="u10mtool" id="u10cmenu"><a data-lbl="country-region" class="u10ticon u10regn uu10ooverride" href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#u10countrymenu">Country/Region</a><div class="u10menupop u10toolpop"><div id="u10countrymenu">
+		<div class="u10countrymenu" data-lbl="country" role="tree">
+			<ul class="u10cmenu-l1" style="height: 287px;"><li class="u10pttl-li"><h5 class="u10pttl">Country/Region</h5></li>
+				<li class="u10currentcr u10currentdr">
+					<a class="u10clink" role="treeitem" aria-selected="true" aria-expanded="true" aria-labelledby="">
+						Americas</a>
+					<!-- LVL 2 -->
+
+					<div class="u10cmenu-l2 selected-region" data-lbl="americas" style="height: 287px;">
+						<ul class="u10cmenuc1">
+							<li>
+								<a data-lbl="argentina" href="https://www.oracle.com/ar/" role="treeitem">Argentina</a></li>
+							<li>
+
+								<a data-lbl="brasil" href="https://www.oracle.com/br/" role="treeitem">Brasil</a></li>
+							<li>
+								<a data-lbl="canada-english" href="https://www.oracle.com/ca-en/" role="treeitem">Canada - English</a></li>
+							<li>
+								<a data-lbl="canada-french" href="https://www.oracle.com/ca-fr/" role="treeitem">Canada - Français</a></li>
+							<li>
+								<a data-lbl="chile" href="https://www.oracle.com/cl/" role="treeitem">Chile</a></li>
+							<li>
+								<a data-lbl="columbia" href="https://www.oracle.com/co/" role="treeitem">Colombia</a></li>
+							<li>
+								<a data-lbl="costa-rica" href="https://www.oracle.com/cr/" role="treeitem">Costa Rica</a></li>
+						</ul>
+						<ul class="u10cmenuc1">
+							<li>
+								<a data-lbl="latin-america" href="https://www.oracle.com/lad/" role="treeitem">Latinoamérica</a></li>
+							<li>
+								<a data-lbl="mexico" href="https://www.oracle.com/mx/" role="treeitem">México</a></li>
+							<li>
+								<a data-lbl="peru" href="https://www.oracle.com/pe/" role="treeitem">Perú</a></li>
+							<li>
+								<a data-lbl="puerto-rico" href="https://www.oracle.com/pr/" role="treeitem">Puerto Rico</a></li>
+							<li>
+								<a class="u10currentcc" data-lbl="united-states" href="https://www.oracle.com/" role="treeitem">United States</a></li>
+							<li>
+								<a data-lbl="venezuela" href="https://www.oracle.com/ve/" role="treeitem">Venezuela</a></li>
+
+						</ul>
+					</div>
+					<!-- / LVL 2 --></li>
+				<li>
+					<a class="u10clink" role="treeitem" aria-selected="false" aria-expanded="false" aria-labelledby="">
+						Asia Pacific</a>
+					<!-- LVL 2 -->
+					<div class="u10cmenu-l2" data-lbl="asia-pacific">
+						<ul class="u10cmenuc1">
+							<li>
+								<a data-lbl="asean" href="https://www.oracle.com/asiasouth" role="treeitem">ASEAN</a></li>
+							<li>
+								<a data-lbl="australia" href="https://www.oracle.com/au/" role="treeitem">Australia</a></li>
+							<li>
+								<a data-lbl="china" href="https://www.oracle.com/cn/" role="treeitem">中国</a></li>
+							<li>
+								<a data-lbl="hong-kong" href="https://www.oracle.com/hk/" role="treeitem">Hong Kong SAR, PRC</a></li>
+							<li>
+								<a data-lbl="india" href="https://www.oracle.com/in/" role="treeitem">India</a></li>
+							<li>
+								<a data-lbl="indonesia" href="https://www.oracle.com/id/" role="treeitem">Indonesia</a></li>
+							<li>
+								<a data-lbl="japan" href="https://www.oracle.com/jp/" role="treeitem">日本</a></li>
+							<li>
+								<a data-lbl="korea" href="https://www.oracle.com/kr/" role="treeitem">대한민국</a></li>
+							<li>
+								<a data-lbl="malaysia" href="https://www.oracle.com/my/" role="treeitem">Malaysia</a></li>
+						</ul>
+						<ul class="u10cmenuc1">
+							<li>
+								<a data-lbl="mongolia" href="https://www.oracle.com/mn/" role="treeitem">Mongolia</a></li>
+							<li>
+								<a data-lbl="new-zealand" href="https://www.oracle.com/nz/" role="treeitem">New Zealand</a></li>
+							<li>
+								<a data-lbl="pakistan" href="https://www.oracle.com/pk/" role="treeitem">Pakistan</a></li>
+							<li>
+								<a data-lbl="philippines" href="https://www.oracle.com/ph/" role="treeitem">Philippines</a></li>
+							<li>
+								<a data-lbl="singapore" href="https://www.oracle.com/sg/" role="treeitem">Singapore</a></li>
+							<li>
+								<a data-lbl="sri-lanka" href="https://www.oracle.com/lk/" role="treeitem">Sri Lanka</a></li>
+							<li>
+								<a data-lbl="taiwan" href="https://www.oracle.com/tw/" role="treeitem">中国台湾</a></li>
+							<li>
+								<a data-lbl="thailand" href="https://www.oracle.com/th/" role="treeitem">Thailand</a></li>
+							<li>
+								<a data-lbl="vietnam" href="https://www.oracle.com/vn/" role="treeitem">Vietnam</a></li>
+						</ul>
+					</div>
+					<!-- / LVL 2 --></li>
+				<li>
+					<a class="u10clink" role="treeitem" aria-selected="false" aria-expanded="false" aria-labelledby="">
+						Europe</a>
+					<!-- LVL 2 -->
+					<div class="u10cmenu-l2" data-lbl="europe">
+						<ul class="u10cmenuc1">
+							<li>
+								<a data-lbl="austria" href="https://www.oracle.com/at/" role="treeitem">Österreich</a></li>
+							<li>
+								<a data-lbl="belgium" href="https://www.oracle.com/be/" role="treeitem">Belgium</a></li>
+							<li>
+								<a data-lbl="bosnia-and-herzegovina" href="https://www.oracle.com/ba/" role="treeitem">Bosna i Hercegovina</a></li>
+							<li>
+								<a data-lbl="bulgaria" href="https://www.oracle.com/bg/" role="treeitem">Bulgaria</a></li>
+
+							<li>
+
+								<a data-lbl="croatia" href="https://www.oracle.com/hr/" role="treeitem">Croatia</a></li>
+							<li>
+								<a data-lbl="cyprus" href="https://www.oracle.com/cy/" role="treeitem">Cyprus</a></li>
+							<li>
+								<a data-lbl="czech-republic" href="https://www.oracle.com/cz/" role="treeitem">Česká Republika</a></li>
+							<li>
+								<a data-lbl="denmark" href="https://www.oracle.com/dk/" role="treeitem">Danmark</a></li>
+							<li>
+								<a data-lbl="estonia" href="https://www.oracle.com/ee/" role="treeitem">Eesti</a></li>
+							<li>
+								<a data-lbl="finland" href="https://www.oracle.com/fi/" role="treeitem">Suomi</a></li>
+							<li>
+								<a data-lbl="france" href="https://www.oracle.com/fr/" role="treeitem">France</a></li>
+							<li>
+								<a data-lbl="germany" href="https://www.oracle.com/de/" role="treeitem">Deutschland</a></li>
+							<li>
+								<a data-lbl="greece" href="https://www.oracle.com/gr/" role="treeitem">Ελλάδα</a></li>
+							<li>
+								<a data-lbl="hungary" href="https://www.oracle.com/hu/" role="treeitem">Magyarország</a></li>
+							<li>
+								<a data-lbl="ireland" href="https://www.oracle.com/ie/" role="treeitem">Ireland</a></li>
+							<li>
+								<a data-lbl="italy" href="https://www.oracle.com/it/" role="treeitem">Italia</a></li>
+							<li>
+								<a data-lbl="kazakhstan" href="https://www.oracle.com/ru/" role="treeitem">Казахстан</a></li>
+							<li>
+								<a data-lbl="latvia" href="https://www.oracle.com/lv/" role="treeitem">Latvija</a></li>
+							<li>
+								<a data-lbl="lithuania" href="https://www.oracle.com/lt/" role="treeitem">Lietuva</a></li>
+						</ul>
+						<ul class="u10cmenuc1">
+							<li>
+								<a data-lbl="luxembourg" href="https://www.oracle.com/lu/" role="treeitem">Luxembourg</a></li>
+							<li>
+								<a data-lbl="malta" href="https://www.oracle.com/mt/" role="treeitem">Malta</a></li>
+							<li>
+								<a data-lbl="netherlands" href="https://www.oracle.com/nl/" role="treeitem">Nederland</a></li>
+							<li>
+								<a data-lbl="norway" href="https://www.oracle.com/no/" role="treeitem">Norge</a></li>
+							<li>
+								<a data-lbl="poland" href="https://www.oracle.com/pl/" role="treeitem">Polska</a></li>
+							<li>
+								<a data-lbl="portugal" href="https://www.oracle.com/pt/" role="treeitem">Portugal</a></li>
+							<li>
+								<a data-lbl="romania" href="https://www.oracle.com/ro/" role="treeitem">România</a></li>
+							<li>
+								<a data-lbl="russia" href="https://www.oracle.com/ru/" role="treeitem">Россия и СНГ</a></li>
+							<li>
+								<a data-lbl="serbia-and-montenegro" href="https://www.oracle.com/rs/" role="treeitem">Srbija i Crna Gora</a></li>
+							<li>
+								<a data-lbl="slovakia" href="https://www.oracle.com/sk/" role="treeitem">Slovensko</a></li>
+
+							<li>
+								<a data-lbl="slovena" href="https://www.oracle.com/si/" role="treeitem">Slovenija</a></li>
+							<li>
+								<a data-lbl="spain" href="https://www.oracle.com/es/" role="treeitem">España</a></li>
+							<li>
+								<a data-lbl="sweden" href="https://www.oracle.com/se/" role="treeitem">Sverige</a></li>
+							<li>
+								<a data-lbl="switzerland-french" href="https://www.oracle.com/ch-fr/" role="treeitem">Suisse - Français</a></li>
+							<li>
+								<a data-lbl="switzerland-german" href="https://www.oracle.com/ch-de/" role="treeitem">Schweiz - Deutsch</a></li>
+							<li>
+								<a data-lbl="turkey" href="https://www.oracle.com/tr/" role="treeitem">Türkiye</a></li>
+							<li>
+								<a data-lbl="ukraine" href="https://www.oracle.com/ua/" role="treeitem">Україна</a></li>
+							<li>
+								<a data-lbl="united-kingdom" href="https://www.oracle.com/uk/" role="treeitem">United Kingdom</a></li>
+						</ul>
+					</div>
+					<!-- / LVL 2 --></li>
+				<li>
+					<a class="u10clink" role="treeitem" aria-selected="false" aria-expanded="false" aria-labelledby="">
+						Middle East and Africa</a>
+					<!-- LVL 2 -->
+					<div class="u10cmenu-l2" data-lbl="middle-east-and-africa">
+						<ul class="u10cmenuc1">
+							<li>
+								<a data-lbl="africa" href="https://www.oracle.com/africa/" role="treeitem">Africa Region</a></li>
+							<li>
+								<a data-lbl="africa-fr" href="https://www.oracle.com/africa-fr/" role="treeitem">Afrique</a></li>
+							<li>
+								<a data-lbl="algeria" href="https://www.oracle.com/dz/" role="treeitem">Algéria</a></li>
+							<li>
+								<a data-lbl="bahrain" href="https://www.oracle.com/bh/" role="treeitem">Bahrain</a></li>
+							<li>
+								<a data-lbl="egypt" href="https://www.oracle.com/eg/" role="treeitem">Egypt</a></li>
+							<li>
+								<a data-lbl="ghana" href="https://www.oracle.com/gh/" role="treeitem">Ghana</a></li>
+							<li>
+								<a data-lbl="israel" href="https://www.oracle.com/il/" role="treeitem">Israel</a></li>
+							<li>
+								<a data-lbl="jordan" href="https://www.oracle.com/jo/" role="treeitem">Jordan</a></li>
+							<li>
+								<a data-lbl="kenya" href="https://www.oracle.com/ke/" role="treeitem">Кenya</a></li>
+							<li>
+								<a data-lbl="kuwait" href="https://www.oracle.com/kw/" role="treeitem">Kuwait</a></li>
+							<li>
+								<a data-lbl="lebanon" href="https://www.oracle.com/lb/" role="treeitem">Lebanon</a></li>
+						</ul>
+						<ul class="u10cmenuc1">
+							<li>
+								<a data-lbl="middle-east-arabic" href="https://www.oracle.com/middleeast-ar/" role="treeitem">الشرق الأوسط</a></li>
+							<li>
+								<a data-lbl="middle-east-english" href="https://www.oracle.com/middleeast/" role="treeitem">Middle East Region</a></li>
+							<li>
+								<a data-lbl="morocco" href="https://www.oracle.com/ma/" role="treeitem">Maroc</a></li>
+							<li>
+								<a data-lbl="nigeria" href="https://www.oracle.com/ng/" role="treeitem">Nigeria</a></li>
+							<li>
+								<a data-lbl="oman" href="https://www.oracle.com/om/" role="treeitem">Oman</a></li>
+
+
+							<li>
+								<a data-lbl="qatar" href="https://www.oracle.com/qa/" role="treeitem">Qatar</a></li>
+							<li>
+								<a data-lbl="saudi-arabia" href="https://www.oracle.com/sa/" role="treeitem">Saudi Arabia</a></li>
+							<li>
+								<a data-lbl="saudi-arabia-arabic" href="https://www.oracle.com/sa-ar/" role="treeitem">المملكة العربية السعودية</a></li>
+							<li>
+								<a data-lbl="senegal" href="https://www.oracle.com/sn/" role="treeitem">Sénégal</a></li>
+							<li>
+								<a data-lbl="south-africa" href="https://www.oracle.com/za/" role="treeitem">South Africa</a></li>
+							
+							<li>
+								<a data-lbl="united-arab-emirates" href="https://www.oracle.com/ae/" role="treeitem">United Arab Emirates</a></li>
+							<li>
+								<a data-lbl="united-arab-emirates-arabic" href="https://www.oracle.com/ae-ar/" role="treeitem">الإمارات العربية المتحدة</a></li>
+						</ul>
+					</div>
+					<!-- / LVL 2 --></li>
+			</ul>
+		</div>
+	</div></div></li>
+<li><div id="teconsent" consent="0,1,2" style="display: block;"><script async="async" type="text/javascript" crossorigin="" src="./Java Architecture for XML Binding (JAXB)_files/v1.7-30"></script><a id="icon-id013620361531367853" tabindex="0" lang="en" style="cursor: pointer;">Cookie Preferences</a></div></li>
+<li><a data-lbl="ad-choices" href="https://www.oracle.com/legal/privacy/marketing-cloud-data-cloud-privacy-policy.html#adchoices">Ad Choices</a></li>
+<li class="u10last"><a data-lbl="careers" href="https://www.oracle.com/corporate/careers/">Careers</a></li><li class="u10break"></li><li class="last"><a data-lbl="copyright" href="https://www.oracle.com/legal/copyright.html">© 2020 Oracle</a></li>
+</ul>
+
+</div>
+</div>
+</div>
+<!-- /U10v0 -->
+
+
+
+<!-- END: oWidget_C/_Raw-Text/Display -->
+
+<!-- /U10v0 -->
+
+		</div>
+		
+<!-- Container/Display Start -->
+
+<!-- _Raw-Text -->
+<!-- www-us EndBodyAdminContainer -->
+<!-- Start SiteCatalyst code -->
+<script language="JavaScript" src="./Java Architecture for XML Binding (JAXB)_files/ora_ocom.js"></script><script type="text/javascript" src="./Java Architecture for XML Binding (JAXB)_files/ora_code_ocom.js"></script><iframe name="trustarc_notice" id="trustarcNoticeFrame" src="./Java Architecture for XML Binding (JAXB)_files/get.html" style="display: none;"></iframe><script type="text/javascript" src="./Java Architecture for XML Binding (JAXB)_files/ora_code.js"></script>
+<!-- End SiteCatalyst code -->
+
+ <!--DTM embed code - Footer -->
+ <script type="text/javascript">_satellite.pageBottom();</script><script>_satellite["__runScript4"](function(event, target) {
+var coBrowseURL = "https://sc60032181us1.cobrowse.oraclecloud.com/launcher.js"; // Production URL
+
+if(window.location.hostname == "www-sites.oracle.com" || window.location.pathname.indexOf('/_qa/') != -1 ) {
+	coBrowseURL = "https://sc60032181us2.cobrowse.oraclecloud.com/launcher.js"; // Stage URL
+}
+
+if(window.jQuery) {
+  loadCobrowse();
+} else { // Plain JS to load cobrowse
+  var s = document.createElement('script'); 
+  s.type = 'text/javascript'; 
+  s.async = true;
+  s.src = coBrowseURL;
+  document.getElementsByTagName('head')[0].appendChild(s);
+}  
+
+/* Function to load CoBrowse chat script */
+function loadCobrowse() {
+  jQuery.getScript(coBrowseURL)
+    .done(function() {
+      // do nothing
+    })
+    .fail(function() {
+       console.log("Failed to load co-browse chat script");
+  });
+}
+});</script><script>
+/* Create the Eloqua tracking array if it doesn't exist */
+var _elqQ = _elqQ || [];
+var elq_path = '/i/';
+var elq_global = 'elqCfg.min.js'
+/* Eloqua server (root) */				
+var elq_root = '//img03.en25.com';					// Eloqua ONLY has production
+var elq_prodID = '1973398186';						// Eloqua PROD instance
+var elq_devID  = '30554202';						// Eloqua DEV instance
+
+/* Set up and send the Eloqua ping to Eloqua PROD instance, but only send web site PRODUCTION data. */
+_elqQ.push(['elqSetSiteId', elq_prodID]);
+_elqQ.push(['elqUseFirstPartyCookie', 'go.oracle.com']);              //For PROD
+_elqQ.push(['elqTrackPageView']);
+
+/* The function to insert the asyncronous JavaScript into the page once the DOM has loaded */
+(function () {
+  function async_load() {
+    var s = document.createElement('script'); 
+    s.type = 'text/javascript'; 
+    s.async = true;
+    s.src = '//img03.en25.com/i/elqCfg.min.js';
+    var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+  }
+  if(window.jQuery) {
+	  jQuery(document).ready(function($) { async_load(); });
+	} else {
+		document.addEventListener("DOMContentLoaded", function(event) { async_load(); });	
+	}
+})();
+
+</script><script>
+		window.sc_channel = 'SC Ocom';
+    if(window.location.pathname.indexOf('technetwork') != -1){
+    	window.sc_channel = "SC OTN";
+    }
+  
+  	var sc_product = _satellite.getVar('salesChatProductId');
+    var x = document.getElementsByClassName("atgchat-link");
+    for (var i = 0; i < x.length; i++) {
+    name = "ochat";
+        arr = x[i].className.split(" ");
+        if (arr.indexOf(name) == -1) {
+            x[i].className += " " + name;
+        }
+   }
+   
+   var oChatScript = document.createElement('script');
+	oChatScript.type = 'text/javascript';
+	oChatScript.src = "//www.oracle.com/asset/web/js/oracle-chat.js";
+	oChatScript.id = "oracle_chat";
+	oChatScript.async = false;
+	oChatScript.setAttribute("data-path", "/asset/web/json/chat-translation-data.json");
+	oChatScript.setAttribute("data-scchannel", window.sc_channel);
+	document.body.appendChild(oChatScript);
+</script><script type="text/javascript" src="./Java Architecture for XML Binding (JAXB)_files/oracle-chat.js" id="oracle_chat" data-path="/asset/web/json/chat-translation-data.json" data-scchannel="SC Ocom"></script>
+<!-- <script data-reqjq src="//www.oracle.com/asset/web/js/oracle-chat.js" onload="this.setAttribute('data-scchannel',window.sc_channel)" id="oracle_chat" data-path="/asset/web/json/chat-translation-data.json"></script> -->
+ <!--End-->
+<!-- www-us EndBodyAdminContainer -->
+
+<!-- / _Raw-Text -->
+
+<!-- Container/Display end -->
+
+	
+
+<div id="oReactiveChatContainer" style="display:none" class="rn_ConditionalChatLink rn_ChatAvailable"><div id="atgchat-flyout" class="rn_ChatAvailable"><a id="rn_sccl_4499221_Link" href="javascript:void(0);" onclick="sccl_4499221.chatLinkClicked();"><div id="atgchat-flyout-info" class="rn_ChatAvailable">&nbsp;<span>Chat</span></div></a></div><div id="oProactiveChat" style="display: block;"><div class="yui-panel-container yui-dialog yui-simple-dialog shadow" id="rn_Dialog_0_c" style="visibility: visible; left: 130425px; top: 617760px; z-index: 9999;"><div id="rn_Dialog_0" class="yui-module yui-overlay yui-panel rn_Dialog" style="visibility: inherit;"><div class="bd"><div id="rn_SyndicatedChat_spac_4674211" class="rn_SyndicatedChatBody" role="alert">
+    <div class="rn_SyndicatedChatLogoImageDiv">
+        <img src="./Java Architecture for XML Binding (JAXB)_files/orcl_logo.png" alt="">
+         </div>
+    <div class="rn_SyndicatedChatHeaderLabelDiv">
+        <div class="rn_SyndicatedChatHeaderLabel">
+                    </div>
+    </div>
+    <div class="rn_SyndicatedChatQuestionDiv">
+        <div class="rn_SyndicatedChatQuestionLabel">
+            A Chat Assistant is available to help. Would you like to start the session?        </div>
+    </div>
+    <div class="rn_SyndicatedChatAvatarDiv">
+        <img src="./Java Architecture for XML Binding (JAXB)_files/chat.jpg" alt="Helpful person waiting to chat with you">
+     </div>
+</div>
+<form name="frm_rn_Dialog_0"><input type="hidden" name="rn_Dialog_0" value=""><input type="hidden" name="rn_Dialog_0" value=""></form></div><div class="ft"><span id="rn_DialogButton_rn_Dialog_0_0" class="yui-button yui-button-button"><span class="first-child"><button type="button" id="rn_DialogButton_rn_Dialog_0_0-button">Yes</button></span></span><span id="rn_DialogButton_rn_Dialog_0_1" class="yui-button yui-button-button"><span class="first-child"><button type="button" id="rn_DialogButton_rn_Dialog_0_1-button">No</button></span></span><div id="spac_4674211_RefuseDiv" class="rn_RefuseDiv"><input type="checkbox" id="spac_4674211_RefuseCheckbox" class="rn_SyndicatedCheckbox"><label class="rn_SyndicatedLabel" for="spac_4674211_RefuseCheckbox">Do not ask again</label></div></div><a class="container-close" href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#">Close</a></div><div class="underlay"></div></div></div></div><iframe id="LL_DataServer" name="LL_DataServer" src="./Java Architecture for XML Binding (JAXB)_files/ll_storage_html5.html" width="1px" height="1px" frameborder="0" title="hidden CVW frame" scrolling="no" allowtransparency="true" aria-hidden="true" style="display: block; border: 0 none; width: 1px; height: 1px; position:absolute; top:100%; margin-top:-1px; left:100%; margin-left:-1px;"></iframe><div class="ochat_slideout" data-trackas="ochat_slideout"><ul class="ochat_slidew2 active"><div class="ochat_flyout flyout-show flyout-fadein"><a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#close" data-lbl="proactive:flyout-close" data-trackas="ochat-proactive-flyout" id="ochat-flyoutclose"></a><a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#saleschat" data-lbl="proactive:chatcta" data-trackas="proactive-chat-cta" class="procta chatcta">Start chat</a><a href="https://www.oracle.com/corporate/contact/global.html" class="callcta icn-callring">Contact or call</a></div><li class="ochaticon1"><a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#" data-lbl="chatslideout" class="ochat"></a></li></ul></div><div class="ochat_modal" data-trackas="ochat-modal" id="ochat_modal"><div class="ochat_modalw1"><div class="ochat_modalw2"><div id="proactivewrap" class="chatwrap"></div><a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#closemodal" data-lbl="callchat:modal-close" id="chatclose"></a><a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#minimize" data-lbl="callchat:modal-minimize" id="chatmin"></a><section class="ochat_panel ochat_sales iframechatwrap"><strong class="ochattitle">Sales Chat<a data-type="ochat_sales" class="ochaticon iframechat icnclass icnchat" target="_window" href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#saleschat"></a></strong><a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#saleschat" data-lbl="sales:chatcta" data-type="ochat_sales" class="subcta iframechat ochat_sales" target="_window"><p class="ochatsub">Considering a purchase?</p></a><a href="https://www.oracle.com/corporate/contact/global.html" class="callcta">Call sales</a><a href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#saleschat" data-lbl="sales:chatcta" data-type="ochat_sales" class="chatcta iframechat ochat_sales" target="_window">Start chat</a></section><div id="ochat_sales" class="chatwrap"></div><section class="ochat_panel ochat_cloud iframechatwrap"><strong class="ochattitle">Cloud Support Chat<a data-type="ochat_cloud" class="ochaticon iframechat icnclass icnchat" target="_window" href="https://oc-cx-en.custhelp.com/app/chat/chat_launch/incidents.c$sc_country/170"></a></strong><a href="https://oc-cx-en.custhelp.com/app/chat/chat_launch/incidents.c$sc_country/170" data-lbl="cloud:chatcta" data-type="ochat_cloud" class="subcta iframechat ochat_cloud" target="_window"><p class="ochatsub">Need trial, technical, functional support?</p></a><a href="https://oc-cx-en.custhelp.com/app/chat/chat_launch/incidents.c$sc_country/170" data-lbl="cloud:chatcta" data-type="ochat_cloud" class="chatcta iframechat ochat_cloud" target="_window">Start chat</a></section><div id="ochat_cloud" class="chatwrap"></div><section class="ochat_panel ochat_support"><strong class="ochattitle">Oracle Support Options<a class="ochaticon icnclass icnsupport" target="_window" href="https://www.oracle.com/support/support-options.html"></a></strong><a href="https://www.oracle.com/support/support-options.html" data-lbl="support:chatcta" class="subcta" target="_window"><p class="ochatsub">Have a support request?</p></a><a href="https://www.oracle.com/support/support-options.html" data-lbl="support:chatcta" class="chatcta" target="_window">View support options</a></section></div></div></div><div class="u22"><a id="u22" class="icn-img icn-arrow-up u22show" href="https://www.oracle.com/technical-resources/articles/javase/jaxb.html#top">&nbsp;<b>TOP</b></a></div><iframe name="__bkframe" id="__bkframe" title="bk" src="./Java Architecture for XML Binding (JAXB)_files/saved_resource(2).html" style="border: 0px; width: 0px; height: 0px; display: none; position: absolute; clip: rect(0px, 0px, 0px, 0px);"></iframe><script>
+function loadAwarenessPixel(){var e=_satellite.getVar("scData"),t=["event1","event2","event3","event8","event9","event10","event11","event15","event18","event22","event23","event26","event27","event51","event52"];if(window.s&&-1==t.indexOf(s.events)&&-1==e.pageName.indexOf("Thank")){var a=_satellite.getVar("metaDataLayer");a.keywords=a.keywords?a.keywords:"Not Available";var n="3573281";1==_satellite.getVar("apacRegion")&&(n="1106306"),gtag("event","conversion",{allow_custom_scripts:!0,u1:e.pageName,u2:e.siteId,u3:e.userType,u4:a.keywords,u5:e.loginStatus,u6:"[COMPANY]",u7:"[JOB TITLE]",u8:"[CITY]",u9:"[STATE]",u10:"[ZIP]",u11:e.userAction,u12:e.globalId,u13:"[COMPANY SIZE]",u14:e.videoTitle,u15:e.linkName,u16:e.fileDownload,u17:decodeURIComponent(e.pageURL),send_to:"DC-"+n+"/ubert0/awarn0+unique"})}}"undefined"!=typeof gtag?loadAwarenessPixel():setTimeout(loadAwarenessPixel,1e3);
+</script><script>
+function containsAny(e,t){return 0<e.filter(function(e){return-1<t.indexOf(e)}).length}function loadConsiPixel(){var e=["event2","event10","event11","event15","event18","event22","event26"];if(window.s&&s.events&&containsAny(s.events.split(","),e)){var t=_satellite.getVar("scData"),n=_satellite.getVar("metaDataLayer");n.keywords=n.keywords?n.keywords:"Not Available";Math.random();var o="3573281";1==_satellite.getVar("apacRegion")&&(o="1106306"),gtag("event","conversion",{allow_custom_scripts:!0,u1:t.pageName,u10:"[ZIP]",u11:decodeURIComponent(t.userAction),u12:t.globalId,u13:"[COMPANY SIZE]",u14:t.videoTitle,u15:t.linkName,u16:t.fileDownload,u17:decodeURIComponent(t.pageURL),u2:t.siteId,u3:t.userType,u4:n.keywords,u5:t.loginStatus,u6:"[COMPANY]",u7:"[JOB TITLE]",u8:"[CITY]",u9:"[STATE]",send_to:"DC-"+o+"/ubert0/consi0+standard"})}}"undefined"!=typeof gtag?loadConsiPixel():setTimeout(function(){loadConsiPixel()},1e3);
+</script><iframe height="0" width="0" style="display: none; visibility: hidden;" src="./Java Architecture for XML Binding (JAXB)_files/activityi.html"></iframe><iframe src="javascript:false" title="Action Capture" style="position: absolute; width: 0px; height: 0px; border: 0px;" src="./Java Architecture for XML Binding (JAXB)_files/saved_resource(3).html"></iframe><iframe src="javascript:false" title="Action Capture" style="position: absolute; width: 0px; height: 0px; border: 0px;" src="./Java Architecture for XML Binding (JAXB)_files/saved_resource(4).html"></iframe><script>
+function gtag(){dataLayer.push(arguments)}var script=document.createElement("script");script.type="text/javascript",script.async=!0,script.src="https://www.googletagmanager.com/gtag/js?id=DC-3573281",document.head.appendChild(script),window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","DC-3573281"),gtag("config","DC-3573292"),gtag("config","DC-3573286"),gtag("config","DC-1106306"),gtag("config","AW-995449196");
+</script></body></html>
