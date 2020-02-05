@@ -5954,10 +5954,30 @@ https://thoughts-on-java.org/generate-your-jaxb-classes-in-second/
 
 ----
 
+# System.out.println(); what is each element?
 
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
+
+- [System.out.println-Javapapers](refs/System.out.println-Javapapers)
+
+`references:`
+https://javapapers.com/core-java/system-out-println/
 
 ----
+
+# How to print elements of a Stream in Java 8
+
+- [How-to-print-elements-of-a-Stream-Java8-GeeksforGeeks](refs/How-to-print-elements-of-a-Stream-Java8-GeeksforGeeks)
+
+`references:`
+https://www.geeksforgeeks.org/how-to-print-elements-of-a-stream-in-java-8/
+
 ----
+
+
+
 ----
 ----
 ----

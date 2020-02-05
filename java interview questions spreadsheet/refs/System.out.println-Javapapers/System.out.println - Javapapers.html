@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)https://javapapers.com/core-java/system-out-println/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>System.out.println - Javapapers</title>
+<meta name="description" content="This Java tutorial is to explain what System.out.println is and how it works. It is love at first type. How many times have we used System.o">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="https://javapapers.com/feed/">
+<link rel="apple-touch-icon" sizes="180x180" href="https://javapapers.com/apple-touch-icon.png?v=261118">
+<link rel="icon" type="image/png" sizes="32x32" href="https://javapapers.com/favicon-32x32.png?v=261118">
+<link rel="icon" type="image/png" sizes="16x16" href="https://javapapers.com/favicon-16x16.png?v=261118">
+<link rel="manifest" href="https://javapapers.com/site.webmanifest?v=261118">
+<link rel="mask-icon" href="https://javapapers.com/safari-pinned-tab.svg?v=261118" color="#5bbad5">
+<link rel="shortcut icon" href="https://javapapers.com/favicon.ico?v=261118">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:title" content="System.out.println - Javapapers">
+<meta property="og:site_name" content="Javapapers">
+<meta property="og:description" content="This Java tutorial is to explain what System.out.println is and how it works. It is love at first type. How many times have we used System.o"><meta property="og:url" content="https://javapapers.com/core-java/system-out-println/">
+<meta property="twitter:title" content="System.out.println - Javapapers">
+<meta name="twitter:site" content="@javapapers">
+<meta property="twitter:creator" content="@javapapers">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://javapapers.com/wp-content/uploads/2012/04/System.png"><meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:description" content="This Java tutorial is to explain what System.out.println is and how it works. It is love at first type. How many times have we used System.o"><meta property="twitter:image" content="https://javapapers.com/wp-content/uploads/2012/04/System.png"><script async="" src="./System.out.println - Javapapers_files/analytics.js"></script><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-4275351-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://www.google-analytics.com/"><link rel="dns-prefetch" href="https://www.youtube.com/"><link rel="dns-prefetch" href="https://googleads.g.doubleclick.net/"><link rel="dns-prefetch" href="https://static.doubleclick.net/"><link rel="dns-prefetch" href="https://www.google.com/"><link rel="dns-prefetch" href="https://i.ytimg.com/"><link rel="dns-prefetch" href="https://yt3.ggpht.com/"><link rel="dns-prefetch" href="https://fonts.gstatic.com/"><link rel="stylesheet" id="main-style-css" href="./System.out.println - Javapapers_files/papers_17191.css" type="text/css" media="all">
+<link rel="canonical" href="https://javapapers.com/core-java/system-out-println/">
+</head>
+<body onload="prettyPrint()">
+<div id="site_header">
+	<div class="content">
+		<a id="java-blog" href="https://javapapers.com/" title="Android &amp; Java Blog"><img width="142" height="29" src="./System.out.println - Javapapers_files/javapapers.png" alt="Android &amp; Java Blog"></a><span class="since">Since
+			2008</span>
+	</div>
+</div><div class="content">
+        <div id="tutorial-body">
+            <h1>System.out.println</h1>
+            <div class="modified-on">Last modified on June 30th, 2015 by Joe.</div>
+<p>This Java tutorial is to explain what System.out.println is and how it works. It is love at first type. How many times have we used System.out.println till now? It is one of the most number of times compiled statement in the<a title="Java Versions, Features and History" href="https://javapapers.com/core-java/java-features-and-history/"> history of java</a>. We shortly call it SOP.</p>
+<p>Along with Java’s <code>System.out.println()</code>, at the end of this tutorial I have given a list of popular languages and their equivalent of it.</p>
+<p><img src="./System.out.println - Javapapers_files/System-out-println-block-diagram.jpg" alt="System-out-println-block-diagram" width="500" height="310" class="alignnone size-full wp-image-3577" srcset="https://javapapers.com/wp-content/uploads/2012/04/System-out-println-block-diagram.jpg 500w, https://javapapers.com/wp-content/uploads/2012/04/System-out-println-block-diagram-300x186.jpg 300w" sizes="(max-width: 500px) 100vw, 500px"></p>
+<h2>What is System.out.println</h2>
+<p><strong>System.out.println is a Java statement that prints the argument passed, into the System.out which is generally stdout.</strong></p>
+<ul>
+<li><strong>System – is a final class</strong> in java.lang package. As per javadoc, “<em>…Among the facilities provided by the <code>System</code> class are standard input, standard output, and error output streams; access to externally defined properties and environment variables; a means of loading files and libraries; and a utility method for quickly copying a portion of an <a title="Java Array" href="https://javapapers.com/core-java/java-array/">array</a>…</em>“</li>
+<li><strong>out – is a static member field of System class and is of type PrintStream</strong>. Its<a title="Access Modifiers In Java" href="https://javapapers.com/core-java/access-modifiers-in-java-explain/"> access specifiers </a>are public <a title="Java Final Keyword" href="https://javapapers.com/core-java/explain-the-final-keyword-in-java/">final</a>. This gets instantiated during startup and gets mapped with standard output console of the host. This stream is open by itself immediately after its instantiation and ready to accept data.</li>
+<li><strong>println – is a method of PrintStream class</strong>. println prints the argument passed to the standard console and a newline. There are multiple println methods with different arguments (<a title="Overloading vs Overriding" href="https://javapapers.com/core-java/overloading-and-overriding/">overloading</a>). Every println makes a call to <code>print</code> method and adds a newline. <code>print</code> calls <code>write()</code> and the story goes on like that.</li>
+</ul>
+
+<h2>Structure of System.out.println</h2>
+<p>Following is the skeletal structure of System.out.println in the JDK source. Through this code snippet the essential parts are highlighted and its given for better understanding.</p>
+<p><img src="./System.out.println - Javapapers_files/System-out-println-class-diagram.jpg" alt="System-out-println-class-diagram" width="500" height="225" class="alignnone size-full wp-image-3578" srcset="https://javapapers.com/wp-content/uploads/2012/04/System-out-println-class-diagram.jpg 500w, https://javapapers.com/wp-content/uploads/2012/04/System-out-println-class-diagram-300x135.jpg 300w" sizes="(max-width: 500px) 100vw, 500px"></p>
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="kwd">public</span><span class="pln"> </span><span class="kwd">final</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">System</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">static</span><span class="pln"> </span><span class="typ">PrintStream</span><span class="pln"> out</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">static</span><span class="pln"> </span><span class="typ">PrintStream</span><span class="pln"> err</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">static</span><span class="pln"> </span><span class="typ">InputStream</span><span class="pln"> in</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">...</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">PrintStream</span><span class="pln"> </span><span class="kwd">extends</span><span class="pln"> </span><span class="typ">FilterOutputStream</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="com">//out object is inherited from FilterOutputStream class</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> println</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="pun">...</span><span class="pln">
+</span><span class="pun">}</span></pre>
+<h2>Change out of System.out.println</h2>
+<p>‘out’ object can be customized. out gets initialized by <a title="Differentiate JVM JRE JDK JIT" href="https://javapapers.com/core-java/differentiate-jvm-jre-jdk-jit/">java runtime environment </a>at startup and it can be changed by developer during execution. Instead of standard output, in default cases when you run a program through command line, the output is printed in the same command window. We can change that behavior using <code>setOut</code> method as below. In the following example, I have redirected the output to a text file in the same directory.</p>
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">ChangeOut</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+	</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> args</span><span class="pun">[])</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+		</span><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+			</span><span class="typ">System</span><span class="pun">.</span><span class="pln">setOut</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">PrintStream</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">FileOutputStream</span><span class="pun">(</span><span class="str">"log.txt"</span><span class="pun">)));</span><span class="pln">
+			</span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Now the output is redirected!"</span><span class="pun">);</span><span class="pln">
+		</span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pun">(</span><span class="typ">Exception</span><span class="pln"> e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{}</span><span class="pln">
+	</span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+<h2>System.out.println vs loggers like Log4j</h2>
+<p>Log4J has mulitple levels for logging. If we are writing a real short program, just for experimental/learning purposes SOPs are fine. When we are developing a production quality software, we should be aware that a logging component should be used and System.out.println should be avoided. Why?</p>
+<ul>
+<li>Flexibility: a logger like<a title="Log4J Levels" href="https://javapapers.com/log4j/log4j-levels/"> log4j provides different levels </a>for logging. We can separate the log messages accordingly. For example, X messages should be printed only on PRODUCTION, Y messages should be printed on ERROR, etc.</li>
+<li>Reconfigurability: in just one parameter change we can switch off all the logging statements.</li>
+<li>Maintainability: imagine if we have hundreds of System.out.println littered all through the application, it would be difficult to maintain the program over a period.</li>
+<li>Granularity: In an application, every single class can have a different logger and controlled accordingly.</li>
+<li>Utility: Option for redirecting the message is limited in System.out, but in case of a logger you have appenders which provides numerous options. We can even create a custom output option and redirect it to that.</li>
+</ul>
+<p>Having said all the above, we still use System.out.println for logging and debugging. Which should be strictly avoided. This is driven by (bad)habit.</p>
+<p>I want to share how a habit became a convention. Its using ‘i’, ‘j’ as index in for-loop. In FORTRAN language, we need not declare integer variables. Variable names that start with i, j, k, l, m and n are integer variables. So, FORTRAN developers named for-loop index with i,j,k and that habit carried on to other languages.</p>
+<h2>System.out.println and Performance</h2>
+<p>There is a general notion that System.out.println are bad for performance. When we analyze deeply, the sequence of calls are like println -&gt; print -&gt; write() + newLine(). This sequence flow is an implementation of Sun/Oracle JDK. Both write() and newLine() contains a <code>synchronized</code> block. Synchronization has a little overhead, but more than that the cost of adding characters to the buffer and printing is high.</p>
+<p>When we run a performance analysis, run multiple number of System.out.println and record the time, the execution duration increases proportionally. Performance degrades when we print more that 50 characters and print more than 50,000 lines.</p>
+<p>It all depends on the scenario we use it. Whatever may be the case, do not use System.out.println for logging to stdout.</p>
+<h2>Static Import to Shorten System.out.println()</h2>
+<p>Sometimes we feel System.out.println is a long statement to print. <a href="https://javapapers.com/core-java/what-is-a-static-import-in-java/">static import </a>may shorten it a bit but it is not recommended, because it results in poor readability. I am just using this situation to explain static import and avoid using it in the below scenario.</p>
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="kwd">import</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">lang</span><span class="pun">.</span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">;</span><span class="pln">
+
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">ShortSOP</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pun">[]</span><span class="pln"> args</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Hello, world"</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+</span></pre>
+<p>In Eclipse you have programmed <a title="Eclipse Shortcuts" href="https://javapapers.com/core-java/eclipse-shortcuts/">shortcuts </a>like ctrl + spac to help you out.</p>
+<h2>System.err and System.in</h2>
+<p>As a related section, I wish to discuss about ‘err’ and ‘in’. ‘in’ is associated with InputStream. Opposite to ‘out’, ‘in’ is used to get input from standard console generally keyboard.</p>
+<p>‘err’ is associated with PrintStream and prints the argument to the standard error output stream. When you use eclipse kind of IDE you can see the difference in ouput between ‘out’ and ‘err’.</p>
+<pre class="prettyprint lang-java prettyprinted" style=""><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">InOutErr</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> args</span><span class="pun">[])</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+</span><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+</span><span class="typ">BufferedReader</span><span class="pln"> reader </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">BufferedReader</span><span class="pun">(</span><span class="typ">System</span><span class="pun">.</span><span class="pln">in</span><span class="pun">);</span><span class="pln">
+</span><span class="typ">String</span><span class="pln"> filename </span><span class="pun">=</span><span class="pln"> reader</span><span class="pun">.</span><span class="pln">readLine</span><span class="pun">();</span><span class="pln">
+
+  </span><span class="typ">InputStream</span><span class="pln"> input </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">FileInputStream</span><span class="pun">(</span><span class="pln">filename</span><span class="pun">);</span><span class="pln">
+  </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"File opened..."</span><span class="pun">);</span><span class="pln">
+
+</span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">IOException</span><span class="pln"> e</span><span class="pun">){</span><span class="pln">
+  </span><span class="typ">System</span><span class="pun">.</span><span class="pln">err</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Where is that file?"</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+<h2>System.out.println Equivalent in other Languages</h2>
+<p>DBASE III+</p>
+<pre class="prettyprint prettyprinted" style=""><span class="pun">?</span><span class="pln"> </span><span class="str">"Hello World"</span></pre>
+<p>C</p>
+<pre class="prettyprint prettyprinted" style=""><span class="pln"> </span><span class="com">#include</span><span class="pln"> </span><stdio.h><span class="pln">
+ </span><span class="com">#include</span><span class="pln"> </span><stdlib.h><span class="pln">
+
+ </span><span class="kwd">int</span><span class="pln"> main</span><span class="pun">(</span><span class="kwd">void</span><span class="pun">)</span><span class="pln">
+ </span><span class="pun">{</span><span class="pln">
+  printf</span><span class="pun">(</span><span class="str">"Hello, world"</span><span class="pun">);</span><span class="pln">
+  </span><span class="kwd">return</span><span class="pln"> EXIT_SUCCESS</span><span class="pun">;</span><span class="pln">
+ </span><span class="pun">}</span></stdlib.h></stdio.h></pre>
+<p>CPP</p>
+<pre class="prettyprint prettyprinted" style=""><span class="pln"> </span><span class="com">#include</span><span class="pln"> </span><iostream><span class="pln">
+
+ </span><span class="kwd">int</span><span class="pln"> main</span><span class="pun">()</span><span class="pln">
+ </span><span class="pun">{</span><span class="pln">
+ 	std</span><span class="pun">::</span><span class="pln">cout </span><span class="pun">&lt;&lt;</span><span class="pln"> </span><span class="str">"Hello, World."</span><span class="pln"> </span><span class="pun">&lt;&lt;</span><span class="pln"> std</span><span class="pun">::</span><span class="pln">endl</span><span class="pun">;</span><span class="pln">
+ </span><span class="pun">}</span></iostream></pre>
+<p>BASIC</p>
+<pre class="prettyprint prettyprinted" style=""><span class="lit">10</span><span class="pln"> PRINT </span><span class="str">"HELLO WORLD"</span></pre>
+<p>FORTRAN</p>
+<pre class="prettyprint prettyprinted" style=""><span class="pln"> PROGRAM HELLOWORLD
+ </span><span class="lit">10</span><span class="pln"> FORMAT </span><span class="pun">(</span><span class="lit">1X</span><span class="pun">,</span><span class="lit">11HHELLO</span><span class="pln"> WORLD</span><span class="pun">)</span><span class="pln">
+ WRITE</span><span class="pun">(</span><span class="lit">6</span><span class="pun">,</span><span class="lit">10</span><span class="pun">)</span><span class="pln">
+ </span><span class="kwd">END</span></pre>
+<p>COBOL</p>
+<pre class="prettyprint prettyprinted" style=""><span class="pln"> IDENTIFICATION DIVISION</span><span class="pun">.</span><span class="pln">
+ PROGRAM</span><span class="pun">-</span><span class="pln">ID</span><span class="pun">.</span><span class="pln"> </span><span class="typ">Hello</span><span class="pun">.</span><span class="pln">
+ ENVIRONMENT DIVISION</span><span class="pun">.</span><span class="pln">
+ DATA DIVISION</span><span class="pun">.</span><span class="pln">
+ PROCEDURE DIVISION</span><span class="pun">.</span><span class="pln">
+	</span><span class="typ">Display</span><span class="pln"> </span><span class="str">'Hello, World'</span><span class="pun">.</span><span class="pln">
+	STOP RUN</span><span class="pun">.</span></pre>
+<p>LISP</p>
+<pre class="prettyprint prettyprinted" style=""><span class="pln">	</span><span class="pun">(</span><span class="pln">DEFUN HELLO</span><span class="pun">-</span><span class="pln">WORLD </span><span class="pun">()</span><span class="pln">
+	</span><span class="pun">(</span><span class="pln">PRINT </span><span class="pun">(</span><span class="pln">LIST </span><span class="str">'HELLO '</span><span class="pln">WORLD</span><span class="pun">)))</span></pre>
+<p>PROLOG</p>
+<pre class="prettyprint prettyprinted" style=""><span class="pln">go </span><span class="pun">:-</span><span class="pln">
+	writeln</span><span class="pun">(</span><span class="str">'Hello World'</span><span class="pun">).</span></pre>
+<p>System.out.println("Bye");</p>
+            <div class="share">
+                <ul>
+                    <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://javapapers.com/core-java/system-out-println/"><img src="./System.out.println - Javapapers_files/facebook-social.png" title="Share on Facebook"></a></li>
+                    <li><a href="https://twitter.com/intent/tweet?original_referer=https://javapapers.com&amp;source=tweetbutton&amp;text=System.out.println;url=https://javapapers.com/core-java/system-out-println/&amp;via=javapapers"><img src="./System.out.println - Javapapers_files/twitter-social.png" title="Share on Twitter"></a></li>
+                    <li><a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://javapapers.com/core-java/system-out-println/&amp;media=System.out.println"><img src="./System.out.println - Javapapers_files/linkedin-social.png" title="Share on Linkedin"></a></li>
+                </ul>
+            </div>
+
+
+
+    <div class="related-articles">
+                <h2>Popular Articles</h2>
+                <ul class="related-articles-list">
+                        <li><a href="https://javapapers.com/core-java/java-annotations/">Java Annotations</a></li>
+                        <li><a href="https://javapapers.com/core-java/java-pass-by-value-and-pass-by-reference/">Java Pass By Value and Pass By Reference</a></li>
+                        <li><a href="https://javapapers.com/core-java/abstract-and-interface-core-java-2/what-is-a-java-marker-interface/">Java Marker Interface</a></li>
+                    </ul>
+            </div>
+<div id="comments" class="comments-area">
+        <h2 class="comments-title">Comments on "System.out.println"</h2>
+    <ol class="commentlist">		<li class="comment even thread-even depth-1" id="comment-11613">
+				<div id="div-comment-11613" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Nelson</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-11613">
+			29/04/2012 at 7:36 pm</a>		</div>
+
+		<p>Excellent Java tutorial to read. Enjoyed it!</p>
+<p>With a simple title, you have packed much stuff inside and got complete detail about System.out.println </p>
+<p>Thanks</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-11617">
+				<div id="div-comment-11617" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">sudheer</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-11617">
+			29/04/2012 at 10:33 pm</a>		</div>
+
+		<p>Great Post on SOP. Its very useful. The list of System.out.println() equivalent in other languages is cool</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-11623">
+				<div id="div-comment-11623" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Anders</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-11623">
+			30/04/2012 at 7:07 am</a>		</div>
+
+		<p>by learning different languages, you learn different ways of solving problems, esp. if the languages are different, like Java, Prolog, Scheme and LISP etc. They are as different as a hammer and a screwdriver. It’s good to know many programming languages.</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-11624">
+				<div id="div-comment-11624" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Anders</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-11624">
+			30/04/2012 at 7:15 am</a>		</div>
+
+		<p>And yes, stdin, stdout and stderr are all from the Unix world. And to redirect stdout to some other fold, you start the program with “pgm1 &gt;file.txt”. To redirect stdin to read from a text file instead of the keyboard, start with “pgm2 &lt;file.txt". And this is powerfully, as you can make output from one program input from another, like "pgm1 ¦ pgm2". If you still want error messages come to the screen, you have to print on stderr.<br>
+And, stdout and stdin is buffered, stderr isn't. So do NOT use stdout for info and error messages, use stderr…</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-11637">
+				<div id="div-comment-11637" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Ramana</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-11637">
+			30/04/2012 at 1:07 pm</a>		</div>
+
+		<p>System.out.println() is step 1 while starting with java and you nailed it.</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-11639">
+				<div id="div-comment-11639" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Ramesh</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-11639">
+			30/04/2012 at 1:18 pm</a>		</div>
+
+		<p>simply super article, I didn’t knew that out belonged to out is an object of type PrintStream till now. javapapers is the best Java tutorials collection in the web.</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-11649">
+				<div id="div-comment-11649" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Adriana</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-11649">
+			30/04/2012 at 10:23 pm</a>		</div>
+
+		<p>It’s a real joy to read something as simple yet as constructive as this.Good job!!</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-11651">
+				<div id="div-comment-11651" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Martin</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-11651">
+			01/05/2012 at 12:11 am</a>		</div>
+
+		<p>Really nicely written and with all details too.<br>
+In Eclipse I usually only write ‘syso’, ctrl+space and it comes up! It is possible to define new templates like this, I have a few useful ones for log4j that I always need copy into each new workspace :(<br>
+:)</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-11653">
+				<div id="div-comment-11653" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href="https://javapapers.com/" rel="external nofollow" class="url">Joe</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-11653">
+			01/05/2012 at 12:27 am</a>		</div>
+
+		<p>@Anders, </p>
+<p>I agree with you, learning multiple languages is good and the other point on stderr.</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-11663">
+				<div id="div-comment-11663" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">papun</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-11663">
+			01/05/2012 at 10:01 am</a>		</div>
+
+		<p>“out” is a static member and thats how we access it from System class. Thanks for this simple explanation. All your Java tutorials are nice. i love this blog</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-11705">
+				<div id="div-comment-11705" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">sandhya</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-11705">
+			02/05/2012 at 4:54 pm</a>		</div>
+
+		<p>nice article on Java fundamentals. Never knew System.out.println has so much to it and good to refresh basics again</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-11708">
+				<div id="div-comment-11708" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Collins</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-11708">
+			02/05/2012 at 5:42 pm</a>		</div>
+
+		<p>you simply have a way to make people understand. Is there a way to download all these Java tutorials alone?</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-11719">
+				<div id="div-comment-11719" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Anil Kumar</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-11719">
+			03/05/2012 at 11:04 am</a>		</div>
+
+		<p>It’s awesome. I am impressed a lot. Thank you Joe for providing such good information about Java SOP. I am using System.out.println daily in my Java programming but never cared about it till now. thanks for making me learn about it in detail.</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-11776">
+				<div id="div-comment-11776" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Deepti</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-11776">
+			06/05/2012 at 11:05 am</a>		</div>
+
+		<p>Oh man, only you can write a such tutorial on so obvious topic. There is so much to System.out.println, Thanks. Please keep posting such tutorials… enjoyed reading….</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-11779">
+				<div id="div-comment-11779" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Corey</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-11779">
+			06/05/2012 at 4:31 pm</a>		</div>
+
+		<p>Great man…really fantastic job …keep writing more and more such Java tutorials. The block diagram for System.out.println is nice. The style looks similar to the ones done in Khan Academy. Cool!</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-11805">
+				<div id="div-comment-11805" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Dennis</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-11805">
+			07/05/2012 at 5:22 pm</a>		</div>
+
+		<p>A simpler prettier version for Fortran: </p>
+<p>       PRINT *,’ HELLO WORLD’<br>
+       END</p>
+<p>Notes:<br>
+1) although IBM’s 1957 documentation did write it a FORTRAN, Fortran is not an acronym)<br>
+2) required indenting<br>
+3) lack of name for the program (later versions provided a 7 character name)<br>
+4)The frequent separation of the “carriage control” character,i.e. the initial  1X  in the FORMAT statement is unnecessary.</p>
+<p>Unfortunately the simple PRINT statement from the original Fortran was deprecated.</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-11833">
+				<div id="div-comment-11833" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">GN</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-11833">
+			08/05/2012 at 11:46 pm</a>		</div>
+
+		<p>I am very happy with the look … when i read this site its look makes me feel as m reading my own notes …simple and super</p>
+<p>hope to more and more blogs for JavaScript and frameworks like Spring ,Hibernate etc.</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-11882">
+				<div id="div-comment-11882" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Tamilanban</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-11882">
+			10/05/2012 at 6:57 pm</a>		</div>
+
+		<p>Hi joe, i am also from chennai. it is the first time i am seeing your Java tutorials. You are doing great. next time please brief About Thread Concept in Java</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-11922">
+				<div id="div-comment-11922" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">ankur</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-11922">
+			13/05/2012 at 9:01 am</a>		</div>
+
+		<p>Hi Joe,</p>
+<p>I like the illustration for  flow of System.out.println<br>
+Can you please tell me which tool  you use to create succh good diagrams.</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-11940">
+				<div id="div-comment-11940" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href="https://javapapers.com/" rel="external nofollow" class="url">Joe</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-11940">
+			13/05/2012 at 11:48 pm</a>		</div>
+
+		<p>@Ankur, I use PhotoShop for general drawings. For UML, I use WhiteStarUML (a fork of StarUML).</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-11941">
+				<div id="div-comment-11941" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Akai</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-11941">
+			14/05/2012 at 2:07 am</a>		</div>
+
+		<p>In a “c” language printf statement why we use f in printf</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-11981">
+				<div id="div-comment-11981" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Dew</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-11981">
+			15/05/2012 at 9:09 pm</a>		</div>
+
+		<p>Superb Joe! Excellent explanation for System.out.println, thanks.</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-11998">
+				<div id="div-comment-11998" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Selman</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-11998">
+			16/05/2012 at 6:45 pm</a>		</div>
+
+		<p>“Change out of System.out.println” is good trick</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-12004">
+				<div id="div-comment-12004" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Jai</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-12004">
+			17/05/2012 at 8:14 am</a>		</div>
+
+		<p>Awesome Joe, I have now completely understood what is under System.out.println. i am new to java your way of explaining is easy to understand for me. Please write more tutorials on Java basics. </p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-12026">
+				<div id="div-comment-12026" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Boaz</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-12026">
+			17/05/2012 at 10:43 pm</a>		</div>
+
+		<p>Great article — looking forward to many more posts from you!</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-12140">
+				<div id="div-comment-12140" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Savi</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-12140">
+			23/05/2012 at 12:55 pm</a>		</div>
+
+		<p>good one Joe.. Now I know how System.out.println works! Keep going with the good work and i m loving the page layout what u have used..:)</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-12570">
+				<div id="div-comment-12570" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Alice</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-12570">
+			06/06/2012 at 3:55 pm</a>		</div>
+
+		<p>Thanks dude!<br>
+Very nice notes…. You blog feels like reading out of a notebook.</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-13159">
+				<div id="div-comment-13159" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Linda</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-13159">
+			27/06/2012 at 8:32 am</a>		</div>
+
+		<p>Very nice tutorial. Simple and easy to understand. Thanks.</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-13397">
+				<div id="div-comment-13397" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Jain</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-13397">
+			05/07/2012 at 2:17 pm</a>		</div>
+
+		<p>Very Nice with little little words. Excellent tutorial for beginners. couple of weeks before I was asked in a Java interview as “How System.out.println works”. I should have read this tutorial before attending that interview. Thanks Joe for all your tutorials.</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-13410">
+				<div id="div-comment-13410" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">aishu</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-13410">
+			05/07/2012 at 6:19 pm</a>		</div>
+
+		<p>great job! System.out.println can’t be explained in a better way!</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-13434">
+				<div id="div-comment-13434" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">santhosh</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-13434">
+			06/07/2012 at 3:23 pm</a>		</div>
+
+		<p>good post .. All your Java tutorials are very informative .</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-13720">
+				<div id="div-comment-13720" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Scott</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-13720">
+			16/07/2012 at 12:19 pm</a>		</div>
+
+		<p>Good work Joe.. keep it up.</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-13728">
+				<div id="div-comment-13728" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">k.maheswari</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-13728">
+			16/07/2012 at 1:27 pm</a>		</div>
+
+		<p>its nice. Similar to System.out.println, can you please write about inline functions in Java and how they are invoked.</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-14159">
+				<div id="div-comment-14159" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">alam</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-14159">
+			31/07/2012 at 10:57 am</a>		</div>
+
+		<p>you define each and everything in very simple words.i m sure who read it get understand. excellent work done by  joe sir</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-14205">
+				<div id="div-comment-14205" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Fatima</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-14205">
+			01/08/2012 at 2:58 pm</a>		</div>
+
+		<p>A very good Article on SOP. Now I understood what “out” is in System.out.println Thanks for sharing.</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-14329">
+				<div id="div-comment-14329" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Arundev P</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-14329">
+			06/08/2012 at 12:41 pm</a>		</div>
+
+		<p>Sir i have a doubt.</p>
+<p>i defined a class</p>
+<p>class Sample{<br>
+   public static void main(String[] args) {<br>
+	ArrayList x = new ArrayList();<br>
+        ArrayList y = x;<br>
+        ArrayList z = x;<br>
+        y.add(“this is to test the Sample”);<br>
+        System.out.println(z.get(0);<br>
+   }<br>
+}<br>
+Sir my doubt is that – inside the syso if i put z.get(0).toString() then am getting type cast exception :(. Cn u please explain y it is happening?</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-14984">
+				<div id="div-comment-14984" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Campbell</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-14984">
+			23/08/2012 at 4:52 pm</a>		</div>
+
+		<p>What a wonderful explanation for System.out.println() Its Really helpful………<br>
+Thankyou very much</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-15220">
+				<div id="div-comment-15220" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Yesh</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-15220">
+			29/08/2012 at 10:36 pm</a>		</div>
+
+		<p>How is it that a static variable like out has a dot operator to a method (println) in a different class (PrintStream) ? </p>
+<p>The syntax seems strange …</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-15598">
+				<div id="div-comment-15598" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Arun</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-15598">
+			06/09/2012 at 10:57 pm</a>		</div>
+
+		<p>Good tutorial!!</p>
+<p>BufferedReader reader = new BufferedReader(System.in);<br>
+The constructor of BufferedReader requires an object of type Reader as argument<br>
+BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-15605">
+				<div id="div-comment-15605" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">abhigyan</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-15605">
+			07/09/2012 at 3:25 am</a>		</div>
+
+		<p>Nice job dude. Keep posting such pieces of writing. You cleared many a concepts for me.<br>
+Thanx a lot</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-16751">
+				<div id="div-comment-16751" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Irfan Shaikh</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-16751">
+			03/10/2012 at 10:41 am</a>		</div>
+
+		<p>It’s great, all things about SOP are here..<br>
+Beginners can easily understand…</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-16963">
+				<div id="div-comment-16963" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Gonzalez</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-16963">
+			06/10/2012 at 8:59 pm</a>		</div>
+
+		<p>Awesome Work on Java Dude.</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-17109">
+				<div id="div-comment-17109" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">goutham</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-17109">
+			09/10/2012 at 8:13 pm</a>		</div>
+
+		<p>Great explaination for System.out.println. Hats off to your in-depth tutorials.</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-17518">
+				<div id="div-comment-17518" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">sangita</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-17518">
+			18/10/2012 at 12:48 pm</a>		</div>
+
+		<p>Really nice explanation.</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-17529">
+				<div id="div-comment-17529" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Madhu Penubolu</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-17529">
+			18/10/2012 at 4:23 pm</a>		</div>
+
+		<p>its really worth reading….. nowhere we can see such simple and in depth tutorial</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-18411">
+				<div id="div-comment-18411" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Pravin Singh</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-18411">
+			02/11/2012 at 11:24 am</a>		</div>
+
+		<p>very nice and powerful thought</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-18945">
+				<div id="div-comment-18945" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Manoj Diwakar</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-18945">
+			15/11/2012 at 11:52 am</a>		</div>
+
+		<p>Hi Joe,<br>
+I am new baby in Java. I have spent 8+ years in C++ and decided to learn new technologies (like core Java, Struts and Hibernate).<br>
+I found your Java Tutorials and it is wonderful. It is very good to get the fundamentals.</p>
+<p>I want to say “Thanks” for your efforts.</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-19022">
+				<div id="div-comment-19022" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Patrick</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-19022">
+			17/11/2012 at 1:54 am</a>		</div>
+
+		<p>Impressive man! You have got a nice blog.<br>
+I am new to programming and you Java fundamentals tutorials are good read. Thanks.</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-20336">
+				<div id="div-comment-20336" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">pavan</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-20336">
+			13/12/2012 at 12:01 pm</a>		</div>
+
+		<p>Hi joe can we put System.out.println(); in class when am trying it is giving an error what is hte reason?<br>
+Ex:<br>
+abstract class Figure</p>
+<p>System.out.println(“hiiiii”);//giving error</p>
+<p>public static void main(String args[])<br>
+	{<br>
+	}<br>
+}</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-21817">
+				<div id="div-comment-21817" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Sarah</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-21817">
+			15/01/2013 at 12:26 pm</a>		</div>
+
+		<p>No doubt your contents are really good ; but more than that look and feel of your website is simply awesome.</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-22029">
+				<div id="div-comment-22029" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Manjula</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-22029">
+			18/01/2013 at 5:17 pm</a>		</div>
+
+		<p>Simply superb… really nice joe</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-23280">
+				<div id="div-comment-23280" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Lopez</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-23280">
+			10/02/2013 at 9:39 pm</a>		</div>
+
+		<p>@Akai<br>
+In c the printf() function, f means “formatted”, you print the formatted argument of printf() function. When you use %d the output will be formatted in integer value, when you use %f the output will be be formatted in float value, %c use with character value.</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-23559">
+				<div id="div-comment-23559" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Abhishek</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-23559">
+			16/02/2013 at 9:56 pm</a>		</div>
+
+		<p>is that any difference between<br>
+String []args And String args[] ??</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-23962">
+				<div id="div-comment-23962" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Charitra Choudhary</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-23962">
+			23/02/2013 at 5:05 pm</a>		</div>
+
+		<p>Its a nice blog, i prefer my students to consider this section if they are interested in getting deep into System.out.println;</p>
+<p>Thanks Joe</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-25309">
+				<div id="div-comment-25309" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Vaishali</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-25309">
+			21/03/2013 at 7:23 am</a>		</div>
+
+		<p>What exactly out is static member of System class or object of class?</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-26705">
+				<div id="div-comment-26705" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Himanshu</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-26705">
+			04/04/2013 at 3:55 am</a>		</div>
+
+		<p>its static member of class System</p>
+<p>as you can see its called as System.out</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-30889">
+				<div id="div-comment-30889" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Abhinav</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-30889">
+			09/05/2013 at 6:48 pm</a>		</div>
+
+		<p>In the above article u have mentioned that out is a static variable of System class and is OF TYPE printstream.</p>
+<p>What do u mean by type of printstream?<br>
+Can u pls explain?</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-31351">
+				<div id="div-comment-31351" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">raj</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-31351">
+			16/05/2013 at 11:44 pm</a>		</div>
+
+		<p>Hi Joe,</p>
+<p>can we make the<br>
+System.out.println(“hello”);<br>
+to<br>
+Raaj.gupta.println(“hello”);</p>
+<p>The Raaj.gupta.println(“hello”) should be work like System.out.println(“hello”)</p>
+<p>In one interview, i get the question.<br>
+and my ans was we can not do.<br>
+So please let me what will be right right.</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-33302">
+				<div id="div-comment-33302" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Richard</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-33302">
+			12/06/2013 at 3:18 pm</a>		</div>
+
+		<p>Try this:<br>
+class Raaj {<br>
+	public final static PrintStream gupta = System.out;<br>
+}</p>
+<p>public class Test{<br>
+public static void main(String[] args) {<br>
+Raaj.gupta.println(“Hello World”);<br>
+}<br>
+}</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-34913">
+				<div id="div-comment-34913" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Roberts</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-34913">
+			01/07/2013 at 5:59 pm</a>		</div>
+
+		<p>Nice summary on logger v/s SOP. I like it.</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-36007">
+				<div id="div-comment-36007" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Krunal Shah</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-36007">
+			17/07/2013 at 1:36 pm</a>		</div>
+
+		<p>You must have to use SOP inside method.</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-36812">
+				<div id="div-comment-36812" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Preeti</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-36812">
+			27/07/2013 at 9:52 am</a>		</div>
+
+		<p>SOP is very nicely explained…. Thanks Joe…</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-36835">
+				<div id="div-comment-36835" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href="https://javapapers.com/" rel="external nofollow" class="url">Joe</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-36835">
+			27/07/2013 at 2:30 pm</a>		</div>
+
+		<p>What I meant is, ‘out’ is a static variable declared in ‘System’ class. So what variable is ‘out’? Is String or int or what is it? It is nothing but a PrintStream. Just open the java.lang.System API doc and we can see that variable declared in that class.</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-36840">
+				<div id="div-comment-36840" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn"><a href="https://javapapers.com/" rel="external nofollow" class="url">Joe</a></cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-36840">
+			27/07/2013 at 2:57 pm</a>		</div>
+
+		<p>These are all simple silly :-( tricks and I don’t think they are worth to be asked in an interview. But still, I know how interviews happen in our environment.</p>
+<p>If you read through the article, I have written a code snippet similar to what you have asked.</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-37251">
+				<div id="div-comment-37251" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Gopi</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-37251">
+			01/08/2013 at 5:38 pm</a>		</div>
+
+		<p>import java.util.ArrayList;</p>
+<p>public class Example {<br>
+	public static void main(String[] args)       {<br>
+		ArrayList x = new ArrayList();<br>
+		ArrayList y = x;<br>
+		ArrayList z = x;<br>
+		y.add(“String value”);<br>
+		System.out.println(z.get(0));<br>
+	}</p>
+<p>}</p>
+<p>It won’t throw any exception. If you want pls copy the above code &amp; compile it.</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-42352">
+				<div id="div-comment-42352" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Marty</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-42352">
+			11/09/2013 at 3:28 pm</a>		</div>
+
+		<p>Explained the System.out.println very clearly…Good Job and thanks…</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-44242">
+				<div id="div-comment-44242" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">yogesh prajapati</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-44242">
+			26/09/2013 at 3:15 pm</a>		</div>
+
+		<p>useful Java tutorial, thanks.</p>
+<p>I want to know where out variable initialized in the System.out.println context</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-45639">
+				<div id="div-comment-45639" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Shilpa</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-45639">
+			06/10/2013 at 11:50 pm</a>		</div>
+
+		<p>I reached this blog when I googled for a particular topic. Now I am going through multiple topics in your blog :)<br>
+Good and simple look,<br>
+well-explained concepts of importance and interest,<br>
+the feel of learning new stuff from a knowledgeable person..</p>
+<p>Thank you Joe. You blog is simply great. :)</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-45996">
+				<div id="div-comment-45996" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">vreddykumar</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-45996">
+			09/10/2013 at 1:54 am</a>		</div>
+
+		<p>I am very happy , this site is very good for freshers to understand the concepts ..</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-68875">
+				<div id="div-comment-68875" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Sachin</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-68875">
+			15/02/2014 at 11:34 pm</a>		</div>
+
+		<p>hello sir, I am new to java and I want to know that out is static variable of class System and of type PrintStream. I confused that how this out access or call the method println() which is defined in PrintStream class?</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-109794">
+				<div id="div-comment-109794" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Karthikeyan</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-109794">
+			29/05/2014 at 5:27 pm</a>		</div>
+
+		<p>Joe, Its really an amazing article. System.out.println is a basic thing in Java. But reading this gave me more knowledge about it. Keep rocking !</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-127875">
+				<div id="div-comment-127875" class="comment-body">
+				<div class="comment-author vcard">
+						<cite class="fn">Turner</cite> <span class="says">says:</span>		</div>
+		
+		<div class="comment-meta commentmetadata"><a href="https://javapapers.com/core-java/system-out-println/#comment-127875">
+			26/07/2014 at 7:51 pm</a>		</div>
+
+		<p>System.out.println is the most used statement in Java when learning it. Nice you explained it in detail.</p>
+
+		
+				</div>
+		</li><!-- #comment-## -->
+</ol>
+<p class="no-comments">Comments are closed for "System.out.println".</p></div></div>
+</div>
+<div id="footer">
+	<div class="content">
+		<div class="subscribe-section">
+			<form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#39;https://feedburner.google.com/fb/a/mailverify?uri=javapapers/java-interview-questions&#39;,
+             &#39;popupwindow&#39;, &#39;scrollbars=yes,width=550,height=520&#39;);return true">
+				<div>
+					<label for="feedb-email-inp">Subscribe:</label>
+				</div>
+				<input id="feedb-email-inp" placeholder="Enter your email here" type="text" class="feedb-email" name="email"><input type="hidden" value="javapapers/java-interview-questions" name="uri"><input type="hidden" name="loc" value="en_US"><input type="submit" value="Subscribe" class="subscribe">
+			</form>
+			<div class="follow">
+				<a class="facebook" href="https://www.facebook.com/javapapers" rel="nofollow noopener" title="Javapapers Facebook Page" target="_blank">Javapapers Facebook Page</a>
+			</div>
+		</div>
+		<p class="copyright">
+			© 2008 - 2019 <a href="https://javapapers.com/" title="Android &amp; Java Blog">Javapapers</a>
+		</p>
+	</div>
+</div><script src="./System.out.println - Javapapers_files/prettify.js"></script>
+
+</body></html>
