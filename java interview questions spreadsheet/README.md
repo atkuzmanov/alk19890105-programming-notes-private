@@ -5935,9 +5935,20 @@ XJC
 `references:`
 https://docs.oracle.com/javase/9/tools/xjc.htm#JSWOR741
 
+- [Generate-your-JAXB-classes-with-xjc-Thoughts-on-Java](refs/Generate-your-JAXB-classes-with-xjc-Thoughts-on-Java)
 
+`references:`
+https://thoughts-on-java.org/generate-your-jaxb-classes-in-second/
 
 ----
+
+# XML binding of objects to xml
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
+
 ----
 ----
 ----
