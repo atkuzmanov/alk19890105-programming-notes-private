@@ -3386,6 +3386,31 @@ manouti
 ```
 
 ----
+# java static import best practice
+
+`references:`
+https://stackoverflow.com/questions/420791/what-is-a-good-use-case-for-static-import-of-methods
+
+`references:`
+https://carlosbecker.com/posts/avoid-static-imports/s
+
+`references:`
+https://coderanch.com/t/374900/java/practice-static-import
+
+`references:`
+https://coderanch.com/t/430739/java/advantages-disadvantages-static-import-feature
+
+----
+
+# Java static methods
+
+`references:`
+https://stackoverflow.com/questions/9541233/java-static-methods-pros-cons
+
+`references:`
+https://www.javacodegeeks.com/2012/05/java-static-methods-can-be-code-smell.html
+
+----
 
 # Marker interfaces
 
@@ -5975,10 +6000,21 @@ https://javapapers.com/core-java/system-out-println/
 https://www.geeksforgeeks.org/how-to-print-elements-of-a-stream-in-java-8/
 
 ----
+# Streams
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
+
+
+
 
 
 
 ----
+
+
+
 ----
 ----
 ----
