@@ -6048,9 +6048,28 @@ https://www.codementor.io/@eh3rrera/using-java-8-method-reference-du10866vx
 `references:`
 http://tutorials.jenkov.com/java-concurrency/synchronized.html
 
+----
+
+# thread locks on entire object for accesing synchronized method?
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |     |   x   |
+
+- [Java-synchronized-method-lock-on-object-or-method-StackOverflow](refs/Java-synchronized-method-lock-on-object-or-method-StackOverflow)
+
+`references:`
+https://stackoverflow.com/questions/3047564/java-synchronized-method-lock-on-object-or-method
+
+- [Object-level-lock-vs-Class-level-lock-in-Java-HowToDoInJava](refs/Object-level-lock-vs-Class-level-lock-in-Java-HowToDoInJava)
+
+`references:`
+https://howtodoinjava.com/java/multi-threading/object-vs-class-level-locking/
 
 ----
-----
+
+# 
+
 ----
 ----
 ----
