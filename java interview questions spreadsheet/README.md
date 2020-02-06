@@ -6113,7 +6113,40 @@ https://howtodoinjava.com/java/multi-threading/producer-consumer-problem-using-b
 https://stackoverflow.com/questions/2536692/a-simple-scenario-using-wait-and-notify-in-java
 
 ----
+
+# thread lifecycle
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
+
+- [Java-Thread-Life-Cycle-and-Thread-States-HowToDoInJava](refs/Java-Thread-Life-Cycle-and-Thread-States-HowToDoInJava)
+
+![Java-Thraed-Life-Cycle-States.jpg](refs/Java-Thread-Life-Cycle-and-Thread-States-HowToDoInJava/Java%20Thread%20Life%20Cycle%20and%20Thread%20States%20-%20HowToDoInJava_files/Java-Thraed-Life-Cycle-States.jpg)
+
+`references:`
+https://howtodoinjava.com/java/multi-threading/java-thread-life-cycle-and-thread-states/
+
+- [Life-Cycle-of-a-Thread-in-Java-Baeldung](refs/Life-Cycle-of-a-Thread-in-Java-Baeldung)
+
+`references:`
+https://www.baeldung.com/java-thread-lifecycle
+
+- Life Cycle of a Thread
+
+`references:`
+https://www.tutorialspoint.com/java/java_multithreading.htm
+
 ----
+
+# using Future with Callable
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |     |   x   |
+
+
+
 ----
 ----
 ----
