@@ -1,0 +1,3 @@
+_pa.setPartners({goo:true,rbcn:true,opx:true,yah:true,twtr:true})
+_pa.setSharpSpringID();
+_pa.looperReady()
