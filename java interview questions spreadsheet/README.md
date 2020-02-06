@@ -6097,6 +6097,16 @@ https://www.journaldev.com/1034/java-blockingqueue-example
 |-------|-----|-------|
 |       |     |   x   |
 
+- [java-Blocking-Queue-Vs-Classical-implementation-of-Producer-Consumer-pattern-StackOverflow](refs/java-Blocking-Queue-Vs-Classical-implementation-of-Producer-Consumer-pattern-StackOverflow)
+
+`references:`
+https://stackoverflow.com/questions/20184688/blocking-queue-vs-classical-implementation-of-producer-consumer-pattern
+
+- [Producer-Consumer-Problem-Using-BlockingQueue-HowToDoInJava](refs/Producer-Consumer-Problem-Using-BlockingQueue-HowToDoInJava)
+
+`references:`
+https://howtodoinjava.com/java/multi-threading/producer-consumer-problem-using-blockingqueue/
+
 - [A-simple-scenario-using-wait-and-notify-java-StackOverflow](refs/A-simple-scenario-using-wait-and-notify-java-StackOverflow)
 
 `references:`
