@@ -6013,9 +6013,18 @@ https://www.geeksforgeeks.org/how-to-print-elements-of-a-stream-in-java-8/
 
 ----
 
+# Java 8 Method Reference
 
+- [Java-8-Method-Reference-How-to-Use-it-Codementor](refs/Java-8-Method-Reference-How-to-Use-it-Codementor)
+
+`references:`
+https://www.codementor.io/@eh3rrera/using-java-8-method-reference-du10866vx
 
 ----
+
+
+
+
 ----
 ----
 ----
