@@ -6006,7 +6006,6 @@ https://www.geeksforgeeks.org/how-to-print-elements-of-a-stream-in-java-8/
 |-------|-----|-------|
 |   x   |  x  |   x   |
 
-
 - [jenkov-Java-Stream-API](refs/jenkov-Java-Stream-API)
 
 `references:`
@@ -6038,7 +6037,16 @@ https://www.codementor.io/@eh3rrera/using-java-8-method-reference-du10866vx
 
 ----
 
+# synchronized blocks/methods
 
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
+- [jenkov-Java-Synchronized-Blocks](refs/jenkov-Java-Synchronized-Blocks)
+
+`references:`
+http://tutorials.jenkov.com/java-concurrency/synchronized.html
 
 
 ----
