@@ -6068,9 +6068,40 @@ https://howtodoinjava.com/java/multi-threading/object-vs-class-level-locking/
 
 ----
 
-# 
+# wait() and notify()
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
+- [wait-notify-and-notifyAll-in-Java-HowToDoInJava](refs/wait-notify-and-notifyAll-in-Java-HowToDoInJava)
+
+`references:`
+https://howtodoinjava.com/java/multi-threading/wait-notify-and-notifyall-methods/
+
+- [Java-Thread-wait-notify-andnotifyAll-Example-JournalDev](refs/Java-Thread-wait-notify-andnotifyAll-Example-JournalDev)
+
+`references:`
+https://www.journaldev.com/1037/java-thread-wait-notify-and-notifyall-example
+
+- [Java-BlockingQueue-Example-JournalDev](refs/Java-BlockingQueue-Example-JournalDev)
+
+`references:`
+https://www.journaldev.com/1034/java-blockingqueue-example
 
 ----
+
+# Producer and Consumer problem with wait and notify vs BlockingQueue?
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |     |   x   |
+
+- [A-simple-scenario-using-wait-and-notify-java-StackOverflow](refs/A-simple-scenario-using-wait-and-notify-java-StackOverflow)
+
+`references:`
+https://stackoverflow.com/questions/2536692/a-simple-scenario-using-wait-and-notify-in-java
+
 ----
 ----
 ----
