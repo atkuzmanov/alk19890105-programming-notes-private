@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)http://tutorials.jenkov.com/java-functional-programming/streams.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+    <!--<meta name="viewport" content="width=device-width, height=device-height initial-scale=1.0, maximum-scale=1.0, user-scalable=0">-->
+    <meta name="viewport" content="width=device-width, height=device-height initial-scale=1, user-scalable=1">
+
+    <title>Java Stream API</title>
+
+    <meta name="description" content="The Java Stream API refers to the functional stream processing API added to Java in Java 8. The Java Stream API provides a functional approach to processing collections of data. This Java Stream tutorial explains how this API works..">
+    <meta name="keywords" content="java functional programming stream api">
+    <meta name="author" content="Jakob Jenkov">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jjenkov">
+    <meta name="twitter:title" content="Java Stream API">
+    <meta name="twitter:description" content="The Java Stream API refers to the functional stream processing API added to Java in Java 8. The Java Stream API provides a functional approach to processing collections of data. This Java Stream tutorial explains how this API works..">
+    <meta name="twitter:creator" content="@jjenkov">
+    <meta name="twitter:domain" content="jenkov.com">
+
+    <meta name="twitter:image:src" content="http://tutorials.jenkov.com/images/java/java-language-teaser-500-300.png">
+
+    <meta name="og:type" content="article">
+    <meta name="og:title" content="Java Stream API">
+    <meta property="og:url" content="http://tutorials.jenkov.com/java-functional-programming/streams.html">
+    <meta property="og:description" content="The Java Stream API refers to the functional stream processing API added to Java in Java 8. The Java Stream API provides a functional approach to processing collections of data. This Java Stream tutorial explains how this API works..">
+
+    <meta property="og:image" content="http://tutorials.jenkov.com/images/java/java-language-teaser-500-300.png">
+
+    <link href="https://plus.google.com/108227213807945109821" rel="publisher">
+
+    <meta name="google-site-verification" content="i_TwzdElg-by5uXLvyAjuIaCjxo0yjtW8LdRPUDEEcw">
+<script charset="utf-8" src="./Java Stream API_files/button.a657e8de41cd5e7b38cde1f36c9ab9c2.js"></script></head>
+
+<body>
+
+<style>
+body {background-color: #f0f0f0; xbackground-image: linear-gradient(180deg, #f0f0f0, #e0e0e0); margin: 0px; font-family: arial;}
+
+.grid {
+  display: grid;
+
+}
+.topBar, .footer {
+  grid-column-start: 1;
+  grid-column-end: 12;
+  background-color: #000000;
+  color: #ffffff;
+  height: 64px;
+  box-shadow: 0px 8px 6px -6px #999999;
+}
+
+.content {
+  grid-column-start: 1;
+  grid-column-end: 12;
+  text-align: center;
+}
+.category, .main, .right {
+	display: inline-block;
+    vertical-align: top;
+	box-sizing: border-box;
+	text-align: left;
+}
+.footer {
+  height: 64px;
+  position: relative;
+  padding-bottom: 48px;
+}
+#footerCopyright {
+	position: absolute;
+	top: 20px;
+	left:20px;
+}
+
+.card{ background-color: #ffffff; box-shadow: 0px 8px 6px -6px #999999;padding: 20px 30px;border: 1px solid #e0e0e0; margin: 8px 4px;}
+.cardLeft  { margin-left:   8px; }
+.cardRight { margin-right:  8px; }
+.cardTop   { margin-top:    8px; }
+.cardBottom{ margin-bottom: 8px; }
+
+#topBarMenu    { position: absolute; top: 20px; left: 20px; }
+#topBarMenu a  { color: #ffffff; text-decoration: none; }
+#topBarLogoBox { text-align: right; padding-top:6px; margin-right: 16px;}
+#topBarLogo    { height: 38px; }
+#topBarPhrase  { padding-right: 4px; font-size: 0.8em; }
+</style>
+
+<style>
+a{ text-decoration:none; }
+#main, #mainBody { text-align: left; }
+
+#mainBody h1{margin-top: 0px; text-align:left; }
+#mainBody h2{margin: 24px 0px 0px 0px; text-align:left; }
+#mainBody a{font-weight: bold; color: #339;}
+#mainBody img{max-width:100%;}
+#mainBody svg{max-width:100%;overflow: auto;}
+
+.card{ background-color: #ffffff; box-shadow: 0px 8px 6px -6px #999999;padding: 20px 30px;border: 1px solid #e0e0e0;}
+#trailToc ol li{border-bottom: 1px solid #f0f0f0;padding: 4px 20px;vertical-align: top;}
+.codeBox {background-color: #f0f0f0;border: 1px solid #cccccc;padding: 10px;max-width: 100%;overflow: auto;}
+code{font-size: 1.2em;}
+.dataTable{background-color: #f0f0f0;border: 1px solid #cccccc;max-width: 100%;overflow: auto;}
+.dataTable th{text-align: left;}
+.dataTable th, .dataTable td{padding: 2px 8px; }
+#pageToc{border: 1px solid #f0f0f0; text-align:left; }
+#pageToc li{margin: 6px 0px;}
+#pageToc a{color: #339;font-weight: normal;}
+#lastUpdate{border: 1px solid #f0f0f0;border-top:none;padding: 6px 24px;font-size: 0.8em;color: #666; text-align:left; }
+#next{border-top: 1px solid #f0f0f0;padding: 10px 0px;font-size: 1.1em;}
+#bottomSocial{border-top: 1px solid #f0f0f0;padding: 10px 0px;font-size: 0.9em;}
+</style>
+
+
+<style>
+@media only screen and (max-width: 799px) {
+	.main     { width: 100%;}
+	.category { display: none; }
+	.right    {	display: none; }
+	.card     { padding: 10px 8px; }
+    .bigScreen{ display: none; }
+}
+@media only screen and (min-width: 800px) and (max-width: 1199px) {
+	.main     { width: 75%; }
+	.category {	width: 25%;	}
+	.right    { display:none;}
+	.smallScreen { display: none; }
+}
+@media only screen and (min-width: 1200px) {
+	.main     { width: 50%;	max-width: 900px; }
+	.category { width: 25%;	max-width: 300px; }
+	.right    { width: 25%; max-width: 400px; display:none;}
+	.smallScreen { display: none; }
+}
+
+@media only screen and (max-width: 600px) {
+  #topBarLogo{transform: scale(0.75, 0.75) translate(0px, 0px);}
+}
+@media only screen and (max-width: 480px) {
+  #topBarLogo{transform: scale(0.6, 0.6) translate(136px, 0px);}
+  #topBarMenu a{ font-size: 0.8em; }
+  h1{ font-size: 1.6em; }
+  h2{ font-size: 1.4em; }
+  h3{ font-size: 1.2em; }
+}
+</style>
+
+<div class="grid">
+
+    <div class="topBar">
+
+        <div id="topBarMenu">
+            <a href="http://tutorials.jenkov.com/" title="Tutorials">Tutorials</a>
+            &nbsp;&nbsp;&nbsp;
+            <a href="http://jenkov.com/about/index.html" title="Tutorials">About</a>
+            &nbsp;&nbsp;&nbsp;
+            <a href="http://jenkov.com/rss.xml" title="RSS">RSS</a>
+        </div>
+
+        <div id="topBarLogoBox">
+            <div id="topBarLogo"><svg x="0px" y="0px" width="409px" height="48px" viewBox="0 0 409 100" style="enable-background:new 0 0 409 100;" xml:space="preserve">  <path d="M53,32 l10,0  l0,26  c-7,21 -30,21 -53,10  l4,-9  c18,11 33,10 39,-3  z " style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M69,32 l50,0  l0,9  l-50,0 z" style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M69,49 l50,0  l0,9  l-50,0 z" style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M69,65 l50,0  l0,9  l-50,0 z" style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M126,32 l13,0  l40,31  l0,-31  l10,0  l0,42  l-10,0 l-43,-32 l0,32 l-10,0 z " style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M179,32  l10,0  l0,15 l5,0  l32.5,-14.5  l19,0  l-41,19  l40,22  l-19,0  l-33,-18  l-3.5,0  l0,19  l-10,0 z " style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M238,49  c10,-24 60,-24 70,0  l-11,0  c-10,-12 -38,-12 -48,0  z " style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M238,57  c10,24 60,24 70,0  l-11,0  c-10,12 -38,12 -48,0  z " style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M304,32  l13,0  l25,34 l25,-34  l13,0  l-32,42 l-12.5,0 z" style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M369,65  l12,0 l0,8 l-12,0 z" style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M390,53  c3,-27 54,-27 67,-10  l-15,0  c-10,-5 -40,-5 -41.5,10 l-10,0  " style="stroke: none;  stroke-width: 1; fill: #ffffff;"></path>  <path d="M390,53  c3,27 54,27 67,10  l-15,0  c-10,5 -40,5 -41.5,-10 l-10,0  " style="stroke: none;  stroke-width: 1; fill: #ffffff;"></path>  <path d="M460,49  c10,-24 60,-24 70,0  l-11,0  c-10,-12 -38,-12 -48,0  z " style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M460,57  c10,24 60,24 70,0  l-11,0  c-10,12 -38,12 -48,0  z " style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M534,34  l10,0  l0,6 c13,-10 26,-10 37,0  c12,-10 32,-10 39,3  l0,30  l-10,0  l0,-27  c-3,-9 -24,-9 -28,3 l0,24  -10,0  l0,-27  c-3,-9 -24,-9 -28,3 l0,24  -10,0 z" style="stroke: none; stroke-width: 1; fill: #ffffff;"></path></svg></div>
+            <div id="topBarPhrase">Tech and Media Labs</div>
+        </div>
+
+    </div>
+
+
+    <div class="content">
+        <div class="site-menu">
+
+            <!--
+              <div class="card cardLeft cardTop">Software Development
+                <ul>
+                  <li>Java &amp; JVM</li>
+                  <li>Web</li>
+                  <li>Distributed Systems</li>
+                </ul>
+            </div>
+            -->
+        </div><div class="category">
+        <div id="trailToc" class="card cardTop cardBottom">
+            <div id="trailTitle">Java Functional Programming</div><ol><li><a href="http://tutorials.jenkov.com/java-functional-programming/index.html">Java Functional Programming</a></li><li><a href="http://tutorials.jenkov.com/java-functional-programming/higher-order-functions.html">Java Higher Order Functions</a></li><li><a href="http://tutorials.jenkov.com/java-functional-programming/functional-interfaces.html">Java Functional Interfaces</a></li><li><a href="http://tutorials.jenkov.com/java-functional-programming/functional-composition.html">Java Functional Composition</a></li><li><a href="http://tutorials.jenkov.com/java-functional-programming/streams.html"><b>Java Stream API</b></a></li></ol>
+        </div>
+    </div><div class="main">
+        <div class="card cardTop cardBottom">
+            <h1 style="text-align: left;">Java Stream API</h1>
+
+            <div id="pageToc" itemscope="" itemtype="http://schema.org/SiteNavigationElement">
+                <ul><li><a href="http://tutorials.jenkov.com/java-functional-programming/streams.html#java-stream-api-tutorial-video-version">Java Stream API Tutorial - Video Version</a></li><li><a href="http://tutorials.jenkov.com/java-functional-programming/streams.html#java-stream-definition">Java Stream Definition</a></li><li><a href="http://tutorials.jenkov.com/java-functional-programming/streams.html#stream-processing">Stream Processing</a></li><li><a href="http://tutorials.jenkov.com/java-functional-programming/streams.html#obtain-a-stream">Obtain a Stream</a></li><li><a href="http://tutorials.jenkov.com/java-functional-programming/streams.html#terminal-and-non-terminal-operations">Terminal and Non-Terminal Operations</a></li><li><a href="http://tutorials.jenkov.com/java-functional-programming/streams.html#non-terminal-operations">Non-Terminal Operations</a><ul><li><a href="http://tutorials.jenkov.com/java-functional-programming/streams.html#filter">filter()</a></li><li><a href="http://tutorials.jenkov.com/java-functional-programming/streams.html#map">map()</a></li><li><a href="http://tutorials.jenkov.com/java-functional-programming/streams.html#flatmap">flatMap()</a></li><li><a href="http://tutorials.jenkov.com/java-functional-programming/streams.html#distinct">distinct()</a></li><li><a href="http://tutorials.jenkov.com/java-functional-programming/streams.html#limit">limit()</a></li><li><a href="http://tutorials.jenkov.com/java-functional-programming/streams.html#peek">peek()</a></li></ul></li><li><a href="http://tutorials.jenkov.com/java-functional-programming/streams.html#terminal-operations">Terminal Operations</a><ul><li><a href="http://tutorials.jenkov.com/java-functional-programming/streams.html#anyMatch">anyMatch()</a></li><li><a href="http://tutorials.jenkov.com/java-functional-programming/streams.html#allmatch">allMatch()</a></li><li><a href="http://tutorials.jenkov.com/java-functional-programming/streams.html#nonematch">noneMatch()</a></li><li><a href="http://tutorials.jenkov.com/java-functional-programming/streams.html#collect">collect()</a></li><li><a href="http://tutorials.jenkov.com/java-functional-programming/streams.html#count">count()</a></li><li><a href="http://tutorials.jenkov.com/java-functional-programming/streams.html#findany">findAny()</a></li><li><a href="http://tutorials.jenkov.com/java-functional-programming/streams.html#findfirst">findFirst()</a></li><li><a href="http://tutorials.jenkov.com/java-functional-programming/streams.html#foreach">forEach()</a></li><li><a href="http://tutorials.jenkov.com/java-functional-programming/streams.html#min">min()</a></li><li><a href="http://tutorials.jenkov.com/java-functional-programming/streams.html#max">max()</a></li><li><a href="http://tutorials.jenkov.com/java-functional-programming/streams.html#reduce">reduce()</a></li><li><a href="http://tutorials.jenkov.com/java-functional-programming/streams.html#toarray">toArray()</a></li></ul></li><li><a href="http://tutorials.jenkov.com/java-functional-programming/streams.html#concatenate-streams">Concatenate Streams</a></li><li><a href="http://tutorials.jenkov.com/java-functional-programming/streams.html#create-stream-from-array">Create Stream From Array</a></li><li><a href="http://tutorials.jenkov.com/java-functional-programming/streams.html#java-stream-api-critique">Java Stream API Critique</a><ul><li><a href="http://tutorials.jenkov.com/java-functional-programming/streams.html#batch-not-streaming">Batch, Not Streaming</a></li><li><a href="http://tutorials.jenkov.com/java-functional-programming/streams.html#chain-not-graph">Chain, Not Graph</a></li><li><a href="http://tutorials.jenkov.com/java-functional-programming/streams.html#internal-not-external-iteration">Internal, Not External Iteration</a></li></ul></li></ul>
+            </div>
+            <div id="lastUpdate">
+                <table><tbody><tr><td class="authorPhoto"></td>
+                    <td><p style="margin: 0px 0px 6px 0px;">
+                        Jakob Jenkov<br>
+                        Last update: 2019-04-28
+                    </p>
+                        <div class="authorSocialLinks"></div>
+                    </td>
+                </tr>
+                </tbody></table>
+            </div>
+
+            <div id="mainBody">
+                <p>
+    The Java <em>Stream</em> API provides a functional approach to processing collections of objects. The
+    Java Stream API was added in Java 8 along with several other functional programming features. This
+    Java Stream tutorial will explain how these functional streams work, and how you use them.
+</p>
+
+<p>
+    The Java Stream API is not related to the <a href="http://tutorials.jenkov.com/java-io/inputstream.html">Java InputStream</a> and
+    <a href="http://tutorials.jenkov.com/java-io/outputstream.html">Java OutputStream</a> of <a href="http://tutorials.jenkov.com/java-io/index.html">Java IO</a>.
+    The <code>InputStream</code> and <code>OutputStream</code> are related to streams of bytes. The
+    Java Stream API is for processing streams of objects - not bytes.
+</p>
+
+
+
+<a name="java-stream-api-tutorial-video-version"></a>
+<h2>Java Stream API Tutorial - Video Version</h2>
+
+<p>
+    I have a video version of this tutorial here:
+</p>
+
+<iframe width="560" height="315" src="./Java Stream API_files/bcrl-GL0vV4.html" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+
+
+<a name="java-stream-definition"></a>
+<h2>Java Stream Definition</h2>
+
+<p>
+    A Java <em>Stream</em> is a component that is capable of <em>internal iteration</em> of its elements, meaning it can
+    iterate its elements itself. In contrast, when you are using the
+    <a href="http://tutorials.jenkov.com/java-collections/index.html">Java Collections</a> iteration features
+    (e.g a <a href="http://tutorials.jenkov.com/java-collections/iterator.html">Java Iterator</a> or the Java for-each loop used
+    with a <a href="http://tutorials.jenkov.com/java-collections/iterable.html">Java Iterable</a>) you have to implement the iteration
+    of the elements yourself.
+</p>
+
+
+
+<a name="stream-processing"></a>
+<h2>Stream Processing</h2>
+
+<p>
+    You can attach <em>listeners</em> to a <code>Stream</code>. These listeners are called when the <code>Stream</code>
+    iterates the elements internally. The listeners are called once for each element in the stream. That way each
+    listener gets to process each element in the stream. This is referred to as <em>stream processing</em>.
+</p>
+
+<p>
+    The listeners of a stream form a chain. The first listener in the chain can process the element in the stream,
+    and then return a new element for the next listener in the chain to process. A listener can either return the
+    same element or a new, depending on what the purpose of that listener (processor) is.
+</p>
+
+
+
+
+<a name="obtain-a-stream"></a>
+<h2>Obtain a Stream</h2>
+
+<p>
+    There are many ways to obtain a Java <em>Stream</em>. One of the most common ways to obtain a <code>Stream</code>
+    is from a <a href="http://tutorials.jenkov.com/java-collections/index.html">Java Collection</a>. Here is an example of obtaining a
+    <code>Stream</code> from a <a href="http://tutorials.jenkov.com/java-collections/list.html">Java List</a>:
+</p>
+
+<pre class="codeBox">List&lt;String&gt; items = new ArrayList&lt;String&gt;();
+
+items.add("one");
+items.add("two");
+items.add("three");
+
+Stream&lt;String&gt; stream = items.stream();    
+</pre>
+
+<p>
+    This example first creates a Java <code>List</code>, then adds three <a href="http://tutorials.jenkov.com/java/strings.html">Java Strings</a>
+    to it. Finally, the example calls the <code>stream()</code> method to obtain a <code>Stream</code> instance.
+</p>
+
+
+
+
+<a name="terminal-and-non-terminal-operations"></a>
+<h2>Terminal and Non-Terminal Operations</h2>
+
+<p>
+    The <code>Stream</code> interface has a selection of <em>terminal</em> and <em>non-terminal</em> operations.
+    A <em>non-terminal stream operation</em> is an operation that adds a listener to the stream without doing anything else.
+    A <em>terminal stream operation</em> is an operation that starts the internal iteration of the elements, calls
+    all the listeners, and returns a result.
+</p>
+
+<p>
+    Here is a Java Stream example which contains both a non-terminal and a terminal operation:
+</p>
+
+<pre class="codeBox">import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
+
+public class StreamExamples {
+
+    public static void main(String[] args) {
+        List&lt;String&gt; stringList = new ArrayList&lt;String&gt;();
+
+        stringList.add("ONE");
+        stringList.add("TWO");
+        stringList.add("THREE");
+
+        Stream&lt;String&gt; stream = stringList.stream();
+
+        long count = stream
+            .map((value) -&gt; { return value.toLowerCase(); })
+            .count();
+
+        System.out.println("count = " + count);
+
+    }
+}
+</pre>
+
+<p>
+    The call to the <code>map()</code> method of the <code>Stream</code> interface is a non-terminal operation.
+    It merely sets a lambda expression on the stream which converts each element to lowercase. The <code>map()</code>
+    method will be covered in more detail later on.
+</p>
+
+<p>
+    The call to the <code>count()</code> method is a terminal operation. This call starts the iteration internally,
+    which will result in each element being converted to lowercase and then counted.
+</p>
+
+<p>
+    The conversion of the elements to lowercase does not actually affect the count of elements. The conversion
+    part is just there as an example of a non-terminal operation.
+</p>
+
+
+
+
+<a name="non-terminal-operations"></a>
+<h2>Non-Terminal Operations</h2>
+
+<p>
+    The non-terminal stream operations of the Java Stream API are operations that transform or filter the
+    elements in the stream. When you add a non-terminal operation to a stream, you get a new stream back
+    as result. The new stream represents the stream of elements resulting from the original stream with
+    the non-terminal operation applied. Here is an example of a non-terminal operation added to a stream -
+    which results in a new stream:
+</p>
+
+<pre class="codeBox">List&lt;String&gt; stringList = new ArrayList&lt;String&gt;();
+
+stringList.add("ONE");
+stringList.add("TWO");
+stringList.add("THREE");
+    
+Stream&lt;String&gt; stream = stringList.stream();
+    
+Stream&lt;String&gt; stringStream =
+    stream.map((value) -&gt; { return value.toLowerCase(); });
+</pre>
+
+<p>
+    Notice the call to <code>stream</code> <code>map()</code> . This call actually returns a new
+    <code>Stream</code> instance representing the original stream of strings with the map operation
+    applied.
+</p>
+
+<p>
+    You can only add a single operation to a given <code>Stream</code> instance. If you need to chain multiple
+    operations after each other, you will need to apply the second operation to the <code>Stream</code> operation
+    resulting from the first operation. Here is how that looks:
+</p>
+
+<pre class="codeBox">Stream&lt;String&gt; stringStream1 =
+        stream.map((value) -&gt; { return value.toLowerCase(); });
+
+Stream&lt;½String&gt; stringStream2 =
+        stringStream1.map((value) -&gt; { return value.toUpperCase(); });
+</pre>
+
+<p>
+    Notice how the second call to <code>Stream</code> <code>map()</code> is called on the <code>Stream</code>
+    returned by the first <code>map()</code> call.
+</p>
+
+<p>
+    It is quite common to chain the calls to non-terminal operations on a Java <code>Stream</code>. Here is an
+    example of chaining the non-terminal operation calls on Java streams:
+</p>
+
+<pre class="codeBox">Stream&lt;String&gt; stream1 = stream
+  .map((value) -&gt; { return value.toLowerCase(); })
+  .map((value) -&gt; { return value.toUpperCase(); })
+  .map((value) -&gt; { return value.substring(0,3); });
+</pre>
+
+<p>
+    Many non-terminal Stream operations can take a <a href="http://tutorials.jenkov.com/java/lambda-expressions.html">Java Lambda Expression</a>
+    as parameter. This lambda expression implements a <a href="http://tutorials.jenkov.com/java-functional-programming/functional-interfaces.html">Java functional interface</a>
+    that fits the given non-terminal operation. For instance, the <code>Function</code> or <code>Predicate</code>
+    interface. The parameter of the non-terminal operation method parameter is typically a functional interface - which
+    is why it can also be implemented by a Java lambda expression.
+</p>
+
+
+
+<a name="filter"></a>
+<h3>filter()</h3>
+
+<p>
+    The Java <code>Stream</code> <code>filter()</code> can be used to filter out elements from a Java <code>Stream</code>.
+    The <code>filter</code> method takes a <code>Predicate</code> which is called for each element in the stream.
+    If the element is to be included in the resulting <code>Stream</code>, the <code>Predicate</code> should return
+    <code>true</code>. If the element should not be included, the <code>Predicate</code> should return <code>false</code>.
+</p>
+
+<p>
+    Here is an example of calling the Java <code>Stream</code> <code>filter()</code> method:
+</p>
+
+<pre class="codeBox">Stream&lt;String&gt; longStringsStream = stream.filter((value) -&gt; {
+    return value.length() &gt;= 3;
+});
+</pre>
+
+
+
+
+<a name="map"></a>
+<h3>map()</h3>
+<p>
+    The Java <code>Stream</code> <code>map()</code> method converts (maps) an element to another object. For instance,
+    if you had a list of strings it could convert each string to lowercase, uppercase, or to a substring of the original
+    string, or something completely else. Here is a Java <code>Stream</code> <code>map()</code> example:
+</p>
+
+<pre class="codeBox">List&lt;String&gt; list = new ArrayList&lt;String&gt;();
+Stream&lt;String&gt; stream = list.stream();
+
+Stream&lt;String&gt; streamMapped = stream.map((value) -&gt; value.toUpperCase());
+</pre>
+
+
+
+<a name="flatmap"></a>
+<h3>flatMap()</h3>
+
+<p>
+    The Java <code>Stream</code> <code>flatMap()</code> methods maps a single element into multiple elements.
+    The idea is that you "flatten" each element from a complex structure consisting of multiple internal elements,
+    to a "flat" stream consisting only of these internal elements.
+</p>
+
+<p>
+    For instance, imagine you have an object with nested objects (child objects). Then you can map that object
+    into a "flat" stream consisting of itself plus its nested objects - or only the nested objects. You could
+    also map a stream of <code>List</code>s of elements to the elements themselves. Or map a stream of strings
+    to a stream of words in these strings - or to the individual <code>Character</code> instances in these strings.
+</p>
+
+<p>
+    Here is an example that flatmaps a <code>List</code> of strings to the words in each string. This example should
+    give you an idea about how <code>flatMap()</code> can be used to map a single element into multiple elements.
+</p>
+
+<pre class="codeBox">List&lt;String&gt; stringList = new ArrayList&lt;String&gt;();
+
+stringList.add("One flew over the cuckoo's nest");
+stringList.add("To kill a muckingbird");
+stringList.add("Gone with the wind");
+
+Stream&lt;String&gt; stream = stringList.stream();
+
+stream.flatMap((value) -&gt; {
+    String[] split = value.split(" ");
+    return (Stream&lt;String&gt;) Arrays.asList(split).stream();
+})
+.forEach((value) -&gt; System.out.println(value))
+;
+</pre>
+
+<p>
+    This Java <code>Stream</code> <code>flatMap()</code> example first creates a <code>List</code> with 3 strings
+    containing book titles. Then a <code>Stream</code> for the <code>List</code> is obtained, and <code>flatMap()</code>
+    called.
+</p>
+
+<p>
+    The <code>flatMap()</code> operation called on the <code>Stream</code> has to return another <code>Stream</code>
+    representing the flat mapped elements. In the example above, each original string is split into words, turned
+    into a <code>List</code>, and the stream obtained and returned from that <code>List</code>.
+</p>
+
+<p>
+    Note that this example finishes with a call to <code>forEach()</code> which is a terminal operation. This call
+    is only there to trigger the internal iteration, and thus flat map operation. If no terminal operation was
+    called on the <code>Stream</code> chain, nothing would have happened. No flat mapping would actually have taken place.
+</p>
+
+
+
+<a name="distinct"></a>
+<h3>distinct()</h3>
+
+<p>
+    The Java <code>Stream</code> <code>distinct()</code> method is a non-terminal operation that returns a new
+    <code>Stream</code> which will only contain the distinct elements from the original stream. Any duplicates
+    will be eliminated. Here is an example of the Java <code>Stream</code> <code>distinct()</code> method:
+</p>
+
+<pre class="codeBox">List&lt;String&gt; stringList = new ArrayList&lt;String&gt;();
+
+stringList.add("one");
+stringList.add("two");
+stringList.add("three");
+stringList.add("one");
+
+Stream&lt;String&gt; stream = stringList.stream();
+
+List&lt;String&gt; distinctStrings = stream
+        .distinct()
+        .collect(Collectors.toList());
+
+System.out.println(distinctStrings);
+</pre>
+
+<p>
+    In this example the element <code>one</code> appears 2 times in the original stream. Only the first occurrence
+    of this element will be included in the <code>Stream</code> returned by <code>distinct()</code>. Thus, the
+    resulting <code>List</code> (from calling <code>collect()</code>) will only contain <code>one</code>, <code>two</code>
+    and <code>three</code>. The output printed from this example will be:
+</p>
+
+<pre class="codeBox">[one, two, three]
+</pre>
+
+
+
+
+<a name="limit"></a>
+<h3>limit()</h3>
+
+<p>
+    The Java <code>Stream</code> <code>limit()</code> method can limit the number of elements in a stream to
+    a number given to the <code>limit()</code> method as parameter. The <code>limit()</code> method returns a 
+    new <code>Stream</code> which will at most contain the given number of elements. Here is a 
+    Java <code>Stream</code> <code>limit()</code> example:
+</p>
+
+<pre class="codeBox">List&lt;String&gt; stringList = new ArrayList&lt;String&gt;();
+
+stringList.add("one");
+stringList.add("two");
+stringList.add("three");
+stringList.add("one");
+
+Stream&lt;String&gt; stream = stringList.stream();
+stream
+    .limit(2)
+    .forEach( element -&gt; { System.out.println(element); });    
+</pre>
+
+<p>
+    This example first creates a <code>Stream</code>, then calls <code>limit()</code> on it, and then
+    calls <code>forEach()</code> with a lambda that prints out the elements in the stream. Only the two
+    first elements will be printed because of the <code>limit(2)</code> call.
+</p>
+
+
+
+<a name="peek"></a>
+<h3>peek()</h3>
+
+<p>
+    The Java <code>Stream</code> <code>peek()</code> method is a non-terminal operation that takes
+    a <code>Consumer</code> (<code>java.util.function.Consumer</code>) as parameter. The
+    <code>Consumer</code> will get called for each element in the stream. The <code>peek()</code>
+    method returns a new <code>Stream</code> which contains all the elements in the original stream.
+</p>
+
+<p>
+    The purpose of the <code>peek()</code> method is, as the method says, to peek at the elements
+    in the stream, not to transform them. Keep in mind that the <code>peek</code> method does not
+    start the internal iteration of the elements in the stream. You need to call a terminal operation
+    for that. Here is a Java <code>Stream</code> <code>peek()</code> example:
+</p>
+
+<pre class="codeBox">List&lt;String&gt; stringList = new ArrayList&lt;String&gt;();
+
+stringList.add("abc");
+stringList.add("def");
+
+Stream&lt;String&gt; stream = stringList.stream();
+
+Stream&lt;String&gt; streamPeeked = stream.peek((value) -&gt; {
+    System.out.println("value");
+});
+</pre>
+
+
+
+
+
+<a name="terminal-operations"></a>
+<h2>Terminal Operations</h2>
+<p>
+    The terminal operations of the Java <code>Stream</code> interface typicall return a single value. Once the
+    terminal operation is invoked on a <code>Stream</code>, the iteration of the <code>Stream</code> and any
+    of the chained streams will get started. Once the iteration is done, the result of the terminal operation
+    is returned.
+</p>
+
+<p>
+    A terminal operation typically does not return a new <code>Stream</code> instance. Thus, once you call
+    a terminal operation on a stream, the chaining of <code>Stream</code> instances from non-terminal operation ends.
+    Here is an example of calling a terminal operation on a Java <code>Stream</code>:
+</p>
+
+<pre class="codeBox">long count = stream
+  .map((value) -&gt; { return value.toLowerCase(); })
+  .map((value) -&gt; { return value.toUpperCase(); })
+  .map((value) -&gt; { return value.substring(0,3); })
+  .count();
+</pre>
+
+<p>
+    It is the call to <code>count()</code> at the end of the example that is the terminal operation. Since
+    <code>count()</code> returns a <code>long</code>, the <code>Stream</code> chain of non-terminal operations
+    (the <code>map()</code> calls) is ended.
+</p>
+
+
+
+<a name="anyMatch"></a>
+<h3>anyMatch()</h3>
+
+<p>
+    The Java <code>Stream</code> <code>anyMatch()</code> method is a terminal operation that takes a single
+    <code>Predicate</code> as parameter, starts the internal iteration of the <code>Stream</code>, and
+    applies the <code>Predicate</code> parameter to each element. If the <code>Predicate</code> returns
+    true for any of the elements, the <code>anyMatch()</code> method returns <code>true</code>.
+    If no elements match the <code>Predicate</code>, <code>anyMatch()</code> will return <code>false</code>.
+    Here is a Java <code>Stream</code> <code>anyMatch()</code> example:
+</p>
+
+
+
+<pre class="codeBox">List&lt;String&gt; stringList = new ArrayList&lt;String&gt;();
+
+stringList.add("One flew over the cuckoo's nest");
+stringList.add("To kill a muckingbird");
+stringList.add("Gone with the wind");
+
+Stream&lt;String&gt; stream = stringList.stream();
+
+boolean anyMatch = stream.anyMatch((value) -&gt; { return value.startsWith("One"); });
+System.out.println(anyMatch);
+</pre>
+
+<p>
+    In the example above, the <code>anyMatch()</code> method call will return <code>true</code>, because
+    the first string element in the stream starts with "One".
+</p>
+
+
+
+
+<a name="allmatch"></a>
+<h3>allMatch()</h3>
+
+<p>
+    The Java <code>Stream</code> <code>allMatch()</code> method is a terminal operation that takes a single
+    <code>Predicate</code> as parameter, starts the internal iteration of elements in the <code>Stream</code>,
+    and applies the <code>Predicate</code> parameter to each element. If the <code>Predicate</code> returns
+    <code>true</code> for all elements in the <code>Stream</code>, the <code>allMatch()</code> will return <code>true</code>.
+    If not all elements match the <code>Predicate</code>, the <code>allMatch()</code> method returns <code>false</code>.
+    Here is a Java <code>Stream</code> <code>allMatch()</code> example:
+</p>
+
+<pre class="codeBox">List&lt;String&gt; stringList = new ArrayList&lt;String&gt;();
+
+stringList.add("One flew over the cuckoo's nest");
+stringList.add("To kill a muckingbird");
+stringList.add("Gone with the wind");
+
+Stream&lt;String&gt; stream = stringList.stream();
+
+boolean allMatch = stream.allMatch((value) -&gt; { return value.startsWith("One"); });
+System.out.println(allMatch);
+</pre>
+
+<p>
+    In the example above, the <code>allMatch()</code> method will return <code>false</code>, because only one
+    of the strings in the <code>Stream</code> starts with "One".
+</p>
+
+
+
+<a name="nonematch"></a>
+<h3>noneMatch()</h3>
+
+<p>
+    The Java <code>Stream</code> <code>noneMatch()</code> method is a terminal operation that will iterate
+    the elements in the stream and return <code>true</code> or <code>false</code>, depending on whether no
+    elements in the stream matches the <code>Predicate</code> passed to <code>noneMatch()</code> as parameter.
+    The <code>noneMatch()</code> method will return <code>true</code> if no elements are matched by
+    the <code>Predicate</code>, and <code>false</code> if one or more elements are matched.
+    Here is a Java <code>Stream</code> <code>noneMatch()</code> example:
+</p>
+
+<pre class="codeBox">List&lt;String&gt; stringList = new ArrayList&lt;String&gt;();
+
+stringList.add("abc");
+stringList.add("def");
+
+Stream&lt;String&gt; stream = stringList.stream();
+
+boolean noneMatch = stream.noneMatch((element) -&gt; {
+    return "xyz".equals(element);
+});
+
+System.out.println("noneMatch = " + noneMatch);
+</pre>
+
+
+
+
+<a name="collect"></a>
+<h3>collect()</h3>
+
+<p>
+    The Java <code>Stream</code> <code>collect()</code> method is a terminal operation that starts the internal
+    iteration of elements, and collects the elements in the stream in a collection or object of some kind.
+    Here is a simple Java <code>Stream</code> <code>collect()</code> method example:
+</p>
+
+<pre class="codeBox">List&lt;String&gt; stringList = new ArrayList&lt;String&gt;();
+
+stringList.add("One flew over the cuckoo's nest");
+stringList.add("To kill a muckingbird");
+stringList.add("Gone with the wind");
+
+Stream&lt;String&gt; stream = stringList.stream();
+
+List&lt;String&gt; stringsAsUppercaseList = stream
+.map(value -&gt; value.toUpperCase())
+.collect(Collectors.toList());
+
+System.out.println(stringsAsUppercaseList);
+</pre>
+
+<p>
+    The <code>collect()</code> method takes a <code>Collector</code> (<code>java.util.stream.Collector</code>) as
+    parameter. Implementing a <code>Collector</code> requires some study of the <code>Collector</code> interface.
+    Luckily, the Java class <code>java.util.stream.Collectors</code> contains a set of pre-implemented
+    <code>Collector</code> implementations you can use, for the most common operations. In the example above,
+    it was the <code>Collector</code> implementation returned by <code>Collectors.toList()</code> that was used.
+    This <code>Collector</code> simply collects all elements in the stream in a standard Java <code>List</code>
+</p>
+
+
+
+<a name="count"></a>
+<h3>count()</h3>
+
+<p>
+    The Java <code>Stream</code> <code>count()</code> method is a terminal operation which starts the internal iteration
+    of the elements in the <code>Stream</code>, and counts the elements. Here is a Java <code>Stream</code> <code>count()</code>
+    example:
+</p>
+
+<pre class="codeBox">List&lt;String&gt; stringList = new ArrayList&lt;String&gt;();
+
+stringList.add("One flew over the cuckoo's nest");
+stringList.add("To kill a muckingbird");
+stringList.add("Gone with the wind");
+
+Stream&lt;String&gt; stream = stringList.stream();
+
+long count = stream.flatMap((value) -&gt; {
+    String[] split = value.split(" ");
+    return (Stream&lt;String&gt;) Arrays.asList(split).stream();
+})
+.count();
+
+System.out.println("count = " + count);
+</pre>
+
+<p>
+    This example first creates a <code>List</code> of strings, then obtain the <code>Stream</code> for that <code>List</code>,
+    adds a <code>flatMap()</code> operation for it, and then finishes with a call to <code>count()</code>. The
+    <code>count()</code> method will start the iteration of the elements in the <code>Stream</code> which will result
+    in the string elements being split up into words in the <code>flatMap()</code> operation, and then counted.
+    The final result that will be printed out is 14.
+</p>
+
+
+
+
+<a name="findany"></a>
+<h3>findAny()</h3>
+
+<p>
+    The Java <code>Stream</code> <code>findAny()</code> method can find a single element from the Stream. The
+    element found can be from anywhere in the <code>Stream</code>. There is no guarantee about from where in the
+    stream the element is taken. Here is a Java <code>Stream</code> <code>findAny()</code> example:
+</p>
+
+<pre class="codeBox">List&lt;String&gt; stringList = new ArrayList&lt;String&gt;();
+
+stringList.add("one");
+stringList.add("two");
+stringList.add("three");
+stringList.add("one");
+
+Stream&lt;String&gt; stream = stringList.stream();
+
+Optional&lt;String&gt; anyElement = stream.findAny();
+
+System.out.println(anyElement.get());
+</pre>
+
+<p>
+    Notice how the <code>findAny()</code> method returns an <code>Optional</code>. The <code>Stream</code> could
+    be empty - so no element could be returned. You can check if an element was found via the <code>Optional</code>
+    <code>isPresent()</code> method.
+</p>
+
+
+
+
+<a name="findfirst"></a>
+<h3>findFirst()</h3>
+<p>
+    The Java <code>Stream</code> <code>findFirst()</code> method finds the first element in the <code>Stream</code>,
+    if any elements are present in the <code>Stream</code>. The <code>findFirst()</code> method returns an
+    <code>Optional</code> from which you can obtain the element, if present. Here is a
+    Java <code>Stream</code> <code>findFirst()</code> example:
+</p>
+
+<pre class="codeBox">List&lt;String&gt; stringList = new ArrayList&lt;String&gt;();
+
+stringList.add("one");
+stringList.add("two");
+stringList.add("three");
+stringList.add("one");
+
+Stream&lt;String&gt; stream = stringList.stream();
+
+Optional&lt;String&gt; result = stream.findFirst();
+
+System.out.println(result.get());
+</pre>
+
+<p>
+    You can check if the <code>Optional</code> returned contains an element via its <code>isPresent()</code>
+    method.
+</p>
+
+
+
+
+<a name="foreach"></a>
+<h3>forEach()</h3>
+<p>
+    The Java <code>Stream</code> <code>forEach()</code> method is a terminal operation which starts the
+    internal iteration of the elements in the <code>Stream</code>, and applies a <code>Consumer</code>
+    (<code>java.util.function.Consumer</code>) to each element in the <code>Stream</code>. The
+    <code>forEach()</code> method returns <code>void</code>. Here is a
+    Java <code>Stream</code> <code>forEach()</code> example:
+</p>
+
+<pre class="codeBox">List&lt;String&gt; stringList = new ArrayList&lt;String&gt;();
+
+stringList.add("one");
+stringList.add("two");
+stringList.add("three");
+stringList.add("one");
+
+Stream&lt;String&gt; stream = stringList.stream();
+
+stream.forEach( element -&gt; { System.out.println(element); });
+</pre>
+
+
+
+
+<a name="min"></a>
+<h3>min()</h3>
+
+<p>
+    The Java <code>Stream</code> <code>min()</code> method is a terminal operation that returns the smallest
+    element in the <code>Stream</code>. Which element is the smallest is determined by the <code>Comparator</code>
+    implementation you pass to the <code>min()</code> method. I have explained how the <code>Comparator</code> interface
+    works in my tutorial about <a href="http://tutorials.jenkov.com/java-collections/sorting.html">sorting Java collections</a>.
+    Here is a Java <code>Stream</code> <code>min()</code> example:
+</p>
+
+<pre class="codeBox">List&lt;String&gt; stringList = new ArrayList&lt;String&gt;();
+
+stringList.add("abc");
+stringList.add("def");
+
+Stream&lt;String&gt; stream = stringList.stream();
+
+Optional&lt;String&gt; min = stream.min((val1, val2) -&gt; {
+    return val1.compareTo(val2);
+});
+
+String minString = min.get();
+
+System.out.println(minString);
+</pre>
+
+<p>
+    Notice how the <code>min()</code> method returns an <code>Optional</code> which may or may not contain
+    a result. If the <code>Stream</code> is empty, the <code>Optional</code> <code>get()</code> method will
+    throw a <code>NoSuchElementException</code>.
+</p>
+
+
+
+
+<a name="max"></a>
+<h3>max()</h3>
+
+<p>
+    The Java <code>Stream</code> <code>max()</code> method is a terminal operation that returns the largest
+    element in the <code>Stream</code>. Which element is the largest is determined by the <code>Comparator</code>
+    implementation you pass to the <code>max()</code> method. I have explained how the <code>Comparator</code> interface
+    works in my tutorial about <a href="http://tutorials.jenkov.com/java-collections/sorting.html">sorting Java collections</a>.
+    Here is a Java <code>Stream</code> <code>max()</code> example:
+</p>
+
+<pre class="codeBox">List&lt;String&gt; stringList = new ArrayList&lt;String&gt;();
+
+stringList.add("abc");
+stringList.add("def");
+
+Stream&lt;String&gt; stream = stringList.stream();
+
+Optional&lt;String&gt; max = stream.max((val1, val2) -&gt; {
+    return val1.compareTo(val2);
+});
+
+String maxString = max.get();
+
+System.out.println(maxString);
+</pre>
+
+<p>
+    Notice how the <code>max()</code> method returns an <code>Optional</code> which may or may not contain
+    a result. If the <code>Stream</code> is empty, the <code>Optional</code> <code>get()</code> method will
+    throw a <code>NoSuchElementException</code>.
+</p>
+
+
+
+
+<a name="reduce"></a>
+<h3>reduce()</h3>
+
+<p>
+    The Java <code>Stream</code> <code>reduce()</code> method is a terminal operation that can reduce all elements in the stream to a single
+    element. Here is a Java <code>Stream</code> <code>reduce()</code> example:
+</p>
+
+<pre class="codeBox">List&lt;String&gt; stringList = new ArrayList&lt;String&gt;();
+
+stringList.add("One flew over the cuckoo's nest");
+stringList.add("To kill a muckingbird");
+stringList.add("Gone with the wind");
+
+Stream&lt;String&gt; stream = stringList.stream();
+
+Optional&lt;String&gt; reduced = stream.reduce((value, combinedValue) -&gt; {
+    return combinedValue + " + " + value;
+});
+
+System.out.println(reduced.get());
+</pre>
+
+<p>
+    Notice the <code>Optional</code> returned by the <code>reduce()</code> method. This <code>Optional</code>
+    contains the value (if any) returned by the lambda expression passed to the <code>reduce()</code> method.
+    You obtain the value by calling the <code>Optional</code> <code>get()</code> method.
+</p>
+
+
+
+
+<a name="toarray"></a>
+<h3>toArray()</h3>
+
+<p>
+    The Java <code>Stream</code> <code>toArray()</code> method is a terminal operation that starts the internal iteration
+    of the elements in the stream, and returns an array of <code>Object</code> containing all the elements. Here is
+    a Java <code>Stream</code> <code>toArray()</code> example:
+</p>
+
+<pre class="codeBox">List&lt;String&gt; stringList = new ArrayList&lt;String&gt;();
+
+stringList.add("One flew over the cuckoo's nest");
+stringList.add("To kill a muckingbird");
+stringList.add("Gone with the wind");
+
+Stream&lt;String&gt; stream = stringList.stream();
+
+Object[] objects = stream.toArray();
+</pre>
+
+
+
+<a name="concatenate-streams"></a>
+<h2>Concatenate Streams</h2>
+
+<p>
+    The Java <code>Stream</code> interface contains a static method called <code>concat()</code> which can concatenate
+    two streams into one. The result is a new <code>Stream</code> which contains all of the elements from the first
+    stream, followed by all of the elements from the second stream.
+    Here is an example of using the Java <code>Stream</code> <code>concat()</code> method:
+</p>
+
+
+<pre class="codeBox">List&lt;String&gt; stringList = new ArrayList&lt;String&gt;();
+
+stringList.add("One flew over the cuckoo's nest");
+stringList.add("To kill a muckingbird");
+stringList.add("Gone with the wind");
+
+Stream&lt;String&gt; stream1 = stringList.stream();
+
+List&lt;String&gt; stringList2 = new ArrayList&lt;&gt;();
+stringList2.add("Lord of the Rings");
+stringList2.add("Planet of the Rats");
+stringList2.add("Phantom Menace");
+
+Stream&lt;String&gt; stream2 = stringList2.stream();
+
+Stream&lt;String&gt; concatStream = Stream.concat(stream1, stream2);
+
+List&lt;String&gt; stringsAsUppercaseList = concatStream
+        .collect(Collectors.toList());
+
+System.out.println(stringsAsUppercaseList);
+</pre>
+
+
+
+<a name="create-stream-from-array"></a>
+<h2>Create Stream From Array</h2>
+
+<p>
+    The Java <code>Stream</code> interface contains a static method called <code>of()</code> which can be used
+    to create a <code>Stream</code> from one or more objects. Here is an example of using the
+    Java <code>Stream</code> <code>of()</code> metho:
+</p>
+
+<pre class="codeBox">Stream&lt;String&gt; streamOf = Stream.of("one", "two", "three");
+</pre>
+
+
+
+
+<a name="java-stream-api-critique"></a>
+<h2>Java Stream API Critique</h2>
+
+<p>
+    Having worked with other data streaming API's like the Apache Kafka Streams API, I have a bit of critique of
+    the Java Stream API that I will share with you. They aren't big, important points of critique, but they are
+    useful to have in the back of your head as you venture into stream processing.
+</p>
+
+
+
+<a name="batch-not-streaming"></a>
+<h3>Batch, Not Streaming</h3>
+
+<p>
+    Despite its name, the Java Stream API is not truly a stream processing API. The Java Stream API's terminal operations
+    return the final result of iterating through all the elements in the stream, and providing the non-terminal and
+    terminal operations to the elements. The result of the terminal operation is returned after the last element in
+    the stream has been processed.
+</p>
+
+<p>
+    Returning a <em>final result</em> after having processed the last element of a stream is only possible if you
+    know what element is the last in the stream. The only way to know if a given element is the last element in a
+    stream is, if you are processing a <em>batch</em> which has a <em>last element</em>. In contrast, a true stream
+    does not have a <em>last element</em>. You never know if a given element is the last or not. Therefore it is not
+    possible to perform a terminal operation on a stream. The best you can do is to collect the temporary results
+    after the processing of a given element, but this would be <em>sampling</em>, not a <em>final result</em>.
+</p>
+
+
+
+
+<a name="chain-not-graph"></a>
+<h3>Chain, Not Graph</h3>
+
+<p>
+    The Java Stream API is designed so that a <code>Stream</code> instance can only be acted upon once. In other words,
+    you can only add a single non-terminal operation to a <code>Stream</code>, resulting in a new <code>Stream</code>
+    object. You can add another non-terminal operation to the resulting <code>Stream</code> object, but not to the
+    first. The resulting structure of non-terminal <code>Stream</code> instances form a chain.
+</p>
+
+<p>
+    In a true stream processing API, the root stream and the event listeners can typically form a graph, not just a chain.
+    Multiple listeners can listen to the root stream, and each listener may process the elements in the stream in its own
+    way, and may forward a transformed element as a result. Each listener (non-terminal operation) can thus typically act as
+    a stream itself which other listeners can listen to the results of. This is how Apache Kafka Streams is designed.
+    Each listener (intermediate stream) could also have multiple listeners. The resulting structure forms a graph
+    of listeners with listeners with listeners etc.
+</p>
+
+<p>
+    With a stream processing graph rather than a chain, there is not a single, final operation in the graph. By
+    final operation I mean an operation which is guaranteed to be the last in the processing chain. Instead
+    there can be multiple final operations. Each "leaf" in the graph is a final operation.
+</p>
+
+<p>
+    When your stream processing structure can be a graph with multiple final operations, the stream API cannot
+    easily support terminal operations like the Java Stream API does. To support terminal operations easily, there
+    has to be a single, final operation from which the final result is returned. A graph based stream processing API
+    could instead support a "sample" operation where each node in the stream processing graph is asked for any
+    value it may hold internally (e.g. a sum), if any (purely transforming listener nodes will not have any internal state).
+</p>
+
+
+
+
+<a name="internal-not-external-iteration"></a>
+<h3>Internal, Not External Iteration</h3>
+
+<p>
+    The Java Stream API is deliberately designed to have internal iteration of the elements in a <code>Stream</code>.
+    The iteration is started when a terminal operation is invoked on the <code>Stream</code>. In fact, for
+    terminal operations to be able to return a result, the terminal operation has to initiate the iteration of the
+    elements in the <code>Stream</code>.
+</p>
+
+<p>
+    Some graph based stream processing APIs are also designed to kind of hide the iteration of the elements from the
+    user of the API (e.g. Apache Kafka Streams and RxJava). However, personally I prefer a design where each stream
+    node (root stream and listeners) could have elements passed to them via a method call, and have that element be
+    passed through the complete graph for processing. Such a design would make it easier to test each listener in
+    the graph, as you can configure the graph and push elements through it afterwards, and finally check the result
+    (the sampled state of the graph). Such a design would also enable the stream processing graph to have elements
+    pushed into it via multiple nodes in the graph, and not just via the root stream.
+</p>
+            </div>
+
+            <div id="next"></div>
+            <div id="bottomSocial">
+
+                <div style="display:inline-block;">
+                    <table>
+                        <tbody><tr><td colspan="2">
+                            <div id="___plus_0" style="position: absolute; width: 450px; left: -10000px;"><iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position:absolute;top:-10000px;width:450px;margin:0px;border-style:none" tabindex="0" vspace="0" width="100%" id="I0_1580986870910" name="I0_1580986870910" src="./Java Stream API_files/sharebutton.html" data-gapiattached="true"></iframe></div><div class="g-plus" data-action="share" data-height="24" data-annotation="none" data-gapiscan="true" data-onload="true" data-gapistub="true"></div>
+                            <script src="./Java Stream API_files/cb=gapi.loaded_1" async=""></script><script src="./Java Stream API_files/cb=gapi.loaded_0" async=""></script><script async="" src="./Java Stream API_files/analytics.js"></script><script id="twitter-wjs" src="./Java Stream API_files/widgets.js"></script><script type="text/javascript" async="" src="./Java Stream API_files/platform.js" gapi_processed="true"></script><script type="text/javascript">
+                                (function() {
+                                    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                                    po.src = 'https://apis.google.com/js/platform.js';
+                                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                                 })();
+                            </script>
+
+                            <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button" style="position: static; visibility: visible; width: 61px; height: 20px;" title="Twitter Tweet Button" src="./Java Stream API_files/tweet_button.7303c29a8108bca4ac5c9ef008ed8164.en.html"></iframe>
+                            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+                        </td></tr>
+                        <tr><td class="authorPhoto"></td><td><p style="margin: 0px 0px 6px 0px;">Jakob Jenkov</p><div class="authorSocialLinks"></div></td></tr>
+                    </tbody></table>
+                </div>
+
+                <div style="display: none;" class="newsletterForm"></div>
+
+            </div>
+
+        </div>
+    </div><div class="right">
+        <div class="card cardRight cardTop cardBottom">Right 1
+            <div>Right 2</div>
+        </div>
+    </div>
+    </div>
+    <div class="footer">
+        <div id="footerCopyright">Copyright Jenkov Aps</div>
+    </div>
+</div>
+
+<style>
+.navButton{color: #ffffff; font-weight: bold;}
+#trailTocFixedDiv{position: fixed;  top : 0px; left : 0px; width : 100%; height : 100%;  display : none; background-color: #ffffff;}
+#trailTocFixedInnerDiv{width: 400px; max-width: 94%; height: calc(100% - 72px); overflow : auto; margin: 20px auto 20px auto; padding: 0px 0px 180px 0px;}
+#trailTocFixedInnerDiv th{border-bottom: 1px solid #f0f0f0;padding: 6px 10px;text-align: left;font-size: 1.2em;}
+#trailTocFixedInnerDiv td{border-bottom: 1px solid #f0f0f0;padding: 6px 20px;vertical-align: top;}
+#trailTocFixedCloseButton{width : 72px; padding: 10px 20px; background-color: #009900; border: 2px solid #006600; color: #ffffff; font-size: 0.8em; font-weight: bold; position: absolute; right: 0px; cursor: pointer; box-shadow: 2px 2px 2px 2px #cccccc;}
+#bottomNavBarDiv{position:fixed; bottom: 0px; width: 100%;  background-color: #202020; border-top: 1px solid #444444;}
+.buttonNavBarButtonDivActive{background-color: #404040;}
+#bottomNavBarRow>div{border-left: 1px solid #404040; border-right: 1px solid #000000;  height: 48px;  padding-top:16px; text-align: center; cursor: pointer;}
+#bottomNavBarDiv a{color: #ffffff; font-weight: bold;}
+#bottomNavBarDiv br{display:none;}
+#bottomNavBarDiv img{ height: 20px; }
+#nextButton2{ display:none; }
+@media only screen and (max-width: 700px){
+  #bottomNavBarDiv, #bottomNavBarDiv [jqc-cell] { height: 58px; }
+  #bottomNavBarDiv [jqc-cell] {padding-top: 12px;}
+  #bottomNavBarDiv a { font-size: 0.8em; }
+  #bottomNavBarDiv br { display: inline; }
+  #nextButton1 { display: none; }
+  #nextButton2 { display: inline; }
+}
+@media only screen and (max-width: 400px){
+  #bottomNavBarDiv [jqc-cell] {padding-top: 10px;}
+  #bottomNavBarDiv a {font-size: 0.5em;}
+  #bottomNavBarDiv img {height: 24px;}
+}
+</style>
+
+
+<div id="trailTocFixedDiv">
+    <div id="trailTocFixedCloseButton">Close TOC</div>
+    <div id="trailTocFixedInnerDiv"></div>
+</div>
+
+<style>
+#bottomNavBar2Parent{position:fixed; bottom: 0px; width: 100%;  background-color: #202020; border-top: 1px solid #444444;}
+#bottomNavBar2>div{border-left: 1px solid #404040; border-right: 1px solid #000000;  height: 48px;  padding-top:16px; text-align: center; cursor: pointer;}
+
+
+#bottomNavBar2{
+  display: grid;
+}
+#allTrailsButtonDiv2{
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+#trailTocButtonDiv2 {
+  grid-column-start: 3;
+  grid-column-end: 5;
+}
+
+#pageTocButtonDiv2{
+  grid-column-start: 5;
+  grid-column-end: 7;
+}
+
+#prevButtonDiv2 {
+  grid-column-start: 7;
+  grid-column-end: 9;
+}
+
+#nextButtonDiv2 {
+  grid-column-start: 9;
+  grid-column-end: 13;
+}
+
+</style>
+
+<div id="bottomNavBar2Parent">
+<div id="bottomNavBar2">
+
+    <div id="allTrailsButtonDiv2">
+        <span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAbUlEQVRIx+3SQQrAIAxEUenNewrvmkXUQgVJEwWdQEED4kb+QzSEPw0z389yi6d3JJKaWY5ryBKgxSVS9jgF9OItQkRXRaBxDYHHJeISt34XND5EEHETQcY/iEfcvAkqbD7yAaYB1PkD7AB4TAY0StbUr69awQAAAABJRU5ErkJggg=="></span> <br>
+        <span class="navButton" style="position:relative; top:-4px;">All Trails</span>
+    </div>
+
+    <div id="trailTocButtonDiv2">
+        <span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAPElEQVRIx2P4TwPAgAzoZgEDrQDdLaB6cI1aMHgtoFriGRkWEB3eg9YHo0E08BaM8CAiWoLaFlAL0NwCANELs4XjmhvVAAAAAElFTkSuQmCC"></span> <br>
+        <span class="navButton" style="position:relative; top:-4px;">Trail TOC</span>
+    </div>
+
+    <div id="pageTocButtonDiv2">
+        <span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAANUlEQVRIx2NggIL/VAYM6GDUglELqGcBA4Vg1ALqWkBOhA4uH4wG0cBbMBpEw9QCagG6WQAAX980BcIgiscAAAAASUVORK5CYII="></span> <br>
+        <span class="navButton" style="position:relative; top:-4px;">Page TOC</span>
+    </div>
+
+    <div id="prevButtonDiv2">
+        <span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuNvyMY98AAACCSURBVEhL3ZRRCsAgDEM9iez+dxJPUl0K9W+MtKMiC/RL80Lz0eKViNQxRpsvwnvHv8ssvGD8ORzjh7Odf4F34zxK30O1qImEV7Pw0nUJeEuFY/xwspZceKiWVLgqPUC1JQSAc0Iwh2+iZiIkdiqWdobknOslmM8JwcbxELaujSGl3GNH6mWcCMu2AAAAAElFTkSuQmCC"></span> <br>
+        <span class="navButton" style="position:relative; top:-4px;">Previous</span>
+    </div>
+
+    <div id="nextButtonDiv2">
+        <!--<span class="navButton" id="nextButton1_2" style="position:relative; top:-4px;">Next</span>-->
+        <span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAb0lEQVRIx82W2w1AIQhDmcS4/07GScDbu4AvUlMSv9QeA6RohnD3GhF9TAL7DeeK3cYuBEscgss6kBc16VlI2YTULKStIH9aMzXRgTxJlzaECpAQv+okaptSX35gFed+RBWn2jV14FBHJvVnwRT/AGJL6mWb6M7pAAAAAElFTkSuQmCC"></span> <br>
+        <span class="navButton" id="nextButton2_2" style="position:relative; top:-4px;">Next</span>
+    </div>
+
+</div>
+</div>
+
+
+<script>
+var prevArticleInCategory = "/java-functional-programming/functional-composition.html";
+var nextArticleInCategory = "";
+</script>
+
+
+<script>
+function qid(id) { return document.getElementById(id); }
+</script>
+
+<!-- Nav bar code -->
+<script>
+function toggle(el){
+    if(el.isShown == null || el.isShown == false) {
+        el.isShown = true;
+        el.style.display = "block";
+    } else {
+        el.isShown = false;
+        el.style.display = "none";
+    }
+}
+
+qid("allTrailsButtonDiv2").addEventListener("mouseup", function(e) {
+    location.href="/";
+    e.preventDefault();
+    e.stopPropagation();
+});
+qid("trailTocButtonDiv2").addEventListener("mouseup", function(e) {
+    var tocHtml = qid("trailToc").innerHTML;
+    qid("trailTocFixedInnerDiv").innerHTML = tocHtml + "<br><br><br><br><br><br><br><br><br><br>";
+    toggle(qid("trailTocFixedDiv"));
+    e.preventDefault();
+    e.stopPropagation();
+});
+qid("trailTocFixedCloseButton").addEventListener("mouseup", function(e) {
+    toggle(qid("trailTocFixedDiv"));
+    e.preventDefault();
+    e.stopPropagation();
+});
+qid("pageTocButtonDiv2").addEventListener("mouseup", function(e) {
+    location.href="#pageToc";
+    e.preventDefault();
+    e.stopPropagation();
+});
+qid("prevButtonDiv2").addEventListener("mouseup", function(e) {
+    if(prevArticleInCategory != "") {
+        location.href = prevArticleInCategory;
+    } else {
+        alert("This is the first article in this trail");
+    }
+});
+qid("nextButtonDiv2").addEventListener("mouseup", function(e) {
+  if(nextArticleInCategory != "") {
+    location.href= nextArticleInCategory;
+  } else {
+    alert("This is the last article in this trail.");
+  }
+  e.preventDefault();
+  e.stopPropagation();
+});
+</script>
+
+
+<!-- Google Analytics Script -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-4036229-3', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<!-- Google Adsense Script -->
+<script data-ad-client="ca-pub-5569543489255665" async="" src="./Java Stream API_files/f.txt"></script>
+
+
+
+
+
+<iframe scrolling="no" frameborder="0" allowtransparency="true" src="./Java Stream API_files/widget_iframe.7303c29a8108bca4ac5c9ef008ed8164.html" title="Twitter settings iframe" style="display: none;"></iframe><iframe name="oauth2relay869337233" id="oauth2relay869337233" src="./Java Stream API_files/postmessageRelay.html" tabindex="-1" aria-hidden="true" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe></body></html>

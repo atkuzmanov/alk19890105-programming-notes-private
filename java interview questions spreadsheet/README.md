@@ -6007,9 +6007,25 @@ https://www.geeksforgeeks.org/how-to-print-elements-of-a-stream-in-java-8/
 |   x   |  x  |   x   |
 
 
+- [jenkov-Java-Stream-API](refs/jenkov-Java-Stream-API)
 
+`references:`
+http://tutorials.jenkov.com/java-functional-programming/streams.html
 
+- [Java-8-Stream-Tutorial](refs/Java-8-Stream-Tutorial)
 
+`references:`
+https://winterbe.com/posts/2014/07/31/java8-stream-tutorial-examples/
+
+- [A-Guide-to-Streams-in-Java8-In-Depth-Tutorial-with-Examples](refs/A-Guide-to-Streams-in-Java8-In-Depth-Tutorial-with-Examples)
+
+`references:`
+https://stackify.com/streams-guide-java-8/
+
+- [Java8-Stream-API-Tutorial-Baeldung](refs/Java8-Stream-API-Tutorial-Baeldung)
+
+`references:`
+https://www.baeldung.com/java-8-streams
 
 ----
 
