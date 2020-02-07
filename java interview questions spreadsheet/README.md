@@ -6331,7 +6331,30 @@ https://en.wikipedia.org/wiki/Semaphore_(programming)
 
 
 
+
 ----
+
+# immutable objects thread safe?
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
+- [jenkov-Thread-Safety-and-Immutability](refs/jenkov-Thread-Safety-and-Immutability)
+
+`references:`
+http://tutorials.jenkov.com/java-concurrency/thread-safety-and-immutability.html
+
+- [java-Immutable-objects-are-thread-safe-but-why-StackOverflow](refs/java-Immutable-objects-are-thread-safe-but-why-StackOverflow)
+
+`references:`
+https://stackoverflow.com/questions/9303532/immutable-objects-are-thread-safe-but-why
+
+- [Does-Immutability-Really-Mean-Thread-Safety-DZone](refs/Does-Immutability-Really-Mean-Thread-Safety-DZone)
+
+`references:`
+https://dzone.com/articles/do-immutability-really-means
+
 ----
 ----
 ----
