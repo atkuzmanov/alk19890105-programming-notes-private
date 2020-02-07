@@ -6147,8 +6147,45 @@ https://www.tutorialspoint.com/java/java_multithreading.htm
 
 
 
+
+
 ----
+
+# When to create threads by implementing Runnable and when by extending Thread?
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
+
+- [Implement-Runnable-vs-Extend-Thread-in-Java-GeeksforGeeks](refs/Implement-Runnable-vs-Extend-Thread-in-Java-GeeksforGeeks)
+
+`references:`
+https://www.geeksforgeeks.org/implement-runnable-vs-extend-thread-in-java/
+
+- [java-Why-implements-Runnable-is-Preferred-over-extends-Thread-StackOverflow](refs/java-Why-implements-Runnable-is-Preferred-over-extends-Thread-StackOverflow)
+
+`references:`
+https://stackoverflow.com/questions/15471432/why-implements-runnable-is-preferred-over-extends-thread
+
+- [Difference-between-Runnable-vs-Thread-in-Java-HowToDoInJava](refs/Difference-between-Runnable-vs-Thread-in-Java-HowToDoInJava)
+
+`references:`
+https://howtodoinjava.com/java/multi-threading/java-runnable-vs-thread/
+
+- [Implementing-a-Runnable-vs-Extending-a-Thread-Baeldung](refs/Implementing-a-Runnable-vs-Extending-a-Thread-Baeldung)
+
+`references:`
+https://www.baeldung.com/java-runnable-vs-extending-thread
+
+- [multithreading-implements-Runnable-vs-extends-Thread-in-Java-StackOverflow](refs/multithreading-implements-Runnable-vs-extends-Thread-in-Java-StackOverflow)
+
+`references:`
+https://stackoverflow.com/questions/541487/implements-runnable-vs-extends-thread-in-java
+
 ----
+
+
+
 ----
 ----
 ----
