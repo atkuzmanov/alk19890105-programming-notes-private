@@ -1,4 +1,6 @@
-# java interview questions spreadsheet 2019-12-22-1502
+# java interview questions spreadsheet 2019-12-22-1502 
+
+## For learning and study
 
 - [java interview questions spreadsheet 2019-12-22-1502](#java-interview-questions-spreadsheet-2019-12-22-1502)
 - [Java CORE](#java-core)
@@ -6231,8 +6233,33 @@ https://stackoverflow.com/questions/541487/implements-runnable-vs-extends-thread
 
 ----
 
-
-
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
 ----
 ----
 ----
@@ -6261,9 +6288,6 @@ https://stackoverflow.com/questions/541487/implements-runnable-vs-extends-thread
 ----
 ----
 
-`references:`
-
-[](refs/)
 
 
 
