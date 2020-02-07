@@ -6145,9 +6145,56 @@ https://www.tutorialspoint.com/java/java_multithreading.htm
 |-------|-----|-------|
 |       |     |   x   |
 
+- [jenkov-Java-Callable](refs/jenkov-Java-Callable)
 
+`references:`
+http://tutorials.jenkov.com/java-util-concurrent/java-callable.html
 
+- [jenkov-Java-Future](refs/jenkov-Java-Future) 
 
+`refernces:`
+http://tutorials.jenkov.com/java-util-concurrent/java-future.html
+
+```text
+```
+
+`references:`
+
+https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Future.html
+
+https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/FutureTask.html
+
+https://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.html
+
+https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Callable.html
+
+```text
+```
+
+- [Callable-and-Future-in-Java-GeeksforGeeks](refs/Callable-and-Future-in-Java-GeeksforGeeks)
+
+`references:`
+https://www.geeksforgeeks.org/callable-future-java/
+
+- [Java-Callable-Future-Example-HowToDoInJava](refs/Java-Callable-Future-Example-HowToDoInJava)
+
+`references:`
+https://howtodoinjava.com/java/multi-threading/java-callable-future-example/
+
+- [Runnable-vs-Callable-in-Java-Baeldung](refs/Runnable-vs-Callable-in-Java-Baeldung)
+
+`references:`
+https://www.baeldung.com/java-runnable-callable
+
+- [Understanding-Callable-and-Future-Interfaces-in-Java-Developer.com](refs/Understanding-Callable-and-Future-Interfaces-in-Java-Developer.com)
+
+`references:`
+https://www.developer.com/java/data/understanding-callable-and-future-interfaces-in-java.html
+
+- [Understand-Java-Callable-and-Future-DZone](refs/Understand-Java-Callable-and-Future-DZone)
+
+`refernces:`
+https://dzone.com/articles/java-callable-future-understanding
 
 ----
 
