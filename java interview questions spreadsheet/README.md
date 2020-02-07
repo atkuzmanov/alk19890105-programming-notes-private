@@ -6233,8 +6233,61 @@ https://stackoverflow.com/questions/541487/implements-runnable-vs-extends-thread
 
 ----
 
+# javax.util.concurrent synchronized Collections
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |     |   x   |
+
+- [An-Introduction-to-Concurrent-Collection-APIs-in-Java-Developer.com](refs/An-Introduction-to-Concurrent-Collection-APIs-in-Java-Developer.com)
+
+`references:`
+https://www.developer.com/java/data/an-introduction-to-concurrent-collection-apis-in-java.html
+
+- [Difference-between-Traditional-Collections-and-Concurrent-Collections-in-java-GeeksforGeeks](refs/Difference-between-Traditional-Collections-and-Concurrent-Collections-in-java-GeeksforGeeks)
+
+`references:`
+https://www.geeksforgeeks.org/difference-traditional-collections-concurrent-collections-java/
+
 ----
+
+# ConcurrentHashMap vs Collections.synchronizedMap(...)?
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |     |   x   |
+
+- [HashMap-Vs-ConcurrentHashMap-Vs-SynchronizedMap-Java-Crunchify](refs/HashMap-Vs-ConcurrentHashMap-Vs-SynchronizedMap-Java-Crunchify)
+
+`references:`
+https://crunchify.com/hashmap-vs-concurrenthashmap-vs-synchronizedmap-how-a-hashmap-can-be-synchronized-in-java/
+
+- [Java-Producer-Consumer-Example-Handle-Concurrent-Read-Write-Crunchify](refs/Java-Producer-Consumer-Example-Handle-Concurrent-Read-Write-Crunchify)
+
+`references:`
+https://crunchify.com/java-producer-consumer-example-handle-concurrent-read-write/
+
+- [Java-synchronized-block-vs-concurrentHashMap-vs-Collections.synchronizedMap-StackOverflow](refs/Java-synchronized-block-vs-concurrentHashMap-vs-Collections.synchronizedMap-StackOverflow)
+
+`references:`
+https://stackoverflow.com/questions/12628600/java-synchronized-block-vs-concurrenthashmap-vs-collections-synchronizedmap
+
+
+- [java-Difference-between-Wrappers-and-Concurrent-collection-StackOverflow](refs/java-Difference-between-Wrappers-and-Concurrent-collection-StackOverflow)
+
+`references:`
+https://stackoverflow.com/questions/19409155/difference-between-wrappers-and-concurrent-collection
+
+- [java-ConcurrentHashMap-vs-Synchronized-HashMap-StackOverflow](refs/java-ConcurrentHashMap-vs-Synchronized-HashMap-StackOverflow)
+
+`references:`
+https://stackoverflow.com/questions/1291836/concurrenthashmap-vs-synchronized-hashmap
+
 ----
+
+
+
+
 ----
 ----
 ----
