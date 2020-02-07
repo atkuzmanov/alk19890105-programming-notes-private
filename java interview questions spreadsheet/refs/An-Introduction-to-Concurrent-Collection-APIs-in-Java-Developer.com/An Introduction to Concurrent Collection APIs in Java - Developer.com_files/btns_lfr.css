@@ -1,0 +1,21 @@
+@import url("oas_icons_white.css");
+@import url("oas_icons_colored.css");
+
+.oas_box_btns_lfr .oas_btn_addon {
+	margin: 11px 2px 0 6px;
+}
+
+.oas_box_btns_lfr .oas_btn .oas_btn_brd {
+	border-radius: 15px !important;
+}
+
+.oas_box_btns_lfr .oas_btn_ico {
+	background-image: url("/img/api/themes/iconsets/flat_w32_h32_w_b_v1.png");
+	background-repeat: no-repeat;
+	width: 32px;
+	height: 32px;
+}
+
+.oas_box_btns_lfr .oas_btn_counter .oas_btn_txt {
+	line-height: 32px;
+}

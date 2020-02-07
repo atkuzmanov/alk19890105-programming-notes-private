@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<!-- saved from url=(0112)https://crunchify.com/hashmap-vs-concurrenthashmap-vs-synchronizedmap-how-a-hashmap-can-be-synchronized-in-java/ -->
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HashMap Vs. ConcurrentHashMap Vs. SynchronizedMap - How a HashMap can be Synchronized in Java • Crunchify</title>
+
+<!-- This site is optimized with the Yoast SEO plugin v13.0 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="HashMap is a very powerful data structure in Java. We use it everyday and almost in all applications. There are quite a few examples which I have written">
+<meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<link rel="canonical" href="https://crunchify.com/hashmap-vs-concurrenthashmap-vs-synchronizedmap-how-a-hashmap-can-be-synchronized-in-java/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HashMap Vs. ConcurrentHashMap Vs. SynchronizedMap - How a HashMap can be Synchronized in Java • Crunchify">
+<meta property="og:description" content="HashMap is a very powerful data structure in Java. We use it everyday and almost in all applications. There are quite a few examples which I have written">
+<meta property="og:url" content="https://crunchify.com/hashmap-vs-concurrenthashmap-vs-synchronizedmap-how-a-hashmap-can-be-synchronized-in-java/">
+<meta property="og:site_name" content="Crunchify">
+<meta property="article:publisher" content="https://www.facebook.com/Crunchify">
+<meta property="article:author" content="https://facebook.com/Crunchify">
+<meta property="article:tag" content="Hashmap">
+<meta property="article:section" content="Java and J2EE Tutorials">
+<meta property="article:published_time" content="2015-01-29T04:39:53+00:00">
+<meta property="article:modified_time" content="2018-08-04T02:51:46+00:00">
+<meta property="og:updated_time" content="2018-08-04T02:51:46+00:00">
+<meta property="og:image" content="https://cdn.crunchify.com/wp-content/uploads/2015/01/Crunchify-ConcurrentHashMap-Vs.-SynchronizedMap-Example.png">
+<meta property="og:image:secure_url" content="https://cdn.crunchify.com/wp-content/uploads/2015/01/Crunchify-ConcurrentHashMap-Vs.-SynchronizedMap-Example.png">
+<meta property="og:image:width" content="1454">
+<meta property="og:image:height" content="698">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="HashMap is a very powerful data structure in Java. We use it everyday and almost in all applications. There are quite a few examples which I have written">
+<meta name="twitter:title" content="HashMap Vs. ConcurrentHashMap Vs. SynchronizedMap - How a HashMap can be Synchronized in Java • Crunchify">
+<meta name="twitter:site" content="@Crunchify">
+<meta name="twitter:image" content="https://cdn.crunchify.com/wp-content/uploads/2015/01/Crunchify-ConcurrentHashMap-Vs.-SynchronizedMap-Example.png">
+<meta name="twitter:creator" content="@Crunchify">
+<!-- / Yoast SEO plugin. -->
+
+<link rel="dns-prefetch" href="https://use.fontawesome.com/">
+<link rel="dns-prefetch" href="https://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="Crunchify » Feed" href="https://feeds.feedburner.com/Crunchify">
+<link rel="alternate" type="application/rss+xml" title="Crunchify » Comments Feed" href="https://crunchify.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Crunchify » HashMap Vs. ConcurrentHashMap Vs. SynchronizedMap – How a HashMap can be Synchronized in Java Comments Feed" href="https://crunchify.com/hashmap-vs-concurrenthashmap-vs-synchronizedmap-how-a-hashmap-can-be-synchronized-in-java/feed/">
+<link rel="stylesheet" id="crunchify-llc-css" href="./HashMap Vs. ConcurrentHashMap Vs. SynchronizedMap - How a HashMap can be Synchronized in Java • Crunchify_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="crunchy-sharing-css" href="./HashMap Vs. ConcurrentHashMap Vs. SynchronizedMap - How a HashMap can be Synchronized in Java • Crunchify_files/crunchy-sharing.css" type="text/css" media="all">
+<link rel="stylesheet" id="font-awesome-min-css" href="./HashMap Vs. ConcurrentHashMap Vs. SynchronizedMap - How a HashMap can be Synchronized in Java • Crunchify_files/all.css" type="text/css" media="all">
+<script type="text/javascript" async="" src="./HashMap Vs. ConcurrentHashMap Vs. SynchronizedMap - How a HashMap can be Synchronized in Java • Crunchify_files/analytics.js"></script><script type="text/javascript" src="./HashMap Vs. ConcurrentHashMap Vs. SynchronizedMap - How a HashMap can be Synchronized in Java • Crunchify_files/jquery.js"></script>
+
+<style type="text/css"> .enews .screenread {
+	height: 1px;
+    left: -1000em;
+    overflow: hidden;
+    position: absolute;
+    top: -1000em;
+    width: 1px; } </style><script async="" src="./HashMap Vs. ConcurrentHashMap Vs. SynchronizedMap - How a HashMap can be Synchronized in Java • Crunchify_files/f.txt"></script>
+
+<link rel="dns-prefetch" href="https://cdn.crunchify.com/">
+<link rel="apple-touch-icon" href="https://cdn.crunchify.com/apple-touch-icon.png">
+<meta http-equiv="refresh" content="300">
+
+<script async="" src="./HashMap Vs. ConcurrentHashMap Vs. SynchronizedMap - How a HashMap can be Synchronized in Java • Crunchify_files/js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+  gtag('config', 'UA-43876549-1');
+</script>
+
+<meta name="yandex-verification" content="755bee092ce9e187">
+<meta name="msvalidate.01" content="DD3AE15C3E4F7CF2593C13A73AF34541"><link rel="icon" href="https://cdn.crunchify.com/wp-content/uploads/2017/07/cropped-favicon-small-1.png" sizes="32x32">
+<link rel="icon" href="https://cdn.crunchify.com/wp-content/uploads/2017/07/cropped-favicon-small-1.png" sizes="192x192">
+<link rel="apple-touch-icon-precomposed" href="https://cdn.crunchify.com/wp-content/uploads/2017/07/cropped-favicon-small-1.png">
+<meta name="msapplication-TileImage" content="https://cdn.crunchify.com/wp-content/uploads/2017/07/cropped-favicon-small-1.png">
+		<style type="text/css" id="wp-custom-css">
+			.discovery-post h3 {
+	font-size: 12px!important;
+	margin-bottom: 15px!important;
+}
+h4 {    
+    font-weight: 500;
+	  font-size: 21px;
+}		</style>
+		</head>
+<body class="post-template-default single single-post postid-6852 single-format-standard header-image header-full-width content-sidebar genesis-breadcrumbs-visible genesis-footer-widgets-visible" itemscope="" itemtype="https://schema.org/WebPage"><div class="site-container"><header class="site-header" itemscope="" itemtype="https://schema.org/WPHeader"><div class="wrap"><div class="title-area"><p class="site-title" itemprop="headline"><a href="https://crunchify.com/">Crunchify</a></p><p class="site-description" itemprop="description">Largest free Technical and Blogging resource site for Beginner. We help clients transform their great ideas into reality!</p></div><nav class="nav-primary" aria-label="Main" itemscope="" itemtype="https://schema.org/SiteNavigationElement"><div class="wrap"><ul id="menu-main" class="menu genesis-nav-menu menu-primary"><li id="menu-item-10922" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10922"><a href="https://crunchify.com/about/" itemprop="url"><span itemprop="name">About</span></a></li>
+<li id="menu-item-5838" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-has-children menu-item-5838"><a title="More than 600 Working Professional Java Tutorials" href="https://crunchify.com/category/java-tutorials/" itemprop="url"><span itemprop="name">Java  <i class="fa fa-caret-down"></i></span></a>
+<ul class="sub-menu">
+	<li id="menu-item-10504" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10504"><a href="https://crunchify.com/tag/maven/" itemprop="url"><span itemprop="name">Maven Tutorials</span></a></li>
+	<li id="menu-item-12255" class="menu-item menu-item-type-taxonomy menu-item-object-post_tag menu-item-12255"><a href="https://crunchify.com/tag/java8/" itemprop="url"><span itemprop="name">Java8 Tutorials</span></a></li>
+	<li id="menu-item-12571" class="menu-item menu-item-type-taxonomy menu-item-object-post_tag menu-item-12571"><a href="https://crunchify.com/tag/ansible/" itemprop="url"><span itemprop="name">Ansible Tutorials</span></a></li>
+</ul>
+</li>
+<li id="menu-item-6447" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-6447"><a title="Top Spring MVC Tutorials and Tips" href="https://crunchify.com/category/spring-mvc/" itemprop="url"><span itemprop="name">Spring MVC  <i class="fa fa-caret-down"></i></span></a>
+<ul class="sub-menu">
+	<li id="menu-item-5898" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5898"><a title="Best Apache Tomcat Tutorials and Hacks" href="https://crunchify.com/category/apache-tomcat/" itemprop="url"><span itemprop="name">Apache Tomcat Tutorials</span></a></li>
+	<li id="menu-item-5839" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5839"><a title="More than 100 Eclipse Tips and Tutorials" href="https://crunchify.com/category/eclipse/" itemprop="url"><span itemprop="name">Eclipse IDE Tutorials</span></a></li>
+	<li id="menu-item-5902" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5902"><a title="JSON and JQuery Tutorials" href="https://crunchify.com/category/json/" itemprop="url"><span itemprop="name">JSON Tutorials</span></a></li>
+	<li id="menu-item-8022" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8022"><a title="Mac OSX Tips and Tricks" href="https://crunchify.com/category/mac/" itemprop="url"><span itemprop="name">Mac OSX Hacks</span></a></li>
+	<li id="menu-item-5900" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5900"><a href="https://crunchify.com/category/javascript-jquery/" itemprop="url"><span itemprop="name">JavaScript Articles</span></a></li>
+</ul>
+</li>
+<li id="menu-item-10515" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-10515"><a href="https://crunchify.com/category/wordpress/" itemprop="url"><span itemprop="name">WordPress  <i class="fa fa-caret-down"></i></span></a>
+<ul class="sub-menu">
+	<li id="menu-item-10508" class="menu-item menu-item-type-taxonomy menu-item-object-post_tag menu-item-10508"><a href="https://crunchify.com/tag/wordpress-beginner/" itemprop="url"><span itemprop="name">Beginner Guide</span></a></li>
+	<li id="menu-item-10507" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10507"><a href="https://crunchify.com/5-useful-tricks-to-speed-up-wordpress-boost-performance/" itemprop="url"><span itemprop="name">Optimize WordPress</span></a></li>
+	<li id="menu-item-5601" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5601"><a title="All in One Webmaster Premium WordPress Plugin" href="https://crunchify.com/all-in-one-webmaster/" itemprop="url"><span itemprop="name">All in One Webmaster Plugin</span></a></li>
+</ul>
+</li>
+<li id="menu-item-10506" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10506"><a href="https://crunchify.com/category/genesis-framework/" itemprop="url"><span itemprop="name">Genesis WP</span></a></li>
+<li id="menu-item-10087" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10087"><a href="https://crunchify.com/deals/" itemprop="url"><span itemprop="name">Deals</span></a></li>
+<li id="menu-item-7963" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7963"><a title="Want to Advertise on Crunchify?" href="https://crunchify.com/advertise/" itemprop="url"><span itemprop="name">Advertise</span></a></li>
+<li id="menu-item-11417" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-11417"><a href="https://crunchify.com/contact/" itemprop="url"><span itemprop="name">Contact</span></a></li>
+</ul></div></nav></div></header><div class="site-inner"><div class="beforefooter"><section id="custom_html-23" class="widget_text widget widget_custom_html"><div class="widget_text widget-wrap"><div class="textwidget custom-html-widget"><script async="" src="./HashMap Vs. ConcurrentHashMap Vs. SynchronizedMap - How a HashMap can be Synchronized in Java • Crunchify_files/f.txt"></script>
+<!-- CAds.Header.Large -->
+<ins class="adsbygoogle" style="display:inline-block;width:970px;height:90px" data-ad-client="ca-pub-4032710958875645" data-ad-slot="2284084719"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<div class="avert-text">Advertisement</div></div></div></section>
+</div><div class="content-sidebar-wrap"><main class="content"><article class="post-6852 post type-post status-publish format-standard has-post-thumbnail category-java-tutorials tag-hashmap entry" itemscope="" itemtype="https://schema.org/CreativeWork"><header class="entry-header"><div class="breadcrumb" itemscope="" itemtype="https://schema.org/BreadcrumbList"><span class="breadcrumb-link-wrap" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem"><a class="breadcrumb-link" href="https://crunchify.com/" itemprop="item"><span class="breadcrumb-link-text-wrap" itemprop="name">Blog</span></a><meta itemprop="position" content="1"></span>&nbsp; <i class="fas fa-caret-right" aria-hidden="true"></i> &nbsp;<span class="breadcrumb-link-wrap" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem"><a class="breadcrumb-link" href="https://crunchify.com/category/java-tutorials/" itemprop="item"><span class="breadcrumb-link-text-wrap" itemprop="name">Java and J2EE Tutorials</span></a><meta itemprop="position" content="2"></span>&nbsp; <i class="fas fa-caret-right" aria-hidden="true"></i> &nbsp;HashMap Vs. ConcurrentHashMap Vs. SynchronizedMap – How a HashMa ...</div><h1 class="entry-title" itemprop="headline">HashMap Vs. ConcurrentHashMap Vs. SynchronizedMap – How a HashMap can be Synchronized in Java</h1>
+<p class="entry-meta">Last Updated on <time class="entry-modified-time" itemprop="dateModified" datetime="2018-08-03T21:51:46-05:00">August 3rd, 2018</time> by &nbsp;<i class="fas fa-user"></i> <span class="entry-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person"><span class="entry-author-name" itemprop="name">App Shah</span></span> &nbsp; <span class="entry-comments-link"><a href="https://crunchify.com/hashmap-vs-concurrenthashmap-vs-synchronizedmap-how-a-hashmap-can-be-synchronized-in-java/#disqus_thread"><span class="dsq-postid" data-dsqidentifier="6852 https://crunchify.com/?p=6852"> 33 comments</span></a></span></p></header><div class="entry-content" itemprop="text"><div class="adsense-leadin">
+				<!-- CAds.Post.Top -->
+					<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-4032710958875645" data-ad-slot="7425196307"></ins>
+				<script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+        <!-- Crunchy Sharing - Floating Sharing Buttons -->
+
+        <div id="crunchy-sharing-float" class="crunchy-floating-icon-bar hide-on-mobile" style="top: 40%; left: 0%; opacity: 0;">
+
+			                        <a rel="external nofollow" class="crunchify-crunchy-sharing-icon-block-square float-block-square crunchify-crunchy-sharing-icon-block-twitter" href="https://twitter.com/intent/tweet/?text=HashMap+Vs.+ConcurrentHashMap+Vs.+SynchronizedMap+-+How+a+HashMap+can+be+Synchronized+in+Java&amp;url=https%3A%2F%2Fcrunchify.com%2Fhashmap-vs-concurrenthashmap-vs-synchronizedmap-how-a-hashmap-can-be-synchronized-in-java%2F&amp;via=Crunchify" target="_blank" title="Share on Twitter"><i class="fab fa-twitter"></i></a>                        <a rel="external nofollow" class="crunchify-crunchy-sharing-icon-block-square float-block-square crunchify-crunchy-sharing-icon-block-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcrunchify.com%2Fhashmap-vs-concurrenthashmap-vs-synchronizedmap-how-a-hashmap-can-be-synchronized-in-java%2F" target="_blank" title="Share on Facebook"><i class="fab fa-facebook-f"></i></a>                        <a rel="external nofollow" class="crunchify-crunchy-sharing-icon-block-square float-block-square crunchify-crunchy-sharing-icon-block-pinterest" href="https://pinterest.com/pin/create/button/?url=https%3A%2F%2Fcrunchify.com%2Fhashmap-vs-concurrenthashmap-vs-synchronizedmap-how-a-hashmap-can-be-synchronized-in-java%2F&amp;media=https%3A%2F%2Fcrunchify.com%2Fwp-content%2Fuploads%2F2015%2F01%2FCrunchify-ConcurrentHashMap-Vs.-SynchronizedMap-Example.png&amp;description=HashMap+Vs.+ConcurrentHashMap+Vs.+SynchronizedMap+-+How+a+HashMap+can+be+Synchronized+in+Java" target="_blank" title="Share on Pinterest"><i class="fab fa-pinterest"></i></a>                        <a rel="external nofollow" class="crunchify-crunchy-sharing-icon-block-square float-block-square crunchify-crunchy-sharing-icon-block-whatsapp" href="https://wa.me/?text=HashMap+Vs.+ConcurrentHashMap+Vs.+SynchronizedMap+-+How+a+HashMap+can+be+Synchronized+in+Java%C2%A0%20https%3A%2F%2Fcrunchify.com%2Fhashmap-vs-concurrenthashmap-vs-synchronizedmap-how-a-hashmap-can-be-synchronized-in-java%2F" target="_blank" title="Share on WhatsApp"><i class="fab fa-whatsapp"></i></a>        </div>
+
+
+        <!-- Crunchy Sharing - Mobile Sharing Buttons -->
+
+        <aside class="crunchy-sharing-mobile-sticky-bottom">
+            <ul class="crunchy-sharing-menu">
+				            </ul>
+        </aside>
+
+		<p><a href="./HashMap Vs. ConcurrentHashMap Vs. SynchronizedMap - How a HashMap can be Synchronized in Java • Crunchify_files/Crunchify-ConcurrentHashMap-Vs.-SynchronizedMap-Example.png"><img class="alignnone size-full wp-image-7445" src="./HashMap Vs. ConcurrentHashMap Vs. SynchronizedMap - How a HashMap can be Synchronized in Java • Crunchify_files/Crunchify-ConcurrentHashMap-Vs.-SynchronizedMap-Example.png" alt="Crunchify ConcurrentHashMap Vs. SynchronizedMap Example" width="1454" height="698" srcset="https://cdn.crunchify.com/wp-content/uploads/2015/01/Crunchify-ConcurrentHashMap-Vs.-SynchronizedMap-Example.png 1454w, https://cdn.crunchify.com/wp-content/uploads/2015/01/Crunchify-ConcurrentHashMap-Vs.-SynchronizedMap-Example-768x369.png 768w" sizes="(max-width: 1454px) 100vw, 1454px"></a><code>HashMap</code> is a very powerful&nbsp;data structure in Java. We use it everyday and almost in all applications. There are quite a few examples which I have written before on <a href="https://crunchify.com/implement-simple-threadsafe-cache-using-hashmap-without-using-synchronized-collection/" target="_blank" rel="noopener">How to Implement Threadsafe cache</a>, How to convert <a href="https://crunchify.com/how-to-convert-hashmap-to-arraylist-in-java/" target="_blank" rel="noopener">Hashmap to Arraylist</a>?</p>
+<p>We used Hashmap in both above examples but those are pretty simple use cases of Hashmap. <code>HashMap is a non-synchronized</code> collection class.</p>
+<h4>Do you have any of below questions?</h4>
+<ul>
+<li>What’s the difference between ConcurrentHashMap and Collections.synchronizedMap(Map)?</li>
+<li>What’s the difference between ConcurrentHashMap and Collections.synchronizedMap(Map) in term of <a href="https://crunchify.com/fundamentals-of-java-static-methods-and-variables/" target="_blank" rel="noopener">performance</a>?</li>
+<li>ConcurrentHashMap vs Collections.synchronizedMap()</li>
+<li>Popular HashMap and ConcurrentHashMap interview questions</li>
+</ul>
+<p>In this tutorial we will go over all above queries and reason&nbsp;<code>why and how</code> we could Synchronize Hashmap?</p>
+<h3>Why?</h3>
+<p>The Map object is an associative containers that store elements, formed by a combination of a uniquely identify <code>key</code>&nbsp;and a mapped <code>value</code>. If you have very highly concurrent application in which you may want to modify or read key value in different threads then it’s ideal to use Concurrent Hashmap. Best example is <a href="https://crunchify.com/java-producer-consumer-example-handle-concurrent-read-write/" target="_blank" rel="noopener">Producer Consumer</a>&nbsp;which handles concurrent read/write.</p>
+<p>So what does the thread-safe Map means? If <code>multiple threads</code> access a hash map concurrently, and at least one of the threads modifies the map structurally, it <code>must be synchronized externally</code> to avoid an inconsistent view of the contents.</p>
+<h3>How?</h3>
+<p>There are two ways&nbsp;we could synchronized <a href="https://crunchify.com/java-hashmap-containskeyobject-key-and-containsvalueobject-value-check-if-key-exists-in-map/" target="_blank" rel="noopener">HashMap</a></p>
+<ol>
+<li>Java Collections&nbsp;synchronizedMap() method</li>
+<li>Use&nbsp;ConcurrentHashMap</li>
+</ol>
+<p></p>
+		<div id="crayon-5e3d6ca692dcc704825601" class="crayon-syntax crayon-theme-neon crayon-font-consolas crayon-os-pc print-yes notranslate" data-settings=" no-popup minimize scroll-always disable-anim" style=" margin-top: 10px; margin-bottom: 15px; clear: none; font-size: 13px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-title">HashMap Vs. synchronizedMap Vs. ConcurrentHashMap</span>
+			<div class="crayon-tools" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"></div></div>
+			<div class="crayon-info" style="min-height: 19.5px !important; line-height: 19.5px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 13px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5e3d6ca692dcc704825601-1">1</div><div class="crayon-num" data-line="crayon-5e3d6ca692dcc704825601-2">2</div><div class="crayon-num" data-line="crayon-5e3d6ca692dcc704825601-3">3</div><div class="crayon-num" data-line="crayon-5e3d6ca692dcc704825601-4">4</div><div class="crayon-num" data-line="crayon-5e3d6ca692dcc704825601-5">5</div><div class="crayon-num" data-line="crayon-5e3d6ca692dcc704825601-6">6</div><div class="crayon-num" data-line="crayon-5e3d6ca692dcc704825601-7">7</div><div class="crayon-num" data-line="crayon-5e3d6ca692dcc704825601-8">8</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 13px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5e3d6ca692dcc704825601-1"><span class="crayon-c">//Hashtable</span></div><div class="crayon-line" id="crayon-5e3d6ca692dcc704825601-2"><span class="crayon-i">Map</span><span class="crayon-h">&lt;</span><span class="crayon-t">String</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-t">String</span><span class="crayon-h">&gt;</span><span class="crayon-h"> </span><span class="crayon-i">normalMap</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-r">new</span><span class="crayon-h"> </span><span class="crayon-i">Hashtable</span><span class="crayon-h">&lt;</span><span class="crayon-t">String</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-t">String</span><span class="crayon-h">&gt;</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5e3d6ca692dcc704825601-3">&nbsp;</div><div class="crayon-line" id="crayon-5e3d6ca692dcc704825601-4"><span class="crayon-c">//synchronizedMap</span></div><div class="crayon-line" id="crayon-5e3d6ca692dcc704825601-5"><span class="crayon-i">synchronizedHashMap</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-i">Collections</span><span class="crayon-sy">.</span><span class="crayon-e">synchronizedMap</span><span class="crayon-sy">(</span><span class="crayon-r">new</span><span class="crayon-h"> </span><span class="crayon-i">HashMap</span><span class="crayon-h">&lt;</span><span class="crayon-t">String</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-t">String</span><span class="crayon-h">&gt;</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5e3d6ca692dcc704825601-6">&nbsp;</div><div class="crayon-line" id="crayon-5e3d6ca692dcc704825601-7"><span class="crayon-c">//ConcurrentHashMap</span></div><div class="crayon-line" id="crayon-5e3d6ca692dcc704825601-8"><span class="crayon-i">concurrentHashMap</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-r">new</span><span class="crayon-h"> </span><span class="crayon-i">ConcurrentHashMap</span><span class="crayon-h">&lt;</span><span class="crayon-t">String</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-t">String</span><span class="crayon-h">&gt;</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><p></p>
+<h3>ConcurrentHashMap</h3>
+<ul>
+<li>You should use ConcurrentHashMap when you need very high concurrency in your project.</li>
+<li>It is thread safe without synchronizing the <code>whole map</code>.</li>
+<li>Reads can happen very fast while write is done with a lock.</li>
+<li>There is no locking at the object level.</li>
+<li>The <a href="https://crunchify.com/how-to-create-your-own-non-blocking-queue-in-java-same-as-evictingqueue/" target="_blank" rel="noopener">locking</a> is at a much finer granularity&nbsp;at a hashmap bucket level.</li>
+<li>ConcurrentHashMap doesn’t throw a <code>ConcurrentModificationException</code> if one thread tries to modify it while another is iterating over it.</li>
+<li>ConcurrentHashMap uses multitude of locks.</li>
+</ul>
+<h3>SynchronizedHashMap</h3>
+<ul>
+<li>Synchronization at <a href="https://crunchify.com/java-hashmap-containskeyobject-key-and-containsvalueobject-value-check-if-key-exists-in-map/" target="_blank" rel="noopener">Object level</a>.</li>
+<li>Every read/write operation needs to acquire lock.</li>
+<li>Locking the entire collection is a performance overhead.</li>
+<li>This essentially gives access to only one thread to the entire map &amp; blocks all the other threads.</li>
+<li>It may cause contention.</li>
+<li>SynchronizedHashMap returns <code>Iterator</code>, which fails-fast on concurrent modification.</li>
+</ul>
+<h4>Now let’s take a look at code</h4>
+<ol>
+<li>Create class&nbsp;<code>CrunchifyConcurrentHashMapVsSynchronizedHashMap.java</code></li>
+<li>Create object for each HashTable,&nbsp;SynchronizedMap and&nbsp;CrunchifyConcurrentHashMap</li>
+<li>Add and retrieve 500k entries from Map</li>
+<li>Measure start and end time and display time in milliseconds</li>
+<li>We will use <a href="https://crunchify.com/how-to-run-multiple-threads-concurrently-in-java-executorservice-approach/" target="_blank" rel="noopener">ExecutorService</a> to run <code>5 threads</code> in parallel</li>
+</ol>
+<h3>Here is a Java code:</h3>
+<p></p>
+		<div id="crayon-5e3d6ca692dd3708809369" class="crayon-syntax crayon-theme-neon crayon-font-consolas crayon-os-pc print-yes notranslate" data-settings=" no-popup minimize scroll-always disable-anim" style=" margin-top: 10px; margin-bottom: 15px; clear: none; font-size: 13px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-title">CrunchifyConcurrentHashMapVsSynchronizedMap.java</span>
+			<div class="crayon-tools" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-language">Java</span></div></div>
+			<div class="crayon-info" style="min-height: 19.5px !important; line-height: 19.5px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 13px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-1">1</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-2">2</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-3">3</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-4">4</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-5">5</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-6">6</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-7">7</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-8">8</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-9">9</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-10">10</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-11">11</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-12">12</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-13">13</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-14">14</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-15">15</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-16">16</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-17">17</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-18">18</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-19">19</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-20">20</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-21">21</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-22">22</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-23">23</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-24">24</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-25">25</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-26">26</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-27">27</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-28">28</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-29">29</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-30">30</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-31">31</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-32">32</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-33">33</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-34">34</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-35">35</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-36">36</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-37">37</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-38">38</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-39">39</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-40">40</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-41">41</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-42">42</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-43">43</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-44">44</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-45">45</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-46">46</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-47">47</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-48">48</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-49">49</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-50">50</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-51">51</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-52">52</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-53">53</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-54">54</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-55">55</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-56">56</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-57">57</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-58">58</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-59">59</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-60">60</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-61">61</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-62">62</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-63">63</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-64">64</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-65">65</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-66">66</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-67">67</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-68">68</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-69">69</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-70">70</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-71">71</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-72">72</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-73">73</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-74">74</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-75">75</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-76">76</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-77">77</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-78">78</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-79">79</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-80">80</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-81">81</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-82">82</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-83">83</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-84">84</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd3708809369-85">85</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 13px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-1"><span class="crayon-t">package</span><span class="crayon-h"> </span><span class="crayon-i">crunchify</span><span class="crayon-sy">.</span><span class="crayon-i">com</span><span class="crayon-sy">.</span><span class="crayon-i">tutorials</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-2">&nbsp;</div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-3"><span class="crayon-r">import</span><span class="crayon-h"> </span><span class="crayon-i">java</span><span class="crayon-sy">.</span><span class="crayon-i">util</span><span class="crayon-sy">.</span><span class="crayon-i">Collections</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-4"><span class="crayon-r">import</span><span class="crayon-h"> </span><span class="crayon-i">java</span><span class="crayon-sy">.</span><span class="crayon-i">util</span><span class="crayon-sy">.</span><span class="crayon-i">HashMap</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-5"><span class="crayon-r">import</span><span class="crayon-h"> </span><span class="crayon-i">java</span><span class="crayon-sy">.</span><span class="crayon-i">util</span><span class="crayon-sy">.</span><span class="crayon-i">Hashtable</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-6"><span class="crayon-r">import</span><span class="crayon-h"> </span><span class="crayon-i">java</span><span class="crayon-sy">.</span><span class="crayon-i">util</span><span class="crayon-sy">.</span><span class="crayon-i">Map</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-7"><span class="crayon-r">import</span><span class="crayon-h"> </span><span class="crayon-i">java</span><span class="crayon-sy">.</span><span class="crayon-i">util</span><span class="crayon-sy">.</span><span class="crayon-i">concurrent</span><span class="crayon-sy">.</span><span class="crayon-i">ConcurrentHashMap</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-8"><span class="crayon-r">import</span><span class="crayon-h"> </span><span class="crayon-i">java</span><span class="crayon-sy">.</span><span class="crayon-i">util</span><span class="crayon-sy">.</span><span class="crayon-i">concurrent</span><span class="crayon-sy">.</span><span class="crayon-i">ExecutorService</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-9"><span class="crayon-r">import</span><span class="crayon-h"> </span><span class="crayon-i">java</span><span class="crayon-sy">.</span><span class="crayon-i">util</span><span class="crayon-sy">.</span><span class="crayon-i">concurrent</span><span class="crayon-sy">.</span><span class="crayon-i">Executors</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-10"><span class="crayon-r">import</span><span class="crayon-h"> </span><span class="crayon-i">java</span><span class="crayon-sy">.</span><span class="crayon-i">util</span><span class="crayon-sy">.</span><span class="crayon-i">concurrent</span><span class="crayon-sy">.</span><span class="crayon-i">TimeUnit</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-11">&nbsp;</div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-12"><span class="crayon-c">/**</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-13"><span class="crayon-c"> * @author Crunchify.com</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-14"><span class="crayon-c"> *</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-15"><span class="crayon-c"> */</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-16">&nbsp;</div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-17"><span class="crayon-m">public</span><span class="crayon-h"> </span><span class="crayon-t">class</span><span class="crayon-h"> </span><span class="crayon-e">CrunchifyConcurrentHashMapVsSynchronizedMap</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-18">&nbsp;</div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-19"><span class="crayon-h">	</span><span class="crayon-m">public</span><span class="crayon-h"> </span><span class="crayon-m">final</span><span class="crayon-h"> </span><span class="crayon-m">static</span><span class="crayon-h"> </span><span class="crayon-t">int</span><span class="crayon-h"> </span><span class="crayon-i">THREAD_POOL_SIZE</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-cn">5</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-20">&nbsp;</div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-21"><span class="crayon-h">	</span><span class="crayon-m">public</span><span class="crayon-h"> </span><span class="crayon-m">static</span><span class="crayon-h"> </span><span class="crayon-i">Map</span><span class="crayon-h">&lt;</span><span class="crayon-t">String</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-t">Integer</span><span class="crayon-h">&gt;</span><span class="crayon-h"> </span><span class="crayon-i">crunchifyHashTableObject</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-t">null</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-22"><span class="crayon-h">	</span><span class="crayon-m">public</span><span class="crayon-h"> </span><span class="crayon-m">static</span><span class="crayon-h"> </span><span class="crayon-i">Map</span><span class="crayon-h">&lt;</span><span class="crayon-t">String</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-t">Integer</span><span class="crayon-h">&gt;</span><span class="crayon-h"> </span><span class="crayon-i">crunchifySynchronizedMapObject</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-t">null</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-23"><span class="crayon-h">	</span><span class="crayon-m">public</span><span class="crayon-h"> </span><span class="crayon-m">static</span><span class="crayon-h"> </span><span class="crayon-i">Map</span><span class="crayon-h">&lt;</span><span class="crayon-t">String</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-t">Integer</span><span class="crayon-h">&gt;</span><span class="crayon-h"> </span><span class="crayon-i">crunchifyConcurrentHashMapObject</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-t">null</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-24">&nbsp;</div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-25"><span class="crayon-h">	</span><span class="crayon-m">public</span><span class="crayon-h"> </span><span class="crayon-m">static</span><span class="crayon-h"> </span><span class="crayon-t">void</span><span class="crayon-h"> </span><span class="crayon-e">main</span><span class="crayon-sy">(</span><span class="crayon-t">String</span><span class="crayon-sy">[</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-i">args</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-m">throws</span><span class="crayon-h"> </span><span class="crayon-e">InterruptedException</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-26">&nbsp;</div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-27"><span class="crayon-h">		</span><span class="crayon-c">// Test with Hashtable Object</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-28"><span class="crayon-h">		</span><span class="crayon-i">crunchifyHashTableObject</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-r">new</span><span class="crayon-h"> </span><span class="crayon-i">Hashtable</span><span class="crayon-h">&lt;</span><span class="crayon-t">String</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-t">Integer</span><span class="crayon-h">&gt;</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-29"><span class="crayon-h">		</span><span class="crayon-e">crunchifyPerformTest</span><span class="crayon-sy">(</span><span class="crayon-i">crunchifyHashTableObject</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-30">&nbsp;</div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-31"><span class="crayon-h">		</span><span class="crayon-c">// Test with synchronizedMap Object</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-32"><span class="crayon-h">		</span><span class="crayon-i">crunchifySynchronizedMapObject</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-i">Collections</span><span class="crayon-sy">.</span><span class="crayon-e">synchronizedMap</span><span class="crayon-sy">(</span><span class="crayon-r">new</span><span class="crayon-h"> </span><span class="crayon-i">HashMap</span><span class="crayon-h">&lt;</span><span class="crayon-t">String</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-t">Integer</span><span class="crayon-h">&gt;</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-33"><span class="crayon-h">		</span><span class="crayon-e">crunchifyPerformTest</span><span class="crayon-sy">(</span><span class="crayon-i">crunchifySynchronizedMapObject</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-34">&nbsp;</div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-35"><span class="crayon-h">		</span><span class="crayon-c">// Test with ConcurrentHashMap Object</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-36"><span class="crayon-h">		</span><span class="crayon-i">crunchifyConcurrentHashMapObject</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-r">new</span><span class="crayon-h"> </span><span class="crayon-i">ConcurrentHashMap</span><span class="crayon-h">&lt;</span><span class="crayon-t">String</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-t">Integer</span><span class="crayon-h">&gt;</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-37"><span class="crayon-h">		</span><span class="crayon-e">crunchifyPerformTest</span><span class="crayon-sy">(</span><span class="crayon-i">crunchifyConcurrentHashMapObject</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-38">&nbsp;</div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-39"><span class="crayon-h">	</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-40">&nbsp;</div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-41"><span class="crayon-h">	</span><span class="crayon-m">public</span><span class="crayon-h"> </span><span class="crayon-m">static</span><span class="crayon-h"> </span><span class="crayon-t">void</span><span class="crayon-h"> </span><span class="crayon-e">crunchifyPerformTest</span><span class="crayon-sy">(</span><span class="crayon-m">final</span><span class="crayon-h"> </span><span class="crayon-i">Map</span><span class="crayon-h">&lt;</span><span class="crayon-t">String</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-t">Integer</span><span class="crayon-h">&gt;</span><span class="crayon-h"> </span><span class="crayon-i">crunchifyThreads</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-m">throws</span><span class="crayon-h"> </span><span class="crayon-e">InterruptedException</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-42">&nbsp;</div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-43"><span class="crayon-h">		</span><span class="crayon-i">System</span><span class="crayon-sy">.</span><span class="crayon-i">out</span><span class="crayon-sy">.</span><span class="crayon-e">println</span><span class="crayon-sy">(</span><span class="crayon-s">"Test started for: "</span><span class="crayon-h"> </span>+<span class="crayon-h"> </span><span class="crayon-i">crunchifyThreads</span><span class="crayon-sy">.</span><span class="crayon-e">getClass</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-44"><span class="crayon-h">		</span><span class="crayon-t">long</span><span class="crayon-h"> </span><span class="crayon-i">averageTime</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-cn">0</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-45"><span class="crayon-h">		</span><span class="crayon-st">for</span><span class="crayon-h"> </span><span class="crayon-sy">(</span><span class="crayon-t">int</span><span class="crayon-h"> </span><span class="crayon-i">i</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-cn">0</span><span class="crayon-sy">;</span><span class="crayon-h"> </span><span class="crayon-i">i</span><span class="crayon-h"> </span><span class="crayon-h">&lt;</span><span class="crayon-h"> </span><span class="crayon-cn">5</span><span class="crayon-sy">;</span><span class="crayon-h"> </span><span class="crayon-i">i</span>++<span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-46">&nbsp;</div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-47"><span class="crayon-h">			</span><span class="crayon-t">long</span><span class="crayon-h"> </span><span class="crayon-i">startTime</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-i">System</span><span class="crayon-sy">.</span><span class="crayon-e">nanoTime</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-48"><span class="crayon-h">			</span><span class="crayon-e">ExecutorService </span><span class="crayon-i">crunchifyExServer</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-i">Executors</span><span class="crayon-sy">.</span><span class="crayon-e">newFixedThreadPool</span><span class="crayon-sy">(</span><span class="crayon-i">THREAD_POOL_SIZE</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-49">&nbsp;</div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-50"><span class="crayon-h">			</span><span class="crayon-st">for</span><span class="crayon-h"> </span><span class="crayon-sy">(</span><span class="crayon-t">int</span><span class="crayon-h"> </span><span class="crayon-i">j</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-cn">0</span><span class="crayon-sy">;</span><span class="crayon-h"> </span><span class="crayon-i">j</span><span class="crayon-h"> </span><span class="crayon-h">&lt;</span><span class="crayon-h"> </span><span class="crayon-i">THREAD_POOL_SIZE</span><span class="crayon-sy">;</span><span class="crayon-h"> </span><span class="crayon-i">j</span>++<span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-51"><span class="crayon-h">				</span><span class="crayon-i">crunchifyExServer</span><span class="crayon-sy">.</span><span class="crayon-e">execute</span><span class="crayon-sy">(</span><span class="crayon-r">new</span><span class="crayon-h"> </span><span class="crayon-e">Runnable</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-52"><span class="crayon-h">					</span><span class="crayon-n">@SuppressWarnings</span><span class="crayon-sy">(</span><span class="crayon-s">"unused"</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-53"><span class="crayon-h">					</span><span class="crayon-n">@Override</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-54"><span class="crayon-h">					</span><span class="crayon-m">public</span><span class="crayon-h"> </span><span class="crayon-t">void</span><span class="crayon-h"> </span><span class="crayon-e">run</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-55">&nbsp;</div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-56"><span class="crayon-h">						</span><span class="crayon-st">for</span><span class="crayon-h"> </span><span class="crayon-sy">(</span><span class="crayon-t">int</span><span class="crayon-h"> </span><span class="crayon-i">i</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-cn">0</span><span class="crayon-sy">;</span><span class="crayon-h"> </span><span class="crayon-i">i</span><span class="crayon-h"> </span><span class="crayon-h">&lt;</span><span class="crayon-h"> </span><span class="crayon-cn">500000</span><span class="crayon-sy">;</span><span class="crayon-h"> </span><span class="crayon-i">i</span>++<span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-57"><span class="crayon-h">							</span><span class="crayon-t">Integer</span><span class="crayon-h"> </span><span class="crayon-i">crunchifyRandomNumber</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-sy">(</span><span class="crayon-t">int</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-i">Math</span><span class="crayon-sy">.</span><span class="crayon-e">ceil</span><span class="crayon-sy">(</span><span class="crayon-i">Math</span><span class="crayon-sy">.</span><span class="crayon-e">random</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span>*<span class="crayon-h"> </span><span class="crayon-cn">550000</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-58">&nbsp;</div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-59"><span class="crayon-h">							</span><span class="crayon-c">// Retrieve value. We are not using it anywhere</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-60"><span class="crayon-h">							</span><span class="crayon-t">Integer</span><span class="crayon-h"> </span><span class="crayon-i">crunchifyValue</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-i">crunchifyThreads</span><span class="crayon-sy">.</span><span class="crayon-e">get</span><span class="crayon-sy">(</span><span class="crayon-t">String</span><span class="crayon-sy">.</span><span class="crayon-e">valueOf</span><span class="crayon-sy">(</span><span class="crayon-i">crunchifyRandomNumber</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-61">&nbsp;</div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-62"><span class="crayon-h">							</span><span class="crayon-c">// Put value</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-63"><span class="crayon-h">							</span><span class="crayon-i">crunchifyThreads</span><span class="crayon-sy">.</span><span class="crayon-e">put</span><span class="crayon-sy">(</span><span class="crayon-t">String</span><span class="crayon-sy">.</span><span class="crayon-e">valueOf</span><span class="crayon-sy">(</span><span class="crayon-i">crunchifyRandomNumber</span><span class="crayon-sy">)</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-i">crunchifyRandomNumber</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-64"><span class="crayon-h">						</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-65"><span class="crayon-h">					</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-66"><span class="crayon-h">				</span><span class="crayon-sy">}</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-67"><span class="crayon-h">			</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-68">&nbsp;</div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-69"><span class="crayon-h">			</span><span class="crayon-c">// Initiates an orderly shutdown in which previously submitted tasks are executed, but no new tasks will be accepted. Invocation</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-70"><span class="crayon-h">			</span><span class="crayon-c">// has no additional effect if already shut down.</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-71"><span class="crayon-h">			</span><span class="crayon-c">// This method does not wait for previously submitted tasks to complete execution. Use awaitTermination to do that.</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-72"><span class="crayon-h">			</span><span class="crayon-i">crunchifyExServer</span><span class="crayon-sy">.</span><span class="crayon-e">shutdown</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-73">&nbsp;</div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-74"><span class="crayon-h">			</span><span class="crayon-c">// Blocks until all tasks have completed execution after a shutdown request, or the timeout occurs, or the current thread is</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-75"><span class="crayon-h">			</span><span class="crayon-c">// interrupted, whichever happens first.</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-76"><span class="crayon-h">			</span><span class="crayon-i">crunchifyExServer</span><span class="crayon-sy">.</span><span class="crayon-e">awaitTermination</span><span class="crayon-sy">(</span><span class="crayon-t">Long</span><span class="crayon-sy">.</span><span class="crayon-i">MAX_VALUE</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-i">TimeUnit</span><span class="crayon-sy">.</span><span class="crayon-i">DAYS</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-77">&nbsp;</div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-78"><span class="crayon-h">			</span><span class="crayon-t">long</span><span class="crayon-h"> </span><span class="crayon-i">entTime</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-i">System</span><span class="crayon-sy">.</span><span class="crayon-e">nanoTime</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-79"><span class="crayon-h">			</span><span class="crayon-t">long</span><span class="crayon-h"> </span><span class="crayon-i">totalTime</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-sy">(</span><span class="crayon-i">entTime</span><span class="crayon-h"> </span>-<span class="crayon-h"> </span><span class="crayon-i">startTime</span><span class="crayon-sy">)</span><span class="crayon-h"> </span>/<span class="crayon-h"> </span><span class="crayon-cn">1000000L</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-80"><span class="crayon-h">			</span><span class="crayon-i">averageTime</span><span class="crayon-h"> </span>+=<span class="crayon-h"> </span><span class="crayon-i">totalTime</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-81"><span class="crayon-h">			</span><span class="crayon-i">System</span><span class="crayon-sy">.</span><span class="crayon-i">out</span><span class="crayon-sy">.</span><span class="crayon-e">println</span><span class="crayon-sy">(</span><span class="crayon-s">"500K entried added/retrieved in "</span><span class="crayon-h"> </span>+<span class="crayon-h"> </span><span class="crayon-i">totalTime</span><span class="crayon-h"> </span>+<span class="crayon-h"> </span><span class="crayon-s">" ms"</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-82"><span class="crayon-h">		</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-83"><span class="crayon-h">		</span><span class="crayon-i">System</span><span class="crayon-sy">.</span><span class="crayon-i">out</span><span class="crayon-sy">.</span><span class="crayon-e">println</span><span class="crayon-sy">(</span><span class="crayon-s">"For "</span><span class="crayon-h"> </span>+<span class="crayon-h"> </span><span class="crayon-i">crunchifyThreads</span><span class="crayon-sy">.</span><span class="crayon-e">getClass</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span>+<span class="crayon-h"> </span><span class="crayon-s">" the average time is "</span><span class="crayon-h"> </span>+<span class="crayon-h"> </span><span class="crayon-i">averageTime</span><span class="crayon-h"> </span>/<span class="crayon-h"> </span><span class="crayon-cn">5</span><span class="crayon-h"> </span>+<span class="crayon-h"> </span><span class="crayon-s">" ms\n"</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-84"><span class="crayon-h">	</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd3708809369-85"><span class="crayon-sy">}</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><p></p>
+<ul>
+<li><code>shutdown()</code> means the executor service takes no more incoming tasks.</li>
+<li><code>awaitTermination()</code> is invoked after a shutdown request.</li>
+</ul>
+<p>And hence, you need to first shutdown the <a href="https://crunchify.com/what-is-java-semaphore-and-mutex-java-concurrency-multithread-explained-with-example/" target="_blank" rel="noopener">serviceExecutor</a> and then block and wait for threads to finish.</p>
+<h3>Eclipse Console Result:</h3>
+<p></p>
+		<div id="crayon-5e3d6ca692dd5709224710" class="crayon-syntax crayon-theme-neon crayon-font-consolas crayon-os-pc print-yes notranslate" data-settings=" no-popup minimize scroll-always disable-anim" style=" margin-top: 10px; margin-bottom: 15px; clear: none; font-size: 13px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-title">Result</span>
+			<div class="crayon-tools" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"></div></div>
+			<div class="crayon-info" style="min-height: 19.5px !important; line-height: 19.5px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 13px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5e3d6ca692dd5709224710-1">1</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd5709224710-2">2</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd5709224710-3">3</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd5709224710-4">4</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd5709224710-5">5</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd5709224710-6">6</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd5709224710-7">7</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd5709224710-8">8</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd5709224710-9">9</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd5709224710-10">10</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd5709224710-11">11</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd5709224710-12">12</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd5709224710-13">13</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd5709224710-14">14</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd5709224710-15">15</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd5709224710-16">16</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd5709224710-17">17</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd5709224710-18">18</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd5709224710-19">19</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd5709224710-20">20</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd5709224710-21">21</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd5709224710-22">22</div><div class="crayon-num" data-line="crayon-5e3d6ca692dd5709224710-23">23</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 13px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5e3d6ca692dd5709224710-1"><span class="crayon-e">Test </span><span class="crayon-e">started </span><span class="crayon-st">for</span><span class="crayon-sy">:</span><span class="crayon-h"> </span><span class="crayon-t">class</span><span class="crayon-h"> </span><span class="crayon-i">java</span><span class="crayon-sy">.</span><span class="crayon-i">util</span><span class="crayon-sy">.</span><span class="crayon-i">Hashtable</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd5709224710-2"><span class="crayon-cn">500K</span><span class="crayon-h"> </span><span class="crayon-e">entried </span><span class="crayon-i">added</span>/<span class="crayon-e">retrieved </span><span class="crayon-st">in</span><span class="crayon-h"> </span><span class="crayon-cn">1832</span><span class="crayon-h"> </span><span class="crayon-i">ms</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd5709224710-3"><span class="crayon-cn">500K</span><span class="crayon-h"> </span><span class="crayon-e">entried </span><span class="crayon-i">added</span>/<span class="crayon-e">retrieved </span><span class="crayon-st">in</span><span class="crayon-h"> </span><span class="crayon-cn">1723</span><span class="crayon-h"> </span><span class="crayon-i">ms</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd5709224710-4"><span class="crayon-cn">500K</span><span class="crayon-h"> </span><span class="crayon-e">entried </span><span class="crayon-i">added</span>/<span class="crayon-e">retrieved </span><span class="crayon-st">in</span><span class="crayon-h"> </span><span class="crayon-cn">1782</span><span class="crayon-h"> </span><span class="crayon-i">ms</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd5709224710-5"><span class="crayon-cn">500K</span><span class="crayon-h"> </span><span class="crayon-e">entried </span><span class="crayon-i">added</span>/<span class="crayon-e">retrieved </span><span class="crayon-st">in</span><span class="crayon-h"> </span><span class="crayon-cn">1607</span><span class="crayon-h"> </span><span class="crayon-i">ms</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd5709224710-6"><span class="crayon-cn">500K</span><span class="crayon-h"> </span><span class="crayon-e">entried </span><span class="crayon-i">added</span>/<span class="crayon-e">retrieved </span><span class="crayon-st">in</span><span class="crayon-h"> </span><span class="crayon-cn">1851</span><span class="crayon-h"> </span><span class="crayon-e">ms</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd5709224710-7"><span class="crayon-st">For</span><span class="crayon-h"> </span><span class="crayon-t">class</span><span class="crayon-h"> </span><span class="crayon-i">java</span><span class="crayon-sy">.</span><span class="crayon-i">util</span><span class="crayon-sy">.</span><span class="crayon-e">Hashtable </span><span class="crayon-e">the </span><span class="crayon-e">average </span><span class="crayon-e">time </span><span class="crayon-st">is</span><span class="crayon-h"> </span><span class="crayon-cn">1759</span><span class="crayon-h"> </span><span class="crayon-e">ms</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd5709224710-8">&nbsp;</div><div class="crayon-line" id="crayon-5e3d6ca692dd5709224710-9"><span class="crayon-e">Test </span><span class="crayon-e">started </span><span class="crayon-st">for</span><span class="crayon-sy">:</span><span class="crayon-h"> </span><span class="crayon-t">class</span><span class="crayon-h"> </span><span class="crayon-i">java</span><span class="crayon-sy">.</span><span class="crayon-i">util</span><span class="crayon-sy">.</span><span class="crayon-i">Collections</span><span class="crayon-sy">$</span><span class="crayon-i">SynchronizedMap</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd5709224710-10"><span class="crayon-cn">500K</span><span class="crayon-h"> </span><span class="crayon-e">entried </span><span class="crayon-i">added</span>/<span class="crayon-e">retrieved </span><span class="crayon-st">in</span><span class="crayon-h"> </span><span class="crayon-cn">1923</span><span class="crayon-h"> </span><span class="crayon-i">ms</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd5709224710-11"><span class="crayon-cn">500K</span><span class="crayon-h"> </span><span class="crayon-e">entried </span><span class="crayon-i">added</span>/<span class="crayon-e">retrieved </span><span class="crayon-st">in</span><span class="crayon-h"> </span><span class="crayon-cn">2032</span><span class="crayon-h"> </span><span class="crayon-i">ms</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd5709224710-12"><span class="crayon-cn">500K</span><span class="crayon-h"> </span><span class="crayon-e">entried </span><span class="crayon-i">added</span>/<span class="crayon-e">retrieved </span><span class="crayon-st">in</span><span class="crayon-h"> </span><span class="crayon-cn">1621</span><span class="crayon-h"> </span><span class="crayon-i">ms</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd5709224710-13"><span class="crayon-cn">500K</span><span class="crayon-h"> </span><span class="crayon-e">entried </span><span class="crayon-i">added</span>/<span class="crayon-e">retrieved </span><span class="crayon-st">in</span><span class="crayon-h"> </span><span class="crayon-cn">1833</span><span class="crayon-h"> </span><span class="crayon-i">ms</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd5709224710-14"><span class="crayon-cn">500K</span><span class="crayon-h"> </span><span class="crayon-e">entried </span><span class="crayon-i">added</span>/<span class="crayon-e">retrieved </span><span class="crayon-st">in</span><span class="crayon-h"> </span><span class="crayon-cn">2048</span><span class="crayon-h"> </span><span class="crayon-e">ms</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd5709224710-15"><span class="crayon-st">For</span><span class="crayon-h"> </span><span class="crayon-t">class</span><span class="crayon-h"> </span><span class="crayon-i">java</span><span class="crayon-sy">.</span><span class="crayon-i">util</span><span class="crayon-sy">.</span><span class="crayon-i">Collections</span><span class="crayon-sy">$</span><span class="crayon-e">SynchronizedMap </span><span class="crayon-e">the </span><span class="crayon-e">average </span><span class="crayon-e">time </span><span class="crayon-st">is</span><span class="crayon-h"> </span><span class="crayon-cn">1891</span><span class="crayon-h"> </span><span class="crayon-e">ms</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd5709224710-16">&nbsp;</div><div class="crayon-line" id="crayon-5e3d6ca692dd5709224710-17"><span class="crayon-e">Test </span><span class="crayon-e">started </span><span class="crayon-st">for</span><span class="crayon-sy">:</span><span class="crayon-h"> </span><span class="crayon-t">class</span><span class="crayon-h"> </span><span class="crayon-i">java</span><span class="crayon-sy">.</span><span class="crayon-i">util</span><span class="crayon-sy">.</span><span class="crayon-i">concurrent</span><span class="crayon-sy">.</span><span class="crayon-i">ConcurrentHashMap</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd5709224710-18"><span class="crayon-cn">500K</span><span class="crayon-h"> </span><span class="crayon-e">entried </span><span class="crayon-i">added</span>/<span class="crayon-e">retrieved </span><span class="crayon-st">in</span><span class="crayon-h"> </span><span class="crayon-cn">1068</span><span class="crayon-h"> </span><span class="crayon-i">ms</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd5709224710-19"><span class="crayon-cn">500K</span><span class="crayon-h"> </span><span class="crayon-e">entried </span><span class="crayon-i">added</span>/<span class="crayon-e">retrieved </span><span class="crayon-st">in</span><span class="crayon-h"> </span><span class="crayon-cn">1029</span><span class="crayon-h"> </span><span class="crayon-i">ms</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd5709224710-20"><span class="crayon-cn">500K</span><span class="crayon-h"> </span><span class="crayon-e">entried </span><span class="crayon-i">added</span>/<span class="crayon-e">retrieved </span><span class="crayon-st">in</span><span class="crayon-h"> </span><span class="crayon-cn">1165</span><span class="crayon-h"> </span><span class="crayon-i">ms</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd5709224710-21"><span class="crayon-cn">500K</span><span class="crayon-h"> </span><span class="crayon-e">entried </span><span class="crayon-i">added</span>/<span class="crayon-e">retrieved </span><span class="crayon-st">in</span><span class="crayon-h"> </span><span class="crayon-cn">840</span><span class="crayon-h"> </span><span class="crayon-i">ms</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd5709224710-22"><span class="crayon-cn">500K</span><span class="crayon-h"> </span><span class="crayon-e">entried </span><span class="crayon-i">added</span>/<span class="crayon-e">retrieved </span><span class="crayon-st">in</span><span class="crayon-h"> </span><span class="crayon-cn">1017</span><span class="crayon-h"> </span><span class="crayon-e">ms</span></div><div class="crayon-line" id="crayon-5e3d6ca692dd5709224710-23"><span class="crayon-st">For</span><span class="crayon-h"> </span><span class="crayon-t">class</span><span class="crayon-h"> </span><span class="crayon-i">java</span><span class="crayon-sy">.</span><span class="crayon-i">util</span><span class="crayon-sy">.</span><span class="crayon-i">concurrent</span><span class="crayon-sy">.</span><span class="crayon-e">ConcurrentHashMap </span><span class="crayon-e">the </span><span class="crayon-e">average </span><span class="crayon-e">time </span><span class="crayon-st">is</span><span class="crayon-h"> </span><span class="crayon-cn">1023</span><span class="crayon-h"> </span><span class="crayon-i">ms</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><p></p>
+<div class="joindiscussion hide-on-mobile"><h4>Join the Discussion</h4><p>Share &amp; leave us some comments on what you think about this topic or if you like to add something.</p></div><div class="adsense-leadin-footer">
+				<!-- CAds.Post.Bottom -->
+					<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-4032710958875645" data-ad-slot="7360862032"></ins>
+					<script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+        <script type="text/javascript">
+            var $ = jQuery.noConflict();
+            $(document).ready(function ($) {
+                $(window).scroll(function () {
+                    var y = $(this).scrollTop();
+                    if (y > 300) {
+                        $('#crunchy-sharing-float').css("opacity", 1);
+                    } else {
+                        $('#crunchy-sharing-float').css("opacity", 0);
+                    }
+                });
+            });
+        </script>
+
+        <!-- This site is using Crunchy Sharing plugin - https://pro.crunchify.com/crunchy-sharing/ -->
+        <!-- Optimized, Non JavaScript based, Light weight, Fastest, GDPR compliant Crunchy Sharing -->
+
+        <div class="crunchy-sharing ">
+			                <span class="left hide-on-mobile before-sharebutton-text">Share:</span>
+						<a rel="external nofollow" class="crunchify-crunchy-sharing-icon-round crunchify-crunchy-sharing-icon-block-twitter" href="https://twitter.com/intent/tweet/?text=HashMap+Vs.+ConcurrentHashMap+Vs.+SynchronizedMap+-+How+a+HashMap+can+be+Synchronized+in+Java&amp;url=https%3A%2F%2Fcrunchify.com%2Fhashmap-vs-concurrenthashmap-vs-synchronizedmap-how-a-hashmap-can-be-synchronized-in-java%2F&amp;via=Crunchify" target="_blank" title="Share on Twitter"><i class="fab fa-twitter"></i></a><a rel="external nofollow" class="crunchify-crunchy-sharing-icon-round crunchify-crunchy-sharing-icon-block-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcrunchify.com%2Fhashmap-vs-concurrenthashmap-vs-synchronizedmap-how-a-hashmap-can-be-synchronized-in-java%2F" target="_blank" title="Share on Facebook"><i class="fab fa-facebook-f"></i></a><a rel="external nofollow" class="crunchify-crunchy-sharing-icon-round crunchify-crunchy-sharing-icon-block-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fcrunchify.com%2Fhashmap-vs-concurrenthashmap-vs-synchronizedmap-how-a-hashmap-can-be-synchronized-in-java%2F&amp;title=HashMap+Vs.+ConcurrentHashMap+Vs.+SynchronizedMap+-+How+a+HashMap+can+be+Synchronized+in+Java" target="_blank" title="Share on LinkedIn"><i class="fab fa-linkedin-in"></i></a><a rel="external nofollow" class="crunchify-crunchy-sharing-icon-round crunchify-crunchy-sharing-icon-block-whatsapp" href="https://wa.me/?text=HashMap+Vs.+ConcurrentHashMap+Vs.+SynchronizedMap+-+How+a+HashMap+can+be+Synchronized+in+Java%C2%A0%20https%3A%2F%2Fcrunchify.com%2Fhashmap-vs-concurrenthashmap-vs-synchronizedmap-how-a-hashmap-can-be-synchronized-in-java%2F" target="_blank" title="Share on WhatsApp"><i class="fab fa-whatsapp"></i></a><a rel="external nofollow" class="crunchify-crunchy-sharing-icon-round crunchify-crunchy-sharing-icon-block-buffer" href="https://buffer.com/add?url=https%3A%2F%2Fcrunchify.com%2Fhashmap-vs-concurrenthashmap-vs-synchronizedmap-how-a-hashmap-can-be-synchronized-in-java%2F&amp;text=HashMap+Vs.+ConcurrentHashMap+Vs.+SynchronizedMap+-+How+a+HashMap+can+be+Synchronized+in+Java" target="_blank" title="Share via Buffer"><i class="fab fa-buffer"></i></a><a rel="external nofollow" class="crunchify-crunchy-sharing-icon-round crunchify-crunchy-sharing-icon-block-reddit" href="https://reddit.com/submit?url=https%3A%2F%2Fcrunchify.com%2Fhashmap-vs-concurrenthashmap-vs-synchronizedmap-how-a-hashmap-can-be-synchronized-in-java%2F&amp;title=HashMap+Vs.+ConcurrentHashMap+Vs.+SynchronizedMap+-+How+a+HashMap+can+be+Synchronized+in+Java" target="_blank" title="Share on Reddit"><i class="fab fa-reddit"></i></a>			        </div>
+		<div class="yarpp-related">
+<h3>Other Popular Articles...</h3><ol>
+<li><a href="https://crunchify.com/java-synchronized-collections-examples-java-util-collections/" rel="bookmark" title="What is Java Synchronized Collections? Complete Tutorials using java.util.Collections">What is Java Synchronized Collections? Complete Tutorials using java.util.Collections </a></li>
+<li><a href="https://crunchify.com/java-hashmap-containskeyobject-key-and-containsvalueobject-value-check-if-key-exists-in-map/" rel="bookmark" title="Java Hashmap – containsKey(Object key) and containsValue(Object value) – Check if Key/Value Exists in Map">Java Hashmap – containsKey(Object key) and containsValue(Object value) – Check if Key/Value Exists in Map </a></li>
+<li><a href="https://crunchify.com/implement-simple-threadsafe-cache-using-hashmap-without-using-synchronized-collection/" rel="bookmark" title="Implement Simple Threadsafe Cache using HashMap without using Synchronized Collection">Implement Simple Threadsafe Cache using HashMap without using Synchronized Collection </a></li>
+<li><a href="https://crunchify.com/how-to-use-expiringmap-maven-java-utility-to-remove-expired-objects-from-map-automatically-complete-java-tutorial/" rel="bookmark" title="How to use net.jodah.ExpiringMap Maven Java Utility to Remove Expired Objects from HashMap Automatically – Complete Java Tutorial">How to use net.jodah.ExpiringMap Maven Java Utility to Remove Expired Objects from HashMap Automatically – Complete Java Tutorial </a></li>
+<li><a href="https://crunchify.com/how-to-convert-hashmap-to-arraylist-in-java/" rel="bookmark" title="How to convert HashMap to ArrayList in Java?">How to convert HashMap to ArrayList in Java? </a></li>
+<li><a href="https://crunchify.com/java-how-to-get-random-key-value-element-from-hashmap/" rel="bookmark" title="Java: How to Get Random Key-Value Element From HashMap">Java: How to Get Random Key-Value Element From HashMap </a></li>
+</ol>
+</div>
+</div><footer class="entry-footer"><p class="entry-meta"><span class="entry-categories"><a href="https://crunchify.com/category/java-tutorials/" rel="category tag">Java and J2EE Tutorials</a></span> <span class="entry-tags"><a href="https://crunchify.com/tag/hashmap/" rel="tag">Hashmap</a></span><!-- CAds.Matched.Ads.730x380 -->
+	   				</p><div class="g-ads"><ins class="adsbygoogle" style="display:inline-block;width:730px;height:380px" data-ad-client="ca-pub-4032710958875645" data-ad-slot="3479591263"></ins>
+					<script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+					
+					<!-- CAds.After.Matched.Responsive -->
+					<div class="g-ads hide-on-mobile" style="margin-top: 40px;"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4032710958875645" data-ad-slot="8717554718" data-ad-format="auto" data-full-width-responsive="true"></ins>
+					<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+					
+					<header class="section-header hide-on-mobile crunchify-full-width" style="margin-top:50px;"><h4 class="header-bg teal" style="font-size: 18px;">I want to...</h4></header>
+     <div class="crunchify-social-deals hide-on-mobile"><ul>
+
+      <li class="post-tags-item">
+        <a target="_blank" href="https://crunchify.com/15-essential-settings-and-optimization-tasks-after-installing-wordpress/" class="post-tag post-tag--design">
+          <span>Optimize WordPress</span>
+        </a>
+      </li>
+      
+    <li class="post-tags-item">
+        <a target="_blank" href="https://crunchify.com/must-have-top-10-plugins-for-your-wordpress-blog/" class="post-tag post-tag--orange">
+          <span>Plugins we use</span>
+        </a>
+      </li> 
+
+      <li class="post-tags-item">
+        <a target="_blank" href="https://crunchify.com/go/bluehost/" class="post-tag post-tag--journal">
+          <span>Get FREE Domain &amp; Hosting</span>
+        </a>
+      </li>    
+
+      <li class="post-tags-item">
+        <a target="_blank" href="https://crunchify.com/on-page-seo-rank-first-on-google/" class="post-tag post-tag--review">
+          <span>Learn SEO</span>
+        </a>
+      </li> 
+
+  </ul></div><p></p></div></footer></article><section class="author-box" itemprop="author" itemscope="" itemtype="https://schema.org/Person"><img alt="Avatar for App Shah" title="Gravatar for App Shah" src="./HashMap Vs. ConcurrentHashMap Vs. SynchronizedMap - How a HashMap can be Synchronized in Java • Crunchify_files/570913c563103efe5919cae51738ee44.png" srcset="https://secure.gravatar.com/avatar/570913c563103efe5919cae51738ee44?s=140&amp;d=mm&amp;r=g 2x" class="avatar avatar-70 photo" height="70" width="70"><h4 class="author-box-title">About <span itemprop="name">App Shah</span></h4><div class="author-box-content" itemprop="description"><p>I'm an Engineer by profession, Blogger by passion &amp; Founder of Crunchify, LLC, the largest free blogging &amp; technical resource site for beginners. Love SEO, SaaS, #webperf, WordPress, Java. With over <a href="https://crunchify.com/advertise/" target="_blank" rel="noopener noreferrer">16 millions+</a> pageviews/month, Crunchify has changed the life of over thousands of individual around the globe teaching Java &amp; Web Tech for FREE. Get latest update on <a target="_blank" href="https://www.facebook.com/Crunchify" class="crunchify-social-icon-facebook" rel="noopener noreferrer"><i class="fab fa-facebook" style="margin: 0px 5px"></i></a> and <a target="_blank" href="https://twitter.com/Crunchify" class="crunchify-social-icon-twitter" rel="noopener noreferrer"><i class="fab fa-twitter" style="margin: 0px 0px 0px 5px;"></i></a>.</p>
+<div style="clear:both"></div>
+</div></section><div class="after-entry widget-area"><section id="enews-ext-2" class="widget enews-widget"><div class="widget-wrap"><div class="enews"><h4 class="widget-title widgettitle">Subscribe To Newsletter…</h4>
+<p>Get Early Access To New Articles, Plugins, Discount Codes And Brief Updates About What's New With Crunchify! Join Over 16 Million Monthly Readers... <i class="fa fa-check-circle"></i></p>
+			<form id="subscribe-enews-ext-2" action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open( &#39;http://feedburner.google.com/fb/a/mailverify?uri=Crunchify&#39;, &#39;popupwindow&#39;, &#39;scrollbars=yes,width=550,height=520&#39;);return true" name="enews-ext-2">
+				<label for="subbox" class="screenread">E-Mail Address</label><input type="email" value="" id="subbox" placeholder="E-Mail Address" name="email" required="required">
+				<input type="hidden" name="uri" value="Crunchify">
+				<input type="hidden" name="loc" value="en_US">
+				<input type="submit" value="Subscribe!" id="subbutton">
+			</form>
+		<div id="comments"></div>
+<div id="respond"></div>
+</div></div></section>
+</div><div id="disqus_thread">
+		</div>
+</main><aside class="sidebar sidebar-primary widget-area" role="complementary" aria-label="Primary Sidebar" itemscope="" itemtype="https://schema.org/WPSideBar"><section id="custom_html-2" class="widget_text widget widget_custom_html"><div class="widget_text widget-wrap"><div class="textwidget custom-html-widget"><!-- CAds.Sidebar-1 -->
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-4032710958875645" data-ad-slot="0110036438"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<div style="clear: both;"></div>
+<div class="crunchify-follower">
+	<div class="widgetheading">
+	Over 16 million readers 
+		<br>
+			<div style="font-weight:300;">Get fresh content from Crunchify</div>
+		</div>
+		<div class="crunchify-social-share-sidebar">
+			<a class="crunchify-social-icon-rss crunchify-social-icon" href="https://feeds.feedburner.com/Crunchify" target="_blank" rel="noopener noreferrer">
+				<i class="fas fa-rss fa-2x"></i>
+			</a>
+			<a class="crunchify-social-icon-twitter crunchify-social-icon" href="https://twitter.com/crunchify" target="_blank" rel="noopener noreferrer">
+				<i class="fab fa-twitter fa-2x"></i>
+			</a>
+			<a class="crunchify-social-icon-facebook crunchify-social-icon" href="https://www.facebook.com/Crunchify" target="_blank" rel="noopener noreferrer">
+				<i class="fab fa-facebook fa-2x"></i>
+			</a>
+			<a class="crunchify-social-icon-youtube crunchify-social-icon" href="https://www.youtube.com/c/CrunchifyDotCom" target="_blank" rel="noopener noreferrer">
+				<i class="fab fa-youtube fa-2x"></i>
+			</a>
+			<a class="crunchify-social-icon-wordpress crunchify-social-icon" href="https://profiles.wordpress.org/crunchify" target="_blank" rel="noopener noreferrer">
+				<i class="fab fa-wordpress fa-2x"></i>
+			</a>
+			<a class="crunchify-social-icon-pinterest crunchify-social-icon" href="https://www.pinterest.com/Crunchify/crunchify-articles/" target="_blank" rel="noopener noreferrer">
+				<i class="fab fa-pinterest-p fa-2x"></i>
+			</a>
+			<a class="crunchify-social-icon-email crunchify-social-icon" href="https://feedburner.google.com/fb/a/mailverify?uri=Crunchify" target="_blank" rel="noopener noreferrer">
+				<i class="fas fa-envelope fa-2x"></i>
+			</a>
+		</div>
+	</div>
+	<div style="clear: both;"></div>
+	<form id="cse-search-box" style="margin-bottom: 30px;" action="https://crunchify.com/search/">
+		<div>
+			<input name="cx" type="hidden" value="partner-pub-4032710958875645:9846869911">
+			<input name="cof" type="hidden" value="FORID:10">
+			<input name="ie" type="hidden" value="UTF-8">
+			<input class="crunchify-search" name="q" size="55" type="text">
+			<input class="crunch-search" name="sa" type="submit" value="Search">
+		</div>
+	</form>
+	<div style="clear: both;"></div>
+	<div style="margin-bottom:35px;">
+		<!-- CAds.Sidebar-2 -->
+		<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-4032710958875645" data-ad-slot="3437002713"></ins>
+		<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+	</div>
+	<div style="clear: both;"></div>
+	<header class="section-header">
+		<h4 class="header-bg blue blue-bg">Top Tech Tutorials</h4>
+	</header>
+	<div class="wrapper-top-posts">
+		<ul>
+			<li>
+				<span style="background: rgba(0,49,79,.08); color: rgba(34,59,74,.5); border-radius: 3px; padding: 4px; font-size: 10px; margin-right: 5px;">NEW</span>
+				<a href="https://crunchify.com/in-java8-how-to-join-list-of-objects-collectors-joining-concatenates-the-input-elements-separated-by-the-delimiter/">In Java8 join list of Object</a>
+				<span style="color:#b11f24;">&amp;</span>
+				<a href="https://crunchify.com/how-to-build-restful-service-with-java-using-jax-rs-and-jersey/">Build RESTful Service using JAX-RS &amp; Jersey</a>
+			</li>
+			<li>
+				<a href="https://crunchify.com/simplest-spring-mvc-hello-world-example-tutorial-spring-model-view-controller-tips/">Simplest Spring MVC Hello World</a>
+				<span style="color:#b11f24;">&amp;</span>
+				<a href="https://crunchify.com/java-spring-boot-tutorials/">Spring Boot Tutorial</a>
+			</li>
+			<li>
+				<a href="https://crunchify.com/top-10-java-interview-questions-answers-must-read-before-appearing-for-any-java-interview/">Top 10 Java Interview Questions Answers</a>
+				<span style="color:#b11f24;">&amp;</span>
+				<a href="https://crunchify.com/javascript-function-to-validate-username-phone-fields-on-form-submit-event/">JavaScript &amp; Validate Username, Phone Field</a>
+			</li>
+			<li>
+				<a href="https://crunchify.com/better-logging-for-your-enterprise-java-application-crunchifybetterlog4jlogging-java/">Better Logging Tips</a>
+				<span style="color:#b11f24;">&amp;</span>
+				<a href="https://crunchify.com/java-how-to-create-your-own-logging-level-in-log4j-configuring-log4j/">Create Your Own Logging Level using Log4j</a>
+			</li>
+			<li>
+				<a href="https://crunchify.com/how-to-sort-hashmap-by-key-and-value-in-java8-complete-tutorial/">Sort a HashMap by Key &amp; Value</a>
+				<span style="color:#b11f24;">&amp;</span>
+				<a href="https://crunchify.com/how-to-read-convert-csv-comma-separated-values-file-to-arraylist-in-java-using-split-operation/">Read and Parse CSV Tutorial</a>
+			</li>
+			<li>
+				<span style="background: rgba(0,49,79,.08); color: rgba(34,59,74,.5); border-radius: 3px; padding: 4px; font-size: 10px; margin-right: 5px;">NEW</span>
+				<a href="https://crunchify.com/how-to-implement-a-linkedlist-class-from-scratch-in-java/">Implement a LinkedList Class From Scratch</a>
+				<span style="color:#b11f24;">&amp;</span>
+				<a href="https://crunchify.com/java-jsongenerator-json-processing-api-and-how-to-enable-pretty-print-json-output-gson-jackson/">Enable Pretty Print in JSON Processing API</a>
+			</li>
+		</ul>
+	</div>
+	<div style="clear: both;"></div></div></div></section>
+<section id="custom_html-15" class="widget_text widget widget_custom_html"><div class="widget_text widget-wrap"><div class="textwidget custom-html-widget"><div class="hide-on-mobile" style="margin: 40px 0px 30px 0px;">
+<!-- CAds.Sidebar-3.Responsive -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4032710958875645" data-ad-slot="1281355117" data-ad-format="auto"></ins>
+	<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<div style="clear: both;"></div>
+<header class="section-header">
+	<h4 class="header-bg red-bg">Basic Java Tech</h4>
+</header>
+<div class="crunchify-fundamentals">
+	<div class="crunchify-favorite">
+		<a class="crunchify4" href="https://crunchify.com/lazy-creation-of-singleton-threadsafe-instance-without-using-synchronized-keyword/">Singleton Pattern</a>
+		<a class="crunchify2" href="https://crunchify.com/how-to-create-a-simple-in-memory-cache-in-java-lightweight-cache/">Java Caching</a>
+		<a class="crunchify9" href="https://crunchify.com/how-to-iterate-through-linkedlist-instance-in-java/">LinkedList Iterator</a>
+		<a class="crunchify6" href="https://crunchify.com/what-is-an-abstract-class-and-abstract-method-in-java-when-should-i-use-it/">Java Abstract</a>
+		<a class="crunchify5" href="https://crunchify.com/fundamentals-of-java-static-methods-and-variables/">Java Static Intro</a>
+		<a class="crunchify7" href="https://crunchify.com/what-is-an-interface-in-java-how-its-used-java-tutorial-example-attached/">Java Interface</a>
+		<a class="crunchify8" href="https://crunchify.com/how-to-access-github-content-with-basic-oauth-authentication-in-java-httpclient-or-urlconnection-method/">Github OAuth</a>
+		<a class="crunchify1" href="https://crunchify.com/how-to-implement-selection-sort-algorithm-in-java-detailed-explanation/">Sorting Algorithm</a>
+		<a class="crunchify10" href="https://crunchify.com/what-is-java-semaphore-and-mutex-java-concurrency-multithread-explained-with-example/">Semaphore &amp; Mutex</a>
+		<a class="crunchify3" href="https://crunchify.com/create-simple-pojo-and-multiple-java-reflection-examples/">Java Reflection</a>
+		<a class="crunchify11" href="https://crunchify.com/java-nio-non-blocking-io-with-server-client-example-java-nio-bytebuffer-and-channels-selector-java-nio-vs-io/">Java NIO (Non-blocking)</a>
+		<a class="crunchify5" href="https://crunchify.com/soap-vs-rest-simple-object-access-protocol-vs-representational-state-transfer/">SOAP vs REST</a>
+		<a class="crunchify1" href="https://crunchify.com/maven-assembly-plugin-how-to-create-tar-gz-or-zip-archive-for-java-enterprise-project-using-maven/">.zip file by Maven</a>
+	</div>
+</div>
+<div style="clear: both;"></div></div></div></section>
+<section id="custom_html-8" class="widget_text widget widget_custom_html"><div class="widget_text widget-wrap"><div class="textwidget custom-html-widget"><!-- <div style="clear: both;"></div>
+<div class="sidebar-product crunchy-sharing">
+	<h3 class="crunchy-sharing-h2"><i class="fas fa-share-square"></i>&nbsp;&nbsp;Crunchy Sharing</h3>
+		<p>Fastest, Optimized, Non-Javascript based, Light Weight, Ultimate Social Sharing WordPress Plugin. 
+			<span class="below-cta">
+				<a class="review" href="https://crunchify.com/go/crunchy-social/" target="_blank" rel="noopener noreferrer">Get a copy.</a>
+			</span>
+			</p><p style="margin-top:15px;"></p>
+			<span style="font-size: 13px;color: #fff;font-weight: bold;">
+			10% off coupon: CRUNCHIFY
+			</span>
+		
+	</div>
+-->
+
+<div style="clear: both;"></div>
+<div class="sidebar-product kinsta">
+	<img src="./HashMap Vs. ConcurrentHashMap Vs. SynchronizedMap - How a HashMap can be Synchronized in Java • Crunchify_files/kinsta.svg" width="115" height="26" alt="Kinsta" https:="" cdn.crunchify.com="">
+		<p> Modern, Secure &amp; Fast Managed WordPress Hosting. 
+			<span class="below-cta">
+				<a class="review" href="https://crunchify.com/go/kinsta" target="_blank" rel="noopener noreferrer">Check it out.</a>
+			</span>
+		</p>
+		<!-- <a href="https://crunchify.com/go/kinsta" target="_blank" title="Learn more" rel="noopener noreferrer">Learn more</a>  -->
+	</div>
+	<header class="section-header">
+		<h4 class="header-bg green-bg">Useful WordPress Guide</h4>
+	</header>
+	<div class="wrapper-top-posts">
+		<ul>
+			<li>
+				<span style="background: rgba(0,49,79,.08); color: rgba(34,59,74,.5); border-radius: 3px; padding: 4px; font-size: 10px; margin-right: 5px;">NEW</span>
+				<a href="https://crunchify.com/how-to-start-your-first-self-hosted-wordpress-blog-get-your-domain-and-beginner-tips/">Start 1st WordPress Blog</a>
+				<span style="color:#b11f24;">&amp;</span>
+				<a href="https://crunchify.com/15-essential-settings-and-optimization-tasks-after-installing-wordpress/">15 Essential Optimization Tips</a>
+			</li>
+			<li>
+				<a href="https://crunchify.com/how-to-speed-up-wordpress-leveraging-browser-caching-via-htaccess/">Leverage .htaccess to Speed up WordPress</a>
+				<span style="color:#b11f24;">&amp;</span>
+				<a href="https://crunchify.com/how-to-stop-loading-unnecessary-files-and-reducing-websites-http-requests-wordpress-optimization-tips/">Stop loading unnecessary Files on Site</a>
+			</li>
+			<li>
+				<a href="https://crunchify.com/top-5-basic-seo-tips/">Top 5 Basic SEO Tips</a>
+				<span style="color:#b11f24;">&amp;</span>
+				<a href="https://crunchify.com/keyword-research-in-seo/">Importance of Keyword Research</a>
+			</li>
+			<li>
+				<a href="https://crunchify.com/how-to-clean-up-wordpress-header-section-without-any-plugin/">Better cleanup WordPress Header Section</a>
+				<span style="color:#b11f24;">&amp;</span>
+				<a href="https://crunchify.com/noticed-higher-cpu-memory-usage-for-wp-site-wordpress-optimization-guide-htaccess-tricks-disqus-problem/">Fix cPanel CPU issue</a>
+			</li>
+			<li>
+				<a href="https://crunchify.com/google-form-as-wordpress-contact-form/">Google Form as ultimate WordPress Contact Form</a>
+				<span style="color:#b11f24;">&amp;</span>
+				<a href="https://crunchify.com/wordpress-google-fonts-load-locally/">Load WordPress Fonts Locally (Speed Tips)</a>
+			</li>
+			<li>
+				<a href="https://crunchify.com/proven-16-ways-to-get-quality-backlinks/">16 proven ways to get Quality Backlinks</a>
+				<span style="color:#b11f24;">&amp;</span>
+				<a href="https://crunchify.com/how-to-update-wordpress-php-version-to-7-1-in-cpanel-for-better-performance/">Better Upgrade to PHP 7.1</a>
+			</li>
+			<li>
+				<span style="background: rgba(0,49,79,.08); color: rgba(34,59,74,.5); border-radius: 3px; padding: 4px; font-size: 10px; margin-right: 5px;">NEW</span>
+				<a href="https://crunchify.com/how-to-secure-wordpress-login-page-with-additional-strong-password-pre-login-authentication/">Secure WordPress Login Area</a>
+				<span style="color:#b11f24;">&amp;</span>
+				<a href="https://crunchify.com/what-is-affiliate-cloaking-and-how-to-cloak-your-affiliate-link-without-wordpress-plugin/">Cloak  Affiliate Links without WordPress plugin</a>
+			</li>
+		</ul>
+	</div>
+	<div style="clear: both;"></div></div></div></section>
+<section id="custom_html-14" class="widget_text widget widget_custom_html"><div class="widget_text widget-wrap"><div class="textwidget custom-html-widget"><header class="section-header">
+	<h4 class="header-bg blue-bg">WORDPRESS TUNING TIPS</h4>
+</header>
+<div class="crunchify-fundamentals">
+	<div class="crunchify-favorite">
+		<a class="crunchify2" href="https://crunchify.com/how-to-install-wordpress-locally-on-mac-os-x-using-mamp/">Install WP Locally</a>
+		<a class="crunchify4" href="https://crunchify.com/how-to-create-wordpress-custom-post-type-cpt-and-taxonomy-hello-world-tutorial-tips-and-tricks/">WordPress CPT</a>
+		<a class="crunchify9" href="https://crunchify.com/how-to-disable-wordpress-cron-jobs-initiated-by-wp-cron-php-use-cpanel-cron-job-instead/">Disable Cron Jobs</a>
+		<a class="crunchify6" href="https://crunchify.com/how-to-modify-404-page-not-found-template-for-wordpress-genesis-framework-theme/">Modify 404 Page</a>
+		<a class="crunchify5" href="https://crunchify.com/simple-scroll-to-top-button-in-wordpress-footer-without-any-javascript-loading-genesis-framework-tips/">Scroll To Top</a>
+		<a class="crunchify7" href="https://crunchify.com/genesis-framework-2-0-tips-and-hook-references/">GenesisWP Hooks</a>
+		<a class="crunchify8" href="https://crunchify.com/genesis-framework-tips-show-your-custom-shortlink-on-single-php-file/">Add Bitly Shortlink</a>
+		<a class="crunchify1" href="https://crunchify.com/how-to-insert-ads-on-home-page-after-2nd-and-5th-post-in-genesis-framework/">Adsense without Plugin</a>
+		<a class="crunchify10" href="https://crunchify.com/must-have-top-10-plugins-for-your-wordpress-blog/">Plugins we Use</a>
+		<a class="crunchify3" href="https://crunchify.com/top-5-wordpress-backup-plugins/">Top Backup Plugins</a>
+		<a class="crunchify11" href="https://crunchify.com/howto-increase-site-domain-authority/">Domain Authority Tips</a>
+		<a class="crunchify5" href="https://crunchify.com/what-is-interlinking-and-why-it-is-one-of-the-best-seo-practice/">Interlinking Tips</a>
+		<a class="crunchify1" href="https://crunchify.com/how-to-setup-discourse-org-forum-on-linode-correct-way-tested-and-verified-steps/">Setup Forum</a>
+	</div>
+</div>
+<div style="clear: both;"></div></div></div></section>
+</aside><div class="arrowNav">
+	<div class="arrowLeft">
+		<a href="https://crunchify.com/crayon-syntax-highlighter-wordpress-plugin-how-to-stop-loading-css-and-js-files/" rel="prev"><i class="fas fa-chevron-circle-left" aria-hidden="true"></i></a>	</div>
+	<div class="arrowRight">
+		<a href="https://crunchify.com/step-by-step-guide-to-setup-maxcdn-content-delivery-network-correctly-on-wordpress-with-wp-super-cache-plugin/" rel="next"><i class="fas fa-chevron-circle-right" aria-hidden="true"></i></a>	</div>
+</div>
+</div></div><div class="footer-widgets"><div class="wrap"><div class="widget-area footer-widgets-1 footer-widget-area"><section id="nav_menu-2" class="widget widget_nav_menu"><div class="widget-wrap"><h4 class="widget-title widgettitle">Top Blogging Categories…</h4>
+<div class="menu-top-blogging-tutorials-container"><ul id="menu-top-blogging-tutorials" class="menu"><li id="menu-item-11059" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-11059"><a href="https://crunchify.com/category/seo/" itemprop="url">SEO 101 Tutorials</a></li>
+<li id="menu-item-11062" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-11062"><a href="https://crunchify.com/category/wordpress/" itemprop="url">WordPress Optimization and Tutorials</a></li>
+<li id="menu-item-11057" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-11057"><a href="https://crunchify.com/category/genesis-framework/" itemprop="url">Genesis WP</a></li>
+<li id="menu-item-11061" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-11061"><a href="https://crunchify.com/category/niche-blogging/" itemprop="url">Blogging</a></li>
+<li id="menu-item-11058" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-11058"><a href="https://crunchify.com/category/making-money-online/" itemprop="url">Making Money Online</a></li>
+<li id="menu-item-11064" class="menu-item menu-item-type-taxonomy menu-item-object-post_tag menu-item-11064"><a href="https://crunchify.com/tag/functions-php/" itemprop="url">functions.php Hacks</a></li>
+<li id="menu-item-11065" class="menu-item menu-item-type-taxonomy menu-item-object-post_tag menu-item-11065"><a href="https://crunchify.com/tag/hosting/" itemprop="url">WebHosting</a></li>
+<li id="menu-item-11066" class="menu-item menu-item-type-taxonomy menu-item-object-post_tag menu-item-11066"><a href="https://crunchify.com/tag/style-css/" itemprop="url">style.css Hacks</a></li>
+<li id="menu-item-11067" class="menu-item menu-item-type-taxonomy menu-item-object-post_tag menu-item-11067"><a href="https://crunchify.com/tag/woocommerce/" itemprop="url">WooCommerce</a></li>
+</ul></div></div></section>
+</div><div class="widget-area footer-widgets-2 footer-widget-area"><section id="nav_menu-3" class="widget widget_nav_menu"><div class="widget-wrap"><h4 class="widget-title widgettitle">Top Tech Categories…</h4>
+<div class="menu-top-tech-tutorials-container"><ul id="menu-top-tech-tutorials" class="menu"><li id="menu-item-11043" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-11043"><a href="https://crunchify.com/category/java-tutorials/" itemprop="url">Java &amp; J2EE</a></li>
+<li id="menu-item-11044" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-11044"><a href="https://crunchify.com/category/eclipse/" itemprop="url">Eclipse IDE Tutorials</a></li>
+<li id="menu-item-11046" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-11046"><a href="https://crunchify.com/category/android-dev/" itemprop="url">Android Dev Tutorials</a></li>
+<li id="menu-item-11047" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-11047"><a href="https://crunchify.com/category/apache-tomcat/" itemprop="url">Apache Tomcat Tutorials</a></li>
+<li id="menu-item-11048" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-11048"><a href="https://crunchify.com/category/design-development/" itemprop="url">Design &amp; Dev</a></li>
+<li id="menu-item-11049" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-11049"><a href="https://crunchify.com/category/interview/" itemprop="url">Interview Questions Answers</a></li>
+<li id="menu-item-11051" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-11051"><a href="https://crunchify.com/category/javascript-jquery/" itemprop="url">JavaScript</a></li>
+<li id="menu-item-11053" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-11053"><a href="https://crunchify.com/category/spring-mvc/" itemprop="url">Spring MVC and Spring Boot Tutorials</a></li>
+<li id="menu-item-11070" class="menu-item menu-item-type-taxonomy menu-item-object-post_tag menu-item-11070"><a href="https://crunchify.com/tag/maven/" itemprop="url">Maven</a></li>
+</ul></div></div></section>
+</div><div class="widget-area footer-widgets-3 footer-widget-area">		<section id="recent-posts-2" class="widget widget_recent_entries"><div class="widget-wrap">		<h4 class="widget-title widgettitle">Recently Crunched…</h4>
+		<ul>
+											<li>
+					<a href="https://crunchify.com/executable-java-jar-on-linux/">How to create executable .jar file using Linux commands and without Eclipse Shortcut?</a>
+									</li>
+											<li>
+					<a href="https://crunchify.com/install-configure-elastic-search/">How to Install and Configure Elasticsearch on your Dev/Production environment?</a>
+									</li>
+											<li>
+					<a href="https://crunchify.com/how-to-execute-tcpdump-linux-command-using-java-process-class-and-capture-tcpip-packets/">How to Execute tcpdump Linux Command using Java Process Class and Capture TCP/IP Packets</a>
+									</li>
+											<li>
+					<a href="https://crunchify.com/have-you-noticed-race-condition-in-java-multithreading-concurrency-example-how-to-deal-with-it/">Have you noticed Race Condition in Java Multi-threading Concurrency Example? How to deal with it?</a>
+									</li>
+											<li>
+					<a href="https://crunchify.com/in-java-how-to-perform-file-search-operation-using-java-nio-file-interface-tutorial-on-file-and-directory-operations/">In Java How to Perform File Search Operation using java.nio.file interface? Tutorial on File and Directory Operations</a>
+									</li>
+					</ul>
+		</div></section>
+</div></div></div><footer class="site-footer" itemscope="" itemtype="https://schema.org/WPFooter"><div class="wrap"><nav class="nav-footer"><ul id="menu-footer-menu" class="genesis-nav-menu"><li id="menu-item-11072" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-11072"><a href="https://crunchify.com/advertise/" itemprop="url">Advertise</a></li>
+<li id="menu-item-11075" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-11075"><a href="https://crunchify.com/sitemap/" itemprop="url">Sitemap</a></li>
+<li id="menu-item-11073" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-11073"><a href="https://crunchify.com/setup/" itemprop="url">Setup</a></li>
+<li id="menu-item-11953" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-11953"><a target="_blank" rel="noopener noreferrer" href="https://ask.crunchify.com/" itemprop="url">Forum</a></li>
+<li id="menu-item-11930" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-11930"><a target="_blank" rel="noopener noreferrer" href="https://pro.crunchify.com/" itemprop="url">Pro Services</a></li>
+<li id="menu-item-12366" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12366"><a href="https://crunchify.com/cookie-policy/" itemprop="url">Cookie Policy</a></li>
+</ul></nav>
+<div class="crunchify-social-share-sidebar-f">
+
+<a class="crunchify-social-icon-f crunchify-social-icon-rss" href="https://feeds.feedburner.com/Crunchify" target="_blank" rel="noopener">
+<i class="fas fa-rss"></i></a>
+	<a class="crunchify-social-icon-f crunchify-social-icon-twitter" href="https://twitter.com/crunchify" target="_blank" rel="noopener">
+<i class="fab fa-twitter"></i></a>
+	<a class="crunchify-social-icon-f crunchify-social-icon-facebook" href="https://www.facebook.com/Crunchify" target="_blank" rel="noopener">
+<i class="fab fa-facebook"></i></a>
+	<a class="crunchify-social-icon-f crunchify-social-icon-youtube" href="https://www.youtube.com/c/CrunchifyDotCom" target="_blank" rel="noopener">
+<i class="fab fa-youtube"></i></a>
+	<a class="crunchify-social-icon-f crunchify-social-icon-wordpress" href="https://profiles.wordpress.org/crunchify" target="_blank" rel="noopener">
+<i class="fab fa-wordpress"></i></a>
+	<a class="crunchify-social-icon-f crunchify-social-icon-pinterest" href="https://www.pinterest.com/Crunchify/crunchify-articles/" target="_blank" rel="noopener">
+<i class="fab fa-pinterest-p"></i></a>
+	<a class="crunchify-social-icon-f crunchify-social-icon-email" href="https://feedburner.google.com/fb/a/mailverify?uri=Crunchify" target="_blank" rel="noopener">
+<i class="fas fa-envelope"></i></a>
+
+</div>
+
+<p style="padding-bottom:0px;"><a href="https://crunchify.com/"><img src="./HashMap Vs. ConcurrentHashMap Vs. SynchronizedMap - How a HashMap can be Synchronized in Java • Crunchify_files/logo-white-footer.png" alt="Crunchify Logo" height="15" width="15"></a> &nbsp;&nbsp;<i class="fas fa-copyright"></i> 2020 Crunchify, LLC.
+	Hosted at <span class="footer-link">Kinsta</span> &amp; <span class="footer-link">MaxCDN</span> &nbsp;•&nbsp; Built on <a href="https://crunchify.com/go/genesis/" class="footer-link" target="_blank" rel="nofollow">Genesis Themes</a>.</p>
+
+<!-- <p>Partner: <a href="https://crunchify.com/go/semrush/" target="_blank" class="footer-link" rel="nofollow">SEMrush</a></p>  -->
+<p><span class="footer-link">DCMA</span> Disclaimer and Privacy <a href="https://crunchify.com/tos/" target="_blank" class="footer-link" rel="nofollow">Policy</a>.</p>
+<a href="https://crunchify.com/hashmap-vs-concurrenthashmap-vs-synchronizedmap-how-a-hashmap-can-be-synchronized-in-java/#" class="crunchify-jtop" style="display: none;"><span class="jtop-arrow"><i class="fas fa-chevron-up"></i></span></a>
+<p style=" font-size: 13px; padding-top: 0px;" class="hide-on-mobile">Noticed a bug? Report it <a href="https://crunchify.com/contact/" target="_blank" style="color: #f0f0f0;">here</a>.</p> 
+	</div></footer></div><script>            
+	jQuery(document).ready(function() {
+		var offset = 500;
+		var duration = 500;
+		jQuery(window).scroll(function() {
+			if (jQuery(this).scrollTop() > offset) {
+				jQuery('.crunchify-jtop').fadeIn(duration);
+			} else {
+				jQuery('.crunchify-jtop').fadeOut(duration);
+			}
+		});
+		jQuery('.crunchify-jtop').click(function(event) {
+			event.preventDefault();
+			jQuery('html, body').animate({scrollTop: 0}, duration);
+			return false;
+		})
+	});
+</script><script type="text/javascript">
+/* <![CDATA[ */
+var countVars = {"disqusShortname":"crunchify-llc"};
+var embedVars = {"disqusConfig":{"integration":"wordpress 3.0.16"},"disqusIdentifier":"6852 https:\/\/crunchify.com\/?p=6852","disqusShortname":"crunchify-llc","disqusTitle":"HashMap Vs. ConcurrentHashMap Vs. SynchronizedMap \u2013 How a HashMap can be Synchronized in Java","disqusUrl":"https:\/\/crunchify.com\/hashmap-vs-concurrenthashmap-vs-synchronizedmap-how-a-hashmap-can-be-synchronized-in-java\/","postId":"6852"};
+var dclCustomVars = {"dcl_progress_text":"Loading..."};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./HashMap Vs. ConcurrentHashMap Vs. SynchronizedMap - How a HashMap can be Synchronized in Java • Crunchify_files/embed-scroll.min.js"></script>
+
+</body></html>

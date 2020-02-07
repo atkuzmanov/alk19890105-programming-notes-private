@@ -1,0 +1,1965 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0094)https://www.developer.com/java/data/an-introduction-to-concurrent-collection-apis-in-java.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<meta name="WT.qs_dlk" content="XjA2C9tktXIWDjUnX5ZoogAAAAs">
+
+	<meta name="WT.qs_shmv" content="hv20180802-ison.sf.quinstreet.net">
+
+	<meta name="inject_params" content="WT.qs_dlk=XjA2C9tktXIWDjUnX5ZoogAAAAs&amp;">
+
+<iframe src="javascript:false" title="" style="width: 0px; height: 0px; border: 0px; display: none;" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/saved_resource.html"></iframe><script type="text/javascript" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/optout_check"></script><script type="text/javascript" async="" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/munchkin.js"></script><script type="text/javascript" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/get"></script><script type="text/javascript" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/optout_check"></script><script type="text/javascript" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/e135fda1-30ea-4b03-9420-07993c74ffc0"></script><script type="text/javascript" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/e135fda1-30ea-4b03-9420-07993c74ffc0(1)"></script><script src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/pubads_impl_rendering_2020013001.js"></script><script async="" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/controltag.js.cee73ba6ab74e5caa8092ae34993bbaa"></script><script async="" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/en.js" charset="utf-8"></script><script id="twitter-wjs" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/widgets.js"></script><script async="" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/webtrends.min.js"></script><script type="text/javascript" async="" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/library.js"></script><script type="text/javascript" async="" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/recaptcha__en_gb.js"></script><script async="" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/analytics.js"></script><script type="text/javascript" async="" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/tag.aspx"></script><script type="text/javascript" async="" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/JdOfGRZW.js"></script><script async="" id="evidon-settings" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/settings.js"></script><script async="" id="evidon-themes" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/snthemes.js"></script><script async="" id="evidon-location" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/country.js"></script><script async="" id="evidon-notice" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/evidon-sitenotice-tag.js"></script><script async="" type="text/javascript" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/gpt.js"></script><script>!function(){if(!window.BOOMR||!window.BOOMR.version){var e,t,n,o=document.createElement("iframe");o.src="javascript:false",o.title="",o.role="presentation",(o.frameElement||o).style.cssText="width:0;height:0;border:0;display:none;",(n=document.getElementsByTagName("script")[0]).parentNode.insertBefore(o,n);try{t=o.contentWindow.document}catch(n){e=document.domain,o.src="javascript:var d=document.open();d.domain='"+e+"';void(0);",t=o.contentWindow.document}t.open()._l=function(){var t=this.createElement("script");e&&(this.domain=e),t.id="boomr-if-as",t.src="/imageserver/common/sg/1.0/sg.min.js",BOOMR_lstart=(new Date).getTime(),this.body.appendChild(t)},t.write('<body onload="document._l();">'),t.close()}}();</script>
+<script>
+                document.cookie = 'inject_params=WT.qs_dlk=XjA2C9tktXIWDjUnX5ZoogAAAAs&; path=/;  domain=developer.com;';
+                document.cookie = 'WMUUID=XjA2C9tktXIWDjUnX5ZoogAAAAs; path=/;  domain=developer.com;';
+            </script>
+	
+	<!-- <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> -->
+	<title>An Introduction to Concurrent Collection APIs in Java - Developer.com</title>
+	<meta name="description" content="Study an overview of concurrent collection APIs in Java and see their use through an appropriate example scenario.">
+	<meta name="keywords" content="Java, API, concurrent collection, Java Collection API, threads, scalability, low risk, java.util.concurrent">
+            <link rel="alternate" media="only screen and (max-width: 640px)" href="https://mobile.developer.com/java/data/an-introduction-to-concurrent-collection-apis-in-java.html">
+    		<meta name="articleKey" content="209488310">
+		    <meta name="qs.quad.keywords" content="{keywords:&quot;107860,939113|96480,96470|95910|95850&quot;,nodes:&quot;107860,939113&quot;}">
+	<script language="javascript" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/tx.js"></script>
+    	<meta name="authors" content="Manoj Debnath">
+	<meta name="date" content="20180806">
+	<meta name="channel" content="developer">
+	<link rel="canonical" href="https://www.developer.com/java/data/an-introduction-to-concurrent-collection-apis-in-java.html">
+		<meta name="robots" content="INDEX,FOLLOW">
+		<meta name="robots" content="noodp">
+	
+<!-- BEGIN DFP core -->
+<script type="text/javascript">
+window.qs={consent:{ready:false,service:{dfp:{dc:false},krux:{dc:false,al:false,tg:false,cd:false,sh:false,re:false},ml:{dc:false}}},dfp:{ready:false,tags:{}},krux:{dn:'',jf:'',dr:'',ir:'',noer:''}};
+function gDFPC(e){var n=e+"=";var ca=document.cookie.split(';');for(var i=0;i<ca.length;i++){var c=ca[i].replace(/^\s+|\s+$/g,'');if(c.indexOf(n)==0) return c.substring(n.length,c.length);}return "";}function sDFPC(c,v,e,t){var d=new Date();if(t=="mo"){d.setMonth(d.getMonth()+e);}else if(t=="hr"){d.setTime(d.getTime()+(e*60*60*1000));}else if(t=="min"){d.setTime(d.getTime()+(e*60*1000));}else if(t=="sec"){d.setTime(d.getTime()+(e*1000));}else{d.setTime(d.getTime()+(e*24*60*60*1000));}var exp="expires="+d.toUTCString();document.cookie=c+"="+v+";"+exp+";path=/";}function cDFPC(c){if(gDFPC(c)!="")return 1;return 0;}function cKVs(v){if(Array.isArray(v)){for(i=0;i<v.length;i++){v[i]=v[i].replace(/["'=!+#*~;^()<>\[\],&]/g,'').replace(/\s+/g,' ').replace(/^\s+|\s+$/g,'');}}else{v=v.replace(/["'=!+#*~;^()<>\[\],&]/g,'').replace(/\s+/g,' ').replace(/^\s+|\s+$/g,'');}return v;}var mbw=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth;var myWTDLK=gDFPC('WMUUID');var mlWTFP="";var myWTtemp=gDFPC('WT_FPC').split(":");for(var i=0;i<myWTtemp.length;i++){if(myWTtemp[i].search("id=")==0){mlWTFP=myWTtemp[i].slice(3);}}var qsDFPSec=(location.protocol==="https:"?"true":"false");
+</script>
+
+<!-- Consent info -->
+<script type="text/javascript">
+    if (cDFPC('_qscon')) {
+        if (typeof window.qs != 'undefined' && window.qs.consent) {
+            window.qs.consent.service = JSON.parse(gDFPC('_qscon'));
+        }
+    }
+</script>
+
+<script type="text/javascript">
+var n_imu=0,n_ic_imu=0,n_lb=0,n_sky=0,n_wap=0,n_qmp=0,n_m_lb=0,n_m_imu=0,n_m_ic_imu=0,n_ic=0;function refreshDFPTags(){if(typeof googletag.pubads!='undefined'){for(var slot_id_simple in window.qs.dfp.tags){if(window.qs.dfp.tags.hasOwnProperty(slot_id_simple)&&window.qs.dfp.tags[slot_id_simple]!=null){if(typeof window.qs.dfp.tags[slot_id_simple].slot!='undefined'&&window.qs.dfp.tags[slot_id_simple].refreshable){window.qs.dfp.tags[slot_id_simple].refreshed=true;window.qs.dfp.tags[slot_id_simple].refresh_counter++;googletag.pubads().refresh([window.qs.dfp.tags[slot_id_simple].slot],{changeCorrelator: false});}}}}}function hideQSDiv(e){if(typeof googletag.pubads!='undefined'){var slot_id=e.replace(/-outer/,'');var slot_id_simple=slot_id.replace(/-/g,'');if(typeof window.qs.dfp.tags[slot_id_simple].slot!='undefined'){googletag.destroySlots([window.qs.dfp.tags[slot_id_simple].slot]);window.qs.dfp.tags[slot_id_simple]=null;}}if(document.getElementById){document.getElementById(e).style.visibility="hidden";document.getElementById(e).innerHTML="";}}
+</script>
+<script type="text/javascript">
+console.log('QS: DFP GPT Code');var googletag=googletag||{};googletag.cmd=googletag.cmd||[];(function(){var gads=document.createElement("script");gads.async=true;gads.type="text/javascript";gads.src=(location.protocol==="https:"?"https:":"http:")+"//securepubads.g.doubleclick.net/tag/js/gpt.js";var node=document.getElementsByTagName("script")[0];node.parentNode.insertBefore(gads,node);})();
+</script>
+<script type="text/javascript">
+console.log('QS: DFP Tag Code');function displayDFPTag(tag){var tag_code="";var this_tag_pos=0;var this_tag_div_style="";var this_tag_inner_div_style="";var this_tag_notice="";var this_tag_close="";if(tag.match(/^sponsor-logo.*/)){var temp=tag.split(":");tag=temp[0];this_tag_pos=temp[1];}switch(tag){case "imu":this_tag_pos=++n_imu;break;case "ic_imu":this_tag_pos=++n_ic_imu;this_tag_div_style=" style='width:300px;text-align:center;padding:0px 0px 20px 0px;margin:0 auto;'";this_tag_notice=" <div style=\"text-align:right;margin:0 auto;font-family:'Helvetica Neue 55 Roman',Helvetica,Arial,san-serif;color:#666666;font-size:10px;font-weight:normal;\">Advertisement</div>";break;case "lb":this_tag_pos=++n_lb;if(this_tag_pos===1){this_tag_notice="    <div id='"+tag+"-"+this_tag_pos+"-notice' style=\"text-align:center;margin:0 auto;height:0;visibility:hidden;font-family:'Helvetica Neue 55 Roman',Helvetica,Arial,san-serif;color:#666666;font-size:10px;font-weight:normal;\">Advertisement</div>";this_tag_close="    <div id='"+tag+"-"+this_tag_pos+"-close' style=\"text-align:center;margin:0 auto;height:0;visibility:hidden;\"><a href=\"javascript:hideQSDiv('"+tag+"-"+this_tag_pos+"-outer')\" style=\"font-family:'Helvetica Neue 55 Roman',Helvetica,Arial,san-serif;color:#666666;font-size:12px;font-weight:normal;text-decoration:none;\">Close X</a></div>";}break;case "sky":this_tag_pos=++n_sky;break;case "wap":this_tag_pos=++n_wap;break;case "qmp":this_tag_pos=++n_qmp;break;case "sponsor-logo":break;case "m_lb":this_tag_pos=++n_m_lb;if(this_tag_pos===1){this_tag_notice="    <div id='"+tag+"-"+this_tag_pos+"-notice' style=\"text-align:center;margin:0 auto;height:0;visibility:hidden;font-family:'Helvetica Neue 55 Roman',Helvetica,Arial,san-serif;color:#666666;font-size:10px;font-weight:normal;\">Advertisement</div>";}break;case "m_imu":this_tag_pos=++n_m_imu;break;case "m_ic_imu":this_tag_pos=++n_m_ic_imu;this_tag_div_style=" style='width:300px;text-align:center;padding:0px 0px 20px 0px;margin:0 auto;'";this_tag_notice=" <div style=\"text-align:center;margin:0 auto;font-family:'Helvetica Neue 55 Roman',Helvetica,Arial,san-serif;color:#666666;font-size:10px;font-weight:normal;\">Advertisement</div>";break;case "ic":this_tag_pos=++n_ic;this_tag_div_style=" style='width:300px;text-align:center;padding:0px 0px 20px 0px;margin:0 auto;'";this_tag_notice=" <div style=\"text-align:center;margin:0 auto;font-family:'Helvetica Neue 55 Roman',Helvetica,Arial,san-serif;color:#666666;font-size:10px;font-weight:normal;\">Advertisement</div>";break;default:return "<!-- QS-DFP: Unknown tag '"+tag+"' requested -->";}var this_tag_div_id=tag+"-"+this_tag_pos;if(this_tag_notice){tag_code+="<div id='"+this_tag_div_id+"-outer' style='text-align:center;margin: 0 auto;'>\n"+this_tag_notice+"\n";}tag_code+="<div id='"+this_tag_div_id+"'"+this_tag_div_style+">\n"+"    <scr"+"ipt type=\"text/javascript\">\n"+"        googletag.cmd.push(function() {\n"+"            googletag.display('"+this_tag_div_id+"');\n"+"        });\n"+"    </scr"+"ipt>\n"+"</div>\n";if(this_tag_close){tag_code+=this_tag_close+"\n";}if(this_tag_notice){tag_code+="</div>\n";}if(this_tag_inner_div_style){tag_code+="<style type=\"text/css\">#"+this_tag_div_id+"_ad_container{height:0px;}</style>\n";}return tag_code;}
+</script>
+<!-- END DFP core -->
+
+    <!-- BEGIN Evidon -->
+    <script type="text/javascript">
+        console.log('QS: Evidon Code');
+        (function (id) {
+    function append(scriptid, url, async) {
+        var d = document, sn = 'script', f = d.getElementsByTagName(sn)[0];
+        if (!f) f = d.head;
+        var s = d.createElement(sn);
+        s.async = true;
+        s.id = scriptid;
+        s.src = url;
+        f.parentNode.insertBefore(s, f);
+    }
+
+    function getRootDomain() {
+        var parts = window.location.hostname.split('.');
+        if (parts.length === 2) rootDomain = parts[0];
+        else if (parts.length > 2) {
+          // see if the next to last value is a common tld
+          var part = parts[parts.length - 2];
+          if (part === 'com' || part === 'co') {
+            rootDomain = parts[parts.length - 3]; // go back one more
+          }
+          else {
+            rootDomain = part;
+          }
+        }
+
+      return rootDomain;
+    }
+
+    window.evidon = {};
+    window.evidon.id = id;
+    var cdn = '//c.evidon.com/', rootDomain = getRootDomain(), noticecdn = cdn + 'sitenotice/';
+    append('evidon-notice', noticecdn + 'evidon-sitenotice-tag.js', false);
+    append('evidon-location', cdn + 'geo/country.js', true);
+    append('evidon-themes', noticecdn + id + '/snthemes.js', true);
+    if (rootDomain) append('evidon-settings', noticecdn + id + '/' + rootDomain + '/settings.js', true);
+
+    window.evidon.priorConsentCallback = function () {
+        // add the tags which need to wait for prior consent
+        // here.  This should be all your advertising tags and
+        // probably most of your social and tracking tags.
+
+        // QS globals
+        window.qs.consent.ready = true;
+    }
+
+    window.evidon.closeCallback = function () {
+        // this is executed when a user closes a UI element (banner/barrier) without
+        // providing consent.
+
+        // QS globals
+        window.qs.consent.ready = true;
+    }
+
+    window.evidon.consentWithdrawnCallback = function () {
+        // this is exeucted if the user withdraws consent and elects to
+        // no longer allow technologies to run on the site.
+
+        // QS globals
+        window.qs.consent.ready = true;
+    }
+
+    window.evidon.consentDeclinedCallback = function () {
+        // this is executed if the user explicitly declines giving consent by
+        // using a Decline button
+
+        // QS globals
+        window.qs.consent.ready = true; 
+    }
+})(704);
+    </script>
+    <!-- END Evidon -->
+
+    <meta name="DCSext.tax" content="product development programming languages java,audience purchase stage awareness,audience purchase stage implementation,product development platform framework java">
+    <meta name="DCSext.qse_b2b_tax" content="product development programming languages java,audience purchase stage awareness,audience purchase stage implementation,product development platform framework java">
+
+    <!-- BEGIN Krux -->
+    <script type="text/javascript">
+        window.qs.krux.dn=gDFPC('dn'),window.qs.krux.jf=gDFPC('jf'),window.qs.krux.dr=gDFPC('dr'),window.qs.krux.ir=gDFPC('ir'),window.qs.krux.noer=gDFPC('noer');
+    </script>
+    <script class="kxint" type="text/javascript">
+        console.log('QS: Krux Interchange Tag');
+        window.Krux||((Krux=function(){Krux.q.push(arguments);}).q=[]);(function(){function retrieve(n){var k='kx'+''+n,ls=(function(){try{return window.localStorage;}catch(e){return null;}})();if(ls){return ls[k]||'';}else if(navigator.cookieEnabled){var m=document.cookie.match(k+'=([^;]*)');return (m&&unescape(m[1]))||'';}else{return '';}}Krux.user=retrieve('user');Krux.segments=retrieve('segs')?retrieve('segs').split(','):[];})();
+    </script>
+    <script class="kxct" data-id="JdOfGRZW" data-timing="async" data-version="3.0" type="text/javascript">
+        console.log('QS: Krux Control Tag');
+        window.Krux||((Krux=function(){Krux.q.push(arguments)}).q=[]);(function(){var k=document.createElement('script');k.type='text/javascript';k.async=true;k.src=(location.protocol==='https:'?'https:':'http:')+'//cdn.krxd.net/controltag/JdOfGRZW.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(k,s);}());
+    </script>
+    <script type="text/javascript">
+        console.log('QS: Krux Data Layer');
+        var kruxDataLayer={"page":{"domain":"www.developer.com","section":"java","category":"java","keywords":"Java,API,concurrent collection,Java Collection API,threads,scalability,low risk,java.util.concurrent","url_path_1":"https://www.developer.com/java/data/an-introduction-to-concurrent-collection-apis-in-java.html","env":"prod"},"user":{"dn":'',"jf":'',"dr":'',"ir":'',"noer":''}};if(typeof window.qs!='undefined'&&window.qs.consent.service.krux.dc&&window.qs.consent.service.krux.al&&window.qs.consent.service.krux.tg&&window.qs.consent.service.krux.cd){if(typeof window.qs.krux.dn!='undefined'&&window.qs.krux.dn!='null'){kruxDataLayer.user.dn=window.qs.krux.dn;}if(typeof window.qs.krux.jf!='undefined'&&window.qs.krux.jf!='null'){kruxDataLayer.user.jf=window.qs.krux.jf;}if(typeof window.qs.krux.dr!='undefined'&&window.qs.krux.dr!='null'){kruxDataLayer.user.dr=window.qs.krux.dr;}if(typeof window.qs.krux.ir!='undefined'&&window.qs.krux.ir!='null'){kruxDataLayer.user.ir=window.qs.krux.ir;}if(typeof window.qs.krux.noer!='undefined'&&window.qs.krux.noer!='null'){kruxDataLayer.user.noer=window.qs.krux.noer;}}    </script>
+    <script type="text/javascript">
+        console.log('QS: Krux Consent Tag');
+        Krux('consent:set',{dc:window.qs.consent.service.krux.dc,al:window.qs.consent.service.krux.al,tg:window.qs.consent.service.krux.tg,cd:window.qs.consent.service.krux.cd,sh:window.qs.consent.service.krux.sh,re:window.qs.consent.service.krux.re},function(errors,body){if(errors){console.error('QS: SF/DMP Errors :: '+errors);}else{console.log('QS: Successfully set SF/DMP consent flags');}});
+    </script>
+    <!-- END Krux -->
+
+    <!-- BEGIN ML -->
+    <script type="text/javascript">
+        console.log('QS: ML Tag');
+        if (typeof window.qs != 'undefined' && window.qs.consent.service.ml.dc) {
+            var mlCLID="50420";if(typeof mlCLID!='undefined'){var mlEml=gDFPC('eml');(function(f,i,c){var a=decodeURIComponent,e="",l="",o="||",g=";;",h="split",b="length",j="indexOf",k=0,n="localStorage",m="_ccmdt";f[c]=f[c]||{};function d(q){var p;if(f[n]){return f[n][q]||""}else{p=i.cookie.match(q+"=([^;]*)");return(p&&p[1])||""}}f[c].us={};e=a(d(m))[h](o);k=e[b];if(k>0){while(k--){l=e[k][h]("=");if(l[b]>1){if(l[1][j](g)>-1){f[c].us[l[0]]=l[1][h](g);f[c].us[l[0]].pop()}else{f[c].us[l[0]]=l[1]}}}}})(window,document,"_ml");(function(){_ml=window._ml||{};_ml.eid='50027';_ml.clid=mlCLID;if(typeof mlEml!='undefined'){_ml.em=mlEml;}else{_ml.em='';}_ml.ht='shex';_ml.fp=mlWTFP;_ml.redirect=(location.protocol==='https:'?'https:':'http:')+'//beacon.krxd.net/usermatch.gif?partner=madisonlogic&partner_uid=[PersonID]';_ml.informer={enable:true};var s=document.getElementsByTagName('script')[0],cd=new Date(),mltag=document.createElement('script');mltag.type='text/javascript';mltag.async=true;mltag.src=(location.protocol==='https:'?'https:':'http:')+'//ml314.com/tag.aspx?'+cd.getDate()+cd.getMonth()+cd.getFullYear();s.parentNode.insertBefore(mltag,s);})();}
+        }
+    </script>
+    <!-- END ML -->
+
+
+    <!-- BEGIN GA -->
+    <script type="text/javascript">
+        console.log('QS: GA Tag');
+        var gaSID="UA-48212700-1";(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[  0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', gaSID, 'auto');ga('set', 'anonymizeIp', true);ga('send', 'pageview');
+    </script>
+    <!-- END GA -->
+
+            <!-- BEGIN DFP Visibility -->
+        <script type="text/javascript">
+            console.log('QS: DFP Visibility code');
+            googletag.cmd.push(function() {
+googletag.pubads().setTargeting('kw',['Java','API','concurrent collection','Java Collection API','threads','scalability','low risk','java.util.concurrent']);
+googletag.pubads().setTargeting('tax',['product development programming languages java','audience purchase stage awareness','audience purchase stage implementation','product development platform framework java']);
+googletag.pubads().setTargeting('path',['java','data','an-introduction-to-concurrent-collection-apis-in-java.html']);
+googletag.pubads().setTargeting('articlekey','209488310');
+googletag.pubads().setTargeting('pagetype','other');
+googletag.pubads().setTargeting('securesite',''+qsDFPSec+'');
+googletag.pubads().setTargeting('url',['https://www.developer.com/java/data/an-introduction-to-concurrent-collection-apis-in-java.html','http://www.developer.com/java/data/an-introduction-to-concurrent-collection-apis-in-java.html']);
+if(mbw<641){googletag.pubads().setTargeting('pfm','mob');}else{googletag.pubads().setTargeting('pfm','des');}
+googletag.pubads().setTargeting('env','prod');
+googletag.pubads().setTargeting('wtdlk',''+myWTDLK+'');
+if(typeof _ml!='undefined'&&_ml.us){if(typeof window.qs!='undefined'&&window.qs.consent.service.ml.dc){if(_ml.us.tp&&_ml.us.tp.length>0){googletag.pubads().setTargeting('mlt',''+cKVs(_ml.us.tp)+'');}if(_ml.us.cr&&_ml.us.cr.length>0){googletag.pubads().setTargeting('mlcr',''+cKVs(_ml.us.cr)+'');}if(_ml.us.cs&&_ml.us.cs.length>0){googletag.pubads().setTargeting('mlcs',''+cKVs(_ml.us.cs)+'');}if(_ml.us.dm&&_ml.us.dm.length>0){googletag.pubads().setTargeting('mldm',''+cKVs(_ml.us.dm)+'');}if(_ml.us.fa&&_ml.us.fa.length>0){googletag.pubads().setTargeting('mlfa',''+cKVs(_ml.us.fa)+'');}if(_ml.us.ind&&_ml.us.ind.length>0){googletag.pubads().setTargeting('mlind',''+cKVs(_ml.us.ind)+'');}if(_ml.us.pc&&_ml.us.pc.length>0){googletag.pubads().setTargeting('mlpc',''+cKVs(_ml.us.pc)+'');}if(_ml.us.pg&&_ml.us.pg.length>0){googletag.pubads().setTargeting('mlpg',''+cKVs(_ml.us.pg)+'');}}}
+if(typeof window.qs!='undefined'&&window.qs.consent.service.krux.dc&&window.qs.consent.service.krux.al&&window.qs.consent.service.krux.tg&&window.qs.consent.service.krux.cd){if(typeof Krux!='undefined'&&Krux.segments&&Krux.user){googletag.pubads().setTargeting('ksg',Krux.segments);googletag.pubads().setTargeting('kuid',Krux.user);}if(window.qs.krux.dn!=''&&window.qs.krux.dn!='null'){googletag.pubads().setTargeting('dn',''+window.qs.krux.dn+'');}if(window.qs.krux.jf!=''&&window.qs.krux.jf!='null'){googletag.pubads().setTargeting('jf',''+window.qs.krux.jf+'');}if(window.qs.krux.dr!=''&&window.qs.krux.dr!='null'){googletag.pubads().setTargeting('dr',''+window.qs.krux.dr+'');}if(window.qs.krux.ir!=''&&window.qs.krux.ir!='null'){googletag.pubads().setTargeting('ir',''+window.qs.krux.ir+'');}if(window.qs.krux.noer!=''&&window.qs.krux.noer!='null'){googletag.pubads().setTargeting('noer',''+window.qs.krux.noer+'');}}
+window.qs.dfp.tags.imu1={id:'imu-1',refreshable:true,refresh_delay:4,pending_refresh:false,refreshed:false,max_refresh:10,refresh_counter:0,viewable:false,in_view:undefined,visibility:0,view_percentage_threshold:80};window.qs.dfp.tags.imu1.slot=googletag.defineSlot('/5055/b2b/dev/developer/imu',[[300,250],[300,600],[300,1050]],'imu-1').addService(googletag.pubads()).setTargeting('pos','top').setTargeting('refreshable','true').setTargeting('adrefreshed','false');
+window.qs.dfp.tags.imu2={id:'imu-2',refreshable:true,refresh_delay:4,pending_refresh:false,refreshed:false,max_refresh:10,refresh_counter:0,viewable:false,in_view:undefined,visibility:0,view_percentage_threshold:80};window.qs.dfp.tags.imu2.slot=googletag.defineSlot('/5055/b2b/dev/developer/imu',[[300,250],[300,600]],'imu-2').addService(googletag.pubads()).setTargeting('pos','mid').setTargeting('refreshable','true').setTargeting('adrefreshed','false');
+window.qs.dfp.tags.lb1={id:'lb-1',refreshable:true,refresh_delay:4,pending_refresh:false,refreshed:false,max_refresh:10,refresh_counter:0,viewable:false,in_view:undefined,visibility:0,view_percentage_threshold:80};window.qs.dfp.tags.lb1.slot=googletag.defineSlot('/5055/b2b/dev/developer/lb',[[640,480],[728,90]],'lb-1').addService(googletag.pubads()).setTargeting('pos','top').setTargeting('refreshable','true').setTargeting('adrefreshed','false');
+window.qs.dfp.tags.lb2={id:'lb-2',refreshable:true,refresh_delay:4,pending_refresh:false,refreshed:false,max_refresh:10,refresh_counter:0,viewable:false,in_view:undefined,visibility:0,view_percentage_threshold:80};window.qs.dfp.tags.lb2.slot=googletag.defineSlot('/5055/b2b/dev/developer/lb',[728,90],'lb-2').addService(googletag.pubads()).setTargeting('pos','low').setTargeting('refreshable','true').setTargeting('adrefreshed','false');
+googletag.pubads().enableSingleRequest();
+googletag.pubads().collapseEmptyDivs();
+googletag.disablePublisherConsole();
+if(typeof window.qs!='undefined'&&!window.qs.consent.service.dfp.dc){googletag.pubads().setRequestNonPersonalizedAds(1);}
+
+googletag.pubads().addEventListener('slotRenderEnded', function(event) {
+    if (!event.isEmpty) {
+        var slot_id = event.slot.getSlotElementId();
+        var slot_id_simple = slot_id.replace(/-/g, '');
+
+        window.qs.dfp.tags[slot_id_simple].size = {0:event.size[0],1:event.size[1]};
+
+        if (slot_id === 'lb-1') {
+            e = slot_id + '-notice';
+            if (document.getElementById(e)) {
+                document.getElementById(e).style.padding="0 0 5px 0";
+                document.getElementById(e).style.height="auto";
+                document.getElementById(e).style.visibility="visible";
+            }
+
+            e = slot_id + '-close';
+            if (document.getElementById(e)) {
+                if ((event.size[0] === 640 && event.size[1] === 480) || (event.size[0] === 970 && event.size[1] === 250)) {
+                    document.getElementById(e).style.padding="5px 0 0 0";
+                    document.getElementById(e).style.height="auto";
+                    document.getElementById(e).style.visibility="visible";
+                } else {
+                    document.getElementById(e).style.padding="0";
+                    document.getElementById(e).style.height="auto";
+                    document.getElementById(e).style.visibility="hidden";
+                }
+            }
+
+            if (event.size[0] === 640 && event.size[1] === 480) {
+                window.qs.dfp.tags[slot_id_simple].refreshable = false;
+
+                // Set QS large ad frequency cap cookie
+                // sDFPC('_qslafc', 1, 3, 'hr');
+            }
+        }
+
+        if (event.slot.getSlotElementId() === 'm_lb-1') {
+            e = event.slot.getSlotElementId() + '-notice';
+            if (document.getElementById(e)) {
+                document.getElementById(e).style.padding="0 0 5px 0";
+                document.getElementById(e).style.height="auto";
+                document.getElementById(e).style.visibility="visible";
+            }
+        }
+    }
+});
+
+googletag.pubads().addEventListener('impressionViewable', function(event) {
+    var slot_id = event.slot.getSlotElementId();
+    var slot_id_simple = slot_id.replace(/-/g, '');
+
+    window.qs.dfp.tags[slot_id_simple].viewable = true;
+});
+
+googletag.pubads().addEventListener('slotVisibilityChanged', function(event) {
+    if (!event.isEmpty) {
+        var slot = event.slot;
+        var slot_id = event.slot.getSlotElementId();
+        var slot_id_simple = slot_id.replace(/-/g, '');
+        var view_percentage = event.inViewPercentage;
+
+        if (window.qs.dfp.tags[slot_id_simple].viewable && window.qs.dfp.tags[slot_id_simple].refreshable && window.qs.dfp.tags[slot_id_simple].refresh_counter < window.qs.dfp.tags[slot_id_simple].max_refresh) {
+            if (view_percentage >= window.qs.dfp.tags[slot_id_simple].view_percentage_threshold && window.qs.dfp.tags[slot_id_simple].visibility < window.qs.dfp.tags[slot_id_simple].view_percentage_threshold && window.qs.dfp.tags[slot_id_simple].in_view == false) {
+                window.qs.dfp.tags[slot_id_simple].in_view = true;
+                window.qs.dfp.tags[slot_id_simple].visibility = view_percentage;
+
+                if (!window.qs.dfp.tags[slot_id_simple].pending_refresh) {
+                    window.qs.dfp.tags[slot_id_simple].pending_refresh = true;
+
+                    setTimeout(function() {
+                        if (window.qs.dfp.tags[slot_id_simple].in_view) {
+                            slot.setTargeting('adrefreshed', 'true');
+                            googletag.pubads().refresh([slot], {changeCorrelator: false});
+
+                            window.qs.dfp.tags[slot_id_simple].refreshed = true;
+                            window.qs.dfp.tags[slot_id_simple].refresh_counter++;
+                        }
+
+                        window.qs.dfp.tags[slot_id_simple].pending_refresh = false;
+                    }, window.qs.dfp.tags[slot_id_simple].refresh_delay * 1000);
+                }
+            }
+
+            if ((view_percentage < window.qs.dfp.tags[slot_id_simple].view_percentage_threshold && window.qs.dfp.tags[slot_id_simple].in_view) || (view_percentage == 0 && typeof window.qs.dfp.tags[slot_id_simple].in_view != undefined)) {
+                window.qs.dfp.tags[slot_id_simple].in_view = false;
+                window.qs.dfp.tags[slot_id_simple].visibility = view_percentage;
+            }
+        }
+    }
+});
+googletag.enableServices();
+});
+        </script>
+        <!-- END DFP Visibility -->
+    
+<script type="text/javascript">
+    var waitForConsent = timeoutms => new Promise((resolve, reject)=>{
+        var checkConsent = () => {
+            if (timeoutms && (timeoutms % 1000) == 0)
+                console.log('QS: Checking for consent data');
+            if (typeof window.qs != 'undefined' && window.qs.consent.ready && typeof window.evidon != 'undefined' && window.evidon.notice) {
+                // DFP
+                window.qs.consent.service.dfp.dc = window.evidon.notice.consentIsGiven;
+                // Salseforce/Krux
+                window.qs.consent.service.krux.dc = window.evidon.notice.consentIsGiven;
+                window.qs.consent.service.krux.al = window.evidon.notice.consentIsGiven;
+                window.qs.consent.service.krux.tg = window.evidon.notice.consentIsGiven;
+                window.qs.consent.service.krux.cd = window.evidon.notice.consentIsGiven;
+                window.qs.consent.service.krux.sh = window.evidon.notice.consentIsGiven;
+                window.qs.consent.service.krux.re = window.evidon.notice.consentIsGiven;
+                // ML
+                window.qs.consent.service.ml.dc = window.evidon.notice.consentIsGiven;
+
+                // Set QS consent cookie
+                sDFPC('_qscon', JSON.stringify(window.qs.consent.service), 13, 'mo');
+
+                resolve("QS: Consent data is ready");
+            } else if ((timeoutms -= 100) < 0) {
+                // DFP
+                window.qs.consent.service.dfp.dc = false;
+                // Salseforce/Krux
+                window.qs.consent.service.krux.dc = false;
+                window.qs.consent.service.krux.al = false;
+                window.qs.consent.service.krux.tg = false;
+                window.qs.consent.service.krux.cd = false;
+                window.qs.consent.service.krux.sh = false;
+                window.qs.consent.service.krux.re = false;
+                // ML
+                window.qs.consent.service.ml.dc = false;
+
+                // Set QS consent cookie
+                sDFPC('_qscon', JSON.stringify(window.qs.consent.service), 13, 'mo');
+
+                reject("QS: Consent data is not ready - moving on");
+            } else
+                setTimeout(checkConsent, 100);
+        }
+        setTimeout(checkConsent, 100);
+    });
+
+    (async ()=>{
+        waitForConsent(5000)
+            .then(function (msg) {
+                console.log(msg);
+            })
+            .catch(function (err) {
+                console.log(err);
+            })
+    })();
+</script>
+
+        <link href="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/css" rel="stylesheet">
+		<link rel="icon" type="image/x-icon" href="https://www.developer.com/favicon.ico">
+
+	<meta name="application-name" content="Developer.com">
+	<meta name="msapplication-tooltip" content="The Flagship of The Developer.com Network">
+	<meta name="msapplication-starturl" content="https://www.developer.com">
+	            <link type="text/css" rel="stylesheet" name="min-css" media="screen" href="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/saved_resource">
+	<script type="text/javascript" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/jquery.min.js"></script>
+        <script src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/saved_resource(1)"></script>
+
+	<script type="text/javascript">SyntaxHighlighter.all();</script>
+
+	<style rel="stylesheet" type="text/css">
+		h2, h3, h4 { font-size: 1.2em; }
+	</style>
+    
+<script src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/api.js"></script>
+ <script type="text/javascript" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/globalNewsletter.js"></script>
+<script type="text/javascript" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/monetization_widget.js"></script> 
+<script type="text/javascript">
+
+            /* Replace #your_subdomain# by the subdomain of a Site in your OneAll account */
+            var oneall_subdomain = 'developercom';
+
+            /* The library is loaded asynchronously */
+            var oa = document.createElement('script');
+            oa.type = 'text/javascript'; oa.async = true;
+            oa.src = '//' + oneall_subdomain + '.api.oneall.com/socialize/library.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(oa, s);
+        </script>
+
+	<meta name="cache-creation-time" content="2020-02-07 14:08:21.000 +0000">
+
+    <script>
+    window.webtrendsAsyncInit=function(){
+        var dcs=new Webtrends.dcs().init({
+            dcsid:"dcs38irdn10000g0vc4171yva_9y7z",
+            domain:"www.qsstats.com",
+            timezone:-8,
+            i18n:true,
+            onsitedoms:"developer.com",
+            fpcdom:".developer.com",
+            plugins:{
+                //hm:{src:"//s.webtrends.com/js/webtrends.hm.js"}
+            }
+            }).track();
+    };
+    (function(){
+        var s=document.createElement("script"); s.async=true; s.src="/imageserver/common/v10/webtrends.min.js";    
+        var s2=document.getElementsByTagName("script")[0]; s2.parentNode.insertBefore(s,s2);
+    }());
+    </script>
+    <noscript><img alt="dcsimg" id="dcsimg" width="1" height="1" src="//www.qsstats.com/dcs38irdn10000g0vc4171yva_9y7z/njs.gif?dcsuri=/index.php/java/data/an-introduction-to-concurrent-collection-apis-in-java.html&amp;WT.js=No&amp;WT.tv=10.4.1&amp;dcssip=www.developer.com&amp;WT.qs_dlk=XjA2C9tktXIWDjUnX5ZoogAAAAs&"/></noscript>
+<link rel="preload" href="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/f.txt" as="script"><script type="text/javascript" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/f.txt"></script><link rel="preload" href="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/f(1).txt" as="script"><script type="text/javascript" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/f(1).txt"></script><script src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/pubads_impl_2020013001.js" async=""></script><script type="text/javascript" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/queue.js"></script><script charset="utf-8" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/button.a657e8de41cd5e7b38cde1f36c9ab9c2.js"></script><link rel="prefetch" href="https://tpc.googlesyndication.com/safeframe/1-0-37/html/container.html"><script type="text/javascript" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/library(1).js"></script><link rel="stylesheet" type="text/css" href="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/base.css"><link rel="stylesheet" type="text/css" href="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/btns_lfr.css"><script type="text/javascript" async="" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/munchkin(1).js"></script><script type="text/javascript" async="" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/sync-container.js"></script></head>
+<body>
+<div id="EntNetPlanet" class="wrapBody">
+
+<div id="header" class="dimMain">
+    	<div id="showAdvertiserDisclosure"><a href="https://www.developer.com/java/data/an-introduction-to-concurrent-collection-apis-in-java.html#footerDisclaimerText">Advertiser Disclosure</a></div>
+    <div class="logo">
+        <a href="https://www.developer.com/"><img src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/developer_oldcolor.gif" width="298px" height="60px" border="0" alt=""></a></div>
+    <div class="searchForm">
+        <form action="https://www.developer.com/search/result" id="cse-search-box">
+            <div style="width:298px;">
+                <input type="hidden" name="cx" value="partner-pub-8768004398756183:5202995898">
+                <input type="hidden" name="cof" value="FORID:10">
+                <input type="hidden" name="ie" value="UTF-8">
+                <input type="text" name="q" size="55" class="inputBox" placeholder="Custom Search" style="background: url(&quot;https://www.google.com/cse/static/images/1x/googlelogo_lightgrey_46x16dp.png&quot;) left center no-repeat rgb(255, 255, 255); text-indent: 48px;">
+                <button id="btnSearch" type="submit" name="sa" style="cursor:pointer; margin-left: 5px; vertical-align:middle; margin-bottom:18px; "></button>
+            </div>
+        <input name="siteurl" type="hidden" value="www.developer.com/java/data/an-introduction-to-concurrent-collection-apis-in-java.html"><input name="ref" type="hidden" value="www.google.com/"><input name="ss" type="hidden" value=""></form>
+        <script type="text/javascript" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/f(2).txt">
+</script>
+    </div>
+</div>
+
+<div id="headerBottomNav" class="dimMain">
+    <div class="deep_blue">
+        <ul class="myMenu">
+                            <!--<li><a href="/" class="first">Developer</a> </li>-->
+                <li><a href="https://www.developer.com/java/" class="first">Java</a></li>
+                        <li><a href="https://www.developer.com/net/" class="first">Microsoft &amp; .NET</a></li>
+            <li id="wsHead" onmouseover="setVisibility(&#39;ws&#39;, &#39;inline&#39;);" onmouseout="setVisibility(&#39;ws&#39;,&#39;none&#39;);">
+                <a href="https://www.developer.com/ws/" class="sec">Mobile</a></li>
+            <li><a href="https://www.developer.com/ws/android/" class="sec">Android</a></li>
+            <li><a href="https://www.developer.com/open/" class="first">Open Source</a></li>
+            <li><a href="https://www.developer.com/cloud/" class="sec">Cloud</a></li>
+            <li><a href="https://www.developer.com/db/" class="first">Database</a></li>
+            <li><a href="https://www.developer.com/design/" class="first">Architecture</a></li>
+            <li><a href="https://www.developer.com/lang/" class="first">Other</a>
+                <ul>
+                    <li><a href="https://www.developer.com/mgmt/">Project Management</a></li>
+                    <li><a href="https://www.developer.com/lang/php/">PHP</a></li>
+                    <li><a href="https://www.developer.com/lang/perl/">Perl</a></li>
+                    <li><a href="https://www.developer.com/lang/rubyrails">Ruby</a></li>
+                    <li><a href="https://www.developer.com/services/">Services</a></li>
+                    <li><a href="https://www.developer.com/lang/">Other Languages</a></li>
+                    <li><a href="https://www.developer.com/white_papers/">White papers</a></li>
+					<li><a href="https://www.developer.com/research">Research Center</a></li>
+                </ul>
+            </li>
+            <li><a href="https://www.developer.com/slideshows/" class="sec"><span style="color:red;">NEW:</span> Slideshows</a></li>
+            <li><a rel="nofollow" href="https://www.developer.com/SponsoredHub.php?prx_adpz=1387" class="sec"> Sponsored</a></li>
+        </ul>
+        <div id="social_icon">
+            <ul>
+                <li>
+                    <a class="icons social-icon-sprite sprite-social-icon-twitter" href="https://twitter.com/DeveloperCom" target="_blank" title="Developer Twitter"></a>
+                </li>
+                <li>
+                    <a class="icons social-icon-sprite sprite-social-icon-rss" href="https://www.developer.com/developer/dev-25.xml" title="rss feed"></a>
+                </li>
+                <li>
+                    <a class="icons social-icon-sprite sprite-social-icon-devreader" href="http://www.devreader.com/" target="_blank"></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div style="float: left; width: 100%;">
+    				<div style="float: left;">
+				<div id="date_holder" class="clearfix">
+					<div class="date">February 7, 2020</div>
+					<div class="topic">
+						<span class="title">Hot Topics:</span>
+						<div id="hot_topics"><a href="https://www.developer.com/java/data/an-introduction-to-concurrent-collection-apis-in-java.html#" class="prev nav_disable">prev</a>
+							<div class="topics_list">
+								<div class="gr_l" style="display: none;"></div>
+								<div class="list">
+									<ul style="width: 405px;">
+																														<li><a href="https://www.developer.com/ws/android" class="blue_topic">Android </a></li>
+																														<li><a href="https://www.developer.com/java/" class="blue_topic">Java</a></li>
+																														<li><a href="https://www.developer.com/lang/php" class="blue_topic">PHP</a></li>
+																														<li><a href="https://www.developer.com/net/" class="blue_topic">Microsoft &amp; .NET</a></li>
+																														<li><a href="https://www.developer.com/cloud/" class="blue_topic">Cloud</a></li>
+																														<li><a href="https://www.developer.com/open/" class="blue_topic">Open Source</a></li>
+																														<li><a href="https://www.developer.com/db/" class="blue_topic">Database</a></li>
+																			</ul>
+								</div>
+								<div class="gr_r" style="display: block;"></div>
+							</div>
+						<a href="https://www.developer.com/java/data/an-introduction-to-concurrent-collection-apis-in-java.html#" class="next">next</a></div>
+						<script type="text/javascript">
+							initHotTopics(document.getElementById("hot_topics"));
+						
+</script>
+					</div>
+				</div>
+				</div>
+</div>
+	<div class="vspace"></div>
+	<div class="adsBox ads5">
+	<!-- QS-AD: 'lb' start -->
+<script language="JavaScript">
+	var t=displayDFPTag("lb");
+	document.write(t);
+
+</script><div id="lb-1-outer" style="text-align:center;margin: 0 auto;">
+    <div id="lb-1-notice" style="text-align:center;margin:0 auto;height:0;visibility:hidden;font-family:&#39;Helvetica Neue 55 Roman&#39;,Helvetica,Arial,san-serif;color:#666666;font-size:10px;font-weight:normal;">Advertisement</div>
+<div id="lb-1">
+    <script type="text/javascript">
+        googletag.cmd.push(function() {
+            googletag.display('lb-1');
+        });
+    </script>
+<div id="google_ads_iframe_/5055/b2b/dev/developer/lb_0__container__" style="border: 0pt none; width: 640px; height: 480px;"></div></div>
+    <div id="lb-1-close" style="text-align:center;margin:0 auto;height:0;visibility:hidden;"><a href="javascript:hideQSDiv(&#39;lb-1-outer&#39;)" style="font-family:&#39;Helvetica Neue 55 Roman&#39;,Helvetica,Arial,san-serif;color:#666666;font-size:12px;font-weight:normal;text-decoration:none;">Close X</a></div>
+</div>
+
+<!-- QS-AD: 'lb' end -->	</div>
+	<div id="content">
+		<div class="col clearfix" style="width: 955px">
+			<div class="colLeft dimMainLeft">
+								<div id="breadcumb" class="clearfix">
+					<div class="colLeft">
+														<div class="bread_left"><a href="https://www.developer.com/">Developer.com</a></div>
+														<div class="bread_left"><a href="https://www.developer.com/java/">Java</a></div>
+													<div class="bread_mid"><a href="https://www.developer.com/java/data/">Data &amp; Java</a></div>
+												<div class="bread_right"></div>
+					</div>
+					<div class="colRight">
+												<a href="https://www.developer.com/java/data/archives" class="more">Read More in Data &amp; Java »</a>
+											</div>
+				</div>
+				<div class="vspace"></div>
+				<div class="clearfix">
+					<!-- QS-AD: 'ciu' start -->
+<script language="JavaScript">
+	var t=displayDFPTag("ciu");
+	document.write(t);
+
+</script><!-- QS-DFP: Unknown tag 'ciu' requested -->
+<!-- QS-AD: 'ciu' end -->					<div class="colLeft">
+					</div>
+					<div class="colRight">
+					</div>
+				</div>
+				<div class="article">
+					<h1>An Introduction to Concurrent Collection APIs in Java</h1>
+					
+<div data-force-refresh="true" class="oas_box oas_box_btns_lfr" data-title="An Introduction to Concurrent Collection APIs in Java - Developer.com" data-url="https://www.developer.com/java/data/an-introduction-to-concurrent-collection-apis-in-java.html">
+ <span class="oas_btn oas_btn_facebook oas_btn_service" title="Share On Facebook"><span class="oas_btn_brd"><span class="oas_btn_ico oas_icons_white"></span></span></span>
+ <span class="oas_btn oas_btn_twitter oas_btn_service" title="Share On Twitter"><span class="oas_btn_brd"><span class="oas_btn_ico oas_icons_white"></span></span></span>
+ <span class="oas_btn oas_btn_linkedin oas_btn_service" title="Share On LinkedIn"><span class="oas_btn_brd"><span class="oas_btn_ico oas_icons_white"></span></span></span>
+ <span class="oas_btn oas_btn_email oas_btn_service" title="Share On Email"><span class="oas_btn_brd"><span class="oas_btn_ico oas_icons_white"></span></span></span>
+</div>
+
+					
+								<div class="vspace"></div>
+								<div id="whitepaper-widget"><p><strong>Download the authoritative guide: <a href="https://o1.qnsr.com/cgi/r?;n=203;c=1668845;s=9481;x=7936;f=201912051320320;u=j;z=TIMESTAMP;k=https://assetform.developer.com/controller?asset=248886010&amp;srvid=96310&amp;vkey=4190310&amp;io=11111&amp;qid=000&amp;qset=CONTACTFORM_HQB&amp;formHQB=y&amp;domain=www.developer.com" target="_blank" rel="nofollow">Cloud Computing: Using the Cloud for Competitive Advantage</a></strong></p></div>
+								<!-- <p>
+                                <strong>
+                                                                        <a href="" target="_blank" rel="nofollow"></a>
+                                </strong>
+								</p> -->
+                            
+					  
+					<div class="author colLeft">
+						<ul class="noBullets">
+							<li></li>
+							<!-- begin authors -->
+							<li>
+							By <a href="https://www.developer.com/author/Manoj-Debnath-4195710.htm">Manoj Debnath</a>							</li>
+							<!-- end authors -->
+							<!-- begin author image -->
+							<!-- at this point we don't support author image in CE -->
+							<!-- end author image -->
+							<!-- being bio -->
+														<script>
+								var newwindow;
+								function openPopup() {
+									newwindow=window.open("",'Author','width=480,height=250,resizable=no,scrollbars=yes,toolbar=no,status=no');
+                                                                        newwindow.document.write('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">');
+                                                                        newwindow.document.write('<html xmlns="http://www.w3.org/1999/xhtml">');
+                                                                        newwindow.document.write('<head>');
+                                                                        newwindow.document.write('<title>Developer.com</title>');
+                                                                        newwindow.document.write('<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />');
+                                                                        newwindow.document.write('<link href="/stylesheets/author_bio.css" rel="stylesheet" type="text/css" />');
+                                                                        newwindow.document.write('
+	<meta name="cache-creation-time" content="2020-02-07 14:08:21.000 +0000" /></head>');
+                                                                        newwindow.document.write('<body>');
+                                                                        newwindow.document.write('<div id="EntNetPlanet" class="wrapBody">');
+                                                                        newwindow.document.write('<div id="header" class="dimMain">');
+                                                                        newwindow.document.write('<div class="logo"><a href="/"><img src="/images0/developer_oldcolor.gif" alt="Developer.com" border="0"></a></div>');
+                                                                        newwindow.document.write('</div>');
+                                                                        newwindow.document.write('<div id="content">');
+                                                                        newwindow.document.write('<div class="vspace"></div>');
+                                                                        newwindow.document.write('<div class="col clearfix">');
+                                                                        newwindow.document.write('<div class="author_bio">');
+                                                                        newwindow.document.write('<div class="author colLeft">');
+                                                                        newwindow.document.write('<ul class="noBullets">');
+                                                                        newwindow.document.write('<li>Manoj Debnath</li>');
+                                                                        newwindow.document.write('</ul>');
+                                                                        newwindow.document.write('</div>');
+                                                                        newwindow.document.write('<p>manosolireap@outlook.com </p>');
+                                                                        newwindow.document.write('<div align="right"><a onclick="window.close();" href="javascript:void(0);">Close this window</a></div>');
+                                                                        newwindow.document.write('</div>');
+                                                                        newwindow.document.write('</div>');
+                                                                        newwindow.document.write('</div>');
+                                                                        newwindow.document.write('</div>');
+                                                                        newwindow.document.write('</bo'+'dy>');
+                                                                        newwindow.document.write('</ht'+'ml>');
+								        if (window.focus) {newwindow.focus()}
+								}
+							
+</script>
+
+														<!-- end bio -->
+																					<li><a href="https://www.developer.com/feedback/java/data/an-introduction-to-concurrent-collection-apis-in-java.html">Send Email »</a></li>
+																					<!-- begin moreURL -->
+														<li><a href="https://www.developer.com/author/Manoj-Debnath-4195710.htm">More Articles  »</a></li>
+														<!-- end moreURL -->
+						</ul>
+						<div class="retweet">
+    <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button" style="position: static; visibility: visible; width: 61px; height: 20px;" title="Twitter Tweet Button" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/tweet_button.7303c29a8108bca4ac5c9ef008ed8164.en.html"></iframe>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+</script>
+</div>
+					</div>
+					
+					<p>The concurrent collection APIs, apart from the Java Collection API, are a set of collections APIs that are designed and optimized specifically for synchronized multithreaded access. They are grouped under the <em>java.util.concurrent</em> package. This article provides an overview and introduces its use by using an appropriate example scenario.</p>
+<h2>An Overview</h2>
+
+<p><a href="https://www.developer.com/java/" target="new">Java</a> has supported multithreading and concurrency from its inception. The threads are created by either implementing the <em>Runnable</em> interface or extending the <em>Thread</em> class. The synchronization is achieved by the keyword called <em>synchronization</em>. Java also provides the mechanism for communication between the threads. This is achieved with the help of the <em>notify()</em> and <em>wait()</em> methods, which are part of the <em>Object</em> class. Although these innovative multithreading techniques are part of some of the excellent features of Java, they fall somewhat short in providing the need of a programmer who requires intensive multithreading capability out of the box. This is because a concurrent program needs more than just being able to create threads and do some rudimentary manipulations. It requires many high-level features such as thread pools, execution managers, semaphores, and so forth.</p>
+<h2>Existing Collection Framework</h2>
+<p>Java already has a full-blown collection framework. The collections are very good at what they do and can be used in Java thread applications, as well. Also, there is a keyword, called <em>synchronized</em>, to make them thread safe. Although superficially it may seem they are nice to be used in multithreading, the way the thread safety is achieved is the main bottleneck in its concurrent implementation. Apart from explicit synchronization, they are not designed under the paradigm of concurrent implementation from the beginning. The synchronizing of these collections is achieved by serializing all access to the collection's state. This means that, although we may have some concurrency, due to underlying serialized processing it works on a principle which is actually the opposite. Serialization tolls heavy on the performance, especially when multiple threads compete for the collection-wide lock.</p>
+<h2>New Collection APIs</h2>
+<p>Concurrent collection APIs are an addition to Java from version 5 and are a part of the package called <em>java.util.concurrent</em>. They are an improvement of existing collection APIs and have been designed for concurrent access from multiple threads. For example, <em>ConcurrentHashMap</em> is actually the class we need when we want to use a synchronized hash-based <em>Map</em> implementation. Similarly, if we want a traversal-dominant, thread-safe <em>List</em>, we actually can use the <em>CopyOnWriterArrayList</em> class. The new <em>ConcurrentMap</em> interface provides a number of compound actions under a single method, such as <em>putIfPresent</em>, <em>computeIfPresent</em>, <em>replace</em>, <em>merge</em>, and so on. There are many such classes that are within the new concurrent collection framework. To name a few: <em>ArrayBlockingQueue</em>, <em>ConcurrentLinkedDeque</em>, <em>ConcurrentLinkedQueue</em>, <em>ConcurrentSkipListMap</em>, <em>ConcurrentSkipListSet</em>, <em>CopyOnWriteArraySet</em>, <em>DelayQueue</em>, <em>LinkedBlockingDeque</em>, <em>LinkedBlockingQueue</em>, <em>LinkedTransferQueue</em>, <em>PriorityBlockingQueue</em>, <em>SynchronousQueue</em>, and others.</p>
+<h2>Queues</h2>
+
+<div class="toolbox noBullets colRight">
+	<ul>
+		
+				<li class="email"><span class="article-share-box article-share-box-icon_email"></span><a rel="nofollow" href="https://www.developer.com/e-mail/java/data/an-introduction-to-concurrent-collection-apis-in-java.html">Email Article</a></li>
+		
+				<li class="print"><span class="article-share-box article-share-box-icon_print"></span><a rel="nofollow" href="https://www.developer.com/print/java/data/an-introduction-to-concurrent-collection-apis-in-java.html">Print Article</a></li>
+			
+		<!--<li id="toolBoxShareMenu" class="share">
+			<span class="article-share-box article-share-box-icon_share"></span> <a rel="nofollow" href="#">Share Articles</a><span class="article-share-box article-share-box-arrow_down_red"></span>
+			<div class="shareSubMenu">
+				<span class="top"><span></span></span>
+					<ul>
+						<li><a href="javascript:void(0)" onclick="javascript:window.open('https://digg.com/submit?phase=2&url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title)+'&bodytext=&topic=');"><span class="socialicon socialicon-icon_diggthis"></span> Digg</a></li>
+						<li><a href="javascript:void(0)" onclick="javascript:window.open('http://del.icio.us/post?v=4&noui&jump=close&url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title));"><span class="socialicon socialicon-icon_delicious"></span> del.icio.us</a></li>
+						<li><a href="javascript:void(0)" onclick="javascript:window.open('http://slashdot.org/slashdot-it.pl?op=basic&url='+encodeURIComponent(location.href));"><span class="socialicon socialicon-icon_slashdot"></span> Slashdot</a></li>
+						<li><a href="javascript:void(0)" onclick="javascript:window.open('http://www.dzone.com/links/add.html?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title));"><span class="socialicon socialicon-icon_dzone"></span> DZone</a></li>
+						<li><a href="javascript:void(0)" onclick="javascript:window.open('https://reddit.com/submit?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title));"><span class="socialicon socialicon-icon_reddit"></span> Reddit</a></li>						
+						<li><a href="javascript:void(0)" onclick="javascript:window.open('https://www.facebook.com/sharer.php?u='+encodeURIComponent(location.href));"><span class="socialicon socialicon-icon_facebook"></span> Facebook</a></li>
+						<li><a href="javascript:void(0)" onclick="javascript:window.open('http://friendfeed.com/?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title));"><span class="socialicon socialicon-icon_friendfeed"></span> FriendFeed</a></li>
+						<li><a href="javascript:void(0)" onclick="javascript:window.open('http://www.furl.net/storeIt.jsp?t='+encodeURIComponent(document.title)+'&u='+encodeURIComponent(location.href));"><span class="socialicon socialicon-icon_furl"></span> Furl</a></li>
+
+						<li><a href="javascript:void(0)" onclick="javascript:window.open('http://www.newsvine.com/_wine/save?popoff=1&u='+encodeURIComponent(location.href),'newsvine','toolbar=no,width=590,height=600,resizable=yes,scrollbars=yes');"><span class="socialicon socialicon-icon_seednewsvine"></span> Newsvine</a></li>
+						<li><a href="javascript:void(0)" onclick="javascript:window.open('https://www.google.com/bookmarks/mark?op=edit&bkmk='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title));"><span class="socialicon socialicon-icon_google"></span> Google</a></li>
+						<li><a href="javascript:void(0)" onclick="javascript:window.open('https://www.linkedin.com/shareArticle?mini=true&ro=true&url='+encodeURIComponent(location.href)+'&source='+encodeURIComponent(document.title));"><span class="socialicon socialicon-icon_linkedin"></span> LinkedIn</a></li>
+						<li><a href="javascript:void(0)" onclick="javascript:window.open('http://www.myspace.com/Modules/PostTo/Pages/?u='+encodeURIComponent(location.href)+'&t='+encodeURIComponent(document.title));"><span class="socialicon socialicon-icon_myspace"></span> MySpace</a></li>
+						<li><a href="javascript:void(0)" onclick="javascript:window.open('http://www.technorati.com/faves?add='+encodeURIComponent(location.href));"><span class="socialicon socialicon-icon_technorati"></span> Technorati</a></li>
+						<li><a href="javascript:void(0)" onclick="javascript:window.open('https://twitter.com/home?status='+encodeURIComponent(location.href));"><span class="socialicon socialicon-icon_twitter"></span> Twitter</a></li>
+						<li><a href="javascript:void(0)" onclick="javascript:window.open('http://buzz.yahoo.com/submit?urlsubmission-input='+encodeURIComponent(location.href)+'&submitHeadline='+encodeURIComponent(document.title));"><span class="socialicon socialicon-icon_yahoo"></span> YahooBuzz</a></li>
+
+					</ul>
+				<span class="bottom"><span></span></span>
+			</div>
+		</li>-->		
+	</ul>
+</div>
+		<script type="text/javascript">
+			initArticleMenu(document.getElementById("toolBoxShareMenu"));
+		
+</script>
+
+
+<div id="olal-container" class="articleMiddlePosition_test_B qs-listings" style="margin-bottom: 15px;">
+<script type="text/javascript" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/listings"></script></div>
+<div style="clear:both;"></div>
+
+<p>The collection types, such as <em>Queue</em> and <em>BlockingQueue</em>, may be used to hold an element temporarily, awaiting is retrieval in a FIFO manner for processing. <em>ConcurrentLinkQueue</em>, on the other hand, is a traditional FIFO queue implemented as an unbounded, thread-safe queue based on linked nodes. <em>PriorityBlockingQueue</em> is an unbounded blocking queue which uses same ordering norms as that of non-concurrent <em>PriorityQueue</em> and supplies blocking retrieval operations.</p>
+<h2>Maps</h2>
+<p>In older collection classes when synchronization is applied, it holds locks for the duration of each operation. There are operations, such as the <em>get</em> method of <em>HashMap</em> or <em>contains</em> method of <em>List</em>, which involve intricate computation behind the scene when invoked. For example, to find a specific element in a list, it automatically invokes the <em>equals</em> method. This method requires certain computation to compare each element on the list; it may take a long time to complete the task. This is worse in a hash-based collection. If the elements in the hash maps are unevenly distributed, traversing a long list and calling equals can take a very long time. This is a problem because it may affect the application's overall performance.</p>
+
+<p>Unlike <em>HashMap</em>, <em>ConcurrentHashMap</em> uses a different strategy altogether. Instead of providing a common lock for every synchronized method, it uses a technique called <em>lock stripping</em>. This is a better solution for both concurrency and scalability. Lock stripping uses separate locks for separate buckets. As a result, thread contention is decoupled from the underlying data structure and instead imposed on the bucket. For example, <em>the implementation of ConcurrentHashMap uses an array of 16 locks—each of which guards 1/16 of the hash buckets; bucket N is guarded by lock N mod 16... this reduces the demand for any given lock by approximately a factor of 16.</em> It is due to this technique that <em>ConcurrentHashMap</em> supports at least 16 concurrent writers by default and more can be accommodated on demand.</p>
+<h2>CopyOnWriterArrayList</h2>
+<p>It is a fine alternative to the synchronized <em>List</em> and does not require you to apply a locking mechanism during iteration. The iterators retain a reference to the backing array at the start of the iteration and do not change it. Therefore, it requires a brief synchronization to get the contents of the array. Multiple threads can access the collection without interfering with one another. Even modification from multiple threads do not suffer contention. There is a set counterpart of this array list, called <em>CopyOnWriterSet</em>, which can be used to replace synchronized <em>Set</em> on concurrency need.</p>
+<h2>A Quick Example</h2>
+<p>There are many classes in the concurrent collection. Their use is not that difficult for anyone familiar with the older collection framework. For the sake of completeness, here is an example to provide a glimpse into its uses in Java programming.</p>
+<pre><strong>package</strong> org.mano.example;
+<strong>import</strong> java.util.Random;
+<strong>import</strong> java.util.concurrent.BlockingQueue;
+<strong>import</strong> java.util.concurrent.LinkedBlockingQueue;
+<strong>public class</strong> ProducerConsumerDemo {
+   <strong>static</strong> BlockingQueue&lt;Integer&gt; <em>queue</em> = <strong>new</strong>
+      LinkedBlockingQueue&lt;&gt;(5);
+   <strong>public static void</strong> main(String[] args) <strong>throws</strong>
+         InterruptedException {
+      <strong>int</strong> noOfProducers = 7;
+      <strong>int</strong> noOfConsumers = 9;
+      <strong>for</strong> (<strong>int</strong>i = 0; i &lt; noOfProducers; i++) {
+         <strong>new</strong> Thread(<strong>new</strong> Producer(), <strong>"PRODUCER"</strong>).start();
+      }
+      <strong>for</strong> (<strong>int</strong> i = 0; i &lt; noOfConsumers; i++) {
+         <strong>new</strong> Thread(<strong>new</strong> Consumer(), <strong>"CONSUMER"</strong>).start();
+      }
+      System.<em>exit</em>(0);
+   }
+   <strong>static class</strong> Producer <strong>implements</strong> Runnable {
+      Random <strong>random</strong> = <strong>new</strong> Random();
+      <strong>public void</strong> run() {
+         <strong>try</strong> {
+            <strong>int</strong> num = <strong>random</strong>.nextInt(100);
+            <em>queue</em>.put(num);
+            System.<strong><em>out</em></strong>.println(<strong>"Produced: "</strong> + num
+               + <strong>" Queue size : "</strong>+ <em>queue</em>.size());
+            Thread.<em>sleep</em>(100);
+         } <strong>catch</strong> (InterruptedException ex) {
+            System.<strong><em>out</em></strong>.println(<strong>"Producer is interrupted."</strong>);
+         }
+      }
+   }
+   <strong>static class</strong> Consumer <strong>implements</strong> Runnable {
+      <strong>public void</strong> run() {
+         <strong>try</strong> {
+            System.<strong><em>out</em></strong>.println(<strong>"Consumed: "</strong> + <em>queue</em>.take()
+               + <strong>" Queue size : "</strong>+ <em>queue</em>.size());
+            Thread.<em>sleep</em>(100);
+         } <strong>catch</strong> (InterruptedException ex) {
+            System.<strong><em>out</em></strong>.println(<strong>"Consumer is interrupted."</strong>);
+         }
+      }
+   }
+}
+</pre>
+<h2>Conclusion</h2>
+
+<p>Perhaps the greatest benefit of using the concurrent collection classes is their scalability and low risk. The concurrent collection APIs of Java provide a range of classes that are specifically designed to deal with concurrent operations. These classes are alternatives to the Java Collection Framework and provide similar functionality except with the additional support of concurrency. Therefore, the learning curve for the programmer who already know about the Java Collection Framework is almost flat. The classes are defined in the package <em>java.util.concurrent</em>. Here, I have tried to give an overview to get started and use the collection APIs wherever necessary.</p>
+<h2>References</h2>
+<ul>
+<li>Java API Documentation</li>
+<li>Goetz, Brian, and Tim Peierls. <em>Java Concurrency in Practice</em>. Pearson, 2013.</li>
+</ul>					<br>
+										                    <br>
+                                        <br>
+                    
+										<br><br>
+                                        <div class="vspace clear"></div>
+                        <i>This article was originally published on August 6, 2018</i>
+			<div class="vspace clear"></div>
+                                        <div id="nodeSearchWidget" style="display: none">
+                                            <style>
+    #searchWidget{
+        border-bottom: 1px solid #344a70;
+    }
+
+    #searchWidget #top_bar{
+        background-color: #ffc926;
+        height: 28px;
+        width: 590px;
+        padding-top: 8px;
+        padding-left: 8px;
+        padding-right: 8px;
+        border-bottom: 1px solid #344a70;
+    }
+    #searchWidget #top_bar p {
+        font-size:18px;
+        font-family:'Roboto',sans-serif;
+        font-weight:700;
+        color: #000000;
+        line-height: 21px;
+        text-align: left;
+        letter-spacing: 0em;
+
+    }
+    #searchWidget #top_bar p span{
+        font-size:10px;
+        font-family:'Roboto Condensed', sans-serif;
+        font-weight:500;
+        color: #31313f;
+        line-height: 9.14px;
+        text-align: left;
+        letter-spacing: 0.02em;
+        float:right;
+        padding-top: 6px;
+    }
+
+    #searchWidget .searchWidgetSteps h3{
+        font-size:32px;
+        font-family:'Roboto',sans-serif;
+        font-weight:700;
+        color: #20202f;
+        line-height: 36px;
+        text-align: center;
+        letter-spacing: 0em;
+        margin-top: 20px;
+        word-spacing: 5px;
+    }
+    #searchWidget .searchWidgetSteps{
+        width: 100%;
+        text-align: center;
+    }
+    #searchWidget .searchWidgetSteps .step-no-question{
+        width: 100%;
+        display: table;
+        margin: 25px;
+    }
+    #searchWidget .searchWidgetSteps .step-no-question img{
+        float: right;
+        margin-right: 24px;
+    }
+    .tracker-bar{
+        margin-bottom: 10px;
+    }
+
+    #searchWidget #search_step1 .topicsRow{
+        overflow: auto;
+        display: inline-flex;
+    }
+    #searchWidget .topics {
+        margin-right: 52px;
+        cursor: pointer;
+    }
+    #searchWidget .topics:hover{
+        text-decoration: underline;
+    }
+    #searchWidget .topics:last-child{
+        margin-right: 0;
+    }
+    #searchWidget .topics p{
+        font-size:13.12px;
+        font-family:'Roboto',sans-serif;
+        font-weight:700;
+        color: #000000;
+        text-align: center;
+        line-height: 15.74px;    
+        letter-spacing: 0em;
+        margin-top: 5px;
+    }
+    #searchWidget #search-bottom-logo{
+        clear: both;
+    }
+    #searchWidget #search-bottom-logo img{
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    #searchWidget #search_step5 p{
+        font-size:18px;
+        font-family:'Roboto',sans-serif;
+        font-weight:300;
+        color: #20202f;
+        text-align: center;
+        line-height: 36px;    
+        letter-spacing: 0em;
+    }
+    #searchWidget #search_step5 p span{
+        font-weight:700;
+    }
+    #searchWidget #search_step5 #progresscircle{
+        margin-left: 32%;
+    }
+    #searchWidget #search_step6{
+        min-height: 182px;
+    }
+
+    #searchWidget div.qs-listings .search_step6_child{
+        background:url('/hqb2b/img/searchwidget/article-match.png') no-repeat 63px 8px;
+        margin-top: 43px;
+        margin-bottom: 10px;
+        float: left;
+    }
+    #searchWidget div.qs-listings .search_step6_child #asset-img{
+        margin-right: 20px;
+        float: left;
+        margin-left: 122px;
+        display: inline-block;
+    }
+    #searchWidget div.qs-listings .search_step6_child #asset-details{
+        width: 303px;
+        float: left;
+        margin-bottom: 15px;
+        margin-top: 10px;
+    }
+    #searchWidget div.qs-listings .search_step6_child #asset-details h2{
+        font-size:23.61px;
+        font-family:'Roboto',sans-serif;
+        font-weight:700;
+        color: #1f1f2c;
+        text-align: left;
+        line-height: 25.76px;    
+        letter-spacing: 0em;
+        margin-bottom: 30px;
+        margin-left: 15px;
+    }
+    #searchWidget div.qs-listings .search_step6_child #asset-details p {
+        font-size:10px;
+        font-family:'Roboto Condensed', sans-serif;
+        font-weight:300;
+        color: #1f1f2c;
+        text-align: left;
+        line-height: 10.79px;    
+        letter-spacing: 0.02em;
+        margin-left: 20px;
+    }
+    #searchWidget div.qs-listings .search_step6_child #asset-details a {
+        font-size:17.85px;
+        font-family:'Roboto',sans-serif;
+        font-weight:700;
+        color: #ffffff;
+        text-align: center;
+        line-height: 15.3px;    
+        letter-spacing: 0em;
+        background-color: #2c9feb;
+        padding-left: 55px;
+        padding-right: 12px;
+        padding-top: 4px;
+        padding-bottom: 5px;
+        border-radius: 20px;
+        text-decoration: none;
+    }
+    #searchWidget div.qs-listings .search_step6_child span{
+        font-size:18px;
+        font-family:'Roboto',sans-serif;
+        font-weight:700;
+        color: #3399ff;
+        text-align: left;
+        line-height: 50.52px;    
+        letter-spacing: 0em;
+    }
+    #searchWidget div.qs-listings .search_step6_child .prev_match{
+        float: left;
+        cursor: pointer;
+    }
+    #searchWidget div.qs-listings .search_step6_child .next_match{
+        float: right;
+        cursor: pointer;
+    }
+    #searchWidget div.qs-listings .search_step6_child .prev_match:hover{
+        text-decoration: underline;
+    }
+    #searchWidget div.qs-listings .search_step6_child .next_match:hover{
+        text-decoration: underline;
+    }
+    #searchWidget .styled-select {
+        background: url(/hqb2b/img/searchwidget/dropdown_arrow.png) no-repeat 94% 5px;
+        height: 38px;
+        overflow: hidden;
+        width: 288px;
+    }
+
+    #searchWidget .select-background{
+        background-color: #2c9feb;
+    }
+    #searchWidget .styled-select select {
+        background: transparent;
+        border: none;
+        height: 38px;
+        padding: 5px; /* If you add too much padding here, the options won't show in IE */
+        width: 288px;
+    }
+    #searchWidget .rounded {
+        -webkit-border-radius: 20px;
+        -moz-border-radius: 20px;
+        border-radius: 20px;
+    }
+    #searchWidget .inputdiv{
+        display: table-cell;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    #searchWidget .inputdiv select option{
+        text-align: center;
+        color: #fff;
+        background-color: #2c9feb;
+    }
+    #searchWidget .inputdiv select{
+        font-size: 15.58px;
+        font-family: 'Roboto',sans-serif;
+        font-weight: 700;
+        color: #FFF;
+        line-height: 18.7px;
+        float: left;
+        letter-spacing: 0em;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        text-indent: 1px;
+        text-overflow: '';
+    }
+    #searchWidget .inputdiv select::-ms-expand {
+        display: none;
+    }
+    #searchWidget #searchWidgetContainer {
+        margin: 20px;
+        width: 141px;
+        height: 143px;
+        position: relative;
+    }
+</style>
+<div id="searchWidget">
+    <div id="top_bar">
+        <p>
+            IT Solutions Builder
+            <span>TOP IT RESOURCES TO MOVE YOUR BUSINESS FORWARD</span>
+        </p>
+    </div>
+    <div id="search_step1" class="searchWidgetSteps">
+        <h3> Which topic are you interested in? </h3>
+        <div class="topicsRow" id="topic-row1">
+            <div class="topics" id="B2B_PRODUCT_MOBILE">
+                <img src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/icon-mobile.png" alt="">
+                <p>Mobile</p>
+            </div>
+            <div class="topics" id="B2B_PRODUCT_SECURITY">
+                <img src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/icon-security.png" alt="">
+                <p>Security</p>
+            </div>
+            <div class="topics" id="B2B_PRODUCT_NETWORKING">
+                <img src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/icon-networks.png" alt="">
+                <p>Networks/IoT</p>
+            </div>
+            <div class="topics" id="B2B_PRODUCT_DEVELOPMENT_CLOUD">
+                <img src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/icon-cloud.png" alt="">
+                <p>Cloud</p>
+            </div>
+            <div class="topics" id="B2B_PRODUCT_STORAGE">
+                <img src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/icon-datastorage.png" alt="">
+                <p>Data Storage</p>
+            </div>
+
+        </div>
+        <div class="topicsRow" id="topic-row2">
+            <div class="topics" id="B2B_PRODUCT_APPLICATIONS">
+                <img src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/icon-apps.png" alt="">
+                <p>Applications</p>
+            </div>
+            <div class="topics" id="B2B_PRODUCT_DEVELOPMENT">
+                <img src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/icon-dev.png" alt="">
+                <p>Development</p>
+            </div>
+            <div class="topics" id="B2B_PRODUCT_IT_MANAGEMENT_PRACTICES">
+                <img src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/icon-itmgmt.png" alt="">
+                <p>IT Management</p>
+            </div>
+            <div class="topics" id="B2B_PRODUCT">
+                <img src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/icon-other.png" alt="">
+                <p>Other</p>
+            </div>
+        </div>
+        <input type="hidden" name="selectedPortalServiceCode" id="selectedPortalServiceCode">
+    </div>
+    <div id="search_step2" class="searchWidgetSteps" style="display: none">
+        <h3> What is your company size? </h3>
+        <div class="step-no-question">
+            <img src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/article-Q2.png" alt="">
+            <div class="inputdiv">
+                <div class="styled-select select-background rounded">
+                    <select name="NumberofEmployeesRange" id="numberofEmployeesRange">
+                        <option>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Select company size</option>
+                        <option value="9">1-9</option>
+                        <option value="24">10-24</option>
+                        <option value="49">25-49</option>
+                        <option value="99">50-99</option>
+                        <option value="249">100-249</option>
+                        <option value="499">250-499</option>
+                        <option value="999">500-999</option>
+                        <option value="1999">1000+</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="tracker-bar">
+            <img src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/tracker-2.png" alt="">
+        </div>
+    </div>
+    <div id="search_step3" class="searchWidgetSteps" style="display: none">
+        <h3> What is your job title? </h3>
+        <div class="step-no-question">
+            <img src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/article-Q3.png" alt="">
+            <div class="inputdiv">
+                <div class="styled-select select-background rounded">
+                    <select name="Designation" id="designation">
+                        <option>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Select job title</option>
+                        <option value="C-Level/President">C-Level/President</option>
+                        <option value="Manager">Manager</option>
+                        <option value="VP">VP</option>
+                        <option value="Staff (Associate/Analyst/etc.)">Staff (Associate/Analyst/etc.)</option>
+                        <option value="Director">Director</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="tracker-bar">
+            <img src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/tracker-3.png" alt="">
+        </div>
+    </div>
+    <div id="search_step4" class="searchWidgetSteps" style="display: none">
+        <h3> What is your job function? </h3>
+        <div class="step-no-question">
+            <img src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/article-Q4.png" alt="">
+            <div class="inputdiv">
+                <div class="styled-select select-background rounded">
+                    <select name="JobFunction" id="jobFunction">
+                        <option>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Select job function</option>
+                        <option value="IT - General">IT - General</option>
+                        <option value="IT - Project Management">IT - Project Management</option>
+                        <option value="IT - Systems/Network Administration">IT - Systems/Network Administration</option>
+                        <option value="IT - Developer">IT - Developer</option>
+                        <option value="IT - Tester/QA">IT - Tester/QA</option>
+                        <option value="Accounting/Finance/Legal">Accounting/Finance/Legal</option>
+                        <option value="Academic/Research">Academic/Research</option>
+                        <option value="Administrative">Administrative</option>
+                        <option value="General Management">General Management</option>
+                        <option value="Human Resources">Human Resources</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Operations">Operations</option>
+                        <option value="Sales">Sales</option>
+                        <option value="Consultant">Consultant</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="tracker-bar">
+            <img src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/tracker-4.png" alt="">
+        </div>
+
+    </div>
+    <div id="search_step5" class="searchWidgetSteps" style="display: none">
+        <p><span>Searching our resource database</span> to find your matches...</p>
+        <div id="progresscircle">
+            <!--<img src="/hqb2b/img/searchwidget/progress.gif" height="140"/>-->
+            <div id="searchWidgetContainer"><svg viewBox="0 0 100 100" style="display: block; width: 100%;"><path d="M 50,50 m 0,-48 a 48,48 0 1 1 0,96 a 48,48 0 1 1 0,-96" stroke="#eee" stroke-width="1" fill-opacity="0"></path><path d="M 50,50 m 0,-48 a 48,48 0 1 1 0,96 a 48,48 0 1 1 0,-96" stroke="rgb(44,159,235)" stroke-width="4" fill-opacity="0" style="stroke-dasharray: 301.635, 301.635; stroke-dashoffset: 301.635;"></path></svg><div class="progressbar-text" style="position: absolute; left: 50%; top: 50%; padding: 0px; margin: 0px; transform: translate(-50%, -50%); color: rgb(32, 32, 47); font-family: Roboto, sans-serif; font-size: 40.25px;"></div></div>
+        </div>
+    </div>
+    <div id="search_step6" class="searchWidgetSteps qs-listings" style="display: none">
+
+    </div>
+
+    <div id="search-bottom-logo">
+        <!--        <img src="/hqb2b/img/searchwidget/eSignLive-Logo-BlackOrange-1.png"/>
+                <img src="/hqb2b/img/searchwidget/Globalscape_Logo.png"/>
+                <img src="/hqb2b/img/searchwidget/IBM_logo.png"/>
+                <img src="/hqb2b/img/searchwidget/Green_Igloo_Logo.png"/>
+                <img src="/hqb2b/img/searchwidget/Intel-logo.svg.png"/>-->
+    </div>
+    <script type="text/javascript" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/underscore.js">
+</script>
+    <script type="text/javascript" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/progressbar.js">
+</script>
+    <script type="text/javascript" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/searchWidgetTraker.js">
+</script>
+    <script>
+        // progressbar.js@1.0.0 version is used
+        // Docs: http://progressbarjs.readthedocs.org/en/1.0.0/
+
+        var bar = new ProgressBar.Circle(searchWidgetContainer, {
+            color: '#20202f',
+            // This has to be the same size as the maximum width to
+            // prevent clipping
+            strokeWidth: 4,
+            trailWidth: 1,
+            easing: 'easeInOut',
+            duration: 9000,
+            text: {
+                autoStyleContainer: false
+            },
+            from: {color: '#2c9feb', width: 4},
+            to: {color: '#2c9feb', width: 4},
+            // Set default step function for all animate calls
+            step: function(state, circle) {
+                circle.path.setAttribute('stroke', state.color);
+                circle.path.setAttribute('stroke-width', state.width);
+
+                var value = Math.round(circle.value() * 100);
+                if (value === 0) {
+                    circle.setText('');
+                } else {
+                    circle.setText(value + '%');
+                }
+                if (value === 99) {
+                    $("#search_step5").hide();
+                    $('#search_step6').show('slide', {direction: 'right'}, 500);
+                }
+
+            }
+        });
+        bar.text.style.fontFamily = '"Roboto", sans-serif';
+        bar.text.style.fontSize = '40.25px';
+
+
+        $(".topics").click(function() {
+            $("#search_step1").hide();
+            $('#search_step2').show('slide', {direction: 'right'}, 500);
+            if (typeof SearchWidgetTracker != 'undefined')
+                SearchWidgetTracker.log(SearchWidgetTracker.link_click, 'topic_link', 'search_widget', $(this).children('p').text());
+            $("#selectedPortalServiceCode").val($(this).attr('id'));
+        });
+        $('#search_step2 select').change(function() {
+            $("#search_step2").hide();
+            if (typeof SearchWidgetTracker != 'undefined')
+                SearchWidgetTracker.log(SearchWidgetTracker.form_elem_change, 'NumberofEmployeesRange', 'search_widget', $('#search_step2 select').val());
+            $('#search_step3').show('slide', {direction: 'right'}, 500);
+        })
+        $('#search_step3 select').change(function() {
+            $("#search_step3").hide();
+            if (typeof SearchWidgetTracker != 'undefined')
+                SearchWidgetTracker.log(SearchWidgetTracker.form_elem_change, 'Designation', 'search_widget', $('#search_step3 select').val());
+            $('#search_step4').show('slide', {direction: 'right'}, 500);
+        })
+        $('#search_step4 select').change(function() {
+            $("#search_step4").hide();
+            if (typeof SearchWidgetTracker != 'undefined')
+                SearchWidgetTracker.log(SearchWidgetTracker.form_elem_change, 'JobFunction', 'search_widget', $('#search_step4 select').val());
+            $('#search_step5').show('slide', {direction: 'right'}, 500);
+            bar.animate(1.0);  // Number from 0.0 to 1.0
+        });
+        $('#searchWidget').on("click", "#downloadbtn", function(e) {
+            e.preventDefault();
+            if (typeof SearchWidgetTracker != 'undefined')
+                SearchWidgetTracker.log(SearchWidgetTracker.button_click, 'asset_button', 'search_widget');
+
+            var url = $(this).attr('href');
+            window.open(url, '_blank');
+
+        });
+    
+</script>
+</div>                                        </div>
+                                        <div class="clear"></div>
+                                        <div id="bottom-container"><script type="text/javascript" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/listings(1)"></script></div>
+					  
+					<!-- START COMMENTING CODE -->
+					<div id="article-comments" style="max-width: 100%;" data-processed="true"><iframe id="oa_loudvoice_frame_189438" frameborder="0" scrolling="no" allowtransparency="true" data-processed="true" title="Login with Social Networks" name="OneAll LoudVoice" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/saved_resource(2).html" style="visibility: visible; background-color: transparent; border: 0px none; height: 642px; width: 100%;"></iframe></div>										<br>
+					<!-- END COMMENTING CODE -->
+					<div class="vspace"></div>
+				</div>
+<!-- article div ends -->
+			</div>
+						<div class="col colRight dimMainRight">
+				<div class="modal"></div>
+<div id="newsletter_subscribe" class="section">
+    <div id="heading" style="margin-top:5px"><h2>Enterprise Development Update</h2></div>
+    <div id="staticText">Don't miss an article. Subscribe to our newsletter below.</div>
+    <div id="nl_error" style="display:none;"></div>
+    <div id="nl_success" style="display:none;"></div>
+
+    <div id="nl_question_form">
+        <form id="newsletterform">
+            <div id="messageContainer" style="display: none;"></div>
+            <div style="float:left;width:70%">
+
+                <input type="text" id="nl_email" name="nlemail" maxlength="255" class="nlemail" placeholder="Enter Email Address">
+                <input type="hidden" name="NewsletterSignup" value="Enterprise Development Update" id="NewsletterSignup">
+                <input type="hidden" name="nlNewsletterKey" value="1423" id="nlNewsletterKey">
+                <input type="hidden" name="nlBusinessUnit" value="Internet.com" id="nlBusinessUnit">
+                <input type="hidden" name="RegistrationWebsite" value="www.developer.com" id="RegistrationWebsite">
+                <input type="hidden" value="https://o1.qnsr.com/cgi/r?;n=203;c=1387912;s=15939;x=7936;f=201306031137030;u=j;z=TIMESTAMP;" name="nlQuadTrackUrl">
+            </div>
+            <div style="float:left;width:30%">
+                <input type="submit" name="nlSubmit" onclick="newsletterGlobalSubmit(&#39;newsletterform&#39;, &#39;messageContainer&#39;, &#39;messageContainer&#39;);
+                        return false;" value="SIGN UP" id="nl_submit_button"><br>
+            </div>
+        </form>
+    </div>
+
+    <div class="vspace"></div>
+
+</div>
+
+
+				<div class="vspace"></div>
+				<div class="adsBox" style="">
+				<!-- QS-AD: 'imu' start -->
+<script language="JavaScript">
+	var t=displayDFPTag("imu");
+	document.write(t);
+
+</script><div id="imu-1">
+    <script type="text/javascript">
+        googletag.cmd.push(function() {
+            googletag.display('imu-1');
+        });
+    </script>
+<div id="google_ads_iframe_/5055/b2b/dev/developer/imu_0__container__" style="border: 0pt none; width: 300px; height: 250px;"></div></div>
+
+<!-- QS-AD: 'imu' end -->				</div>
+				<div class="vspace"></div>
+								<div id="mostPopularStories" class="section">
+					<div class="sectionHeader">
+						<h2>Most Popular Developer Stories</h2>
+						<a href="https://www.developer.com/java/data/an-introduction-to-concurrent-collection-apis-in-java.html#" class="more"></a>
+					</div>
+					<div class="sectionContent">
+						<div class="tabs">
+							<div class="tabsMenu clearfix">
+								<ul>
+									<li><a href="https://www.developer.com/java/data/an-introduction-to-concurrent-collection-apis-in-java.html#mostPopularToday" class="selected">Today</a></li>
+									<li><a href="https://www.developer.com/java/data/an-introduction-to-concurrent-collection-apis-in-java.html#mostPopularThisWeek">This Week</a></li>
+									<li><a href="https://www.developer.com/java/data/an-introduction-to-concurrent-collection-apis-in-java.html#mostPopularAllTime">All-Time</a></li>
+								</ul>
+							</div>
+							<div class="tabsContents">
+								<div class="tabsContent selected" id="mostPopularToday" style="display: block;">
+									<ul>
+				<li><a href="http://www.developer.com/java/data/article.php/3417381/Using-JDBC-with-MySQL-Getting-Started.htm"><span class="graytext">1</span> Using JDBC with MySQL, Getting Started</a></li>
+				<li><a href="http://www.developer.com/java/other/article.php/3556176/An-Introduction-to-Java-Annotations.htm"><span class="graytext">2</span> An Introduction to Java Annotations</a></li>
+				<li><a href="http://www.developer.com/java/j2me/article.php/1561591/MIDP-Programming-with-J2ME.htm"><span class="graytext">3</span> MIDP Programming with J2ME</a></li>
+				<li><a href="http://www.developer.com/java/ejb/article.php/1447551/An-Introduction-to-JSP-Standard-Template-Library-JSTL.htm"><span class="graytext">4</span> An Introduction to JSP Standard Template Library (JSTL)</a></li>
+				<li><a href="http://www.developer.com/java/other/article.php/2221711/Debugging-a-Java-Program-with-Eclipse.htm"><span class="graytext">5</span> Debugging a Java Program with Eclipse</a></li>
+									</ul>
+								</div>
+								<div class="tabsContent" id="mostPopularThisWeek">
+									<ul>
+				<li><a href="http://www.developer.com/java/data/article.php/3417381/Using-JDBC-with-MySQL-Getting-Started.htm"><span class="graytext">1</span> Using JDBC with MySQL, Getting Started</a></li>
+				<li><a href="http://www.developer.com/java/other/article.php/3556176/An-Introduction-to-Java-Annotations.htm"><span class="graytext">2</span> An Introduction to Java Annotations</a></li>
+				<li><a href="http://www.developer.com/java/ejb/article.php/1447551/An-Introduction-to-JSP-Standard-Template-Library-JSTL.htm"><span class="graytext">3</span> An Introduction to JSP Standard Template Library (JSTL)</a></li>
+				<li><a href="http://www.developer.com/java/j2me/article.php/1561591/MIDP-Programming-with-J2ME.htm"><span class="graytext">4</span> MIDP Programming with J2ME</a></li>
+				<li><a href="http://www.developer.com/java/other/article.php/2221711/Debugging-a-Java-Program-with-Eclipse.htm"><span class="graytext">5</span> Debugging a Java Program with Eclipse</a></li>
+									</ul>
+								</div>
+								<div class="tabsContent" id="mostPopularAllTime">
+									<ul>
+				<li><a href="http://www.developer.com/java/data/article.php/3417381/Using-JDBC-with-MySQL-Getting-Started.htm"><span class="graytext">1</span> Using JDBC with MySQL, Getting Started</a></li>
+				<li><a href="http://www.developer.com/java/other/article.php/3556176/An-Introduction-to-Java-Annotations.htm"><span class="graytext">2</span> An Introduction to Java Annotations</a></li>
+				<li><a href="http://www.developer.com/java/ejb/article.php/1447551/An-Introduction-to-JSP-Standard-Template-Library-JSTL.htm"><span class="graytext">3</span> An Introduction to JSP Standard Template Library (JSTL)</a></li>
+				<li><a href="http://www.developer.com/java/j2me/article.php/1561591/MIDP-Programming-with-J2ME.htm"><span class="graytext">4</span> MIDP Programming with J2ME</a></li>
+				<li><a href="http://www.developer.com/java/other/article.php/2221711/Debugging-a-Java-Program-with-Eclipse.htm"><span class="graytext">5</span> Debugging a Java Program with Eclipse</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Code to put on site page to show pinning option --> 
+<!-- commented out 10/22 as per CR "CHG231107: Remove IE 9 Site pinning check" 
+<script type="text/javascript" language="javascript">
+	if(jQuery.browser.msie){
+		if(document.documentMode != undefined && document.documentMode==9){
+			if (!window.external.msIsSiteMode()) {
+				document.write('<div id="pinMeContainer"><img class="msPinSite" src="/images0/developer64x64.png" height="64" weight="64" /><br/><span id="pinMe">To Pin this site, drag this image to the left to your Windows Taskbar. Try it now!</span></div>'); 
+			}else {
+					try {
+					  if (window.external.msIsSiteMode()) {
+							jQuery.get('https://www.developer.comlatest_articles', function(data){
+								displayLatestNews(data);
+							});
+					  }
+				  } catch (ex) { }
+			}
+		}else{
+			document.write('<div id="pinMeContainer"><img class="msPinSite" src="/images0/developer64x64.png" height="64" weight="64" /><br/><span id="pinMe">Upgrade your browser to IE 9 to see the power of Site Pinning!</span></div>'); 	
+		}
+	}
+	function displayLatestNews(data){
+		try{
+			g_ext = window.external;
+			if(data.articles != undefined && data.articles.length){
+				g_ext.msSiteModeClearJumpList();
+				g_ext.msSiteModeCreateJumplist('Developer.com Latest News');
+				for(i=0; i<data.articles.length; i++){
+					g_ext.msSiteModeAddJumpListItem (data.articles[i].title, data.articles[i].link, 'https://www.developer.comfavicon.ico');
+				}
+				
+				var dt = new Date();
+				var updated = (dt.getMonth()+1) +"/"+(dt.getDay()+1)+"/"+dt.getFullYear()+" "+dt.toLocaleTimeString();
+
+				g_ext.msSiteModeAddJumpListItem ('Last updated - '+updated, 'https://www.developer.com', 'https://www.developer.com/images0/refresh.ico');
+				g_ext.msSiteModeShowJumpList();
+			}
+		}catch(ex){ }
+	}
+</script>
+-->
+<!-- End of code to put on site page to show pinning option --> 				<div class="adsBox" style="">
+				<!-- QS-AD: 'imu' start -->
+<script language="JavaScript">
+	var t=displayDFPTag("imu");
+	document.write(t);
+
+</script><div id="imu-2">
+    <script type="text/javascript">
+        googletag.cmd.push(function() {
+            googletag.display('imu-2');
+        });
+    </script>
+<div id="google_ads_iframe_/5055/b2b/dev/developer/imu_1__container__" style="border: 0pt none; width: 300px; height: 250px;"></div></div>
+
+<!-- QS-AD: 'imu' end -->				</div>
+				<div class="vspace"></div>
+								<div id="mostCommentedOn" class="section">
+					<div class="sectionHeader">
+						<h2>Most Commented On</h2>
+						<a href="https://www.developer.com/java/data/an-introduction-to-concurrent-collection-apis-in-java.html#" class="more"></a>
+					</div>
+					<div class="sectionContent">
+						<div class="tabs">
+							<div class="tabsMenu clearfix">
+								<ul>
+									<li><a href="https://www.developer.com/java/data/an-introduction-to-concurrent-collection-apis-in-java.html#mostCommentedOnThisWeek" class="selected">This Week</a></li>
+									<li><a href="https://www.developer.com/java/data/an-introduction-to-concurrent-collection-apis-in-java.html#mostCommentedOnThisMonth">This Month</a></li>
+									<li><a href="https://www.developer.com/java/data/an-introduction-to-concurrent-collection-apis-in-java.html#mostCommentedOnAllTime">All-Time</a></li>
+								</ul>
+							</div>
+							<div class="tabsContents">
+								<div class="tabsContent selected" id="mostCommentedOnThisWeek" style="display: block;">
+									<ul>
+<li><a href="http://www.developer.com/article.php/3896056"><span class="graytext">1</span> 10 Experimental PHP Projects Pushing the<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Envelope</a></li><li><a href="http://www.developer.com/article.php/777761"><span class="graytext">2</span> Day 1: Learning the Basics of PL/SQL</a></li><li><a href="http://www.developer.com/article.php/3336751"><span class="graytext">3</span> C# Tip: Placing Your C# Application in the<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System Tray</a></li><li><a href="http://www.developer.com/article.php/641521"><span class="graytext">4</span> Logical Versus Physical Database Modeling</a></li><li><a href="http://www.developer.com/article.php/3896711"><span class="graytext">5</span> Is Ubuntu Contributing as Much as It Should to<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Free Software Projects?</a></li>									</ul>
+								</div>
+								<div class="tabsContent" id="mostCommentedOnThisMonth">
+									<ul>
+<li><a href="http://www.developer.com/article.php/777761"><span class="graytext">1</span> Day 1: Learning the Basics of PL/SQL</a></li><li><a href="http://www.developer.com/article.php/3894316"><span class="graytext">2</span> The 5 Developer Certifications You'll Wish You<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Had in 2015</a></li><li><a href="http://www.developer.com/article.php/3896056"><span class="graytext">3</span> 10 Experimental PHP Projects Pushing the<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Envelope</a></li><li><a href="http://www.developer.com/article.php/1495931"><span class="graytext">4</span> An Introduction to Struts</a></li><li><a href="http://www.developer.com/article.php/3894566"><span class="graytext">5</span> Inside Facebook's Open Source Infrastructure</a></li>									</ul>
+								</div>
+								<div class="tabsContent" id="mostCommentedOnAllTime">
+									<ul>
+<li><a href="http://www.developer.com/article.php/2109801"><span class="graytext">1</span> Creating Use Case Diagrams</a></li><li><a href="http://www.developer.com/article.php/777761"><span class="graytext">2</span> Day 1: Learning the Basics of PL/SQL</a></li><li><a href="http://www.developer.com/article.php/3336751"><span class="graytext">3</span> C# Tip: Placing Your C# Application in the<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System Tray</a></li><li><a href="http://www.developer.com/article.php/3096831"><span class="graytext">4</span> Using ASP.NET To Send Email</a></li><li><a href="http://www.developer.com/article.php/3417381"><span class="graytext">5</span> Using JDBC with MySQL, Getting Started</a></li>									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="vspace"></div>
+								<div class="articlecategorysummary">
+    <iframe id="whitePaperIFrame" scrolling="no" frameborder="0" align="middle" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/saved_resource(3).html" height="725"></iframe>
+</div>
+ <script type="text/javascript">
+	var updateIframe = false;
+	var t = 0;
+	function updateQMPIframe()
+	{
+		if(!updateIframe)
+		{
+			if($('#whitePaperIFrame').contents().find('.asset').length > 0)
+			{	
+				var height = $('#whitePaperIFrame').contents().find('.qmpContainer').height();
+				
+				var iframe = document.getElementById('whitePaperIFrame');
+				var iframeHeight = document.getElementById('whitePaperIFrame').height;
+				if(height>iframeHeight){
+					height = height + 5; //Add border pixels.
+					iframe.setAttribute( 'height', height);
+					clearTimeout(t);
+					updateIframe = true;
+				}
+			}
+			else
+			{
+				t = setTimeout('updateQMPIframe()', 3000);
+			}
+		}
+	}
+	updateQMPIframe();
+
+</script> 
+			</div>
+			<div class="vspace clear"></div>
+			<div class="vspace clear"></div>
+			           <div style="clear:both;">
+			   <div style="text-align: center;">
+				<div id="lb-wrapper" align="center">
+					<div id="ad_p2-lb" style="text-align:center;">
+						<!-- QS-AD: 'lb' start -->
+<script language="JavaScript">
+	var t=displayDFPTag("lb");
+	document.write(t);
+
+</script><div id="lb-2">
+    <script type="text/javascript">
+        googletag.cmd.push(function() {
+            googletag.display('lb-2');
+        });
+    </script>
+<div id="google_ads_iframe_/5055/b2b/dev/developer/lb_1__container__" style="border: 0pt none; width: 728px; height: 90px;"></div></div>
+
+<!-- QS-AD: 'lb' end -->					</div>
+				</div>
+				</div>
+				<br>
+				<font size="-1" face="arial, helvetica">
+				<style type="text/css">
+    #brand-footer{text-align:center;margin:0 auto;}
+    #commonfooterpropertytext{padding-bottom: 12px;}
+    #commonfootercopyright{padding: 3px;}
+    #eweekBrand-footer{text-align:center;margin:0 auto}
+    #footerDisclaimerText{margin: 15px 10px 0px 10px; text-align: justify;}
+</style>
+<div id="brand-footer">
+    <div id="acceptableusepolicy" style="display:none;">
+        <a rel="nofollow" href="https://www.developer.com/aup.html" target="_blank" style="color: #000000;">Acceptable Use Policy</a>
+    </div>
+    <div>
+        <img id="commonfooterlogo" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/developer_logo.jpg" alt="Site Logo" border="0" class="lazy">
+    </div>
+    <div id="commonfooterpropertytext">A Developer.com Property<div id="highlightLogos"><style>#heading{color: #9c9393; text-align: center; padding-top: 15px; font-size: 14px;}.column{float: left; width: auto;}.row{padding: 15px 0px 10px 22px; overflow: auto;}#highlightLogos img{height: 26px; padding: 0px 8px 0px 25px;}</style> <div class="row"> <div class="column "> <a href="https://www.eweek.com/" target="_blank"> <img src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/eWeekLogo.png" alt="eWeekLogo"> </a> </div><div class="column "> <a href="https://www.itbusinessedge.com/" target="_blank"> <img src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/ITBELogo.png" alt="ITBELogo"> </a> </div><div class="column "> <a href="https://www.enterprisestorageforum.com/" target="_blank"> <img src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/eSFLogo.png" alt="eSFLogo"> </a> </div><div class="column "> <a href="https://www.esecurityplanet.com/" target="_blank"> <img src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/eSPLogo.png" alt="eSPLogo"> </a> </div><div class="column "> <a href="https://www.serverwatch.com/" target="_blank"> <img src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/ServerwatchLogo.png" alt="ServerwatchLogo"> </a> </div><div class="column "> <a href="https://www.datamation.com/" target="_blank"> <img src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/DatamationLogo.png" alt="Datamation"> </a> </div></div></div></div>
+    <div id="footerlinks">
+        <a rel="nofollow" href="https://www.developer.com/terms">Terms of Service</a> | 
+        <a rel="nofollow" href="https://www.developer.com/licensing">Licensing &amp; Reprints</a> | 
+        <a rel="nofollow" id="commonfooteraboutuslink" href="https://www.developer.com/about.html" target="_blank">About Us</a> | 
+        <a rel="nofollow" href="https://www.developer.com/privacy">Privacy Notice</a> | <a rel="nofollow" id="commonfootercontactuslink" href="https://www.developer.com/contact-us.html">Contact Us</a> | 
+        <a rel="nofollow" id="commonadvertiselink" href="https://www.quinstreetb2btech.com/about-us/" target="_blank">Advertise</a> |
+        <a rel="nofollow" id="commonsitemaplink" href="https://www.developer.com/sitemap.html" target="_blank">Sitemap</a> |
+        <a rel="nofollow" href="https://privacy-central.securiti.ai/#/dsr/983cfd4b-c36a-4601-89e9-b651e5a05708" target="_blank">California - Do Not Sell My Info</a> 
+    </div>
+    <div id="commonfootercopyright">Copyright 2020 QuinStreet Inc. All Rights Reserved.</div>
+    <div id="footerDisclaimerText">
+        <p>
+            <strong>Advertiser Disclosure:</strong>
+            Some of the products that appear on this site are from companies from which QuinStreet receives compensation. This compensation may impact how and where products appear on this site including, for example, the order in which they appear. QuinStreet does not include all companies or all types of products available in the marketplace.
+        </p>
+    </div>
+</div>
+<script async="" language="Javascript" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/footerbrandingcode.js">
+</script>				</font>
+				<link href="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/css(1)" rel="stylesheet" type="text/css">
+<div id="newuserregistrationpopup">
+    <div id="closepopup"><a class="newuserregistrationpopup-sprite close" href="https://www.developer.com/java/data/an-introduction-to-concurrent-collection-apis-in-java.html#"></a></div>
+    <div id="thankuptext">Thanks for your registration, follow us on our social networks to keep up-to-date</div>
+	<div id="socialsharebtn">
+        <div id="socialbtns"><a class="sprite-user-register-popup-tw newuserregistrationpopup-sprite" href="https://o1.qnsr.com/cgi/r?WT.qs_dlk=XjA2C9tktXIWDjUnX5ZoogAAAAs;;n=203;c=1459370;s=8986;x=7936;f=201411241658150;u=j;z=TIMESTAMP;k=https://twitter.com/DeveloperCom" target="_blank"></a></div>
+        <div id="socialbtns"><a class="sprite-user-register-popup-ln newuserregistrationpopup-sprite" href="https://o1.qnsr.com/cgi/r?WT.qs_dlk=XjA2C9tktXIWDjUnX5ZoogAAAAs;;n=203;c=1459370;s=8986;x=7936;f=201411241658150;u=j;z=TIMESTAMP;k=https://www.linkedin.com/company/developer-com?trk=top_nav_home" target="_blank"></a></div>
+        <div id="socialbtns"><a class="sprite-user-register-popup-gplus newuserregistrationpopup-sprite" href="https://o1.qnsr.com/cgi/r?WT.qs_dlk=XjA2C9tktXIWDjUnX5ZoogAAAAs;;n=203;c=1459370;s=8986;x=7936;f=201411241658150;u=j;z=TIMESTAMP;k=https://plus.google.com/u/0/b/117958898397590965610/+Developerdotcom/posts" target="_blank"></a></div>
+        <div id="socialbtns"><a class="sprite-user-register-popup-rss newuserregistrationpopup-sprite" href="https://o1.qnsr.com/cgi/r?WT.qs_dlk=XjA2C9tktXIWDjUnX5ZoogAAAAs;;n=203;c=1459370;s=8986;x=7936;f=201411241658150;u=j;z=TIMESTAMP;k=https://www.developer.com/developer/dev-25.xml" target="_blank"></a></div>
+    </div>
+</div>
+			</div>    <script type="text/javascript">var blurbKey = 209488310;
+</script>
+<script type="text/javascript">
+/* Replace #discussion_reference# by the unique identifer of the page */
+var discussion_reference = blurbKey;
+var _oneall = _oneall || [];
+_oneall.push(['loudvoice', 'set_providers', ['facebook', 'twitter', 'google', 'linkedin']]);
+_oneall.push(['loudvoice', 'set_page', document.title, window.location.href]);
+_oneall.push(['loudvoice', 'set_reference', discussion_reference]);
+_oneall.push(['loudvoice', 'do_render_ui', 'article-comments']);
+
+</script>
+		</div>
+	</div>
+</div>
+<script language="JavaScript" type="text/javascript">
+<!--
+// Make sure all image has an alt tag if it doesn't already
+$(document).ready(function(){
+    $("img").each(function() {
+		var img = $(this);
+		if (!img.attr("alt"))
+			img.attr("alt", "");
+	});
+});
+//-->
+
+</script>
+
+
+<div id="_evh-button" class="evidon-consent-button" tabindex="0"><style> @media print {#_evh-ric,#_evh-link { display:none !important; } } </style><a id="_evh-link" tabindex="0" style="position: fixed; padding: 0px 10px; border: 1px solid rgb(170, 170, 170); cursor: pointer; line-height: 36px; text-decoration: none; background: rgb(255, 255, 255); font-size: 10pt; color: rgb(0, 0, 0); bottom: 0px; right: 0px;"><img src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/icong2.png" class="evidon-consent-button-image" style="border: 0px; display: inline; vertical-align: middle; margin-right: 10px;"><span id="_evidon-button-text" class="evidon-consent-button-text" style="vertical-align: middle !important;">AdChoices</span><img id="_evh-newvendor-indicator" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/evidon-change-alert.png" style="display: none; position: absolute; left: -10px; top: -10px; width: 23px; height: 23px;"></a></div><iframe scrolling="no" frameborder="0" allowtransparency="true" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/widget_iframe.7303c29a8108bca4ac5c9ef008ed8164.html" title="Twitter settings iframe" style="display: none;"></iframe><div class="kxhead" data-id="JdOfGRZW" style="display:none !important;"><span class="kxtag kxinvisible" data-id="35642"><!-- Start: Nativo Javascript Injection via Salesforce DMP/Krux SuperTag -->
+<script type="text/javascript" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/load.js" async=""></script>
+<!-- End: Nativo Javascript Injection via Salesforce DMP/Krux SuperTag --></span><span class="kxtag kxinvisible" data-id="30001"><!-- Start Secure Bombora Analytics: QS_Master_Accounts -->
+<img src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/utsync.ashx" width="1" height="1">
+<!-- End Secure Bombora Analytics: QS_Master_Accounts --></span><span class="kxtag kxinvisible" data-id="36127"><!-- Start: Marketo Munchkin Tag for QuinStreet B2B: 949-NYM-063 -->
+<script type="text/javascript">
+(function() {
+var didInit = false;
+function initMunchkin() {
+if(didInit === false) {
+didInit = true;
+Munchkin.init('949-NYM-063', {
+"domainLevel": 2
+});
+}
+}
+var s = document.createElement('script');
+s.type = 'text/javascript';
+s.async = true;
+s.src = '//munchkin.marketo.net/munchkin.js';
+s.onreadystatechange = function() {
+if (this.readyState == 'complete' || this.readyState == 'loaded') {
+initMunchkin();
+}
+};
+s.onload = initMunchkin;
+document.getElementsByTagName('head')[0].appendChild(s);
+})();
+</script>
+<!-- End: Marketo Munchkin Tag for QuinStreet B2B: 949-NYM-063 --></span><span class="kxtag kxinvisible" data-id="36767"><!-- Start: LiveIntent Connect Tag for QuinStreet B2B -->
+<script type="text/javascript" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/a-01eo.min.js" async="true" charset="utf-8">
+</script>
+<!-- End: LiveIntent Connect Tag for QuinStreet B2B --></span><span class="kxtag kxinvisible" data-id="19515"><script type="text/javascript">Krux('social.init');</script></span><span class="kxtag kxinvisible" data-id="19516"><script>
+// this tag is intentionally blank
+</script></span><span class="kxtag kxinvisible" data-id="19517"></span><span class="kxtag kxinvisible" data-id="19519"><script>
+(function() {
+  // adadvisor redirects to http://logger... so it's not https safe
+  if (location.protocol == "http:") {
+     var u = "https://aa.agkn.com/adscores/g.js?sid=9212244187&_kdpid=2111c0af-fc3a-446f-ab07-63aa74fbde8e";
+     (new Image()).src = u;
+   }
+})();
+</script></span><span class="kxtag kxinvisible" data-id="19524"><script>
+
+(function () {
+var user_logged_in = "dn";
+if(document.cookie.indexOf(user_logged_in) != -1){ 
+
+	Krux('set', { "user_attr_logged_in" : "yes" });
+	}
+
+
+// keywords
+Krux('scrape', { "page_attr_keywords" : {meta_name: 'keywords'} }) ; 
+// url_path
+Krux('scrape', { "page_attr_url_path_1" : {url_path: 1} }) ;
+Krux('scrape', { "page_attr_url_path_2" : {url_path: 2} }) ;
+Krux('scrape', { "page_attr_url_path_3" : {url_path: 3} }) ;
+  
+Krux('scrape', { "page_attr_domain": {url_domain: 2 } }) ;
+
+// cookies
+Krux('scrape', { 
+			user_attr_dn: {cookie: 'dn'},
+			user_attr_dr: {cookie: 'dr'},
+			user_attr_ir: {cookie: 'ir'},
+			user_attr_jf: {cookie: 'jf'},
+			user_attr_noer: {cookie: 'noer'}
+	} );
+
+})();
+</script></span><span class="kxtag kxinvisible" data-id="19533"></span><span class="kxtag kxinvisible" data-id="19536"><script>
+    (function() {
+        var kuid = Krux('get', 'user');
+        if (kuid) {
+            var prefix = location.protocol == 'https:' ? "https:" : "http:";
+            var kurl_params = encodeURIComponent("_kuid=" + kuid + "&_kdpid=d7158cb7-a851-4e3c-b7ab-cc9e815b2399&dlxid=<na_id>&dlxdata=<na_da>");
+            var kurl = prefix + "//beacon.krxd.net/data.gif?" + kurl_params;
+            var dlx_url = '//r.nexac.com/e/getdata.xgi?dt=br&pkey=gwjn34gwjnh86&ru=' + kurl;
+            var i = new Image();
+            i.src = dlx_url;
+        }
+    })();
+</script></span><span class="kxtag kxinvisible" data-id="19541"><script type="text/javascript">
+(function() {
+    (new Image()).src = '//aa.agkn.com/adscores/g.js?sid=9212244187&_kdpid=2111c0af-fc3a-446f-ab07-63aa74fbde8e';
+})();
+</script></span><span class="kxtag kxinvisible" data-id="19542"><script>
+(function(){
+        var kuid = Krux('get', 'user');
+        var prefix = window.location.protocol == 'https:' ? 'https:' : 'http:';
+        if (kuid) {
+           var url = prefix + '//pix.btrll.com/partner/868092.png';
+           (new Image()).src = url;
+        }
+})();
+</script></span><span class="kxtag kxinvisible" data-id="19548"></span><span class="kxtag kxinvisible" data-id="19550"><script>
+// Blank
+</script></span><span class="kxtag kxinvisible" data-id="19551"></span><span class="kxtag kxinvisible" data-id="19554"><script>
+    (function() {
+        var kuid = Krux('get', 'user');
+        if (kuid) {
+            var prefix = location.protocol == 'https:' ? "https:" : "http:";
+            var kurl_params = encodeURIComponent("_kuid=" + kuid + "&_kdpid=8da8b14d-5569-4bec-bcea-722864ee8d06&dlxid=<na_id>&dlxdata=<na_da>");
+            var kurl = prefix + "//beacon.krxd.net/data.gif?" + kurl_params;
+            var dlx_url = '//r.nexac.com/e/getdata.xgi?dt=br&pkey=iefs40iefsj26&ru=' + kurl;
+            var i = new Image();
+            i.src = dlx_url;
+        }
+    })();
+</script></span><span class="kxtag kxinvisible" data-id="19555"><script>
+    (function() {
+        var kuid = Krux('get', 'user');
+        if (kuid) {
+            var prefix = location.protocol == 'https:' ? "https:" : "http:";
+            var kurl_params = encodeURIComponent("_kuid=" + kuid + "&_kdpid=bef9f122-393d-4c45-8d8d-32d8be7ac433&dlxid=<na_id>&dlxdata=<na_da>");
+            var kurl = prefix + "//beacon.krxd.net/data.gif?" + kurl_params;
+            var dlx_url = '//r.nexac.com/e/getdata.xgi?dt=br&pkey=iyzu39iyzud95&ru=' + kurl;
+            var i = new Image();
+            i.src = dlx_url;
+        }
+    })();
+</script></span><span class="kxtag kxinvisible" data-id="19556"><script>
+    (function() {
+        var allowUserMatch = function() {
+            var GDN_SITE_ID = '1282650';
+ 
+            if (Krux('get', 'config').params.client_type === 'marketer') {
+                try {
+                    var params = Krux('require:marketer').getParams(
+                            Krux('require:sizzle').find('script[src*="' + Krux('get', 'confid') + '"]')
+                    );
+                    return GDN_SITE_ID !== (params.siteid || params.kxsiteid);
+                }
+                catch (e) {
+                    // In case we don't find the script tag or the URL parser fails, just allow matching.
+                }
+            }
+            return true;
+        };
+         
+        var kuid = Krux('get', 'user');
+        if (allowUserMatch() && kuid) {
+            var prefix = location.protocol == 'https:' ? "https:" : "http:";
+            var kurl_params = encodeURIComponent("_kuid=" + kuid + "&_kdpid=8bf57916-aac8-4f01-a386-4baf103b3e1f&dlxid=<na_id>&dlxdata=<na_da>");
+            var kurl = prefix + "//beacon.krxd.net/data.gif?" + kurl_params;
+            var dlx_url = '//r.nexac.com/e/getdata.xgi?dt=br&pkey=bckw15bckwu20&ru=' + kurl;
+            var i = new Image();
+            i.src = dlx_url;
+        }
+    })();
+</script></span><span class="kxtag kxinvisible" data-id="19557"><script>
+    (function() {
+        var allowUserMatch = function() {
+            var GDN_SITE_ID = '1282650';
+
+            if (Krux('get', 'config').params.client_type === 'marketer') {
+                try {
+                    var params = Krux('require:marketer').getParams(
+                            Krux('require:sizzle').find('script[src*="' + Krux('get', 'confid') + '"]')
+                    );
+                    return GDN_SITE_ID !== (params.siteid || params.kxsiteid);
+                }
+                catch (e) {
+                    // In case we don't find the script tag or the URL parser fails, just allow matching.
+                }
+            }
+            return true;
+        };
+
+        var kuid = Krux('get', 'user');
+        if (allowUserMatch() && kuid) {
+            var prefix = location.protocol == 'https:' ? "https:" : "http:";
+            var kurl_params = encodeURIComponent("_kuid=" + kuid + "&_kdpid=d7158cb7-a851-4e3c-b7ab-cc9e815b2399&dlxid=<na_id>&dlxdata=<na_da>");
+            var kurl = prefix + "//beacon.krxd.net/data.gif?" + kurl_params;
+            var dlx_url = '//r.nexac.com/e/getdata.xgi?dt=br&pkey=gwjn34gwjnh86&ru=' + kurl;
+            var i = new Image();
+            i.src = dlx_url;
+        }
+    })();
+</script></span><span class="kxtag kxinvisible" data-id="19558"><script>
+    (function() {
+        var kuid = Krux('get', 'user');
+        if (kuid) {
+            var prefix = location.protocol == 'https:' ? "https:" : "http:";
+            var kurl_params = encodeURIComponent("_kuid=" + kuid + "&_kdpid=536f0daa-aaaa-4d9e-9a25-dde40646786a&dlxid=<na_id>&dlxdata=<na_da>");
+            var kurl = prefix + "//beacon.krxd.net/data.gif?" + kurl_params;
+            var dlx_url = '//r.nexac.com/e/getdata.xgi?dt=br&pkey=iefs40iefsj26&ru=' + kurl;
+            var i = new Image();
+            i.src = dlx_url;
+        }
+    })();
+</script></span><span class="kxtag kxinvisible" data-id="19559"><script>
+    (function() {
+        var kuid = Krux('get', 'user');
+        if (kuid) {
+            var prefix = location.protocol == 'https:' ? "https:" : "http:";
+            var kurl_params = encodeURIComponent("_kuid=" + kuid + "&_kdpid=7c6392c9-e878-492c-8b14-bf06e3828ebd&dlxid=<na_id>&dlxdata=<na_da>");
+            var kurl = prefix + "//beacon.krxd.net/data.gif?" + kurl_params;
+            var dlx_url = '//r.nexac.com/e/getdata.xgi?dt=br&pkey=rowp70rowpu60&ru=' + kurl;
+            var i = new Image();
+            i.src = dlx_url;
+        }
+    })();
+</script></span><span class="kxtag kxinvisible" data-id="19560"><script>
+    (function() {
+        var allowUserMatch = function() {
+            var GDN_SITE_ID = '1282650';
+
+            if (Krux('get', 'config').params.client_type === 'marketer') {
+                try {
+                    var params = Krux('require:marketer').getParams(
+                            Krux('require:sizzle').find('script[src*="' + Krux('get', 'confid') + '"]')
+                    );
+                    return GDN_SITE_ID !== (params.siteid || params.kxsiteid);
+                }
+                catch (e) {
+                    // In case we don't find the script tag or the URL parser fails, just allow matching.
+                }
+            }
+            return true;
+        };
+        
+        var kuid = Krux('get', 'user');
+        if (allowUserMatch() && kuid) {
+            var prefix = location.protocol == 'https:' ? "https:" : "http:";
+            var kurl_params = encodeURIComponent("_kuid=" + kuid + "&_kdpid=bb8ae0e2-9cd7-45b2-ad37-7737269627d8&dlxid=<na_id>&dlxdata=<na_da>");
+            var kurl = prefix + "//beacon.krxd.net/data.gif?" + kurl_params;
+            var dlx_url = '//r.nexac.com/e/getdata.xgi?dt=br&pkey=rsxs71rsxsk73&ru=' + kurl;
+            var i = new Image();
+            i.src = dlx_url;
+        }
+    })();
+</script></span><span class="kxtag kxinvisible" data-id="30025"><script>
+(function() {
+    /* Selective Attribute DataLayer Library Tag */
+    var _, allAttr, allowedList, attr, attributes, dataLayerIngester, dataObj,
+        isAllowed, keepCase, libUtil, omitKeys, pageAttr, prefix, toSet, trim,
+        userAttr, util, value,
+        hasProp = {}.hasOwnProperty;
+    _ = Krux('require:underscore');
+    util = Krux('require:util');
+    libUtil = Krux('require:util.library-tag');
+    dataLayerIngester = Krux('require:scrape').ingestDataLayer;
+
+    /* Safe copy of dataLayer object */
+    dataObj = Krux('scrape.javascript', 'kruxDataLayer.user');
+
+    /* String trimming helper function */
+    trim = function(attr) {
+        return ("" + attr).replace(/^\s+|\s+$/g, '');
+    };
+
+    /* Attribute configs */
+    pageAttr = _.map('keywords,domain,section,category,url_path_1'.split(','), trim);
+    userAttr = _.map('companyName,employeesInAllLocationsNum,vanityTitle,jobSeniority,jobFunction,fortune1000,networth,networthNum,techOfficeDemand,duns,companyCountry,itExpense,industryNaics'.split(','), trim);
+
+    /* Create a array of attributes striping any empty strings */
+    allAttr = _.without(pageAttr.concat(userAttr), '');
+
+    /* Configuration settings */
+    keepCase = 'undefined' === 'true';
+    omitKeys = 'false'.split(',');
+
+    /* Resolve Prefix */
+    prefix = libUtil.resolvePrefix('undefined', 'undefined',
+        'undefined');
+
+    /* Function to varify if attribute should be used */
+    isAllowed = function(value, whitelist) {
+        var i, len, str, x;
+        str = "" + value;
+        if (!((value != null) && str.length > 0)) {
+            return false;
+        }
+        for (i = 0, len = whitelist.length; i < len; i++) {
+            x = whitelist[i];
+            if (value.match(x) != null) {
+                return true;
+            }
+        }
+        return false;
+    };
+
+    /* Get a full list of attributes usting the dataLayer tool */
+    attributes = dataLayerIngester(dataObj, {
+        omitKeys: libUtil.removeFalsyStrings(omitKeys.concat(libUtil.EXCLUDE_KEYS_CONFIG)),
+        omitValues: libUtil.EXCLUDE_VALUES_CONFIG,
+        caseSensitive: keepCase,
+        useFullPath: 'false' === 'true',
+        useLastValue: 'false' === 'true',
+        customDelimited: [/./],
+        altDelimiter: ',',
+        userKeys: _.map(userAttr, function(exp) {
+            return new RegExp("(^|\\.)" + exp + "$");
+        }),
+        optimizeNames: true
+    });
+
+    /* Only set Attributes in the allowed list */
+    allowedList = _.map(allAttr, function(name) {
+        return new RegExp("(_attr_|_attr_" + prefix + "|\\.)" + (keepCase ?
+            name : libUtil.normalizeAttrName(name, {
+                removeDot: false
+            })) + "$");
+    });
+    toSet = {};
+    for (attr in attributes) {
+        if (!hasProp.call(attributes, attr)) continue;
+        value = attributes[attr];
+        if (isAllowed(attr, allowedList)) {
+            toSet[attr] = value;
+        }
+    }
+    toSet = Krux('prefix:attr', toSet, prefix);
+    Krux('set', toSet);
+}).call();
+</script></span><span class="kxtag kxinvisible" data-id="40212"><!-- Segment Pixel - Quinstreet B2B Developer Channel - DO NOT MODIFY -->
+<img async="on" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/seg" width="1" height="1">
+<!-- End of Segment Pixel --></span><span class="kxtag kxinvisible" data-id="41744"><script>
+(function() {
+    /* Selective Attribute DataLayer Library Tag */
+    var _, allAttr, allowedList, attr, attributes, dataLayerIngester, dataObj,
+        isAllowed, keepCase, libUtil, omitKeys, pageAttr, prefix, toSet, trim,
+        userAttr, util, value,
+        hasProp = {}.hasOwnProperty;
+    _ = Krux('require:underscore');
+    util = Krux('require:util');
+    libUtil = Krux('require:util.library-tag');
+    dataLayerIngester = Krux('require:scrape').ingestDataLayer;
+
+    /* Safe copy of dataLayer object */
+    dataObj = Krux('scrape.javascript', 'kruxDataLayer');
+
+    /* String trimming helper function */
+    trim = function(attr) {
+        return ("" + attr).replace(/^\s+|\s+$/g, '');
+    };
+
+    /* Attribute configs */
+    pageAttr = _.map('env'.split(','), trim);
+    userAttr = _.map('undefined'.split(','), trim);
+
+    /* Create a array of attributes striping any empty strings */
+    allAttr = _.without(pageAttr.concat(userAttr), '');
+
+    /* Configuration settings */
+    keepCase = 'false' === 'true';
+    omitKeys = 'undefined'.split(',');
+
+    /* Resolve Prefix */
+    prefix = libUtil.resolvePrefix('none', 'undefined',
+        'undefined');
+
+    /* Function to varify if attribute should be used */
+    isAllowed = function(value, whitelist) {
+        var i, len, str, x;
+        str = "" + value;
+        if (!((value != null) && str.length > 0)) {
+            return false;
+        }
+        for (i = 0, len = whitelist.length; i < len; i++) {
+            x = whitelist[i];
+            if (value.match(x) != null) {
+                return true;
+            }
+        }
+        return false;
+    };
+
+    /* Get a full list of attributes usting the dataLayer tool */
+    attributes = dataLayerIngester(dataObj, {
+        omitKeys: libUtil.removeFalsyStrings(omitKeys.concat(libUtil.EXCLUDE_KEYS_CONFIG)),
+        omitValues: libUtil.EXCLUDE_VALUES_CONFIG,
+        caseSensitive: keepCase,
+        useFullPath: 'false' === 'true',
+        useLastValue: 'false' === 'true',
+        customDelimited: [/./],
+        altDelimiter: ',',
+        userKeys: _.map(userAttr, function(exp) {
+            return new RegExp("(^|\\.)" + exp + "$");
+        }),
+        optimizeNames: true
+    });
+
+    /* Only set Attributes in the allowed list */
+    allowedList = _.map(allAttr, function(name) {
+        return new RegExp("(_attr_|_attr_" + prefix + "|\\.)" + (keepCase ?
+            name : libUtil.normalizeAttrName(name, {
+                removeDot: false
+            })) + "$");
+    });
+    toSet = {};
+    for (attr in attributes) {
+        if (!hasProp.call(attributes, attr)) continue;
+        value = attributes[attr];
+        if (isAllowed(attr, allowedList)) {
+            toSet[attr] = value;
+        }
+    }
+    toSet = Krux('prefix:attr', toSet, prefix);
+    Krux('set', toSet);
+}).call();
+</script></span></div><iframe style="display: none; width: 0px; height: 0px; border: 0px;" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/a-01eo.html"></iframe></body><iframe id="kx-proxy-JdOfGRZW" src="./An Introduction to Concurrent Collection APIs in Java - Developer.com_files/proxy.3d2100fd7107262ecb55ce6847f01fa5.html" style="display: none; visibility: hidden; height: 0; width: 0;"></iframe></html>
