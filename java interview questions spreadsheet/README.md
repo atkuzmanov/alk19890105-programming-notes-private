@@ -6285,10 +6285,47 @@ https://stackoverflow.com/questions/1291836/concurrenthashmap-vs-synchronized-ha
 
 ----
 
+# Atomic classes
 
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
 
+- [An-Introduction-to-Atomic-Variables-in-Java-Baeldung](refs/An-Introduction-to-Atomic-Variables-in-Java-Baeldung)
+
+`references:`
+https://www.baeldung.com/java-atomic-variables
+
+- [Java-Concurrency-Atomic-Variables-DZone](refs/Java-Concurrency-Atomic-Variables-DZone)
+
+`references:`
+https://dzone.com/articles/java-concurrency-atomic-variables
+
+- [Java-8-Concurrency-Tutorial-Threads-and-Executors](refs/Java-8-Concurrency-Tutorial-Threads-and-Executors)
+
+`references:`
+https://winterbe.com/posts/2015/04/07/java8-concurrency-tutorial-thread-executor-examples/
+
+- [Java-8-Concurrency-Tutorial-Synchronization-and-Locks](refs/Java-8-Concurrency-Tutorial-Synchronization-and-Locks)
+
+`references:`
+https://winterbe.com/posts/2015/04/30/java8-concurrency-tutorial-synchronized-locks-examples/
+
+- [Java-8-Concurrency-Tutorial-Atomic-Variables-and-ConcurrentMap](refs/Java-8-Concurrency-Tutorial-Atomic-Variables-and-ConcurrentMap)
+
+`references:`
+https://winterbe.com/posts/2015/05/22/java8-concurrency-tutorial-atomic-concurrent-map-examples/
 
 ----
+
+# ThreadLocal
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
+
+
 ----
 ----
 ----
