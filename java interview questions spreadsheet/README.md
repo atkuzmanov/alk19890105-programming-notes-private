@@ -6316,6 +6316,11 @@ https://winterbe.com/posts/2015/04/30/java8-concurrency-tutorial-synchronized-lo
 `references:`
 https://winterbe.com/posts/2015/05/22/java8-concurrency-tutorial-atomic-concurrent-map-examples/
 
+- [Semaphore-programming-Wikipedia](refs/Semaphore-programming-Wikipedia)
+
+`references:`
+https://en.wikipedia.org/wiki/Semaphore_(programming)
+
 ----
 
 # ThreadLocal
