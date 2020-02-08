@@ -6415,6 +6415,8 @@ https://www.geeksforgeeks.org/differences-between-hashmap-and-hashtable-in-java/
 
 - [Hashtable-vs-SynchronizedMap-vs-ConcurrentHashMap-CodePumpkin](refs/Hashtable-vs-SynchronizedMap-vs-ConcurrentHashMap-CodePumpkin)
 
+![ConcurrentHashMap.jpg](refs/Hashtable-vs-SynchronizedMap-vs-ConcurrentHashMap-CodePumpkin/Hashtable%20vs%20SynchronizedMap%20vs%20ConcurrentHashMap%20_%20Code%20Pumpkin_files/ConcurrentHashMap.jpg)
+
 `references:`
 https://codepumpkin.com/hashtable-vs-synchronizedmap-vs-concurrenthashmap/
 
@@ -6425,6 +6427,7 @@ https://codepumpkin.com/hashtable-vs-synchronizedmap-vs-concurrenthashmap/
 |Junior |Mid  |Senior |
 |-------|-----|-------|
 |       |     |   x   |
+
 
 
 
