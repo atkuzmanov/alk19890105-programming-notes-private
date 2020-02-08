@@ -1,0 +1,2854 @@
+<!DOCTYPE html>
+<!-- saved from url=(0085)http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html -->
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml" xmlns:b="http://www.google.com/2005/gml/b" xmlns:data="http://www.google.com/2005/gml/data" xmlns:expr="http://www.google.com/2005/gml/expr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/2549344219-widget_css_bundle.css" rel="stylesheet" type="text/css">
+
+<meta content="blogger" name="generator">
+<link href="http://frankkieviet.blogspot.com/favicon.ico" rel="icon" type="image/x-icon">
+<link href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html" rel="canonical">
+<link rel="alternate" type="application/atom+xml" title="Frank Kieviet&#39;s Engineering Notebook - Atom" href="http://frankkieviet.blogspot.com/feeds/posts/default">
+<link rel="alternate" type="application/rss+xml" title="Frank Kieviet&#39;s Engineering Notebook - RSS" href="http://frankkieviet.blogspot.com/feeds/posts/default?alt=rss">
+<link rel="service.post" type="application/atom+xml" title="Frank Kieviet&#39;s Engineering Notebook - Atom" href="https://www.blogger.com/feeds/6643071316318130698/posts/default">
+
+<link rel="alternate" type="application/atom+xml" title="Frank Kieviet&#39;s Engineering Notebook - Atom" href="http://frankkieviet.blogspot.com/feeds/4825660030242716782/comments/default">
+<!--Can't find substitution for tag [blog.ieCssRetrofitLinks]-->
+<link href="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/simpleservlet_thumb[1].png" rel="image_src">
+<meta content="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html" property="og:url">
+<meta content="Classloader leaks: the dreaded &amp;quot;java.lang.OutOfMemoryError: PermGen space&amp;quot; exception" property="og:title">
+<meta content="Did you ever encounter a java.lang.OutOfMemoryError: PermGen space  error when you redeployed your application to an application server? Did..." property="og:description">
+<meta content="http://lh3.ggpht.com/-47ek-2Vnkv8/T2FjozfK0zI/AAAAAAAAFXk/QA3bIInw6KE/w1200-h630-p-k-no-nu/simpleservlet_thumb[1].png" property="og:image">
+<!--[if IE]> <script> (function() { var html5 = ("abbr,article,aside,audio,canvas,datalist,details," + "figure,footer,header,hgroup,mark,menu,meter,nav,output," + "progress,section,time,video").split(','); for (var i = 0; i < html5.length; i++) { document.createElement(html5[i]); } try { document.execCommand('BackgroundImageCache', false, true); } catch(e) {} })(); </script> <![endif]-->
+<title>Frank Kieviet's Engineering Notebook: Classloader leaks: the dreaded "java.lang.OutOfMemoryError: PermGen space" exception</title>
+<style id="page-skin-1" type="text/css"><!--
+/*
+-----------------------------------------------
+Blogger Template Style
+Name:     Stretch Denim
+Designer: Darren Delaye
+URL:      www.DarrenDelaye.com
+Date:     11 Jul 2006
+-----------------------------------------------
+*/
+
+body {
+background: #efefef;
+margin: 0;
+padding: 0px;
+font: x-small Verdana, Arial;
+text-align: center;
+color: #333333;
+font-size/* */:/**/small;
+font-size: /**/small;
+}
+a:link {
+color: #336699;
+}
+a:visited {
+color: #336699;
+}
+a img {
+border-width: 0;
+}
+#outer-wrapper {
+font: normal normal 100% Verdana, Arial, Sans-serif;;
+}
+/* Header
+----------------------------------------------- */
+#header-wrapper {
+margin:0;
+padding: 0;
+background-color: #528bc5;
+text-align: left;
+}
+#header {
+margin: 0 2%;
+background-color: #336699;
+color: #ffffff;
+padding: 0;
+font: normal normal 210% Verdana, Arial, Sans-serif;;
+position: relative;
+}
+h1.title {
+padding-top: 38px;
+margin: 0 1% .1em;
+line-height: 1.2em;
+font-size: 100%;
+}
+h1.title a, h1.title a:visited {
+color: #ffffff;
+text-decoration: none;
+}
+#header .description {
+display: block;
+margin: 0 1%;
+padding: 0 0 40px;
+line-height: 1.4em;
+font-size: 50%;
+}
+/* Content
+----------------------------------------------- */
+.clear {
+clear: both;
+}
+#content-wrapper {
+margin: 0 2%;
+padding: 0 0 15px;
+text-align: left;
+background-color: #ffffff;
+border: 1px solid #cccccc;
+border-top: 0;
+}
+#main-wrapper {
+margin-left: 1%;
+width: 64%;
+float: left;
+background-color: #ffffff;
+display: inline;       /* fix for doubling margin in IE */
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
+}
+#sidebar-wrapper {
+margin-right: 1%;
+width: 29%;
+float: right;
+background-color: #ffffff;
+display: inline;       /* fix for doubling margin in IE */
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
+}
+/* Headings
+----------------------------------------------- */
+h2, h3 {
+margin: 0;
+}
+/* Posts
+----------------------------------------------- */
+.date-header {
+margin: 1.5em 0 0;
+font-weight: normal;
+color: #999999;
+font-size: 100%;
+}
+.post {
+margin: 0 0 1.5em;
+padding-bottom: 1.5em;
+}
+.post-title {
+margin: 0;
+padding: 0;
+font-size: 125%;
+font-weight: bold;
+line-height: 1.1em;
+}
+.post-title a, .post-title a:visited, .post-title strong {
+text-decoration: none;
+color: #333333;
+font-weight: bold;
+}
+.post div {
+margin: 0 0 .75em;
+line-height: 1.3em;
+}
+.post-footer {
+margin: -.25em 0 0;
+color: #333333;
+font-size: 87%;
+}
+.post-footer .span {
+margin-right: .3em;
+}
+.post img, table.tr-caption-container {
+padding: 4px;
+border: 1px solid #cccccc;
+}
+.tr-caption-container img {
+border: none;
+padding: 0;
+}
+.post blockquote {
+margin: 1em 20px;
+}
+.post blockquote p {
+margin: .75em 0;
+}
+/* Comments
+----------------------------------------------- */
+#comments h4 {
+margin: 1em 0;
+color: #999999;
+}
+#comments h4 strong {
+font-size: 110%;
+}
+#comments-block {
+margin: 1em 0 1.5em;
+line-height: 1.3em;
+}
+#comments-block dt {
+margin: .5em 0;
+}
+#comments-block dd {
+margin: .25em 0 0;
+}
+#comments-block dd.comment-footer {
+margin: -.25em 0 2em;
+line-height: 1.4em;
+font-size: 78%;
+}
+#comments-block dd p {
+margin: 0 0 .75em;
+}
+.deleted-comment {
+font-style:italic;
+color:gray;
+}
+.feed-links {
+clear: both;
+line-height: 2.5em;
+}
+#blog-pager-newer-link {
+float: left;
+}
+#blog-pager-older-link {
+float: right;
+}
+#blog-pager {
+text-align: center;
+}
+/* Sidebar Content
+----------------------------------------------- */
+.sidebar h2 {
+margin: 1.6em 0 .5em;
+padding: 4px 5px;
+background-color: #336699;
+font-size: 100%;
+color: #ffffff;
+}
+.sidebar ul {
+margin: 0;
+padding: 0;
+list-style: none;
+}
+.sidebar li {
+margin: 0;
+padding-top: 0;
+padding-right: 0;
+padding-bottom: .5em;
+padding-left: 15px;
+text-indent: -15px;
+line-height: 1.5em;
+}
+.sidebar {
+color: #333333;
+line-height:1.3em;
+}
+.sidebar .widget {
+margin-bottom: 1em;
+}
+.sidebar .widget-content {
+margin: 0 5px;
+}
+/* Profile
+----------------------------------------------- */
+.profile-img {
+float: left;
+margin-top: 0;
+margin-right: 5px;
+margin-bottom: 5px;
+margin-left: 0;
+padding: 4px;
+border: 1px solid #cccccc;
+}
+.profile-data {
+margin:0;
+text-transform:uppercase;
+letter-spacing:.1em;
+font-weight: bold;
+line-height: 1.6em;
+font-size: 78%;
+}
+.profile-datablock {
+margin:.5em 0 .5em;
+}
+.profile-textblock {
+margin: 0.5em 0;
+line-height: 1.6em;
+}
+/* Footer
+----------------------------------------------- */
+#footer {
+clear: both;
+text-align: center;
+color: #333333;
+}
+#footer .widget {
+margin:.5em;
+padding-top: 20px;
+font-size: 85%;
+line-height: 1.5em;
+text-align: left;
+}
+/** Page structure tweaks for layout editor wireframe */
+body#layout #header {
+width: 750px;
+}
+
+--></style>
+<link href="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/authorization.css" media="all" onload="if(media!=&#39;all&#39;)media=&#39;all&#39;" rel="stylesheet"><noscript><link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=6643071316318130698&amp;zx=b87db37b-6f4d-43e6-9eef-832227050852' rel='stylesheet'/></noscript>
+
+<script src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/cb=gapi.loaded_3" async=""></script><script src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/cb=gapi.loaded_2" async=""></script><script src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/cb=gapi(2).loaded_1" async=""></script><script src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/cb=gapi(1).loaded_0" async=""></script><script type="text/javascript" language="javascript">
+  // Supply ads personalization default for EEA readers
+  // See https://www.blogger.com/go/adspersonalization
+  adsbygoogle = window.adsbygoogle || [];
+  if (typeof adsbygoogle.requestNonPersonalizedAds === 'undefined') {
+    adsbygoogle.requestNonPersonalizedAds = 1;
+  }
+</script>
+
+
+<script type="text/javascript" src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/f.txt"></script><style class="singleton-element" type="text/css">.cookie-choices-info { position:fixed;width:100%;background-color:#666;margin:0;left:0;top:0;padding:0;z-index:4000;text-align:center;color:#fff;line-height:140%;padding:10px 0;font-family:roboto,Arial; } .cookie-choices-info .cookie-choices-inner { position:relative;width:initial;margin:0;left:0;top:0; } .cookie-choices-info .cookie-choices-text { display:inline-block;vertical-align:middle;font-size:16px;margin:10px 20px;color:#ccc;max-width:800px;text-align:left; }.cookie-choices-info .cookie-choices-buttons { display:inline-block;vertical-align:middle;white-space:nowrap;margin:0 10px; } .cookie-choices-info .cookie-choices-button:hover {  color: #fff; } .cookie-choices-info .cookie-choices-button { font-weight:bold;text-transform:UPPERCASE;white-space:nowrap;color:#eee;margin-left:8px;padding:0 6px; text-decoration:none; }</style><style> .gc-bubbleDefault{background-color:transparent !important;text-align:left;padding:0 !important;margin:0 !important;border:0 !important;table-layout:auto !important}.gc-reset{background-color:transparent !important;border:0 !important;padding:0 !important;margin:0 !important;text-align:left}.pls-bubbleTop{border-bottom:1px solid #ccc !important}.pls-topTail,.pls-vertShimLeft,.pls-contentLeft{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/border_3.gif) !important}.pls-topTail{background-repeat:repeat-x !important;background-position:bottom !important}.pls-vertShim{background-color:#fff !important;text-align:right}.tbl-grey .pls-vertShim{background-color:#f5f5f5 !important}.pls-vertShimLeft{background-repeat:repeat-y !important;background-position:right !important;height:4px}.pls-vertShimRight{height:4px}.pls-confirm-container .pls-vertShim{background-color:#fff3c2 !important}.pls-contentWrap{background-color:#fff !important;position:relative !important;vertical-align:top}.pls-contentLeft{background-repeat:repeat-y;background-position:right;vertical-align:top}.pls-dropRight{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleDropR_3.png) !important;background-repeat:repeat-y !important;vertical-align:top}.pls-vert,.pls-tailleft,.pls-dropTR .pls-dropBR,.pls-dropBL,.pls-vert img{vertical-align:top}.pls-dropBottom{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleDropB_3.png) !important;background-repeat:repeat-x !important;width:100%;vertical-align:top}.pls-topLeft{background:inherit !important;text-align:right;vertical-align:bottom}.pls-topRight{background:inherit !important;text-align:left;vertical-align:bottom}.pls-bottomLeft{background:inherit !important;text-align:right}.pls-bottomRight{background:inherit !important;text-align:left;vertical-align:top}.pls-tailtop,.pls-tailright,.pls-tailbottom,.pls-tailleft{display:none;position:relative}.pls-tailbottom,.pls-tailtop,.pls-tailright,.pls-tailleft,.pls-dropTR,.pls-dropBR,.pls-dropBL{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleSprite_3.png) !important;background-repeat:no-repeat}.tbl-grey .pls-tailbottom,.tbl-grey .pls-tailtop,.tbl-grey .pls-tailright,.tbl-grey .pls-tailleft,.tbl-grey .pls-dropTR,.tbl-grey .pls-dropBR,.tbl-grey .pls-dropBL{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleSprite-grey.png) !important}.pls-tailbottom{background-position:-23px 0}.pls-confirm-container .pls-tailbottom{background-position:-23px -10px}.pls-tailtop{background-position:-19px -20px}.pls-tailright{background-position:0 0}.pls-tailleft{background-position:-10px 0}.pls-tailtop{vertical-align:top}.gc-bubbleDefault td{line-height:0;font-size:0}.pls-topLeft img,.pls-topRight img,.pls-tailbottom{vertical-align:bottom}.pls-bottomLeft img,.bubbleDropTR,.pls-dropBottomL img,.pls-dropBottom img,.pls-dropBottomR img,.pls-bottomLeft{vertical-align:top}.pls-dropTR{background-position:0 -22px}.pls-dropBR{background-position:0 -27px}.pls-dropBL{background-position:0 -16px}.pls-spacertop,.pls-spacerright,.pls-spacerbottom,.pls-spacerleft{position:static !important}.pls-spinner{bottom:0;position:absolute;left:0;margin:auto;right:0;top:0}</style><script async="" src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/lazy.min.js"></script></head>
+<body>
+<div class="navbar section" id="navbar"><div class="widget Navbar" data-version="1" id="Navbar1"><script type="text/javascript">
+    function setAttributeOnload(object, attribute, val) {
+      if(window.addEventListener) {
+        window.addEventListener('load',
+          function(){ object[attribute] = val; }, false);
+      } else {
+        window.attachEvent('onload', function(){ object[attribute] = val; });
+      }
+    }
+  </script>
+<div id="navbar-iframe-container"><iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="" tabindex="0" vspace="0" width="100%" id="navbar-iframe" name="navbar-iframe" src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/navbar.html"></iframe></div>
+<script type="text/javascript" src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/plusone.js" gapi_processed="true"></script>
+<script type="text/javascript">
+      gapi.load("gapi.iframes:gapi.iframes.style.bubble", function() {
+        if (gapi.iframes && gapi.iframes.getContext) {
+          gapi.iframes.getContext().openChild({
+              url: 'https://www.blogger.com/navbar.g?targetBlogID\x3d6643071316318130698\x26blogName\x3dFrank+Kieviet\x27s+Engineering+Notebook\x26publishMode\x3dPUBLISH_MODE_BLOGSPOT\x26navbarType\x3dSILVER\x26layoutType\x3dLAYOUTS\x26searchRoot\x3dhttps://frankkieviet.blogspot.com/search\x26blogLocale\x3den\x26v\x3d2\x26homepageUrl\x3dhttp://frankkieviet.blogspot.com/\x26targetPostID\x3d4825660030242716782\x26blogPostOrPageUrl\x3dhttp://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html\x26vt\x3d-2634099431185611897',
+              where: document.getElementById("navbar-iframe-container"),
+              id: "navbar-iframe"
+          });
+        }
+      });
+    </script><script type="text/javascript">
+(function() {
+var script = document.createElement('script');
+script.type = 'text/javascript';
+script.src = '//pagead2.googlesyndication.com/pagead/js/google_top_exp.js';
+var head = document.getElementsByTagName('head')[0];
+if (head) {
+head.appendChild(script);
+}})();
+</script>
+</div></div>
+<div id="outer-wrapper"><div id="wrap2">
+<!-- skip links for text browsers -->
+<span id="skiplinks" style="display:none;">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html#main">skip to main </a> |
+      <a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html#sidebar">skip to sidebar</a>
+</span>
+<div id="header-wrapper">
+<div class="header section" id="header"><div class="widget Header" data-version="1" id="Header1">
+<div id="header-inner">
+<div class="titlewrapper">
+<h1 class="title">
+<a href="http://frankkieviet.blogspot.com/">
+Frank Kieviet's Engineering Notebook
+</a>
+</h1>
+</div>
+<div class="descriptionwrapper">
+<p class="description"><span>
+</span></p>
+</div>
+</div>
+</div></div>
+</div>
+<div id="content-wrapper">
+<div id="crosscol-wrapper" style="text-align:center">
+<div class="crosscol no-items section" id="crosscol"></div>
+</div>
+<div id="main-wrapper">
+<div class="main section" id="main"><div class="widget Blog" data-version="1" id="Blog1">
+<div class="blog-posts hfeed">
+
+          <div class="date-outer">
+        
+<h2 class="date-header"><span>Sunday, October 15, 2006</span></h2>
+
+          <div class="date-posts">
+        
+<div class="post-outer">
+<div class="post hentry">
+<a name="4825660030242716782"></a>
+<h3 class="post-title entry-title">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html">Classloader leaks: the dreaded "java.lang.OutOfMemoryError: PermGen space" exception</a>
+</h3>
+<div class="post-header-line-1"></div>
+<div class="post-body entry-content">
+<p>Did you ever encounter a <span style="font-family: monospace;">java.lang.OutOfMemoryError: PermGen space</span> error when you redeployed your application to an application server? Did you curse the application server, while restarting the application server, to continue with your work thinking that this is clearly a bug in the application server. Those application server developers should get their act together, shouldn't they? Well, perhaps. But perhaps it's really&nbsp; <i>your</i> fault!
+</p>
+<p>Take a look at the following example of an innocent looking servlet.
+</p>
+<pre><span class="java-keywords">package</span> com.stc.test;
+<br><span class="java-keywords">import</span> java.io.\*;
+<span class="java-keywords">import</span> java.util.logging.\*;
+<span class="java-keywords">import</span> javax.servlet.\*;
+<span class="java-keywords">import</span> javax.servlet.http.\*;
+<br><span class="java-keywords">public</span> <span class="java-keywords">class</span> MyServlet <span class="java-keywords">extends</span> HttpServlet {
+<span class="java-keywords">protected</span> <span class="java-keywords">void</span> <span class="java-layer-method">doGet</span>(HttpServletRequest request, HttpServletResponse response)
+<span class="java-keywords">throws</span> ServletException, IOException {
+<span class="java-block-comment">// Log at a custom level</span>
+Level customLevel = <span class="java-keywords">new</span> <span class="java-layer-method">Level</span>(<span class="java-string-literal">"OOPS"</span>, <span class="java-numeric-literals">555</span>) {};
+Logger.<span class="java-layer-method">getLogger</span>(<span class="java-string-literal">"test"</span>).<span class="java-layer-method">log</span>(customLevel, <span class="java-string-literal">"doGet() called"</span>);
+}
+}<span style="font-family: monospace;"></span>
+</pre> Try to redeploy this little sample a number of times.&nbsp; I bet this will eventually fail with the dreaded <span style="font-family: monospace;">java.lang.OutOfMemoryError: PermGen space</span> error. If you like to understand what's happening, read on.
+<br>
+<h3>The problem in a nutshell
+</h3>
+<p>Application servers such as Glassfish allow you to write an application (.ear, .war, etc) and deploy this application with other applications on this application server. Should you feel the need to make a change to your application, you can simply make the change in your source code, compile the source, and redeploy the application without affecting the other still running applications in the application server: you don't need to restart the application server. This mechanism works fine on Glassfish and other application servers (e.g. Java CAPS Integration Server).
+<br>
+</p>
+<p>The way that this works is that each application is loaded using its own classloader. Simply put, a classloader is a special class that loads <span style="font-family: monospace;">.class</span> files from jar files. When you undeploy the application, the classloader is discarded and it and all the classes that it loaded, should be garbage collected sooner or later.
+<br>
+</p>
+<p>Somehow, something may hold on to the classloader however, and prevent it from being garbage collected. And that's what's causing the <span style="font-family: monospace;">java.lang.OutOfMemoryError: PermGen space</span> exception.
+<br>
+</p>
+<h3>PermGen space
+<br>
+</h3>
+<p>What is <span style="font-family: monospace;">PermGen space</span> anyways? The memory in the Virtual Machine is divided into a number of regions. One of these regions is <span style="font-family: monospace;">PermGen</span>. It's an area of memory that is used to (among other things) load class files. The size of this memory region is fixed, i.e. it does not change when the VM is running. You can specify the size of this region with a commandline switch: <span style="font-family: monospace;">-XX:MaxPermSize</span> . The default is 64 Mb on the Sun VMs.
+<br>
+</p>
+<p>If there's a problem with garbage collecting classes and if you keep loading new classes, the VM will run out of space in that memory region, even if there's plenty of memory available on the heap. Setting the <span style="font-family: monospace;">-Xmx</span> parameter will not help: this parameter only specifies the size of the total heap and does not affect the size of the <span style="font-family: monospace;">PermGen</span> region.
+<br>
+</p>
+<h3>Garbage collecting and classloaders
+</h3>
+<p>When you write something silly like
+<br>
+</p>
+<pre> private void x1() {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (;;) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; List c = new ArrayList();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp;&nbsp; }</pre>
+<p>you're continuously allocating objects; yet the program doesn't run out of memory: the objects that you create are garbage collected thereby freeing up space so that you can allocate another object. An object can only be garbage collected if the object is "unreachable". What this means is that there is no way to access the object from anywhere in the program. If nobody can access the object, there's no point in keeping the object, so it gets garbage collected. Let's take a look at the memory picture of the servlet example. First, let's even further simplify this example:
+</p>
+<pre><span class="java-keywords">package</span> com.stc.test;
+<br><span class="java-keywords">import</span> java.io.\*;
+<span class="java-keywords">import</span> java.net.\*;
+<span class="java-keywords">import</span> javax.servlet.\*;
+<span class="java-keywords">import</span> javax.servlet.http.\*;
+<br><span class="java-keywords">public</span> <span class="java-keywords">class</span> Servlet1 <span class="java-keywords">extends</span> HttpServlet {
+<span class="java-keywords">private</span> <span class="java-keywords">static</span> <span class="java-keywords">final</span> String STATICNAME = <span class="java-string-literal">"Simple"</span>;
+<span class="java-keywords">protected</span> <span class="java-keywords">void</span> <span class="java-layer-method">doGet</span>(HttpServletRequest request, HttpServletResponse response)
+<span class="java-keywords">throws</span> ServletException, IOException {
+}
+}</pre>
+<p>After loading the above servlet, the following objects are in memory (ofcourse limited to the relevant ones):
+<br>
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/simpleservlet_thumb[1].png" style="width: 493px; height: 259px;">
+<br> In this picture you see the objects loaded by the application classloader in yellow, and the rest in green. You see a simplified container object that holds references to the application classloader that was created just for this application, and to the servlet instance so that the container can invoke the <span style="font-family: monospace;">doGet()</span> method on it when a web request comes in. Note that the <span style="font-family: monospace;">STATICNAME</span> object is owned by the class object. Other important things to notice:
+<br>
+</p>
+<ol>
+<li>Like each object, the Servlet1 instance holds a reference to its class (Servlet1.class).</li>
+<li>Each class object (e.g. Servlet1.class) holds a reference to the classloader that loaded it.</li>
+<li>Each classloader holds references to all the classes that it loaded.</li>
+</ol> The important consequence of this is that whenever an object outside of <span style="font-family: monospace;">AppClassloader</span> holds a reference to an object loaded by <span style="font-family: monospace;">AppClassloader</span>, <span style="font-weight: bold;">none of the classes can be garbage collected</span>.
+<br>
+<br> To illustrate this, let's see what happens when the application gets undeployed: the Container object nullifies its references to the Servlet1 instance and to the AppClassloader object.
+<br>
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/gcsimpleservlet_thumb[1].png" style="width: 506px; height: 244px;">
+<br> As you can see, none of the objects are reachable, so they all can be garbage collected. Now let's see what happens when we use the original example where we use the <span style="font-family: monospace;">Level</span> class:
+<pre><span class="java-keywords">package</span> com.stc.test;
+<br><span class="java-keywords">import</span> java.io.\*;
+<span class="java-keywords">import</span> java.net.\*;
+<span class="java-keywords">import</span> java.util.logging.\*;
+<span class="java-keywords"></span><span class="java-keywords">import</span> javax.servlet.\*;
+<span class="java-keywords">import</span> javax.servlet.http.\*;
+<br><span class="java-keywords">public</span> <span class="java-keywords">class</span> LeakServlet <span class="java-keywords">extends</span> HttpServlet {
+<span class="java-keywords">private</span> <span class="java-keywords">static</span> <span class="java-keywords">final</span> String STATICNAME = <span class="java-string-literal">"This leaks!"</span>;
+<span class="java-keywords">private</span> <span class="java-keywords">static</span> <span class="java-keywords">final</span> Level CUSTOMLEVEL = <span class="java-keywords">new</span> <span class="java-layer-method">Level</span>(<span class="java-string-literal">"test"</span>, <span class="java-numeric-literals">550</span>) {}; <span class="java-block-comment">// anon</span><span class="java-block-comment"> class!</span>
+<br><span class="java-keywords">protected</span> <span class="java-keywords">void</span> <span class="java-layer-method">doGet</span>(HttpServletRequest request, HttpServletResponse response)
+<span class="java-keywords">throws</span> ServletException, IOException {
+Logger.<span class="java-layer-method">getLogger</span>(<span class="java-string-literal">"test"</span>).<span class="java-layer-method">log</span>(CUSTOMLEVEL, <span class="java-string-literal">"doGet called"</span>);
+}
+}
+</pre>
+<p>Note that the <span style="font-family: monospace;">CUSTOMLEVEL</span>'s class is an anonymous class. That is necessary because the constructor of <span style="font-family: monospace;">Level</span> is protected. Let's take a look at the memory picture of this scenario:
+</p>
+<p>
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/leakservlet_thumb[1].png" style="width: 578px; height: 406px;">
+<br>
+</p>
+<p>In this picture you see something you may not have expected: the <span style="font-family: monospace;">Level</span> class holds a static member to all <span style="font-family: monospace;">Level</span> objects that were created. Here's the constructor of the <span style="font-family: monospace;">Level</span> class in the JDK:
+</p>
+<pre> <span class="java-keywords">protected</span> <span class="java-layer-method">Level</span>(String name, <span class="java-keywords">int</span> value) {
+<span class="java-keywords">this</span>.name = name;
+<span class="java-keywords">this</span>.value = value;
+<span class="java-keywords">synchronized</span> (Level.<span class="java-keywords">class</span>) {
+known.<span class="java-layer-method">add</span>(<span class="java-keywords">this</span>);
+}
+}
+</pre>
+<p>Here <span style="font-family: monospace;">known</span> is a static <span style="font-family: monospace;">ArrayList</span> in the <span style="font-family: monospace;">Level</span> class. Now what happens if the application is undeployed?
+</p>
+<p>
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/gcleakservlet_thumb[2].png" style="width: 575px; height: 399px;">
+<br>
+</p>
+<p>Only the <span style="font-family: monospace;">LeakServlet</span> object can be garbage collected. Because of the reference to the <span style="font-family: monospace;">CUSTOMLEVEL</span> object from outside of <span style="font-family: monospace;">AppClassloader</span>, the&nbsp; <span style="font-family: monospace;">CUSTOMLEVEL</span> anyonymous class objects (<span style="font-family: monospace;">LeakServlet$1<span style="font-family: monospace;">.class</span></span>) cannot be garbage collected, and through that neither can the <span style="font-family: monospace;">AppClassloader</span>, and hence none of the classes that the <span style="font-family: monospace;">AppClassloader</span> loaded can be garbage collected.
+</p>
+<p><span style="color: rgb(255, 0, 0); font-weight: bold;">Conclusion:</span> <span style="font-weight: bold;">any reference from outside the application to an object <span style="font-style: italic;">in</span> the application of which the class is loaded by the application's classloader will cause a classloader leak</span>.
+<br>
+</p>
+<h3>More sneaky problems
+<br>
+</h3>
+<p>I don't blame you if you didn't see the problem with the <span style="font-family: monospace;">Level</span> class: it's sneaky. Last year we had some undeployment problems in our application server. My team, in particular <a href="http://blogs.sun.com/edwardchou">Edward Chou</a>, spent some time to track them all down. Next to the problem with <span style="font-family: monospace;">Level</span>, here are some other problems Edward and I encountered. For instance, if you happen to use some of the Apache Commons BeanHelper's code: there's a static cache in that code that refers to <span style="font-family: monospace;">Method</span> objects. The <span style="font-family: monospace;">Method</span> object holds a reference to the class the <span style="font-family: monospace;">Method</span> points to. Not a problem if the Apache Commons code is loaded in your application's classloader. However, you do have a problem if this code is also present in the classpath of the application server because those classes take precedence. As a result now you have references to classes in your application from the application server's classloader... a classloader leak!
+<br>
+</p>
+<p>I did not mentiond yet the simplest recipe for disaster: a thread started by the application while the thread does not exit after the application is undeployed.
+<br>
+</p>
+<h3>Detection and solution
+</h3>
+<p>Classloader leaks are difficult. Detecting if there's such a leak without having to deploy/undeploy a large number of times is difficult. Finding the source of a classloader leak is even trickier. This is because all the profilers that we tried at the time, did not follow links through classloaders. Therefore we resorted to writing some custom code to find the leaks from memory dump files. Since that exercise, new tools came to market in JDK 6. The <a title="How to fix the dreaded java.lang.OutOfMemoryError: PermGen space exception" href="http://blogs.sun.com/fkieviet/entry/how_to_fix_the_dreaded">next blog</a> will outline what the easiest approach today is for tracking down a glassloader leak.
+<br>
+<br>
+</p>
+<div style="clear: both;"></div>
+</div>
+<div class="post-footer">
+<div class="post-footer-line post-footer-line-1"><span class="post-author vcard">
+Posted by
+<span class="fn">fkieviet</span>
+</span>
+<span class="post-timestamp">
+at
+<a class="timestamp-link" href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html" rel="bookmark" title="permanent link"><abbr class="published" title="2006-10-15T21:08:00-07:00">9:08 PM</abbr></a>
+</span>
+<span class="post-comment-link">
+</span>
+<span class="post-icons">
+<span class="item-control blog-admin pid-1239018001">
+<a href="https://www.blogger.com/post-edit.g?blogID=6643071316318130698&amp;postID=4825660030242716782&amp;from=pencil" title="Edit Post">
+<img alt="" class="icon-action" height="18" src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon18_edit_allbkg.gif" width="18">
+</a>
+</span>
+</span>
+</div>
+<div class="post-footer-line post-footer-line-2"><span class="post-labels">
+</span>
+</div>
+<div class="post-footer-line post-footer-line-3"></div>
+</div>
+</div>
+<div class="comments" id="comments">
+<a name="comments"></a>
+<h4>62 comments:</h4>
+<div id="Blog1_comments-block-wrapper">
+<dl class="avatar-comment-indent" id="comments-block">
+<dt class="comment-author " id="c6326110855543504123">
+<a name="c6326110855543504123"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="http://blogs.sun.com/edwardchou" target="" rel="nofollow" onclick=""><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="edwardchou">
+
+</a></span></div>
+<a href="http://blogs.sun.com/edwardchou" rel="nofollow">edwardchou</a>
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-6326110855543504123">
+<p>
+One point about trying to detect Classloader leak is that it is very difficult to know what exactly is going on inside AppServer.  If you are familiar with the source code of AppServer, then it will help you a bit, since you will have a general idea of where to look.  Because these leaks likely to be at most unexpected places.  I think that is another reason these kind of problems are difficult to debug for application developers.<br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122000#c6326110855543504123" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=6326110855543504123" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c5562473380490594147">
+<a name="c5562473380490594147"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Ramon">
+
+</span></div>
+Ramon
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-5562473380490594147">
+<p>
+This behaviour of the JDK seems  buggy to me. I cannot find any reason for the reference shown with the red arrow in the last figure. I understand that a child class must reference the parent. But the parent class referencing an anonymous child? If the child class disappears, the parent class can continue executing perfectly. Suppose that this reference did not exist. That would allow to free a child anonymous class if there are no instances of this anonymous child. Isn't this the correct behavour?<br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122002#c5562473380490594147" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=5562473380490594147" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c1883614638120813583">
+<a name="c1883614638120813583"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Tim">
+
+</span></div>
+Tim
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-1883614638120813583">
+<p>
+@Ramon:<br>It's not a JDK issue, its actually an implementation detail of the Level class.<br>Level.class is maintaining a hard, static reference to all instances of Level.  Given that Level.class is distributed by the JDK, it will likely have been loaded by the boot classloader.<br>Thus, no instances of Level can be garbage collected meaning their anonymous inner class definitions and the classloaders that point to them cannot be garbage collected.<br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122003#c1883614638120813583" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=1883614638120813583" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c2838365255100199459">
+<a name="c2838365255100199459"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Frank Kieviet">
+
+</span></div>
+Frank Kieviet
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-2838365255100199459">
+<p>
+Hi Aji,<br><br><br>Last week we had a customer report of a permgen space problem; it turned to be a problem with an OS that was missing some patches. Although that OS was not HPUX; nevertheless it may be worthwhile to check that your OS has the latest patches installed.<br><br><br>If the problem is easily reproducible and you escalate it to customer support, our engineering department will have a fix in no time for you.<br><br><br><br><br><br><br><br>Since HPUX probably doesn't support JDK 6 yet, one way of going about diagnosing this problem would be to run the Integration Server with HPROF enabled, trigger a memory dump (kill -3) and inspect the dump file with the modified jhat from JDK 6.<br><br><br>Frank<br><br><br><br><br><br><br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122004#c2838365255100199459" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=2838365255100199459" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c9047030866991927368">
+<a name="c9047030866991927368"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Ramon">
+
+</span></div>
+Ramon
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-9047030866991927368">
+<p>
+@Tim: Thanks, you are right. However, this seems to me a bug in java.util.logger.Level. It should hold weak references.<br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122005#c9047030866991927368" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=9047030866991927368" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c2537811756988910999">
+<a name="c2537811756988910999"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="al0">
+
+</span></div>
+al0
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-2537811756988910999">
+<p>
+I guess that it should be filed as bug (or improvement request) against Level implementation. It seems that changing on known array from storing Level themselves to weak (or soft) references to them should alleviate the problem.<br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122006#c2537811756988910999" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=2537811756988910999" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c8623398462848562817">
+<a name="c8623398462848562817"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="al0">
+
+</span></div>
+al0
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-8623398462848562817">
+<p>
+I guess that it should be filed as bug (or improvement request) against Level implementation. It seems that changing on known array from storing Level themselves to weak (or soft) references to them should alleviate the problem.<br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122007#c8623398462848562817" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=8623398462848562817" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c6758640321972120980">
+<a name="c6758640321972120980"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="downeyt">
+
+</span></div>
+downeyt
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-6758640321972120980">
+<p>
+Excellent! Since reading this article the other day, I have found and resolved two memory leaks that have been troubling me for some time.<br><br>I resolved one issue by modifying the source code of a package. Once I knew what the memory leak was, I was able to find information about it on the web.<br><br>Similarily, for the second issue, I obtained several clues from other online discussions and resolved the leak by moving the offending class to a different classloader.<br><br>I never had a way to determine what the leaks were, but your fantastic article has opened the door. Thanks.<br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122008#c6758640321972120980" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=6758640321972120980" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c1285966940196495576">
+<a name="c1285966940196495576"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Gloria Rocío Giménez Gamarra">
+
+</span></div>
+Gloria Rocío Giménez Gamarra
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-1285966940196495576">
+<p>
+Hey! so this was the problem we had in here! My boss change de default space for the PermGen to 26 mb, 'cause non of us knows what the default size was ('cause in the app server it wasn't setted), 'till now! Keep on doing this blogs... A little late, but now we know how to deal with this in other installations we make.<br>Bye!<br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122009#c1285966940196495576" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=1285966940196495576" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c5799463993441845416">
+<a name="c5799463993441845416"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Jesse Glick">
+
+</span></div>
+Jesse Glick
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-5799463993441845416">
+<p>
+By the way, I have filed a Java bug about this topic: #6543126<br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122010#c5799463993441845416" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=5799463993441845416" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c5090477015617506081">
+<a name="c5090477015617506081"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="http://www.sony.com/" target="" rel="nofollow" onclick=""><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Sony Mathew">
+
+</a></span></div>
+<a href="http://www.sony.com/" rel="nofollow">Sony Mathew</a>
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-5090477015617506081">
+<p>
+Great info Frank.  All Framework and AppServer coders should take note.<br>A bad implementation by Level class.  You are absolutely right - they should not have forced sub-classing to create new Levels.<br>Even changing Level implementation to use WeakReferences now is going to break existing code.<br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122011#c5090477015617506081" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=5090477015617506081" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c3150229505498306470">
+<a name="c3150229505498306470"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Tim Downey">
+
+</span></div>
+Tim Downey
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-3150229505498306470">
+<p>
+Since every class has a reference to the classloader that created it, does this mean that every Enum declared in a servlet will cause a memory leak?<br><br>It seems that the Enum class is created as a static class and has a static pointer to the classloader.<br><br>I have just done a memory test and there is a static reference to the classloader for every value of an Enum. Among these are the values for the Enum for the log4j logger levels.<br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122012#c3150229505498306470" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=3150229505498306470" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c1975294473423880202">
+<a name="c1975294473423880202"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Frank Kieviet">
+
+</span></div>
+Frank Kieviet
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-1975294473423880202">
+<p>
+Re Tim Downey:<br><br><br>Hi Tim,<br><br><br>I'm not familiar with the latest versions of Log4J: the one that I used doesn't have Java 5 style enums. In any case, if an enum class is created in classloader X, and a reference to an instance of this enum class is stored in another classloader, the classloader X can indeed not be garbage collected. If this is the case, it looks very much like the problem with the java.util.logging.Level problem described above.<br><br><br><br><br>Frank<br><br><br><br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122013#c1975294473423880202" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=1975294473423880202" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c8874424278763233632">
+<a name="c8874424278763233632"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Tim Downey">
+
+</span></div>
+Tim Downey
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-8874424278763233632">
+<p>
+Hi Frank,<br>I have looked into the log4j source and the reason for the leaks is the Level class, not enumerations. However, there is a problem with enumerations, too. Even if I create an Enum and only use it in the same class, I get a leak. I am guessing that the implementation of the Enum class is doing something similar to what the Level class is doing.<br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122014#c8874424278763233632" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=8874424278763233632" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c4416736838258246783">
+<a name="c4416736838258246783"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Roger">
+
+</span></div>
+Roger
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-4416736838258246783">
+<p>
+Thank you!  I appreciate your taking the time to write it up including great illustrations and also Edward Chou's  and others work and discussion.  I'll be sure to keep an eye out for what you write about next including the new jdk6 tools.<br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122015#c4416736838258246783" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=4416736838258246783" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c5914852184125300406">
+<a name="c5914852184125300406"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Frank Kieviet">
+
+</span></div>
+Frank Kieviet
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-5914852184125300406">
+<p>
+I received the following additional information from Tim Downey:<br><br><br><br><br><i>I was creating an example to demonstrate the leak, when I tried one more test. After reloading the web app, I then ran your servlet that forces a GC collection in the perm gen. After that, the 'leaks' went away.<br><br><br><br> When a Java 1.5 enum is used, some static references are added to the class that point to the values of the enum. These objects are not collected on a reload, but they are collected when the perm gen is collected.<br><br><br><br> I guess that this means that such static references will cause more collections in the perm gen, but should not cause an out of memory error.<br><br><br><br> Tim<br><br></i><br><br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122016#c5914852184125300406" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=5914852184125300406" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c6577681266591372623">
+<a name="c6577681266591372623"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Gary">
+
+</span></div>
+Gary
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-6577681266591372623">
+<p>
+Thanks for this. I found this after attended your BOF. <br>On the other hand, JVM <b>could</b> do better job to garbage collect CUSTOMLEVEL class and only leave out Level.INFO, Level.SEVERE, etc.. JVM knew they were shared/used by other classes, otherwise, it would not establish that red link(in above diagram) in the first place.<br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122017#c6577681266591372623" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=6577681266591372623" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c8081163021407441615">
+<a name="c8081163021407441615"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Frank Kieviet">
+
+</span></div>
+Frank Kieviet
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-8081163021407441615">
+<p>
+Hi Gary,<br><br><br>It's difficult for the JVM to do a better job: the Level.class object can definitely not be GC-ed and hence the static datamembers also cannot be GC-ed.<br><br><br>However, the implementation of the Level class is, eh, shall we say, not the best of all possible designs. For instance, the Level class could do without the list of all instances: it's only used for serialization. Also, why would you need to sub-class the Level class? A factory method would be a better approach.<br><br><br>Frank<br><br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122018#c8081163021407441615" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=8081163021407441615" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c4191701211467242255">
+<a name="c4191701211467242255"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="dave">
+
+</span></div>
+dave
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-4191701211467242255">
+<p>
+Hi Frank<br><br><br><br>working on a tapestry application, with log4j, and a heap of other libraries. After running through and searching for leaks as suggested, i see hundreds (if not thousands) of references to static properties, and enums. In terms of fixing our own code, is it just a case of changing all the static properties to regular properties, and all the static methods to regular methods (as well as adding methods to return former static properties), and getting rid of enums? I'm still learning the trade, so forgive my ignorance, my level of understanding is not that great.<br><br><br><br>thanks<br><br><br>dave<br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122019#c4191701211467242255" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=4191701211467242255" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c6184320565668901798">
+<a name="c6184320565668901798"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Frank Kieviet">
+
+</span></div>
+Frank Kieviet
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-6184320565668901798">
+<p>
+Hi Dave,<br><br><br>I don't think the problem is in the use of static variables that you see as memory leaks. It's all about identifying the links from the server code to classes in your application. Did you try to use jhat? If you like I can send you the latest version (not available in the JDK yet) that has some more advanced filtering (courtesy of Edward Chou).<br><br><br>Frank<br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122020#c6184320565668901798" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=6184320565668901798" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c6399511639154161726">
+<a name="c6399511639154161726"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="dave">
+
+</span></div>
+dave
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-6399511639154161726">
+<p>
+hmmm... perhaps i didn't select the right links, or maybe i was just interpreting the results incorrectly. i'll read through again, more thoroughly.<br><br><br>yes, i downloaded jdk 6 and played with jmap and jhat, if you could send me the updated version that'd be great.<br><br><br>dtra82 at gmail dot com<br><br><br><br>thanks<br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122021#c6399511639154161726" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=6399511639154161726" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c7682244549112766152">
+<a name="c7682244549112766152"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Frank Kieviet">
+
+</span></div>
+Frank Kieviet
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-7682244549112766152">
+<p>
+You can download the updated jhat.jar from <a href="http://blogs.sun.com/edwardchou/entry/javaone_bof_on_memory_leaks" rel="nofollow">Edward Chou's blog</a>.<br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122022#c7682244549112766152" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=7682244549112766152" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c1881564979139564970">
+<a name="c1881564979139564970"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="David Mackenzie">
+
+</span></div>
+David Mackenzie
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-1881564979139564970">
+<p>
+Adding a servlet listener to release log4j references on destroy context may help:<br><br>public class ApplicationLifecycleListener implements ServletContextListener<br><br>{<br><br>public void contextDestroyed(final ServletContextEvent sce) <br><br>{<br><br>LogFactory.release(Thread.currentThread().getContextClassLoader());<br><br>}<br><br>    public void contextInitialized(final ServletContextEvent sce)<br><br>{<br><br>}<br><br>}<br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122023#c1881564979139564970" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=1881564979139564970" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c443177975754708571">
+<a name="c443177975754708571"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="karl">
+
+</span></div>
+karl
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-443177975754708571">
+<p>
++1! garbage collection is my number one feature of java, but...<br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122024#c443177975754708571" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=443177975754708571" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c3594508207791231249">
+<a name="c3594508207791231249"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Shripad Agashe">
+
+</span></div>
+Shripad Agashe
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-3594508207791231249">
+<p>
+In the conclusion the article mentions that the leak is because of reference from outside. From the example given it looks like a case of cyclical reference to me. If Level class not loaded before creating the servlet, then it has to be loaded by the AppClassLoader. Since the class of Level contains reference to CustomLevel, custom level can not be GCed and hence the AppClassLoader can not be GCed and hence any classes loaded by AppClassLoader can not be GCed.<br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122025#c3594508207791231249" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=3594508207791231249" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c1618877654850734690">
+<a name="c1618877654850734690"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Frank Kieviet">
+
+</span></div>
+Frank Kieviet
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-1618877654850734690">
+<p>
+Re Shripad:<br><br>The "outside" is the classloader that loads the Level class. The AppClassloader doesn't have load the Level.class: it will delegate such a load request to the parent classloader. On the other hand, the CustomLevel class is in fact loaded by the AppClassloader, so now there's a reference from the classloader that loaded Level to the classloader that loaded CustomLevel.<br><br>Frank<br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122026#c1618877654850734690" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=1618877654850734690" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c6434472193026814474">
+<a name="c6434472193026814474"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Shripad Agashe">
+
+</span></div>
+Shripad Agashe
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-6434472193026814474">
+<p>
+Hi Frank,<br><br>One interesting thought came to me is regarding use of static objects. Lets take a case where a class C1 has object O1 as a static member variable. Now if the O1 is updated after loading, should the class C1 be allowed to be GCed? Since if the class C1 is loaded and unloaded again, it may lose the state of O1. Not sure how this use case would work.<br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122027#c6434472193026814474" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=6434472193026814474" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c697543658032378430">
+<a name="c697543658032378430"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Tony Tung">
+
+</span></div>
+Tony Tung
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-697543658032378430">
+<p>
+Can someone answer this question about the bad Level implementation: does it mean that whenever I used the stcLogger that comes with JCAPS JCD, I have the issue of class loader leak? or is the stcLogger not using the Level class that comes with JDK?<br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122028#c697543658032378430" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=697543658032378430" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c2491877628452571429">
+<a name="c2491877628452571429"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Hari">
+
+</span></div>
+Hari
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-2491877628452571429">
+<p>
+Hai Frank<br><br>Excellent article. Currently we have integrated OSGI framework to our appserver. We never considered the points mentioned in this blog. Thinking of reviewing the code of service bundles we are providing and do some testing by doing multiple deploy-undeploy. Can you give some suggestions ?<br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122029#c2491877628452571429" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=2491877628452571429" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c3306843426783066743">
+<a name="c3306843426783066743"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="http://www.gatherplace.net/" target="" rel="nofollow" onclick=""><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Frik Strecker">
+
+</a></span></div>
+<a href="http://www.gatherplace.net/" rel="nofollow">Frik Strecker</a>
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-3306843426783066743">
+<p>
+Java enums are definitely causing memory leaks when reloading web applications under tomcat.<br><br>We are using Java 1.6 and tested with SUN JVM and JRocket.  As you mentioned, the enums keep pointers to classloader and the classloader does not unload.  This causes memory leaks.<br><br>With SUN JVM, you get a perm space out of memory error after just a few reloads, but not with JRocket (since it does not use the permspace).<br><br>Does anyone know how to resolve this memory leak caused by Java enums other than not using it?<br><br>Thanks,<br><br>Frik<br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122030#c3306843426783066743" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=3306843426783066743" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c2371920415771762001">
+<a name="c2371920415771762001"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="http://blogs.sun.com/fkieviet" target="" rel="nofollow" onclick=""><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Frank Kieviet">
+
+</a></span></div>
+<a href="http://blogs.sun.com/fkieviet" rel="nofollow">Frank Kieviet</a>
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-2371920415771762001">
+<p>
+Re Frik:<br><br>I haven't seen this problem myself, perhaps because I haven't been using enums much.<br><br>If it's indeed a problem, it's a critical bug that should be fixed asap. Perhaps you can file a ticket for this problem?<br><br>Frank<br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122031#c2371920415771762001" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=2371920415771762001" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c1729526231851698876">
+<a name="c1729526231851698876"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="http://www.gatherplace.net/" target="" rel="nofollow" onclick=""><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Frik Strecker">
+
+</a></span></div>
+<a href="http://www.gatherplace.net/" rel="nofollow">Frik Strecker</a>
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-1729526231851698876">
+<p>
+Based on the comments by Tim Downey on this page, the enums keep a pointer to the classloader which results in a leak on reload.<br><br>I am not sure exactly how to proof or disproof what he found in his tests, but I found projects with enums do not get unloaded properly.  So there seems to be merit for what he is saying and therefor my previous post.  However, Java reflection does not show this pointer, but I do not what the bytecode will show.  I will try a decompiler today and see what it shows.<br><br>I will be hooking up JProfiler today to see if I can get to the bottom of this, but any ideas are welcome.<br><br>As you said, if this is the case, then this is a serious bug that warrants attention.<br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122032#c1729526231851698876" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=1729526231851698876" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c3777996855564028798">
+<a name="c3777996855564028798"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="garys">
+
+</span></div>
+garys
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-3777996855564028798">
+<p>
+We also notice this with Inner classes. Even if you manually de-reference the instance, the containing instance seems to retain a reference, <br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122033#c3777996855564028798" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=3777996855564028798" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c6272420443206133800">
+<a name="c6272420443206133800"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="http://blogs.sun.com/fkieviet" target="" rel="nofollow" onclick=""><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Frank Kieviet">
+
+</a></span></div>
+<a href="http://blogs.sun.com/fkieviet" rel="nofollow">Frank Kieviet</a>
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-6272420443206133800">
+<p>
+Re Frik:<br><br>If there are any links between a class and enums, it should show up in memory dumps that can be obtained with jmap and analyzed with jhat. I think that would be the easiest way to look into the issue.<br><br>Frank<br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122034#c6272420443206133800" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=6272420443206133800" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c5350191071152503939">
+<a name="c5350191071152503939"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="http://blogs.sun.com/fkieviet" target="" rel="nofollow" onclick=""><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Frank Kieviet">
+
+</a></span></div>
+<a href="http://blogs.sun.com/fkieviet" rel="nofollow">Frank Kieviet</a>
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-5350191071152503939">
+<p>
+Re Garys:<br><br>I don't believe there are any classloader leaks because of the use of inner classes: these are used all over the place, including in applications of which the classes are in fact GC-ed correctly after undeployment.<br><br>Frank<br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122035#c5350191071152503939" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=5350191071152503939" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c6811544435949418438">
+<a name="c6811544435949418438"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Rama">
+
+</span></div>
+Rama
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-6811544435949418438">
+<p>
+Hi Everyone,<br><br>There is been a problem in my application server trying to deploy an application with multiple web contexts, and the total ear file size is slightly more than a Gig. The JVM throws out the Perm Gen Space error when trying to Unzip the file during deployment.<br><br>Application Server being used JBoss 4.2.<br><br>Thank you.<br><br>Rama<br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122036#c6811544435949418438" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=6811544435949418438" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c2354109884495074624">
+<a name="c2354109884495074624"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="http://blogs.sun.com/fkieviet" target="" rel="nofollow" onclick=""><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Frank Kieviet">
+
+</a></span></div>
+<a href="http://blogs.sun.com/fkieviet" rel="nofollow">Frank Kieviet</a>
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-2354109884495074624">
+<p>
+Re Rama:<br><br>With an EAR of about a Gb, the problem that you're running into may not be a classloader leak, but simply because of the fact that it will take a lot of memory to load all these classes into memory. Try to increase your permspace memory.<br><br>Frank<br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122037#c2354109884495074624" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=2354109884495074624" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c1475206369904223575">
+<a name="c1475206369904223575"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Renaud Bruyeron">
+
+</span></div>
+Renaud Bruyeron
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-1475206369904223575">
+<p>
+Hi Frank,<br><br>this is hugely informative, thank you so much for the post.<br><br>I do have a question though: I am facing the dread PermGen OOM, but the tomcat instances are configured to not allow redeployment of the webapps.<br><br>This setting was chosen to address this very specific problem (tomcat+struts suffers from it because of the "static reference to the classloader in a Servlet" pattern).<br><br>Now if you take redeployment out of the equation, what else can explain the PermGen OOM? My guess is that it could be the number of jars/classes in my webapps, or String.intern() (through XML parsing for example).<br><br>What I am looking for is a way to either 1) inspect the permgen 2) calculate my permgen requirement based on the number of classes / Strings / classloaders<br><br>Using YourKit profiler does not help much because the profiler does not tell me what is in what generation.<br><br>Any ideas?<br><br> - Renaud<br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122038#c1475206369904223575" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=1475206369904223575" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c8009817933125584135">
+<a name="c8009817933125584135"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="http://blogs.sun.com/fkieviet" target="" rel="nofollow" onclick=""><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Frank Kieviet">
+
+</a></span></div>
+<a href="http://blogs.sun.com/fkieviet" rel="nofollow">Frank Kieviet</a>
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-8009817933125584135">
+<p>
+Re Renaud,<br><br>You can use jconsole to inspect the various memory pools, including permgen space. <br><br>To see how much memory you need, you could increase the permgen memory setting, start Tomcat, measure the permgen usage, deploy your application, and measure again.<br><br>Frank<br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122039#c8009817933125584135" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=8009817933125584135" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c5819095174561198674">
+<a name="c5819095174561198674"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Renaud Bruyeron">
+
+</span></div>
+Renaud Bruyeron
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-5819095174561198674">
+<p>
+Hi Frank,<br><br>thank you for your reply.<br><br>The thing is, I am beyond the basics already: the webapp seems to be leaking permgen \*after\* deploy - i.e. permgen grows in spikes after a few days.<br><br>See <a href="http://www.deuxc.org/issue-permgen-cms.png" rel="nofollow">http://www.deuxc.org/issue-permgen-cms.png</a><br><br>This shows a graph of MemoryMXBean.getNonHeapMemoryUsage().getUsed()<br><br>over time. Notice the spikes between the 6th and 7th of June, the 9th and 10th and the final one (which caused the famous PermGen OOM) at the end.<br><br>When I correlate this to the actual activity of the application, the spikes happen on publication jobs (this is a content management system). This involves a lot of XSL processing and hibernate activity.<br><br>What I am really looking for is something to \*inspect\* what is inside the nonheap memory pools so that I can get a sense of 1) why it's growing like it is (i.e. is it a leak?) 2) what the appropriate setting should be avoid OOM if it is not a leak<br><br>What do you think?<br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122040#c5819095174561198674" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=5819095174561198674" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c3761749939356653111">
+<a name="c3761749939356653111"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Jol">
+
+</span></div>
+Jol
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-3761749939356653111">
+<p>
+Thank you, this is very helpful. I am having a permgen problem with eclipse and needed to understand permgen. I added -XX:MaxPermSize=128m<br><br>to eclipse.ini which I hope will help in addition to Xms Xmx<br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122041#c3761749939356653111" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=3761749939356653111" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c3451890417564283179">
+<a name="c3451890417564283179"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="http://culturanerd.blogspot.com/" target="" rel="nofollow" onclick=""><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Igor">
+
+</a></span></div>
+<a href="http://culturanerd.blogspot.com/" rel="nofollow">Igor</a>
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-3451890417564283179">
+<p>
+Thanks for the post, very helpful! I'm using Java 6 + Tomcat 5.5 + Struts 1.2.x + Hibernate and note that the PermGen memory increase each time I deploy/undeploy an application. I tried to use another JVM (BEA JRockit ) but the problem is the same, this JVM has a memory area called "Class Memory" with a behaviour very similar. Maybe the problem is the Struts' classloader.<br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122042#c3451890417564283179" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=3451890417564283179" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c6293913601297458474">
+<a name="c6293913601297458474"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Harry">
+
+</span></div>
+Harry
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-6293913601297458474">
+<p>
+And... Still relevant three years later. Thanks.<br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122043#c6293913601297458474" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=6293913601297458474" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c5567069357320958168">
+<a name="c5567069357320958168"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Souvik Das">
+
+</span></div>
+Souvik Das
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-5567069357320958168">
+<p>
+Hi Frank,<br><br>It was really a nice article to under stand the concept of classloader and Permgen space.thanks a lot.<br><br>I have the following questions:<br><br>if such kind of application is deployed in server and the same error comes <br><br>what is the quick solution to make the server up?<br><br>if we increase the maxpersize in memory arguements does it going to help??<br><br>Thx<br><br>Souvik<br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122044#c5567069357320958168" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=5567069357320958168" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c8008803082527023440">
+<a name="c8008803082527023440"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Frank Kieviet">
+
+</span></div>
+Frank Kieviet
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-8008803082527023440">
+<p>
+Re Souvik:<br><br>If there's a true memory leak, increasing the permgen setting of the VM will only postpone the system running out of memory. Depending on how the memory leaks, e.g. only when the application is redeployed, increasing the memory settings may be a useful workaround, similarly to restarting the server when redeploying the leaking application.<br><br>HTH,<br><br>Frank<br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122045#c8008803082527023440" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=8008803082527023440" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c323384288794664080">
+<a name="c323384288794664080"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Marian">
+
+</span></div>
+Marian
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-323384288794664080">
+<p>
+If I understand correctly, the problem resides in the java.util.logging package and the fact that it is used by the JVM that also starts the whole server; what's hapening if one puts rt.jar in WEB-INF/lib? Wouldn't in this case the java.util.logging classes be garbage-collected when the server stops?<br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122046#c323384288794664080" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=323384288794664080" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c8131754465600044187">
+<a name="c8131754465600044187"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Frank Kieviet">
+
+</span></div>
+Frank Kieviet
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-8131754465600044187">
+<p>
+Re Marian:<br><br>First of all, the java.util.logging.Level issue is just an example. Indeed the problem in this example is that the JVM (root classloader = parent classloader) is holding a reference to the class that is loaded in the application classloader.<br><br>Moving rt.jar into the web application won't work, because even if you setup the delegation model to self-first, no classloader is allowed to try to self-first delegate classes that start with java.\* or javax.\*.<br><br>For other examples, where the classes are not java.\* or javax.\*, moving the jar to the application classloader would indeed likely solve the problem. Instead of moving, one could also copy the jar into a web application and turn on the self-first delegation model.<br><br>HTH,<br><br>Frank<br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122047#c8131754465600044187" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=8131754465600044187" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c1300152570058183637">
+<a name="c1300152570058183637"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="http://www.hlcsuperstore.com/" target="" rel="nofollow" onclick=""><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="snio">
+
+</a></span></div>
+<a href="http://www.hlcsuperstore.com/" rel="nofollow">snio</a>
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-1300152570058183637">
+<p>
+&lt;p&gt;&lt;a href="<a href="javascript:void(0);" rel="nofollow">http://www.hlcsuperstore.com/mobile-phones_cell-phone-accessories.html"&gt;cell</a> phones accessories&lt;/a&gt;&lt;/p&gt;<br><br>&lt;p&gt;&lt;a href="<a href="javascript:void(0);" rel="nofollow">http://www.hlcsuperstore.com/mobile-phones_cell-phones.html"&gt;cell</a> phones&lt;/a&gt;&lt;/p&gt;<br><br>&lt;p&gt;&lt;a href="<a href="javascript:void(0);" rel="nofollow">http://www.hlcsuperstore.com/mobile-phones_cell-phone-batteries.html"&gt;cell</a> phone battery&lt;/a&gt;&lt;/p&gt;<br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122048#c1300152570058183637" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=1300152570058183637" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c3249957894672346398">
+<a name="c3249957894672346398"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Alexis">
+
+</span></div>
+Alexis
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-3249957894672346398">
+<p>
+Thank you for your help. I'm a maven fan and always trying to automate deploy on continuus integration. I don't understand why that OOM is always a fatality on medium/big sized project.<br><br>Regards,<br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122049#c3249957894672346398" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=3249957894672346398" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c8257967947916181172">
+<a name="c8257967947916181172"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Paul Nolan">
+
+</span></div>
+Paul Nolan
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-8257967947916181172">
+<p>
+Hi Frank,<br><br>Great article, thank you. I was wondering if you had any plan to write a similiar article about the code cache in JDK 6? In my situation we have a home grown application server. My code that runs in this server uses Janino to generate code at runtime. All the permGen issues have been resolved i.e. permGen does not increase anymore over time and is correctly garbage collected. However, the code cache increases continually until we get an OutOfMemoryError (swap space). I am finding this more difficult to solve than the permGen issues.<br><br>best.<br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122050#c8257967947916181172" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=8257967947916181172" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c693418407558391024">
+<a name="c693418407558391024"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Frank Kieviet">
+
+</span></div>
+Frank Kieviet
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-693418407558391024">
+<p>
+Re Paul:<br><br>Hi Paul, I don't have much expertise in native compilation, code caching, or the VM for that matter, but it seems to me that if permgen is constant and if the code cache keeps growing, you've hit a bug in the JVM. Did you try to bring this up with the JDK team?<br><br>Frank<br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122051#c693418407558391024" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=693418407558391024" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c8365760018423882315">
+<a name="c8365760018423882315"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="http://www.captivecaptures.blogspot.com/" target="" rel="nofollow" onclick=""><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="m M">
+
+</a></span></div>
+<a href="http://www.captivecaptures.blogspot.com/" rel="nofollow">m M</a>
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-8365760018423882315">
+<p>
+Thanks for the great article...great information shared.<br><br>Few pointers here as well,<br><br><a href="http://minmaxmim.blogspot.com/2010/01/javalangoutofmemoryerror-java-heap.html" rel="nofollow">http://minmaxmim.blogspot.com/2010/01/javalangoutofmemoryerror-java-heap.html</a><br><br><a href="http://minmaxmim.blogspot.com/2010/01/javalangoutofmemoryerror-permgen-space.html" rel="nofollow">http://minmaxmim.blogspot.com/2010/01/javalangoutofmemoryerror-permgen-space.html</a><br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122052#c8365760018423882315" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=8365760018423882315" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c6821326611316008022">
+<a name="c6821326611316008022"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="http://www.everestuncensored.org/" target="" rel="nofollow" onclick=""><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="lava kafle">
+
+</a></span></div>
+<a href="http://www.everestuncensored.org/" rel="nofollow">lava kafle</a>
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-6821326611316008022">
+<p>
+Perfect!! I never knew PermGen is growing exponentially across each deployment. I will never use that setting ever again in my Jrockit as I never use Sun's JDK to avoid memory problems, but unsuccessful till now. I even compile in Jrockit to avoid memory problems, but always got OOM and PermGenSpace<br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122053#c6821326611316008022" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=6821326611316008022" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c1497813836067207563">
+<a name="c1497813836067207563"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Chris">
+
+</span></div>
+Chris
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-1497813836067207563">
+<p>
+My problem was fixed by putting referenced libraries in the web server's shared library folder rather than the deployed application's library folder.<br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122054#c1497813836067207563" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=1497813836067207563" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c3399943550780836384">
+<a name="c3399943550780836384"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="http://www.yourmortgage.com.au/calculators/stamp_duty/" target="" rel="nofollow" onclick=""><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="stamp duty calculator">
+
+</a></span></div>
+<a href="http://www.yourmortgage.com.au/calculators/stamp_duty/" rel="nofollow">stamp duty calculator</a>
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-3399943550780836384">
+<p>
+I get this problem quite a bit, cheers for the heads up. Off to your next post to see how I can fix it.<br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122055#c3399943550780836384" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=3399943550780836384" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c3404394879231792703">
+<a name="c3404394879231792703"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="blueocean">
+
+</span></div>
+blueocean
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-3404394879231792703">
+<p>
+Hi everybody,<br><br>I get the same pb. But it seems not cause by redeployed the applications.<br><br>have we anothers reasons ?<br><br>thanks<br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122056#c3404394879231792703" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=3404394879231792703" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c4589926331277788755">
+<a name="c4589926331277788755"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Nesma Rashad">
+
+</span></div>
+Nesma Rashad
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-4589926331277788755">
+<p>
+I am facing out of memory permgen exception.I tried to increase my permgen and log class loading and unloading.Unfortunately I am down after two days and when I traced the log I found that loading of each class took place one time and no grabage collector is up until the permgen reached maximum then garbage collector kept on running nt able to unload any class I am wondering what made my permgen increase whileeach class is loaded only once .I forgot to say that I am using tomcat and Sun JVM 6<br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122057#c4589926331277788755" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=4589926331277788755" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c178782100946472525">
+<a name="c178782100946472525"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Mike Sweeney">
+
+</span></div>
+Mike Sweeney
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-178782100946472525">
+<p>
+Is there a way for the app to monitor perm gen space usage? <br><br>e.g. our app writes a WARN to Tomcat log if Runtime.getRuntime().freeMemory() falls below 10 mb, but that doesn't help w/ the perm gen problem.<br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122058#c178782100946472525" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=178782100946472525" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c8119107933707490056">
+<a name="c8119107933707490056"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="guest">
+
+</span></div>
+guest
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-8119107933707490056">
+<p>
+why? it said i neede to anser a simple math question<br><br>
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1331698122059#c8119107933707490056" title="comment permalink">
+March 13, 2012 at 9:08 PM
+</a>
+<span class="item-control blog-admin pid-485372721">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=8119107933707490056" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c6647423332484767407">
+<a name="c6647423332484767407"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="https://www.blogger.com/profile/02631170123809271532" target="" rel="nofollow" onclick="" class="avatar-hovercard" id="av-6647423332484767407-02631170123809271532"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/unnamed(15).png" width="35" height="35" alt="" title="Torsten Mielke">
+
+</a></span></div>
+<a href="https://www.blogger.com/profile/02631170123809271532" rel="nofollow">Torsten Mielke</a>
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-6647423332484767407">
+<p>
+Your link to the follow up article on how to fix this problem is broken. <br>Although I foun the article on your blog, perhaps you could correct it. <br><br>Thx.
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1345118840324#c6647423332484767407" title="comment permalink">
+August 16, 2012 at 5:07 AM
+</a>
+<span class="item-control blog-admin pid-818261741">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=6647423332484767407" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c6342606211631779578">
+<a name="c6342606211631779578"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><a href="http://plumbr.eu/" target="" rel="nofollow" onclick=""><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Plumbr">
+
+</a></span></div>
+<a href="http://plumbr.eu/" rel="nofollow">Plumbr</a>
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-6342606211631779578">
+<p>
+Talking about new tools - there is one that makes the discovery of classloader leaks easy. In most cases <a href="http://plumbr.eu/" rel="nofollow">Plumbr memory leak detector</a> finds the leak already after the first redeploy, and tells you exactly what is leaking.<br><br>With Plumbr leak report you can solve the leak within minutes.
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1348118958841#c6342606211631779578" title="comment permalink">
+September 19, 2012 at 10:29 PM
+</a>
+<span class="item-control blog-admin pid-573952573">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=6342606211631779578" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+<dt class="comment-author " id="c3968714812895802451">
+<a name="c3968714812895802451"></a>
+<div class="avatar-image-container avatar-stock"><span dir="ltr"><img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/blank.gif" width="35" height="35" alt="" title="Anonymous">
+
+</span></div>
+Anonymous
+said...
+</dt>
+<dd class="comment-body" id="Blog1_cmt-3968714812895802451">
+<p>
+So what's the right way to create a new Level? Should we simply avoid doing that? Can we be safe using just the predefined levels?
+</p>
+</dd>
+<dd class="comment-footer">
+<span class="comment-timestamp">
+<a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html?showComment=1352855959504#c3968714812895802451" title="comment permalink">
+November 13, 2012 at 5:19 PM
+</a>
+<span class="item-control blog-admin pid-776111780">
+<a class="comment-delete" href="https://www.blogger.com/delete-comment.g?blogID=6643071316318130698&amp;postID=3968714812895802451" title="Delete Comment">
+<img src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon_delete13.gif">
+</a>
+</span>
+</span>
+</dd>
+</dl>
+</div>
+<p class="comment-footer">
+<a href="https://www.blogger.com/comment.g?blogID=6643071316318130698&amp;postID=4825660030242716782" onclick="">Post a Comment</a>
+</p>
+<div id="backlinks-container">
+<div id="Blog1_backlinks-container"><a></a><h4>Links to this post</h4>
+<p>
+<a href="https://www.blogger.com/blog-this.g" target="_blank">Create a Link</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+
+        </div></div>
+      
+</div>
+<div class="blog-pager" id="blog-pager">
+<span id="blog-pager-newer-link">
+<a class="blog-pager-newer-link" href="http://frankkieviet.blogspot.com/2006/10/how-to-fix-dreaded-permgen-space.html" id="Blog1_blog-pager-newer-link" title="Newer Post">Newer Post</a>
+</span>
+<span id="blog-pager-older-link">
+<a class="blog-pager-older-link" href="http://frankkieviet.blogspot.com/2006/10/transactions-disks-and-performance.html" id="Blog1_blog-pager-older-link" title="Older Post">Older Post</a>
+</span>
+<a class="home-link" href="http://frankkieviet.blogspot.com/">Home</a>
+</div>
+<div class="clear"></div>
+<div class="post-feeds">
+<div class="feed-links">
+Subscribe to:
+<a class="feed-link" href="http://frankkieviet.blogspot.com/feeds/4825660030242716782/comments/default" target="_blank" type="application/atom+xml">Post Comments (Atom)</a>
+</div>
+</div>
+</div></div>
+</div>
+<div id="sidebar-wrapper">
+<div class="sidebar section" id="sidebar"><div class="widget Profile" data-version="1" id="Profile2">
+<h2>About Me</h2>
+<div class="widget-content">
+<dl class="profile-datablock">
+<dt class="profile-data">
+<a class="profile-name-link g-profile" href="https://www.blogger.com/profile/07479805042474878714" rel="author" style="background-image: url(//www.blogger.com/img/logo-16.png);" data-gapiscan="true" data-onload="true" data-gapiattached="true">
+fkieviet
+</a>
+</dt>
+<dd class="profile-data">
+</dd>
+</dl>
+<a class="profile-link" href="https://www.blogger.com/profile/07479805042474878714" rel="author">View my complete profile</a>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=6643071316318130698&amp;widgetType=Profile&amp;widgetId=Profile2&amp;action=editWidget&amp;sectionId=sidebar" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;Profile2&quot;));" rel="nofollow" target="configProfile2" title="Edit">
+<img alt="" height="18" src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div><div class="widget Text" data-version="1" id="Text1">
+<h2 class="title">Links</h2>
+<div class="widget-content">
+<a href="http://www.linkedin.com/in/fkieviet" title="View my profile on LinkedIn"><img border="0" alt="View Frank Kieviet&#39;s profile on linkedin" width="160" src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/btn_viewmy_160x33.gif" height="33"></a>
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=6643071316318130698&amp;widgetType=Text&amp;widgetId=Text1&amp;action=editWidget&amp;sectionId=sidebar" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;Text1&quot;));" rel="nofollow" target="configText1" title="Edit">
+<img alt="" height="18" src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div><div class="widget Text" data-version="1" id="Text2">
+<h2 class="title">Most popular...</h2>
+<div class="widget-content">
+<ul><li><a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html">How to fix the dreaded "java.lang.OutOfMemoryError: PermGen space" exception (classloader leaks)</a><br></li><li><a href="http://frankkieviet.blogspot.com/2006/08/jms-requestreply-from-ejb.html">JMS request/reply from an EJB</a></li></ul>
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=6643071316318130698&amp;widgetType=Text&amp;widgetId=Text2&amp;action=editWidget&amp;sectionId=sidebar" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;Text2&quot;));" rel="nofollow" target="configText2" title="Edit">
+<img alt="" height="18" src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div><div class="widget Followers" data-version="1" id="Followers2">
+<h2 class="title">Followers</h2>
+<div class="widget-content">
+<div id="Followers2-wrapper">
+<div style="margin-right:2px;">
+<div><script type="text/javascript" src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/plusone.js" gapi_processed="true"></script>
+<div id="followers-iframe-container"><iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="" tabindex="0" vspace="0" width="100%" id="I0_1581178752137" name="I0_1581178752137" src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/followers.html" height="13"></iframe></div>
+<script type="text/javascript">
+    window.followersIframe = null;
+    function followersIframeOpen(url) {
+      gapi.load("gapi.iframes", function() {
+        if (gapi.iframes && gapi.iframes.getContext) {
+          window.followersIframe = gapi.iframes.getContext().openChild({
+            url: url,
+            where: document.getElementById("followers-iframe-container"),
+            messageHandlersFilter: gapi.iframes.CROSS_ORIGIN_IFRAMES_FILTER,
+            messageHandlers: {
+              '_ready': function(obj) {
+                window.followersIframe.getIframeEl().height = obj.height;
+              },
+              'reset': function() {
+                window.followersIframe.close();
+                followersIframeOpen("https://www.blogger.com/followers.g?blogID\x3d6643071316318130698\x26colors\x3dCgt0cmFuc3BhcmVudBILdHJhbnNwYXJlbnQaByMzMzMzMzMiByMwMDAwMDAqByNmZmZmZmYyByMwMDAwMDA6ByMzMzMzMzNCByMwMDAwMDBKByMwMDAwMDBSByNGRkZGRkZaC3RyYW5zcGFyZW50\x26pageSize\x3d21\x26postID\x3d4825660030242716782\x26origin\x3dhttp://frankkieviet.blogspot.com/");
+              },
+              'open': function(url) {
+                window.followersIframe.close();
+                followersIframeOpen(url);
+              },
+              'blogger-ping': function() {
+              }
+            }
+          });
+        }
+      });
+    }
+    followersIframeOpen("https://www.blogger.com/followers.g?blogID\x3d6643071316318130698\x26colors\x3dCgt0cmFuc3BhcmVudBILdHJhbnNwYXJlbnQaByMzMzMzMzMiByMwMDAwMDAqByNmZmZmZmYyByMwMDAwMDA6ByMzMzMzMzNCByMwMDAwMDBKByMwMDAwMDBSByNGRkZGRkZaC3RyYW5zcGFyZW50\x26pageSize\x3d21\x26postID\x3d4825660030242716782\x26origin\x3dhttp://frankkieviet.blogspot.com/");
+  </script></div>
+</div>
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=6643071316318130698&amp;widgetType=Followers&amp;widgetId=Followers2&amp;action=editWidget&amp;sectionId=sidebar" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;Followers2&quot;));" rel="nofollow" target="configFollowers2" title="Edit">
+<img alt="" height="18" src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div><div class="widget BlogSearch" data-version="1" id="BlogSearch1">
+<h2 class="title">Search This Blog</h2>
+<div class="widget-content">
+<div id="BlogSearch1_form">
+<form action="http://frankkieviet.blogspot.com/search" class="gsc-search-box" target="_top">
+<table cellpadding="0" cellspacing="0" class="gsc-search-box">
+<tbody>
+<tr>
+<td class="gsc-input">
+<input autocomplete="off" class="gsc-input" name="q" size="10" title="search" type="text" value="">
+</td>
+<td class="gsc-search-button">
+<input class="gsc-search-button" title="search" type="submit" value="Search">
+</td>
+</tr>
+</tbody>
+</table>
+</form>
+</div>
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=6643071316318130698&amp;widgetType=BlogSearch&amp;widgetId=BlogSearch1&amp;action=editWidget&amp;sectionId=sidebar" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;BlogSearch1&quot;));" rel="nofollow" target="configBlogSearch1" title="Edit">
+<img alt="" height="18" src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div><div class="widget BlogArchive" data-version="1" id="BlogArchive2">
+<h2>Blog Archive</h2>
+<div class="widget-content">
+<div id="ArchiveList">
+<div id="BlogArchive2_ArchiveList">
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://frankkieviet.blogspot.com/2016/">
+2016
+</a>
+<span class="post-count" dir="ltr">(1)</span>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://frankkieviet.blogspot.com/2016/02/">
+February
+</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://frankkieviet.blogspot.com/2013/">
+2013
+</a>
+<span class="post-count" dir="ltr">(1)</span>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://frankkieviet.blogspot.com/2013/06/">
+June
+</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://frankkieviet.blogspot.com/2012/">
+2012
+</a>
+<span class="post-count" dir="ltr">(1)</span>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://frankkieviet.blogspot.com/2012/03/">
+March
+</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://frankkieviet.blogspot.com/2010/">
+2010
+</a>
+<span class="post-count" dir="ltr">(9)</span>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://frankkieviet.blogspot.com/2010/07/">
+July
+</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://frankkieviet.blogspot.com/2010/04/">
+April
+</a>
+<span class="post-count" dir="ltr">(4)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://frankkieviet.blogspot.com/2010/02/">
+February
+</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://frankkieviet.blogspot.com/2010/01/">
+January
+</a>
+<span class="post-count" dir="ltr">(3)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://frankkieviet.blogspot.com/2009/">
+2009
+</a>
+<span class="post-count" dir="ltr">(11)</span>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://frankkieviet.blogspot.com/2009/11/">
+November
+</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://frankkieviet.blogspot.com/2009/09/">
+September
+</a>
+<span class="post-count" dir="ltr">(2)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://frankkieviet.blogspot.com/2009/08/">
+August
+</a>
+<span class="post-count" dir="ltr">(2)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://frankkieviet.blogspot.com/2009/05/">
+May
+</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://frankkieviet.blogspot.com/2009/03/">
+March
+</a>
+<span class="post-count" dir="ltr">(3)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://frankkieviet.blogspot.com/2009/01/">
+January
+</a>
+<span class="post-count" dir="ltr">(2)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://frankkieviet.blogspot.com/2008/">
+2008
+</a>
+<span class="post-count" dir="ltr">(4)</span>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://frankkieviet.blogspot.com/2008/12/">
+December
+</a>
+<span class="post-count" dir="ltr">(3)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://frankkieviet.blogspot.com/2008/05/">
+May
+</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://frankkieviet.blogspot.com/2007/">
+2007
+</a>
+<span class="post-count" dir="ltr">(7)</span>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://frankkieviet.blogspot.com/2007/10/">
+October
+</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://frankkieviet.blogspot.com/2007/09/">
+September
+</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://frankkieviet.blogspot.com/2007/05/">
+May
+</a>
+<span class="post-count" dir="ltr">(2)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://frankkieviet.blogspot.com/2007/02/">
+February
+</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://frankkieviet.blogspot.com/2007/01/">
+January
+</a>
+<span class="post-count" dir="ltr">(2)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate expanded">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy toggle-open">
+
+        ▼&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://frankkieviet.blogspot.com/2006/">
+2006
+</a>
+<span class="post-count" dir="ltr">(22)</span>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://frankkieviet.blogspot.com/2006/12/">
+December
+</a>
+<span class="post-count" dir="ltr">(2)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://frankkieviet.blogspot.com/2006/11/">
+November
+</a>
+<span class="post-count" dir="ltr">(2)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate expanded">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy toggle-open">
+
+        ▼&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://frankkieviet.blogspot.com/2006/10/">
+October
+</a>
+<span class="post-count" dir="ltr">(3)</span>
+<ul class="posts">
+<li><a href="http://frankkieviet.blogspot.com/2006/10/how-to-fix-dreaded-permgen-space.html">How to fix the dreaded "java.lang.OutOfMemoryError...</a></li>
+<li><a href="http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html">Classloader leaks: the dreaded "java.lang.OutOfMem...</a></li>
+<li><a href="http://frankkieviet.blogspot.com/2006/10/transactions-disks-and-performance.html">Transactions, disks, and performance</a></li>
+</ul>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://frankkieviet.blogspot.com/2006/09/">
+September
+</a>
+<span class="post-count" dir="ltr">(3)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://frankkieviet.blogspot.com/2006/08/">
+August
+</a>
+<span class="post-count" dir="ltr">(3)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="http://frankkieviet.blogspot.com/2006/07/">
+July
+</a>
+<span class="post-count" dir="ltr">(9)</span>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=6643071316318130698&amp;widgetType=BlogArchive&amp;widgetId=BlogArchive2&amp;action=editWidget&amp;sectionId=sidebar" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;BlogArchive2&quot;));" rel="nofollow" target="configBlogArchive2" title="Edit">
+<img alt="" height="18" src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div></div>
+</div>
+<!-- spacer for skins that want sidebar and main to be the same height-->
+<div class="clear">&nbsp;</div>
+</div>
+<!-- end content-wrapper -->
+<div id="footer-wrapper">
+<div class="footer no-items section" id="footer"></div>
+</div>
+</div></div>
+<!-- end outer-wrapper -->
+<!-- FGK BEGIN -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-7101814-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+<!-- FGK END -->
+<script src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/plusone.js" type="text/javascript" gapi_processed="true"></script>
+<!--It is your responsibility to notify your visitors about cookies used and data collected on your blog. Blogger makes a standard notification available for you to use on your blog, and you can customise it or replace it with your own notice. See http://www.blogger.com/go/cookiechoices for more details.-->
+<script defer="" src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/cookienotice.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function(event) {
+      window.cookieChoices && cookieChoices.showCookieConsentBar && cookieChoices.showCookieConsentBar(
+          (window.cookieOptions && cookieOptions.msg) || 'This site uses cookies from Google to deliver its services and to analyse traffic. Your IP address and user agent are shared with Google, together with performance and security metrics, to ensure quality of service, generate usage statistics and to detect and address abuse.',
+          (window.cookieOptions && cookieOptions.close) || 'Ok',
+          (window.cookieOptions && cookieOptions.learn) || 'Learn more',
+          (window.cookieOptions && cookieOptions.link) || 'https://www.blogger.com/go/blogspot-cookies');
+    });
+  </script>
+
+<script type="text/javascript" src="./Frank Kieviet&#39;s Engineering Notebook_ Classloader leaks_ the dreaded _java.lang.OutOfMemoryError_ PermGen space_ exception_files/2419722920-widgets.js"></script>
+<script type="text/javascript">
+window['__wavt'] = 'AOuZoY67NQnyNViVJhdbtYx2Ok0dHHcdwg:1581178748740';_WidgetManager._Init('//www.blogger.com/rearrange?blogID\x3d6643071316318130698','//frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html','6643071316318130698');
+_WidgetManager._SetDataContext([{'name': 'blog', 'data': {'blogId': '6643071316318130698', 'title': 'Frank Kieviet\x27s Engineering Notebook', 'url': 'http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html', 'canonicalUrl': 'http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html', 'homepageUrl': 'http://frankkieviet.blogspot.com/', 'searchUrl': 'http://frankkieviet.blogspot.com/search', 'canonicalHomepageUrl': 'http://frankkieviet.blogspot.com/', 'blogspotFaviconUrl': 'http://frankkieviet.blogspot.com/favicon.ico', 'bloggerUrl': 'https://www.blogger.com', 'hasCustomDomain': false, 'httpsEnabled': true, 'enabledCommentProfileImages': true, 'gPlusViewType': 'FILTERED_POSTMOD', 'adultContent': false, 'analyticsAccountNumber': '', 'encoding': 'UTF-8', 'locale': 'en', 'localeUnderscoreDelimited': 'en', 'languageDirection': 'ltr', 'isPrivate': false, 'isMobile': false, 'isMobileRequest': false, 'mobileClass': '', 'isPrivateBlog': false, 'feedLinks': '\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Frank Kieviet\x26#39;s Engineering Notebook - Atom\x22 href\x3d\x22http://frankkieviet.blogspot.com/feeds/posts/default\x22 /\x3e\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/rss+xml\x22 title\x3d\x22Frank Kieviet\x26#39;s Engineering Notebook - RSS\x22 href\x3d\x22http://frankkieviet.blogspot.com/feeds/posts/default?alt\x3drss\x22 /\x3e\n\x3clink rel\x3d\x22service.post\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Frank Kieviet\x26#39;s Engineering Notebook - Atom\x22 href\x3d\x22https://www.blogger.com/feeds/6643071316318130698/posts/default\x22 /\x3e\n\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Frank Kieviet\x26#39;s Engineering Notebook - Atom\x22 href\x3d\x22http://frankkieviet.blogspot.com/feeds/4825660030242716782/comments/default\x22 /\x3e\n', 'meTag': '', 'adsenseHostId': 'ca-host-pub-1556223355139109', 'adsenseHasAds': false, 'view': '', 'dynamicViewsCommentsSrc': '//www.blogblog.com/dynamicviews/4224c15c4e7c9321/js/comments.js', 'dynamicViewsScriptSrc': '//www.blogblog.com/dynamicviews/740ff0a955d1c79a', 'plusOneApiSrc': 'https://apis.google.com/js/plusone.js', 'disableGComments': true, 'sharing': {'platforms': [{'name': 'Get link', 'key': 'link', 'shareMessage': 'Get link', 'target': ''}, {'name': 'Facebook', 'key': 'facebook', 'shareMessage': 'Share to Facebook', 'target': 'facebook'}, {'name': 'BlogThis!', 'key': 'blogThis', 'shareMessage': 'BlogThis!', 'target': 'blog'}, {'name': 'Twitter', 'key': 'twitter', 'shareMessage': 'Share to Twitter', 'target': 'twitter'}, {'name': 'Pinterest', 'key': 'pinterest', 'shareMessage': 'Share to Pinterest', 'target': 'pinterest'}, {'name': 'Email', 'key': 'email', 'shareMessage': 'Email', 'target': 'email'}], 'disableGooglePlus': true, 'googlePlusShareButtonWidth': 300, 'googlePlusBootstrap': '\x3cscript type\x3d\x22text/javascript\x22\x3ewindow.___gcfg \x3d {\x27lang\x27: \x27en\x27};\x3c/script\x3e'}, 'hasCustomJumpLinkMessage': false, 'jumpLinkMessage': 'Read more', 'pageType': 'item', 'postId': '4825660030242716782', 'postImageThumbnailUrl': 'http://lh3.ggpht.com/-47ek-2Vnkv8/T2FjozfK0zI/AAAAAAAAFXk/QA3bIInw6KE/s72-c/simpleservlet_thumb[1].png', 'postImageUrl': 'http://lh3.ggpht.com/-47ek-2Vnkv8/T2FjozfK0zI/AAAAAAAAFXk/QA3bIInw6KE/simpleservlet_thumb[1].png', 'pageName': 'Classloader leaks: the dreaded \x26quot;java.lang.OutOfMemoryError: PermGen space\x26quot; exception', 'pageTitle': 'Frank Kieviet\x27s Engineering Notebook: Classloader leaks: the dreaded \x26quot;java.lang.OutOfMemoryError: PermGen space\x26quot; exception'}}, {'name': 'features', 'data': {'sharing_get_link_dialog': 'true', 'sharing_native': 'false'}}, {'name': 'messages', 'data': {'edit': 'Edit', 'linkCopiedToClipboard': 'Link copied to clipboard!', 'ok': 'Ok', 'postLink': 'Post Link'}}, {'name': 'template', 'data': {'name': 'custom', 'localizedName': 'Custom', 'isResponsive': false, 'isAlternateRendering': false, 'isCustom': true}}, {'name': 'view', 'data': {'classic': {'name': 'classic', 'url': '?view\x3dclassic'}, 'flipcard': {'name': 'flipcard', 'url': '?view\x3dflipcard'}, 'magazine': {'name': 'magazine', 'url': '?view\x3dmagazine'}, 'mosaic': {'name': 'mosaic', 'url': '?view\x3dmosaic'}, 'sidebar': {'name': 'sidebar', 'url': '?view\x3dsidebar'}, 'snapshot': {'name': 'snapshot', 'url': '?view\x3dsnapshot'}, 'timeslide': {'name': 'timeslide', 'url': '?view\x3dtimeslide'}, 'isMobile': false, 'title': 'Classloader leaks: the dreaded \x26quot;java.lang.OutOfMemoryError: PermGen space\x26quot; exception', 'description': 'Did you ever encounter a java.lang.OutOfMemoryError: PermGen space  error when you redeployed your application to an application server? Did...', 'featuredImage': 'http://lh3.ggpht.com/-47ek-2Vnkv8/T2FjozfK0zI/AAAAAAAAFXk/QA3bIInw6KE/simpleservlet_thumb[1].png', 'url': 'http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html', 'type': 'item', 'isSingleItem': true, 'isMultipleItems': false, 'isError': false, 'isPage': false, 'isPost': true, 'isHomepage': false, 'isArchive': false, 'isLabelSearch': false, 'postId': 4825660030242716782}}]);
+_WidgetManager._RegisterWidget('_NavbarView', new _WidgetInfo('Navbar1', 'navbar', document.getElementById('Navbar1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HeaderView', new _WidgetInfo('Header1', 'header', document.getElementById('Header1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogView', new _WidgetInfo('Blog1', 'main', document.getElementById('Blog1'), {'cmtInteractionsEnabled': false, 'showBacklinks': true, 'postId': '4825660030242716782', 'legacyCommentModerationUrl': 'https://www.blogger.com/moderate-legacy-comment.g?blogID\x3d6643071316318130698', 'iframeCommentsId': 'gpluscomments', 'viewType': 'FILTERED_POSTMOD', 'lightboxEnabled': true, 'lightboxModuleUrl': 'https://www.blogger.com/static/v1/jsbin/3309791672-lbx.js', 'lightboxCssUrl': 'https://www.blogger.com/static/v1/v-css/368954415-lightbox_bundle.css'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_ProfileView', new _WidgetInfo('Profile2', 'sidebar', document.getElementById('Profile2'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_TextView', new _WidgetInfo('Text1', 'sidebar', document.getElementById('Text1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_TextView', new _WidgetInfo('Text2', 'sidebar', document.getElementById('Text2'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_FollowersView', new _WidgetInfo('Followers2', 'sidebar', document.getElementById('Followers2'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogSearchView', new _WidgetInfo('BlogSearch1', 'sidebar', document.getElementById('BlogSearch1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogArchiveView', new _WidgetInfo('BlogArchive2', 'sidebar', document.getElementById('BlogArchive2'), {'languageDirection': 'ltr', 'loadingMessage': 'Loading\x26hellip;'}, 'displayModeFull'));
+</script>
+
+</body></html>
