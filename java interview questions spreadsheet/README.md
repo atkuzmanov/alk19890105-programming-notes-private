@@ -6428,10 +6428,26 @@ https://codepumpkin.com/hashtable-vs-synchronizedmap-vs-concurrenthashmap/
 |-------|-----|-------|
 |       |     |   x   |
 
+- [jenkov-Java-ExecutorService](refs/jenkov-Java-ExecutorService)
 
+`references:`
+http://tutorials.jenkov.com/java-util-concurrent/executorservice.html
 
+- [A-Guide-to-the-Java-ExecutorService-Baeldung](refs/A-Guide-to-the-Java-ExecutorService-Baeldung)
+
+`references:`
+https://www.baeldung.com/java-executor-service-tutorial
 
 ----
+
+# Dead-lock/Starvation/Live lock
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |     |   x   |
+
+
+
 ----
 ----
 ----
