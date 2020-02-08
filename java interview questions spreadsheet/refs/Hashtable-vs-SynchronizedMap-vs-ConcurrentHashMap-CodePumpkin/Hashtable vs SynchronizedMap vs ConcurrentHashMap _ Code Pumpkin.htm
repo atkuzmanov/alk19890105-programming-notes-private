@@ -1,0 +1,1688 @@
+<!DOCTYPE html>
+<!-- saved from url=(0074)https://codepumpkin.com/hashtable-vs-synchronizedmap-vs-concurrenthashmap/ -->
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="manifest" href="https://codepumpkin.com/manifest.json">
+<meta name="theme-color" content="#5da213">
+
+<link rel="pingback" href="https://codepumpkin.com/xmlrpc.php">
+
+<!-- This site is optimized with the Yoast SEO plugin v12.7.1 - https://yoast.com/wordpress/plugins/seo/ -->
+<title>Hashtable vs SynchronizedMap vs ConcurrentHashMap | Code Pumpkin</title>
+<meta name="description" content="Though Hashtable, SynchronizedMap and ConcurrentHashMap are synchronized, ConcurrentHashMap provides better performance than remaining two.">
+<meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<link rel="canonical" href="https://codepumpkin.com/hashtable-vs-synchronizedmap-vs-concurrenthashmap/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hashtable vs SynchronizedMap vs ConcurrentHashMap | Code Pumpkin">
+<meta property="og:description" content="Though Hashtable, SynchronizedMap and ConcurrentHashMap are synchronized, ConcurrentHashMap provides better performance than remaining two.">
+<meta property="og:url" content="https://codepumpkin.com/hashtable-vs-synchronizedmap-vs-concurrenthashmap/">
+<meta property="og:site_name" content="Code Pumpkin">
+<meta property="article:publisher" content="https://www.facebook.com/codepumpkin/">
+<meta property="article:author" content="https://www.facebook.com/aandhariya">
+<meta property="article:tag" content="Collection Framework">
+<meta property="article:tag" content="Collections">
+<meta property="article:tag" content="Core Java">
+<meta property="article:tag" content="HashMap">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Synchronization">
+<meta property="article:tag" content="Thread">
+<meta property="article:tag" content="x vs y">
+<meta property="article:section" content="Core Java">
+<meta property="article:published_time" content="2017-09-20T20:15:19+00:00">
+<meta property="article:modified_time" content="2018-10-22T06:03:04+00:00">
+<meta property="og:updated_time" content="2018-10-22T06:03:04+00:00">
+<meta property="og:image" content="https://codepumpkin.com/wp-content/uploads/2017/09/ConcurrentHashMap.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="Though Hashtable, SynchronizedMap and ConcurrentHashMap are synchronized, ConcurrentHashMap provides better performance than remaining two.">
+<meta name="twitter:title" content="Hashtable vs SynchronizedMap vs ConcurrentHashMap | Code Pumpkin">
+<meta name="twitter:site" content="@codepumpkins">
+<meta name="twitter:image" content="https://codepumpkin.com/wp-content/uploads/2017/09/ConcurrentHashMap.jpg">
+<meta name="twitter:creator" content="@abhiandhariya">
+<div class="fit-vids-style" id="fit-vids-style" style="display: none;">­<style>.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style></div><script src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/cb=gapi.loaded_2" async=""></script><script src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/sdk.js" async="" crossorigin="anonymous"></script><script src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/cb=gapi.loaded_1" async=""></script><script src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/cb=gapi(2).loaded_0" async=""></script><script id="facebook-jssdk" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/sdk(1).js"></script><script async="" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/analytics.js"></script><script type="application/ld+json" class="yoast-schema-graph yoast-schema-graph--main">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://codepumpkin.com/#website","url":"https://codepumpkin.com/","name":"Code Pumpkin","description":"Let us code with pumpkin","potentialAction":{"@type":"SearchAction","target":"https://codepumpkin.com/?s={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"ImageObject","@id":"https://codepumpkin.com/hashtable-vs-synchronizedmap-vs-concurrenthashmap/#primaryimage","url":"https://codepumpkin.com/wp-content/uploads/2017/09/ConcurrentHashMap.jpg"},{"@type":"WebPage","@id":"https://codepumpkin.com/hashtable-vs-synchronizedmap-vs-concurrenthashmap/#webpage","url":"https://codepumpkin.com/hashtable-vs-synchronizedmap-vs-concurrenthashmap/","inLanguage":"en-US","name":"Hashtable vs SynchronizedMap vs ConcurrentHashMap | Code Pumpkin","isPartOf":{"@id":"https://codepumpkin.com/#website"},"primaryImageOfPage":{"@id":"https://codepumpkin.com/hashtable-vs-synchronizedmap-vs-concurrenthashmap/#primaryimage"},"datePublished":"2017-09-20T20:15:19+00:00","dateModified":"2018-10-22T06:03:04+00:00","author":{"@id":"https://codepumpkin.com/#/schema/person/c05d854e8f7c8d9b2b78d6b6c3c6ab66"},"description":"Though Hashtable, SynchronizedMap and ConcurrentHashMap are synchronized, ConcurrentHashMap provides better performance than remaining two."},{"@type":["Person"],"@id":"https://codepumpkin.com/#/schema/person/c05d854e8f7c8d9b2b78d6b6c3c6ab66","name":"Abhi Andhariya","image":{"@type":"ImageObject","@id":"https://codepumpkin.com/#authorlogo","url":"https://secure.gravatar.com/avatar/629c54d033ef55c50b39346321fd43d2?s=96&d=wavatar&r=g","caption":"Abhi Andhariya"},"description":"Surviving Java Developer, Passionate Blogger, Table Tennis Lover, Bookworm, Occasional illustrator and a big fan of Joey Tribbiani, The Walking Dead and Game of Thrones...!!","sameAs":["https://www.facebook.com/aandhariya","https://www.instagram.com/abhi_andhariya/","https://in.linkedin.com/in/abhi-andhariya-3536a139","https://in.pinterest.com/aandhariya/","https://twitter.com/abhiandhariya","https://www.youtube.com/user/aandhariya"]}]}</script>
+<!-- / Yoast SEO plugin. -->
+
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net/">
+<link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+<link rel="dns-prefetch" href="https://s.w.org/">
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com/">
+<link rel="dns-prefetch" href="https://apis.google.com/">
+<link rel="dns-prefetch" href="https://platform.twitter.com/">
+<link rel="dns-prefetch" href="https://plus.google.com/">
+<link rel="dns-prefetch" href="https://newsharecounts.s3-us-west-2.amazonaws.com/">
+<link rel="dns-prefetch" href="https://load.sumo.com/">
+<link rel="dns-prefetch" href="https://embed.tawk.to/">
+<link rel="dns-prefetch" href="https://google-analytics.com/">
+<link rel="alternate" type="application/rss+xml" title="Code Pumpkin » Feed" href="https://codepumpkin.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Code Pumpkin » Comments Feed" href="https://codepumpkin.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Code Pumpkin » Hashtable vs SynchronizedMap vs ConcurrentHashMap Comments Feed" href="https://codepumpkin.com/hashtable-vs-synchronizedmap-vs-concurrenthashmap/feed/">
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/codepumpkin.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=31c51d44b0526fff8c95bcefb4570c1d"}};
+			!function(e,a,t){var r,n,o,i,p=a.createElement("canvas"),s=p.getContext&&p.getContext("2d");function c(e,t){var a=String.fromCharCode;s.clearRect(0,0,p.width,p.height),s.fillText(a.apply(this,e),0,0);var r=p.toDataURL();return s.clearRect(0,0,p.width,p.height),s.fillText(a.apply(this,t),0,0),r===p.toDataURL()}function l(e){if(!s||!s.fillText)return!1;switch(s.textBaseline="top",s.font="600 32px Arial",e){case"flag":return!c([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])&&(!c([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!c([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]));case"emoji":return!c([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340])}return!1}function d(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(i=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},o=0;o<i.length;o++)t.supports[i[o]]=l(i[o]),t.supports.everything=t.supports.everything&&t.supports[i[o]],"flag"!==i[o]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[i[o]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(r=t.source||{}).concatemoji?d(r.concatemoji):r.wpemoji&&r.twemoji&&(d(r.twemoji),d(r.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/wp-emoji-release.min.js" type="text/javascript" defer=""></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel="stylesheet" id="dashicons-css" href="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/dashicons.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="menu-icons-extra-css" href="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/extra.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-block-library-css" href="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/style.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="wpeps-styles-css" href="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/styles.css" type="text/css" media="all">
+<link rel="stylesheet" id="email-subscribers-css" href="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/email-subscribers-public.css" type="text/css" media="all">
+<link rel="stylesheet" id="toc-screen-css" href="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/screen.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="ns-category-widget-tree-style-css" href="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="wordpress-popular-posts-css-css" href="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/wpp.css" type="text/css" media="all">
+<link rel="stylesheet" id="amaryllo-style-css" href="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/style(1).css" type="text/css" media="all">
+<link rel="stylesheet" id="lucy-reset-css" href="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/reset.css" type="text/css" media="all">
+<link rel="stylesheet" id="lucy-responsive-css" href="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/responsive.css" type="text/css" media="all">
+<link rel="stylesheet" id="lucy-style-css" href="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/style(2).css" type="text/css" media="all">
+<link rel="stylesheet" id="newsletter-css" href="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/style(3).css" type="text/css" media="all">
+<link rel="stylesheet" id="tf-compiled-options-mobmenu-css" href="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/dynamic-mobmenu.css" type="text/css" media="all">
+<link rel="stylesheet" id="tf-google-webfont-monda-css" href="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/css" type="text/css" media="all">
+<link rel="stylesheet" id="tf-google-webfont-dosis-css" href="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/css(1)" type="text/css" media="all">
+<link rel="stylesheet" id="author-avatars-widget-css" href="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/widget.css" type="text/css" media="all">
+<link rel="stylesheet" id="author-avatars-shortcode-css" href="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/shortcode.css" type="text/css" media="all">
+<link rel="stylesheet" id="__EPYT__style-css" href="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/ytprefs.min.css" type="text/css" media="all">
+<style id="__EPYT__style-inline-css" type="text/css">
+
+                .epyt-gallery-thumb {
+                        width: 33.333%;
+                }
+                
+</style>
+<link rel="stylesheet" id="cssmobmenu-icons-css" href="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/mobmenu-icons.css" type="text/css" media="all">
+<link rel="stylesheet" id="cssmobmenu-css" href="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/mobmenu.css" type="text/css" media="all">
+<script>if (document.location.protocol != "https:") {document.location = document.URL.replace(/^http:/i, "https:");}</script><script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/jquery.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/scripts.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var es_data = {"messages":{"es_empty_email_notice":"Please enter email address","es_rate_limit_notice":"You need to wait for sometime before subscribing again","es_single_optin_success_message":"Successfully Subscribed.","es_email_exists_notice":"Email Address already exists!","es_unexpected_error_notice":"Oops.. Unexpected error occurred.","es_invalid_email_notice":"Invalid email address","es_try_later_notice":"Please try after some time"},"es_ajax_url":"https:\/\/codepumpkin.com\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/email-subscribers-public.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/wp-hide-post-public.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var wpp_params = {"sampling_active":"0","sampling_rate":"100","ajax_url":"https:\/\/codepumpkin.com\/wp-json\/wordpress-popular-posts\/v1\/popular-posts","ID":"2530","token":"bc4192f5ea","debug":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/wpp-5.0.0.min.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/main.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var _EPYT_ = {"ajaxurl":"https:\/\/codepumpkin.com\/wp-admin\/admin-ajax.php","security":"82e3457733","gallery_scrolloffset":"20","eppathtoscripts":"https:\/\/codepumpkin.com\/wp-content\/plugins\/youtube-embed-plus\/scripts\/","eppath":"https:\/\/codepumpkin.com\/wp-content\/plugins\/youtube-embed-plus\/","epresponsiveselector":"[\"iframe.__youtube_prefs__\",\"iframe[src*='youtube.com']\",\"iframe[src*='youtube-nocookie.com']\",\"iframe[data-ep-src*='youtube.com']\",\"iframe[data-ep-src*='youtube-nocookie.com']\",\"iframe[data-ep-gallerysrc*='youtube.com']\"]","epdovol":"1","version":"13.2.0.1","evselector":"iframe.__youtube_prefs__[src], iframe[src*=\"youtube.com\/embed\/\"], iframe[src*=\"youtube-nocookie.com\/embed\/\"]","ajax_compat":"","ytapi_load":"light","stopMobileBuffer":"1","vi_active":"","vi_js_posttypes":[]};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/ytprefs.min.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/mobmenu.js"></script>
+<link rel="https://api.w.org/" href="https://codepumpkin.com/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://codepumpkin.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://codepumpkin.com/wp-includes/wlwmanifest.xml"> 
+
+<link rel="shortlink" href="https://codepumpkin.com/?p=2530">
+<link rel="alternate" type="application/json+oembed" href="https://codepumpkin.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcodepumpkin.com%2Fhashtable-vs-synchronizedmap-vs-concurrenthashmap%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://codepumpkin.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcodepumpkin.com%2Fhashtable-vs-synchronizedmap-vs-concurrenthashmap%2F&amp;format=xml">
+<link type="text/css" rel="stylesheet" href="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/wp_cat_rss_style.css">
+	
+
+<script>
+	(function( $ ){
+		$(document).ready( function(){
+			$( 'ol[class^=startWith]' ).each(function( pIndex, pElem ){
+				var 
+				self = $(this),
+					classes = self.attr('class').split(' '),
+					temp;
+
+				for ( var i in classes ) {
+					if ( classes[i].toString().indexOf( 'startWith' ) > -1 ) {
+						temp = classes[i].split('-');
+						self.attr('start', temp[1]);
+					}
+				}
+			});
+
+		} );
+
+	})(jQuery)
+</script>
+
+<script async="" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/f.txt"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9738845756810663",
+    enable_page_level_ads: true
+  });
+</script>
+
+
+<meta property="og:image" content="//codepumpkin.com/wp-content/uploads/2017/12/CPCover.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:alt" content="CodePumpkin">
+
+      <meta name="onesignal" content="wordpress-plugin">
+            <script>
+
+      window.OneSignal = window.OneSignal || [];
+
+      OneSignal.push( function() {
+        OneSignal.SERVICE_WORKER_UPDATER_PATH = "OneSignalSDKUpdaterWorker.js.php";
+        OneSignal.SERVICE_WORKER_PATH = "OneSignalSDKWorker.js.php";
+        OneSignal.SERVICE_WORKER_PARAM = { scope: '/' };
+
+        OneSignal.setDefaultNotificationUrl("https://codepumpkin.com");
+        var oneSignal_options = {};
+        window._oneSignalInitOptions = oneSignal_options;
+
+        oneSignal_options['wordpress'] = true;
+oneSignal_options['appId'] = '4c33ddce-1060-494f-b1b6-370dd69b3405';
+oneSignal_options['welcomeNotification'] = { };
+oneSignal_options['welcomeNotification']['title'] = "Code Pumpkin";
+oneSignal_options['welcomeNotification']['message'] = "Thanks for subscribing..!!";
+oneSignal_options['welcomeNotification']['url'] = "https://codepumpkin.com";
+oneSignal_options['path'] = "https://codepumpkin.com/wp-content/plugins/onesignal-free-web-push-notifications/sdk_files/";
+oneSignal_options['promptOptions'] = { };
+oneSignal_options['promptOptions']['exampleNotificationTitleDesktop'] = 'Code Pumpkin';
+oneSignal_options['promptOptions']['exampleNotificationMessageDesktop'] = 'Notifications will appear on your desktop';
+oneSignal_options['promptOptions']['exampleNotificationTitleMobile'] = 'Code Pumpkin';
+oneSignal_options['promptOptions']['exampleNotificationMessageMobile'] = 'Notifications will appear on your device';
+oneSignal_options['promptOptions']['exampleNotificationCaption'] = 'You  can subscribe anytime';
+oneSignal_options['promptOptions']['acceptButtonText'] = 'Continue';
+oneSignal_options['promptOptions']['cancelButtonText'] = 'No Thanks';
+oneSignal_options['promptOptions']['siteName'] = 'https://codepumpkin.com';
+oneSignal_options['notifyButton'] = { };
+oneSignal_options['notifyButton']['enable'] = true;
+oneSignal_options['notifyButton']['position'] = 'bottom-left';
+oneSignal_options['notifyButton']['theme'] = 'default';
+oneSignal_options['notifyButton']['size'] = 'medium';
+oneSignal_options['notifyButton']['showCredit'] = true;
+oneSignal_options['notifyButton']['text'] = {};
+                OneSignal.init(window._oneSignalInitOptions);
+                OneSignal.showSlidedownPrompt();      });
+
+      function documentInitOneSignal() {
+        var oneSignal_elements = document.getElementsByClassName("OneSignal-prompt");
+
+        var oneSignalLinkClickHandler = function(event) { OneSignal.push(['registerForPushNotifications']); event.preventDefault(); };        for(var i = 0; i < oneSignal_elements.length; i++)
+          oneSignal_elements[i].addEventListener('click', oneSignalLinkClickHandler, false);
+      }
+
+      if (document.readyState === 'complete') {
+           documentInitOneSignal();
+      }
+      else {
+           window.addEventListener("load", function(event){
+               documentInitOneSignal();
+          });
+      }
+    </script>
+<link rel="icon" href="https://codepumpkin.com/wp-content/uploads/2017/04/cropped-codepumpkinforIcon-2-32x32.png" sizes="32x32">
+<link rel="icon" href="https://codepumpkin.com/wp-content/uploads/2017/04/cropped-codepumpkinforIcon-2-192x192.png" sizes="192x192">
+<link rel="apple-touch-icon-precomposed" href="https://codepumpkin.com/wp-content/uploads/2017/04/cropped-codepumpkinforIcon-2-180x180.png">
+<meta name="msapplication-TileImage" content="https://codepumpkin.com/wp-content/uploads/2017/04/cropped-codepumpkinforIcon-2-270x270.png">
+
+<!-- BEGIN ExactMetrics v5.3.10 Universal Analytics - https://exactmetrics.com/ -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-96533708-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- END ExactMetrics Universal Analytics -->
+		<style type="text/css" id="wp-custom-css">
+			/*
+You can add your own CSS here.
+
+Click the help icon above to learn more.
+*/
+
+
+@import url("https://fonts.googleapis.com/css?family=Monda:400,700"); 
+@import url("https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css");
+
+
+
+body
+{
+
+	font-family:  Monda, "Segoe UI",  sans-serif, Arial, Verdana, "Trebuchet MS";
+
+}
+
+td
+{
+font-size: 14px;
+}
+
+.blog-container section.blog-sidebar .widget ul li a
+{
+ font-size: 14px;
+	color:#000;
+}
+
+
+p
+{
+font-size: 14px;
+text-align:justify;
+}
+
+
+
+h1, .the-blog-item-text h2, .the-blog-item-text h3, .the-blog-item-text h4, .the-blog-item-text h5, .the-blog-item-text h6
+{
+	text-transform: capitalize;
+    font-weight:bold;
+	font-size:19px;
+	color:#000;
+}
+
+
+
+strong
+{
+	font-weight:bold;
+}
+
+b
+{
+	font-weight:bold;
+}
+
+.the-blog-item-text ul li
+{
+	list-style-type : square;
+	font-size: 14px;
+}
+
+.the-blog-item-text ol li
+{
+	list-style-type : decimal;
+	font-size: 14px;
+}
+
+.the-blog-item-text ol {
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+.the-blog-item-text ul {
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+.es_msg
+{
+	color:#5da213;
+}
+
+
+
+.es_submit_button
+{
+	display: inline-block;
+    font-weight: 400;
+    line-height: 1.25;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .25rem .5rem;
+    font-size: .875rem;
+    border-radius: .2rem;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+	background-color:#5da213;
+	color:#fff;
+	font-size:12px;
+	font-family:Monda;
+}
+
+.btn_custom 
+{
+	background-color:#263238;
+	color : #fff;
+	font-size:12px;
+}
+
+.btn_custom :focus, .btn_custom:focus,
+.es_submit_button:focus
+{
+	background-color:#263238;
+	color : #fff;
+}
+
+a.btn_custom:hover, .btn_custom:hover,
+.es_submit_button:hover
+{
+	color:#bbb;
+}
+
+p:empty {
+  display:none
+}
+
+.slideShow
+{
+	height: 480px;
+	width: 600px;
+	resize: both;
+	overflow: auto;
+}
+
+
+@media (max-width: 767px) {
+  .slideShow {
+    height: 240px;
+	width: 300px;
+	resize: both;
+	overflow: auto;
+  }
+}
+
+.slideShow1
+{
+	height: 420px;
+	width: 800px;
+	resize: both;
+	overflow: auto;
+}
+
+
+@media (max-width: 767px) {
+  .slideShow1 {
+    height: 210px;
+	width: 400px;
+	resize: both;
+	overflow: auto;
+  }
+}
+
+
+/* for logo to display full in mobile */
+.height-auto{
+overflow:visible;
+}
+
+.blog-sidebar .widget .search-submit
+{
+	display:none;
+}
+.blog-sidebar .widget .search-field
+{
+	width: 100%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('https://codepumpkin.com/wp-content/uploads/2017/04/searchicon.png');
+    background-position: 4px 4px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+/* below line of code is to make post background white, adjust content left-alignment to zero and add border to syntax highlighter */
+
+.post
+{
+	  min-height: 20px;
+  padding: 19px;
+  margin-bottom: 20px;
+/*
+  background-color: #f5f5f5;
+  border: 1px solid #e3e3e3;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+*/
+	
+}
+
+.well
+{
+background-color:white;
+border: 0px solid #e3e3e3;
+  border-radius: 0px;
+  -webkit-box-shadow: inset 0 0px 0px rgba(0, 0, 0, .05);
+          box-shadow: inset 0 0px 0px rgba(0, 0, 0, .05);
+padding:0px;
+}
+
+
+.syntaxhighlighter
+{
+border: 1px solid #D4D0C8;
+}
+
+@media (min-width: 1200px)
+.col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9 {
+    padding-right: 15px;
+    padding-left: 0;
+}
+@media (min-width: 992px)
+.col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9 {
+    padding-right: 15px;
+    padding-left: 0px;
+}
+@media (min-width: 768px)
+.col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9 {
+    padding-right: 15px;
+    padding-left: 0px;
+}
+@media (min-width: 576px)
+.col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9 {
+    padding-right: 15px;
+    padding-left: 0px;
+}
+
+.col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9 {
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 0px;
+}
+
+code
+{
+	color:#565656;
+    background-color:white;
+	font-size:100%;
+	padding : 0px;
+}
+blockquote
+{
+	background-color:white;
+}
+th
+{
+border:solid 1px;
+} 
+
+@media screen and (min-width: 1024px){
+.wrap-grid {
+    margin: 0 auto;
+    width: 1180px;
+}
+
+
+.blog-container section.blog-content {
+    margin-right: 45px;
+    padding: 0 0;
+    width: 885px;
+}
+	
+
+
+.blog-container section.blog-sidebar {
+    padding: 0 0;
+    width: 250px;
+}
+}
+
+
+.heading-name{
+    height:50px;
+    
+}
+.heading-name h3 {
+	padding-top:0px;
+    line-height:50px;
+    font-size:22px;
+    position:absolute;
+    left:30%;
+}
+
+ul.menu-top.desktop .sub-menu {
+	border: 1px solid #5FA220;
+    padding:0px;
+}
+
+@media (max-width: 800px){
+.heading-name h3 {
+display:none;
+}
+}
+
+
+/* The Modal (background) */
+.cust-modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    padding-top: 100px; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+	
+	text-align:center;
+	
+}
+
+/* Modal Content */
+.cust-modal-content {
+	width: 75%;
+	position: fixed;
+	left: 50%;
+	margin-left: -37.5%;
+
+    
+	
+    padding: 0;
+    
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+	background-color: rgba(0,0,0,0);
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.post .the-blog-item-text{
+	color:#000;
+}
+
+.es_lablebox
+{
+	display:none;
+}
+
+.es_txt_name, .es_txt_email {
+    display: block;
+    width: 100%;
+    padding: .5rem .75rem;
+    font-size: 1rem;
+    line-height: 1.25;
+    color: #464a4c;
+    background-color: #fff;
+    background-image: none;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: .25rem;
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+}
+  /* Modal CSS  end*/  
+
+
+/* Changes for removing green top bar and adding fixed menu */
+
+
+.heading-name {
+    height: 120px;
+}
+
+header.top {
+	position:fixed;
+	z-index:999;
+}
+
+
+
+h1.logo .merinda {
+	font-size:25px;
+	vertical-align:top;
+}
+
+.logo a img{
+	height:60px;
+	margin-bottom:10px;
+}
+
+.post .the-blog-item-general-info{
+	margin:0px;
+}		</style>
+		<link rel="stylesheet" type="text/css" href="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/shCore.css"><link rel="stylesheet" type="text/css" href="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/shThemeEclipse.css"><script charset="utf-8" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/button.a657e8de41cd5e7b38cde1f36c9ab9c2.js"></script><script src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/OneSignalPageSDKES6.js" async=""></script><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_dialog_advanced{border-radius:8px;padding:10px}.fb_dialog_content{background:#fff;color:#373737}.fb_dialog_close_icon{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{left:5px;right:auto;top:5px}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent}.fb_dialog_close_icon:active{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #365899;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{height:100%;left:0;margin:0;overflow:visible;position:absolute;top:-10000px;transform:none;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{background:none;height:auto;min-height:initial;min-width:initial;width:auto}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{clear:both;color:#fff;display:block;font-size:18px;padding-top:20px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .4);bottom:0;left:0;min-height:100%;position:absolute;right:0;top:0;width:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_mobile .fb_dialog_iframe{position:sticky;top:0}.fb_dialog_content .dialog_header{background:linear-gradient(from(#738aba), to(#2c4987));border-bottom:1px solid;border-color:#043b87;box-shadow:white 0 1px 1px -1px inset;color:#fff;font:bold 14px Helvetica, sans-serif;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:linear-gradient(from(#4267B2), to(#2a4887));background-clip:padding-box;border:1px solid #29487d;border-radius:3px;display:inline-block;line-height:18px;margin-top:3px;max-width:85px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{background:none;border:none;color:#fff;font:bold 12px Helvetica, sans-serif;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #4a4a4a;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f5f6f7;border:1px solid #4a4a4a;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/t-wz8gw1xG1.png);background-position:50% 50%;background-repeat:no-repeat;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}</style><style>.gc-bubbleDefault{background-color:transparent !important;text-align:left;padding:0 !important;margin:0 !important;border:0 !important;table-layout:auto !important}.gc-reset{background-color:transparent !important;border:0 !important;padding:0 !important;margin:0 !important;text-align:left}.pls-bubbleTop{border-bottom:1px solid #ccc !important}.pls-topTail,.pls-vertShimLeft,.pls-contentLeft{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/border_3.gif) !important}.pls-topTail{background-repeat:repeat-x !important;background-position:bottom !important}.pls-vertShim{background-color:#fff !important;text-align:right}.tbl-grey .pls-vertShim{background-color:#f5f5f5 !important}.pls-vertShimLeft{background-repeat:repeat-y !important;background-position:right !important;height:4px}.pls-vertShimRight{height:4px}.pls-confirm-container .pls-vertShim{background-color:#fff3c2 !important}.pls-contentWrap{background-color:#fff !important;position:relative !important;vertical-align:top}.pls-contentLeft{background-repeat:repeat-y;background-position:right;vertical-align:top}.pls-dropRight{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleDropR_3.png) !important;background-repeat:repeat-y !important;vertical-align:top}.pls-vert,.pls-tailleft,.pls-dropTR .pls-dropBR,.pls-dropBL,.pls-vert img{vertical-align:top}.pls-dropBottom{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleDropB_3.png) !important;background-repeat:repeat-x !important;width:100%;vertical-align:top}.pls-topLeft{background:inherit !important;text-align:right;vertical-align:bottom}.pls-topRight{background:inherit !important;text-align:left;vertical-align:bottom}.pls-bottomLeft{background:inherit !important;text-align:right}.pls-bottomRight{background:inherit !important;text-align:left;vertical-align:top}.pls-tailtop,.pls-tailright,.pls-tailbottom,.pls-tailleft{display:none;position:relative}.pls-tailbottom,.pls-tailtop,.pls-tailright,.pls-tailleft,.pls-dropTR,.pls-dropBR,.pls-dropBL{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleSprite_3.png) !important;background-repeat:no-repeat}.tbl-grey .pls-tailbottom,.tbl-grey .pls-tailtop,.tbl-grey .pls-tailright,.tbl-grey .pls-tailleft,.tbl-grey .pls-dropTR,.tbl-grey .pls-dropBR,.tbl-grey .pls-dropBL{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleSprite-grey.png) !important}.pls-tailbottom{background-position:-23px 0}.pls-confirm-container .pls-tailbottom{background-position:-23px -10px}.pls-tailtop{background-position:-19px -20px}.pls-tailright{background-position:0 0}.pls-tailleft{background-position:-10px 0}.pls-tailtop{vertical-align:top}.gc-bubbleDefault td{line-height:0;font-size:0}.pls-topLeft img,.pls-topRight img,.pls-tailbottom{vertical-align:bottom}.pls-bottomLeft img,.bubbleDropTR,.pls-dropBottomL img,.pls-dropBottom img,.pls-dropBottomR img,.pls-bottomLeft{vertical-align:top}.pls-dropTR{background-position:0 -22px}.pls-dropBR{background-position:0 -27px}.pls-dropBL{background-position:0 -16px}.pls-spacertop,.pls-spacerright,.pls-spacerbottom,.pls-spacerleft{position:static !important}.pls-spinner{bottom:0;position:absolute;left:0;margin:auto;right:0;top:0} </style><link rel="stylesheet" href="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/OneSignalSDKStyles.css"></head>
+<body data-rsssl="1" class="post-template-default single single-post postid-2530 single-format-standard mob-menu-slideout-over">
+<div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; width: 0px; height: 0px;"><div></div></div></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=133061756788566";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<!-- Facebook like code ends-->
+
+<script src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+
+	<header class="top">
+		<div class="wrap-grid height-auto">
+		     <h1 class="logo">
+			
+								   <a href="https://codepumpkin.com/"><img src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/codepumpkinWithoutName.svg" width="60" height="120"><span class="green merinda">Code Pumpkin</span><span class="gray"></span></a>
+				
+						
+			</h1>
+			<div class="menu-three-lines close" style="display:none"><span></span></div>
+			<div class="menu-mobile hide-menu">
+								   <ul class="menu-top mobile"><li id="menu-item-1335" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1335"><a href="https://codepumpkin.com/">Home</a></li>
+<li id="menu-item-1339" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1339"><a href="https://codepumpkin.com/hashtable-vs-synchronizedmap-vs-concurrenthashmap/#">Java</a>
+<ul class="sub-menu">
+	<li id="menu-item-1346" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1346"><a href="https://codepumpkin.com/1313-2/">Basic Java</a></li>
+	<li id="menu-item-1344" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1344"><a href="https://codepumpkin.com/java-collection/">Java Collection</a></li>
+	<li id="menu-item-1345" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1345"><a href="https://codepumpkin.com/java-multithreading/">Java Multithreading</a></li>
+	<li id="menu-item-1338" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1338"><a href="https://codepumpkin.com/java8-features/">Java8 Features</a></li>
+	<li id="menu-item-1337" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1337"><a href="https://codepumpkin.com/java-9-features/">Java 9 Features</a></li>
+</ul>
+</li>
+<li id="menu-item-4230" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-4230"><a href="https://codepumpkin.com/hashtable-vs-synchronizedmap-vs-concurrenthashmap/#">Programming</a>
+<ul class="sub-menu">
+	<li id="menu-item-1347" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1347"><a href="https://codepumpkin.com/design-patterns/">Design Patterns</a></li>
+	<li id="menu-item-1353" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1353"><a href="https://codepumpkin.com/algorithms/">Data Structures / Algorithms</a></li>
+	<li id="menu-item-4231" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4231"><a href="https://codepumpkin.com/category/pumpkin-practice/">Pumpkin Practice</a></li>
+</ul>
+</li>
+<li id="menu-item-4232" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4232"><a href="https://codepumpkin.com/frequently-asked-interview-puzzles/">Puzzles</a></li>
+<li id="menu-item-3805" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3805"><a href="https://codepumpkin.com/about-us/">About Us</a></li>
+<li id="menu-item-6744" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6744"><a href="https://codepumpkin.com/list-of-available-rss-feeds/"><span>RSS</span><i class="_mi _after dashicons dashicons-rss" aria-hidden="true"></i></a></li>
+</ul>							</div>
+						   <ul class="menu-top desktop"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1335"><a href="https://codepumpkin.com/">Home</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1339"><a href="https://codepumpkin.com/hashtable-vs-synchronizedmap-vs-concurrenthashmap/#">Java</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1346"><a href="https://codepumpkin.com/1313-2/">Basic Java</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1344"><a href="https://codepumpkin.com/java-collection/">Java Collection</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1345"><a href="https://codepumpkin.com/java-multithreading/">Java Multithreading</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1338"><a href="https://codepumpkin.com/java8-features/">Java8 Features</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1337"><a href="https://codepumpkin.com/java-9-features/">Java 9 Features</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-4230"><a href="https://codepumpkin.com/hashtable-vs-synchronizedmap-vs-concurrenthashmap/#">Programming</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1347"><a href="https://codepumpkin.com/design-patterns/">Design Patterns</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1353"><a href="https://codepumpkin.com/algorithms/">Data Structures / Algorithms</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4231"><a href="https://codepumpkin.com/category/pumpkin-practice/">Pumpkin Practice</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4232"><a href="https://codepumpkin.com/frequently-asked-interview-puzzles/">Puzzles</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3805"><a href="https://codepumpkin.com/about-us/">About Us</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6744"><a href="https://codepumpkin.com/list-of-available-rss-feeds/"><span>RSS</span><i class="_mi _after dashicons dashicons-rss" aria-hidden="true"></i></a></li>
+</ul>						
+		</div>    
+	</header>
+         <div class="heading-name bg-source">
+            <div class="wrap-grid">
+            	<h3></h3>
+            </div>
+        </div>
+        <div class="blog-container wrap-grid">
+            <section class="blog-content">
+                <div class="the-blog-item post">
+									
+                    <h1 class="the-blog-item-title">Hashtable vs SynchronizedMap vs ConcurrentHashMap</h1>
+				   <div class="the-blog-item-general-info">
+						 <div class="blog-item-info"><span class="icon date iblock block-left valignmiddle"></span><span class="gen-text-info">September 21, 2017</span></div>
+						<div class="blog-item-info"><span class="icon user iblock block-left valignmiddle"></span><span class="gen-text-info">Posted by Abhi Andhariya</span></div>
+						<div class="blog-item-info"><span class="icon blog-item iblock block-left valignmiddle"></span><span class="gen-text-info"><a href="https://codepumpkin.com/category/core-java/" rel="category tag">Core Java</a>, <a href="https://codepumpkin.com/category/interview-questions/core-java-interview-questions/" rel="category tag">Core Java Interview Questions</a>, <a href="https://codepumpkin.com/category/interview-questions/" rel="category tag">Interview Questions</a>, <a href="https://codepumpkin.com/category/core-java/java-multithreading/" rel="category tag">Java MultiThreading</a>, <a href="https://codepumpkin.com/category/interview-questions/multithreading-interview-questions/" rel="category tag">Multithreading Interview Questions</a></span></div>	
+				   </div>
+					
+                   <div class="the-blog-item-text">
+					  <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="twitter-follow-button twitter-follow-button-rendered" style="position: static; visibility: visible; width: 65px; height: 20px;" title="Twitter Follow Button" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/follow_button.7303c29a8108bca4ac5c9ef008ed8164.en.html" data-screen-name="codepumpkins"></iframe><script async="" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/widgets.js" charset="utf-8"></script>
+	
+	<div class="fb-like fb_iframe_widget" data-href="https://www.facebook.com/codepumpkin/" data-width="300" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true" style="padding:10px;" fb-xfbml-state="rendered" fb-iframe-plugin-query="action=like&amp;app_id=133061756788566&amp;container_width=847&amp;href=https%3A%2F%2Fwww.facebook.com%2Fcodepumpkin%2F&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;share=true&amp;show_faces=false&amp;size=small&amp;width=300"><span style="vertical-align: bottom; width: 138px; height: 20px;"><iframe name="f39631cb4ffc3e8" width="300px" height="1000px" title="fb:like Facebook Social Plugin" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/like.html" style="border: none; visibility: visible; width: 138px; height: 20px;" class=""></iframe></span></div> 
+
+
+
+
+<style media="screen" type="text/css">
+.fb_iframe_widget span 
+{
+	vertical-align: baseline !important;
+}
+</style>					<div class="well">
+<div class="layoutmanager">
+<div class="container-fluid layout-container">
+<div class="row layout-row">
+<div class="col-md-12 layout-column">
+<div class="layout-column-one layout-column-editable">
+<p>
+							<a href="https://codepumpkin.com/?p=1342">Java Collection</a> classes are heart of Java API. &nbsp;It is essential to use built-in&nbsp;java collections like <code>HashMap</code>, <a href="https://codepumpkin.com/?p=243">ArrayList</a>&nbsp;or <a href="https://codepumpkin.com/?p=247">LinkedList</a>&nbsp;for accessing, storing and&nbsp;processing data in java applications. For Example, we have extensively used <code>HashMap </code>to transfer data between two layers of our MVC framework. &nbsp;
+						</p>
+<p>
+							In all core java interviews, you will definitely face questions on <a href="https://codepumpkin.com/?p=855" target="_blank">HashMap&nbsp;Internals</a>&nbsp;like,
+						</p>
+<ul>
+<li>
+								what is the use of&nbsp;<a href="https://codepumpkin.com/?p=855/#HashCode" target="_blank">hashCode()</a>&nbsp;&nbsp;and &nbsp;<a href="https://codepumpkin.com/?p=855/#Equals" target="_blank">equals()</a>&nbsp; method?
+							</li>
+<li>
+								How <a href="https://codepumpkin.com/?p=855/#put" target="_blank">put()</a>&nbsp;and&nbsp;<a href="https://codepumpkin.com/?p=855/#get" target="_blank">get()</a>&nbsp; method works in <code>HashMap</code>?
+							</li>
+</ul>
+<p>
+							or you may face question like&nbsp;<a href="https://codepumpkin.com/?p=2619" target="_blank">How is HashSet implemented&nbsp;internally in Java?</a>
+						</p>
+<hr>
+<p>
+							As a follow up question to above questions, interviewer may ask you :&nbsp;<strong>is&nbsp;HashMap&nbsp;a thread-safe class?</strong>
+						</p>
+<p>
+							Well,&nbsp;<strong>HashMap is not thread-safe</strong>. If multiple threads are accessing the same <code>HashMap&nbsp;</code>object and try to modify the structure of the&nbsp;<code>HashMap&nbsp;</code>(using&nbsp;<code>put()</code> or <code>remove()</code> method), it may cause an inconsistency in the state of <code>HashMap</code>.&nbsp;
+						</p>
+<p>
+							To use <code>HashMap </code>in multithreaded environment, you must write your relevant code inside synchronized block or use any external Lock implementation. But in that case there are high chances of errors and deadlock situations, if proper care has not been taken.
+						</p>
+<p>
+							In short, it is not advisable to use <code>HashMap&nbsp;</code>in multithreaded environment. Instead use any of the similar thread-safe collections like <code>Hashtable</code>, <code>Collections.SynchronizedMap</code> or <code>ConcurrentHashMap</code>.
+						</p>
+<p>
+							Though all of them are thread-safe, <code>ConcurrentHashMap&nbsp;</code>provides better performance than remaining two. lets understand them one by one.
+						</p>
+<hr>
+<h2>
+							<strong>Hashtable</strong><br>
+						</h2>
+<p>
+							<code>Hashtable </code>is a legacy class available since jdk 1.1 which uses <code>synchronized </code>methods to achieve thread safety.&nbsp;At a time only one thread can read or write into <code>Hashtable</code>. In other word, thread acquires lock on entire <code>Hashtable&nbsp;</code>instance. Hence its performance is quite slow and we can not utilize&nbsp;the advantages of multithreaded architecture.
+						</p>
+<p>
+							Another point to note about <code>Hashtable&nbsp;</code>is that it does not allow&nbsp;<code>null</code>&nbsp;keys or values whereas&nbsp;<code>HashMap</code>&nbsp;allows one&nbsp;<code>null</code>&nbsp;key and any number of&nbsp;<code>null</code>&nbsp;values.
+						</p>
+<hr>
+<h2>
+							<a id="SynchronizedMapInternal" name="SynchronizedMapInternal"><strong>Collections.SynchronizedMap</strong></a><br>
+						</h2>
+<p>
+							<code>SynchronizedMap </code>is a static inner class of utility class <code>java.util.Collections</code>. It is quite similar to <code>Hashtable&nbsp;</code>and it also acquires lock on entire Map instance. It is not a legacy class like <code>Hashtable&nbsp;</code>and&nbsp;&nbsp;it was introduced in jdk 1.5.
+						</p>
+<p>
+							It provides functionality to convert any thread-unsafe Map implementation to thread-safe implementation using Collections.synchronizedMap(Map map) static method. For Example,
+						</p>
+<div><div id="highlighter_809704" class="syntaxhighlighter  java"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java keyword">import</code> <code class="java plain">java.util.*;</code></div><div class="line number2 index1 alt1">&nbsp;</div><div class="line number3 index2 alt2"><code class="java keyword">public</code> <code class="java keyword">class</code> <code class="java plain">SynchronizedMapDemo {</code></div><div class="line number4 index3 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java keyword">static</code> <code class="java keyword">void</code> <code class="java plain">main(String[] args) {</code></div><div class="line number5 index4 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;</code><code class="java comments">// create HashMap</code></div><div class="line number6 index5 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;</code><code class="java plain">Map&lt;String,String&gt; map = </code><code class="java keyword">new</code> <code class="java plain">HashMap&lt;String,String&gt;();</code></div><div class="line number7 index6 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number8 index7 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;</code><code class="java comments">// populate the map</code></div><div class="line number9 index8 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;</code><code class="java plain">map.put(</code><code class="java string">"1"</code><code class="java plain">,</code><code class="java string">"Malay"</code><code class="java plain">); </code></div><div class="line number10 index9 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;</code><code class="java plain">map.put(</code><code class="java string">"2"</code><code class="java plain">,</code><code class="java string">"Ankit"</code><code class="java plain">);</code></div><div class="line number11 index10 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;</code><code class="java plain">map.put(</code><code class="java string">"3"</code><code class="java plain">,</code><code class="java string">"Chintan"</code><code class="java plain">);</code></div><div class="line number12 index11 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number13 index12 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;</code><code class="java comments">// create a synchronized map</code></div><div class="line number14 index13 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;</code><code class="java plain">Map&lt;String,String&gt; syncmap = Collections.synchronizedMap(map);</code></div><div class="line number15 index14 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number16 index15 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;</code><code class="java plain">System.out.println(</code><code class="java string">"Synchronized map is : "</code><code class="java plain">+syncmap);</code></div><div class="line number17 index16 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number18 index17 alt1"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p>
+							<strong>Output</strong>
+						</p>
+<div><div id="highlighter_991903" class="syntaxhighlighter  bash"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="bash plain">Synchronized map is : {3=Chintan, 2=Ankit, 1=Malay}</code></div></div></td></tr></tbody></table></div></div>
+<p>
+							It internally wraps all the methods of Map interface with synchronized keyword. For example, here is the internal <code>put()</code>, <code>get()</code> and <code>remove()</code> method implementation of <code>SynchronizedMap&nbsp;</code>:
+						</p>
+<div><div id="highlighter_978700" class="syntaxhighlighter  java"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div><div class="line number25 index24 alt2">25</div><div class="line number26 index25 alt1">26</div><div class="line number27 index26 alt2">27</div><div class="line number28 index27 alt1">28</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java keyword">private</code> <code class="java keyword">static</code> <code class="java keyword">class</code> <code class="java plain">SynchronizedMap&lt;K,V&gt;</code></div><div class="line number2 index1 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">implements</code> <code class="java plain">Map&lt;K,V&gt;, Serializable {</code></div><div class="line number3 index2 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number4 index3 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">//other instance variables</code></div><div class="line number5 index4 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">private</code> <code class="java keyword">final</code> <code class="java plain">Map &lt; k ,v &gt; m;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="java comments">// Backing Map</code></div><div class="line number6 index5 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">final</code> <code class="java plain">Object&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="java comments">// Object on which to synchronize</code></div><div class="line number7 index6 alt2">&nbsp;</div><div class="line number8 index7 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number9 index8 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">SynchronizedMap(Map&lt;K,V&gt; m) {</code></div><div class="line number10 index9 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">if</code> <code class="java plain">(m==</code><code class="java keyword">null</code><code class="java plain">)</code></div><div class="line number11 index10 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">throw</code> <code class="java keyword">new</code> <code class="java plain">NullPointerException();</code></div><div class="line number12 index11 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">this</code><code class="java plain">.m = m;</code></div><div class="line number13 index12 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">mutex = </code><code class="java keyword">this</code><code class="java plain">;</code></div><div class="line number14 index13 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number15 index14 alt2">&nbsp;</div><div class="line number16 index15 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Other constructors and methods</code></div><div class="line number17 index16 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number18 index17 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java plain">V get(Object key) {</code></div><div class="line number19 index18 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">synchronized</code><code class="java plain">(mutex) {</code><code class="java keyword">return</code> <code class="java plain">m.get(key);}</code></div><div class="line number20 index19 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number21 index20 alt2">&nbsp;</div><div class="line number22 index21 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java plain">V put(K key, V value) {</code></div><div class="line number23 index22 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">synchronized</code><code class="java plain">(mutex) {</code><code class="java keyword">return</code> <code class="java plain">m.put(key, value);}</code></div><div class="line number24 index23 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number25 index24 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java plain">V remove(Object key) {</code></div><div class="line number26 index25 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">synchronized</code><code class="java plain">(mutex) {</code><code class="java keyword">return</code> <code class="java plain">m.remove(key);}</code></div><div class="line number27 index26 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number28 index27 alt1"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p>
+							<a href="http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/6-b14/java/util/Collections.java#Collections.synchronizedMap%28java.util.Map%29" target="_blank">Click here</a> to check full code of <code>SynchronizedMap</code>.&nbsp;
+						</p>
+<p>
+							Similar to <code>HashMap</code>, Synchronized <code>HashMap&nbsp;</code>allows one null key and multiple null values as it just wraps the methods of <code>HashMap </code>with synchronized keyword. Rest of the behavior remains same as original collection.
+						</p>
+<p>
+							You can also check <code>SynchronizedSortedMap&nbsp;</code>which is similar data structure to convert thread-unsafe <code>TreeMap </code>and other <code>SortedMap </code>implementation to corresponding thread-safe collection.
+						</p>
+<hr>
+<h2>
+							<a id="ConcurrentHashMap" name="ConcurrentHashMap">ConcurrentHashMap</a><br>
+						</h2>
+<p>
+							<code>Hashtable&nbsp;</code>and <code>SynchronizedMap&nbsp;</code>both acquires lock on entire Map object which provides thread-safety, but not good performance as at a time only one thread can access that Map instance.
+						</p>
+<p>
+							To overcome this issue, <code>ConcurrentHashMap </code>was introduced in Java 5 along with other concurrent classes like <a href="https://codepumpkin.com/?p=895" target="_blank">CountDownLatch</a>,&nbsp;<a href="https://codepumpkin.com/?p=935">CyclicBarrier</a>, &nbsp;<code>CopyOnWriteArrayList</code>, <a href="https://codepumpkin.com/?p=444" target="_blank">BlockingQueue&nbsp;</a>within java.util.Concurrent package.
+						</p>
+<p>
+							More than one&nbsp;threads can read and write concurrently in <code>ConcurrentHashMap </code>and still it provides thread-safety. Amazing,&nbsp;isn't it? How is it implemented internally?
+						</p>
+<p>
+							<img alt="Hashtable vs SynchronizedMap vs ConcurrentHashMap" class="img-thumbnail" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/ConcurrentHashMap.jpg">
+						</p>
+<p>
+							Well, <code>ConcurrentHashMap&nbsp;</code>divides the Map instance into different segments. And each thread acquires lock on each segment. By default it allows 16 threads to access it simultaneously without any external synchronization i.e. by default concurrency level is 16. We can also increase or decrease the default concurrency level while creating <code>ConcurrentHashMap&nbsp;</code>by using below constructor :
+						</p>
+<div><div id="highlighter_879621" class="syntaxhighlighter  java"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java plain">ConcurrentHashMap(</code><code class="java keyword">int</code> <code class="java plain">initialCapacity, </code><code class="java keyword">float</code> <code class="java plain">loadFactor, </code><code class="java keyword">int</code> <code class="java plain">concurrencyLevel)</code></div></div></td></tr></tbody></table></div></div>
+<p>
+							<strong>Can Multiple thread write in the same segment?</strong>
+						</p>
+<p>
+							No. Thread acquires a lock on segment in <code>put()</code> operation&nbsp;and at a time only one thread can write in that segment.
+						</p>
+<p></p>
+<p>
+							<strong>Can two threads write in the different segment?</strong>
+						</p>
+<p>
+							Yes. Two threads are allowed to write concurrently in different segments.
+						</p>
+<p></p>
+<p>
+							<strong>Can Multiple thread read from&nbsp;the same segment?</strong>
+						</p>
+<p>
+							Yes. Thread doesn't acquire a lock on segment in <code>get()</code> operation and any number of threads can read from the same segment.&nbsp;
+						</p>
+<p>
+							<strong>If one thread is writing in a segment, can another thread read from that segment()?</strong>
+						</p>
+<p>
+							Yes. but in this case last updated value will be seen by the reading thread.&nbsp;
+						</p>
+<p>
+							<strong>Null keys and values</strong>
+						</p>
+<p>
+							<code>ConcurrentHashMap&nbsp;</code>doesn't allow <code>null</code> keys and <code>null</code> values.
+						</p>
+<hr>
+<h2>
+							Summary<br>
+						</h2>
+<ol>
+<li>
+								<code>HashMap&nbsp;</code>is not thread-safe.
+							</li>
+<li>
+								Once the size of&nbsp;<code>Hashtable </code>and <code>SynchronizedMap </code>becomes considerable large because for the iteration it has to be locked for the longer duration.<br>
+								While in <code>ConcurrentHashMap</code>, even if its size become very large, only portion or segment of the Map is locked which improves the performance in multithreading environment.
+							</li>
+<li>
+								<code>SynchronizedMap</code>&nbsp;just wraps original Map object with <code>synchronized </code>block.
+							</li>
+<li>
+								<code>Hashtable </code>and <code>ConcurrentHashMap&nbsp;</code>doesn't allow null keys and null values, whereas <code>SynchronizedMap&nbsp;</code>may allow <code>null</code> keys and <code>null</code> values based on the original collection class being passed inside it.
+							</li>
+</ol>
+<p>
+							We will soon publish our article on the internal working of <code>ConcurrentHashMap</code>. Stay tuned <img draggable="false" role="img" class="emoji" alt="🙂" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/1f642.svg">
+						</p>
+<p>
+							You can also check our articles on sorting and searching such as&nbsp;<a href="https://codepumpkin.com/?p=2865">Bubble Sort</a>,&nbsp;<a href="https://codepumpkin.com/?p=2766">Selection sort</a>, <a href="https://codepumpkin.com/?p=2719">Binary Search</a>, <a href="https://codepumpkin.com/?p=2728">Fibonacci Search</a>, <a href="https://codepumpkin.com/?p=2869">Merge Sort</a>&nbsp;etc.
+						</p>
+<p></p></div>
+<p></p></div>
+<p></p></div>
+<p></p></div>
+<p></p></div>
+<p></p>
+</div>
+<p>That's all for this topic. If you guys have any suggestions or queries, feel free to drop a comment. We would be happy to add that in our post. You can also contribute your articles by creating contributor account <a href="https://codepumpkin.com/wp-login.php?action=register" target="_blank">here</a>.</p>  						
+<p>Happy Learning&nbsp;<img draggable="false" role="img" class="emoji" alt="🙂" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/1f642.svg"></p>
+
+<p>If you like the content on CodePumpkin and if you wish to do something for the community and the planet Earth, you can donate to our campaign for planting more trees at <a href="https://www.ishaoutreach.org/en/cauvery-calling/campaigns/cauvery-calling-action-now-9888" target="_BLANK"> CodePumpkin Cauvery Calling Campaign</a>. </p>
+
+<p><b>We may not get time to plant a tree, but we can definitely donate ₹42 per Tree. </b></p>
+<style>
+	h2.authorName{
+    
+	padding-left:20px;
+	text-transform: capitalize;
+    font-weight: bold;
+    color: #000;
+	}
+
+	h1.h2Authorpage{
+		font-size: 1rem;
+		background-color:#263238;
+		color:#fff;
+		padding:10px;
+		margin-bottom:30px;
+	}
+
+	h2.category{
+		font-size: 1rem;
+		line-height: 2rem;
+		font-weight:bold;
+		color;#000;
+		padding-left:10px;
+	}
+
+	.authorDesc{
+		padding-left:20px;
+		font-size: 14px;
+	}
+
+
+	.social_media_icon
+	{
+		width:40px;
+		margin:2px;
+		margin-top:10px;
+	}
+
+	
+	.btn_views
+	{
+		cursor:pointer;
+		font-weight: bold;
+	}
+	
+
+	.avatar {
+    padding: .25rem;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: .25rem;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    max-width: 100%;
+    height: auto;
+}
+
+	
+
+
+
+
+	</style><br><br><h2 class="">About the Author </h2><hr>
+			
+			<div class="row">
+				<div class="col-md-2" style="text-align:center"><img src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/629c54d033ef55c50b39346321fd43d2.jpeg" width="96" height="96" alt="Avatar" class="avatar avatar-96wp-user-avatar wp-user-avatar-96 alignnone photo avatar-default">
+				</div>
+	
+
+
+				<div class="col-md-10" style="text-align:justify">
+					<div class="row">
+						<div class="col-md-12">
+							<h2 class="authorName"><a href="https://codepumpkin.com/author/abhi-andhariya/">abhi andhariya</a>   &nbsp;&nbsp;&nbsp; <a href="https://codepumpkin.com/author/abhi-andhariya/"><div class="btn btn-sm btn_custom btn_views">Visit Full Profile</div></a></h2> 
+						</div>
+
+					</div>
+					<div class="row" style="text-align:justify">
+						<div class="col-md-12 authorDesc">
+							Surviving Java Developer, Passionate Blogger, Table Tennis Lover, Bookworm, Occasional illustrator and a big fan of Joey Tribbiani, The Walking Dead and Game of Thrones...!!
+						</div>
+					</div>
+				</div>
+
+			</div>
+			
+						<div class="row text-center">
+							<div class="col-md-12" style="text-align:justify;margin-left:20px;"> <a href="https://github.com/aandhariya" target="_Blank" rel="nofollow">
+				<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDUxMiA1MTIiIGhlaWdodD0iNTEycHgiIGlkPSJMYXllcl8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iNTEycHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGQ9Ik01MTIsNDMyYzAsNDQuMTgyLTM1LjgxNiw4MC04MCw4MEg4MGMtNDQuMTgzLDAtODAtMzUuODE4LTgwLTgwVjgwQzAsMzUuODE3LDM1LjgxOCwwLDgwLDBoMzUyICBjNDQuMTg0LDAsODAsMzUuODE3LDgwLDgwVjQzMnoiIGZpbGw9IiMxODE2MTYiLz48cGF0aCBkPSJNMzYyLjQzLDE1NC4wMThsLTAuNzQyLTAuNzQzYy0yNy4xMTYtMjYuOTI3LTY0LjQ2MS00My41NjctMTA1LjY5MS00My41NjcgIEMxNzMuMTY1LDEwOS43MDcsMTA2LDE3Ni44NjMsMTA2LDI1OS43MTFjMCw0MS4yNTQsMTYuNjU5LDc4LjYxMyw0My42MTYsMTA1LjcyNmwwLjYyOSwwLjYzTDI5Ni4xOCw1MTJINDMyICBjNDQuMTg0LDAsODAtMzUuODE4LDgwLTgwVjMwMy41ODhMMzYyLjQzLDE1NC4wMTh6IiBmaWxsPSIjMEMwQzBDIi8+PHBhdGggY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMjU1Ljk5NiwxMDkuNzA3QzE3My4xNjUsMTA5LjcwNywxMDYsMTc2Ljg2MywxMDYsMjU5LjcxMSAgYzAsNjYuMjY2LDQyLjk3NiwxMjIuNDg3LDEwMi41ODcsMTQyLjMyNGM3LjUsMS4zNzYsMTAuMjMzLTMuMjU1LDEwLjIzMy03LjIyOWMwLTMuNTYxLTAuMTI1LTEyLjk5NC0wLjE5OC0yNS41MTIgIGMtNDEuNzI1LDkuMDY0LTUwLjUyOS0yMC4xMDYtNTAuNTI5LTIwLjEwNmMtNi44MjYtMTcuMzI5LTE2LjY1NC0yMS45NDItMTYuNjU0LTIxLjk0MmMtMTMuNjI0LTkuMzA4LDEuMDM0LTkuMTE5LDEuMDM0LTkuMTE5ICBjMTUuMDU0LDEuMDYyLDIyLjk2NywxNS40NTgsMjIuOTY3LDE1LjQ1OGMxMy4zODEsMjIuOTIzLDM1LjEwNywxNi4zMDQsNDMuNjU5LDEyLjQ2NGMxLjM1OC05LjY5NCw1LjI0My0xNi4zMDQsOS41MjMtMjAuMDU0ICBjLTMzLjMwOS0zLjc4NS02OC4zMjUtMTYuNjUzLTY4LjMyNS03NC4xMzRjMC0xNi4zNzUsNS44NDUtMjkuNzY2LDE1LjQ0LTQwLjI1Yy0xLjUzOC0zLjc5NS02LjY5LTE5LjA0NiwxLjQ2Ni0zOS42OTMgIGMwLDAsMTIuNTk5LTQuMDM4LDQxLjI1OCwxNS4zNzdjMTEuOTYtMy4zMjcsMjQuNzkzLTUsMzcuNTUzLTUuMDU0YzEyLjczMiwwLjA1NCwyNS41NjUsMS43MjcsMzcuNTU0LDUuMDU0ICBjMjguNjMxLTE5LjQxNSw0MS4yMDItMTUuMzc3LDQxLjIwMi0xNS4zNzdjOC4xODQsMjAuNjQ3LDMuMDQsMzUuODk4LDEuNDkzLDM5LjY5M2M5LjYxNCwxMC40ODUsMTUuNDEzLDIzLjg3NSwxNS40MTMsNDAuMjUgIGMwLDU3LjYyNC0zNS4wNzEsNzAuMzA0LTY4LjQ4Niw3NC4wMThjNS4zOTUsNC42MzIsMTAuMTg4LDEzLjc4NSwxMC4xODgsMjcuNzc4YzAsMjAuMDU0LTAuMTg5LDM2LjIzLTAuMTg5LDQxLjE0OSAgYzAsNC4wMTEsMi43MDgsOC42NzgsMTAuMzIzLDcuMjEyQzM2My4wNjIsMzgyLjE0NCw0MDYsMzI1Ljk1OSw0MDYsMjU5LjcxMUM0MDYsMTc2Ljg2MywzMzguODM1LDEwOS43MDcsMjU1Ljk5NiwxMDkuNzA3eiIgZmlsbD0iI0ZGRkZGRiIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9zdmc+" class="social_media_icon" alt="github">
+			 </a>	<a href="https://stackoverflow.com/users/3965738/abhi-andhariya" target="_Blank" rel="nofollow">
+				<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pjxzdmcgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMjsiIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+Cgkuc3Qwe2ZpbGw6IzcyM0ExNTt9Cgkuc3Qxe2ZpbGw6I0Y0ODAyNDt9Cgkuc3Qye29wYWNpdHk6MC40NTt9Cgkuc3Qze2ZpbGw6IzIzMUYyMDt9Cgkuc3Q0e2ZpbGw6I0ZGRkZGRjt9Cjwvc3R5bGU+PGcgaWQ9IkVkZ2VzIi8+PGcgaWQ9IkJhY2tncm91bmRfQm90dG9tIj48Zz48cGF0aCBjbGFzcz0ic3QwIiBkPSJNNDkyLjMsNDQzLjFjMCwzNC4yLTI3LjcsNjEuOS02MS45LDYxLjlIODAuN2MtMzQuMiwwLTYxLjktMjcuNy02MS45LTYxLjlWOTMuNGMwLTM0LjIsMjcuNy02MS45LDYxLjktNjEuOSAgICBoMzQ5LjdjMzQuMiwwLDYxLjksMjcuNyw2MS45LDYxLjlWNDQzLjF6Ii8+PC9nPjwvZz48ZyBpZD0iQmFja2dyb3VuZCI+PHBhdGggY2xhc3M9InN0MSIgZD0iTTQ5Mi4zLDQxOC40YzAsMzQuMi0yNy43LDYxLjktNjEuOSw2MS45SDgwLjdjLTM0LjIsMC02MS45LTI3LjctNjEuOS02MS45VjY4LjZjMC0zNC4yLDI3LjctNjEuOSw2MS45LTYxLjkgICBoMzQ5LjdjMzQuMiwwLDYxLjksMjcuNyw2MS45LDYxLjlWNDE4LjR6Ii8+PC9nPjxnIGNsYXNzPSJzdDIiIGlkPSJTaGFkb3ciPjxnPjxwYXRoIGNsYXNzPSJzdDMiIGQ9Ik0zMjcuMSwxOTMuNmM2LjEsOC4yLDEyLjEsMTYuMywxOC4yLDI0LjVjMC4yLDAuMiwwLjMsMC41LDAuNSwwLjdsMCwwTDQxMSwyODRoMGw4MS40LDgxLjRsMC01OEw0NDgsMjYzICAgIGwwLjItMC4yTDI5NC42LDEwOS4yYzAtMC4xLTAuMS0wLjEtMC4xLTAuMmMtMC43LTAuOS0xLjEtMC44LTEuOS0wLjJjLTUuNyw0LjMtMTEuNCw4LjUtMTcuMiwxMi43Yy0xLDAuNy0wLjksMS4yLTAuMywyLjEgICAgQzI5Mi41LDE0Ni45LDMwOS44LDE3MC4zLDMyNy4xLDE5My42eiIvPjxwYXRoIGNsYXNzPSJzdDMiIGQ9Ik0zNTAuNSwyMzIuN0wzNTAuNSwyMzIuN2wtOS4xLTkuMWwwLDBjLTAuMi0wLjItMC41LTAuNC0wLjctMC42Yy04LjMtNi45LTE2LjctMTMuOS0yNS0yMC44ICAgIGMtMjEuOS0xOC4yLTQzLjktMzYuNS02NS44LTU0LjdjLTAuOC0wLjctMS4yLTAuNi0xLjksMC4yYy00LjQsNS40LTguOSwxMC43LTEzLjMsMTZjLTEsMS4yLTEuMywxLjMtMC43LDEuOGwwLDBsNzcsNzcgICAgYy0zMi4xLTE1LjEtNjQuMy0zMC4xLTk2LjQtNDUuMmMtMC4zLTAuMi0wLjctMC4zLTEtMC40Yy0wLjcsMC0wLjcsMC41LTAuOSwwLjljLTMsNi42LTUuOSwxMy4yLTksMTkuOGMtMC40LDAuOC0wLjMsMS4yLDAsMS41ICAgIGw0My44LDQzLjhjLTguMy0xLjctMTYuNS0zLjUtMjQuOC01LjJjLTkuNi0yLTE5LjItNC0yOC44LTYuMWMtMS4yLTAuMy0xLjUsMC4xLTEuNywxLjJjLTEuNCw3LTIuOCwxMy45LTQuNCwyMC45ICAgIGMtMC4yLDAuNy0wLjEsMS4xLDAuMSwxLjNsMCwwbDMxLDMxYy0xMC45LDAtMjEuNywwLTMyLjYsMGMtMC43LDAtMS4xLDAuMS0xLjMsMC42bC0yNC4zLTI0LjNjLTAuMi0wLjItMC43LTAuMi0xLjYtMC4yICAgIGMtNi44LDAtMTMuNywwLTIwLjUsMGMtMS44LDAtMS44LDAtMS44LDEuN2MwLDMxLDAsNjIsMCw5Mi45YzAsMSwwLDEuNSwwLjMsMS43TDIzOSw0ODAuM2gyMS4yaDU0LjVoMTYuMnYwbDk5LjcsMCAgICBjMzQuMiwwLDYxLjktMjcuNyw2MS45LTYxLjl2LTQzLjhMMzUwLjUsMjMyLjd6Ii8+PC9nPjwvZz48ZyBpZD0iU3ltYm9sIj48Zz48cGF0aCBjbGFzcz0ic3Q0IiBkPSJNMjQ1LjcsMzc4LjdjLTM1LjYsMC03MS4yLDAtMTA2LjgsMGMtMS45LDAtMS45LDAtMS45LTEuOWMwLTMxLDAtNjIsMC05Mi45YzAtMS43LDAtMS43LDEuOC0xLjcgICAgYzYuOCwwLDEzLjcsMCwyMC41LDBjMS45LDAsMS45LDAsMS45LDEuOGMwLDIzLDAsNDUuOSwwLDY4LjljMCwxLjgsMCwxLjgsMS43LDEuOGM1NS4yLDAsMTEwLjQsMCwxNjUuNiwwYzEuMywwLDEuNy0wLjMsMS43LTEuNyAgICBjMC0yMywwLTQ2LDAtNjljMC0xLjgsMC0xLjgsMS43LTEuOGM3LDAsMTQuMSwwLDIxLjEsMGMxLjEsMCwxLjQsMC4zLDEuNCwxLjRjMCwzMS4zLDAsNjIuNSwwLDkzLjhjMCwxLjQtMC42LDEuNS0xLjcsMS41ICAgIEMzMTcsMzc4LjcsMjgxLjMsMzc4LjcsMjQ1LjcsMzc4Ljd6Ii8+PGc+PHBhdGggY2xhc3M9InN0NCIgZD0iTTMwNC43LDI5OS42Yy01LjMtMS4xLTExLjEtMi4zLTE2LjgtMy41Yy0yMS40LTQuNS00Mi45LTktNjQuMy0xMy40Yy0xMS40LTIuNC0yMi45LTQuOC0zNC4zLTcuMSAgICAgYy0xLjEtMC4yLTEuNi0wLjUtMS4zLTEuOGMxLjYtNi45LDMtMTMuOSw0LjQtMjAuOWMwLjItMS4xLDAuNS0xLjUsMS43LTEuMmM5LjYsMi4xLDE5LjIsNCwyOC44LDYuMSAgICAgYzIxLjEsNC40LDQyLjIsOC44LDYzLjMsMTMuMmM3LjgsMS42LDE1LjcsMy4zLDIzLjUsNC45YzEsMC4yLDEuMSwwLjUsMC45LDEuNGMtMS41LDcuMS0zLDE0LjItNC41LDIxLjMgICAgIEMzMDYsMjk5LDMwNi4yLDMwMCwzMDQuNywyOTkuNnoiLz48cGF0aCBjbGFzcz0ic3Q0IiBkPSJNMjQ1LjQsMzA2LjFjMTkuNiwwLDM5LjMsMCw1OC45LDBjMS4yLDAsMS41LDAuMiwxLjUsMS41Yy0wLjEsNy4xLTAuMSwxNC4yLDAsMjEuMmMwLDEuMS0wLjIsMS41LTEuNCwxLjUgICAgIGMtMzkuMywwLTc4LjcsMC0xMTgsMGMtMSwwLTEuNC0wLjItMS40LTEuM2MwLjEtNy4yLDAuMS0xNC4zLDAtMjEuNWMwLTEuMSwwLjQtMS4zLDEuNC0xLjNDMjA2LjIsMzA2LjEsMjI1LjgsMzA2LjEsMjQ1LjQsMzA2LjEgICAgIHoiLz48cGF0aCBjbGFzcz0ic3Q0IiBkPSJNMjEzLjcsMTk2LjljMC4zLDAuMSwwLjYsMC4zLDEsMC40YzM0LjEsMTYsNjguMiwzMiwxMDIuMyw0OGMxLjYsMC43LDMuMiwxLjUsNC44LDIuMiAgICAgYzAuNywwLjMsMC44LDAuNiwwLjUsMS4zYy0zLjEsNi43LTYuMiwxMy40LTkuMiwyMC4xYy0wLjUsMS0xLDAuNi0xLjYsMC4zYy03LjgtMy42LTE1LjYtNy4zLTIzLjQtMTAuOSAgICAgYy0yNy44LTEzLTU1LjctMjUuOS04My41LTM4LjljLTEtMC41LTEuMy0wLjgtMC44LTEuOWMzLTYuNiw2LTEzLjIsOS0xOS44QzIxMywxOTcuNSwyMTMsMTk2LjksMjEzLjcsMTk2Ljl6Ii8+PHBhdGggY2xhc3M9InN0NCIgZD0iTTM2NS4zLDIwNC43YzAsMC40LTAuMywwLjYtMC42LDAuOGMtNS45LDQuNC0xMS45LDguOC0xNy44LDEzLjJjLTEsMC43LTEuMiwwLTEuNi0wLjUgICAgIGMtNi4xLTguMi0xMi4xLTE2LjMtMTguMi0yNC41Yy0xNy4zLTIzLjQtMzQuNy00Ni44LTUyLjEtNzAuMWMtMC43LTAuOS0wLjctMS4zLDAuMy0yLjFjNS44LTQuMiwxMS41LTguNCwxNy4yLTEyLjcgICAgIGMwLjgtMC42LDEuMi0wLjcsMS45LDAuMmMyMy40LDMxLjYsNDYuOCw2My4yLDcwLjIsOTQuN0MzNjQuOSwyMDQsMzY1LjEsMjA0LjQsMzY1LjMsMjA0Ljd6Ii8+PHBhdGggY2xhc3M9InN0NCIgZD0iTTM0MS42LDIyNC4xYy0wLjIsMC4yLTAuNCwwLjUtMC42LDAuN2MtNC42LDUuNS05LjIsMTEtMTMuNywxNi41Yy0wLjcsMC44LTEuMSwwLjktMS45LDAuMiAgICAgYy0xMy42LTExLjQtMjcuMy0yMi44LTQxLTM0LjFjLTE2LjUtMTMuNy0zMi45LTI3LjQtNDkuNC00MS4xYy0xLjgtMS41LTEuNi0xLTAuMy0yLjZjNC40LTUuNCw4LjktMTAuNywxMy4zLTE2ICAgICBjMC43LTAuOCwxLTAuOSwxLjktMC4yYzIxLjksMTguMyw0My44LDM2LjUsNjUuOCw1NC43YzguMyw2LjksMTYuNywxMy45LDI1LDIwLjhDMzQxLDIyMy4zLDM0MS41LDIyMy41LDM0MS42LDIyNC4xeiIvPjwvZz48L2c+PC9nPjwvc3ZnPg==" class="social_media_icon" alt="stackoverflow">
+			 </a>	<a href="https://in.linkedin.com/in/abhi-andhariya-3536a139" target="_Blank" rel="nofollow">
+				<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDUxMiA1MTIiIGhlaWdodD0iNTEycHgiIGlkPSJMYXllcl8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iNTEycHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGQ9Ik01MTIsNDMyYzAsNDQuMTgyLTM1LjgxNiw4MC04MCw4MEg4MGMtNDQuMTgzLDAtODAtMzUuODE4LTgwLTgwVjgwQzAsMzUuODE3LDM1LjgxOCwwLDgwLDBoMzUyICBjNDQuMTg0LDAsODAsMzUuODE3LDgwLDgwVjQzMnoiIGZpbGw9IiMwMjc0QjMiLz48cG9seWdvbiBmaWxsPSIjRkZGRkZGIiBwb2ludHM9Ii0yNzQuMDIsODc3LjI3OSAtMjc0LjAxMyw4NzcuMjc5IC0yNzQuMDIsODc3LjI3MiAiLz48cGF0aCBkPSJNNTEyLDQzMnYtODIuMjQyTDM4NS40MjgsMjIzLjE4NWwtNDcuMDQyLDQ3LjA0MmwtNjQuMzMzLTY0LjMzM2wtOS42NDUsOS42NDVsLTk2LjQ3OS05Ni40NzkgIGwtNTEuNDM1LDUxLjQzNWw0NS45MTYsNDUuOTE2bC0zMS44MzYsMzEuODM2bDI1LjA5MywyNS4wOTJ2ODcuMTgybC0zLjUwNS0zLjUwNGwtNDIuMzUzLDQyLjM1MkwyMjIuNDQxLDUxMkg0MzIgIEM0NzYuMTg0LDUxMiw1MTIsNDc2LjE4Miw1MTIsNDMyeiIgZmlsbD0iIzBBNTI3MiIvPjxnPjxyZWN0IGZpbGw9IiNGRkZGRkYiIGhlaWdodD0iMTkzLjQ3NiIgd2lkdGg9IjY0LjMxMiIgeD0iMTA5Ljc5NCIgeT0iMjA1Ljg5NiIvPjxwYXRoIGQ9Ik0xNDEuOTU1LDE3OS40NzNoLTAuNDI5Yy0yMS41NjksMC0zNS41MjUtMTQuODY0LTM1LjUyNS0zMy40MjFjMC0xOC45NzksMTQuMzg1LTMzLjQyMiwzNi4zNzUtMzMuNDIyICAgYzIyLjAwNiwwLDM1LjUzMywxNC40NDQsMzUuOTYzLDMzLjQyMkMxNzguMzM4LDE2NC42MDgsMTY0LjM3MywxNzkuNDczLDE0MS45NTUsMTc5LjQ3M3oiIGZpbGw9IiNGRkZGRkYiLz48cGF0aCBkPSJNNDA1Ljk5MiwzOTkuMzcxaC02NC4zMDV2LTEwMy41M2MwLTI1Ljk5NC05LjMwMy00My43NDQtMzIuNTcyLTQzLjc0NCAgIGMtMTcuNzY3LDAtMjguMzQxLDExLjk3MS0zMy4wMDEsMjMuNTI5Yy0xLjY5OSw0LjEyMi0yLjExMSw5Ljg5NC0yLjExMSwxNS42ODF2MTA4LjA0OGgtNjQuMzA0YzAsMCwwLjg0MS0xNzUuMzI5LDAtMTkzLjQ2NyAgIGg2NC4zMDR2MjcuMzkxYzguNTQ3LTEzLjE4MywyMy44MjMtMzEuOTUsNTcuOTYtMzEuOTVjNDIuMzA2LDAsNzQuMDM3LDI3LjY2LDc0LjAzNyw4Ny4wODR2MTEwLjk1OUg0MDUuOTkyeiIgZmlsbD0iI0ZGRkZGRiIvPjwvZz48L3N2Zz4=" class="social_media_icon" alt="linkedin">
+			 </a>	<a href="https://www.facebook.com/aandhariya" target="_Blank" rel="nofollow">
+				<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDUxMiA1MTIiIGhlaWdodD0iNTEycHgiIGlkPSJMYXllcl8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iNTEycHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGQ9Ik01MTEuOTk5LDQzMmMwLDQ0LjE4My0zNS44MTYsODAtODAsODBIODBjLTQ0LjE4MywwLTgwLTM1LjgxNy04MC04MFY4MEMwLDM1LjgxNywzNS44MTcsMCw4MCwwaDM1MS45OTkgIGM0NC4xODQsMCw4MCwzNS44MTcsODAsODBWNDMyeiIgZmlsbD0iIzNENUE5OCIvPjxwYXRoIGQ9Ik0zMzUuMjcxLDUxMlYzMTMuNzI3aDY2LjU1M2w5Ljk2NS03Ny4yNzJoLTc2LjUxOFYxODcuMTJjMC0yMi4zNzIsNi4yMTEtMzcuNjE4LDM4LjI5NS0zNy42MTggIGw0MC45MTctMC4wMTlWODAuMzczYy03LjA3Ny0wLjk0LTMxLjM2Ni0zLjA0NC01OS42MjQtMy4wNDRjLTU4Ljk5NCwwLTk5LjM4MywzNi4wMS05OS4zODMsMTAyLjE0MXY1Ni45ODVoLTY2LjcyNHY3Ny4yNzJoNjYuNzI0ICBWNTEySDMzNS4yNzF6IiBmaWxsPSIjRkZGRkZGIiBpZD0iZiIvPjxwYXRoIGQ9Ik00MTQuNDgzLDgwLjM3M3Y2OS4xMWwtNDAuOTE3LDAuMDE5Yy0zMi4wODQsMC0zOC4yOTUsMTUuMjQ2LTM4LjI5NSwzNy42MTh2NDkuMzM1aDc2LjUxOGwtOS45NjUsNzcuMjcxICBoLTY2LjU1M1Y1MTJoOTYuNzI4YzQ0LjE4NCwwLDgwLTM1LjgxNyw4MC04MFYxNzcuODMyIiBmaWxsPSIjMUIzNTY4Ii8+PC9zdmc+" class="social_media_icon" alt="facebook">
+			 </a>	<a href="https://twitter.com/abhiandhariya" target="_Blank" rel="nofollow">
+				<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDUxMiA1MTIiIGhlaWdodD0iNTEycHgiIGlkPSJMYXllcl8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iNTEycHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGQ9Ik0yOTUuMzYxLDEzNTQuNTkxbDAuMDIzLDAuMDIzYzAuMDA1LTAuMDE2LDAuMDExLTAuMDMsMC4wMTYtMC4wNDYgIEMyOTUuMzg4LDEzNTQuNTc2LDI5NS4zNzQsMTM1NC41ODMsMjk1LjM2MSwxMzU0LjU5MXoiIGZpbGw9IiNGRkZGRkYiLz48cGF0aCBkPSJNNTExLjk5OSw0MzJjMCw0NC4xODMtMzUuODE2LDgwLTgwLDgwSDgwYy00NC4xODMsMC04MC0zNS44MTctODAtODBWODBDMCwzNS44MTcsMzUuODE3LDAsODAsMGgzNTEuOTk5ICBjNDQuMTg0LDAsODAsMzUuODE3LDgwLDgwVjQzMnoiIGZpbGw9IiMyQUE5RTAiLz48cGF0aCBkPSJNNDI2LjY2NSwxNTAuMTQyYy0xMi41NTcsNS41Ny0yNi4wNTUsOS4zMzQtNDAuMjE5LDExLjAyNmMxNC40NTctOC42NjYsMjUuNTYxLTIyLjM5LDMwLjc4OS0zOC43NDMgIGMtMTMuNTMxLDguMDI2LTI4LjUxOCwxMy44NTQtNDQuNDY5LDE2Ljk5M2MtMTIuNzczLTEzLjYwOS0zMC45NzUtMjIuMTEzLTUxLjExNS0yMi4xMTNjLTM4LjY3NCwwLTcwLjAyOSwzMS4zNTQtNzAuMDI5LDcwLjAyNyAgYzAsNS40ODgsMC42MTksMTAuODMzLDEuODEzLDE1Ljk1OWMtNTguMi0yLjkyMS0xMDkuODAxLTMwLjgwMS0xNDQuMzM5LTczLjE2OGMtNi4wMjgsMTAuMzQyLTkuNDgxLDIyLjM3MS05LjQ4MSwzNS4yMDUgIGMwLDI0LjI5NiwxMi4zNjIsNDUuNzMsMzEuMTUzLDU4LjI4OWMtMTEuNDc5LTAuMzY1LTIyLjI3OC0zLjUxNS0zMS43MTktOC43NmMtMC4wMDcsMC4yOTMtMC4wMDcsMC41ODUtMC4wMDcsMC44ODEgIGMwLDMzLjkyOCwyNC4xNCw2Mi4yMzIsNTYuMTc0LDY4LjY2NmMtNS44NzUsMS42MDEtMTIuMDYzLDIuNDU3LTE4LjQ0OCwyLjQ1N2MtNC41MTMsMC04Ljg5OS0wLjQzOS0xMy4xNzctMS4yNTYgIGM4LjkxMiwyNy44MTksMzQuNzczLDQ4LjA2OCw2NS40MTgsNDguNjMxYy0yMy45NjcsMTguNzgzLTU0LjE2MiwyOS45NzktODYuOTcyLDI5Ljk3OWMtNS42NTIsMC0xMS4yMjctMC4zMzEtMTYuNzA1LTAuOTc5ICBjMzAuOTkxLDE5Ljg3LDY3LjgwMSwzMS40NjUsMTA3LjM0OCwzMS40NjVjMTI4LjgwNywwLDE5OS4yNDYtMTA2LjcwOCwxOTkuMjQ2LTE5OS4yNDljMC0zLjAzNS0wLjA2OC02LjA1NS0wLjIwNS05LjA2ICBDNDA1LjQwNSwxNzYuNTE5LDQxNy4yNzgsMTY0LjE4Niw0MjYuNjY1LDE1MC4xNDJ6IiBmaWxsPSIjRkZGRkZGIi8+PHBhdGggZD0iTTIzNC4wNjMsNTEySDQzMmM0NC4xODQsMCw4MC0zNS44MTgsODAtODBWMjE3LjI1bC05NC43NzktOTQuNzc5Yy01LjIzNCwxNi4zMzMtMTYuMzMsMzAuMDM5LTMwLjc3MywzOC42OTcgIGMxNC4xNjQtMS42OTIsMjcuNjYyLTUuNDU2LDQwLjIxOS0xMS4wMjZjLTkuMzg3LDE0LjA0NC0yMS4yNiwyNi4zNzctMzQuOTQzLDM2LjI1YzAuMTM3LDMuMDA1LDAuMjA1LDYuMDI0LDAuMjA1LDkuMDYgIGMwLDkyLjU0Mi03MC40MzksMTk5LjI0OS0xOTkuMjQ2LDE5OS4yNDljLTM5LjU0NywwLTc2LjM1Ny0xMS41OTQtMTA3LjM0OC0zMS40NjUiIGZpbGw9IiMxQTcwQjciLz48L3N2Zz4=" class="social_media_icon" alt="twitter">
+			 </a>	<a href="https://plus.google.com/u/1/+AbhiAndhariya" target="_Blank" rel="nofollow">
+				<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDUxMiA1MTIiIGhlaWdodD0iNTEycHgiIGlkPSJMYXllcl8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iNTEycHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGQ9Ik01MTIsODB2MzUyYzAsNDQuMTgtMzUuODIsODAtODAsODBIODBjLTQ0LjE4LDAtODAtMzUuODItODAtODBWODBDMCwzNS44MiwzNS44MiwwLDgwLDBoMzUyICBDNDc2LjE4LDAsNTEyLDM1LjgyLDUxMiw4MHoiIGZpbGw9IiNERDRCMzkiLz48cG9seWdvbiBmaWxsPSIjMDc3MzhDIiBwb2ludHM9Ii0yNzEuNTY2LDc4My43NzcgLTI3Mi4wMDQsNzg0LjIxNSAtMjcwLjc4Myw3ODQuNTYyICIvPjxwb2x5Z29uIGZpbGw9IiMwNzczOEMiIHBvaW50cz0iMzYxLjk5NiwxODA1LjIxNSAzNjMuMjE3LDE4MDUuNTYyIDM2Mi40MzQsMTgwNC43NzcgIi8+PHBhdGggZD0iTTQwNi4wMTcsMTg0LjkxbC0wLjMxNywwLjMxNmwtNTUuOTUzLTU1Ljk1M2wtOS4zNzEsOS4zNzF2NjEuMjNsLTcwLjYwMi03MC42MDJMMjYwLjUsMTMxLjVMMTkyLDEzNiAgbC0zMS41LDVsLTE2LDI1bDkuNSw1My41bDQzLDIxLjVsMSw1bDcuNSwzNGwtOC41LDNsLTMyLDVsLTIwLDdsLTIzLDMzbDExLjc0LDE2LjMzNGwtMTYuNzI1LDE2LjcyNUwyNjcuOTU3LDUxMmg0OS4wMDhoNjcuNzdINDMyICBjMjguMTYsMCw1Mi45MDYtMTQuNTY2LDY3LjE2Mi0zNi41NjFDNTA3LjI3Miw0NjIuOTI4LDUxMiw0NDguMDIsNTEyLDQzMnYtMjMuNjk1di0wLjYzM3YtMTEuMzI4VjM3MS41di03OS45NzN2LTAuNjM0ICBMNDA2LjAxNywxODQuOTF6IiBmaWxsPSIjOEMyNTFFIi8+PGc+PHBhdGggZD0iTTI2OS43NywxMjkuMjczaC03OC40OTdjLTM1LjE3NSwwLTY4LjI4LDI2LjY2LTY4LjI4LDU3LjUzMWMwLDMxLjU2NywyMy45ODcsNTcuMDU2LDU5LjgwMiw1Ny4wNTYgICBsNy4yNTEtMC4yMzdjLTIuMzA3LDQuNDQ5LTMuOTkyLDkuNDQ4LTMuOTkyLDE0LjY2NmMwLDguNzcxLDQuNzI0LDE1Ljg3NiwxMC42OTMsMjEuNjhsLTEzLjYyMywwLjE0NiAgIEMxMzkuNTQ1LDI4MC4wOTgsMTA2LDMwNy44NzQsMTA2LDMzNi42NDFjMCwyOC4zNjIsMzYuNzg2LDQ2LjA4Nyw4MC4zNjUsNDYuMDg3YzQ5LjY3NiwwLDc3LjE0My0yOC4xOTgsNzcuMTQzLTU2LjU0MyAgIGMwLTIyLjcyMy02LjcyLTM2LjM2NC0yNy40NjctNTEuMDEzYy03LjA2Ny01LjAzNS0yMC42NTQtMTcuMjQ5LTIwLjY1NC0yNC40MjdjMC04LjQyMywyLjM5OC0xMi41NjEsMTUuMDg4LTIyLjQ0OCAgIGMxMi45NjUtMTAuMTQ1LDIyLjE1Ni0yNC40MjcsMjIuMTU2LTQwLjk5N2MwLTE5LjczOS04Ljc4OS0zOS4wMDItMjUuMzA1LTQ1LjMzN2gyNC44NjVMMjY5Ljc3LDEyOS4yNzN6IE0yNDIuMzc3LDMyMS4zMTQgICBjMC42MjMsMi42MTgsMC45NTIsNS4zMSwwLjk1Miw4LjA5M2MwLDIyLjkyNS0xNC43NTksNDAuODE0LTU3LjEyOSw0MC44MTRjLTMwLjEyMSwwLTUxLjg1NS0xOS4wNjItNTEuODU1LTQxLjk4NiAgIGMwLTIyLjQzLDI2Ljk3Mi00MS4xMDYsNTcuMDkyLTQwLjgxM2M3LjAzMSwwLjA5MSwxMy42MDUsMS4yMDgsMTkuNTU1LDMuMTMxQzIyNy4zMjYsMzAxLjkwNSwyMzkuMDgxLDMwOC4zMzIsMjQyLjM3NywzMjEuMzE0eiAgICBNMTk0LjEyOSwyMzUuODQxYy0yMC4yMzMtMC41ODYtMzkuNDU5LTIyLjYzMi00Mi45MzgtNDkuMTgzYy0zLjQ3OS0yNi41NjgsMTAuMDcxLTQ2Ljg5MywzMC4yODYtNDYuMjg5ICAgYzIwLjIxNSwwLjYwNCwzOS40NDEsMjEuOTE4LDQyLjkyLDQ4LjQ2OUMyMjcuOTEyLDIxNS40MDYsMjE0LjMyNSwyMzYuNDQ1LDE5NC4xMjksMjM1Ljg0MXoiIGZpbGw9IiNGRkZGRkYiLz48cG9seWdvbiBmaWxsPSIjRkZGRkZGIiBwb2ludHM9IjM0OS43NSwxODQuOSAzNDkuNzUsMTI5LjI3MyAzMzEsMTI5LjI3MyAzMzEsMTg0LjkgMjc0Ljc1LDE4NC45IDI3NC43NSwyMDMuNjUgMzMxLDIwMy42NSAgICAzMzEsMjYwLjUyMyAzNDkuNzUsMjYwLjUyMyAzNDkuNzUsMjAzLjY1IDQwNiwyMDMuNjUgNDA2LDE4NC45ICAiLz48L2c+PC9zdmc+" class="social_media_icon" alt="googleplus">
+			 </a>	<a href="https://www.youtube.com/user/aandhariya" target="_Blank" rel="nofollow">
+				<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDUxMiA1MTIiIGhlaWdodD0iNTEycHgiIGlkPSJMYXllcl8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iNTEycHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGQ9Ik01MTEuOTk5LDQzMmMwLDQ0LjE4Mi0zNS44MTYsODAtODAsODBIODBjLTQ0LjE4MywwLTgwLTM1LjgxOC04MC04MFY4MEMwLDM1LjgxNywzNS44MTcsMCw4MCwwaDM1MS45OTkgIGM0NC4xODQsMCw4MCwzNS44MTcsODAsODBWNDMyeiIgZmlsbD0iI0U1MkQyNyIvPjxwYXRoIGQ9Ik01MTEuOTk5LDQzMlYyNzIuMTc2TDM5NSwxNTUuMTc2djE4OS4xNThIMTA1LjA1OEwyNzIuNzI1LDUxMmgxNTkuMjc0ICBDNDc2LjE4Myw1MTIsNTExLjk5OSw0NzYuMTgyLDUxMS45OTksNDMyeiIgZmlsbD0iI0JDMTUxNSIvPjxyZWN0IGNsaXAtcnVsZT0iZXZlbm9kZCIgZmlsbD0iI0JDMTUxNSIgZmlsbC1ydWxlPSJldmVub2RkIiBoZWlnaHQ9IjExMi41MDciIHdpZHRoPSIxNjQiIHg9IjE4NyIgeT0iMTg4Ii8+PGcgaWQ9IkxvemVuZ2UiPjxnPjxwYXRoIGQ9Ik00MTIuODAzLDE5Mi4wMmMwLDAtMy4xMjYtMjIuMDUxLTEyLjcyMS0zMS43NjJjLTEyLjE2OC0xMi43NDUtMjUuODA4LTEyLjgwOS0zMi4wNjMtMTMuNTU1ICAgIGMtNDQuNzc5LTMuMjM3LTExMS45NS0zLjIzNy0xMTEuOTUtMy4yMzdoLTAuMTRjMCwwLTY3LjE2OSwwLTExMS45NSwzLjIzN2MtNi4yNTUsMC43NDYtMTkuODksMC44MS0zMi4wNjMsMTMuNTU1ICAgIEMxMDIuMzIyLDE2OS45NjksOTkuMiwxOTIuMDIsOTkuMiwxOTIuMDJTOTYsMjE3LjkxNiw5NiwyNDMuODExdjI0LjI3N2MwLDI1Ljg5NiwzLjIwMSw1MS43OTEsMy4yMDEsNTEuNzkxICAgIHMzLjEyMiwyMi4wNTIsMTIuNzE2LDMxLjc2MmMxMi4xNzMsMTIuNzQ2LDI4LjE2MywxMi4zNDQsMzUuMjg0LDEzLjY3OUMxNzIuODAxLDM2Ny43NzQsMjU2LDM2OC41MzQsMjU2LDM2OC41MzQgICAgczY3LjI0LTAuMTAyLDExMi4wMi0zLjMzOGM2LjI1NS0wLjc0NywxOS44OTUtMC44MSwzMi4wNjMtMTMuNTU2YzkuNTk1LTkuNzEsMTIuNzIxLTMxLjc2MiwxMi43MjEtMzEuNzYyICAgIHMzLjE5Ni0yNS44OTYsMy4xOTYtNTEuNzkxdi0yNC4yNzdDNDE1Ljk5OSwyMTcuOTE2LDQxMi44MDMsMTkyLjAyLDQxMi44MDMsMTkyLjAyeiBNMjIyLjk2MywyOTcuNTA3bC0wLjAxNS04OS45MTEgICAgbDg2LjQ2NSw0NS4xMTJMMjIyLjk2MywyOTcuNTA3eiIgZmlsbD0iI0ZGRkZGRiIvPjwvZz48L2c+PC9zdmc+" class="social_media_icon" alt="youtube">
+			 </a>	<a href="https://www.quora.com/profile/Abhi-Andhariya" target="_Blank" rel="nofollow">
+				<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDUxMiA1MTIiIGhlaWdodD0iNTEycHgiIGlkPSJMYXllcl8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iNTEycHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGQ9Ik01MTIsNDMyYzAsNDQuMTgyLTM1LjgxNiw4MC04MCw4MEg3OS45OThjLTQ0LjE4MywwLTgwLTM1LjgxOC04MC04MFY4MGMwLTQ0LjE4MywzNS44MTctODAsODAtODBINDMyICBjNDQuMTg0LDAsODAsMzUuODE3LDgwLDgwVjQzMnoiIGZpbGw9IiNDQTQ2MzgiLz48cGF0aCBkPSJNNTEyLDQzMlYzMDkuMjI3TDM0Ny44ODcsMTQ1LjExM2wtMTQuMzY3LDE0LjM2NkMzMTUuMjQ4LDEzOC4yODIsMjg5LjA3NCwxMjUsMjU5Ljk5OSwxMjUgIGMtNTUuMjI5LDAtMTAwLDQ3LjkwNi0xMDAsMTA3YzAsMjguNTA4LDEwLjQyMiw1NC40MTMsMjcuNDEsNzMuNTlsLTMuOTEyLDMuOTEybDcsN2wtMjIuOTI1LDIyLjkyNEwzNDAuMTQ1LDUxMkg0MzIgIEM0NzYuMTg0LDUxMiw1MTIsNDc2LjE4Miw1MTIsNDMyeiIgZmlsbD0iIzhFMkYyOCIvPjxnIGlkPSJJY29uIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjAuMDAwMDAwLCAtNDA5LjAwMDAwMCkiPjxwYXRoIGQ9Ik00NDAuNDY0LDcwMC43OTlDNDgxLjgzOSw2MDAuMjYyLDM5OS42ODUsNTE4LjkyMSwzMTAuMzAxLDUxNSAgIGMtMTcuNDEzLDEuOTg5LTM0LjExMSwyLjU2NS00Ny45NTcsMTAuMjI1Yy0zMy40MzYsMTMuNzc5LTYzLjY2OSw0Ni41MjUtNzUuMzYzLDgxLjgyNCAgIEMxNTUuNTksNzAxLjc5MSwyNDMuMzIsODAyLjAzMywzNDYuMjcsNzgyLjYxMUMzNjYuMDMxLDgxMy43MjMsNDE5Ljk5NCw4MTUsNDE5Ljk5NCw4MTVsLTAuMDc2LTIwLjQ1MyAgIGMwLDAtMjkuNTIzLTguNzYtMzQuMjU4LTI3LjI3M0M0MDYuMTc4LDc0NS45NjMsNDI4LjEyMSw3MzAuODMyLDQ0MC40NjQsNzAwLjc5OUw0NDAuNDY0LDcwMC43OTl6IE0zNjguNTM1LDcyNC42NSAgIGMtMS4xNDMsMC41NjgtMi4yNzcsMS4xNDUtMy40MzEsMS43MTFjLTE4LjAzMS0zMS4yMTUtNjQuMjA2LTMxLjY2OC02NC4yMDYtMzEuNjY4djI3LjI3M2MwLDAsMjMuMTgyLDkuNTA4LDI2LjUzNiwyNi43MjcgICBjMS4xMzQsMS4xMzUsMi4yODcsMi4yNywzLjQyMSwzLjQwMmMtOTMuMTY3LDI4LjYzNS0xMjcuOTg0LTE2NC43NTItMzkuMzg5LTIwMi41ODNjMTQuMDQzLTkuMTk1LDM0Ljg1My00LjY1LDQ3Ljk1MiwxLjcwNSAgIEM0MDIuNDE2LDU4Ny43NDYsNDAyLjQ1NCw2NjQuNzM0LDM2OC41MzUsNzI0LjY1TDM2OC41MzUsNzI0LjY1eiIgZmlsbD0iI0ZGRkZGRiIgaWQ9InF1b3JhXzFfIi8+PC9nPjwvc3ZnPg==" class="social_media_icon" alt="quora">
+			 </a>	<a href="https://www.instagram.com/abhi_andhariya/" target="_Blank" rel="nofollow">
+				<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDUxMiA1MTIiIGhlaWdodD0iNTEycHgiIGlkPSJMYXllcl8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iNTEycHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGQ9Ik01MTIsODB2MzUyYzAsNDQuMTgtMzUuODIsODAtODAsODBIODBjLTQ0LjE4LDAtODAtMzUuODItODAtODBWODBDMCwzNS44MiwzNS44MiwwLDgwLDBoMzUyICBDNDc2LjE4LDAsNTEyLDM1LjgyLDUxMiw4MHoiIGZpbGw9IiM1MjdGQTMiLz48cG9seWdvbiBmaWxsPSIjMDc3MzhDIiBwb2ludHM9Ii0yNzEuNTY2LDc4My43NzcgLTI3Mi4wMDQsNzg0LjIxNSAtMjcwLjc4Myw3ODQuNTYyICIvPjxwb2x5Z29uIGZpbGw9IiMwNzczOEMiIHBvaW50cz0iMzYxLjk5NiwxODA1LjIxNSAzNjMuMjE3LDE4MDUuNTYyIDM2Mi40MzQsMTgwNC43NzcgIi8+PHBhdGggZD0iTTUxMiw0MzJWMjE5LjIxM0w0MDAuOTgsMTA5LjAyNUwzNzEuMDQ4LDEzNUgxMzZ2MjM1LjA0OGwtMjUuNjMzLDMyLjU2OEwyMTkuNzUsNTEySDQzMiAgQzQ3Ni4xOCw1MTIsNTEyLDQ3Ni4xOCw1MTIsNDMyeiIgZmlsbD0iIzI1NTI3MCIvPjxwYXRoIGQ9Ik0zOTIuNDUsMTA2SDExOS41NDFjLTcuNDYyLDAtMTMuNTQxLDYuMDYyLTEzLjU0MSwxMy41MTN2MjcyLjk3NWMwLDcuNDMzLDYuMDc5LDEzLjUxMiwxMy41NDEsMTMuNTEyICBIMzkyLjQ1YzcuNDcxLDAsMTMuNTUtNi4wNzksMTMuNTUtMTMuNTEyVjExOS41MTNDNDA2LDExMi4wNjIsMzk5LjkyMSwxMDYsMzkyLjQ1LDEwNnogTTI1NiwyMDMuNjQ5ICBjMjguOTEzLDAsNTIuMzUxLDIzLjQzOCw1Mi4zNTEsNTIuMzUxUzI4NC45MTMsMzA4LjM1MSwyNTYsMzA4LjM1MVMyMDMuNjUxLDI4NC45MTMsMjAzLjY1MSwyNTZTMjI3LjA4NywyMDMuNjQ5LDI1NiwyMDMuNjQ5eiAgIE0zNjguNSwzNjguNWgtMjI1VjIzNy4yNWgyNC42OTFjLTEuMjksNi4wNjItMi4wNCwxMi4zMjItMi4wNCwxOC43NWMwLDQ5LjU0Nyw0MC4zMDksODkuODUxLDg5Ljg0OSw4OS44NTEgIGM0OS41NDcsMCw4OS44NTEtNDAuMzA0LDg5Ljg1MS04OS44NTFjMC02LjQyOC0wLjc1My0xMi42ODgtMi4wMzMtMTguNzVIMzY4LjVWMzY4LjV6IE0zNjguNSwxOTkuNzVoLTU2LjI1VjE0My41aDU2LjI1VjE5OS43NXoiIGZpbGw9IiNGRkZGRkYiLz48L3N2Zz4=" class="social_media_icon" alt="instagram">
+			 </a>	<a href="https://in.pinterest.com/aandhariya/" target="_Blank" rel="nofollow">
+				<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDUxMiA1MTIiIGhlaWdodD0iNTEycHgiIGlkPSJMYXllcl8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iNTEycHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGQ9Ik01MTEuOTk5LDQzMmMwLDQ0LjE4My0zNS44MTYsODAtODAsODBIODBjLTQ0LjE4MywwLTgwLTM1LjgxNy04MC04MFY4MEMwLDM1LjgxNywzNS44MTcsMCw4MCwwaDM1MS45OTkgIGM0NC4xODQsMCw4MCwzNS44MTcsODAsODBWNDMyeiIgZmlsbD0iI0NCMjAyOCIvPjxwYXRoIGQ9Ik0xNTg0LjUzNSwxNDQ1LjMzMWwtMC44LTAuODAxQzE1ODMuOTQ5LDE0NDQuODU3LDE1ODQuMjIzLDE0NDUuMTI0LDE1ODQuNTM1LDE0NDUuMzMxeiIgZmlsbD0iI0ZGRkZGRiIvPjxwYXRoIGQ9Ik0zNjkuOTcsOTUuMjE1YzAsMCw0MC44OTMsNTYuNTQ5LDQwLjg5Myw5Mi4zOTNjMCwyNi43NDgtNC40MTMsNTEuNDg5LTEyLjU1LDczLjA1OWwtMjAuNDQtMjAuNDQgIGM3LjUwOS0xNC4xNTcsMTEuNzEyLTI5Ljk1NSwxMS43MTItNDYuNjIzYzAtNjAuNzUzLTU1LjczOC0xMTAuMDA0LTEyNC40OTQtMTEwLjAwNHMtMTI0LjQ5NCw0OS4yNS0xMjQuNDk0LDExMC4wMDQgIGMwLDExLjg1NSwyLjEzMSwyMy4yNjgsNi4wNTgsMzMuOTY3bC0yMy4yOTgsNDEuODY1bDk1Ljg1OSw5Mi4zNzJjLTIuMDU5LDguMDI3LTMuODE0LDE0Ljc5NC00LjY0NiwxNy44MTkgIGMtOS45NTMsMzYuMTA2LTQ2LjI0OCw3NS40MzgtNDYuMjQ4LDc1LjQzOEwyMjUuMzM0LDUxMmgyMDYuNjY1YzQ0LjE4NCwwLDgwLTM1LjgxNyw4MC04MFYyMzcuMTI0TDM2OS45Nyw5NS4yMTV6IiBmaWxsPSIjNjgxMzE5Ii8+PHBhdGggZD0iTTI2NS4zNzYsNTUuOTU2Yy0xMDkuMTg1LDAtMTY0LjIzNiw3OC4yODItMTY0LjIzNiwxNDMuNTU5YzAsMzkuNTIzLDE0Ljk2Myw3NC42ODgsNDcuMDU4LDg3Ljc5NCAgYzUuMjYzLDIuMTUsOS45NzksMC4wNzUsMTEuNTA2LTUuNzUyYzEuMDYyLTQuMDMxLDMuNTcxLTE0LjIwNyw0LjY5NS0xOC40NDNjMS41MzctNS43NjEsMC45NC03Ljc4My0zLjMwNi0xMi44MDcgIGMtOS4yNTUtMTAuOTE3LTE1LjE2OC0yNS4wNTItMTUuMTY4LTQ1LjA2NGMwLTU4LjA3Nyw0My40NTEtMTEwLjA2OCwxMTMuMTQ0LTExMC4wNjhjNjEuNzE0LDAsOTUuNjIxLDM3LjcwOCw5NS42MjEsODguMDcxICBjMCw2Ni4yNTgtMjkuMzI1LDEyMi4xOC03Mi44NTksMTIyLjE4Yy0yNC4wNDMsMC00Mi4wMzgtMTkuODgxLTM2LjI2OS00NC4yNjRjNi45MDctMjkuMTEyLDIwLjI4Ni02MC41MzEsMjAuMjg2LTgxLjU0NiAgYzAtMTguODEtMTAuMDk1LTM0LjQ5OS0zMC45OTMtMzQuNDk5Yy0yNC41NzYsMC00NC4zMTcsMjUuNDIyLTQ0LjMxNyw1OS40ODJjMCwyMS42ODgsNy4zMjgsMzYuMzYxLDcuMzI4LDM2LjM2MSAgcy0yNS4xNDksMTA2LjU2My0yOS41NTgsMTI1LjIyNmMtOC43ODMsMzcuMTY1LTEuMzIxLDgyLjcyOS0wLjY5LDg3LjMzMmMwLjM3LDIuNzI2LDMuODc0LDMuMzc1LDUuNDYzLDEuMzEzICBjMi4yNjQtMi45NTgsMzEuNTM2LTM5LjA5Nyw0MS40ODktNzUuMjAzYzIuODEzLTEwLjIyNCwxNi4xNjMtNjMuMTY2LDE2LjE2My02My4xNjZjNy45ODUsMTUuMjMxLDMxLjMxOSwyOC42NDUsNTYuMTM2LDI4LjY0NSAgYzczLjg3NSwwLDEyMy45OTQtNjcuMzUyLDEyMy45OTQtMTU3LjQ5N0M0MTAuODYyLDExOS40MzcsMzUzLjEyNiw1NS45NTYsMjY1LjM3Niw1NS45NTZ6IiBmaWxsPSIjRkZGRkZGIi8+PC9zdmc+" class="social_media_icon" alt="pinterest">
+			 </a>	<a href="mailto:aandhariya@gmail.com" target="_Blank" rel="nofollow">
+				<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pjxzdmcgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMjsiIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+Cgkuc3Qwe2ZpbGw6IzExNTM2RDt9Cgkuc3Qxe2ZpbGw6IzFCOEFDMTt9Cgkuc3Qye29wYWNpdHk6MC40NTtmaWxsOiMyMzFGMjA7fQoJLnN0M3tmaWxsOiNGRkZGRkY7fQo8L3N0eWxlPjxnIGlkPSJFZGdlcyIvPjxnIGlkPSJCYWNrZ3JvdW5kX0JvdHRvbSI+PGc+PHBhdGggY2xhc3M9InN0MCIgZD0iTTQ5Mi4zLDQ0My4xYzAsMzQuMi0yNy43LDYxLjktNjEuOSw2MS45SDgwLjdjLTM0LjIsMC02MS45LTI3LjctNjEuOS02MS45VjkzLjRjMC0zNC4yLDI3LjctNjEuOSw2MS45LTYxLjkgICAgaDM0OS43YzM0LjIsMCw2MS45LDI3LjcsNjEuOSw2MS45VjQ0My4xeiIvPjwvZz48L2c+PGcgaWQ9IkJhY2tncm91bmQiPjxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik00OTIuMyw0MTguNGMwLDM0LjItMjcuNyw2MS45LTYxLjksNjEuOUg4MC43Yy0zNC4yLDAtNjEuOS0yNy43LTYxLjktNjEuOVY2OC42YzAtMzQuMiwyNy43LTYxLjksNjEuOS02MS45ICAgaDM0OS43YzM0LjIsMCw2MS45LDI3LjcsNjEuOSw2MS45VjQxOC40eiIvPjwvZz48ZyBpZD0iU2hhZG93Ij48cGF0aCBjbGFzcz0ic3QyIiBkPSJNNDAyLDE1Ni4zTDQwMiwxNTYuM2MtMS4xLTEtMi4yLTItMy40LTNjLTQuMy0zLjUtOS4zLTUuOC0xNC43LTYuOGMtMS41LTAuMy0yLjktMC40LTQuNC0wLjYgICBjLTgyLjMsMC0xNjQuNiwwLTI0Ni45LDBjLTEuMywwLjItMi43LDAuNC00LDAuNmMtNiwxLjEtMTEuMiwzLjctMTUuOCw3LjhjLTUuNCw0LjgtOC45LDEwLjgtMTAuNCwxNy45Yy0wLjMsMS4zLTAuNCwyLjYtMC42LDMuOSAgIGMwLDAuMy0wLjEsMC41LTAuMSwwLjhjMCw2LjYsMCwxMy4yLDAsMTkuOGMwLDAuNCwwLjEsMC44LDAuMSwxLjJjMCwzMS40LDAsNjIuOCwwLDk0LjJjMCwwLjMtMC4xLDAuNy0wLjEsMWMwLDE0LjIsMCwyOC4zLDAsNDIuNSAgIGMwLjEsMSwwLjMsMS45LDAuNCwyLjljMS4yLDcuNCw0LjMsMTMuNCw5LjMsMTguM2wwLDBMMjM1LDQ4MC4zaDE5NS41YzM0LjIsMCw2MS45LTI3LjcsNjEuOS02MS45YzAtNTcuMiwwLTExNC41LDAtMTcxLjcgICBMNDAyLDE1Ni4zeiIvPjwvZz48ZyBpZD0iU3ltYm9sIj48cGF0aCBjbGFzcz0ic3QzIiBkPSJNMTAxLjcsMTk2LjZjMC02LjYsMC0xMy4yLDAtMTkuOGMwLTAuMywwLjEtMC41LDAuMS0wLjhjMC4yLTEuMywwLjMtMi42LDAuNi0zLjljMS41LTcuMSw1LTEzLDEwLjQtMTcuOSAgIGM0LjUtNC4xLDkuOC02LjcsMTUuOC03LjhjMS4zLTAuMiwyLjctMC40LDQtMC42YzgyLjMsMCwxNjQuNiwwLDI0Ni45LDBjMS41LDAuMiwzLDAuMyw0LjQsMC42YzUuNSwxLDEwLjQsMy4zLDE0LjcsNi44ICAgYzQuOSw0LDguNCw5LjEsMTAuNSwxNS4xYzAuNSwxLjUsMC45LDMsMS4zLDQuNWMwLDU0LjIsMCwxMDguNCwwLDE2Mi42Yy0wLjEsMS0wLjIsMS45LTAuNCwyLjljLTAuOSw1LjUtMi45LDEwLjUtNi4zLDE0LjkgICBjLTQuOSw2LjQtMTEuMywxMC41LTE5LjEsMTIuM2MtMS41LDAuNC0zLjEsMC41LTQuNiwwLjhjLTM4LjIsMC03Ni40LDAtMTE0LjYsMGMtMC40LDAtMC44LTAuMS0xLjItMC4xICAgYy00My4xLDAtODYuMi0wLjEtMTI5LjItMC4xYy0xLjEsMC0yLjMsMC0zLjQtMC4xYy00LjktMC40LTkuNS0xLjktMTMuNy00LjVjLTguNy01LjQtMTQtMTMuMS0xNS43LTIzLjJjLTAuMi0wLjktMC4zLTEuOS0wLjQtMi45ICAgYzAtMTQuMiwwLTI4LjMsMC00Mi41YzAtMC4zLDAuMS0wLjcsMC4xLTFjMC0zMS40LDAtNjIuOCwwLTk0LjJDMTAxLjgsMTk3LjQsMTAxLjcsMTk3LDEwMS43LDE5Ni42eiBNMzc4LjcsMTYzLjQgICBjLTgxLjUsMC0xNjIuOSwwLTI0NC40LDBjMC4yLDAuMiwwLjQsMC40LDAuNSwwLjVjMzkuMiwzOS4xLDc4LjQsNzguMywxMTcuNiwxMTcuNGMwLjQsMC40LDAuOSwwLjksMS41LDEuMmMyLjQsMS40LDQuOCwwLjksNy0xLjMgICBjMzkuMS0zOSw3OC4xLTc4LjEsMTE3LjItMTE3LjFDMzc4LjMsMTYzLjksMzc4LjQsMTYzLjcsMzc4LjcsMTYzLjR6IE0xNTAuNiwzNDkuN2M3MCwwLDE0MC4yLDAsMjEwLjEsMCAgIGMtMjQuMS0yNC4xLTQ4LjItNDguMy03Mi41LTcyLjZjLTAuMSwwLjItMC4zLDAuNS0wLjUsMC43Yy04LjksOC45LTE3LjgsMTcuOC0yNi43LDI2LjdjLTAuNywwLjctMS42LDEuNC0yLjUsMS43ICAgYy0yLjQsMC45LTQuNCwwLjEtNi4xLTEuNmMtOS4yLTkuMy0xOC41LTE4LjYtMjcuNy0yNy45Yy0wLjItMC4yLTAuNC0wLjQtMC42LTAuNUMxOTkuNSwzMDAuOCwxNzUsMzI1LjMsMTUwLjYsMzQ5Ljd6ICAgIE0zMDAuMiwyNjUuNmMwLjEsMC4xLDAuMywwLjIsMC41LDAuNGMyNy40LDI3LjQsNTQuNyw1NC44LDgyLjEsODIuM2MwLjEsMC4xLDAuMiwwLjMsMC4zLDAuM2MwLjIsMC4xLDAuNSwwLjIsMC43LDAuMiAgIGMzLjctMS4xLDYuNS0zLjQsOC4xLTYuOWMxLjUtMy4zLDEuOC02LjgsMS44LTEwLjNjMC01Mi45LDAtMTA1LjgsMC0xNTguN2MwLTAuMywwLTAuNiwwLTAuOUMzNjIuNiwyMDMuMiwzMzEuNSwyMzQuNCwzMDAuMiwyNjUuNiAgIHogTTEyMC4xLDE3Mi42YzAsMC41LDAsMC44LDAsMS4yYzAsNTMuNSwwLDEwNywwLDE2MC41YzAsMS44LDAuMSwzLjYsMC40LDUuNGMwLjcsNC4xLDIuNyw3LjIsNi43LDguOGMwLjYsMC4zLDEsMC4yLDEuNS0wLjMgICBjMjcuNi0yNy43LDU1LjMtNTUuMyw4My04M2MwLjItMC4yLDAuNC0wLjQsMC41LTAuNUMxODEuNSwyMzQsMTUwLjgsMjAzLjMsMTIwLjEsMTcyLjZ6Ii8+PC9nPjwvc3ZnPg==" class="social_media_icon" alt="email">
+			 </a>	<a href="http://www.abhi24.com/" target="_Blank" rel="nofollow">
+				<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pjxzdmcgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMjsiIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+Cgkuc3Qwe2ZpbGw6IzBENDE2Qjt9Cgkuc3Qxe2ZpbGw6IzQwOTlGRjt9Cgkuc3Qye29wYWNpdHk6MC40NTt9Cgkuc3Qze2ZpbGw6I0ZGRkZGRjt9Cjwvc3R5bGU+PGcgaWQ9IkVkZ2VzIi8+PGcgaWQ9IkJhY2tncm91bmRfQm90dG9tIj48Zz48cGF0aCBjbGFzcz0ic3QwIiBkPSJNNDkyLjMsNDQzLjFjMCwzNC4yLTI3LjcsNjEuOS02MS45LDYxLjlIODAuN2MtMzQuMiwwLTYxLjktMjcuNy02MS45LTYxLjlWOTMuNGMwLTM0LjIsMjcuNy02MS45LDYxLjktNjEuOSAgICBoMzQ5LjdjMzQuMiwwLDYxLjksMjcuNyw2MS45LDYxLjlWNDQzLjF6Ii8+PC9nPjwvZz48ZyBpZD0iQmFja2dyb3VuZCI+PHBhdGggY2xhc3M9InN0MSIgZD0iTTQ5Mi4zLDQxOC40YzAsMzQuMi0yNy43LDYxLjktNjEuOSw2MS45SDgwLjdjLTM0LjIsMC02MS45LTI3LjctNjEuOS02MS45VjY4LjZjMC0zNC4yLDI3LjctNjEuOSw2MS45LTYxLjkgICBoMzQ5LjdjMzQuMiwwLDYxLjksMjcuNyw2MS45LDYxLjlWNDE4LjR6Ii8+PC9nPjxnIGlkPSJTaGFkb3ciPjxwYXRoIGNsYXNzPSJzdDIiIGQ9Ik00MjMuNCwyMTkuMkM0MjMuNCwyMTkuMiw0MjMuNCwyMTkuMiw0MjMuNCwyMTkuMkM0MjMuNCwyMTkuMiw0MjMuNCwyMTkuMiw0MjMuNCwyMTkuMkw0MjMuNCwyMTkuMiAgIEw0MjMuNCwyMTkuMmMtMC41LTAuMS0xLTAuMS0xLjUtMC4ybC02NC4zLTY0LjNsMCwwYy0wLjItMC4yLTAuMy0wLjMtMC41LTAuNWMtMC4zLTAuMy0wLjYtMC42LTEtMC45Yy0wLjYtMC42LTEuMy0xLjItMS45LTEuOCAgIGMtMC40LTAuNC0wLjktMC44LTEuMy0xLjJjLTAuNC0wLjQtMC44LTAuNy0xLjItMS4xYy0wLjQtMC4zLTAuNy0wLjctMS4xLTFjLTAuNC0wLjQtMC44LTAuNy0xLjItMS4xYy0wLjQtMC4zLTAuOC0wLjctMS4yLTEgICBjLTAuNC0wLjMtMC44LTAuNy0xLjItMWMtMC40LTAuNC0wLjktMC43LTEuMy0xLjFjLTAuNS0wLjQtMS4xLTAuOS0xLjYtMS4zYy0wLjYtMC41LTEuMi0wLjktMS44LTEuNGMtMC40LTAuMy0wLjgtMC42LTEuMi0wLjkgICBjLTAuNS0wLjMtMC45LTAuNy0xLjQtMWMtMC40LTAuMy0wLjgtMC42LTEuMi0wLjljLTAuNS0wLjMtMC45LTAuNy0xLjQtMWMtMC40LTAuMy0wLjgtMC41LTEuMi0wLjhjLTAuNi0wLjQtMS4yLTAuOC0xLjgtMS4yICAgYy0wLjQtMC4zLTAuOS0wLjYtMS4zLTAuOGMtMC43LTAuNC0xLjMtMC44LTItMS4zYy0wLjQtMC4yLTAuOC0wLjUtMS4xLTAuN2MtMC41LTAuMy0xLjEtMC42LTEuNi0wLjljLTAuNC0wLjItMC44LTAuNS0xLjItMC43ICAgYy0wLjYtMC4zLTEuMS0wLjYtMS43LTAuOWMtMC40LTAuMi0wLjctMC40LTEuMS0wLjZjLTAuOC0wLjUtMS43LTAuOS0yLjUtMS4zYy0wLjMtMC4xLTAuNS0wLjMtMC44LTAuNGMtMC43LTAuNC0xLjQtMC43LTIuMi0xLjEgICBjLTAuNC0wLjItMC43LTAuNC0xLjEtMC41Yy0wLjYtMC4zLTEuMi0wLjYtMS44LTAuOGMtMC40LTAuMi0wLjgtMC4zLTEuMS0wLjVjLTAuNi0wLjMtMS4zLTAuNi0xLjktMC44Yy0wLjMtMC4xLTAuNy0wLjMtMS0wLjQgICBjLTEtMC40LTEuOS0wLjgtMi45LTEuMmMtMC4yLTAuMS0wLjUtMC4yLTAuNy0wLjNjLTAuOC0wLjMtMS41LTAuNi0yLjMtMC45Yy0wLjQtMC4xLTAuNy0wLjMtMS4xLTAuNGMtMC43LTAuMi0xLjMtMC41LTItMC43ICAgYy0wLjQtMC4xLTAuNy0wLjMtMS4xLTAuNGMtMC43LTAuMi0xLjUtMC41LTIuMi0wLjdjLTAuMy0wLjEtMC42LTAuMi0wLjktMC4zYy0xLTAuMy0yLTAuNi0zLTAuOWMtMC4zLTAuMS0wLjUtMC4xLTAuOC0wLjIgICBjLTAuOC0wLjItMS42LTAuNC0yLjMtMC42Yy0wLjQtMC4xLTAuNy0wLjItMS4xLTAuM2MtMC43LTAuMi0xLjQtMC40LTIuMS0wLjVjLTAuNC0wLjEtMC43LTAuMi0xLjEtMC4zYy0wLjgtMC4yLTEuNy0wLjQtMi41LTAuNSAgIGMtMC4yLDAtMC40LTAuMS0wLjctMC4xYy0xLjEtMC4yLTIuMS0wLjQtMy4yLTAuNmMtMC4zLTAuMS0wLjYtMC4xLTAuOS0wLjJjLTAuOC0wLjEtMS42LTAuMy0yLjQtMC40Yy0wLjQtMC4xLTAuNy0wLjEtMS4xLTAuMiAgIGMtMC44LTAuMS0xLjUtMC4yLTIuMy0wLjNjLTAuNCwwLTAuNy0wLjEtMS4xLTAuMWMtMS0wLjEtMS45LTAuMi0yLjktMC4zYy0wLjEsMC0wLjMsMC0wLjQsMGMtMS4xLTAuMS0yLjItMC4yLTMuMy0wLjMgICBjLTAuMywwLTAuNiwwLTEtMC4xYy0wLjgtMC4xLTEuNi0wLjEtMi40LTAuMmMtMC40LDAtMC44LDAtMS4yLTAuMWMtMC44LDAtMS42LTAuMS0yLjQtMC4xYy0wLjMsMC0wLjcsMC0xLDBjLTEuMSwwLTIuMiwwLTMuNCwwaDAgICBoMGgwYy0xLjcsMC0zLjQsMC01LjEsMC4xYy0wLjEsMC0wLjMsMC0wLjQsMGMtMS42LDAuMS0zLjIsMC4yLTQuOCwwLjNjLTAuMiwwLTAuNCwwLTAuNiwwYy0xLjYsMC4xLTMuMSwwLjMtNC43LDAuNCAgIGMtMC4yLDAtMC41LDAtMC43LDAuMWMtMS42LDAuMi0zLjEsMC40LTQuNywwLjZjLTAuMiwwLTAuNCwwLjEtMC42LDAuMWMtMS42LDAuMi0zLjIsMC41LTQuNywwLjhjLTAuMSwwLTAuMywwLjEtMC40LDAuMSAgIGMtMS42LDAuMy0zLjMsMC42LTQuOSwxYzAsMCwwLDAsMCwwYy01LjEsMS4xLTEwLDIuNi0xNC45LDQuMmMwLDAtMC4xLDAtMC4xLDBjLTEuNiwwLjUtMy4yLDEuMS00LjcsMS43YzAsMC0wLjEsMC0wLjEsMCAgIGMtMS42LDAuNi0zLjEsMS4yLTQuNywxLjljMCwwLDAsMCwwLDBjLTM3LDE1LjgtNjYsNDYuNy03OS4yLDg1bDAsMGwwLDBjMCwwLDAsMCwwLDBoMC4xbDE2LjIsMTYuMmMtMS4zLDQuNy0zLjEsOS40LTQuNSwxNC4xICAgYy0wLjcsMi4zLTEuNCw0LjYtMi4xLDYuOWwtMjcuMS0yNy4xbDAsMGMtMC40LTAuMy0wLjctMC41LTEuMS0wLjZjLTMuNS0wLjYtNy4yLTAuMi0xMS4yLTAuMmMxMS42LDM5LjMsMjAuMSw2Ny44LDIxLDcxICAgYzAuMSwwLjQsMC41LDEuNSwxLjYsMi42bDAsMGwwLDBjMCwwLDAuMSwwLjEsMC4xLDAuMWwxMC42LDEwLjZoLTMuNWM4LDIzLjMsMjEuOSw0My45LDM5LjksNjBsMTE3LjQsMTE3LjRjMjUuOCwwLDUxLjcsMCw3Ny41LDAgICBjNDAuNCwwLDQwLjQsMCw0MC40LDBjMTEuNiwwLDIzLjIsMCwzNC44LDBjMzMuMywwLDYwLjUtMjYuNCw2MS44LTU5LjRoMC4xYzAtNDQuMiwwLTg4LjUsMC0xMzIuN0w0MjMuNCwyMTkuMnoiLz48L2c+PGcgaWQ9IlN5bWJvbCI+PGc+PHBhdGggY2xhc3M9InN0MyIgZD0iTTIwMi40LDIxOC43YzQsMCw3LjctMC40LDExLjIsMC4yYzEuNCwwLjMsMywyLjcsMy40LDQuNGM0LjYsMTcuNyw5LDM1LjUsMTMuNSw1My4zYzAuMiwwLjgsMC41LDEuNSwwLjksMyAgICBjNC4zLTEzLjgsOC4zLTI2LjksMTIuNC0zOS45YzEuOC01LjcsNC0xMS4zLDUuMy0xNy4yYzAuMS0wLjUsMC41LTIsMS44LTMuMWMyLjYtMi40LDcuNS0yLjQsMTAuMi0wLjFjMS4zLDEuMiwxLjgsMi43LDIsMy4yICAgIGM1LjEsMTcuOCwxMC41LDM1LjQsMTUuOCw1My4xYzAuMywxLDAuNywyLjEsMS4yLDMuNGM0LjctMTcsOS4zLTMzLjYsMTMuOS01MC4xYzMuMS0xMS4yLDMuMS0xMS4yLDE2LTkuNyAgICBjLTAuOSwyLjktMS44LDUuNi0yLjcsOC40Yy02LjYsMjAuNC0xMy40LDQwLjgtMTkuNiw2MS40Yy0wLjIsMC41LTAuNywyLjEtMi4yLDMuNGMtMi45LDIuNC04LDIuNS0xMC44LDAuMSAgICBjLTEuNC0xLjItMi0yLjgtMi4xLTMuNGMtNC45LTE3LjEtMTAuMi0zNC4xLTE1LjQtNTEuMmMtMC4zLTEuMS0wLjctMi4yLTEuMS0zLjJjLTQuNywxNC41LTkuMywyOC44LTEzLjksNDMuMiAgICBjLTEuMyw0LjEtMi44LDguMi00LjEsMTIuM2MtMC4yLDAuNy0wLjgsMS43LTEuOCwyLjdjLTIuOCwyLjQtNy43LDIuMy0xMC41LDAuMWMtMS40LTEuMi0yLTIuNy0yLjEtMy4xICAgIEMyMjIuNSwyODYuNSwyMTQuMSwyNTgsMjAyLjQsMjE4Ljd6Ii8+PGc+PHBhdGggY2xhc3M9InN0MyIgZD0iTTM3NS43LDMwMi45Yy00LjcsMTItMTEuMiwyMy4yLTE5LjEsMzMuMWMtMTQuOS04LjQtMzAuNi0xNC45LTQ2LjctMTkuM2MxLjQtNC42LDIuNy05LjIsMy44LTEzLjloLTkuOSAgICAgYy0xLDMuOS0yLDcuNy0zLjIsMTEuNWMtMTMtMi45LTI2LjItNC41LTM5LjUtNC44di02LjdoLTkuN3Y2LjhjLTEzLjMsMC4zLTI2LjYsMS45LTM5LjYsNC44Yy0xLjItMy44LTIuMy03LjctMy4yLTExLjZoLTkuOSAgICAgYzEuMSw0LjcsMi40LDkuMywzLjgsMTMuOWMtMTYuMSw0LjQtMzEuOCwxMC44LTQ2LjYsMTkuMmMtNy45LTkuOS0xNC40LTIxLjEtMTkuMS0zMy4xaC0xNmMxOS40LDU2LjIsNzIuNyw5Ni42LDEzNS42LDk2LjYgICAgIHMxMTYuMi00MC40LDEzNS42LTk2LjZIMzc1Ljd6IE0xNjIuMSwzNDMuNWMxMy44LTcuNiwyOC4zLTEzLjUsNDMuMy0xNy41YzcuNSwyMC42LDE4LjQsMzkuOSwzMi4yLDU3LjIgICAgIEMyMDgsMzc4LjgsMTgxLjYsMzY0LjUsMTYyLjEsMzQzLjV6IE0yNTEuMywzODQuM2MtMTUuOS0xOC4xLTI4LjItMzguNi0zNi41LTYwLjdjMTItMi42LDI0LjItNC4xLDM2LjUtNC40VjM4NC4zeiBNMjYxLDMxOS4zICAgICBjMTIuMiwwLjMsMjQuNCwxLjcsMzYuNCw0LjRjLTguMSwyMS44LTIwLjIsNDIuNC0zNi40LDYwLjdWMzE5LjN6IE0yNzQuNiwzODMuMWMxNC0xNy41LDI0LjgtMzYuOSwzMi4yLTU3LjIgICAgIGMxNSw0LDI5LjUsOS45LDQzLjQsMTcuNUMzMzAuNywzNjQuNSwzMDQuMywzNzguOSwyNzQuNiwzODMuMXoiLz48cGF0aCBjbGFzcz0ic3QzIiBkPSJNMTM2LjYsMjA5LjRjNC43LTEyLDExLjItMjMuMiwxOS4xLTMzLjFjMTQuOSw4LjQsMzAuNSwxNC45LDQ2LjYsMTkuMmMtMS40LDQuNi0yLjcsOS4yLTMuOCwxMy45aDEwICAgICBjMS0zLjksMi03LjgsMy4yLTExLjZjMTMsMi45LDI2LjMsNC41LDM5LjYsNC44djYuOGg5Ljd2LTYuOGMxMy4yLTAuMywyNi41LTEuOSwzOS41LTQuOGMxLjIsMy44LDIuMyw3LjcsMy4yLDExLjZoOS45ICAgICBjLTEuMS00LjctMi4zLTkuMy0zLjgtMTMuOWMxNi4yLTQuNCwzMS45LTEwLjgsNDYuNy0xOS4zYzcuOSw5LjksMTQuMywyMS4xLDE5LDMzLjFoMTZjLTE5LjQtNTYuMi03Mi43LTk2LjYtMTM1LjYtOTYuNiAgICAgcy0xMTYuMiw0MC40LTEzNS42LDk2LjZIMTM2LjZ6IE0zNTAuMiwxNjguOGMtMTMuOCw3LjctMjguNCwxMy41LTQzLjQsMTcuNWMtNy40LTIwLjMtMTguMS0zOS43LTMyLjItNTcuMiAgICAgQzMwNC4zLDEzMy40LDMzMC43LDE0Ny44LDM1MC4yLDE2OC44eiBNMjYxLDEyNy45YzE2LjIsMTguMywyOC4zLDM4LjksMzYuNCw2MC43Yy0xMiwyLjYtMjQuMSw0LTM2LjQsNC40VjEyNy45eiBNMjUxLjMsMTkyLjkgICAgIGMtMTIuMi0wLjMtMjQuNC0xLjgtMzYuNS00LjRjOC4yLTIyLjEsMjAuNS00Mi43LDM2LjUtNjAuN1YxOTIuOXogTTIzNy42LDEyOS4xYy0xMy45LDE3LjMtMjQuOCwzNi42LTMyLjIsNTcuMiAgICAgYy0xNC45LTQtMjkuNS05LjktNDMuMy0xNy41QzE4MS42LDE0Ny44LDIwOCwxMzMuNCwyMzcuNiwxMjkuMXoiLz48L2c+PHBhdGggY2xhc3M9InN0MyIgZD0iTTMxNiwyMTguOGM0LDAsNy43LTAuNCwxMS4yLDAuMmMxLjQsMC4zLDMsMi43LDMuNCw0LjRjNC42LDE3LjcsOSwzNS41LDEzLjUsNTMuM2MwLjIsMC44LDAuNSwxLjUsMC45LDMgICAgYzQuMy0xMy44LDguMy0yNi45LDEyLjQtMzkuOWMxLjgtNS43LDQtMTEuMyw1LjMtMTcuMmMwLjEtMC41LDAuNS0yLDEuOC0zLjFjMi42LTIuNCw3LjUtMi40LDEwLjItMC4xYzEuMywxLjIsMS44LDIuNywyLDMuMiAgICBjNS4xLDE3LjgsMTAuNSwzNS40LDE1LjgsNTMuMWMwLjMsMSwwLjcsMi4xLDEuMiwzLjRjNC43LTE3LDkuMy0zMy42LDEzLjktNTAuMWMzLjEtMTEuMiwzLjEtMTEuMiwxNi05LjcgICAgYy0wLjksMi45LTEuOCw1LjYtMi43LDguNGMtNi42LDIwLjQtMTMuNCw0MC44LTE5LjYsNjEuNGMtMC4yLDAuNS0wLjcsMi4xLTIuMiwzLjRjLTIuOSwyLjQtOCwyLjUtMTAuOCwwLjEgICAgYy0xLjQtMS4yLTItMi44LTIuMS0zLjRjLTQuOS0xNy4xLTEwLjItMzQuMS0xNS40LTUxLjJjLTAuMy0xLjEtMC43LTIuMi0xLjEtMy4yYy00LjcsMTQuNS05LjMsMjguOC0xMy45LDQzLjIgICAgYy0xLjMsNC4xLTIuOCw4LjItNC4xLDEyLjNjLTAuMiwwLjctMC44LDEuNy0xLjgsMi43Yy0yLjgsMi40LTcuNywyLjMtMTAuNSwwLjFjLTEuNC0xLjItMi0yLjctMi4xLTMuMSAgICBDMzM2LjEsMjg2LjYsMzI3LjYsMjU4LjEsMzE2LDIxOC44eiIvPjxwYXRoIGNsYXNzPSJzdDMiIGQ9Ik05MC44LDIxOC43YzQsMCw3LjctMC40LDExLjIsMC4yYzEuNCwwLjMsMywyLjcsMy40LDQuNGM0LjYsMTcuNyw5LDM1LjUsMTMuNSw1My4zYzAuMiwwLjgsMC41LDEuNSwwLjksMyAgICBjNC4zLTEzLjgsOC4zLTI2LjksMTIuNC0zOS45YzEuOC01LjcsNC0xMS4zLDUuMy0xNy4yYzAuMS0wLjUsMC41LTIsMS44LTMuMWMyLjYtMi40LDcuNS0yLjQsMTAuMi0wLjFjMS4zLDEuMiwxLjgsMi43LDIsMy4yICAgIGM1LjEsMTcuOCwxMC41LDM1LjQsMTUuOCw1My4xYzAuMywxLDAuNywyLjEsMS4yLDMuNGM0LjctMTcsOS4zLTMzLjYsMTMuOS01MC4xYzMuMS0xMS4yLDMuMS0xMS4yLDE2LTkuNyAgICBjLTAuOSwyLjktMS44LDUuNi0yLjcsOC40Yy02LjYsMjAuNC0xMy40LDQwLjgtMTkuNiw2MS40Yy0wLjIsMC41LTAuNywyLjEtMi4yLDMuNGMtMi45LDIuNC04LDIuNS0xMC44LDAuMSAgICBjLTEuNC0xLjItMi0yLjgtMi4xLTMuNGMtNC45LTE3LjEtMTAuMi0zNC4xLTE1LjQtNTEuMmMtMC4zLTEuMS0wLjctMi4yLTEuMS0zLjJjLTQuNywxNC41LTkuMywyOC44LTEzLjksNDMuMiAgICBjLTEuMyw0LjEtMi44LDguMi00LjEsMTIuM2MtMC4yLDAuNy0wLjgsMS43LTEuOCwyLjdjLTIuOCwyLjQtNy43LDIuMy0xMC41LDAuMWMtMS40LTEuMi0yLTIuNy0yLjEtMy4xICAgIEMxMTAuOSwyODYuNCwxMDIuNSwyNTcuOSw5MC44LDIxOC43eiIvPjwvZz48L2c+PC9zdmc+" class="social_media_icon" alt="url">
+			 </a>	</div></div><hr><br><br>					   <p class="the-blog-item-general-info">Tags: <a href="https://codepumpkin.com/tag/collection-framework/" rel="tag">Collection Framework</a>, <a href="https://codepumpkin.com/tag/collections/" rel="tag">Collections</a>, <a href="https://codepumpkin.com/tag/core-java/" rel="tag">Core Java</a>, <a href="https://codepumpkin.com/tag/hashmap/" rel="tag">HashMap</a>, <a href="https://codepumpkin.com/tag/java/" rel="tag">Java</a>, <a href="https://codepumpkin.com/tag/synchronization/" rel="tag">Synchronization</a>, <a href="https://codepumpkin.com/tag/thread/" rel="tag">Thread</a>, <a href="https://codepumpkin.com/tag/x-vs-y/" rel="tag">x vs y</a></p>
+					   
+<hr>
+<h2> Comments and Queries</h2>
+	<font>If you want someone to read your code, please put the code inside <span style="color:red;">&lt;pre&gt;&lt;code&gt;</span> and <span style="color:red;">&lt;/code&gt;&lt;/pre&gt;</span> tags. For example:</font>
+    <br>
+
+<pre style="background-color:white;border:1px solid #DDD;">&lt;pre&gt;&lt;code class="java"&gt; 
+String foo = "bar";
+&lt;/code&gt;&lt;/pre&gt;
+</pre>
+For more information on supported HTML tags in disqus comment, <a href="https://help.disqus.com/customer/portal/articles/466253-what-html-tags-are-allowed-within-comments-" target="_blank">click here</a>.
+
+					   <div id="disqus_thread">
+		</div>
+					   					  
+                   </div>
+                </div>  
+            </section>
+           <section class="blog-sidebar">
+
+	
+			<div id="search-2" class="widget widget_search"><form role="search" method="get" class="search-form" action="https://codepumpkin.com/">
+				<label>
+					<span class="screen-reader-text">Search for:</span>
+					<input type="search" class="search-field" placeholder="Search …" value="" name="s">
+				</label>
+				<input type="submit" class="search-submit" value="Search">
+			</form></div>
+	
+	<!-- Post Count -->
+	<div style="padding-left:10px">
+	<strong>Total Posts : <span class="sbs-count-posts count">120</span></strong>
+</div>
+
+	<!-- FB Likes -->
+	<div style="padding:10px;">
+		<div class="fb-like fb_iframe_widget" data-href="https://www.facebook.com/codepumpkin/" data-width="200" data-layout="standard" data-action="like" data-size="small" data-show-faces="false" data-share="true" fb-xfbml-state="rendered" fb-iframe-plugin-query="action=like&amp;app_id=133061756788566&amp;container_width=230&amp;href=https%3A%2F%2Fwww.facebook.com%2Fcodepumpkin%2F&amp;layout=standard&amp;locale=en_US&amp;sdk=joey&amp;share=true&amp;show_faces=false&amp;size=small&amp;width=200"><span style="vertical-align: bottom; width: 225px; height: 28px;"><iframe name="f380b1c95b9ab34" width="200px" height="1000px" title="fb:like Facebook Social Plugin" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/like(1).html" style="border: none; visibility: visible; width: 225px; height: 28px;" class=""></iframe></span></div> 
+	</div>
+	
+	<!-- Twitter Followers -->
+	<div style="padding:0px 10px;">
+<iframe id="twitter-widget-1" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="twitter-follow-button twitter-follow-button-rendered" style="position: static; visibility: visible; width: 157px; height: 20px;" title="Twitter Follow Button" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/follow_button.7303c29a8108bca4ac5c9ef008ed8164.en(1).html" data-screen-name="codepumpkins"></iframe><script async="" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/widgets.js" charset="utf-8"></script>
+    </div>
+
+
+	<!-- Youtube Subscriber -->
+	<div style="padding:10px;padding-top:0px;">
+		<div id="___ytsubscribe_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 116px; height: 24px;"><div class="fluid-width-video-wrapper" style="padding-top: 10px;"><iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 116px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 24px;" tabindex="0" vspace="0" id="I0_1581180643915" name="I0_1581180643915" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/subscribe_embed.html" data-gapiattached="true"></iframe></div></div>
+	</div>
+  
+
+<div style="padding:10px;padding-top:0px;">
+	<a href="https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fcodepumpkin.com%2Ffeed%2F" target="blank"><img id="feedlyFollow" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/feedly-follow-rectangle-volume-small_2x.png" alt="follow us in feedly" width="66" height="20"></a>
+</div>
+	<div style="padding:10px;padding-top:0px;">
+	
+	<a data-sumome-listbuilder-id="8cb606a9-e320-4bc9-8a8f-e8f345b2a94b" class="btn btn-sm btn_custom" style="background-color:#5da213;color:#fff;font-size:12px;">Contribute Your Articles</a>
+
+	
+
+    </div>
+
+
+
+	<!-- Youtube Script starts, top padding hack is in another file-->
+	<script src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/platform.js" gapi_processed="true"></script>
+
+<script>
+  function onYtEvent(payload) {
+    if (payload.eventType == 'subscribe') {
+      // Add code to handle subscribe event.
+    } else if (payload.eventType == 'unsubscribe') {
+      // Add code to handle unsubscribe event.
+    }
+    if (window.console) { // for debugging only
+      window.console.log('YT event: ', payload);
+    }
+  }
+</script>
+
+	<!-- Youtube Script ends, top padding hack is in another file-->
+
+
+        
+	<!-- <hr/>  </div> -->	
+		
+	
+	<!-- Post Counter JQuery -->
+	<script>
+	$('.count').each(function () {
+	    $(this).prop('Counter',0).animate({
+		Counter: $(this).text()
+	    }, {
+		duration: 4000,
+		easing: 'swing',
+		step: function (now) {
+		    $(this).text(Math.ceil(now));
+		}
+	    });
+	});
+	</script>
+     
+	    
+            <div id="ns-category-widget-3" class="widget widget_ns_category_widget"><h3 class="widget-title">Categories</h3><div class="nscw-inactive-tree"><ul class="cat-list">	<li class="cat-item cat-item-37"><a href="https://codepumpkin.com/category/algorithms/">Algorithms</a> (10)
+</li>
+	<li class="cat-item cat-item-212"><a href="https://codepumpkin.com/category/c/">C / C++</a> (2)
+</li>
+	<li class="cat-item cat-item-56"><a href="https://codepumpkin.com/category/core-java/">Core Java</a> (48)
+<ul class="children">
+	<li class="cat-item cat-item-84"><a href="https://codepumpkin.com/category/core-java/java-multithreading/" title="Articles on Java Multithreading and java.util.concurrent package i.e. CountDownLatch, CyclicBarrier, BlockingQueue, ConcurrentHashMap, etc">Java MultiThreading</a> (11)
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-7"><a href="https://codepumpkin.com/category/data-structure/">Data Structure</a> (10)
+</li>
+	<li class="cat-item cat-item-38"><a href="https://codepumpkin.com/category/design-patterns/">Design Patterns</a> (15)
+</li>
+	<li class="cat-item cat-item-103"><a href="https://codepumpkin.com/category/javascript/">Javascript</a> (7)
+</li>
+	<li class="cat-item cat-item-9"><a href="https://codepumpkin.com/category/pumpkin-practice/">Pumpkin Practice</a> (10)
+</li>
+	<li class="cat-item cat-item-161"><a href="https://codepumpkin.com/category/python/">Python</a> (15)
+</li>
+	<li class="cat-item cat-item-91"><a href="https://codepumpkin.com/category/sql/">SQL</a> (2)
+</li>
+</ul></div></div><div id="tag_cloud-3" class="widget widget_tag_cloud"><h3 class="widget-title">Tag Cloud</h3><div class="tagcloud"><a href="https://codepumpkin.com/tag/algorithms/" class="tag-cloud-link tag-link-133 tag-link-position-1" style="font-size: 8pt;" aria-label="Algorithms (6 items)">Algorithms</a>
+<a href="https://codepumpkin.com/tag/collection-framework/" class="tag-cloud-link tag-link-63 tag-link-position-2" style="font-size: 12.2pt;" aria-label="Collection Framework (13 items)">Collection Framework</a>
+<a href="https://codepumpkin.com/tag/collections/" class="tag-cloud-link tag-link-62 tag-link-position-3" style="font-size: 11.22pt;" aria-label="Collections (11 items)">Collections</a>
+<a href="https://codepumpkin.com/tag/concurrency/" class="tag-cloud-link tag-link-49 tag-link-position-4" style="font-size: 13.32pt;" aria-label="Concurrency (16 items)">Concurrency</a>
+<a href="https://codepumpkin.com/tag/core-java/" class="tag-cloud-link tag-link-75 tag-link-position-5" style="font-size: 19.48pt;" aria-label="Core Java (46 items)">Core Java</a>
+<a href="https://codepumpkin.com/tag/creational-design-patterns/" class="tag-cloud-link tag-link-40 tag-link-position-6" style="font-size: 10.66pt;" aria-label="Creational Design Patterns (10 items)">Creational Design Patterns</a>
+<a href="https://codepumpkin.com/tag/datastructure/" class="tag-cloud-link tag-link-5 tag-link-position-7" style="font-size: 11.64pt;" aria-label="DataStructure (12 items)">DataStructure</a>
+<a href="https://codepumpkin.com/tag/design-patterns/" class="tag-cloud-link tag-link-39 tag-link-position-8" style="font-size: 13.74pt;" aria-label="Design Patterns (17 items)">Design Patterns</a>
+<a href="https://codepumpkin.com/tag/hashmap/" class="tag-cloud-link tag-link-81 tag-link-position-9" style="font-size: 10.1pt;" aria-label="HashMap (9 items)">HashMap</a>
+<a href="https://codepumpkin.com/tag/java/" class="tag-cloud-link tag-link-3 tag-link-position-10" style="font-size: 22pt;" aria-label="Java (69 items)">Java</a>
+<a href="https://codepumpkin.com/tag/java8/" class="tag-cloud-link tag-link-57 tag-link-position-11" style="font-size: 11.22pt;" aria-label="Java8 (11 items)">Java8</a>
+<a href="https://codepumpkin.com/tag/java-keywords/" class="tag-cloud-link tag-link-90 tag-link-position-12" style="font-size: 11.22pt;" aria-label="Java keywords (11 items)">Java keywords</a>
+<a href="https://codepumpkin.com/tag/javascript/" class="tag-cloud-link tag-link-104 tag-link-position-13" style="font-size: 8.7pt;" aria-label="javascript (7 items)">javascript</a>
+<a href="https://codepumpkin.com/tag/jvm-internals/" class="tag-cloud-link tag-link-111 tag-link-position-14" style="font-size: 9.4pt;" aria-label="JVM internals (8 items)">JVM internals</a>
+<a href="https://codepumpkin.com/tag/multithreading/" class="tag-cloud-link tag-link-47 tag-link-position-15" style="font-size: 14.02pt;" aria-label="Multithreading (18 items)">Multithreading</a>
+<a href="https://codepumpkin.com/tag/python/" class="tag-cloud-link tag-link-163 tag-link-position-16" style="font-size: 12.9pt;" aria-label="python (15 items)">python</a>
+<a href="https://codepumpkin.com/tag/python-tutorials/" class="tag-cloud-link tag-link-164 tag-link-position-17" style="font-size: 10.1pt;" aria-label="Python Tutorials (9 items)">Python Tutorials</a>
+<a href="https://codepumpkin.com/tag/synchronization/" class="tag-cloud-link tag-link-48 tag-link-position-18" style="font-size: 11.64pt;" aria-label="Synchronization (12 items)">Synchronization</a>
+<a href="https://codepumpkin.com/tag/thread/" class="tag-cloud-link tag-link-50 tag-link-position-19" style="font-size: 13.32pt;" aria-label="Thread (16 items)">Thread</a>
+<a href="https://codepumpkin.com/tag/x-vs-y/" class="tag-cloud-link tag-link-97 tag-link-position-20" style="font-size: 10.66pt;" aria-label="x vs y (10 items)">x vs y</a></div>
+</div><div id="ns-category-widget-2" class="widget widget_ns_category_widget"><h3 class="widget-title">Interview Questions</h3><div class="nscw-inactive-tree"><ul class="cat-list">	<li class="cat-item cat-item-74"><a href="https://codepumpkin.com/category/interview-questions/core-java-interview-questions/">Core Java Interview Questions</a> (18)
+</li>
+	<li class="cat-item cat-item-89"><a href="https://codepumpkin.com/category/interview-questions/multithreading-interview-questions/">Multithreading Interview Questions</a> (6)
+</li>
+	<li class="cat-item cat-item-107"><a href="https://codepumpkin.com/category/interview-questions/programming/">Programming</a> (7)
+</li>
+	<li class="cat-item cat-item-92"><a href="https://codepumpkin.com/category/interview-questions/sql-interview-questions/">SQL Interview Questions</a> (2)
+</li>
+</ul></div></div>
+<div id="wpp-4" class="widget popular-posts">
+<h3 class="widget-title">Popular Posts</h3><!-- cached -->
+<!-- WordPress Popular Posts -->
+
+<ul class="wpp-list">
+<li class="current">
+<a href="https://codepumpkin.com/hashtable-vs-synchronizedmap-vs-concurrenthashmap/" class="wpp-post-title" target="_self">Hashtable vs SynchronizedMap vs ConcurrentHashMap</a>
+</li>
+<li>
+<a href="https://codepumpkin.com/morgan-stanley-interview-questions-set-2/" class="wpp-post-title" target="_self">Morgan Stanley Interview Questions – Set 2</a>
+</li>
+<li>
+<a href="https://codepumpkin.com/mediator-design-pattern/" class="wpp-post-title" target="_self">Mediator Design Pattern</a>
+</li>
+<li>
+<a href="https://codepumpkin.com/morgan-stanley-interview-questions-set-3/" class="wpp-post-title" target="_self">Morgan Stanley Interview Questions – Set 3</a>
+</li>
+<li>
+<a href="https://codepumpkin.com/selection-sort-algorithms/" class="wpp-post-title" target="_self">Selection Sort | Algorithms</a>
+</li>
+</ul>
+
+</div>
+<div id="ns-category-widget-12" class="widget widget_ns_category_widget"><h3 class="widget-title">Interview Experiences</h3><div class="nscw-inactive-tree"><ul class="cat-list">	<li class="cat-item cat-item-237"><a href="https://codepumpkin.com/category/interview-experience/cgi/">CGI</a> (1)
+</li>
+	<li class="cat-item cat-item-165"><a href="https://codepumpkin.com/category/interview-experience/high-radius-technologies/">High Radius Technologies</a> (1)
+</li>
+	<li class="cat-item cat-item-124"><a href="https://codepumpkin.com/category/interview-experience/morgan-stanley/">Morgan Stanley</a> (6)
+</li>
+	<li class="cat-item cat-item-157"><a href="https://codepumpkin.com/category/interview-experience/servicenow/">ServiceNow</a> (1)
+</li>
+	<li class="cat-item cat-item-130"><a href="https://codepumpkin.com/category/interview-experience/synechron/">Synechron</a> (1)
+</li>
+	<li class="cat-item cat-item-129"><a href="https://codepumpkin.com/category/interview-experience/wissen-infotech/">Wissen Infotech</a> (2)
+</li>
+</ul></div></div>		<div id="recent-posts-2" class="widget widget_recent_entries">		<h3 class="widget-title">Recent Posts</h3>		<ul>
+											<li>
+					<a href="https://codepumpkin.com/cgi-interview-questions-set-1/">CGI Interview Questions – Set 1</a>
+									</li>
+											<li>
+					<a href="https://codepumpkin.com/file-i-o-python/">File I/O | Python</a>
+									</li>
+											<li>
+					<a href="https://codepumpkin.com/exception-handling-python/">Exception Handling | Python</a>
+									</li>
+											<li>
+					<a href="https://codepumpkin.com/while-loop-python-flow-control/">while loop | Python Flow Control</a>
+									</li>
+											<li>
+					<a href="https://codepumpkin.com/for-loop-python-flow-control/">for loop | Python Flow Control</a>
+									</li>
+					</ul>
+		</div><div id="custom_html-2" class="widget_text widget widget_custom_html"><h3 class="widget-title">Cauvery Calling</h3><div class="textwidget custom-html-widget"><p><a href="https://www.ishaoutreach.org/en/cauvery-calling/campaigns/cauvery-calling-action-now-9888" target="_BLANK" rel="noopener noreferrer"><img src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/CauveryCalling.jpg" alt="Cauvery Calling"></a></p>
+
+<p><b>We may not get time to plant a tree, but we can definitely donate ₹42 per Tree. 
+	</b> </p>
+
+<p>
+	<b>Join us to save the planet Earth by donating at <a href="https://www.ishaoutreach.org/en/cauvery-calling/campaigns/cauvery-calling-action-now-9888" target="_BLANK" rel="noopener noreferrer"> CodePumpkin Cauvery Calling Campaign</a>. </b></p></div></div><div id="facebook_page-2" class="widget widget_facebook_page"><h3 class="widget-title">Like Us On Facebook</h3>   
+	<div class="fb-page fb_iframe_widget" data-href="https://www.facebook.com/codepumpkin/" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" fb-xfbml-state="rendered" fb-iframe-plugin-query="adapt_container_width=true&amp;app_id=133061756788566&amp;container_width=250&amp;hide_cover=false&amp;href=https%3A%2F%2Fwww.facebook.com%2Fcodepumpkin%2F&amp;locale=en_US&amp;sdk=joey&amp;show_facepile=true&amp;small_header=false"><span style="vertical-align: bottom; width: 250px; height: 180px;"><iframe name="f507501c963a44" width="1000px" height="1000px" title="fb:page Facebook Social Plugin" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/page.html" style="border: none; visibility: visible; width: 250px; height: 180px;" class=""></iframe></span></div>
+
+      
+         
+            		
+</div></section>        </div>
+
+<!-- Amazon US, UK and Canada One link starts
+<script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=6b09790f-1875-41f7-873b-09fe073cdf3a"></script>
+<!-- Amazon US, UK and Canada One link ends-->
+
+
+<!-- Facebook like button starts -->
+
+<br><div class="bottom-navigation">
+                <div class="wrap-grid bottom-navigation-content">
+		
+<iframe src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/like(2).html" width="100%" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
+
+
+	</div>
+</div>
+
+<!-- Facebook like button ends -->
+
+<!-- Youtube subscribe button padding-top fixer start-->
+<script>
+setInterval(function(){ document.getElementById("___ytsubscribe_0").childNodes[0].style.cssText = "padding-top:10px"; }, 5000);
+</script>
+<!-- Youtube subscribe button padding-top fixer end-->
+
+
+<!-- Bootstrap Tool Tip Js code -->
+
+
+<script src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+<script src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+<script type="text/javascript">
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+
+		<footer class="bottom">
+            <div class="bottom-navigation">
+                <div class="wrap-grid bottom-navigation-content">
+
+
+
+								<div id="ns-category-widget-4" class="widget widget_ns_category_widget"><h3 class="widget-title">Categories</h3><div class="nscw-inactive-tree"><ul class="cat-list">	<li class="cat-item cat-item-37"><a href="https://codepumpkin.com/category/algorithms/">Algorithms</a> (10)
+</li>
+	<li class="cat-item cat-item-212"><a href="https://codepumpkin.com/category/c/">C / C++</a> (2)
+</li>
+	<li class="cat-item cat-item-56"><a href="https://codepumpkin.com/category/core-java/">Core Java</a> (48)
+<ul class="children">
+	<li class="cat-item cat-item-84"><a href="https://codepumpkin.com/category/core-java/java-multithreading/" title="Articles on Java Multithreading and java.util.concurrent package i.e. CountDownLatch, CyclicBarrier, BlockingQueue, ConcurrentHashMap, etc">Java MultiThreading</a> (11)
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-7"><a href="https://codepumpkin.com/category/data-structure/">Data Structure</a> (10)
+</li>
+	<li class="cat-item cat-item-38"><a href="https://codepumpkin.com/category/design-patterns/">Design Patterns</a> (15)
+</li>
+	<li class="cat-item cat-item-123"><a href="https://codepumpkin.com/category/interview-experience/">Interview Experience</a> (12)
+<ul class="children">
+	<li class="cat-item cat-item-237"><a href="https://codepumpkin.com/category/interview-experience/cgi/">CGI</a> (1)
+</li>
+	<li class="cat-item cat-item-165"><a href="https://codepumpkin.com/category/interview-experience/high-radius-technologies/">High Radius Technologies</a> (1)
+</li>
+	<li class="cat-item cat-item-124"><a href="https://codepumpkin.com/category/interview-experience/morgan-stanley/">Morgan Stanley</a> (6)
+</li>
+	<li class="cat-item cat-item-157"><a href="https://codepumpkin.com/category/interview-experience/servicenow/">ServiceNow</a> (1)
+</li>
+	<li class="cat-item cat-item-130"><a href="https://codepumpkin.com/category/interview-experience/synechron/">Synechron</a> (1)
+</li>
+	<li class="cat-item cat-item-129"><a href="https://codepumpkin.com/category/interview-experience/wissen-infotech/">Wissen Infotech</a> (2)
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-103"><a href="https://codepumpkin.com/category/javascript/">Javascript</a> (7)
+</li>
+	<li class="cat-item cat-item-9"><a href="https://codepumpkin.com/category/pumpkin-practice/">Pumpkin Practice</a> (10)
+</li>
+	<li class="cat-item cat-item-161"><a href="https://codepumpkin.com/category/python/">Python</a> (15)
+</li>
+	<li class="cat-item cat-item-91"><a href="https://codepumpkin.com/category/sql/">SQL</a> (2)
+</li>
+</ul></div></div><div id="ns-category-widget-5" class="widget widget_ns_category_widget"><h3 class="widget-title">Interview Questions</h3><div class="nscw-inactive-tree"><ul class="cat-list">	<li class="cat-item cat-item-74"><a href="https://codepumpkin.com/category/interview-questions/core-java-interview-questions/">Core Java Interview Questions</a> (18)
+</li>
+	<li class="cat-item cat-item-89"><a href="https://codepumpkin.com/category/interview-questions/multithreading-interview-questions/">Multithreading Interview Questions</a> (6)
+</li>
+	<li class="cat-item cat-item-107"><a href="https://codepumpkin.com/category/interview-questions/programming/">Programming</a> (7)
+</li>
+	<li class="cat-item cat-item-92"><a href="https://codepumpkin.com/category/interview-questions/sql-interview-questions/">SQL Interview Questions</a> (2)
+</li>
+</ul></div></div>
+<div id="wpp-3" class="widget popular-posts">
+<h3 class="widget-title">Popular Posts</h3><!-- cached -->
+<!-- WordPress Popular Posts -->
+
+<ul class="wpp-list">
+<li>
+<a href="https://codepumpkin.com/tic-tac-toe/" class="wpp-post-title" target="_self">Tic Tac Toe | Java Program Implementation</a>
+</li>
+<li>
+<a href="https://codepumpkin.com/synechron-interview-questions-set-1/" class="wpp-post-title" target="_self">Synechron Interview Questions – Set 1</a>
+</li>
+<li>
+<a href="https://codepumpkin.com/hashset-internal-implementation/" class="wpp-post-title" target="_self">How is HashSet implemented&nbsp;internally in Java?</a>
+</li>
+<li class="current">
+<a href="https://codepumpkin.com/hashtable-vs-synchronizedmap-vs-concurrenthashmap/" class="wpp-post-title" target="_self">Hashtable vs SynchronizedMap vs ConcurrentHashMap</a>
+</li>
+<li>
+<a href="https://codepumpkin.com/find-unique-array-element/" class="wpp-post-title" target="_self">Program to find Unique Array Element</a>
+</li>
+</ul>
+
+</div>
+
+	
+<p style="font-size:16px"><a href="https://codepumpkin.com/?p=3149" style="text-decoration:none;color:white;font-weight:bold;">Privacy Policy</a></p>
+<p style="font-size:16px"><a href="https://codepumpkin.com/?p=3151" style="text-decoration:none;color:white;font-weight:bold;">Terms And Condtions</a></p>       
+
+
+<div id="disclaimer-3" class="widget widget_disclaimer"><h3 class="widget-title">Disclaimer</h3>   
+	<p style="font-size:12px">No part of this blog maybe copied or reproduced or reused or republished in any way, except to share either using the share feature of LinkedIn, Facebook, Twitter or any other Social Media Sites or posting a direct link to this blog - An excerpt from the blog may be quoted while sharing it in the above mentioned manner. Any other form of reuse, must be only after explicit written consent of the CodePumpkin.</p>
+
+            									
+                </div>
+            </div>
+            <div class="copyright">
+                <div class="wrap-grid copyright-content">
+                    
+		    <div class="block-left">Copyright @ 2017 Code Pumpkin All Rights Reserved.</div>
+                    <div class="block-right">Theme created by <a href="http://www.themestune.com/">Themes Tune</a>. Powered by <a href="http://wordpress.org/">WordPress.org</a></div>
+                </div>
+            </div> 
+        </div></footer>
+
+
+		        <script type="text/javascript">
+            (function(){
+                document.addEventListener('DOMContentLoaded', function(){
+                    let wpp_widgets = document.querySelectorAll('.popular-posts-sr');
+
+                    if ( wpp_widgets ) {
+                        for (let i = 0; i < wpp_widgets.length; i++) {
+                            let wpp_widget = wpp_widgets[i];
+                            WordPressPopularPosts.theme(wpp_widget);
+                        }
+                    }
+                });
+            })();
+        </script>
+                <script>
+            var WPPImageObserver = null;
+
+            function wpp_load_img(img) {
+                if ( ! 'imgSrc' in img.dataset || ! img.dataset.imgSrc )
+                    return;
+
+                img.src = img.dataset.imgSrc;
+
+                if ( 'imgSrcset' in img.dataset ) {
+                    img.srcset = img.dataset.imgSrcset;
+                    img.removeAttribute('data-img-srcset');
+                }
+
+                img.classList.remove('wpp-lazyload');
+                img.removeAttribute('data-img-src');
+                img.classList.add('wpp-lazyloaded');
+            }
+
+            function wpp_observe_imgs(){
+                let wpp_images = document.querySelectorAll('img.wpp-lazyload'),
+                    wpp_widgets = document.querySelectorAll('.popular-posts-sr');
+
+                if ( wpp_images.length || wpp_widgets.length ) {
+                    if ( 'IntersectionObserver' in window ) {
+                        WPPImageObserver = new IntersectionObserver(function(entries, observer) {
+                            entries.forEach(function(entry) {
+                                if (entry.isIntersecting) {
+                                    let img = entry.target;
+                                    wpp_load_img(img);
+                                    WPPImageObserver.unobserve(img);
+                                }
+                            });
+                        });
+
+                        if ( wpp_images.length ) {
+                            wpp_images.forEach(function(image) {
+                                WPPImageObserver.observe(image);
+                            });
+                        }
+
+                        if ( wpp_widgets.length ) {
+                            for (var i = 0; i < wpp_widgets.length; i++) {
+                                let wpp_widget_images = wpp_widgets[i].querySelectorAll('img.wpp-lazyload');
+
+                                if ( ! wpp_widget_images.length && wpp_widgets[i].shadowRoot ) {
+                                    wpp_widget_images = wpp_widgets[i].shadowRoot.querySelectorAll('img.wpp-lazyload');
+                                }
+
+                                if ( wpp_widget_images.length ) {
+                                    wpp_widget_images.forEach(function(image) {
+                                        WPPImageObserver.observe(image);
+                                    });
+                                }
+                            }
+                        }
+                    } /** Fallback for older browsers */
+                    else {
+                        if ( wpp_images.length ) {
+                            for (var i = 0; i < wpp_images.length; i++) {
+                                wpp_load_img(wpp_images[i]);
+                                wpp_images[i].classList.remove('wpp-lazyloaded');
+                            }
+                        }
+
+                        if ( wpp_widgets.length ) {
+                            for (var j = 0; j < wpp_widgets.length; j++) {
+                                let wpp_widget = wpp_widgets[j],
+                                    wpp_widget_images = wpp_widget.querySelectorAll('img.wpp-lazyload');
+
+                                if ( ! wpp_widget_images.length && wpp_widget.shadowRoot ) {
+                                    wpp_widget_images = wpp_widget.shadowRoot.querySelectorAll('img.wpp-lazyload');
+                                }
+
+                                if ( wpp_widget_images.length ) {
+                                    for (var k = 0; k < wpp_widget_images.length; k++) {
+                                        wpp_load_img(wpp_widget_images[k]);
+                                        wpp_widget_images[k].classList.remove('wpp-lazyloaded');
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+                wpp_observe_imgs();
+
+                // When an ajaxified WPP widget loads,
+                // Lazy load its images
+                document.addEventListener('wpp-onload', function(){
+                    wpp_observe_imgs();
+                });
+            });
+        </script>
+                <meta http-equiv="imagetoolbar" content="no"><!-- disable image toolbar (if any) -->
+        <script type="text/javascript">
+            /*<![CDATA[*/
+            document.oncontextmenu = function() {
+                return false;
+            };
+            document.onselectstart = function() {
+                if (event.srcElement.type != "text" && event.srcElement.type != "textarea" && event.srcElement.type != "password") {
+                    return false;
+                }
+                else {
+                    return true;
+                }
+            };
+            if (window.sidebar) {
+                document.onmousedown = function(e) {
+                    var obj = e.target;
+                    if (obj.tagName.toUpperCase() == 'SELECT'
+                            || obj.tagName.toUpperCase() == "INPUT"
+                            || obj.tagName.toUpperCase() == "TEXTAREA"
+                            || obj.tagName.toUpperCase() == "PASSWORD") {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                };
+            }
+            document.ondragstart = function() {
+                return false;
+            };
+            /*]]>*/
+        </script>
+        <div class="mobmenu-overlay"></div><div class="mob-menu-header-holder mobmenu" data-menu-display="mob-menu-slideout-over" data-open-icon="down-open" data-close-icon="up-open"><div class="mobmenul-container"></div><div class="mobmenur-container"><a href="https://codepumpkin.com/hashtable-vs-synchronizedmap-vs-concurrenthashmap/#" class="mobmenu-right-bt  mobmenu-trigger-action" data-panel-target="mobmenu-right-panel" aria-label="Right Menu Button"><i class="mob-icon-menu mob-menu-icon"></i><i class="mob-icon-cancel-1 mob-cancel-button"></i></a></div></div>				<div class="mobmenu-right-alignment mobmenu-panel mobmenu-right-panel  ">
+				<a href="https://codepumpkin.com/hashtable-vs-synchronizedmap-vs-concurrenthashmap/#" class="mobmenu-right-bt" aria-label="Right Menu Button"><i class="mob-icon-cancel-1 mob-cancel-button"></i></a>
+										<div class="mobmenu-content">
+			<div class="menu-menu-menu-container"><ul id="mobmenuright"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1335"><a href="https://codepumpkin.com/" class="">Home</a></li><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1339"><a href="https://codepumpkin.com/hashtable-vs-synchronizedmap-vs-concurrenthashmap/#" class="">Java<div class="mob-expand-submenu"><i class="mob-icon-down-open open-icon"></i><i class="mob-icon-up-open close-icon hide"></i></div></a>
+<ul class="sub-menu ">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1346"><a href="https://codepumpkin.com/1313-2/" class="">Basic Java</a></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1344"><a href="https://codepumpkin.com/java-collection/" class="">Java Collection</a></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1345"><a href="https://codepumpkin.com/java-multithreading/" class="">Java Multithreading</a></li>	<li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1338"><a href="https://codepumpkin.com/java8-features/" class="">Java8 Features</a></li>	<li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1337"><a href="https://codepumpkin.com/java-9-features/" class="">Java 9 Features</a></li></ul>
+</li><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-4230"><a href="https://codepumpkin.com/hashtable-vs-synchronizedmap-vs-concurrenthashmap/#" class="">Programming<div class="mob-expand-submenu"><i class="mob-icon-down-open open-icon"></i><i class="mob-icon-up-open close-icon hide"></i></div></a>
+<ul class="sub-menu ">
+	<li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1347"><a href="https://codepumpkin.com/design-patterns/" class="">Design Patterns</a></li>	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1353"><a href="https://codepumpkin.com/algorithms/" class="">Data Structures / Algorithms</a></li>	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4231"><a href="https://codepumpkin.com/category/pumpkin-practice/" class="">Pumpkin Practice</a></li></ul>
+</li><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4232"><a href="https://codepumpkin.com/frequently-asked-interview-puzzles/" class="">Puzzles</a></li><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3805"><a href="https://codepumpkin.com/about-us/" class="">About Us</a></li><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6744"><a href="https://codepumpkin.com/list-of-available-rss-feeds/" class=""><span>RSS</span><i class="_mi _after dashicons dashicons-rss" aria-hidden="true"></i></a></li></ul></div>
+			</div><div class="mob-menu-right-bg-holder"></div></div>
+
+		<script>if (document.location.protocol != "https:") {document.location = document.URL.replace(/^http:/i, "https:");}</script><script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/shCore.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/shBrushAS3.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/shBrushBash.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/shBrushColdFusion.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/shBrushClojure.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/shBrushCpp.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/shBrushCSharp.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/shBrushCss.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/shBrushDelphi.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/shBrushDiff.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/shBrushErlang.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/shBrushFSharp.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/shBrushGroovy.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/shBrushJava.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/shBrushJavaFX.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/shBrushJScript.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/shBrushLatex.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/shBrushMatlabKey.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/shBrushObjC.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/shBrushPerl.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/shBrushPhp.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/shBrushPlain.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/shBrushPowerShell.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/shBrushPython.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/shBrushR.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/shBrushRuby.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/shBrushScala.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/shBrushSql.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/shBrushVb.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/shBrushXml.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var countVars = {"disqusShortname":"codepumpkin"};
+var embedVars = {"disqusConfig":{"integration":"wordpress 3.0.16"},"disqusIdentifier":"2530 https:\/\/codepumpkin.com\/?p=2530","disqusShortname":"codepumpkin","disqusTitle":"Hashtable vs SynchronizedMap vs ConcurrentHashMap","disqusUrl":"https:\/\/codepumpkin.com\/hashtable-vs-synchronizedmap-vs-concurrenthashmap\/","postId":"2530"};
+var dclCustomVars = {"dcl_progress_text":"Loading..."};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/embed-scroll.min.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var tocplus = {"smooth_scroll":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/front.min.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/jstree.min.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/jstree.state.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/public.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var newsletter = {"messages":{"email_error":"The email is not correct","name_error":"The name is not correct","surname_error":"The last name is not correct","profile_error":"A mandatory field is not filled in","privacy_error":"You must accept the privacy statement"},"profile_max":"20"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/validate.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var SlimStatParams = {"ajaxurl":"https:\/\/codepumpkin.com\/wp-admin\/admin-ajax.php","baseurl":"\/","dnt":"noslimstat,ab-item","ci":"YTo0OntzOjEyOiJjb250ZW50X3R5cGUiO3M6NDoicG9zdCI7czo4OiJjYXRlZ29yeSI7czo0MToiNTYsNzQsNjgsODQsODksNjMsNjIsNzUsODEsMyw0OCw1MCw5NywyMTYiO3M6MTA6ImNvbnRlbnRfaWQiO2k6MjUzMDtzOjY6ImF1dGhvciI7czo4OiJwdW1wa2luMiI7fQ--.754bd7aa7de2c0b095bc35e77195b405"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/wp-slimstat.min.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/fitvids.min.js"></script>
+<script type="text/javascript">
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "https://codepumpkin.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9b";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.head.appendChild( corecss );
+		var themecssurl = "https://codepumpkin.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeEclipse.css?ver=3.0.9b";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		document.head.appendChild( themecss );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.all();
+
+	// Infinite scroll support
+	if ( typeof( jQuery ) !== 'undefined' ) {
+		jQuery( function( $ ) {
+			$( document.body ).on( 'post-load', function() {
+				SyntaxHighlighter.highlight();
+			} );
+		} );
+	}
+</script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/wp-embed.min.js"></script>
+<script type="text/javascript" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/OneSignalSDK.js" async="async"></script>
+    
+<iframe scrolling="no" frameborder="0" allowtransparency="true" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/widget_iframe.7303c29a8108bca4ac5c9ef008ed8164.html" title="Twitter settings iframe" style="display: none;"></iframe><iframe name="oauth2relay2062428826" id="oauth2relay2062428826" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/postmessageRelay.html" tabindex="-1" aria-hidden="true" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe><ul class="vakata-context"></ul><div id="jstree-marker" style="display: none;">&nbsp;</div><iframe id="rufous-sandbox" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: none;" title="Twitter analytics iframe" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/saved_resource.html"></iframe><div style="display: block; visibility: hidden; position: absolute; width: 106px; left: -10000px; top: -10000px; z-index: 2000000000;"><table cellpadding="0" cellspacing="0" dir="ltr" style="width:106px;" frame="void" rules="none" class=" gc-bubbleDefault pls-container"><tbody><tr class="gc-reset"><td class="pls-topLeft gc-reset"><img class="gc-reset" style="width:1px !important; height:1px !important; max-width: 1px !important; max-height: 1px !important;" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/border_3.gif"></td><td class="pls-topTail gc-reset"><img class="pls-tailbottom gc-reset" style="width: 15px !important; height: 9px !important; max-width: 15px !important; max-height: 9px !important; display: inline; left: 35.5px; top: 0px;" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/spacer.gif"><img class="pls-spacerbottom gc-reset" style="width: 1px !important; height: 1px !important; max-width: 1px !important; max-height: 1px !important; display: none;" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/spacer.gif"></td><td class="pls-topRight gc-reset"><img class="gc-reset" style="width:1px !important; height:1px !important; max-width: 1px !important; max-height: 1px !important;" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/border_3.gif"></td></tr><tr class="gc-reset"><td class="pls-vertShimLeft gc-reset"><img class="gc-reset" style="width:1px !important; height:4px !important; max-width: 1px !important; max-height: 4px !important;" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/spacer.gif"></td><td class="pls-vertShim gc-reset"><img class="gc-reset" style="width:1px !important; height:4px !important; max-width: 1px !important; max-height: 4px !important;" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/spacer.gif"></td><td class="pls-vertShimRight gc-reset"><img class="pls-dropTR gc-reset" style="width:5px !important; height:4px !important; max-width: 5px !important; max-height: 4px !important;" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/spacer.gif"></td></tr><tr class="gc-reset"><td class="pls-contentLeft gc-reset"><img class="pls-tailright gc-reset" style="width: 9px !important; height: 15px !important; max-width: 9px !important; max-height: 15px !important; display: none;" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/spacer.gif"><img class="pls-spacerright gc-reset" style="width: 1px !important; height: 1px !important; max-width: 1px !important; max-height: 1px !important; display: block;" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/spacer.gif"></td><td class="pls-contentWrap gc-reset"><div class="goog-bubble-content gc-reset"><iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="margin: 0px; position: absolute; z-index: 1; border-style: none; outline: none; width: 100%;" tabindex="0" vspace="0" width="100%" id="I0_1581180650041" name="I0_1581180650041" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/subscribe_embed(1).html"></iframe></div></td><td class="pls-dropRight gc-reset"><img class="pls-tailleft gc-reset" style="width: 12px !important; height: 19px !important; max-width: 12px !important; max-height: 19px !important; display: none;" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/spacer.gif"><img class="pls-spacerleft gc-reset" style="width: 1px !important; height: 1px !important; max-width: 1px !important; max-height: 1px !important; display: block;" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/spacer.gif"></td></tr><tr class="gc-reset"><td class="pls-bottomLeft gc-reset"><img class="gc-reset" style="width:1px !important; height:1px !important; max-width: 1px !important; max-height: 1px !important;" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/border_3.gif"></td><td class="gc-reset"><table cellpadding="0" cellspacing="0" style="width:100%" class="gc-reset"><tbody><tr class="gc-reset"><td class="pls-vert gc-reset"><img class="pls-dropBL gc-reset" style="width:4px !important; height:5px !important; max-width: 4px !important; max-height: 5px !important;" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/spacer.gif"></td><td class="pls-dropBottom gc-reset"><img class="pls-tailtop gc-reset" style="width: 19px !important; height: 13px !important; max-width: 19px !important; max-height: 13px !important; display: none;" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/spacer.gif"><img class="pls-spacertop gc-reset" style="width: 1px !important; height: 1px !important; max-width: 1px !important; max-height: 1px !important; display: block;" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/spacer.gif"></td></tr></tbody></table></td><td class="pls-vert gc-reset"><img class="pls-dropBR gc-reset" style="width:5px !important; height:5px !important; max-width: 5px !important; max-height: 5px !important;" src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/spacer.gif"></td></tr></tbody></table></div><iframe src="./Hashtable vs SynchronizedMap vs ConcurrentHashMap _ Code Pumpkin_files/webPushAnalytics.html" style="display: none;"></iframe><div id="onesignal-bell-container" class="onesignal-bell-container onesignal-reset onesignal-bell-container-bottom-left"><div id="onesignal-bell-launcher" class="onesignal-bell-launcher onesignal-bell-launcher-md onesignal-bell-launcher-bottom-left onesignal-bell-launcher-theme-default onesignal-bell-launcher-active"><div class="onesignal-bell-launcher-button"><svg class="onesignal-bell-svg" xmlns="http://www.w3.org/2000/svg" width="99.7" height="99.7" viewBox="0 0 99.7 99.7" style="filter: drop-shadow(0 2px 4px rgba(34,36,38,0.35));; -webkit-filter: drop-shadow(0 2px 4px rgba(34,36,38,0.35));;"><circle class="background" cx="49.9" cy="49.9" r="49.9" style=""></circle><path class="foreground" d="M50.1 66.2H27.7s-2-.2-2-2.1c0-1.9 1.7-2 1.7-2s6.7-3.2 6.7-5.5S33 52.7 33 43.3s6-16.6 13.2-16.6c0 0 1-2.4 3.9-2.4 2.8 0 3.8 2.4 3.8 2.4 7.2 0 13.2 7.2 13.2 16.6s-1 11-1 13.3c0 2.3 6.7 5.5 6.7 5.5s1.7.1 1.7 2c0 1.8-2.1 2.1-2.1 2.1H50.1zm-7.2 2.3h14.5s-1 6.3-7.2 6.3-7.3-6.3-7.3-6.3z" style=""></path><ellipse class="stroke" cx="49.9" cy="49.9" rx="37.4" ry="36.9" style=""></ellipse></svg></div><div class="onesignal-bell-launcher-badge" style="filter: drop-shadow(0 2px 4px rgba(34,36,38,0));; -webkit-filter: drop-shadow(0 2px 4px rgba(34,36,38,0));;"></div><div class="onesignal-bell-launcher-message"><div class="onesignal-bell-launcher-message-body"></div></div><div class="onesignal-bell-launcher-dialog" style="filter: drop-shadow(0px 2px 2px rgba(34,36,38,.15));; -webkit-filter: drop-shadow(0px 2px 2px rgba(34,36,38,.15));;"><div class="onesignal-bell-launcher-dialog-body"></div></div></div></div><ins style="position: absolute !important; background-color: transparent !important; left: 1310px !important; top: 310px !important; width: 85px !important; height: 24px !important; z-index: -10000 !important; display: none !important;"></ins></body></html>

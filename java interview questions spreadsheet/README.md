@@ -6392,10 +6392,42 @@ https://dzone.com/articles/do-immutability-really-means
 |-------|-----|-------|
 |       |     |   x   |
 
+- [Is-java.util.Hashtable-thread-safe-StackOverflow](refs/Is-java.util.Hashtable-thread-safe-StackOverflow)
 
+```text
+It is threadsafe because the get, put, contains methods etc are synchronized. Furthermore, Several threads will not be able to access the hashtable at the same time, regardless of which entries they are modifying.
 
+edit - amended to include the provisio that synchronization makes the hashtable internally threadsafe in that it is modified atomically; it doesn't guard against race conditions in outside code caused by concurrent access to the hashtable by multiple threads.
+
+edited Sep 13 '11 at 10:40
+answered Sep 13 '11 at 10:26
+
+mcfinnigan
+```
+
+`references:`
+https://stackoverflow.com/questions/7400292/is-java-util-hashtable-thread-safe
+
+- [Differences-between-HashMap-and-HashTable-in-Java-GeeksforGeeks](refs/Differences-between-HashMap-and-HashTable-in-Java-GeeksforGeeks)
+
+`references:`
+https://www.geeksforgeeks.org/differences-between-hashmap-and-hashtable-in-java/
+
+- [Hashtable-vs-SynchronizedMap-vs-ConcurrentHashMap-CodePumpkin](refs/Hashtable-vs-SynchronizedMap-vs-ConcurrentHashMap-CodePumpkin)
+
+`references:`
+https://codepumpkin.com/hashtable-vs-synchronizedmap-vs-concurrenthashmap/
 
 ----
+
+# Executor Service
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |     |   x   |
+
+
+
 ----
 ----
 ----
