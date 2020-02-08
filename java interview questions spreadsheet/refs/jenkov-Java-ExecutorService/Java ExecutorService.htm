@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<!-- saved from url=(0069)http://tutorials.jenkov.com/java-util-concurrent/executorservice.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+    <!--<meta name="viewport" content="width=device-width, height=device-height initial-scale=1.0, maximum-scale=1.0, user-scalable=0">-->
+    <meta name="viewport" content="width=device-width, height=device-height initial-scale=1, user-scalable=1">
+
+    <title>Java ExecutorService</title>
+
+    <meta name="description" content="The Java ExecutorService is a built-in thread pool in Java which can be used to execute tasks concurrently. Tasks are submitted to the Java ExecutorService as objects implementing either the Runnable or Callable interface. The ExecutorService then executes it using internal worker threads when worker threads become idle.">
+    <meta name="keywords" content="java util concurrent executorservice">
+    <meta name="author" content="Jakob Jenkov">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jjenkov">
+    <meta name="twitter:title" content="Java ExecutorService">
+    <meta name="twitter:description" content="The Java ExecutorService is a built-in thread pool in Java which can be used to execute tasks concurrently. Tasks are submitted to the Java ExecutorService as objects implementing either the Runnable or Callable interface. The ExecutorService then executes it using internal worker threads when worker threads become idle.">
+    <meta name="twitter:creator" content="@jjenkov">
+    <meta name="twitter:domain" content="jenkov.com">
+
+    <meta name="twitter:image:src" content="http://tutorials.jenkov.com/images/java-concurrency-utils/java.util.concurrent-teaser-500-300.png">
+
+    <meta name="og:type" content="article">
+    <meta name="og:title" content="Java ExecutorService">
+    <meta property="og:url" content="http://tutorials.jenkov.com/java-util-concurrent/executorservice.html">
+    <meta property="og:description" content="The Java ExecutorService is a built-in thread pool in Java which can be used to execute tasks concurrently. Tasks are submitted to the Java ExecutorService as objects implementing either the Runnable or Callable interface. The ExecutorService then executes it using internal worker threads when worker threads become idle.">
+
+    <meta property="og:image" content="http://tutorials.jenkov.com/images/java-concurrency-utils/java.util.concurrent-teaser-500-300.png">
+
+    <link href="https://plus.google.com/108227213807945109821" rel="publisher">
+
+    <meta name="google-site-verification" content="i_TwzdElg-by5uXLvyAjuIaCjxo0yjtW8LdRPUDEEcw">
+<script charset="utf-8" src="./Java ExecutorService_files/button.a657e8de41cd5e7b38cde1f36c9ab9c2.js"></script></head>
+
+<body>
+
+<style>
+body {background-color: #f0f0f0; xbackground-image: linear-gradient(180deg, #f0f0f0, #e0e0e0); margin: 0px; font-family: arial;}
+
+.grid {
+  display: grid;
+
+}
+.topBar, .footer {
+  grid-column-start: 1;
+  grid-column-end: 12;
+  background-color: #000000;
+  color: #ffffff;
+  height: 64px;
+  box-shadow: 0px 8px 6px -6px #999999;
+}
+
+.content {
+  grid-column-start: 1;
+  grid-column-end: 12;
+  text-align: center;
+}
+.category, .main, .right {
+	display: inline-block;
+    vertical-align: top;
+	box-sizing: border-box;
+	text-align: left;
+}
+.footer {
+  height: 64px;
+  position: relative;
+  padding-bottom: 48px;
+}
+#footerCopyright {
+	position: absolute;
+	top: 20px;
+	left:20px;
+}
+
+.card{ background-color: #ffffff; box-shadow: 0px 8px 6px -6px #999999;padding: 20px 30px;border: 1px solid #e0e0e0; margin: 8px 4px;}
+.cardLeft  { margin-left:   8px; }
+.cardRight { margin-right:  8px; }
+.cardTop   { margin-top:    8px; }
+.cardBottom{ margin-bottom: 8px; }
+
+#topBarMenu    { position: absolute; top: 20px; left: 20px; }
+#topBarMenu a  { color: #ffffff; text-decoration: none; }
+#topBarLogoBox { text-align: right; padding-top:6px; margin-right: 16px;}
+#topBarLogo    { height: 38px; }
+#topBarPhrase  { padding-right: 4px; font-size: 0.8em; }
+</style>
+
+<style>
+a{ text-decoration:none; }
+#main, #mainBody { text-align: left; }
+
+#mainBody h1{margin-top: 0px; text-align:left; }
+#mainBody h2{margin: 24px 0px 0px 0px; text-align:left; }
+#mainBody a{font-weight: bold; color: #339;}
+#mainBody img{max-width:100%;}
+#mainBody svg{max-width:100%;overflow: auto;}
+
+.card{ background-color: #ffffff; box-shadow: 0px 8px 6px -6px #999999;padding: 20px 30px;border: 1px solid #e0e0e0;}
+#trailToc ol li{border-bottom: 1px solid #f0f0f0;padding: 4px 20px;vertical-align: top;}
+.codeBox {background-color: #f0f0f0;border: 1px solid #cccccc;padding: 10px;max-width: 100%;overflow: auto;}
+code{font-size: 1.2em;}
+.dataTable{background-color: #f0f0f0;border: 1px solid #cccccc;max-width: 100%;overflow: auto;}
+.dataTable th{text-align: left;}
+.dataTable th, .dataTable td{padding: 2px 8px; }
+#pageToc{border: 1px solid #f0f0f0; text-align:left; }
+#pageToc li{margin: 6px 0px;}
+#pageToc a{color: #339;font-weight: normal;}
+#lastUpdate{border: 1px solid #f0f0f0;border-top:none;padding: 6px 24px;font-size: 0.8em;color: #666; text-align:left; }
+#next{border-top: 1px solid #f0f0f0;padding: 10px 0px;font-size: 1.1em;}
+#bottomSocial{border-top: 1px solid #f0f0f0;padding: 10px 0px;font-size: 0.9em;}
+</style>
+
+
+<style>
+@media only screen and (max-width: 799px) {
+	.main     { width: 100%;}
+	.category { display: none; }
+	.right    {	display: none; }
+	.card     { padding: 10px 8px; }
+    .bigScreen{ display: none; }
+}
+@media only screen and (min-width: 800px) and (max-width: 1199px) {
+	.main     { width: 75%; }
+	.category {	width: 25%;	}
+	.right    { display:none;}
+	.smallScreen { display: none; }
+}
+@media only screen and (min-width: 1200px) {
+	.main     { width: 50%;	max-width: 900px; }
+	.category { width: 25%;	max-width: 300px; }
+	.right    { width: 25%; max-width: 400px; display:none;}
+	.smallScreen { display: none; }
+}
+
+@media only screen and (max-width: 600px) {
+  #topBarLogo{transform: scale(0.75, 0.75) translate(0px, 0px);}
+}
+@media only screen and (max-width: 480px) {
+  #topBarLogo{transform: scale(0.6, 0.6) translate(136px, 0px);}
+  #topBarMenu a{ font-size: 0.8em; }
+  h1{ font-size: 1.6em; }
+  h2{ font-size: 1.4em; }
+  h3{ font-size: 1.2em; }
+}
+</style>
+
+<div class="grid">
+
+    <div class="topBar">
+
+        <div id="topBarMenu">
+            <a href="http://tutorials.jenkov.com/" title="Tutorials">Tutorials</a>
+            &nbsp;&nbsp;&nbsp;
+            <a href="http://jenkov.com/about/index.html" title="Tutorials">About</a>
+            &nbsp;&nbsp;&nbsp;
+            <a href="http://jenkov.com/rss.xml" title="RSS">RSS</a>
+        </div>
+
+        <div id="topBarLogoBox">
+            <div id="topBarLogo"><svg x="0px" y="0px" width="409px" height="48px" viewBox="0 0 409 100" style="enable-background:new 0 0 409 100;" xml:space="preserve">  <path d="M53,32 l10,0  l0,26  c-7,21 -30,21 -53,10  l4,-9  c18,11 33,10 39,-3  z " style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M69,32 l50,0  l0,9  l-50,0 z" style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M69,49 l50,0  l0,9  l-50,0 z" style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M69,65 l50,0  l0,9  l-50,0 z" style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M126,32 l13,0  l40,31  l0,-31  l10,0  l0,42  l-10,0 l-43,-32 l0,32 l-10,0 z " style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M179,32  l10,0  l0,15 l5,0  l32.5,-14.5  l19,0  l-41,19  l40,22  l-19,0  l-33,-18  l-3.5,0  l0,19  l-10,0 z " style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M238,49  c10,-24 60,-24 70,0  l-11,0  c-10,-12 -38,-12 -48,0  z " style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M238,57  c10,24 60,24 70,0  l-11,0  c-10,12 -38,12 -48,0  z " style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M304,32  l13,0  l25,34 l25,-34  l13,0  l-32,42 l-12.5,0 z" style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M369,65  l12,0 l0,8 l-12,0 z" style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M390,53  c3,-27 54,-27 67,-10  l-15,0  c-10,-5 -40,-5 -41.5,10 l-10,0  " style="stroke: none;  stroke-width: 1; fill: #ffffff;"></path>  <path d="M390,53  c3,27 54,27 67,10  l-15,0  c-10,5 -40,5 -41.5,-10 l-10,0  " style="stroke: none;  stroke-width: 1; fill: #ffffff;"></path>  <path d="M460,49  c10,-24 60,-24 70,0  l-11,0  c-10,-12 -38,-12 -48,0  z " style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M460,57  c10,24 60,24 70,0  l-11,0  c-10,12 -38,12 -48,0  z " style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M534,34  l10,0  l0,6 c13,-10 26,-10 37,0  c12,-10 32,-10 39,3  l0,30  l-10,0  l0,-27  c-3,-9 -24,-9 -28,3 l0,24  -10,0  l0,-27  c-3,-9 -24,-9 -28,3 l0,24  -10,0 z" style="stroke: none; stroke-width: 1; fill: #ffffff;"></path></svg></div>
+            <div id="topBarPhrase">Tech and Media Labs</div>
+        </div>
+
+    </div>
+
+
+    <div class="content">
+        <div class="site-menu">
+
+            <!--
+              <div class="card cardLeft cardTop">Software Development
+                <ul>
+                  <li>Java &amp; JVM</li>
+                  <li>Web</li>
+                  <li>Distributed Systems</li>
+                </ul>
+            </div>
+            -->
+        </div><div class="category">
+        <div id="trailToc" class="card cardTop cardBottom">
+            <div id="trailTitle">java.util.concurrency - Java Concurrency Utilities</div><ol><li><a href="http://tutorials.jenkov.com/java-util-concurrent/index.html">java.util.concurrent - Java Concurrency Utilities</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/blockingqueue.html">Java BlockingQueue</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/arrayblockingqueue.html">ArrayBlockingQueue</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/delayqueue.html">DelayQueue</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/linkedblockingqueue.html">LinkedBlockingQueue</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/priorityblockingqueue.html">PriorityBlockingQueue</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/synchronousqueue.html">SynchronousQueue</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/blockingdeque.html">BlockingDeque</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/linkedblockingdeque.html">LinkedBlockingDeque</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/concurrentmap.html">ConcurrentMap</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/concurrentnavigablemap.html">ConcurrentNavigableMap</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/countdownlatch.html">CountDownLatch</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/cyclicbarrier.html">CyclicBarrier</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/exchanger.html">Exchanger</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/semaphore.html">Semaphore</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/executorservice.html"><b>Java ExecutorService</b></a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/java-callable.html">Java Callable</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/java-future.html">Java Future</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/threadpoolexecutor.html">ThreadPoolExecutor</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/scheduledexecutorservice.html">ScheduledExecutorService</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/java-fork-and-join-forkjoinpool.html">Java Fork and Join using ForkJoinPool</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/lock.html">Lock</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/readwritelock.html">ReadWriteLock</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/atomicboolean.html">AtomicBoolean</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/atomicinteger.html">AtomicInteger</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/atomiclong.html">AtomicLong</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/atomicreference.html">AtomicReference</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/atomicstampedreference.html">AtomicStampedReference</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/atomicintegerarray.html">AtomicIntegerArray</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/atomiclongarray.html">AtomicLongArray</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/atomicreferencearray.html">AtomicReferenceArray</a></li></ol>
+        </div>
+    </div><div class="main">
+        <div class="card cardTop cardBottom">
+            <h1 style="text-align: left;">Java ExecutorService</h1>
+
+            <div id="pageToc" itemscope="" itemtype="http://schema.org/SiteNavigationElement">
+                <ul><li><a href="http://tutorials.jenkov.com/java-util-concurrent/executorservice.html#java-executor-service-video-tutorial">Java ExecutorService Video Tutorial</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/executorservice.html#task-delegation">Task Delegation</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/executorservice.html#java-executorservice-example">Java ExecutorService Example</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/executorservice.html#java-executorservice-implementations">Java ExecutorService Implementations</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/executorservice.html#creating-an-executorservice">Creating an ExecutorService</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/executorservice.html#executorservice-usage">ExecutorService Usage</a><ul><li><a href="http://tutorials.jenkov.com/java-util-concurrent/executorservice.html#execute-runnable">Execute Runnable</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/executorservice.html#submit-runnable">Submit Runnable</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/executorservice.html#submit-callable">Submit Callable</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/executorservice.html#invokeany">invokeAny()</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/executorservice.html#invokeall">invokeAll()</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/executorservice.html#runnable-vs-callable">Runnable vs. Callable</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/executorservice.html#cancel-task">Cancel Task</a></li></ul></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/executorservice.html#executorservice-shutdown">ExecutorService Shutdown</a><ul><li><a href="http://tutorials.jenkov.com/java-util-concurrent/executorservice.html#shutdown()">shutdown()</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/executorservice.html#shutdownnow">shutdownNow()</a></li><li><a href="http://tutorials.jenkov.com/java-util-concurrent/executorservice.html#awaittermination">awaitTermination()</a></li></ul></li></ul>
+            </div>
+            <div id="lastUpdate">
+                <table><tbody><tr><td class="authorPhoto"></td>
+                    <td><p style="margin: 0px 0px 6px 0px;">
+                        Jakob Jenkov<br>
+                        Last update: 2018-10-28
+                    </p>
+                        <div class="authorSocialLinks"></div>
+                    </td>
+                </tr>
+                </tbody></table>
+            </div>
+
+            <div id="mainBody">
+                <p>
+    The Java <em>ExecutorService</em> interface, <code>java.util.concurrent.ExecutorService</code>, represents an
+    asynchronous execution mechanism which is capable of executing tasks concurrently in the background.
+    In this Java <code>ExecutorService</code> tutorial I will explain how to create a <code>ExecutorService</code>,
+    how to submit tasks for execution to it, how to see the results of those tasks, and how to shut down the
+    <code>ExecutorService</code> again when you need to.
+</p>
+
+
+
+
+<a name="java-executor-service-video-tutorial"></a>
+<h2>Java ExecutorService Video Tutorial</h2>
+
+<p>
+    If you prefer video, I have a video introduction to the Java <code>ExcecutorService</code> here:
+</p>
+
+<p>
+    <iframe width="560" height="315" src="./Java ExecutorService_files/mRdHvv7zW6M.html" frameborder="0" allowfullscreen=""></iframe>
+</p>
+
+
+
+<a name="task-delegation"></a>
+<h2>Task Delegation</h2>
+
+<p>
+    Here is a diagram illustrating a thread delegating a task to a Java <code>ExecutorService</code> for asynchronous execution:
+</p>
+
+
+<table style="padding:10px;" align="center">
+    <tbody><tr><td align="center"><img src="./Java ExecutorService_files/executor-service.png" alt="A thread delegating a task to an ExecutorService for asynchronous execution."></td></tr>
+    <tr><td align="center"><b>A thread delegating a task to an ExecutorService for asynchronous execution.</b></td></tr>
+</tbody></table>
+
+
+<p>
+    Once the thread has delegated the task to the <code>ExecutorService</code>, the thread continues its own execution
+    independent of the execution of that task. The <code>ExecutorService</code> then executes the task concurrently,
+    independently of the thread that submitted the task.
+</p>
+
+
+
+
+<a name="java-executorservice-example"></a>
+<h2>Java ExecutorService Example</h2>
+
+<p>
+    Before we get too deep into the <code>ExecutorService</code>, let us look at a simple example.
+    Here is a simple Java <code>ExecutorService</code> example:
+</p>
+
+<pre class="codeBox">ExecutorService executorService = Executors.newFixedThreadPool(10);
+
+executorService.execute(new Runnable() {
+    public void run() {
+        System.out.println("Asynchronous task");
+    }
+});
+
+executorService.shutdown();
+</pre>
+
+
+<p>
+    First an <code>ExecutorService</code> is created using the <code>Executors</code> <code>newFixedThreadPool()</code>
+    factory method. This creates a thread pool with 10 threads executing tasks.
+</p>
+
+<p>
+    Second, an anonymous implementation of the <code>Runnable</code> interface is passed
+    to the <code>execute()</code> method. This causes the <code>Runnable</code> to be executed
+    by one of the threads in the <code>ExecutorService</code>.
+</p>
+
+<p>
+    You will see several more examples of how to use the <code>ExecutorService</code> throughout this tutorial.
+    This example just served to give you a quick overview of how using an <code>ExecutorService</code> to
+    execute tasks in the background looks like.
+</p>
+
+
+
+
+<a name="java-executorservice-implementations"></a>
+<h2>Java ExecutorService Implementations</h2>
+
+<p>
+    The Java <code>ExecutorService</code> is very similar to a <a href="http://tutorials.jenkov.com/java-concurrency/thread-pools.html">thread pool</a>.
+    In fact, the implementation of the <code>ExecutorService</code> interface present in the
+    <code>java.util.concurrent</code> package is a thread pool implementation. If you want to understand how the
+    <code>ExecutorService</code> interface can be implemented internally, read the above tutorial.
+</p>
+
+<p>
+    Since <code>ExecutorService</code> is an interface, you need to its implementations in order
+    to make any use of it. The <code>ExecutorService</code> has the following implementation in the <code>java.util.concurrent</code>
+    package:
+</p>
+
+<ul>
+    <li><a href="http://tutorials.jenkov.com/java-util-concurrent/threadpoolexecutor.html">ThreadPoolExecutor</a></li>
+    <li><a href="http://tutorials.jenkov.com/java-util-concurrent/scheduledexecutorservice.html">ScheduledThreadPoolExecutor</a></li>
+</ul>
+
+
+
+
+
+<a name="creating-an-executorservice"></a>
+<h2>Creating an ExecutorService</h2>
+
+<p>
+    How you create an <code>ExecutorService</code> depends on the implementation you use. However, you can
+    use the <code>Executors</code> factory class to create <code>ExecutorService</code> instances too.
+    Here are a few examples of creating an <code>ExecutorService</code>:
+</p>
+
+<pre class="codeBox">ExecutorService executorService1 = Executors.newSingleThreadExecutor();
+
+ExecutorService executorService2 = Executors.newFixedThreadPool(10);
+
+ExecutorService executorService3 = Executors.newScheduledThreadPool(10);
+</pre>
+
+
+<a name="executorservice-usage"></a>
+<h2>ExecutorService Usage</h2>
+<p>
+    There are a few different ways to delegate tasks for execution to an <code>ExecutorService</code>:
+</p>
+
+<ul>
+    <li>execute(Runnable)</li>
+    <li>submit(Runnable)</li>
+    <li>submit(Callable)</li>
+    <li>invokeAny(...)</li>
+    <li>invokeAll(...)</li>
+</ul>
+
+<p>
+    I will take a look at each of these methods in the following sections.
+</p>
+
+
+
+
+<a name="execute-runnable"></a>
+<h3>Execute Runnable</h3>
+
+<p>
+    The Java <code>ExecutorService</code> <code>execute(Runnable)</code> method takes a <code>java.lang.Runnable</code> object,
+    and executes it asynchronously. Here is an example of executing a <code>Runnable</code> with an <code>ExecutorService</code>:
+</p>
+
+<pre class="codeBox">ExecutorService executorService = Executors.newSingleThreadExecutor();
+
+executorService.execute(new Runnable() {
+    public void run() {
+        System.out.println("Asynchronous task");
+    }
+});
+
+executorService.shutdown();
+</pre>
+
+<p>
+    There is no way of obtaining the result of the executed <code>Runnable</code>, if necessary. You will have to use
+    a <code>Callable</code> for that (explained in the following sections).
+</p>
+
+
+
+
+<a name="submit-runnable"></a>
+<h3>Submit Runnable</h3>
+
+<p>
+    The Java <code>ExecutorService</code> <code>submit(Runnable)</code> method also takes a <code>Runnable</code> implementation, but returns
+    a <code>Future</code> object. This <code>Future</code> object can be used to check if the <code>Runnable</code>
+    has finished executing.
+</p>
+
+<p>
+    Here is a Java <code>ExecutorService</code> <code>submit()</code> example:
+</p>
+
+<pre class="codeBox">Future future = executorService.submit(new Runnable() {
+    public void run() {
+        System.out.println("Asynchronous task");
+    }
+});
+
+future.get();  //returns null if the task has finished correctly.
+</pre>
+
+<p>
+    The <code>submit()</code> method returns a <a href="http://tutorials.jenkov.com/java-util-concurrent/java-future.html">Java Future</a> object which can be used to
+    check when the <code>Runnable</code> has completed.
+</p>
+
+
+
+
+<a name="submit-callable"></a>
+<h3>Submit Callable</h3>
+<p>
+    The Java <code>ExecutorService</code>  <code>submit(Callable)</code> method is similar to the <code>submit(Runnable)</code>
+    method except it takes a <a href="http://tutorials.jenkov.com/java-util-concurrent/java-callable.html">Java Callable</a> instead of a <code>Runnable</code>. The precise difference between
+    a <code>Callable</code> and a <code>Runnable</code> is explained a bit later.
+</p>
+
+<p>
+    The <code>Callable</code>'s result can be obtained via the <a href="http://tutorials.jenkov.com/java-util-concurrent/java-future.html">Java Future</a> object returned by the
+    <code>submit(Callable)</code> method. Here is an <code>ExecutorService</code> <code>Callable</code> example:
+</p>
+
+<pre class="codeBox">Future future = executorService.submit(new Callable(){
+    public Object call() throws Exception {
+        System.out.println("Asynchronous Callable");
+        return "Callable Result";
+    }
+});
+
+System.out.println("future.get() = " + future.get());
+</pre>
+
+
+<p>
+    The above code example will output this:
+</p>
+
+<pre class="codeBox">Asynchronous Callable
+future.get() = Callable Result
+</pre>
+
+
+
+<a name="invokeany"></a>
+<h3>invokeAny()</h3>
+
+<p>
+    The <code>invokeAny()</code> method takes a collection of <code>Callable</code> objects, or subinterfaces
+    of <code>Callable</code>. Invoking this method does not return a <code>Future</code>, but returns the
+    result of one of the <code>Callable</code> objects. You have no guarantee about which of the <code>Callable</code>'s
+    results you get. Just one of the ones that finish.
+</p>
+
+<p>
+    If one of the tasks complete (or throws an exception), the rest of the <code>Callable</code>'s are cancelled.
+</p>
+
+<p>
+    Here is a code example:
+</p>
+
+<pre class="codeBox">ExecutorService executorService = Executors.newSingleThreadExecutor();
+
+Set&lt;Callable&lt;String&gt;&gt; callables = new HashSet&lt;Callable&lt;String&gt;&gt;();
+
+callables.add(new Callable&lt;String&gt;() {
+    public String call() throws Exception {
+        return "Task 1";
+    }
+});
+callables.add(new Callable&lt;String&gt;() {
+    public String call() throws Exception {
+        return "Task 2";
+    }
+});
+callables.add(new Callable&lt;String&gt;() {
+    public String call() throws Exception {
+        return "Task 3";
+    }
+});
+
+String result = executorService.invokeAny(callables);
+
+System.out.println("result = " + result);
+
+executorService.shutdown();
+</pre>
+
+<p>
+    This code example will print out the object returned by one of the <code>Callable</code>'s in the
+    given collection. I have tried running it a few times, and the result changes. Sometimes it is
+    "Task 1", sometimes "Task 2" etc.
+</p>
+
+
+
+
+<a name="invokeall"></a>
+<h3>invokeAll()</h3>
+<p>
+    The <code>invokeAll()</code> method invokes all of the <code>Callable</code> objects you pass to
+    it in the collection passed as parameter. The <code>invokeAll()</code> returns a list of <code>Future</code>
+    objects via which you can obtain the results of the executions of each <code>Callable</code>.
+</p>
+
+<p>
+    Keep in mind that a task might finish due to an exception, so it may not have "succeeded". There is
+    no way on a <code>Future</code> to tell the difference.
+</p>
+
+<p>
+    Here is a code example:
+</p>
+
+<pre class="codeBox">ExecutorService executorService = Executors.newSingleThreadExecutor();
+
+Set&lt;Callable&lt;String&gt;&gt; callables = new HashSet&lt;Callable&lt;String&gt;&gt;();
+
+callables.add(new Callable&lt;String&gt;() {
+    public String call() throws Exception {
+        return "Task 1";
+    }
+});
+callables.add(new Callable&lt;String&gt;() {
+    public String call() throws Exception {
+        return "Task 2";
+    }
+});
+callables.add(new Callable&lt;String&gt;() {
+    public String call() throws Exception {
+        return "Task 3";
+    }
+});
+
+List&lt;Future&lt;String&gt;&gt; futures = executorService.invokeAll(callables);
+
+for(Future&lt;String&gt; future : futures){
+    System.out.println("future.get = " + future.get());
+}
+
+executorService.shutdown();
+</pre>
+
+
+
+
+<a name="runnable-vs-callable"></a>
+<h3>Runnable vs. Callable</h3>
+
+<p>
+    The <code>Runnable</code> interface is very similar to the <code>Callable</code> interface. Both interfaces
+    represents a task that can be executed concurrently by a thread or an <code>ExecutorService</code>. Both
+    interfaces only has a single method. There is one small difference between the <code>Callable</code>
+    and <code>Runnable</code> interface though. The difference between the <code>Runnable</code> and
+    <code>Callable</code> interface is more easily visible when you see the interface declarations.
+</p>
+
+<p>
+    Here is first the <code>Runnable</code> interface declaration:
+</p>
+
+<pre class="codeBox">public interface Runnable {
+    public void run();
+}
+</pre>
+
+<p>
+    And here is the <code>Callable</code> interface declaration:
+</p>
+
+<pre class="codeBox">public interface Callable{
+    public Object call() throws Exception;
+}
+</pre>
+
+
+<p>
+    The main difference between the <code>Runnable</code> <code>run()</code> method and the
+    <code>Callable</code> <code>call()</code> method is that the <code>call()</code> method can return
+    an <code>Object</code> from the method call. Another difference between <code>call()</code> and
+    <code>run()</code> is that <code>call()</code> can throw an exception, whereas <code>run()</code>
+    cannot (except for unchecked exceptions - subclasses of <code>RuntimeException</code>).
+</p>
+
+<p>
+    If you need to submit a task to a Java <code>ExecutorService</code> and you need a result from the task,
+    then you need to make your task implement the <code>Callable</code> interface. Otherwise your task can
+    just implement the <code>Runnable</code> interface.
+</p>
+
+
+
+<a name="cancel-task"></a>
+<h3>Cancel Task</h3>
+
+<p>
+    You can cancel a task (<code>Runnable</code> or <code>Callable</code>) submitted to a Java <code>ExecutorService</code>
+    by calling the <code>cancel()</code> method on the <code>Future</code> returned when the task is submitted.
+    Cancelling the task is only possible if the task has not yet started executing. Here is an example of cancelling
+    a task by calling the <code>Future.cancel()</code> method:
+</p>
+
+<pre class="codeBox">future.cancel();
+</pre>
+
+
+
+<a name="executorservice-shutdown"></a>
+<h2>ExecutorService Shutdown</h2>
+<p>
+    When you are done using the Java <code>ExecutorService</code> you should shut it down, so the threads
+    do not keep running. If your application is started via a <code>main()</code> method
+    and your main thread exits your application, the application will keep running if you have an
+    active <code>ExexutorService</code> in your application. The active threads inside this <code>ExecutorService</code>
+    prevents the JVM from shutting down.
+</p>
+
+
+
+<a name="shutdown()"></a>
+<h3>shutdown()</h3>
+
+<p>
+    To terminate the threads inside the <code>ExecutorService</code> you call its <code>shutdown()</code> method.
+    The <code>ExecutorService</code> will not shut down immediately, but it will no longer accept new tasks, and
+    once all threads have finished current tasks, the <code>ExecutorService</code> shuts down. All tasks submitted
+    to the <code>ExecutorService</code> before <code>shutdown()</code> is called, are executed. Here is an example
+    of performing a Java <code>ExecutorService</code> shutdown:
+</p>
+
+<pre class="codeBox">executorService.shutdown();
+</pre>
+
+
+
+<a name="shutdownnow"></a>
+<h3>shutdownNow()</h3>
+
+<p>
+    If you want to shut down the <code>ExecutorService</code> immediately, you can call the <code>shutdownNow()</code>
+    method. This will attempt to stop all executing tasks right away, and skips all submitted but non-processed tasks.
+    There are no guarantees given about the executing tasks. Perhaps they stop, perhaps the execute until the end.
+    It is a best effort attempt. Here is an example of calling <code>ExecutorService</code> <code>shutdownNow</code>:
+</p>
+
+<pre class="codeBox">executorService.shutdownNow();
+</pre>
+
+
+
+<a name="awaittermination"></a>
+<h3>awaitTermination()</h3>
+
+<p>
+    The <code>ExecutorService</code> <code>awaitTermination()</code> method will block the thread calling it
+    until either the <code>ExecutorService</code> has shutdown completely, or until a given time out occurs.
+    The <code>awaitTermination()</code> method is typically called after calling <code>shutdown()</code> or
+    <code>shutdownNow()</code>. Here is an example of calling <code>ExecutorService</code> <code>awaitTermination()</code>:
+</p>
+
+<pre class="codeBox">executorService.shutdown();
+
+executorService.awaitTermination();
+</pre>
+
+            </div>
+
+            <div id="next">Next: <a href="http://tutorials.jenkov.com/java-util-concurrent/java-callable.html">Java Callable</a></div>
+            <div id="bottomSocial">
+
+                <div style="display:inline-block;">
+                    <table>
+                        <tbody><tr><td colspan="2">
+                            <div id="___plus_0" style="position: absolute; width: 450px; left: -10000px;"><iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position:absolute;top:-10000px;width:450px;margin:0px;border-style:none" tabindex="0" vspace="0" width="100%" id="I0_1581200738642" name="I0_1581200738642" src="./Java ExecutorService_files/sharebutton.html" data-gapiattached="true"></iframe></div><div class="g-plus" data-action="share" data-height="24" data-annotation="none" data-gapiscan="true" data-onload="true" data-gapistub="true"></div>
+                            <script src="./Java ExecutorService_files/cb=gapi.loaded_1" async=""></script><script src="./Java ExecutorService_files/cb=gapi.loaded_0" async=""></script><script async="" src="./Java ExecutorService_files/analytics.js"></script><script id="twitter-wjs" src="./Java ExecutorService_files/widgets.js"></script><script type="text/javascript" async="" src="./Java ExecutorService_files/platform.js" gapi_processed="true"></script><script type="text/javascript">
+                                (function() {
+                                    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                                    po.src = 'https://apis.google.com/js/platform.js';
+                                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                                 })();
+                            </script>
+
+                            <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button" style="position: static; visibility: visible; width: 61px; height: 20px;" title="Twitter Tweet Button" src="./Java ExecutorService_files/tweet_button.7303c29a8108bca4ac5c9ef008ed8164.en.html"></iframe>
+                            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+                        </td></tr>
+                        <tr><td class="authorPhoto"></td><td><p style="margin: 0px 0px 6px 0px;">Jakob Jenkov</p><div class="authorSocialLinks"></div></td></tr>
+                    </tbody></table>
+                </div>
+
+                <div style="display: none;" class="newsletterForm"></div>
+
+            </div>
+
+        </div>
+    </div><div class="right">
+        <div class="card cardRight cardTop cardBottom">Right 1
+            <div>Right 2</div>
+        </div>
+    </div>
+    </div>
+    <div class="footer">
+        <div id="footerCopyright">Copyright Jenkov Aps</div>
+    </div>
+</div>
+
+<style>
+.navButton{color: #ffffff; font-weight: bold;}
+#trailTocFixedDiv{position: fixed;  top : 0px; left : 0px; width : 100%; height : 100%;  display : none; background-color: #ffffff;}
+#trailTocFixedInnerDiv{width: 400px; max-width: 94%; height: calc(100% - 72px); overflow : auto; margin: 20px auto 20px auto; padding: 0px 0px 180px 0px;}
+#trailTocFixedInnerDiv th{border-bottom: 1px solid #f0f0f0;padding: 6px 10px;text-align: left;font-size: 1.2em;}
+#trailTocFixedInnerDiv td{border-bottom: 1px solid #f0f0f0;padding: 6px 20px;vertical-align: top;}
+#trailTocFixedCloseButton{width : 72px; padding: 10px 20px; background-color: #009900; border: 2px solid #006600; color: #ffffff; font-size: 0.8em; font-weight: bold; position: absolute; right: 0px; cursor: pointer; box-shadow: 2px 2px 2px 2px #cccccc;}
+#bottomNavBarDiv{position:fixed; bottom: 0px; width: 100%;  background-color: #202020; border-top: 1px solid #444444;}
+.buttonNavBarButtonDivActive{background-color: #404040;}
+#bottomNavBarRow>div{border-left: 1px solid #404040; border-right: 1px solid #000000;  height: 48px;  padding-top:16px; text-align: center; cursor: pointer;}
+#bottomNavBarDiv a{color: #ffffff; font-weight: bold;}
+#bottomNavBarDiv br{display:none;}
+#bottomNavBarDiv img{ height: 20px; }
+#nextButton2{ display:none; }
+@media only screen and (max-width: 700px){
+  #bottomNavBarDiv, #bottomNavBarDiv [jqc-cell] { height: 58px; }
+  #bottomNavBarDiv [jqc-cell] {padding-top: 12px;}
+  #bottomNavBarDiv a { font-size: 0.8em; }
+  #bottomNavBarDiv br { display: inline; }
+  #nextButton1 { display: none; }
+  #nextButton2 { display: inline; }
+}
+@media only screen and (max-width: 400px){
+  #bottomNavBarDiv [jqc-cell] {padding-top: 10px;}
+  #bottomNavBarDiv a {font-size: 0.5em;}
+  #bottomNavBarDiv img {height: 24px;}
+}
+</style>
+
+
+<div id="trailTocFixedDiv">
+    <div id="trailTocFixedCloseButton">Close TOC</div>
+    <div id="trailTocFixedInnerDiv"></div>
+</div>
+
+<style>
+#bottomNavBar2Parent{position:fixed; bottom: 0px; width: 100%;  background-color: #202020; border-top: 1px solid #444444;}
+#bottomNavBar2>div{border-left: 1px solid #404040; border-right: 1px solid #000000;  height: 48px;  padding-top:16px; text-align: center; cursor: pointer;}
+
+
+#bottomNavBar2{
+  display: grid;
+}
+#allTrailsButtonDiv2{
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+#trailTocButtonDiv2 {
+  grid-column-start: 3;
+  grid-column-end: 5;
+}
+
+#pageTocButtonDiv2{
+  grid-column-start: 5;
+  grid-column-end: 7;
+}
+
+#prevButtonDiv2 {
+  grid-column-start: 7;
+  grid-column-end: 9;
+}
+
+#nextButtonDiv2 {
+  grid-column-start: 9;
+  grid-column-end: 13;
+}
+
+</style>
+
+<div id="bottomNavBar2Parent">
+<div id="bottomNavBar2">
+
+    <div id="allTrailsButtonDiv2">
+        <span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAbUlEQVRIx+3SQQrAIAxEUenNewrvmkXUQgVJEwWdQEED4kb+QzSEPw0z389yi6d3JJKaWY5ryBKgxSVS9jgF9OItQkRXRaBxDYHHJeISt34XND5EEHETQcY/iEfcvAkqbD7yAaYB1PkD7AB4TAY0StbUr69awQAAAABJRU5ErkJggg=="></span> <br>
+        <span class="navButton" style="position:relative; top:-4px;">All Trails</span>
+    </div>
+
+    <div id="trailTocButtonDiv2">
+        <span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAPElEQVRIx2P4TwPAgAzoZgEDrQDdLaB6cI1aMHgtoFriGRkWEB3eg9YHo0E08BaM8CAiWoLaFlAL0NwCANELs4XjmhvVAAAAAElFTkSuQmCC"></span> <br>
+        <span class="navButton" style="position:relative; top:-4px;">Trail TOC</span>
+    </div>
+
+    <div id="pageTocButtonDiv2">
+        <span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAANUlEQVRIx2NggIL/VAYM6GDUglELqGcBA4Vg1ALqWkBOhA4uH4wG0cBbMBpEw9QCagG6WQAAX980BcIgiscAAAAASUVORK5CYII="></span> <br>
+        <span class="navButton" style="position:relative; top:-4px;">Page TOC</span>
+    </div>
+
+    <div id="prevButtonDiv2">
+        <span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuNvyMY98AAACCSURBVEhL3ZRRCsAgDEM9iez+dxJPUl0K9W+MtKMiC/RL80Lz0eKViNQxRpsvwnvHv8ssvGD8ORzjh7Odf4F34zxK30O1qImEV7Pw0nUJeEuFY/xwspZceKiWVLgqPUC1JQSAc0Iwh2+iZiIkdiqWdobknOslmM8JwcbxELaujSGl3GNH6mWcCMu2AAAAAElFTkSuQmCC"></span> <br>
+        <span class="navButton" style="position:relative; top:-4px;">Previous</span>
+    </div>
+
+    <div id="nextButtonDiv2">
+        <!--<span class="navButton" id="nextButton1_2" style="position:relative; top:-4px;">Next</span>-->
+        <span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAb0lEQVRIx82W2w1AIQhDmcS4/07GScDbu4AvUlMSv9QeA6RohnD3GhF9TAL7DeeK3cYuBEscgss6kBc16VlI2YTULKStIH9aMzXRgTxJlzaECpAQv+okaptSX35gFed+RBWn2jV14FBHJvVnwRT/AGJL6mWb6M7pAAAAAElFTkSuQmCC"></span> <br>
+        <span class="navButton" id="nextButton2_2" style="position:relative; top:-4px;">Next</span>
+    </div>
+
+</div>
+</div>
+
+
+<script>
+var prevArticleInCategory = "/java-util-concurrent/semaphore.html";
+var nextArticleInCategory = "/java-util-concurrent/java-callable.html";
+</script>
+
+
+<script>
+function qid(id) { return document.getElementById(id); }
+</script>
+
+<!-- Nav bar code -->
+<script>
+function toggle(el){
+    if(el.isShown == null || el.isShown == false) {
+        el.isShown = true;
+        el.style.display = "block";
+    } else {
+        el.isShown = false;
+        el.style.display = "none";
+    }
+}
+
+qid("allTrailsButtonDiv2").addEventListener("mouseup", function(e) {
+    location.href="/";
+    e.preventDefault();
+    e.stopPropagation();
+});
+qid("trailTocButtonDiv2").addEventListener("mouseup", function(e) {
+    var tocHtml = qid("trailToc").innerHTML;
+    qid("trailTocFixedInnerDiv").innerHTML = tocHtml + "<br><br><br><br><br><br><br><br><br><br>";
+    toggle(qid("trailTocFixedDiv"));
+    e.preventDefault();
+    e.stopPropagation();
+});
+qid("trailTocFixedCloseButton").addEventListener("mouseup", function(e) {
+    toggle(qid("trailTocFixedDiv"));
+    e.preventDefault();
+    e.stopPropagation();
+});
+qid("pageTocButtonDiv2").addEventListener("mouseup", function(e) {
+    location.href="#pageToc";
+    e.preventDefault();
+    e.stopPropagation();
+});
+qid("prevButtonDiv2").addEventListener("mouseup", function(e) {
+    if(prevArticleInCategory != "") {
+        location.href = prevArticleInCategory;
+    } else {
+        alert("This is the first article in this trail");
+    }
+});
+qid("nextButtonDiv2").addEventListener("mouseup", function(e) {
+  if(nextArticleInCategory != "") {
+    location.href= nextArticleInCategory;
+  } else {
+    alert("This is the last article in this trail.");
+  }
+  e.preventDefault();
+  e.stopPropagation();
+});
+</script>
+
+
+<!-- Google Analytics Script -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-4036229-3', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<!-- Google Adsense Script -->
+<script data-ad-client="ca-pub-5569543489255665" async="" src="./Java ExecutorService_files/f.txt"></script>
+
+
+
+
+
+<iframe scrolling="no" frameborder="0" allowtransparency="true" src="./Java ExecutorService_files/widget_iframe.7303c29a8108bca4ac5c9ef008ed8164.html" title="Twitter settings iframe" style="display: none;"></iframe><iframe name="oauth2relay1279938145" id="oauth2relay1279938145" src="./Java ExecutorService_files/postmessageRelay.html" tabindex="-1" aria-hidden="true" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe></body></html>
