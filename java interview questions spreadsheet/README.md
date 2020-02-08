@@ -6321,6 +6321,13 @@ https://winterbe.com/posts/2015/05/22/java8-concurrency-tutorial-atomic-concurre
 `references:`
 https://en.wikipedia.org/wiki/Semaphore_(programming)
 
+- Lock or mutex 
+
+[Lock-computer-science-Wikipedia](Lock-computer-science-Wikipedia)
+
+`references:`
+https://en.wikipedia.org/wiki/Lock_(computer_science)
+
 ----
 
 # ThreadLocal
@@ -6329,8 +6336,30 @@ https://en.wikipedia.org/wiki/Semaphore_(programming)
 |-------|-----|-------|
 |       |  x  |   x   |
 
+- [jenkov-Java-ThreadLocal](refs/jenkov-Java-ThreadLocal)
 
+`references:`
+http://tutorials.jenkov.com/java-concurrency/threadlocal.html
 
+- [An-Introduction-to-ThreadLocal-in-Java-Baeldung](refs/An-Introduction-to-ThreadLocal-in-Java-Baeldung)
+
+`references:`
+https://www.baeldung.com/java-threadlocal
+
+- [java-When-and-how-should-I-use-a-ThreadLocal-variable-StackOverflow](refs/java-When-and-how-should-I-use-a-ThreadLocal-variable-StackOverflow)
+
+`references:`
+https://stackoverflow.com/questions/817856/when-and-how-should-i-use-a-threadlocal-variable
+
+- [Frank-Kieviets-Engineering-Notebook-Classloader-leaks-java.lang.OutOfMemoryError-PermGen-space-exception](refs/Frank-Kieviets-Engineering-Notebook-Classloader-leaks-java.lang.OutOfMemoryError-PermGen-space-exception)
+
+`references:`
+http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html
+
+- [Facts-and-Thoughts-ThreadLocal-and-memory-leaks](refs/Facts-and-Thoughts-ThreadLocal-and-memory-leaks)
+
+`references:`
+http://avasseur.blogspot.com/2003/11/threadlocal-and-memory-leaks.html
 
 ----
 
@@ -6356,6 +6385,16 @@ https://stackoverflow.com/questions/9303532/immutable-objects-are-thread-safe-bu
 https://dzone.com/articles/do-immutability-really-means
 
 ----
+
+# Ancestor of HashMap, Hashtable thread safe?
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |     |   x   |
+
+
+
+
 ----
 ----
 ----
