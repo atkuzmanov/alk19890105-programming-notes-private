@@ -1,0 +1,302 @@
+
+.wrap-grid {
+    margin: 0 auto;
+    width: 92%;
+}
+
+.height-auto {
+    height: auto;
+    overflow: hidden;
+}
+
+ul.menu-top.desktop {
+    display: none;
+}
+
+.menu-three-lines {
+    display: block;
+}
+
+.menu-mobile {
+    float: left;
+    height: auto;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    z-index: 3;
+}
+
+ul.menu-top.mobile {
+    display: block; /* show-menu */
+}
+
+section.heading-banner {
+    height: auto;
+    overflow: hidden;
+}
+
+section.heading-banner .cta-btns a.heading-btn {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+section.heading-banner .cta-btns a.heading-btn.mright {
+    margin-right: 0px;
+}
+
+.features-box .feature-body { 
+    margin: 10px 2%;
+    width: 96%;
+}
+
+.latest-blogs .latest-blogs-content .latest-post {
+    width: 100%
+}
+
+.latest-blogs .latest-blogs-content .latest-post:nth-child(2) {
+    margin: 20px 0;
+}
+
+.latest-blogs .latest-blogs-content .latest-post .latest-post-image .hover-image { 
+    width: 100%;
+}
+
+.latest-blogs .latest-blogs-content .latest-post .latest-post-video img {
+    width: 100%;
+}
+
+.blog-container section.blog-content {
+    float: left;
+    margin-right: 0;
+    width: 100%; 
+}
+
+.blog-container section.blog-sidebar {
+	width: 100%; 
+}
+
+.search-block .wpcf7-form input.search-field[type='text'] {
+    width: 90%;
+}
+
+.share-block .widget .widget-title {
+    width: 40%;
+}
+
+.contacts-container form.wpcf7-form {
+    width: 80%;    
+}
+
+.contacts-bottom {
+    height: auto;
+    overflow: hidden;
+}
+
+.contacts-bottom .contacts-bottom-conatainer .widget {
+    width: 100%;
+}
+
+.contacts-bottom .contacts-bottom-conatainer .widget.left-widget {
+    padding-left: 0px;
+}
+
+.contacts-bottom .contacts-bottom-conatainer .widget.right-widget {
+    padding-left: 0px;
+}
+
+footer.bottom .cta-contact-us {
+    height: auto;
+}
+
+footer.bottom .cta-contact-us .cta-contact-right-text {
+    height: auto;
+}
+
+footer.bottom .cta-contact-us .cta-contact-btn {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+footer.bottom .bottom-navigation .bottom-navigation-content .widget {
+    width: 100%;
+}
+
+footer.bottom .bottom-navigation .bottom-navigation-content .widget:first-child .widget-title {
+    margin-top: 0px;
+}
+
+footer.bottom .bottom-navigation .bottom-navigation-content .widget .widget-title {
+    margin-top: 30px;
+}
+
+footer.bottom .bottom-navigation .bottom-navigation-content .widget p.bottom-text {
+    margin-bottom: 20px;
+}
+
+footer.bottom .copyright {
+    height: auto;
+}
+
+footer.bottom .copyright .block-right {
+    float: left;
+}
+
+
+/**  tablet  **/
+@media screen and (min-width: 481px) {
+    
+    section.heading-banner {
+        height: 448px;
+    }
+    
+    section.heading-banner .cta-btns a.heading-btn {
+        margin-bottom: 0px;
+        width: 200px;
+    }
+    
+    .features-box .feature-body { 
+        margin: 10px 2%;
+        width: 46%;
+    }
+    
+    section.heading-banner .cta-btns a.heading-btn.mright {
+        margin-right: 30px;
+    }
+    
+    .share-block .widget .widget-title {
+        width: 35%;
+    }
+    
+    footer.bottom .bottom-navigation .bottom-navigation-content .widget {
+        margin: 0 2% 0 0;
+        width: 48%;
+    }
+    
+    footer.bottom .bottom-navigation .bottom-navigation-content .widget:nth-child(2) .widget-title {
+        margin-top: 0px;
+    }
+    
+}
+
+/** Desktop **/
+@media screen and (min-width:1024px) {
+    .wrap-grid {
+        margin: 0 auto;
+        width: 980px;
+    }
+    
+    .height-auto {
+        height: auto;
+        overflow: visible;
+    }
+    
+    ul.menu-top.desktop {
+        display: block;
+    }
+    
+    .menu-three-lines {
+        display: none;
+    }
+    
+    ul.menu-top.mobile {
+        display: none;
+    }
+    
+    section.heading-banner .cta-btns a.heading-btn {
+        width: 238px;
+    }
+    
+    .features-box .feature-body { 
+        margin: 0 20px;
+        width: 200px;
+    }
+    
+    .latest-blogs .latest-blogs-content .latest-post {
+        width: 280px;   
+    }
+    
+    .latest-blogs .latest-blogs-content .latest-post:nth-child(2) {
+        margin: 0 60px;
+    }
+    
+    .latest-blogs .latest-blogs-content .latest-post .latest-post-image { 
+        border: 1px solid #DCDCDC;
+        padding: 3px;
+    }
+    
+    .latest-blogs .latest-blogs-content .latest-post .latest-post-image .hover-image { 
+        border-bottom: 3px solid #FFFFFF;
+        border-top: 3px solid #FFFFFF;
+        width: 272px;
+    }
+    
+    .blog-container section.blog-content {
+        margin-right: 45px; 
+        padding: 0 0;
+        width: 685px; 
+    }
+    
+    .blog-container section.blog-sidebar {
+        padding: 0 0;
+        width: 250px; 
+    }
+    
+    .search-block .wpcf7-form input.search-field[type='text'] {
+        width: 212px;
+    }
+    
+    .contacts-container form.wpcf7-form {
+        width: 592px; 
+    }
+    
+    .contacts-bottom .contacts-bottom-conatainer .widget {
+        width: 50%;
+    }
+    
+    .contacts-bottom .contacts-bottom-conatainer .widget.left-widget {
+        padding-left: 50px;
+    }
+
+    .contacts-bottom .contacts-bottom-conatainer .widget.right-widget {
+        padding-left: 125px;
+    }
+    
+    footer.bottom .cta-contact-us {
+        height: 108px;
+    }
+    
+    footer.bottom .cta-contact-us .cta-contact-right-text {
+        height: 32px;
+    }
+    
+    footer.bottom .cta-contact-us .cta-contact-btn {
+        margin-bottom: 0px;
+        margin-top: 0px;
+        width: auto;
+    }
+    
+    footer.bottom .bottom-navigation .bottom-navigation-content .widget {
+        margin: 0 25px 0 0;
+        width: 220px;
+    }
+    
+    footer.bottom .bottom-navigation .bottom-navigation-content .widget .widget-title {
+        margin-top: 0px;
+    }
+    
+    footer.bottom .bottom-navigation .bottom-navigation-content .widget p.bottom-text {
+        margin-bottom: 0px;
+    }
+    
+    footer.bottom .copyright {
+        height: 50px;   
+    }
+    
+    footer.bottom .copyright .block-right {
+        float: right;
+    }
+}
+
+

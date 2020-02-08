@@ -1,0 +1,29 @@
+.wpeps-series-nav {
+	background: #F5F5F5;
+	border: 1px solid #DDD;
+	border-radius: 4px;
+	font-size: 14px;
+	margin: 0 0 25px 0;
+	padding: 15px 20px 15px 20px;
+}
+
+.wpeps-series-nav p {
+	margin: 0;
+}
+
+.wpeps-series-nav ol {
+	clear: both;
+	display: none;
+	margin: 10px 0 0 0;
+	padding: 0 0 0 25px;
+}
+
+.wpeps-show-posts,
+.wpeps-hide-posts {
+	float: right;
+	vertical-align: middle;	
+}
+
+.wpeps-hide-posts {
+	display: none;
+}
