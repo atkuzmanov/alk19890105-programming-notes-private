@@ -6492,6 +6492,8 @@ https://www.geeksforgeeks.org/deadlock-starvation-java/
 
 - [Java-Thread-Starvation-Example](refs/Java-Thread-Starvation-Example)
 
+![main.png](refs/Java-Thread-Starvation-Example/Java%20-%20Thread%20Starvation%20Example_files/main.png)
+
 `references:`
 https://www.logicbig.com/tutorials/core-java-tutorial/java-multi-threading/thread-starvation.html
 
@@ -6502,15 +6504,38 @@ https://netjs.blogspot.com/2017/10/thread-starvation-in-java-multi-threading.htm
 
 ## Livelock
 
+- [Whats-the-difference-between-deadlock-and-livelock-StackOverflow](refs/Whats-the-difference-between-deadlock-and-livelock-StackOverflow)
+
+![OAda8.jpg](refs/Whats-the-difference-between-deadlock-and-livelock-StackOverflow/multithreading%20-%20What%27s%20the%20difference%20between%20deadlock%20and%20livelock_%20-%20Stack%20Overflow_files/OAda8.jpg)
+
+`references:`
+https://stackoverflow.com/questions/6155951/whats-the-difference-between-deadlock-and-livelock
+
 ```text
 ```
 
+## Deadlock, Livelock and Starvation
+
 - [Understanding-Deadlock-Livelock-and-Starvation-with-Code-Examples-in-Java](refs/Understanding-Deadlock-Livelock-and-Starvation-with-Code-Examples-in-Java)
+
+    - **Deadlock:** All threads are blocked, the program hangs forever.
+
+    - **Livelock:** No threads blocked but they run into infinite loops. The program is still running but unable to make further progress.
+
+    - **Starvation:** Only one thread is running, and other threads are waiting forever.
 
 `references:`
 https://www.codejava.net/java-core/concurrency/understanding-deadlock-livelock-and-starvation-with-code-examples-in-java
 
 ----
+
+# Parallel stream/ Fork / Join
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |     |   x   |
+
+
 ----
 ----
 ----
