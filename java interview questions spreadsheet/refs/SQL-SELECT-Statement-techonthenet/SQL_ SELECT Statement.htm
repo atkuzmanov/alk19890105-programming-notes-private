@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)https://www.techonthenet.com/sql/select.php -->
+<html lang="en"><!-- InstanceBegin template="/Templates/threecolumn.dwt" codeOutsideHTMLIsLocked="false" --><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="robots" content="noarchive">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="www.techonthenet.com">
+<!-- InstanceBeginEditable name="Meta-title" -->
+<meta name="description" content="This SQL tutorial explains how to use the SQL SELECT statement with syntax, examples, and practice exercises. The SQL SELECT statement is used to retrieve records from one or more tables in your SQL database.">
+<meta name="keywords" content="techonthenet, tech on the net, totn, sql, select statement, sql select statement, syntax, parameters, arguments, example, tutorial">
+<title>SQL: SELECT Statement</title>
+<!-- InstanceEndEditable -->
+<link rel="canonical" href="https://www.techonthenet.com/sql/select.php">
+<link rel="shortcut icon" href="https://www.techonthenet.com/favicon.ico">
+<link rel="apple-touch-icon" href="https://www.techonthenet.com/apple-touch-icon.png">
+<link rel="apple-touch-icon" href="https://www.techonthenet.com/apple-touch-icon-57x57.png" sizes="57x57">
+<link rel="apple-touch-icon" href="https://www.techonthenet.com/apple-touch-icon-60x60.png" sizes="60x60">
+<link rel="apple-touch-icon" href="https://www.techonthenet.com/apple-touch-icon-72x72.png" sizes="72x72">
+<link rel="apple-touch-icon" href="https://www.techonthenet.com/apple-touch-icon-76x76.png" sizes="76x76">
+<link rel="apple-touch-icon" href="https://www.techonthenet.com/apple-touch-icon-114x114.png" sizes="114x114">
+<link rel="apple-touch-icon" href="https://www.techonthenet.com/apple-touch-icon-120x120.png" sizes="120x120">
+<link rel="apple-touch-icon" href="https://www.techonthenet.com/apple-touch-icon-144x144.png" sizes="144x144">
+<link rel="apple-touch-icon" href="https://www.techonthenet.com/apple-touch-icon-152x152.png" sizes="152x152">
+<link rel="apple-touch-icon" href="https://www.techonthenet.com/apple-touch-icon-180x180.png" sizes="180x180">
+<link rel="stylesheet" href="./SQL_ SELECT Statement_files/main.css" type="text/css">
+<!--[if IE]>
+<script>window.oldie = true;</script>
+<![endif]-->
+<!--[if lt IE 9]>
+<script type="text/javascript" src="/javascript/html5shiv-respond.min.js"></script>
+<![endif]-->
+<script async="" type="text/javascript" src="./SQL_ SELECT Statement_files/pb.js"></script>
+<link href="chrome-extension://cgjalgdhmbpaacnnejmodfinclbdgaci/styles/shThemeMidnight.css" type="text/css" rel="stylesheet"><style>.syntaxhighlighter .toolbar {display:none}</style><style type="text/css" id="fontOverride">.syntaxhighlighter, .syntaxhighlighter code, .syntaxhighlighter div {
+ font-size: normal !important;
+ font-family: 'Consolas, monospace', monospace !important;
+ line-height: 1.6em !important;
+ }</style></head>
+<body>
+<a href="https://www.techonthenet.com/hpot.php"></a>
+<div id="pre_header" class="eu">
+<div class="slot top_slot"><p>Advertisement</p><div id="first_slot"><iframe id="first_frm" src="./SQL_ SELECT Statement_files/saved_resource.html" width="728" height="90" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div></div>
+</div>
+<div class="header_ph">
+<div id="header" role="banner" class="fixed">
+<div class="top_nav">
+<img id="menu_link" alt="Menu Icon" src="./SQL_ SELECT Statement_files/menu_icon.png" title="Click to show menu">
+<a href="https://www.techonthenet.com/index.php"><img alt="TechOnTheNet Logo" src="./SQL_ SELECT Statement_files/logo.png"></a>
+<div class="menu">
+<a href="https://twitter.com/tech_on_the_net" target="_blank" title="Follow us on Twitter"><img alt="Twitter" src="./SQL_ SELECT Statement_files/twitter.png"></a>
+<a href="https://www.facebook.com/techonthenetcom" target="_blank" title="Follow us on Facebook"><img alt="Facebook" src="./SQL_ SELECT Statement_files/facebook.png"></a>
+<a href="https://www.pinterest.com/techonthenetcom/" target="_blank" title="Follow us on Pinterest"><img alt="Pinterest" src="./SQL_ SELECT Statement_files/pinterest.png"></a>
+<a href="https://www.youtube.com/c/Techonthenetcom" target="_blank" title="Follow us on YouTube"><img alt="YouTube" src="./SQL_ SELECT Statement_files/youtube.png"></a>
+</div>
+</div>
+<div class="breadcrumb menu" role="navigation">
+<a href="https://www.techonthenet.com/search_results.php"><img class="search_link" alt="Search" src="./SQL_ SELECT Statement_files/search_icon.png" title="Click to search TechOnTheNet"></a>
+<ol>
+<li><a href="https://www.techonthenet.com/index.php"><img alt="Home" src="./SQL_ SELECT Statement_files/home.png"><span class="home">Home</span></a></li>
+<li><a href="https://www.techonthenet.com/sql/index.php">SQL</a></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="usernote"><noscript><div class="jsdisabled">TechOnTheNet.com requires javascript to work properly. Please re-enable javascript in your browser settings.</div></noscript></div>
+<div id="main">
+<div id="sidebar" class="menu" role="navigation">
+<ol class="notranslate">
+<li>Databases</li>
+<li><a href="https://www.techonthenet.com/sql/index.php">SQL</a></li>
+<li><a href="https://www.techonthenet.com/oracle/index.php">Oracle / PLSQL</a></li>
+<li><a href="https://www.techonthenet.com/sql_server/index.php">SQL Server</a></li>
+<li><a href="https://www.techonthenet.com/mysql/index.php">MySQL</a></li>
+<li><a href="https://www.techonthenet.com/mariadb/index.php">MariaDB</a></li>
+<li><a href="https://www.techonthenet.com/postgresql/index.php">PostgreSQL</a></li>
+<li><a href="https://www.techonthenet.com/sqlite/index.php">SQLite</a></li>
+</ol>
+<ol class="notranslate">
+<li>MS Office</li>
+<li><a href="https://www.techonthenet.com/excel/index.php">Excel</a></li>
+<li><a href="https://www.techonthenet.com/access/index.php">Access</a></li>
+<li><a href="https://www.techonthenet.com/word/index.php">Word</a></li>
+</ol>
+<ol>
+<li>Web Development</li>
+<li class="notranslate"><a href="https://www.techonthenet.com/html/index.php">HTML</a></li>
+<li class="notranslate"><a href="https://www.techonthenet.com/css/index.php">CSS</a></li>
+<li class="notranslate"><a href="https://www.techonthenet.com/js/index.php">JavaScript</a></li>
+<li><a href="https://www.techonthenet.com/color_picker/index.php">Color Picker</a></li>
+</ol>
+<ol>
+<li>Programming</li>
+<li><a href="https://www.techonthenet.com/c_language/index.php">C Language</a></li>
+</ol>
+<ol>
+<li>More</li>
+<li><a href="https://www.techonthenet.com/ascii/chart.php">ASCII Table</a></li>
+<li><a href="https://www.techonthenet.com/unicode/chart.php">Unicode</a></li>
+<li class="notranslate"><a href="https://www.techonthenet.com/linux/index.php">Linux</a></li>
+<li class="notranslate"><a href="https://www.techonthenet.com/unix/index.php">UNIX</a></li>
+<li><a href="https://www.techonthenet.com/joke.php">Techie Humor</a></li>
+</ol>
+<div class="slot left_slot"><p>Advertisement</p><div id="second_slot"><iframe id="second_frm" src="./SQL_ SELECT Statement_files/saved_resource(1).html" width="160" height="600" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div></div>
+</div>
+<div id="right_sidebar" class="menu" role="complementary">
+<!-- InstanceBeginEditable name="RightNav" -->
+<div>
+<div>
+<h3>Tutorial Resources</h3>
+<ul>
+<li><a href="https://www.techonthenet.com/sql/select_ddl.php">DDL/DML</a></li>
+<li><a href="https://www.techonthenet.com/sql/select_exercises.php">Practice Exercises</a></li>
+<li><a href="https://www.techonthenet.com/sql/select_try_sql.php">SQL Editor</a></li>
+</ul>
+</div>
+</div>
+<div class="collapsible_filter">
+<input id="collapsible_filter" type="text" placeholder="Filter items">
+<img id="clear_filter" src="./SQL_ SELECT Statement_files/collapsible_clear.png" alt="clear filter">
+</div>
+<div id="collapsible" data-page="3326">
+<div class="expanded" data-category="104"><img src="./SQL_ SELECT Statement_files/caret_down.png" alt="down caret"><h3>SQL Basics</h3>
+<ul>
+<li><a href="https://www.techonthenet.com/sql/alias.php">ALIASES</a></li>
+<li><a href="https://www.techonthenet.com/sql/and.php">AND</a></li>
+<li><a href="https://www.techonthenet.com/sql/and_or.php">AND &amp; OR</a></li>
+<li><a href="https://www.techonthenet.com/sql/between.php">BETWEEN</a></li>
+<li><a href="https://www.techonthenet.com/sql/comparison_operators.php">COMPARISON OPERATORS</a></li>
+<li><a href="https://www.techonthenet.com/sql/datatypes.php">DATA TYPES</a></li>
+<li><a href="https://www.techonthenet.com/sql/delete.php">DELETE</a></li>
+<li><a href="https://www.techonthenet.com/sql/distinct.php">DISTINCT</a></li>
+<li><a href="https://www.techonthenet.com/sql/except.php">EXCEPT</a></li>
+<li><a href="https://www.techonthenet.com/sql/exists.php">EXISTS</a></li>
+<li><a href="https://www.techonthenet.com/sql/from.php">FROM</a></li>
+<li><a href="https://www.techonthenet.com/sql/group_by.php">GROUP BY</a></li>
+<li><a href="https://www.techonthenet.com/sql/having.php">HAVING</a></li>
+<li><a href="https://www.techonthenet.com/sql/in.php">IN</a></li>
+<li><a href="https://www.techonthenet.com/sql/insert.php">INSERT</a></li>
+<li><a href="https://www.techonthenet.com/sql/intersect.php">INTERSECT</a></li>
+<li><a href="https://www.techonthenet.com/sql/is_not_null.php">IS NOT NULL</a></li>
+<li><a href="https://www.techonthenet.com/sql/is_null.php">IS NULL</a></li>
+<li><a href="https://www.techonthenet.com/sql/joins.php">JOIN</a></li>
+<li><a href="https://www.techonthenet.com/sql/like.php">LIKE</a></li>
+<li><a href="https://www.techonthenet.com/sql/minus.php">MINUS</a></li>
+<li><a href="https://www.techonthenet.com/sql/not.php">NOT</a></li>
+<li><a href="https://www.techonthenet.com/sql/or.php">OR</a></li>
+<li><a href="https://www.techonthenet.com/sql/order_by.php">ORDER BY</a></li>
+<li class="active_page">SELECT</li>
+<li><a href="https://www.techonthenet.com/sql/select_limit.php">SELECT LIMIT</a></li>
+<li><a href="https://www.techonthenet.com/sql/select_top.php">SELECT TOP</a></li>
+<li><a href="https://www.techonthenet.com/sql/truncate.php">TRUNCATE</a></li>
+<li><a href="https://www.techonthenet.com/sql/union.php">UNION</a></li>
+<li><a href="https://www.techonthenet.com/sql/union_all.php">UNION ALL</a></li>
+<li><a href="https://www.techonthenet.com/sql/update.php">UPDATE</a></li>
+<li><a href="https://www.techonthenet.com/sql/where.php">WHERE</a></li>
+</ul>
+</div>
+<div class="expandable" data-category="106"><img src="./SQL_ SELECT Statement_files/caret_right.png" alt="right caret"><h3>SQL Advanced</h3>
+<ul class="hidden">
+<li><a href="https://www.techonthenet.com/sql/tables/alter_table.php">ALTER TABLE</a></li>
+<li><a href="https://www.techonthenet.com/sql/comments.php">COMMENTS</a></li>
+<li><a href="https://www.techonthenet.com/sql/tables/create_table.php">CREATE TABLE</a></li>
+<li><a href="https://www.techonthenet.com/sql/tables/create_table2.php">CREATE TABLE AS</a></li>
+<li><a href="https://www.techonthenet.com/sql/tables/drop_table.php">DROP TABLE</a></li>
+<li><a href="https://www.techonthenet.com/sql/tables/global_temp.php">GLOBAL TEMP</a></li>
+<li><a href="https://www.techonthenet.com/sql/indexes.php">INDEXES</a></li>
+<li><a href="https://www.techonthenet.com/sql/literals.php">LITERALS</a></li>
+<li><a href="https://www.techonthenet.com/sql/tables/local_temp.php">LOCAL TEMP</a></li>
+<li><a href="https://www.techonthenet.com/sql/primary_keys.php">PRIMARY KEY</a></li>
+<li><a href="https://www.techonthenet.com/sql/views.php">VIEWS</a></li>
+</ul>
+</div>
+<div class="expandable" data-category="105"><img src="./SQL_ SELECT Statement_files/caret_right.png" alt="right caret"><h3>SQL Functions</h3>
+<ul class="hidden">
+<li><a href="https://www.techonthenet.com/sql/avg.php">AVG</a></li>
+<li><a href="https://www.techonthenet.com/sql/count.php">COUNT</a></li>
+<li><a href="https://www.techonthenet.com/sql/max.php">MAX</a></li>
+<li><a href="https://www.techonthenet.com/sql/min.php">MIN</a></li>
+<li><a href="https://www.techonthenet.com/sql/sum.php">SUM</a></li>
+</ul>
+</div>
+</div>
+<!-- InstanceEndEditable -->
+</div>
+<div id="content" class="three_column">
+<div>
+<div class="page" role="main">
+<div class="article">
+<!-- InstanceBeginEditable name="Content" -->
+<div><img class="img-responsive" src="./SQL_ SELECT Statement_files/sql.png" alt="totn SQL"></div>
+<hr>
+<div class="section">
+  <h1>SQL: <span>SELECT Statement</span></h1>
+  <p>This SQL tutorial explains how to use the SQL <strong>SELECT statement</strong> with syntax, examples and <a href="https://www.techonthenet.com/sql/select_exercises.php">practice exercises</a>.</p>
+</div>
+<div class="section">
+  <h2>Description</h2>
+  <p>The SQL SELECT statement is used to retrieve records from one or more tables in your SQL database. The records retrieved are known as a result set.</p>
+<div class="youtube" data-video-id="gbHXhXmACgI"><div><iframe src="./SQL_ SELECT Statement_files/gbHXhXmACgI.html" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe></div></div>
+<p><a class="btn btn-youtube" href="https://www.youtube.com/c/Techonthenetcom?sub_confirmation=1" target="_blank" role="button"><img src="./SQL_ SELECT Statement_files/youtube_button.png" width="35" height="22" alt="subscribe button"> Subscribe</a></p>
+</div>
+<div class="section">
+  <h2>Syntax</h2>
+  <p>The syntax for the SELECT statement in SQL is:</p>
+  <pre class="notranslate">SELECT expressions
+FROM tables
+[WHERE conditions]
+[ORDER BY expression [ ASC | DESC ]];</pre>
+  <h3>Parameters or Arguments</h3>
+  <dl>
+    <dt>expressions</dt>
+    <dd>The columns or calculations that you wish to retrieve. Use * if you wish to select all columns.</dd>
+    <dt>tables</dt>
+    <dd>The tables that you wish to retrieve records from. There must be at least one table listed in the FROM clause.</dd>
+    <dt>WHERE conditions</dt>
+    <dd>Optional. The conditions that must be met for the records to be selected. If no conditions are provided, then all records will be selected.</dd>
+    <dt>ORDER BY expression</dt>
+    <dd>Optional. The expression used to sort the records in the result set. If more than one expression is provided, the values should be comma separated.</dd>
+    <dt>ASC</dt>
+    <dd>Optional. ASC sorts the result set in ascending order by <em>expression</em>. This is the default behavior, if no modifier is provider. </dd>
+    <dt>DESC</dt>
+    <dd>Optional. DESC sorts the result set in descending order by <em>expression</em>.</dd>
+  </dl>
+</div>
+<div class="section">
+  <h2>DDL/DML for Examples</h2>
+  <p>If you want to follow along with this tutorial, get the DDL to create the tables and the DML to populate the data. Then try the examples in your own database!</p>
+  <p><a class="btn btn-primary btn-sm" href="https://www.techonthenet.com/sql/select_ddl.php" role="button">Get DDL/DML</a></p>
+</div>
+<div class="section">
+  <h2>Example - Select All Fields from a Table</h2>
+  <p>Let's look at an example that shows how to use the SQL SELECT statement to select all fields from a table.</p>
+  <p>In this example, we have a table called <em>customers</em> with the following data:</p>
+  <div class="std_table_responsive">
+  <table class="std_table">
+    <thead>
+    <tr>
+      <th>customer_id</th>
+      <th>last_name</th>
+      <th>first_name</th>
+      <th>favorite_website</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>4000</td>
+      <td>Jackson</td>
+      <td>Joe</td>
+      <td>techonthenet.com</td>
+    </tr>
+    <tr>
+      <td>5000</td>
+      <td>Smith</td>
+      <td>Jane</td>
+      <td>digminecraft.com</td>
+    </tr>
+    <tr>
+      <td>6000</td>
+      <td>Ferguson</td>
+      <td>Samantha</td>
+      <td>bigactivities.com</td>
+    </tr>
+    <tr>
+      <td>7000</td>
+      <td>Reynolds</td>
+      <td>Allen</td>
+      <td>checkyourmath.com</td>
+    </tr>
+    <tr>
+      <td>8000</td>
+      <td>Anderson</td>
+      <td>Paige</td>
+      <td class="text-muted">NULL</td>
+    </tr>
+    <tr>
+      <td>9000</td>
+      <td>Johnson</td>
+      <td>Derek</td>
+      <td>techonthenet.com</td>
+    </tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Now let's demonstrate how the SELECT statement works by selecting all columns from the <em>customers</em> table. Enter the following SELECT statement:</p>
+<a class="btn btn-blue pull-right" href="https://www.techonthenet.com/sql/select_try_sql.php" target="_blank" role="button" onclick="document.cookie=&#39;example=1&#39;">Try It</a>
+  <pre class="notranslate">SELECT *
+FROM customers
+WHERE favorite_website = 'techonthenet.com'
+ORDER BY last_name ASC;</pre>
+  <p>There will be 2 records selected. These are the results that you should see:</p>
+  <div class="std_table_responsive">
+  <table class="std_table">
+    <thead>
+    <tr>
+      <th>customer_id</th>
+      <th>last_name</th>
+      <th>first_name</th>
+      <th>favorite_website</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>4000</td>
+      <td>Jackson</td>
+      <td>Joe</td>
+      <td>techonthenet.com</td>
+    </tr>
+    <tr>
+      <td>9000</td>
+      <td>Johnson</td>
+      <td>Derek</td>
+      <td>techonthenet.com</td>
+    </tr>
+    </tbody>
+  </table>
+  </div>
+  <p>In this example, we've used * to signify that we wish to view all fields from the <em>customers</em> table where the <em>favorite_website</em> is 'techonthenet.com'. The result set is sorted by <em>last_name</em> in ascending order.</p>
+</div>
+<div class="section">
+  <h2>Example - Select Individual Fields from a Table</h2>
+  <p>You can also use the SQL SELECT statement to select individual fields from the table, as opposed to all fields from the table.</p>
+  <p>In this example, we have a table called <em>suppliers</em> with the following data:</p>
+  <div class="std_table_responsive">
+  <table class="std_table">
+    <thead>
+    <tr>
+      <th>supplier_id</th>
+      <th>supplier_name</th>
+      <th>city</th>
+      <th>state</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>100</td>
+      <td>Microsoft</td>
+      <td>Redmond</td>
+      <td>Washington</td>
+    </tr>
+    <tr>
+      <td>200</td>
+      <td>Google</td>
+      <td>Mountain View</td>
+      <td>California</td>
+    </tr>
+    <tr>
+      <td>300</td>
+      <td>Oracle</td>
+      <td>Redwood City</td>
+      <td>California</td>
+    </tr>
+    <tr>
+      <td>400</td>
+      <td>Kimberly-Clark</td>
+      <td>Irving</td>
+      <td>Texas</td>
+    </tr>
+    <tr>
+      <td>500</td>
+      <td>Tyson Foods</td>
+      <td>Springdale</td>
+      <td>Arkansas</td>
+    </tr>
+    <tr>
+      <td>600</td>
+      <td>SC Johnson</td>
+      <td>Racine</td>
+      <td>Wisconsin</td>
+    </tr>
+    <tr>
+      <td>700</td>
+      <td>Dole Food Company</td>
+      <td>Westlake Village</td>
+      <td>California</td>
+    </tr>
+    <tr>
+      <td>800</td>
+      <td>Flowers Foods</td>
+      <td>Thomasville</td>
+      <td>Georgia</td>
+    </tr>
+    <tr>
+      <td>900</td>
+      <td>Electronic Arts</td>
+      <td>Redwood City</td>
+      <td>California</td>
+    </tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Now let's demonstrate how to use the SELECT statement to select individual columns from a table. Enter the following SELECT statement:</p>
+  <a class="btn btn-blue pull-right" href="https://www.techonthenet.com/sql/select_try_sql.php" target="_blank" role="button" onclick="document.cookie=&#39;example=2&#39;">Try It</a>
+  <pre class="notranslate">SELECT supplier_name, city
+FROM suppliers
+WHERE supplier_id &gt; 500
+ORDER BY supplier_name ASC, city DESC;</pre>
+  <p>4 records should be selected. These are the results that you should see:</p>
+  <table class="std_table">
+    <thead>
+    <tr>
+      <th>supplier_name</th>
+      <th>city</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>Dole Food Company</td>
+      <td>Westlake Village</td>
+    </tr>
+    <tr>
+      <td>Electronic Arts</td>
+      <td>Redwood City</td>
+    </tr>
+    <tr>
+      <td>Flowers Foods</td>
+      <td>Thomasville</td>
+    </tr>
+    <tr>
+      <td>SC Johnson</td>
+      <td>Racine</td>
+    </tr>
+    </tbody>
+  </table>
+  <p>This example would return only the supplier_<em>name</em> and <em>city</em> fields from the <em>suppliers</em> table where the <em>supplier_id</em> value is greater than 500. The results are sorted by supplier_<em>name</em> in ascending order and then <em>city</em> in descending order.</p>
+</div>
+<div class="section">
+  <h2>Example - Select Individual Fields From Multiple Tables</h2>
+  <p>You can also use the SQL SELECT statement to retrieve fields from multiple tables.</p>
+  <p>In this example, we have a table called <em>orders</em> with the following data:</p>
+  <div class="std_table_responsive">
+  <table class="std_table">
+    <thead>
+    <tr>
+      <th>order_id</th>
+      <th>customer_id</th>
+      <th>order_date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>1</td>
+      <td>7000</td>
+      <td>2016/04/18</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>5000</td>
+      <td>2016/04/18</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>8000</td>
+      <td>2016/04/19</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>4000</td>
+      <td>2016/04/20</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td class="text-muted">NULL</td>
+      <td>2016/05/01</td>
+    </tr>
+    </tbody>
+  </table>
+  </div>
+  <p>And a table called <em>customers</em> with the following data:</p>
+  <div class="std_table_responsive">
+  <table class="std_table">
+    <thead>
+    <tr>
+      <th>customer_id</th>
+      <th>last_name</th>
+      <th>first_name</th>
+      <th>favorite_website</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>4000</td>
+      <td>Jackson</td>
+      <td>Joe</td>
+      <td>techonthenet.com</td>
+    </tr>
+    <tr>
+      <td>5000</td>
+      <td>Smith</td>
+      <td>Jane</td>
+      <td>digminecraft.com</td>
+    </tr>
+    <tr>
+      <td>6000</td>
+      <td>Ferguson</td>
+      <td>Samantha</td>
+      <td>bigactivities.com</td>
+    </tr>
+    <tr>
+      <td>7000</td>
+      <td>Reynolds</td>
+      <td>Allen</td>
+      <td>checkyourmath.com</td>
+    </tr>
+    <tr>
+      <td>8000</td>
+      <td>Anderson</td>
+      <td>Paige</td>
+      <td class="text-muted">NULL</td>
+    </tr>
+    <tr>
+      <td>9000</td>
+      <td>Johnson</td>
+      <td>Derek</td>
+      <td>techonthenet.com</td>
+    </tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Now let's select columns from both the <em>orders</em> and <em>customers</em> tables. Enter the following SELECT statement:</p>
+  <a class="btn btn-blue pull-right" href="https://www.techonthenet.com/sql/select_try_sql.php" target="_blank" role="button" onclick="document.cookie=&#39;example=3&#39;">Try It</a>
+  <pre class="notranslate">SELECT orders.order_id, customers.last_name
+FROM orders
+INNER JOIN customers
+ON orders.customer_id = customers.customer_id
+WHERE orders.order_id &lt;&gt; 1
+ORDER BY orders.order_id;</pre>
+  <p>There will be 3 records selected. These are the results that you should see:</p>
+  <table class="std_table">
+    <thead>
+    <tr>
+      <th>order_id</th>
+      <th>last_name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>2</td>
+      <td>Smith</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Anderson</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Jackson</td>
+    </tr>
+    </tbody>
+  </table>
+  <p>This SELECT example <a href="https://www.techonthenet.com/sql/joins.php">joins two tables</a> to gives us a result set that displays the <em>order_id</em> from the <em>orders</em> table and the <em>last_name</em> from the <em>customers</em> table. Each time we use a column in the SELECT statement, we prefix the column with the table name (for example, <em>orders</em>.<em>order_id</em>) in case there is any ambiguity about which table the column belongs to.</p>
+  <p>If you wanted to select all fields from the <em>orders</em> table and then the <em>last_name</em> field from the customers table, you enter the following SELECT statement:</p>
+  <a class="btn btn-blue pull-right" href="https://www.techonthenet.com/sql/select_try_sql.php" target="_blank" role="button" onclick="document.cookie=&#39;example=4&#39;">Try It</a>
+  <pre class="notranslate">SELECT orders.*, customers.last_name
+FROM orders
+INNER JOIN customers
+ON orders.customer_id = customers.customer_id
+WHERE orders.order_id &lt;&gt; 1
+ORDER BY orders.order_id;</pre>
+  <p>There will be 3 records selected. These are the results that you should see:</p>
+  <div class="std_table_responsive">
+  <table class="std_table">
+    <thead>
+    <tr>
+      <th>order_id</th>
+      <th>customer_id</th>
+      <th>order_date</th>
+      <th>last_name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>2</td>
+      <td>5000</td>
+      <td>2016/04/18</td>
+      <td>Smith</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>8000</td>
+      <td>2016/04/19</td>
+      <td>Anderson</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>4000</td>
+      <td>2016/04/20</td>
+      <td>Jackson</td>
+    </tr>
+    </tbody>
+  </table>
+  </div>
+  <p>In this example, we use <em>orders.*</em> to signify that we want to select all fields from the <em>orders</em> table and then we select the <em>last_name</em> field from the <em>customers</em> table.</p>
+</div>
+<div class="section">
+  <h2>Practice Exercises</h2>
+  <p>If you want to test your skills using the SQL SELECT statement, try some of our practice exercises.</p>
+  <p>These exercises allow you to try out your skills with the SELECT statement. You will be given questions that you need to solve. After each exercise, we provide the solution so you can check your answer. Give it a try!</p>
+  <p><a class="btn btn-primary btn-sm" href="https://www.techonthenet.com/sql/select_exercises.php" role="button">Go to Practice Exercises</a></p>
+</div>
+<div class="tutorial_nav">
+<div>
+<a class="btn btn-green" href="https://www.techonthenet.com/sql/index.php"><img src="./SQL_ SELECT Statement_files/previous.png" alt="previous"></a><a class="btn btn-green" href="https://www.techonthenet.com/sql/from.php">NEXT<span>: FROM</span><img src="./SQL_ SELECT Statement_files/next.png" alt="next"></a></div>
+</div>
+<!-- InstanceEndEditable -->
+</div>
+<div class="sharepage">
+<span>Share on</span>
+<div>
+<a href="https://twitter.com/share?url=https%3A%2F%2Fwww.techonthenet.com%2Fsql%2Fselect.php&amp;via=tech_on_the_net&amp;text=Currently+reading+-+SQL%3A+SELECT+Statement+at&amp;hashtags=sql" target="_blank" title="Tweet this"><img alt="Twitter" src="./SQL_ SELECT Statement_files/twitter.png"></a>
+<a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.techonthenet.com%2Fsql%2Fselect.php" target="_blank" title="Add to Facebook"><img alt="Facebook" src="./SQL_ SELECT Statement_files/facebook.png"></a>
+</div>
+</div>
+</div>
+<div class="slot bottom_slot"><p>Advertisement</p><div id="third_slot"><iframe id="third_frm" src="./SQL_ SELECT Statement_files/saved_resource(2).html" width="300" height="250" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div></div>
+</div>
+</div>
+</div>
+<div id="totop"><p>Back to top</p></div>
+<div class="footer" role="contentinfo">
+<p><a href="https://www.techonthenet.com/index.php">Home</a><span> | </span><a href="https://www.techonthenet.com/about_us.php">About Us</a><span> | </span><a href="https://www.techonthenet.com/feedback.php">Contact Us</a><span> | </span><a href="https://www.techonthenet.com/testimonials.php">Testimonials</a><span> | </span><a href="https://www.techonthenet.com/donate.php">Donate</a></p>
+<p>While using this site, you agree to have read and accepted our <a href="https://www.techonthenet.com/terms_of_service.php">Terms of Service</a> and <a href="https://www.techonthenet.com/privacy.php">Privacy Policy</a>.</p>
+<p>We use advertisements to support this website and fund the development of new content.</p>
+<p><a href="https://www.techonthenet.com/copyright.php">Copyright</a> © 2003-2020 TechOnTheNet.com. All rights reserved.</p>
+</div>
+<script type="text/javascript">var slots='[{"fp":["q"],"f":"svefg","j":728,"u":90,"o":{"n":{"c":{"cynprzragVq":"14362705"}},"nf":{"n":"n","c":{"cynprzragVq":"15847982"}},"p":{"c":{"fvgr_vq":"12285","frpher":1,"ovqsybbe":1.5}},"qzk":{"c":{"qzkvq":473958,"zrzorevq":101956}},"v":{"c":{"fvgrVq":"315223","fvmr":[728,90]}},"f":{"c":{"gntvq":"590797"}},"ff":{"n":"f","c":{"gntvq":"606598"}}}},{"fp":["z"],"f":"svefg","j":320,"u":50,"o":{"n":{"c":{"cynprzragVq":"14362706"}},"nf":{"n":"n","c":{"cynprzragVq":"15847983"}},"p":{"c":{"fvgr_vq":"12285","frpher":1,"ovqsybbe":1.5}},"qzk":{"c":{"qzkvq":474016,"zrzorevq":101956}},"v":{"c":{"fvgrVq":"315229","fvmr":[320,50]}},"f":{"c":{"gntvq":"590798"}},"ff":{"n":"f","c":{"gntvq":"606597"}}}},{"fp":["q"],"f":"frpbaq","j":160,"u":600,"o":{"n":{"c":{"cynprzragVq":"14362708"}},"nf":{"n":"n","c":{"cynprzragVq":"15847984"}},"p":{"c":{"fvgr_vq":"12285","frpher":1,"ovqsybbe":1.5}},"qzk":{"c":{"qzkvq":474022,"zrzorevq":101956}},"v":{"c":{"fvgrVq":"315228","fvmr":[160,600]}},"f":{"c":{"gntvq":"590799"}},"ff":{"n":"f","c":{"gntvq":"606595"}}}},{"fp":["z","q"],"f":"guveq","j":300,"u":250,"o":{"n":{"c":{"cynprzragVq":"14362709"}},"nf":{"n":"n","c":{"cynprzragVq":"15847985"}},"p":{"c":{"fvgr_vq":"12285","frpher":1,"ovqsybbe":1.5}},"qzk":{"c":{"qzkvq":474026,"zrzorevq":101956}},"v":{"c":{"fvgrVq":"315226","fvmr":[300,250]}},"f":{"c":{"gntvq":"590800"}},"ff":{"n":"f","c":{"gntvq":"606596"}}}}]';var netcodes='{"n":"nccarkhf","nf":"nccarkhff2f","p":"pbairefnag","v":"vk","f":"fbiea","ff":"fbieaf2f","qzk":"qvfgevpgzQZK"}';var pbjs=pbjs||{};pbjs.que=pbjs.que||[],function(e,n){function t(){if(!(e.adsplaced>0))for(i=0;i<r.length;i++)for(c=0;c<r[i].sc.length;c++)if(r[i].sc[c]===e.clientsize){var t=n.getElementById(r[i].s+"_slot");if(null!==t){var a=n.createElement("iframe");a.id=r[i].s+"_frm",a.src="about:blank",a.width=r[i].w,a.height=r[i].h,a.frameBorder=0,a.marginWidth=0,a.marginHeight=0,a.scrolling="no",t.appendChild(a),e.adsplaced++;var o=a.contentDocument?a.contentDocument:a.contentWindow.document,s=!0;if(!e.oldie){var l=pbjs.getAdserverTargetingForAdUnitCode(r[i].s);l&&l.hb_adid&&(pbjs.renderAd(o,l.hb_adid),s=!1)}s&&(o.write("<body onload=\"window.location.href='/defaults/primaryw"+r[i].w+"h"+r[i].h+".php';\">"),o.close())}}}e.setCookie=function(e,t,r){var a=new Date;a.setTime(a.getTime()+36e5*r),n.cookie=e+"="+t+";expires="+a.toUTCString()+";path=/;SameSite=Lax;Secure"},e.getCookie=function(e){return decodeURIComponent(n.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*"+encodeURIComponent(e).replace(/[\-\.\+\*]/g,"\\$&")+"\\s*\\=\\s*([^;]*).*$)|^.*$"),"$1"))||null},e.setClassName=function(e,t){var r=n.getElementById(e);null!==r&&(r.className=t)},e.abDismiss=function(){return e.setCookie("sabl","1",4),e.setClassName("sabl","hidden"),!0},e.rot=function(e){return e.replace(/[a-zA-Z]/gi,(function(e){return String.fromCharCode(e.charCodeAt(0)+(e.toLowerCase()<"n"?13:-13))}))},e.h2a=function(n){var t=e.rot(n.toString());return decodeURIComponent(t)};var r,a=null;try{r=JSON.parse(e.rot(slots)),a=JSON.parse(e.rot(netcodes))}catch(n){e.oldie=!0}e.adErr=function(){e.adblk=!0;var t=e.h2a("%3Pohggba%20glcr%3Q%22ohggba%22%20bapyvpx%3Q%22jvaqbj.noQvfzvff()%3O%22%3R%P3%97%3P%2Sohggba%3R%3Pc%3RBbcf%2P%20fbzrguvat%20frrzf%20gb%20or%20ceriragvat%20gur%20qvfcynl%20bs%20bhe%20nqiregvfrzragf.%20Guvf%20jrofvgr%20jbhyq%20abg%20rkvfg%20jvgubhg%20gur%20nqiregvfrzragf%20jr%20qvfcynl%20naq%20lbhe%20xvaq%20qbangvbaf.%20Vs%20lbh%20ner%20hanoyr%20gb%20fhccbeg%20hf%20ol%20ivrjvat%20bhe%20nqiregvfrzragf%2P%20cyrnfr%20pbafvqre%20znxvat%20n%20%3Pfgebat%3R%3Pn%20uers%3Q%22%2Sqbangr.cuc%22%3RQbangvba%3P%2Sn%3R%3P%2Sfgebat%3R%20gb%20rafher%20gur%20shgher%20bs%20guvf%20jrofvgr.%3P%2Sc%3R%3Pc%3RLbh%20pna%20yrnea%20zber%20nobhg%20ubj%20jr%20hfr%20nqiregvfrzragf%20%3Pn%20uers%3Q%22%2Snobhg_hf.cuc%22%3Rurer%3P%2Sn%3R.%3P%2Sc%3R%3Pqvi%20pynff%3Q%22qbangr_oga%22%3R%3Pn%20pynff%3Q%22oga%20oga-cevznel%22%20uers%3Q%22%2Sqbangr.cuc%22%3RQbangr%3P%2Sn%3R%3P%2Sqvi%3R"),r=n.getElementById("sabl");if(null===r){var a=n.getElementById("usernote"),o=e.getCookie("sabl");if(null!==a&&null===o){var s=n.createElement("div");s.id="sabl",s.innerHTML=t,a.appendChild(s)}}else r.innerHTML=t,r.className=" "},e.showConsent=function(){var t=n.getElementById("consent");if(null!==t)t.className=" ";else{var r=n.createElement("div");r.id="consent",r.innerHTML=e.h2a("Jr%20hfr%20pbbxvrf%20gb%20rafher%20lbh%20trg%20gur%20orfg%20rkcrevrapr%20ba%20bhe%20jrofvgr.%20%3Pn%20uers%3Q%22%2Scevinpl.cuc%22%3RYrnea%20zber%3P%2Sn%3R%3Pohggba%20vq%3Q%22pbafrag_oga%22%20pynff%3Q%22oga%22%3RTbg%20vg!%3P%2Sohggba%3R"),n.body.appendChild(r)}var a=n.getElementById("consent_btn");null!==a&&(a.onclick=e.hideConsent)},e.hideConsent=function(){e.setCookie("gdpr_consent","1",87600),e.setClassName("consent","hidden")},e.testAds=function(){var t;if(null===n.getElementById("sabl")){for(var a=!0,o=0,s=0;s<r.length;s++)for(var i=0;i<r[s].sc.length;i++)if(r[s].sc[i]===e.clientsize){var c=n.getElementById(r[s].s+"_frm");if(null!==c){o++;try{for(var l,d,g=(c.contentDocument?c.contentDocument:c.contentWindow.document).getElementsByTagName("body")[0].firstChild;null!==g&&!0===a;g=g.nextSibling)1===g.nodeType&&"SCRIPT"!==g.nodeName&&(a=!1)}catch(e){}}}a&&e.adsplaced===o&&e.adErr()}},void 0===e.oldie&&(e.oldie=!1),e.adblk=!1,e.adsplaced=0,e.clientsize="d",(e.innerWidth||n.documentElement.clientWidth||n.body.clientWidth)<728&&(e.clientsize="m"),e.gdpr=!1,e.ccpa=!1;var o=n.getElementById("pre_header"),s;null!==o&&(-1!==(" "+o.className+" ").indexOf(" eu ")?(e.gdpr=!0,null===e.getCookie("gdpr_consent")&&e.showConsent()):-1!==(" "+o.className+" ").indexOf(" usca ")&&(e.ccpa=!0));if(e.oldie)t();else{var i,c,l=[],d=[];for(i=0;i<r.length;i++)for(c=0;c<r[i].sc.length;c++)if(r[i].sc[c]===e.clientsize&&null!==n.getElementById(r[i].s+"_slot")){var g=[];for(var f in r[i].b)g.push({bidder:a[f],params:r[i].b[f].p}),!r[i].b[f].a||f in d||(d[a[f]]=a[r[i].b[f].a]);l.push({code:r[i].s,mediaTypes:{banner:{sizes:[[r[i].w,r[i].h]]}},bids:g})}var u=[];for(var b in d)u.push(b);var p=null!==e.getCookie("ccpa_opt_out")?"Y":"N",h="1---";e.ccpa&&(h="1Y"+p+"N"),pbjs.que.push((function(){for(var e in d)pbjs.aliasBidder(d[e],e)})),pbjs.que.push((function(){pbjs.setConfig({s2sConfig:{accountId:"d20f4d82-61af-496f-bb36-82026147f250",bidders:u,defaultVendor:"appnexus"},priceGranularity:{buckets:[{precision:2,min:0,max:70,increment:.01}]},consentManagement:{gdpr:{cmpApi:"static",allowAuctionWithoutConsent:!0,consentData:{getConsentData:{gdprApplies:e.gdpr,hasGlobalScope:!1,consentData:""},getVendorConsents:{metadata:"",purposeConsents:{},vendorConsents:{}}}},usp:{cmpApi:"static",consentData:{getUSPData:{uspString:h}}}}}),pbjs.addAdUnits(l),pbjs.requestBids({bidsBackHandler:t,timeout:1200})})),setTimeout((function(){t()}),3e3)}}(this,this.document);</script>
+<script async="" type="text/javascript" src="./SQL_ SELECT Statement_files/techonthenet-min.js"></script>
+
+<!-- InstanceEnd --></body></html>

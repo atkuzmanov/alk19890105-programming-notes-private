@@ -6641,11 +6641,47 @@ SQL
 |-------|-----|-------|
 |   x   |  x  |   x   |
 
+- SQL SELECT Statement
 
+`references:`
+https://www.w3schools.com/sql/sql_select.asp
 
+- [SQL-SELECT-Query-Tutorialspoint](refs/SQL-SELECT-Query-Tutorialspoint)
 
+`references:`
+https://www.tutorialspoint.com/sql/sql-select-query.htm
+
+- [SQL-SELECT-Statement-Examples](refs/SQL-SELECT-Statement-Examples)
+
+`references:`
+https://www.dofactory.com/sql/select
+
+- [SQL-Server-SELECT-Querying-Data-from-a-Single-Table](refs/SQL-Server-SELECT-Querying-Data-from-a-Single-Table)
+
+`references:`
+https://www.sqlservertutorial.net/sql-server-basics/sql-server-select/
+
+- [SQL-SELECT-Statement-techonthenet](refs/SQL-SELECT-Statement-techonthenet)
+
+`references:`
+https://www.techonthenet.com/sql/select.php
+
+- [MySQL-8-Reference-Manual-SELECT-Statement](refs/MySQL-8-Reference-Manual-SELECT-Statement)
+
+`references:`
+https://dev.mysql.com/doc/refman/8.0/en/select.html
 
 ----
+
+# Index (good for select bad for insert?)
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
+
+
+
 ----
 ----
 ----
