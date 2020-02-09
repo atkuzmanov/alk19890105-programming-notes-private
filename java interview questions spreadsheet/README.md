@@ -6597,9 +6597,42 @@ https://blog.overops.com/forkjoin-framework-vs-parallel-streams-vs-executorservi
 
 ----
 
+# Design patterns
 
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
+- Design Patterns
+
+`references:`
+https://www.oodesign.com/
+
+`references:`
+https://refactoring.guru/design-patterns/catalog
+
+`references:`
+https://sourcemaking.com/design_patterns
+
+`references:`
+https://github.com/iluwatar/java-design-patterns
 
 ----
+
+```text
+SQL
+```
+
+# SQL select
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
+
+
+
+
+
 ----
 ----
 ----
