@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="44px" height="44px" viewBox="0 0 44 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>twitter</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="19" cy="19" r="19"></circle>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="1" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.103119339 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <linearGradient x1="0%" y1="0%" x2="85.1561377%" y2="100%" id="linearGradient-3">
+            <stop stop-color="#57636C" stop-opacity="0.665562726" offset="0%"></stop>
+            <stop stop-color="#344F63" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Java-Monitoring" transform="translate(-1447.000000, -4010.000000)">
+            <g id="footer" transform="translate(0.000000, 3936.000000)">
+                <g id="twitter" transform="translate(1449.000000, 75.000000)">
+                    <g id="Oval-Copy-2">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    </g>
+                    <path d="M28.9026123,12.9200128 C28.170063,13.2459023 27.3841129,13.4667815 26.5583175,13.5654692 C27.4015024,13.0585605 28.0469673,12.2546265 28.352858,11.2994995 C27.5619786,11.7690223 26.6888072,12.1097561 25.758538,12.2946239 C25.0136654,11.496875 23.954002,11 22.7786368,11 C20.523891,11 18.695667,12.8350699 18.695667,15.0973286 C18.695667,15.4181325 18.7318152,15.7315142 18.8013732,16.0311511 C15.4086428,15.8600282 12.4002612,14.2283815 10.3867775,11.7489548 C10.0347431,12.3531768 9.83455854,13.0573235 9.83455854,13.8088899 C9.83455854,15.2309281 10.55588,16.4855546 11.6503224,17.2195276 C10.9811694,17.1971235 10.3518616,17.0123933 9.80101189,16.7051967 L9.80101189,16.7564649 C9.80101189,18.7414907 11.2088759,20.3981529 13.0755759,20.7751731 C12.733537,20.8675382 12.3728762,20.9186689 11.9997553,20.9186689 C11.7361745,20.9186689 11.4812199,20.8925538 11.2311947,20.8425227 C11.7509624,22.4716953 13.2583709,23.6564981 15.0442851,23.6889359 C13.647649,24.7875587 11.8866552,25.4405747 9.97381138,25.4405747 C9.64423264,25.4405747 9.31972013,25.4205073 9,25.3843585 C10.8071376,26.5490939 12.9524802,27.2283625 15.258299,27.2283625 C22.7687782,27.2283625 26.8742038,20.9836819 26.8742038,15.5679509 L26.8605112,15.0374012 C27.6626185,14.4630055 28.3566919,13.7415403 28.9026123,12.9200128" id="Fill-1" fill="url(#linearGradient-3)" fill-rule="evenodd"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

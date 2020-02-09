@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>icon/press/color</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="100%" y1="17.9377778%" x2="0%" y2="84.7222222%" id="linearGradient-1">
+            <stop stop-color="#0078FA" offset="0%"></stop>
+            <stop stop-color="#9BD9E1" stop-opacity="0.5" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="100%" y1="27.376896%" x2="0%" y2="74.5%" id="linearGradient-2">
+            <stop stop-color="#0078FA" offset="0%"></stop>
+            <stop stop-color="#9BD9E1" stop-opacity="0.5" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="icon/press/color" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon/press/gray" transform="translate(1.000000, 1.000000)" fill-rule="nonzero">
+            <path d="M14.5,18.1206897 L14.5,15.8793103 C14.5,15.1175383 15.1175383,14.5 15.8793103,14.5 L17.7413793,14.5 C19.2649234,14.5 20.5,15.7350766 20.5,17.2586207 L20.5,19.5 L15.8793103,19.5 C15.1175383,19.5 14.5,18.8824617 14.5,18.1206897 Z" id="Combined-Shape" fill="url(#linearGradient-1)" transform="translate(17.500000, 17.000000) rotate(90.000000) translate(-17.500000, -17.000000) "></path>
+            <path d="M-1.62068966,3 L17,3 L17,15.6206897 C17,16.3824617 16.3824617,17 15.6206897,17 L-1.62068966,17 C-2.38246172,17 -3,16.3824617 -3,15.6206897 L-3,4.37931034 C-3,3.61753828 -2.38246172,3 -1.62068966,3 Z" id="Combined-Shape" fill="url(#linearGradient-2)" transform="translate(7.000000, 10.000000) rotate(90.000000) translate(-7.000000, -10.000000) "></path>
+            <rect id="Rectangle-11" fill="#FFFFFF" x="2" y="3" width="10" height="2" rx="1"></rect>
+            <rect id="Rectangle-11-Copy-4" fill="#FFFFFF" x="2" y="7" width="10" height="2" rx="1"></rect>
+            <rect id="Rectangle-11-Copy-5" fill="#FFFFFF" x="2" y="11" width="10" height="2" rx="1"></rect>
+            <rect id="Rectangle-11-Copy-6" fill="#FFFFFF" x="2" y="15" width="6" height="2" rx="1"></rect>
+        </g>
+    </g>
+</svg>

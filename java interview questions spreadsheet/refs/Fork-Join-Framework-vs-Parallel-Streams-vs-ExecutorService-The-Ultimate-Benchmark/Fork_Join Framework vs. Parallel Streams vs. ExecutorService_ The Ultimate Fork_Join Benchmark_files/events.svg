@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>icon/events</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="100%" y1="83.0078125%" x2="5.5293257%" y2="19.52085%" id="linearGradient-1">
+            <stop stop-color="#0078FA" offset="0%"></stop>
+            <stop stop-color="#9BD9E1" stop-opacity="0.5" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="100%" y1="53.125%" x2="5.5293257%" y2="47.1144%" id="linearGradient-2">
+            <stop stop-color="#0078FA" offset="0%"></stop>
+            <stop stop-color="#9BD9E1" stop-opacity="0.5" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="100%" y1="62.5%" x2="5.5293257%" y2="38.4576%" id="linearGradient-3">
+            <stop stop-color="#0078FA" offset="0%"></stop>
+            <stop stop-color="#9BD9E1" stop-opacity="0.5" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="icon/events" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon/events/gray-copy" transform="translate(3.000000, 1.000000)" fill-rule="nonzero">
+            <rect id="Rectangle-10-Copy-4" fill="url(#linearGradient-1)" x="0" y="7" width="16" height="13" rx="0.769230769"></rect>
+            <path d="M8.49995573,15.4618128 L7.22568552,16.1730084 C7.04020175,16.2765306 6.80591614,16.2100876 6.70239395,16.0246039 C6.66018498,15.9489768 6.64473663,15.8613172 6.65855002,15.7758173 L6.90769508,14.2336978 L5.83161201,13.120155 C5.68400158,12.9674061 5.68816716,12.7239167 5.84091609,12.5763063 C5.89808773,12.5210579 5.9709758,12.4848845 6.049551,12.4727634 L7.51588453,12.246566 L8.15118654,10.8799989 C8.24073342,10.687379 8.46947479,10.6038218 8.6620947,10.6933687 C8.7443708,10.731618 8.81047567,10.7977228 8.84872493,10.8799989 L9.48402693,12.246566 L10.9503605,12.4727634 C11.1602945,12.5051479 11.3042269,12.701586 11.2718423,12.9115201 C11.2597213,12.9900953 11.2235478,13.0629833 11.1682995,13.120155 L10.0922164,14.2336978 L10.3413614,15.7758173 C10.3752403,15.9855154 10.2327106,16.1829735 10.0230125,16.2168524 C9.93751259,16.2306657 9.84985301,16.2152174 9.77422594,16.1730084 L8.49995573,15.4618128 Z" id="Star-2" fill="#FFFFFF"></path>
+            <rect id="Rectangle-10-Copy-5" fill="url(#linearGradient-2)" x="0" y="2" width="16" height="4" rx="0.769230769"></rect>
+            <path d="M2,1 L4,1 C4.55228475,1 5,1.44771525 5,2 L5,2 C5,2.55228475 4.55228475,3 4,3 L2,3 C1.44771525,3 1,2.55228475 1,2 L1,2 C1,1.44771525 1.44771525,1 2,1 Z" id="Rectangle-10-Copy-6" fill="url(#linearGradient-3)" transform="translate(3.000000, 2.000000) rotate(90.000000) translate(-3.000000, -2.000000) "></path>
+            <path d="M12,1 L14,1 C14.5522847,1 15,1.44771525 15,2 L15,2 C15,2.55228475 14.5522847,3 14,3 L12,3 C11.4477153,3 11,2.55228475 11,2 L11,2 C11,1.44771525 11.4477153,1 12,1 Z" id="Rectangle-10-Copy-7" fill="url(#linearGradient-3)" transform="translate(13.000000, 2.000000) rotate(90.000000) translate(-13.000000, -2.000000) "></path>
+        </g>
+    </g>
+</svg>
