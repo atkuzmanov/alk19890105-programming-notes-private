@@ -6485,10 +6485,30 @@ https://www.tutorialspoint.com/java/java_thread_deadlock.htm
 
 ## Starvation
 
+- [Deadlock-and-Starvation-in-Java-GeeksforGeeks](refs/Deadlock-and-Starvation-in-Java-GeeksforGeeks)
 
+`references:`
+https://www.geeksforgeeks.org/deadlock-starvation-java/
 
+- [Java-Thread-Starvation-Example](refs/Java-Thread-Starvation-Example)
+
+`references:`
+https://www.logicbig.com/tutorials/core-java-tutorial/java-multi-threading/thread-starvation.html
+
+- [Thread-Starvation-in-Java-Multi-Threading-Tech-Tutorials](refs/Thread-Starvation-in-Java-Multi-Threading-Tech-Tutorials)
+
+`references:`
+https://netjs.blogspot.com/2017/10/thread-starvation-in-java-multi-threading.html
 
 ## Livelock
+
+```text
+```
+
+- [Understanding-Deadlock-Livelock-and-Starvation-with-Code-Examples-in-Java](refs/Understanding-Deadlock-Livelock-and-Starvation-with-Code-Examples-in-Java)
+
+`references:`
+https://www.codejava.net/java-core/concurrency/understanding-deadlock-livelock-and-starvation-with-code-examples-in-java
 
 ----
 ----
