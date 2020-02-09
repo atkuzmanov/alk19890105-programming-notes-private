@@ -6449,6 +6449,20 @@ http://tutorials.jenkov.com/java-concurrency/java-memory-model.html
 
 ----
 
+# null
+
+- [What-is-null-in-Java-StackOverflow](refs/What-is-null-in-Java-StackOverflow)
+
+`references:`
+https://stackoverflow.com/questions/2707322/what-is-null-in-java
+
+- [Interesting-facts-about–null-in-Java-GeeksforGeeks](refs/Interesting-facts-about–null-in-Java-GeeksforGeeks)
+
+`references:`
+https://www.geeksforgeeks.org/interesting-facts-about-null-in-java/
+
+----
+
 # Dead-lock/Starvation/Live lock
 
 |Junior |Mid  |Senior |
@@ -6457,6 +6471,7 @@ http://tutorials.jenkov.com/java-concurrency/java-memory-model.html
 
 
 
+
 ----
 ----
 ----
@@ -6504,6 +6519,39 @@ http://tutorials.jenkov.com/java-concurrency/java-memory-model.html
 ----
 ----
 ----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+----
+
+
+
 
 
 
