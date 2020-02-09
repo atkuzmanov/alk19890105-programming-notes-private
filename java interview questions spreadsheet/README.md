@@ -6469,8 +6469,26 @@ https://www.geeksforgeeks.org/interesting-facts-about-null-in-java/
 |-------|-----|-------|
 |       |     |   x   |
 
+## Deadlock
+
+- [Deadlock-in-Java-Multithreading-GeeksforGeeks](refs/Deadlock-in-Java-Multithreading-GeeksforGeeks)
+
+![22-2.png](refs/Deadlock-in-Java-Multithreading-GeeksforGeeks/Deadlock%20in%20Java%20Multithreading%20-%20GeeksforGeeks_files/22-2.png)
+
+`references:`
+https://www.geeksforgeeks.org/deadlock-in-java-multithreading/
+
+- [Java-Thread-Deadlock-Tutorialspoint](refs/Java-Thread-Deadlock-Tutorialspoint)
+
+`references:`
+https://www.tutorialspoint.com/java/java_thread_deadlock.htm
+
+## Starvation
 
 
+
+
+## Livelock
 
 ----
 ----
