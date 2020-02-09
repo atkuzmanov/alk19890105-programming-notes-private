@@ -72,6 +72,10 @@
 
 # Java CORE
 
+```text
+Java CORE
+```
+
 # How does multiple inheritance work in Java?
 
 |Junior |Mid  |Senior |
@@ -6039,6 +6043,10 @@ https://www.codementor.io/@eh3rrera/using-java-8-method-reference-du10866vx
 
 ----
 
+```text
+Threads
+```
+
 # synchronized blocks/methods
 
 |Junior |Mid  |Senior |
@@ -6596,6 +6604,10 @@ https://www.baeldung.com/java-8-parallel-streams-custom-threadpool
 https://blog.overops.com/forkjoin-framework-vs-parallel-streams-vs-executorservice-the-ultimate-benchmark/
 
 ----
+
+```text
+Design patterns
+```
 
 # Design patterns
 
