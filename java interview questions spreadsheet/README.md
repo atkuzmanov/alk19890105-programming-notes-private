@@ -6535,6 +6535,33 @@ https://www.codejava.net/java-core/concurrency/understanding-deadlock-livelock-a
 |-------|-----|-------|
 |       |     |   x   |
 
+## Fork-Join Framework API
+
+- [Understanding-Java-Fork-Join-Framework-with-Examples](refs/Understanding-Java-Fork-Join-Framework-with-Examples)
+
+`references:`
+https://www.codejava.net/java-core/concurrency/understanding-java-fork-join-framework-with-examples
+
+- [jenkov-Java-Fork-and-Join-using-ForkJoinPool](refs/jenkov-Java-Fork-and-Join-using-ForkJoinPool)
+
+`references:`
+http://tutorials.jenkov.com/java-util-concurrent/java-fork-and-join-forkjoinpool.html
+
+- [A-Java-Fork-Join-Calamity](refs/A-Java-Fork-Join-Calamity)
+
+`references:`
+http://coopsoft.com/ar/CalamityArticle.html
+
+- [Fork-Join-Framework-Tutorial-ForkJoinPool-Example-HowToDoInJava](refs/Fork-Join-Framework-Tutorial-ForkJoinPool-Example-HowToDoInJava)
+
+![fork-join-framework.png](refs/Fork-Join-Framework-Tutorial-ForkJoinPool-Example-HowToDoInJava/Fork_Join%20Framework%20Tutorial_%20ForkJoinPool%20Example%20-%20HowToDoInJava_files/fork-join-framework.png)
+
+`references:`
+https://howtodoinjava.com/java7/forkjoin-framework-tutorial-forkjoinpool-example/
+
+## Fork-Join and Parallel Streams
+
+
 
 ----
 ----
