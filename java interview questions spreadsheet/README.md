@@ -6571,9 +6571,34 @@ https://www.baeldung.com/java-fork-join
 
 ## Fork-Join and Parallel Streams
 
+- [A-Look-at-ForkJoinPool-and-Parallel-Streams-DZone](refs/A-Look-at-ForkJoinPool-and-Parallel-Streams-DZone)
 
+![fj-2.png](refs/A-Look-at-ForkJoinPool-and-Parallel-Streams-DZone/A%20Look%20at%20ForkJoinPool%20and%20Parallel%20Streams%20-%20DZone%20Java_files/fj-2.png)
+
+![fj-1.png](refs/A-Look-at-ForkJoinPool-and-Parallel-Streams-DZone/A%20Look%20at%20ForkJoinPool%20and%20Parallel%20Streams%20-%20DZone%20Java_files/fj-1.png)
+
+`references:`
+https://dzone.com/articles/a-look-at-forkjoinpool
+
+- [Common-Fork-Join-Pool-and-Streams-DZone](refs/Common-Fork-Join-Pool-and-Streams-DZone)
+
+`references:`
+https://dzone.com/articles/common-fork-join-pool-and-streams
+
+- [Custom-Thread-Pools-In-Java8-Parallel-Streams-Baeldung](refs/Custom-Thread-Pools-In-Java8-Parallel-Streams-Baeldung)
+
+`references:`
+https://www.baeldung.com/java-8-parallel-streams-custom-threadpool
+
+- [Fork-Join-Framework-vs-Parallel-Streams-vs-ExecutorService-The-Ultimate-Benchmark](refs/Fork-Join-Framework-vs-Parallel-Streams-vs-ExecutorService-The-Ultimate-Benchmark)
+
+`references:`
+https://blog.overops.com/forkjoin-framework-vs-parallel-streams-vs-executorservice-the-ultimate-benchmark/
 
 ----
+
+
+
 ----
 ----
 ----

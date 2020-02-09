@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>icon/blog/color</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="31.1297252%" y1="4.39471471%" x2="65.125%" y2="83.7248679%" id="linearGradient-1">
+            <stop stop-color="#B7FF88" offset="0%"></stop>
+            <stop stop-color="#7DC357" offset="35.8743238%"></stop>
+            <stop stop-color="#005155" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="icon/blog/color" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon/blog/gray" transform="translate(6.000000, 2.000000)" fill="url(#linearGradient-1)" fill-rule="nonzero">
+            <path d="M1,0 L10,0 C10.5522847,-1.01453063e-16 11,0.44771525 11,1 L11,17.8599284 C11,18.4122131 10.5522847,18.8599284 10,18.8599284 C9.76544278,18.8599284 9.53834925,18.7774771 9.35842894,18.626992 L6.14157106,15.936416 C5.77023879,15.6258341 5.22976121,15.6258341 4.85842894,15.936416 L1.64157106,18.626992 C1.21793353,18.9813219 0.587266307,18.925137 0.232936395,18.5014994 C0.0824512708,18.3215791 2.87249748e-17,18.0944856 0,17.8599284 L0,1 C-6.76353751e-17,0.44771525 0.44771525,1.01453063e-16 1,0 Z" id="Rectangle-12"></path>
+        </g>
+    </g>
+</svg>
