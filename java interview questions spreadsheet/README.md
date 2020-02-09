@@ -6559,6 +6559,16 @@ http://coopsoft.com/ar/CalamityArticle.html
 `references:`
 https://howtodoinjava.com/java7/forkjoin-framework-tutorial-forkjoinpool-example/
 
+- [Java-Concurrency-Fork-Join-framework-Tutorialspoint](refs/Java-Concurrency-Fork-Join-framework-Tutorialspoint)
+
+`references:`
+https://www.tutorialspoint.com/java_concurrency/concurrency_fork_join.htm
+
+- [Guide-to-the-Fork-Join-Framework-in-Java-Baeldung](refs/Guide-to-the-Fork-Join-Framework-in-Java-Baeldung)
+
+`references:`
+https://www.baeldung.com/java-fork-join
+
 ## Fork-Join and Parallel Streams
 
 
