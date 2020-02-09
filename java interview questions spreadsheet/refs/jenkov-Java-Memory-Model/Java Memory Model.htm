@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<!-- saved from url=(0067)http://tutorials.jenkov.com/java-concurrency/java-memory-model.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+    <!--<meta name="viewport" content="width=device-width, height=device-height initial-scale=1.0, maximum-scale=1.0, user-scalable=0">-->
+    <meta name="viewport" content="width=device-width, height=device-height initial-scale=1, user-scalable=1">
+
+    <title>Java Memory Model</title>
+
+    <meta name="description" content="The Java memory model specifies how the Java virtual machine and Java programs work with the memory in the computer your Java programs run on.">
+    <meta name="keywords" content="java memory model">
+    <meta name="author" content="Jakob Jenkov">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jjenkov">
+    <meta name="twitter:title" content="Java Memory Model">
+    <meta name="twitter:description" content="The Java memory model specifies how the Java virtual machine and Java programs work with the memory in the computer your Java programs run on.">
+    <meta name="twitter:creator" content="@jjenkov">
+    <meta name="twitter:domain" content="jenkov.com">
+
+    <meta name="twitter:image:src" content="http://tutorials.jenkov.com/images/java-concurrency/java-concurrency-teaser-500-300.png">
+
+    <meta name="og:type" content="article">
+    <meta name="og:title" content="Java Memory Model">
+    <meta property="og:url" content="http://tutorials.jenkov.com/java-concurrency/java-memory-model.html">
+    <meta property="og:description" content="The Java memory model specifies how the Java virtual machine and Java programs work with the memory in the computer your Java programs run on.">
+
+    <meta property="og:image" content="http://tutorials.jenkov.com/images/java-concurrency/java-concurrency-teaser-500-300.png">
+
+    <link href="https://plus.google.com/108227213807945109821" rel="publisher">
+
+    <meta name="google-site-verification" content="i_TwzdElg-by5uXLvyAjuIaCjxo0yjtW8LdRPUDEEcw">
+<script charset="utf-8" src="./Java Memory Model_files/button.a657e8de41cd5e7b38cde1f36c9ab9c2.js"></script></head>
+
+<body>
+
+<style>
+body {background-color: #f0f0f0; xbackground-image: linear-gradient(180deg, #f0f0f0, #e0e0e0); margin: 0px; font-family: arial;}
+
+.grid {
+  display: grid;
+
+}
+.topBar, .footer {
+  grid-column-start: 1;
+  grid-column-end: 12;
+  background-color: #000000;
+  color: #ffffff;
+  height: 64px;
+  box-shadow: 0px 8px 6px -6px #999999;
+}
+
+.content {
+  grid-column-start: 1;
+  grid-column-end: 12;
+  text-align: center;
+}
+.category, .main, .right {
+	display: inline-block;
+    vertical-align: top;
+	box-sizing: border-box;
+	text-align: left;
+}
+.footer {
+  height: 64px;
+  position: relative;
+  padding-bottom: 48px;
+}
+#footerCopyright {
+	position: absolute;
+	top: 20px;
+	left:20px;
+}
+
+.card{ background-color: #ffffff; box-shadow: 0px 8px 6px -6px #999999;padding: 20px 30px;border: 1px solid #e0e0e0; margin: 8px 4px;}
+.cardLeft  { margin-left:   8px; }
+.cardRight { margin-right:  8px; }
+.cardTop   { margin-top:    8px; }
+.cardBottom{ margin-bottom: 8px; }
+
+#topBarMenu    { position: absolute; top: 20px; left: 20px; }
+#topBarMenu a  { color: #ffffff; text-decoration: none; }
+#topBarLogoBox { text-align: right; padding-top:6px; margin-right: 16px;}
+#topBarLogo    { height: 38px; }
+#topBarPhrase  { padding-right: 4px; font-size: 0.8em; }
+</style>
+
+<style>
+a{ text-decoration:none; }
+#main, #mainBody { text-align: left; }
+
+#mainBody h1{margin-top: 0px; text-align:left; }
+#mainBody h2{margin: 24px 0px 0px 0px; text-align:left; }
+#mainBody a{font-weight: bold; color: #339;}
+#mainBody img{max-width:100%;}
+#mainBody svg{max-width:100%;overflow: auto;}
+
+.card{ background-color: #ffffff; box-shadow: 0px 8px 6px -6px #999999;padding: 20px 30px;border: 1px solid #e0e0e0;}
+#trailToc ol li{border-bottom: 1px solid #f0f0f0;padding: 4px 20px;vertical-align: top;}
+.codeBox {background-color: #f0f0f0;border: 1px solid #cccccc;padding: 10px;max-width: 100%;overflow: auto;}
+code{font-size: 1.2em;}
+.dataTable{background-color: #f0f0f0;border: 1px solid #cccccc;max-width: 100%;overflow: auto;}
+.dataTable th{text-align: left;}
+.dataTable th, .dataTable td{padding: 2px 8px; }
+#pageToc{border: 1px solid #f0f0f0; text-align:left; }
+#pageToc li{margin: 6px 0px;}
+#pageToc a{color: #339;font-weight: normal;}
+#lastUpdate{border: 1px solid #f0f0f0;border-top:none;padding: 6px 24px;font-size: 0.8em;color: #666; text-align:left; }
+#next{border-top: 1px solid #f0f0f0;padding: 10px 0px;font-size: 1.1em;}
+#bottomSocial{border-top: 1px solid #f0f0f0;padding: 10px 0px;font-size: 0.9em;}
+</style>
+
+
+<style>
+@media only screen and (max-width: 799px) {
+	.main     { width: 100%;}
+	.category { display: none; }
+	.right    {	display: none; }
+	.card     { padding: 10px 8px; }
+    .bigScreen{ display: none; }
+}
+@media only screen and (min-width: 800px) and (max-width: 1199px) {
+	.main     { width: 75%; }
+	.category {	width: 25%;	}
+	.right    { display:none;}
+	.smallScreen { display: none; }
+}
+@media only screen and (min-width: 1200px) {
+	.main     { width: 50%;	max-width: 900px; }
+	.category { width: 25%;	max-width: 300px; }
+	.right    { width: 25%; max-width: 400px; display:none;}
+	.smallScreen { display: none; }
+}
+
+@media only screen and (max-width: 600px) {
+  #topBarLogo{transform: scale(0.75, 0.75) translate(0px, 0px);}
+}
+@media only screen and (max-width: 480px) {
+  #topBarLogo{transform: scale(0.6, 0.6) translate(136px, 0px);}
+  #topBarMenu a{ font-size: 0.8em; }
+  h1{ font-size: 1.6em; }
+  h2{ font-size: 1.4em; }
+  h3{ font-size: 1.2em; }
+}
+</style>
+
+<div class="grid">
+
+    <div class="topBar">
+
+        <div id="topBarMenu">
+            <a href="http://tutorials.jenkov.com/" title="Tutorials">Tutorials</a>
+            &nbsp;&nbsp;&nbsp;
+            <a href="http://jenkov.com/about/index.html" title="Tutorials">About</a>
+            &nbsp;&nbsp;&nbsp;
+            <a href="http://jenkov.com/rss.xml" title="RSS">RSS</a>
+        </div>
+
+        <div id="topBarLogoBox">
+            <div id="topBarLogo"><svg x="0px" y="0px" width="409px" height="48px" viewBox="0 0 409 100" style="enable-background:new 0 0 409 100;" xml:space="preserve">  <path d="M53,32 l10,0  l0,26  c-7,21 -30,21 -53,10  l4,-9  c18,11 33,10 39,-3  z " style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M69,32 l50,0  l0,9  l-50,0 z" style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M69,49 l50,0  l0,9  l-50,0 z" style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M69,65 l50,0  l0,9  l-50,0 z" style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M126,32 l13,0  l40,31  l0,-31  l10,0  l0,42  l-10,0 l-43,-32 l0,32 l-10,0 z " style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M179,32  l10,0  l0,15 l5,0  l32.5,-14.5  l19,0  l-41,19  l40,22  l-19,0  l-33,-18  l-3.5,0  l0,19  l-10,0 z " style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M238,49  c10,-24 60,-24 70,0  l-11,0  c-10,-12 -38,-12 -48,0  z " style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M238,57  c10,24 60,24 70,0  l-11,0  c-10,12 -38,12 -48,0  z " style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M304,32  l13,0  l25,34 l25,-34  l13,0  l-32,42 l-12.5,0 z" style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M369,65  l12,0 l0,8 l-12,0 z" style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M390,53  c3,-27 54,-27 67,-10  l-15,0  c-10,-5 -40,-5 -41.5,10 l-10,0  " style="stroke: none;  stroke-width: 1; fill: #ffffff;"></path>  <path d="M390,53  c3,27 54,27 67,10  l-15,0  c-10,5 -40,5 -41.5,-10 l-10,0  " style="stroke: none;  stroke-width: 1; fill: #ffffff;"></path>  <path d="M460,49  c10,-24 60,-24 70,0  l-11,0  c-10,-12 -38,-12 -48,0  z " style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M460,57  c10,24 60,24 70,0  l-11,0  c-10,12 -38,12 -48,0  z " style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M534,34  l10,0  l0,6 c13,-10 26,-10 37,0  c12,-10 32,-10 39,3  l0,30  l-10,0  l0,-27  c-3,-9 -24,-9 -28,3 l0,24  -10,0  l0,-27  c-3,-9 -24,-9 -28,3 l0,24  -10,0 z" style="stroke: none; stroke-width: 1; fill: #ffffff;"></path></svg></div>
+            <div id="topBarPhrase">Tech and Media Labs</div>
+        </div>
+
+    </div>
+
+
+    <div class="content">
+        <div class="site-menu">
+
+            <!--
+              <div class="card cardLeft cardTop">Software Development
+                <ul>
+                  <li>Java &amp; JVM</li>
+                  <li>Web</li>
+                  <li>Distributed Systems</li>
+                </ul>
+            </div>
+            -->
+        </div><div class="category">
+        <div id="trailToc" class="card cardTop cardBottom">
+            <div id="trailTitle">Java Concurrency</div><ol><li><a href="http://tutorials.jenkov.com/java-concurrency/index.html">Java Concurrency and Multithreading Tutorial</a></li><li><a href="http://tutorials.jenkov.com/java-concurrency/benefits.html">Multithreading Benefits</a></li><li><a href="http://tutorials.jenkov.com/java-concurrency/costs.html">Multithreading Costs</a></li><li><a href="http://tutorials.jenkov.com/java-concurrency/concurrency-models.html">Concurrency Models</a></li><li><a href="http://tutorials.jenkov.com/java-concurrency/same-threading.html">Same-threading</a></li><li><a href="http://tutorials.jenkov.com/java-concurrency/concurrency-vs-parallelism.html">Concurrency vs. Parallelism</a></li><li><a href="http://tutorials.jenkov.com/java-concurrency/creating-and-starting-threads.html">Creating and Starting Java Threads</a></li><li><a href="http://tutorials.jenkov.com/java-concurrency/race-conditions-and-critical-sections.html">Race Conditions and Critical Sections</a></li><li><a href="http://tutorials.jenkov.com/java-concurrency/thread-safety.html">Thread Safety and Shared Resources</a></li><li><a href="http://tutorials.jenkov.com/java-concurrency/thread-safety-and-immutability.html">Thread Safety and Immutability</a></li><li><a href="http://tutorials.jenkov.com/java-concurrency/java-memory-model.html"><b>Java Memory Model</b></a></li><li><a href="http://tutorials.jenkov.com/java-concurrency/synchronized.html">Java Synchronized Blocks</a></li><li><a href="http://tutorials.jenkov.com/java-concurrency/volatile.html">Java Volatile Keyword</a></li><li><a href="http://tutorials.jenkov.com/java-concurrency/threadlocal.html">Java ThreadLocal</a></li><li><a href="http://tutorials.jenkov.com/java-concurrency/thread-signaling.html">Thread Signaling</a></li><li><a href="http://tutorials.jenkov.com/java-concurrency/deadlock.html">Deadlock</a></li><li><a href="http://tutorials.jenkov.com/java-concurrency/deadlock-prevention.html">Deadlock Prevention</a></li><li><a href="http://tutorials.jenkov.com/java-concurrency/starvation-and-fairness.html">Starvation and Fairness</a></li><li><a href="http://tutorials.jenkov.com/java-concurrency/nested-monitor-lockout.html">Nested Monitor Lockout</a></li><li><a href="http://tutorials.jenkov.com/java-concurrency/slipped-conditions.html">Slipped Conditions</a></li><li><a href="http://tutorials.jenkov.com/java-concurrency/locks.html">Locks in Java</a></li><li><a href="http://tutorials.jenkov.com/java-concurrency/read-write-locks.html">Read / Write Locks in Java</a></li><li><a href="http://tutorials.jenkov.com/java-concurrency/reentrance-lockout.html">Reentrance Lockout</a></li><li><a href="http://tutorials.jenkov.com/java-concurrency/semaphores.html">Semaphores</a></li><li><a href="http://tutorials.jenkov.com/java-concurrency/blocking-queues.html">Blocking Queues</a></li><li><a href="http://tutorials.jenkov.com/java-concurrency/thread-pools.html">Thread Pools</a></li><li><a href="http://tutorials.jenkov.com/java-concurrency/compare-and-swap.html">Compare and Swap</a></li><li><a href="http://tutorials.jenkov.com/java-concurrency/anatomy-of-a-synchronizer.html">Anatomy of a Synchronizer</a></li><li><a href="http://tutorials.jenkov.com/java-concurrency/non-blocking-algorithms.html">Non-blocking Algorithms</a></li><li><a href="http://tutorials.jenkov.com/java-concurrency/amdahls-law.html">Amdahl's Law</a></li><li><a href="http://tutorials.jenkov.com/java-concurrency/references.html">Java Concurrency References</a></li></ol>
+        </div>
+    </div><div class="main">
+        <div class="card cardTop cardBottom">
+            <h1 style="text-align: left;">Java Memory Model</h1>
+
+            <div id="pageToc" itemscope="" itemtype="http://schema.org/SiteNavigationElement">
+                <ul><li><a href="http://tutorials.jenkov.com/java-concurrency/java-memory-model.html#javas-logic-memory-model">The Internal Java Memory Model</a></li><li><a href="http://tutorials.jenkov.com/java-concurrency/java-memory-model.html#hardware-memory-architecture">Hardware Memory Architecture</a></li><li><a href="http://tutorials.jenkov.com/java-concurrency/java-memory-model.html#bridging-the-gap-between-the-java-memory-model-and-the-hardware-memory-architecture">Bridging The Gap Between The Java Memory Model And The Hardware Memory Architecture</a><ul><li><a href="http://tutorials.jenkov.com/java-concurrency/java-memory-model.html#visibility-of-shared-objects">Visibility of Shared Objects</a></li><li><a href="http://tutorials.jenkov.com/java-concurrency/java-memory-model.html#race-conditions">Race Conditions</a></li></ul></li></ul>
+            </div>
+            <div id="lastUpdate">
+                <table><tbody><tr><td class="authorPhoto"></td>
+                    <td><p style="margin: 0px 0px 6px 0px;">
+                        Jakob Jenkov<br>
+                        Last update: 2014-12-18
+                    </p>
+                        <div class="authorSocialLinks"></div>
+                    </td>
+                </tr>
+                </tbody></table>
+            </div>
+
+            <div id="mainBody">
+                <p>
+    The Java memory model specifies how the Java virtual machine works with the computer's memory (RAM). The Java
+    virtual machine is a model of a whole computer so this model naturally includes a memory model - AKA the
+    Java memory model.
+</p>
+
+<p>
+    It is very important to understand the Java memory model if you want to design correctly behaving concurrent
+    programs. The Java memory model specifies how and when different threads can see values written to shared variables
+    by other threads, and how to synchronize access to shared variables when necessary.
+</p>
+
+<p>
+    The original Java memory model was insufficient, so the Java memory model was revised in Java 1.5. This version
+    of the Java memory model is still in use in Java 8.
+</p>
+
+
+<a name="javas-logic-memory-model"></a>
+<h2>The Internal Java Memory Model</h2>
+<p>
+    The Java memory model used internally in the JVM divides memory between thread stacks and the heap. This diagram
+    illustrates the Java memory model from a logic perspective:
+</p>
+
+
+
+<img src="./Java Memory Model_files/java-memory-model-1.png" alt="The Java Memory Model From a Logic Perspective">
+
+
+<p>
+    Each thread running in the Java virtual machine has its own thread stack. The thread stack contains information
+    about what methods the thread has called to reach the current point of execution. I will refer to this as the "call stack".
+    As the thread executes its code, the call stack changes.
+</p>
+
+<p>
+    The thread stack also contains all local variables for each method being executed (all methods on the call stack).
+    A thread can only access it's own thread stack. Local variables created by a thread are invisible to all other threads
+    than the thread who created it. Even if two threads
+    are executing the exact same code, the two threads will still create the local variables of that code in each their
+    own thread stack. Thus, each thread has its own version of each local variable.
+</p>
+
+<p>
+    All local variables of primitive types (
+    <code>boolean</code>, <code>byte</code>, <code>short</code>, <code>char</code>, <code>int</code>, <code>long</code>,
+    <code>float</code>, <code>double</code>) are fully stored on the thread stack and are thus
+    not visible to other threads. One thread may pass a copy of a pritimive variable to another thread, but it cannot
+    share the primitive local variable itself.
+</p>
+
+<p>
+    The heap contains all objects created in your Java application, regardless of what thread created the object.
+    This includes the object versions of the primitive types (e.g. <code>Byte</code>, <code>Integer</code>, <code>Long</code> etc.).
+    It does not matter if an object was created and assigned to a local variable, or created as a member variable of
+    another object, the object is still stored on the heap.
+</p>
+
+<p>
+    Here is a diagram illustrating the call stack and local variables stored on the thread stacks, and objects stored on
+    the heap:
+</p>
+
+
+<img src="./Java Memory Model_files/java-memory-model-2.png" alt="The Java Memory Model showing where local variables and objects are stored in memory.">
+
+
+<p>
+    A local variable may be of a primitive type, in which case it is totally kept on the thread stack.
+</p>
+
+<p>
+    A local variable may also be a reference to an object. In that case the reference (the local variable) is stored on the thread stack,
+    but the object itself if stored on the heap.
+</p>
+
+<p>
+    An object may contain methods and these methods may contain local variables. These local variables are also stored
+    on the thread stack, even if the object the method belongs to is stored on the heap.
+</p>
+
+<p>
+    An object's member variables are stored on the heap along with the object itself. That is true both when the
+    member variable is of a primitive type, and if it is a reference to an object.
+</p>
+
+<p>
+    Static class variables are also stored on the heap along with the class definition.
+</p>
+
+<p>
+    Objects on the heap can be accessed by all threads that have a reference to the object. When a thread has access
+    to an object, it can also get access to that object's member variables. If two threads call a method on the same
+    object at the same time, they will both have access to the object's member variables, but each thread will have
+    its own copy of the local variables.
+</p>
+
+<p>
+    Here is a diagram illustrating the points above:
+</p>
+
+
+
+<img src="./Java Memory Model_files/java-memory-model-3.png" alt="The Java Memory Model showing references from local variables to objects, and from object to other objects.">
+
+<p>
+    Two threads have a set of local variables. One of the
+    local variables (<code>Local Variable 2</code>) point to a shared object on the heap (Object 3). The two threads
+    each have a different reference to the same object. Their references are local variables and are thus stored in
+    each thread's thread stack (on each). The two different references point to the same object on the heap, though.
+</p>
+
+<p>
+    Notice how the shared object (Object 3) has a reference to Object 2 and Object 4 as member variables (illustrated
+    by the arrows from Object 3 to Object 2 and Object 4). Via these member variable references in Object 3 the two threads can
+    access Object 2 and Object 4.
+</p>
+
+<p>
+    The diagram also shows a local variable which point to two different objects on the heap. In this case the references
+    point to two different objects (Object 1 and Object 5), not the same object. In theory both threads could access
+    both Object 1 and Object 5, if both threads had references to both objects. But in the diagram above each thread
+    only has a reference to one of the two objects.
+</p>
+
+<p>
+    So, what kind of Java code could lead to the above memory graph? Well, code as simple as the code below:
+</p>
+
+
+<pre class="codeBox">public class MyRunnable implements Runnable() {
+
+    public void run() {
+        methodOne();
+    }
+
+    public void methodOne() {
+        int localVariable1 = 45;
+
+        MySharedObject localVariable2 =
+            MySharedObject.sharedInstance;
+
+        //... do more with local variables.
+
+        methodTwo();
+    }
+
+    public void methodTwo() {
+        Integer localVariable1 = new Integer(99);
+
+        //... do more with local variable.
+    }
+}
+
+</pre>
+
+<pre class="codeBox">public class MySharedObject {
+
+    //static variable pointing to instance of MySharedObject
+
+    public static final MySharedObject sharedInstance =
+        new MySharedObject();
+
+
+    //member variables pointing to two objects on the heap
+
+    public Integer object2 = new Integer(22);
+    public Integer object4 = new Integer(44);
+
+    public long member1 = 12345;
+    public long member1 = 67890;
+}
+</pre>
+
+
+<p>
+    If two threads were executing the <code>run()</code> method then the diagram shown earlier would be the outcome.
+    The <code>run()</code> method calls <code>methodOne()</code> and <code>methodOne()</code> calls <code>methodTwo()</code>.
+</p>
+
+<p>
+    <code>methodOne()</code> declares a primitive local variable (<code>localVariable1</code>
+    of type <code>int</code>) and an local variable which is an object reference (<code>localVariable2</code>).
+</p>
+
+<p>
+    Each thread executing <code>methodOne()</code> will create its own copy of <code>localVariable1</code> and
+    <code>localVariable2</code> on their respective thread stacks. The <code>localVariable1</code> variables will be
+    completely separated from each other, only living on each thread's thread stack. One thread cannot see what
+    changes another thread makes to its copy of <code>localVariable1</code>.
+</p>
+
+<p>
+    Each thread executing <code>methodOne()</code> will also create their own copy of <code>localVariable2</code>.
+    However, the two different copies of <code>localVariable2</code> both end up pointing to the same object on the heap.
+    The code sets <code>localVariable2</code> to point to an object referenced by a static variable. There is only one
+    copy of a static variable and this copy is stored on the heap. Thus, both of the two copies of <code>localVariable2</code>
+    end up pointing to the same instance of <code>MySharedObject</code> which the static variable points to. The <code>MySharedObject</code> instance is
+    also stored on the heap. It corresponds to Object 3 in the diagram above.
+</p>
+
+<p>
+    Notice how the <code>MySharedObject</code> class contains two member variables too. The member variables themselves
+    are stored on the heap along with the object. The two member variables point to two other <code>Integer</code>
+    objects. These <code>Integer</code> objects correspond to Object 2 and Object 4 in the diagram above.
+</p>
+
+<p>
+    Notice also how <code>methodTwo()</code> creates a local variable named <code>localVariable1</code>. This local
+    variable is an object reference to an <code>Integer</code> object. The method sets the <code>localVariable1</code>
+    reference to point to a new <code>Integer</code> instance. The <code>localVariable1</code> reference will be stored
+    in one copy per thread executing <code>methodTwo()</code>. The two <code>Integer</code> objects instantiated will
+    be stored on the heap, but since the method creates a new <code>Integer</code> object every time the method is executed,
+    two threads executing this method will create separate <code>Integer</code> instances. The <code>Integer</code>
+    objects created inside <code>methodTwo()</code> correspond to Object 1 and Object 5 in the diagram above.
+</p>
+
+<p>
+    Notice also the two member variables in the class <code>MySharedObject</code> of type <code>long</code> which
+    is a primitive type. Since these variables are member variables, they are still stored on the heap along with
+    the object. Only local variables are stored on the thread stack.
+</p>
+
+
+
+
+<a name="hardware-memory-architecture"></a>
+<h2>Hardware Memory Architecture</h2>
+
+<p>
+    Modern hardware memory architecture is somewhat different from the internal Java memory model. It is important
+    to understand the hardware memory architecture too, to understand how the Java memory model works with it.
+    This section describes the common hardware memory architecture, and a later section will describe how the
+    Java memory model works with it.
+</p>
+
+<p>
+    Here is a simplified diagram of modern computer hardware architecture:
+</p>
+
+
+<img src="./Java Memory Model_files/java-memory-model-4.png" alt="Modern hardware memory architecture.">
+
+
+<p>
+    A modern computer often has 2 or more CPUs in it. Some of these CPUs may have multiple cores too. The point is,
+    that on a modern computer with 2 or more CPUs it is possible to have more than one thread running simultaneously.
+    Each CPU is capable of running one thread at any given time. That means that if your Java application is
+    multithreaded, one thread per CPU may be running simultaneously (concurrently) inside your Java application.
+</p>
+
+<p>
+    Each CPU contains a set of registers which are essentially in-CPU memory. The CPU can perform operations much
+    faster on these registers than it can perform on variables in main memory. That is because the CPU can access
+    these registers much faster than it can access main memory.
+</p>
+
+<p>
+    Each CPU may also have a CPU cache memory layer. In fact, most modern CPUs have a cache memory layer of some size.
+    The CPU can access its cache memory much faster than main memory, but typically not as fast as it can access its
+    internal registers. So, the CPU cache memory is somewhere in between the speed of the internal registers and main
+    memory. Some CPUs may have multiple cache layers (Level 1 and Level 2), but this is not so important to know
+    to understand how the Java memory model interacts with memory. What matters is to know that CPUs can have a cache
+    memory layer of some sort.
+</p>
+
+<p>
+    A computer also contains a main memory area (RAM). All CPUs can access the main memory. The main memory area
+    is typically much bigger than the cache memories of the CPUs.
+</p>
+
+<p>
+    Typically, when a CPU needs to access main memory it will read part of main memory into its CPU cache. It may
+    even read part of the cache into its internal registers and then perform operations on it. When the CPU needs to
+    write the result back to main memory it will flush the value from its internal register to the cache memory,
+    and at some point flush the value back to main memory.
+</p>
+
+<p>
+    The values stored in the cache memory is typically flushed
+    back to main memory when the CPU needs to store something else in the cache memory. The CPU cache can have data
+    written to part of its memory at a time, and flush part of its memory at a time. It does not have to read / write
+    the full cache each time it is updated. Typically the cache is updated in smaller memory blocks called "cache lines".
+    One or more cache lines may be read into the cache memory, and one or mor cache lines may be flushed back to main
+    memory again.
+</p>
+
+
+
+<a name="bridging-the-gap-between-the-java-memory-model-and-the-hardware-memory-architecture"></a>
+<h2>Bridging The Gap Between The Java Memory Model And The Hardware Memory Architecture</h2>
+
+<p>
+    As already mentioned, the Java memory model and the hardware memory architecture are different. The hardware
+    memory architecture does not distinguish between thread stacks and heap. On the hardware, both the thread stack
+    and the heap are located in main memory. Parts of the thread stacks and heap may sometimes be present in CPU caches
+    and in internal CPU registers. This is illustrated in this diagram:
+</p>
+
+<img src="./Java Memory Model_files/java-memory-model-5.png" alt="The division of thread stack and heap among CPU internal registers, CPU cache and main memory.">
+
+
+<p>
+    When objects and variables can be stored in various different memory areas in the computer, certain problems
+    may occur. The two main problems are:
+</p>
+
+<ul>
+    <li>Visibility of thread updates (writes) to shared variables.</li>
+    <li>Race conditions when reading, checking and writing shared variables.</li>
+</ul>
+
+<p>
+    Both of these problems will be explained in the following sections.
+</p>
+
+
+
+
+<a name="visibility-of-shared-objects"></a>
+<h3>Visibility of Shared Objects</h3>
+
+<p>
+    If two or more threads are sharing an object, without the proper use of either <code>volatile</code> declarations
+    or synchronization, updates to the shared object made by one thread may not be visible to other threads.
+</p>
+
+<p>
+    Imagine that the shared object is initially stored in main memory. A thread running on CPU one then reads the
+    shared object into its CPU cache. There it makes a change to the shared object. As long as the CPU cache has
+    not been flushed back to main memory, the changed version of the shared object is not visible to threads running
+    on other CPUs. This way each thread may end up with its own copy of the shared object, each copy sitting in a
+    different CPU cache.
+</p>
+
+<p>
+    The following diagram illustrates the sketched situation. One thread running on the left CPU copies the shared
+    object into its CPU cache, and changes its <code>count</code> variable to 2. This change is not visible to
+    other threads running on the right CPU, because the update to <code>count</code> has not been flushed back
+    to main memory yet.
+</p>
+
+<img src="./Java Memory Model_files/java-memory-model-6.png" alt="Visibility Issues in the Java Memory Model.">
+
+<p>
+    To solve this problem you can use <a href="http://tutorials.jenkov.com/java-concurrency/volatile.html">Java's volatile keyword</a>. The <code>volatile</code>
+    keyword can make sure that a given variable is read directly from main memory, and always written back to main memory
+    when updated.
+</p>
+
+
+
+<a name="race-conditions"></a>
+<h3>Race Conditions</h3>
+<p>
+    If two or more threads share an object, and more than one thread updates variables in that shared object,
+    <a href="http://tutorials.jenkov.com/java-concurrency/race-conditions-and-critical-sections.html">race conditions</a> may occur.
+</p>
+
+<p>
+    Imagine if thread A reads the variable <code>count</code> of a shared object into its CPU cache. Imagine too,
+    that thread B does the same, but into a different CPU cache. Now thread A adds one to <code>count</code>, and
+    thread B does the same. Now <code>var1</code> has been incremented two times, once in each CPU cache.
+</p>
+
+<p>
+    If these increments had been carried out sequentially, the variable <code>count</code> would be been incremented twice
+    and had the original value + 2 written back to main memory.
+</p>
+
+<p>
+    However, the two increments have been carried out concurrently without proper synchronization. Regardless of
+    which of thread A and B that writes its updated version of <code>count</code> back to main memory, the updated value
+    will only be 1 higher than the original value, despite the two increments.
+</p>
+
+<p>
+    This diagram illustrates an occurrence of the problem with race conditions as described above: 
+</p>
+
+<img src="./Java Memory Model_files/java-memory-model-7.png" alt="Race Condition Issues in the Java Memory Model.">
+
+<p>
+    To solve this problem you can use a <a href="http://tutorials.jenkov.com/java-concurrency/synchronized.html">Java synchronized block</a>. A synchronized block
+    guarantees that only one thread can enter a given critical section of the code at any given time. Synchronized
+    blocks also guarantee that all variables accessed inside the synchronized block will be read in from main memory,
+    and when the thread exits the synchronized block, all updated variables will be flushed back to main memory again,
+    regardless of whether the variable is declared volatile or not.
+</p>
+            </div>
+
+            <div id="next">Next: <a href="http://tutorials.jenkov.com/java-concurrency/synchronized.html">Java Synchronized Blocks</a></div>
+            <div id="bottomSocial">
+
+                <div style="display:inline-block;">
+                    <table>
+                        <tbody><tr><td colspan="2">
+                            <div id="___plus_0" style="position: absolute; width: 450px; left: -10000px;"><iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position:absolute;top:-10000px;width:450px;margin:0px;border-style:none" tabindex="0" vspace="0" width="100%" id="I0_1581240935465" name="I0_1581240935465" src="./Java Memory Model_files/sharebutton.html" data-gapiattached="true"></iframe></div><div class="g-plus" data-action="share" data-height="24" data-annotation="none" data-gapiscan="true" data-onload="true" data-gapistub="true"></div>
+                            <script src="./Java Memory Model_files/cb=gapi.loaded_1" async=""></script><script src="./Java Memory Model_files/cb=gapi.loaded_0" async=""></script><script async="" src="./Java Memory Model_files/analytics.js"></script><script id="twitter-wjs" src="./Java Memory Model_files/widgets.js"></script><script type="text/javascript" async="" src="./Java Memory Model_files/platform.js" gapi_processed="true"></script><script type="text/javascript">
+                                (function() {
+                                    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                                    po.src = 'https://apis.google.com/js/platform.js';
+                                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                                 })();
+                            </script>
+
+                            <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button" style="position: static; visibility: visible; width: 61px; height: 20px;" title="Twitter Tweet Button" src="./Java Memory Model_files/tweet_button.7303c29a8108bca4ac5c9ef008ed8164.en.html"></iframe>
+                            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+                        </td></tr>
+                        <tr><td class="authorPhoto"></td><td><p style="margin: 0px 0px 6px 0px;">Jakob Jenkov</p><div class="authorSocialLinks"></div></td></tr>
+                    </tbody></table>
+                </div>
+
+                <div style="display: none;" class="newsletterForm"></div>
+
+            </div>
+
+        </div>
+    </div><div class="right">
+        <div class="card cardRight cardTop cardBottom">Right 1
+            <div>Right 2</div>
+        </div>
+    </div>
+    </div>
+    <div class="footer">
+        <div id="footerCopyright">Copyright Jenkov Aps</div>
+    </div>
+</div>
+
+<style>
+.navButton{color: #ffffff; font-weight: bold;}
+#trailTocFixedDiv{position: fixed;  top : 0px; left : 0px; width : 100%; height : 100%;  display : none; background-color: #ffffff;}
+#trailTocFixedInnerDiv{width: 400px; max-width: 94%; height: calc(100% - 72px); overflow : auto; margin: 20px auto 20px auto; padding: 0px 0px 180px 0px;}
+#trailTocFixedInnerDiv th{border-bottom: 1px solid #f0f0f0;padding: 6px 10px;text-align: left;font-size: 1.2em;}
+#trailTocFixedInnerDiv td{border-bottom: 1px solid #f0f0f0;padding: 6px 20px;vertical-align: top;}
+#trailTocFixedCloseButton{width : 72px; padding: 10px 20px; background-color: #009900; border: 2px solid #006600; color: #ffffff; font-size: 0.8em; font-weight: bold; position: absolute; right: 0px; cursor: pointer; box-shadow: 2px 2px 2px 2px #cccccc;}
+#bottomNavBarDiv{position:fixed; bottom: 0px; width: 100%;  background-color: #202020; border-top: 1px solid #444444;}
+.buttonNavBarButtonDivActive{background-color: #404040;}
+#bottomNavBarRow>div{border-left: 1px solid #404040; border-right: 1px solid #000000;  height: 48px;  padding-top:16px; text-align: center; cursor: pointer;}
+#bottomNavBarDiv a{color: #ffffff; font-weight: bold;}
+#bottomNavBarDiv br{display:none;}
+#bottomNavBarDiv img{ height: 20px; }
+#nextButton2{ display:none; }
+@media only screen and (max-width: 700px){
+  #bottomNavBarDiv, #bottomNavBarDiv [jqc-cell] { height: 58px; }
+  #bottomNavBarDiv [jqc-cell] {padding-top: 12px;}
+  #bottomNavBarDiv a { font-size: 0.8em; }
+  #bottomNavBarDiv br { display: inline; }
+  #nextButton1 { display: none; }
+  #nextButton2 { display: inline; }
+}
+@media only screen and (max-width: 400px){
+  #bottomNavBarDiv [jqc-cell] {padding-top: 10px;}
+  #bottomNavBarDiv a {font-size: 0.5em;}
+  #bottomNavBarDiv img {height: 24px;}
+}
+</style>
+
+
+<div id="trailTocFixedDiv">
+    <div id="trailTocFixedCloseButton">Close TOC</div>
+    <div id="trailTocFixedInnerDiv"></div>
+</div>
+
+<style>
+#bottomNavBar2Parent{position:fixed; bottom: 0px; width: 100%;  background-color: #202020; border-top: 1px solid #444444;}
+#bottomNavBar2>div{border-left: 1px solid #404040; border-right: 1px solid #000000;  height: 48px;  padding-top:16px; text-align: center; cursor: pointer;}
+
+
+#bottomNavBar2{
+  display: grid;
+}
+#allTrailsButtonDiv2{
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+#trailTocButtonDiv2 {
+  grid-column-start: 3;
+  grid-column-end: 5;
+}
+
+#pageTocButtonDiv2{
+  grid-column-start: 5;
+  grid-column-end: 7;
+}
+
+#prevButtonDiv2 {
+  grid-column-start: 7;
+  grid-column-end: 9;
+}
+
+#nextButtonDiv2 {
+  grid-column-start: 9;
+  grid-column-end: 13;
+}
+
+</style>
+
+<div id="bottomNavBar2Parent">
+<div id="bottomNavBar2">
+
+    <div id="allTrailsButtonDiv2">
+        <span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAbUlEQVRIx+3SQQrAIAxEUenNewrvmkXUQgVJEwWdQEED4kb+QzSEPw0z389yi6d3JJKaWY5ryBKgxSVS9jgF9OItQkRXRaBxDYHHJeISt34XND5EEHETQcY/iEfcvAkqbD7yAaYB1PkD7AB4TAY0StbUr69awQAAAABJRU5ErkJggg=="></span> <br>
+        <span class="navButton" style="position:relative; top:-4px;">All Trails</span>
+    </div>
+
+    <div id="trailTocButtonDiv2">
+        <span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAPElEQVRIx2P4TwPAgAzoZgEDrQDdLaB6cI1aMHgtoFriGRkWEB3eg9YHo0E08BaM8CAiWoLaFlAL0NwCANELs4XjmhvVAAAAAElFTkSuQmCC"></span> <br>
+        <span class="navButton" style="position:relative; top:-4px;">Trail TOC</span>
+    </div>
+
+    <div id="pageTocButtonDiv2">
+        <span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAANUlEQVRIx2NggIL/VAYM6GDUglELqGcBA4Vg1ALqWkBOhA4uH4wG0cBbMBpEw9QCagG6WQAAX980BcIgiscAAAAASUVORK5CYII="></span> <br>
+        <span class="navButton" style="position:relative; top:-4px;">Page TOC</span>
+    </div>
+
+    <div id="prevButtonDiv2">
+        <span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuNvyMY98AAACCSURBVEhL3ZRRCsAgDEM9iez+dxJPUl0K9W+MtKMiC/RL80Lz0eKViNQxRpsvwnvHv8ssvGD8ORzjh7Odf4F34zxK30O1qImEV7Pw0nUJeEuFY/xwspZceKiWVLgqPUC1JQSAc0Iwh2+iZiIkdiqWdobknOslmM8JwcbxELaujSGl3GNH6mWcCMu2AAAAAElFTkSuQmCC"></span> <br>
+        <span class="navButton" style="position:relative; top:-4px;">Previous</span>
+    </div>
+
+    <div id="nextButtonDiv2">
+        <!--<span class="navButton" id="nextButton1_2" style="position:relative; top:-4px;">Next</span>-->
+        <span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAb0lEQVRIx82W2w1AIQhDmcS4/07GScDbu4AvUlMSv9QeA6RohnD3GhF9TAL7DeeK3cYuBEscgss6kBc16VlI2YTULKStIH9aMzXRgTxJlzaECpAQv+okaptSX35gFed+RBWn2jV14FBHJvVnwRT/AGJL6mWb6M7pAAAAAElFTkSuQmCC"></span> <br>
+        <span class="navButton" id="nextButton2_2" style="position:relative; top:-4px;">Next</span>
+    </div>
+
+</div>
+</div>
+
+
+<script>
+var prevArticleInCategory = "/java-concurrency/thread-safety-and-immutability.html";
+var nextArticleInCategory = "/java-concurrency/synchronized.html";
+</script>
+
+
+<script>
+function qid(id) { return document.getElementById(id); }
+</script>
+
+<!-- Nav bar code -->
+<script>
+function toggle(el){
+    if(el.isShown == null || el.isShown == false) {
+        el.isShown = true;
+        el.style.display = "block";
+    } else {
+        el.isShown = false;
+        el.style.display = "none";
+    }
+}
+
+qid("allTrailsButtonDiv2").addEventListener("mouseup", function(e) {
+    location.href="/";
+    e.preventDefault();
+    e.stopPropagation();
+});
+qid("trailTocButtonDiv2").addEventListener("mouseup", function(e) {
+    var tocHtml = qid("trailToc").innerHTML;
+    qid("trailTocFixedInnerDiv").innerHTML = tocHtml + "<br><br><br><br><br><br><br><br><br><br>";
+    toggle(qid("trailTocFixedDiv"));
+    e.preventDefault();
+    e.stopPropagation();
+});
+qid("trailTocFixedCloseButton").addEventListener("mouseup", function(e) {
+    toggle(qid("trailTocFixedDiv"));
+    e.preventDefault();
+    e.stopPropagation();
+});
+qid("pageTocButtonDiv2").addEventListener("mouseup", function(e) {
+    location.href="#pageToc";
+    e.preventDefault();
+    e.stopPropagation();
+});
+qid("prevButtonDiv2").addEventListener("mouseup", function(e) {
+    if(prevArticleInCategory != "") {
+        location.href = prevArticleInCategory;
+    } else {
+        alert("This is the first article in this trail");
+    }
+});
+qid("nextButtonDiv2").addEventListener("mouseup", function(e) {
+  if(nextArticleInCategory != "") {
+    location.href= nextArticleInCategory;
+  } else {
+    alert("This is the last article in this trail.");
+  }
+  e.preventDefault();
+  e.stopPropagation();
+});
+</script>
+
+
+<!-- Google Analytics Script -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-4036229-3', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<!-- Google Adsense Script -->
+<script data-ad-client="ca-pub-5569543489255665" async="" src="./Java Memory Model_files/f.txt"></script>
+
+
+
+
+
+<iframe scrolling="no" frameborder="0" allowtransparency="true" src="./Java Memory Model_files/widget_iframe.7303c29a8108bca4ac5c9ef008ed8164.html" title="Twitter settings iframe" style="display: none;"></iframe><iframe name="oauth2relay386944654" id="oauth2relay386944654" src="./Java Memory Model_files/postmessageRelay.html" tabindex="-1" aria-hidden="true" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe></body></html>
