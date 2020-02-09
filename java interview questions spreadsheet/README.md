@@ -6440,6 +6440,15 @@ https://www.baeldung.com/java-executor-service-tutorial
 
 ----
 
+# Java memory model
+
+- [jenkov-Java-Memory-Model](refs/jenkov-Java-Memory-Model)
+
+`references:`
+http://tutorials.jenkov.com/java-concurrency/java-memory-model.html
+
+----
+
 # Dead-lock/Starvation/Live lock
 
 |Junior |Mid  |Senior |
