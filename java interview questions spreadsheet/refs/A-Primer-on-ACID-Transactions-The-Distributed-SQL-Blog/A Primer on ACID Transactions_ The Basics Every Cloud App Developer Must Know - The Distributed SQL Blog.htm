@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<!-- saved from url=(0056)https://blog.yugabyte.com/a-primer-on-acid-transactions/ -->
+<html lang="en-US" prefix="og: http://ogp.me/ns#" class=" js flexbox flexboxlegacy canvas canvastext no-touch hashchange history draganddrop rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio svg inlinesvg svgclippaths js_active  vc_desktop  vc_transform  vc_transform "><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<script type="text/javascript" async="" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/9fp5c8x3476g.js"></script><script type="text/javascript" async="" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/analytics.js"></script><script async="" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-104956980-5');
+  </script>
+<link rel="stylesheet" href="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link href="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/css" rel="stylesheet">
+<link href="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/css(1)" rel="stylesheet">
+<link rel="stylesheet" href="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/brands.css" integrity="sha384-Px1uYmw7+bCkOsNAiAV5nxGKJ0Ixn5nChyW8lCK1Li1ic9nbO5pC/iXaq27X5ENt" crossorigin="anonymous">
+<link rel="stylesheet" href="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/fontawesome.css" integrity="sha384-BzCy2fixOYd0HObpx3GMefNqdbA7Qjcc91RgYeDjrHTIEXqiF00jKvgQG0+zY/7I" crossorigin="anonymous">
+
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="https://blog.yugabyte.com/xmlrpc.php">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>A Primer on ACID Transactions: The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog</title>
+<style type="text/css">
+			.rltdpstsplgn-featured-posts {
+				width: 100%;
+			}
+			.rltdpstsplgn-featured-post-block .rltdpstsplgn-featured-posts article {
+				width: 960px;
+			}
+							.rltdpstsplgn-featured-posts {
+					background-color: #f3f3f3 !important;
+				}
+				.rltdpstsplgn-featured-posts article {
+					background-color: #f3f3f3 !important;
+				}
+				.rltdpstsplgn-featured-posts article h3 a {
+					color: #777b7e !important;
+				}
+				.rltdpstsplgn-featured-posts article p {
+					color: #777b7e !important;
+				}
+				.rltdpstsplgn-featured-posts .more-link {
+					color: #777b7e !important;
+				}
+					</style>
+<script type="application/javascript">var ElatedAjaxUrl = "https://blog.yugabyte.com/wp-admin/admin-ajax.php"</script>
+
+<link rel="canonical" href="https://blog.yugabyte.com/a-primer-on-acid-transactions/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Primer on ACID Transactions: The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog">
+<meta property="og:description" content="ACID transactions were a big deal when first introduced formally in the 1980s in monolithic SQL databases such as Oracle and IBM DB2. Popular distributed NoSQL databases of the past decade including Amazon DynamoDB and Apache Cassandra initially focused on “big data” use cases that did not require such guarantees and hence avoided implementing them altogether. However, ACID transactions are making a strong comeback in the last 2 years with the launch of next-generation distributed databases that have built-in support for them....">
+<meta property="og:url" content="https://blog.yugabyte.com/a-primer-on-acid-transactions/">
+<meta property="og:site_name" content="The Distributed SQL Blog">
+<meta property="article:publisher" content="https://www.facebook.com/yugabyte">
+<meta property="article:tag" content="ACID Transactions">
+<meta property="article:tag" content="NoSQL">
+<meta property="article:tag" content="SQL">
+<meta property="article:section" content="ACID Transactions">
+<meta property="article:published_time" content="2018-07-19T20:43:40-07:00">
+<meta property="article:modified_time" content="2019-03-21T19:45:00-07:00">
+<meta property="og:updated_time" content="2019-03-21T19:45:00-07:00">
+<meta property="og:image" content="https://blog.yugabyte.com/wp-content/uploads/2018/07/8-A-Primer-on-ACID-Transactions-socmed.png">
+<meta property="og:image:secure_url" content="https://blog.yugabyte.com/wp-content/uploads/2018/07/8-A-Primer-on-ACID-Transactions-socmed.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="628">
+<meta property="og:image:alt" content="A Primer on ACID Transactions">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="ACID transactions were a big deal when first introduced formally in the 1980s in monolithic SQL databases such as Oracle and IBM DB2. Popular distributed NoSQL databases of the past decade including Amazon DynamoDB and Apache Cassandra initially focused on “big data” use cases that did not require such guarantees and hence avoided implementing them altogether. However, ACID transactions are making a strong comeback in the last 2 years with the launch of next-generation distributed databases that have built-in support for them....">
+<meta name="twitter:title" content="A Primer on ACID Transactions: The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog">
+<meta name="twitter:site" content="@YugaByte">
+<meta name="twitter:image" content="https://blog.yugabyte.com/wp-content/uploads/2018/07/8-A-Primer-on-ACID-Transactions-socmed.png">
+<meta name="twitter:creator" content="@SidChoudhury">
+<script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"Organization","url":"https:\/\/blog.yugabyte.com\/","sameAs":["https:\/\/www.facebook.com\/yugabyte","https:\/\/www.linkedin.com\/company\/yugabyte\/","https:\/\/www.youtube.com\/channel\/UCL9BhSLRowqQ1TyBndhiCEw\/","https:\/\/twitter.com\/YugaByte"],"@id":"https:\/\/blog.yugabyte.com\/#organization","name":"YugaByte","logo":"https:\/\/blog.yugabyte.com\/wp-content\/uploads\/2018\/10\/ybDB-wordmark.png"}</script>
+
+<link rel="dns-prefetch" href="https://maps.googleapis.com/">
+<link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+<link rel="dns-prefetch" href="https://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="The Distributed SQL Blog » Feed" href="https://blog.yugabyte.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="The Distributed SQL Blog » Comments Feed" href="https://blog.yugabyte.com/comments/feed/">
+<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/blog.yugabyte.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.3.2"}};
+			!function(e,a,t){var r,n,o,i,p=a.createElement("canvas"),s=p.getContext&&p.getContext("2d");function c(e,t){var a=String.fromCharCode;s.clearRect(0,0,p.width,p.height),s.fillText(a.apply(this,e),0,0);var r=p.toDataURL();return s.clearRect(0,0,p.width,p.height),s.fillText(a.apply(this,t),0,0),r===p.toDataURL()}function l(e){if(!s||!s.fillText)return!1;switch(s.textBaseline="top",s.font="600 32px Arial",e){case"flag":return!c([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])&&(!c([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!c([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]));case"emoji":return!c([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340])}return!1}function d(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(i=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},o=0;o<i.length;o++)t.supports[i[o]]=l(i[o]),t.supports.everything=t.supports.everything&&t.supports[i[o]],"flag"!==i[o]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[i[o]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(r=t.source||{}).concatemoji?d(r.concatemoji):r.wpemoji&&r.twemoji&&(d(r.twemoji),d(r.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/wp-emoji-release.min.js" type="text/javascript" defer=""></script>
+<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="crayon-css" href="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/crayon.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-block-library-css" href="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/style.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="contact-form-7-css" href="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/styles.css" type="text/css" media="all">
+<link rel="stylesheet" id="rltdpstsplgn_stylesheet-css" href="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="bodhi-svgs-attachment-css" href="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/svgs-attachment.css" type="text/css" media="all">
+<link rel="stylesheet" id="flow_elated_default_style-css" href="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/style(1).css" type="text/css" media="all">
+<link rel="stylesheet" id="flow_elated_modules_plugins-css" href="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/plugins.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="flow_elated_modules-css" href="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/modules.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="eltd_font_awesome-css" href="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/font-awesome.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="eltd_font_elegant-css" href="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/style.min(1).css" type="text/css" media="all">
+<link rel="stylesheet" id="eltd_ion_icons-css" href="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/ionicons.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="eltd_linea_icons-css" href="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/style(2).css" type="text/css" media="all">
+<link rel="stylesheet" id="eltd_simple_line_icons-css" href="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/simple-line-icons.css" type="text/css" media="all">
+<link rel="stylesheet" id="eltd_dripicons-css" href="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/dripicons.css" type="text/css" media="all">
+<link rel="stylesheet" id="flow_elated_blog-css" href="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/blog.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="mediaelement-css" href="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/mediaelementplayer-legacy.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-mediaelement-css" href="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/wp-mediaelement.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="flow_elated_style_dynamic-css" href="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/style_dynamic.css" type="text/css" media="all">
+<link rel="stylesheet" id="flow_elated_modules_responsive-css" href="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/modules-responsive.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="flow_elated_blog_responsive-css" href="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/blog-responsive.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="flow_elated_style_dynamic_responsive-css" href="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/style_dynamic_responsive.css" type="text/css" media="all">
+<link rel="stylesheet" id="js_composer_front-css" href="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/js_composer.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="flow_elated_google_fonts-css" href="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/css(2)" type="text/css" media="all">
+<link rel="stylesheet" id="tablepress-default-css" href="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/tablepress-combined.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="childstyle-css" href="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/style(3).css" type="text/css" media="all">
+<script type="text/javascript" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/jquery.js"></script>
+<script type="text/javascript" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/jquery-migrate.min.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var CrayonSyntaxSettings = {"version":"_2.7.2_beta","is_admin":"0","ajaxurl":"https:\/\/blog.yugabyte.com\/wp-admin\/admin-ajax.php","prefix":"crayon-","setting":"crayon-setting","selected":"crayon-setting-selected","changed":"crayon-setting-changed","special":"crayon-setting-special","orig_value":"data-orig-value","debug":""};
+var CrayonSyntaxStrings = {"copy":"Press %s to Copy, %s to Paste","minimize":"Click To Expand Code"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/crayon.min.js"></script>
+<link rel="https://api.w.org/" href="https://blog.yugabyte.com/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://blog.yugabyte.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://blog.yugabyte.com/wp-includes/wlwmanifest.xml">
+<link rel="shortlink" href="https://blog.yugabyte.com/?p=167">
+<link rel="alternate" type="application/json+oembed" href="https://blog.yugabyte.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fblog.yugabyte.com%2Fa-primer-on-acid-transactions%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://blog.yugabyte.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fblog.yugabyte.com%2Fa-primer-on-acid-transactions%2F&amp;format=xml">
+<meta name="generator" content="Powered by WPBakery Page Builder - drag and drop page builder for WordPress.">
+<!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="https://3lr6t13cowm230cj0q42yphj-wpengine.netdna-ssl.com/wp-content/plugins/js_composer/assets/css/vc_lte_ie9.min.css" media="screen"><![endif]--><link rel="icon" href="https://3lr6t13cowm230cj0q42yphj-wpengine.netdna-ssl.com/wp-content/uploads/2019/07/cropped-symbol-sq-32x32.png" sizes="32x32">
+<link rel="icon" href="https://3lr6t13cowm230cj0q42yphj-wpengine.netdna-ssl.com/wp-content/uploads/2019/07/cropped-symbol-sq-192x192.png" sizes="192x192">
+<link rel="apple-touch-icon-precomposed" href="https://3lr6t13cowm230cj0q42yphj-wpengine.netdna-ssl.com/wp-content/uploads/2019/07/cropped-symbol-sq-180x180.png">
+<meta name="msapplication-TileImage" content="https://blog.yugabyte.com/wp-content/uploads/2019/07/cropped-symbol-sq-270x270.png">
+<noscript><style type="text/css"> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript>
+<script src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/jquery.validate.min.js"></script>
+<script src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/main.js" type="text/javascript"></script>
+<script> !function(e,t,i){var r=e.bigPicture=e.bigPicture||[];if(!r.initialized)if(r.invoked)e.console&&console.error&&console.error("BigPicture.io snippet included twice.");else{r.invoked=!0,r.SNIPPET_VERSION=1.5,r.handler=function(e){if(void 0!==r.callback)try{return r.callback(e)}catch(e){}},r.eventList=["mousedown","mouseup","click","submit"],r.methods=["track","identify","page","group","alias","integration","ready","intelReady","consentReady","on","off"],r.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);return t.unshift(e),r.push(t),r}};for(var n=0;n<r.methods.length;n++){var o=r.methods[n];r[o]=r.factory(o)}r.getCookie=function(e){var i=("; "+t.cookie).split("; "+e+"=");return 2==i.length&&i.pop().split(";").shift()};var c=r.isEditor=function(){try{return e.self!==e.top&&(new RegExp("app"+i,"ig").test(t.referrer)||"edit"==r.getCookie("_bpr_edit"))}catch(e){return!1}}();r.init=function(n,o){if(r.projectId=n,r._config=o,!c)for(var a=0;a<r.eventList.length;a++)e.addEventListener(r.eventList[a],r.handler,!0);var s=t.createElement("script");s.async=!0;var d=c?"/editor/editor":"/public-"+n;s.src="//cdn"+i+d+".js",t.getElementsByTagName("head")[0].appendChild(s)}}}(window,document,".bigpicture.io"); bigPicture.init("1020");</script><script async="" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/public-1020.js"></script>
+<style>.fluidvids {width: 100%; max-width: 100%; position: relative;}.fluidvids-item {position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;}</style><script type="text/javascript" charset="utf8" async="" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/analytics-v2.6.5.js"></script><script type="text/javascript" charset="UTF-8" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/common.js"></script><script type="text/javascript" charset="UTF-8" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/util.js"></script></head>
+<body class="post-template-default single single-post postid-167 single-format-standard eltd-core-1.1.2 rltdpstsplgn_flow.elated-themes.com flow child-child-ver-1.1.0 flow-ver-1.4  ajax eltd-blog-installed page-template-blog-standard eltd-header-type2 eltd-sticky-header-on-scroll-up eltd-default-mobile-header eltd-sticky-up-mobile-header eltd-menu-item-first-level-bg-color eltd-dropdown-default wpb-js-composer js-comp-ver-5.4.7 vc_responsive">
+<div class="eltd-wrapper">
+<div class="eltd-wrapper-inner">
+<div class="eltd-content">
+<div class="eltd-content-inner"><div class="yb-header black">
+<div class="navbar-black" role="menu">
+<div class="container nav-container">
+<div class="nav-logo">
+ <a href="https://blog.yugabyte.com/" class="nav-logo-link">
+<div class="logo-black"></div>
+</a>
+</div>
+<div class="menu-container">
+<div class="menu-header-container"><ul id="menu-header" class="menu"><li id="menu-item-390" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-390"><a>Products</a>
+<ul class="sub-menu">
+<li id="menu-item-1104" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1104"><a href="https://www.yugabyte.com/platform/">Yugabyte Platform</a></li>
+<li id="menu-item-1105" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1105"><a href="https://www.yugabyte.com/cloud/">Yugabyte Cloud</a></li>
+</ul>
+</li>
+<li id="menu-item-391" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-391"><a>Open Source</a>
+<ul class="sub-menu">
+<li id="menu-item-1605" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1605"><a href="https://www.yugabyte.com/yugabytedb/">YugabyteDB</a></li>
+<li id="menu-item-1604" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1604"><a href="https://www.yugabyte.com/community/">Community</a></li>
+</ul>
+</li>
+<li id="menu-item-461" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-461"><a href="https://www.yugabyte.com/success-stories">Success Stories</a></li>
+<li id="menu-item-462" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-462"><a>Use Cases</a>
+<ul class="sub-menu">
+<li id="menu-item-463" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-463"><a href="https://www.yugabyte.com/globally-distributed-applications/">Globally Distributed Applications</a></li>
+<li id="menu-item-464" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-464"><a href="https://www.yugabyte.com/real-time-streaming-and-analytics/">Real-Time Streaming &amp; Analytics</a></li>
+<li id="menu-item-466" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-466"><a href="https://www.yugabyte.com/planet-scale-sql/">Planet-Scale SQL</a></li>
+<li id="menu-item-465" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-465"><a href="https://www.yugabyte.com/transactional-nosql/">Transactional NoSQL</a></li>
+</ul>
+</li>
+<li id="menu-item-468" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-468"><a>Resources</a>
+<ul class="sub-menu">
+<li id="menu-item-395" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-395"><a href="https://blog.yugabyte.com/">Blog</a></li>
+<li id="menu-item-392" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-392"><a href="https://docs.yugabyte.com/">Docs</a></li>
+<li id="menu-item-646" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-646"><a href="http://yugabyte.com/slack">Slack</a></li>
+<li id="menu-item-1108" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1108"><a href="https://github.com/YugaByte/yugabyte-db">GitHub</a></li>
+<li id="menu-item-1443" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1443"><a href="https://vimeo.com/yugabyte">Videos</a></li>
+</ul>
+</li>
+<li id="menu-item-396" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-396"><a href="https://download.yugabyte.com/">Get Started</a></li>
+</ul></div> </div>
+</div>
+</div>
+<div class="navbar-white" role="menu">
+<div class="container nav-toggle">
+<button id="navOpen">
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>hamburger-white</title>
+<desc>Created with Sketch.</desc>
+<defs></defs>
+<g id="v2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="01-home-mobile-mainnav" transform="translate(-327.000000, -21.000000)" fill="#FFFFFF" class="hamburger-fill" style="fill: rgb(21, 24, 56);">
+<g id="hamburger-white" transform="translate(327.000000, 21.000000)">
+<rect id="Rectangle" x="0" y="0" width="27.6410256" height="4.66666667"></rect>
+<rect id="Rectangle-Copy" x="0" y="11.6666667" width="27.6410256" height="4.66666667"></rect>
+<rect id="Rectangle-Copy-2" x="0" y="23.3333333" width="27.6410256" height="4.66666667"></rect>
+</g>
+</g>
+</g>
+</svg> </button>
+</div>
+<div class="container nav-container" id="navMobile" style="height: 0px; margin-top: -15px; padding-top: 0px; padding-bottom: 0px; border: transparent;">
+<div class="row mobile-top">
+<div class="col nav-logo">
+<a href="https://blog.yugabyte.com/" class="nav-logo-link">
+<img class="logo-black" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/ybDB-Dark-v2.svg">
+</a>
+</div>
+<div class="col nav-toggle">
+<button id="navClose"><img src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/hamburger-close.svg"></button>
+</div>
+</div>
+<div class="menu-container" id="navMobile0">
+<div class="menu-header-container"><ul id="menu-header-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-390"><a>Products</a>
+<ul class="sub-menu">
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1104"><a href="https://www.yugabyte.com/platform/">Yugabyte Platform</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1105"><a href="https://www.yugabyte.com/cloud/">Yugabyte Cloud</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-391"><a>Open Source</a>
+<ul class="sub-menu">
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1605"><a href="https://www.yugabyte.com/yugabytedb/">YugabyteDB</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1604"><a href="https://www.yugabyte.com/community/">Community</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-461"><a href="https://www.yugabyte.com/success-stories">Success Stories</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-462"><a>Use Cases</a>
+<ul class="sub-menu" style="height: 0px; padding: 0px; border: 0px;">
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-463"><a href="https://www.yugabyte.com/globally-distributed-applications/">Globally Distributed Applications</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-464"><a href="https://www.yugabyte.com/real-time-streaming-and-analytics/">Real-Time Streaming &amp; Analytics</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-466"><a href="https://www.yugabyte.com/planet-scale-sql/">Planet-Scale SQL</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-465"><a href="https://www.yugabyte.com/transactional-nosql/">Transactional NoSQL</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-468"><a>Resources</a>
+<ul class="sub-menu" style="height: 0px; padding: 0px; border: 0px;">
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-395"><a href="https://blog.yugabyte.com/">Blog</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-392"><a href="https://docs.yugabyte.com/">Docs</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-646"><a href="http://yugabyte.com/slack">Slack</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1108"><a href="https://github.com/YugaByte/yugabyte-db">GitHub</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1443"><a href="https://vimeo.com/yugabyte">Videos</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-396"><a href="https://download.yugabyte.com/">Get Started</a></li>
+</ul></div> </div>
+</div>
+</div></div>
+<div class="hero-section community-edition-hero-section" style="background-image: url(https://3lr6t13cowm230cj0q42yphj-wpengine.netdna-ssl.com/wp-content/uploads/2019/05/w2_blog-hero-distr.jpg)">
+<div class="headline text-center">
+<div class="container">
+<div class="row">
+<div class="col-lg-6 offset-lg-3">
+<a href="https://blog.yugabyte.com/">
+<img src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/ybDB-wordmark-blog.svg" alt="YugaByte DB" class="solutions-image" style="margin-bottom: 20px">
+</a>
+</div>
+</div>
+</div>
+<h2 class="sub">The Distributed SQL Blog</h2>
+<p>Thoughts on distributed databases, open source and cloud native</p>
+</div>
+</div>
+<div class="eltd-container">
+<div class="eltd-container-inner">
+<div class="eltd-two-columns-75-25 eltd-sidebar clearfix">
+<div class="eltd-column1 eltd-content-left-from-sidebar">
+<div class="eltd-column-inner">
+<div class="eltd-blog-holder eltd-blog-single">
+<article id="post-167" class="post-167 post type-post status-publish format-standard has-post-thumbnail hentry category-acid category-how-it-works tag-acid-transactions tag-nosql tag-sql">
+<div class="eltd-post-content">
+ <div class="eltd-post-text">
+<div class="eltd-post-text-inner clearfix">
+<h1 class="eltd-post-title">
+A Primer on ACID Transactions: The Basics Every Cloud App Developer Must Know</h1>
+<div class="eltd-author-description under-title">
+<div class="eltd-author-description-inner">
+<div class="eltd-author-description-image">
+<img alt="" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/357b1946eef5d8266a71cbebe8624f3a.jpeg" class="avatar avatar-80 photo" height="80" width="80"> </div>
+<div class="eltd-author-description-text-holder">
+<p class="eltd-author-name">
+<a class="eltd-post-info-author-link" href="https://blog.yugabyte.com/author/sidchoudhury/" data-author-id="3">
+Sid Choudhury </a>
+</p>
+<div class="eltd-author-description-text-holder-copy">
+<div class="eltd-author-text">
+<p>VP, Product</p>
+</div>
+<div class="eltd-author-social-holder clearfix">
+<a href="https://twitter.com/SidChoudhury" target="blank">
+<span class="social_twitter"></span>
+</a>
+<a href="https://www.linkedin.com/in/sidchoudhury/" target="blank">
+<span class="social_linkedin"></span>
+</a>
+</div>
+</div>
+</div>
+<div class="eltd-post-info-date">
+<p>
+July 19, 2018 </p>
+</div>
+</div>
+</div>
+<div class="eltd-text-holder">
+<p id="66aa" class="graf graf--p graf-after--h3"><a class="markup--anchor markup--p-anchor" href="https://en.wikipedia.org/wiki/ACID" target="_blank" rel="noopener" data-href="https://en.wikipedia.org/wiki/ACID">ACID transactions</a>&nbsp;were a big deal when first introduced formally in the 1980s in monolithic SQL databases such as Oracle and IBM DB2. Popular distributed NoSQL databases of the past decade including Amazon DynamoDB and Apache Cassandra initially focused on “big data” use cases that did not require such guarantees and hence avoided implementing them altogether. However, ACID transactions are making a strong comeback in the last 2 years with the launch of next-generation distributed databases that have built-in support for them.</p>
+<p id="ebf7" class="graf graf--p graf-after--p">This post serves as a primer on ACID transactions for app developers building distributed apps in the cloud. It highlights:</p>
+<ul class="postList">
+<li id="5363" class="graf graf--li graf-after--p">Why ACID transactions remain a fundamental need for cloud apps?</li>
+<li id="ce8f" class="graf graf--li graf-after--li">What’s necessary to implement them in databases?</li>
+<li id="0e5f" class="graf graf--li graf-after--li">Why monolithic databases have them but 1st generation distributed databases don’t?</li>
+</ul>
+<h2 id="c466" class="graf graf--h3 graf-after--li" style="text-align: left;">Defining a Transaction</h2>
+<blockquote id="8f22" class="graf graf--blockquote graf-after--h3"><p>A&nbsp;transaction&nbsp;symbolizes a unit of work performed within a database. It is often composed of multiple operations.</p></blockquote>
+<p id="6e7e" class="graf graf--p graf-after--blockquote">The example below shows a transaction at a bank with 4 operations that transfer $100 from Alice’s account at one branch to Bob’s account at another branch.</p>
+<figure id="8ba3" class="graf graf--figure graf-after--p">
+<div class="aspectRatioPlaceholder is-locked">
+<div class="aspectRatioPlaceholder-fill"></div>
+<div class="progressiveMedia js-progressiveMedia graf-image is-canvasLoaded is-imageLoaded" data-image-id="1*bthrJ7YS096AY2ueCH_zpg.png" data-width="494" data-height="213" data-scroll="native"><canvas class="progressiveMedia-canvas js-progressiveMedia-canvas" width="75" height="31"></canvas><img class="progressiveMedia-image js-progressiveMedia-image" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/1_bthrJ7YS096AY2ueCH_zpg.png" data-src="https://cdn-images-1.medium.com/max/1600/1*bthrJ7YS096AY2ueCH_zpg.png"></div>
+<div data-image-id="1*bthrJ7YS096AY2ueCH_zpg.png" data-width="494" data-height="213" data-scroll="native"></div>
+</div>
+<p style="text-align: center;">Source:&nbsp;<a class="markup--anchor markup--figure-anchor" href="https://www.slideshare.net/oddbjorn/Get-to-know-PostgreSQL" target="_blank" rel="noopener" data-href="https://www.slideshare.net/oddbjorn/Get-to-know-PostgreSQL">Get To Know PostgreSQL</a></p>
+<h2 id="93a3" class="graf graf--h3 graf-after--figure" style="text-align: left;">Defining ACID</h2>
+<p id="058b" class="graf graf--p graf-after--h3">ACID (Atomicity, Consistency, Isolation, Durability) is a set of properties of database transactions intended to guarantee validity even in the event of system crashes, power failures and other errors.</p>
+<figure id="4337" class="graf graf--figure graf-after--p">
+<div class="aspectRatioPlaceholder is-locked">
+<div class="aspectRatioPlaceholder-fill"></div>
+<div class="progressiveMedia js-progressiveMedia graf-image is-canvasLoaded is-imageLoaded" data-image-id="1*ElGHSFI_325kQkdwtfd5eg.png" data-width="524" data-height="356" data-is-featured="true" data-scroll="native"><canvas class="progressiveMedia-canvas js-progressiveMedia-canvas" width="75" height="50"></canvas><img class="progressiveMedia-image js-progressiveMedia-image" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/1_ElGHSFI_325kQkdwtfd5eg.png" data-src="https://cdn-images-1.medium.com/max/1600/1*ElGHSFI_325kQkdwtfd5eg.png"></div>
+</div>
+</figure>
+<h3 id="5007" class="graf graf--h4 graf-after--figure">Atomic</h3>
+<p id="627b" class="graf graf--p graf-after--h4">Guarantees that all operations in a transaction are treated as a&nbsp;single “unit”, which either succeeds completely or fails completely.</p>
+<h3 id="3dff" class="graf graf--h4 graf-after--p"><strong class="markup--strong markup--h4-strong">C</strong>onsistent</h3>
+<p id="78f2" class="graf graf--p graf-after--h4">Ensures that a transaction can only bring the database from&nbsp;one valid state to another&nbsp;by preventing data corruption.</p>
+<h3 id="4436" class="graf graf--h4 graf-after--p"><strong class="markup--strong markup--h4-strong">I</strong>solation</h3>
+<p id="26f2" class="graf graf--p graf-after--h4">Determines how and when&nbsp;changes made by one transaction become visible to the other.&nbsp;<em class="markup--em markup--p-em">Serializable</em>&nbsp;and&nbsp;<em class="markup--em markup--p-em">Snapshot Isolation</em>&nbsp;are the top 2 isolation levels from a strictness standpoint.</p>
+<h3 id="b88f" class="graf graf--h4 graf-after--p"><strong class="markup--strong markup--h4-strong">D</strong>urable</h3>
+<p id="b6a0" class="graf graf--p graf-after--h4">Ensures that the results of the transaction are&nbsp;permanently stored&nbsp;in the system. The modifications must persist even in case of power loss or system failures.</p>
+<h2 id="3061" class="graf graf--h3 graf-after--p" style="text-align: left;">ACID’s Consistency vs. CAP’s Consistency</h2>
+<figure id="855a" class="graf graf--figure graf-after--h3">
+<div class="aspectRatioPlaceholder is-locked">
+<div class="aspectRatioPlaceholder-fill"></div>
+<div class="progressiveMedia js-progressiveMedia graf-image is-canvasLoaded is-imageLoaded" data-image-id="1*LQnM9xULSgmlrIuU5DgYJQ.png" data-width="686" data-height="230" data-scroll="native"><canvas class="progressiveMedia-canvas js-progressiveMedia-canvas" width="75" height="25"></canvas><img class="progressiveMedia-image js-progressiveMedia-image" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/1_LQnM9xULSgmlrIuU5DgYJQ.png" data-src="https://cdn-images-1.medium.com/max/1600/1*LQnM9xULSgmlrIuU5DgYJQ.png"></div>
+</div>
+</figure>
+<p id="acc4" class="graf graf--p graf-after--figure"><a class="markup--anchor markup--p-anchor" href="https://en.wikipedia.org/wiki/CAP_theorem" target="_blank" rel="noopener" data-href="https://en.wikipedia.org/wiki/CAP_theorem">CAP Theorem</a>, first published in 2000, made it easier for engineers to reason about distributed systems.</p>
+<blockquote id="f638" class="graf graf--blockquote graf-after--p"><p>Distributed systems must choose between&nbsp;<strong class="markup--strong markup--blockquote-strong">C</strong>onsistency and 100%&nbsp;<strong class="markup--strong markup--blockquote-strong">A</strong>vailability in the presence of network&nbsp;<strong class="markup--strong markup--blockquote-strong">P</strong>artitions.</p></blockquote>
+<p id="94a9" class="graf graf--p graf-after--blockquote">Unfortunately, the use of “Consistency” in both ACID and CAP led to confused developers. Consistency in CAP is a more fundamental concept — it refers to the guarantee that all members of a distributed system have a shared understanding of&nbsp;<em class="markup--em markup--p-em">the value of a single data element</em>&nbsp;from a read standpoint. This guarantee is also referred to as&nbsp;strong consistency&nbsp;or&nbsp;linearizability. In fact, CAP’s consistency is better compared against ACID’s isolation levels since both deal with the values that read operations are allowed to see.</p>
+<p id="8df8" class="graf graf--p graf-after--p">On the other hand, ACID’s consistency refers to&nbsp;data integrity&nbsp;guarantees that ensure the transition of&nbsp;<em class="markup--em markup--p-em">the entire database</em>&nbsp;from one valid state to another. Such a transition involves strict enforcement of integrity constraints such as data type adherence, null checks, relationships and more. Given that a single ACID transaction can touch multiple data elements where as CAP’s consistency refers to a single data element,&nbsp;ACID transactions are a stronger guarantee than CAP’s consistency.</p>
+<h2 id="0477" class="graf graf--h3 graf-after--p" style="text-align: left;">The Benefits of ACID Transactions</h2>
+<h3 id="ab70" class="graf graf--h4 graf-after--h3">1. Absolute Data Integrity and&nbsp;Safety</h3>
+<figure id="06b8" class="graf graf--figure graf--layoutOutsetLeft graf-after--h4" data-scroll="native">
+<div class="aspectRatioPlaceholder is-locked">
+<div class="aspectRatioPlaceholder-fill"></div>
+<div class="progressiveMedia js-progressiveMedia graf-image is-canvasLoaded is-imageLoaded" data-image-id="1*j9CZvaQdNSm8ypDqILS7PQ.png" data-width="213" data-height="214" data-scroll="native"><canvas class="progressiveMedia-canvas js-progressiveMedia-canvas" width="75" height="75"></canvas><img class="progressiveMedia-image js-progressiveMedia-image" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/1_j9CZvaQdNSm8ypDqILS7PQ.png" data-src="https://cdn-images-1.medium.com/max/1200/1*j9CZvaQdNSm8ypDqILS7PQ.png"></div>
+</div>
+</figure>
+<p id="7124" class="graf graf--p graf-after--figure"><a class="markup--anchor markup--p-anchor" href="https://jepsen.io/consistency" target="_blank" rel="noopener" data-href="https://jepsen.io/consistency">Avoiding lost updates, dirty reads, stale reads</a>&nbsp;and enforcing app-specific integrity constraints are critical concerns for app developers. This is especially true when building user-facing apps in verticals such as financial services, retail and SaaS. Solving these concerns directly at the database layer using the consistency provided by ACID transactions is a much simpler approach.</p>
+<h3 id="31f2" class="graf graf--h4 graf-after--p">2. Simplified Concurrency Control</h3>
+<figure id="93e3" class="graf graf--figure graf--layoutOutsetLeft graf-after--h4" data-scroll="native">
+<div class="aspectRatioPlaceholder is-locked">
+<div class="aspectRatioPlaceholder-fill"></div>
+<div class="progressiveMedia js-progressiveMedia graf-image is-canvasLoaded is-imageLoaded" data-image-id="1*bL6B_nH_lehWA8hxC-hG8w.png" data-width="221" data-height="221" data-scroll="native"><canvas class="progressiveMedia-canvas js-progressiveMedia-canvas" width="75" height="75"></canvas><img class="progressiveMedia-image js-progressiveMedia-image" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/1_bL6B_nH_lehWA8hxC-hG8w.png" data-src="https://cdn-images-1.medium.com/max/1200/1*bL6B_nH_lehWA8hxC-hG8w.png"></div>
+</div>
+</figure>
+<p id="7c3a" class="graf graf--p graf-after--figure">Concurrent access to shared resources such as retail inventory, bank balance, gaming leaderboards is unavoidable. Isolation in ACID transactions come to the rescue of app developers. E.g. when a database guarantees transactions with serializable isolation, developers can treat each transaction as if it were executed sequentially, even though it may actually be executed concurrently. Onerous reasoning about potential conflicts between operations from separate transactions is obviated altogether.</p>
+<h3 id="46cb" class="graf graf--h4 graf-after--p">3. Intuitive Data Access&nbsp;Logic</h3>
+<figure id="a83c" class="graf graf--figure graf--layoutOutsetLeft graf-after--h4" data-scroll="native">
+<div class="aspectRatioPlaceholder is-locked">
+<div class="aspectRatioPlaceholder-fill"></div>
+<div class="progressiveMedia js-progressiveMedia graf-image is-canvasLoaded is-imageLoaded" data-image-id="1*vuO5stz8RAvv7IFOuV38sA.png" data-width="201" data-height="201" data-scroll="native"><canvas class="progressiveMedia-canvas js-progressiveMedia-canvas" width="75" height="75"></canvas><img class="progressiveMedia-image js-progressiveMedia-image" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/1_vuO5stz8RAvv7IFOuV38sA.png" data-src="https://cdn-images-1.medium.com/max/1200/1*vuO5stz8RAvv7IFOuV38sA.png"></div>
+</div>
+</figure>
+<p id="cc9e" class="graf graf--p graf-after--figure">ACID compliant databases usually allow complex schema modeling and native support for multi-step data manipulation operations such as consistent secondary indexes.&nbsp;Business logic can be now represented more directly in the application code.</p>
+<h3 id="ec29" class="graf graf--h4 graf-after--p">4. Future-Proofing Database&nbsp;Needs</h3>
+<figure id="c7f1" class="graf graf--figure graf--layoutOutsetLeft graf-after--h4" data-scroll="native">
+<div class="aspectRatioPlaceholder is-locked">
+<div class="aspectRatioPlaceholder-fill"></div>
+<div class="progressiveMedia js-progressiveMedia graf-image is-canvasLoaded is-imageLoaded" data-image-id="1*fByGO2MQgL9dDr_4seN5-g.png" data-width="201" data-height="201" data-scroll="native"><canvas class="progressiveMedia-canvas js-progressiveMedia-canvas" width="75" height="75"></canvas><img class="progressiveMedia-image js-progressiveMedia-image" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/1_fByGO2MQgL9dDr_4seN5-g.png" data-src="https://cdn-images-1.medium.com/max/1200/1*fByGO2MQgL9dDr_4seN5-g.png"></div>
+</div>
+</figure>
+<p id="e44c" class="graf graf--p graf-after--figure">Durability is rarely up for debate in databases where stable persistence is a must-have. Hence our view is that “in-memory” only systems should not be even considered databases! However, there is always an urge on part of developers to trade-off either Atomicity or Consistency or Isolation or some combination of them in return for higher performance in distributed databases. While these tradeoffs are sometimes easier to justify in the short run, the loss of flexibility in the long run comes with a heavy cost.&nbsp;Competitive advantage in business comes from the ability to enhance apps fast. E.g. an internal, dashboards-only, non-transactional app can be transformed into a customer-facing transactional app in minimal time if and only if the original database was future-proof for such a change.</p>
+<h2 id="e026" class="graf graf--h3 graf-after--p" style="text-align: left;">What’s Needed For Implementing ACID?</h2>
+<p id="0d41" class="graf graf--p graf-after--h3">For any monolithic or distributed database to implement ACID transactions, there are 4 foundational aspects that need to be designed and developed.</p>
+<h3 id="68db" class="graf graf--h4 graf-after--p">Provisional Updates (Atomicity)</h3>
+<p id="1f51" class="graf graf--p graf-after--h4">Transactions involve multiple operations across multiple rows. Given the need to treat all these operations as a single unit, some form of provisional update in a temporary space is needed first followed by a commit.</p>
+<h3 id="f23f" class="graf graf--h4 graf-after--p">Strongly Consistent Core (Consistency)</h3>
+<p id="4f15" class="graf graf--p graf-after--h4">A strongly consistent core is the basis for achieving ACID guarantees in a transaction involving only a single operation on a single row. The additional data integrity constraints needed to achieve full ACID (with multiple operations across multiple rows) are built on top of this core.</p>
+<h3 id="ed8f" class="graf graf--h4 graf-after--p">Transaction Ordering (Isolation)</h3>
+<p id="adbe" class="graf graf--p graf-after--h4">For a database to support the strictest&nbsp;<em class="markup--em markup--p-em">serializable</em>&nbsp;isolation level, a mechanism such as globally ordered timestamps is needed to sequentially arrange all the transactions. On the other hand, the&nbsp;<em class="markup--em markup--p-em">snapshot isolation</em>&nbsp;level relies on a partial ordering where sub-operations in one transaction may interleave with those from other transactions. The benefit is lower latency and higher throughout than serializable level while continuing to detect write-write conflicts.</p>
+<h3 id="878e" class="graf graf--h4 graf-after--p">Persistent Storage (Durability)</h3>
+<p id="9a74" class="graf graf--p graf-after--h4">Compared to the other 3 properties, durability is the easiest to achieve by simply using a storage engine that can store data in an underlying persistent device such as HDDs and SSDs. Our post&nbsp;<a class="markup--anchor markup--p-anchor" href="https://blog.yugabyte.com/a-busy-developers-guide-to-database-storage-engines-the-basics-6ce0a3841e59" target="_blank" rel="noopener" data-href="https://blog.yugabyte.com/a-busy-developers-guide-to-database-storage-engines-the-basics-6ce0a3841e59">A Busy Developer’s Guide to Database Storage Engines</a>&nbsp;explains how various types of storage engines work and the specific workload patterns they are usually optimized for.</p>
+<h2 id="d75b" class="graf graf--h3 graf-after--p" style="text-align: left;">Why ACID Became Optional?</h2>
+<p id="4572" class="graf graf--p graf-after--h3">ACID compliance was taken for granted in monolithic databases of the past. This is because the monolithic database server can make provisional updates, is strongly consistent by default, runs on persistent disks and most importantly can act as a single source of truth for the ordering of concurrent transactions.</p>
+<p id="3459" class="graf graf--p graf-after--p">As databases became distributed and NoSQL starting late 2000s, the first order of business was to decide on the adherence to the CAP Theorem. The default choice was Availability over Consistency given the focus on big data workloads that don’t require absolute correctness.&nbsp;Net result was that the foundation necessary for the Consistency in ACID was compromised. It became easier to give up on Atomicity and Isolation thereafter. Each node came with its own database server that had control over its own subset of data in the overall cluster. Making provisional updates across multiple such nodes and that too with some ordering was deemed complex and unnecessary. At the same time, transactional data volumes were low enough and could be satisfied by vertical scaling of monolithic ACID compliant databases. The lack of ACID in distributed databases did not hurt traditional enterprises until recently.</p>
+<h2 id="81a3" class="graf graf--h3 graf-after--p" style="text-align: left;">Summary</h2>
+<p id="0c6a" class="graf graf--p graf-after--h3 graf--trailing">ACID transactions are a fundamental feature of operational databases. They help enterprises simultaneously gain customer data integrity and app development agility. Implementing ACID transactions in a database requires significant systems engineering effort especially when the database is distributed across multiple nodes. In a follow up post, we will dive deeper into the challenges involved and see how next-generation distributed databases such as&nbsp;<a class="markup--anchor markup--p-anchor" href="https://github.com/YugaByte/yugabyte-db" target="_blank" rel="noopener" data-href="https://github.com/YugaByte/yugabyte-db">YugaByte DB</a>&nbsp;are solving those challenges. Meanwhile, you can see in action&nbsp;<a class="markup--anchor markup--p-anchor" href="https://docs.yugabyte.com/latest/explore/transactional/acid-transactions/" target="_blank" rel="noopener" data-href="https://docs.yugabyte.com/latest/explore/transactional/acid-transactions/">YugaByte DB’s distributed transactions</a>&nbsp;using a local cluster.</p>
+</figure>
+<div class="rltdpstsplgn-related-post-block"></div><div class="rltdpstsplgn-featured-post-block"></div> </div>
+<div class="eltd-post-info-wrapper">
+<div class="eltd-post-info eltd-left-section">
+<div class="eltd-post-info-date">
+July 19, 2018 </div> </div>
+<div class="eltd-post-info eltd-right-section">
+<div class="eltd-blog-share">
+<div class="eltd-social-share-holder eltd-list">
+<ul>
+<li class="eltd-facebook-share">
+<a class="eltd-share-link" href="https://blog.yugabyte.com/a-primer-on-acid-transactions/#" onclick="window.open(&#39;http://www.facebook.com/sharer.php?s=100&amp;p[title]=A+Primer+on+ACID+Transactions%3A+The+Basics+Every+Cloud+App+Developer+Must+Know&amp;p[url]=https%3A%2F%2Fblog.yugabyte.com%2Fa-primer-on-acid-transactions%2F&amp;p[images][0]=https://blog.yugabyte.com/wp-content/uploads/2018/07/8-A-Primer-on-ACID-Transactions-blogpreview.png&amp;p[summary]=%3Cp+id%3D%5C%2266aa%5C%22+class%3D%5C%22graf+graf--p+graf-after--h3%5C%22%3E%3Ca+class%3D%5C%22markup--anchor+markup--p-anchor%5C%22+href%3D%5C%22https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FACID%5C%22+target%3D%5C%22_blank%5C%22+rel%3D%5C%22noopener%5C%22+data-href%3D%5C%22https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FACID%5C%22%3EACID+transactions%3C%2Fa%3E%C2%A0were+a+big+deal+when+first+introduced+formally+in+the+1980s+in+monolithic+SQL+databases+such+as+Oracle+and+IBM+DB2.+Popular+distributed+NoSQL+databases+of+the+past+decade+including+Amazon+DynamoDB+and+Apache+Cassandra+initially+focused+on+%E2%80%9Cbig+data%E2%80%9D+use+cases+that+did+not+require+such+guarantees+and+hence+avoided+implementing+them+altogether.+However%2C+ACID+transactions+are+making+a+strong+comeback+in+the+last+2+years+with+the+launch+of+next-generation+distributed+databases+that+have+built-in+support+for+them.%3C%2Fp%3E...&#39;, &#39;sharer&#39;, &#39;toolbar=0,status=0,width=620,height=280&#39;);">
+<span class="eltd-social-network-icon social_facebook"></span>
+</a>
+</li><li class="eltd-twitter-share">
+<a class="eltd-share-link" href="https://blog.yugabyte.com/a-primer-on-acid-transactions/#" onclick="window.open(&#39;http://twitter.com/home?status=%3Cp+id%3D%2266aa%22+class%3D%22graf+graf--p+graf-after--h3%22%3E%3Ca+class%3D%22markup--anchor+markup--p-anchor%22+https://blog.yugabyte.com/a-primer-on-acid-transactions/&#39;, &#39;popupwindow&#39;, &#39;scrollbars=yes,width=800,height=400&#39;);">
+<span class="eltd-social-network-icon social_twitter"></span>
+</a>
+</li><li class="eltd-linkedin-share">
+<a class="eltd-share-link" href="https://blog.yugabyte.com/a-primer-on-acid-transactions/#" onclick="popUp=window.open(&#39;http://linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fblog.yugabyte.com%2Fa-primer-on-acid-transactions%2F&amp;title=A+Primer+on+ACID+Transactions%3A+The+Basics+Every+Cloud+App+Developer+Must+Know&#39;, &#39;popupwindow&#39;, &#39;scrollbars=yes,width=800,height=400&#39;);popUp.focus();return false;">
+<span class="eltd-social-network-icon social_linkedin"></span>
+</a>
+</li> </ul>
+</div></div> </div>
+</div>
+</div>
+</div>
+</div>
+<div class="eltd-single-tags-holder">
+<div class="eltd-tags">
+<a href="https://blog.yugabyte.com/tag/acid-transactions/" data-tag-slug="acid-transactions">
+<span>
+ACID Transactions </span>
+</a>
+<a href="https://blog.yugabyte.com/tag/nosql/" data-tag-slug="nosql">
+<span>
+NoSQL </span>
+</a>
+<a href="https://blog.yugabyte.com/tag/sql/" data-tag-slug="sql">
+<span>
+SQL </span>
+</a>
+</div>
+</div></article> <div class="eltd-author-description under-title under-article">
+<div class="eltd-author-description-inner">
+<div class="eltd-author-description-image">
+<img alt="" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/357b1946eef5d8266a71cbebe8624f3a.jpeg" class="avatar avatar-80 photo" height="80" width="80"> </div>
+<div class="eltd-author-description-text-holder">
+<p class="eltd-author-name">
+<a class="eltd-post-info-author-link" href="https://blog.yugabyte.com/author/sidchoudhury/" data-author-id="3">
+Sid Choudhury </a>
+</p>
+<div class="eltd-author-description-text-holder-copy">
+<div class="eltd-author-text">
+<p>VP, Product</p>
+</div>
+<div class="eltd-author-social-holder clearfix">
+<a href="https://twitter.com/SidChoudhury" target="blank">
+<span class="social_twitter"></span>
+</a>
+<a href="https://www.linkedin.com/in/sidchoudhury/" target="blank">
+<span class="social_linkedin"></span>
+</a>
+</div>
+</div>
+</div>
+<div class="eltd-post-info-date">
+<p>
+July 19, 2018 </p>
+</div>
+</div>
+<h4 class="rltdpstsplgn-latest-title">Related Posts</h4> <div class="rltdpstsplgn-related-posts">
+<div class="clear"></div>
+<article class="post type-post format-standard">
+<div class="entry-content">
+<a href="https://blog.yugabyte.com/distributed-sql-tips-and-tricks-jan-31-2020/" title="Distributed SQL Tips and Tricks – Jan 31, 2020">
+<img class="preview-image-acf attachment-thumbnail wp-post-image" width="" height="" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/Tips-and-tricks-Jan-31-blogprev.png">
+</a>
+<div class="clear"></div>
+</div>
+<header class="entry-header">
+<h3 class="rltdpstsplgn_posts_title"> <a href="https://blog.yugabyte.com/distributed-sql-tips-and-tricks-jan-31-2020/">Distributed SQL Tips and Tricks – Jan 31, 2020</a>
+</h3> <div class="entry-meta">
+<span class="rltdpstsplgn_date entry-date">
+1 week ago </span>
+<span class="rltdpstsplgn-reading-time">
+7 min read </span>
+</div>
+</header>
+</article>
+<div class="clear"></div>
+<article class="post type-post format-standard">
+<div class="entry-content">
+<a href="https://blog.yugabyte.com/distributed-sql-tricks-and-tips-jan-17-2020/" title="Distributed SQL Tricks and Tips – Jan 17, 2020">
+<img class="preview-image-acf attachment-thumbnail wp-post-image" width="" height="" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/Tips-and-tricks-Jan-20-blogprev.png">
+</a>
+<div class="clear"></div>
+</div>
+<header class="entry-header">
+<h3 class="rltdpstsplgn_posts_title"> <a href="https://blog.yugabyte.com/distributed-sql-tricks-and-tips-jan-17-2020/">Distributed SQL Tricks and Tips – Jan 17, 2020</a>
+</h3> <div class="entry-meta">
+<span class="rltdpstsplgn_date entry-date">
+3 weeks ago </span>
+<span class="rltdpstsplgn-reading-time">
+5 min read </span>
+</div>
+</header>
+</article>
+<div class="clear"></div>
+<article class="post type-post format-standard">
+<div class="entry-content">
+<a href="https://blog.yugabyte.com/four-data-sharding-strategies-we-analyzed-in-building-a-distributed-sql-database/" title="Four Data Sharding Strategies We Analyzed in Building a Distributed SQL Database">
+<img class="preview-image-acf attachment-thumbnail wp-post-image" width="" height="" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/4-Data-Sharding-Strategies-We-Analyzed-in-Building-a-Distributed-SQL-Database-blogprev.png">
+</a>
+<div class="clear"></div>
+</div>
+<header class="entry-header">
+<h3 class="rltdpstsplgn_posts_title"> <a href="https://blog.yugabyte.com/four-data-sharding-strategies-we-analyzed-in-building-a-distributed-sql-database/">Four Data Sharding Strategies We Analyzed in Building a Distributed SQL Database</a>
+</h3> <div class="entry-meta">
+<span class="rltdpstsplgn_date entry-date">
+4 weeks ago </span>
+<span class="rltdpstsplgn-reading-time">
+12 min read </span>
+</div>
+</header>
+</article>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="eltd-column2">
+<div class="eltd-column-inner">
+<div class="sidebar-gif">
+<a href="https://www.yugabyte.com/slack">
+<img src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/sidebar-ad-1c.gif">
+</a>
+<a href="https://github.com/yugabyte/yugabyte-db">
+<img src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/sidebar-ad-2c.gif">
+</a>
+<a href="https://www.yugabyte.com/contact-us">
+<img src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/sidebar-ad-3-1.gif">
+</a>
+</div>
+<aside class="eltd-sidebar">
+<div id="search-2" class="widget widget_search"><form method="get" id="searchform" action="https://blog.yugabyte.com/">
+<div><label class="screen-reader-text" for="s">Search for:</label>
+<input type="text" value="" placeholder="Search" name="s" id="s">
+<input type="submit" id="searchsubmit" value="">
+</div>
+</form></div><div id="pplrpsts_popular_posts_widget-2" class="widget widget_pplrpsts_popular_posts_widget"><h6 class="eltd-widget-title"><span></span>Top Posts</h6> <div class="rltdpstsplgn-popular-posts">
+<div class="clear"></div>
+<article class="post type-post format-standard">
+<header class="entry-header">
+<h1 class="rltdpstsplgn_posts_title"> <a href="https://blog.yugabyte.com/what-is-distributed-sql/">What is Distributed SQL?</a>
+</h1> </header>
+</article>
+<div class="clear"></div>
+<article class="post type-post format-standard">
+<header class="entry-header">
+<h1 class="rltdpstsplgn_posts_title"> <a href="https://blog.yugabyte.com/distributedsql-vs-newsql/">Distributed SQL vs. NewSQL</a>
+</h1> </header>
+</article>
+<div class="clear"></div>
+<article class="post type-post format-standard">
+<header class="entry-header">
+<h1 class="rltdpstsplgn_posts_title"> <a href="https://blog.yugabyte.com/how-plume-handled-billions-of-operations-per-day-despite-an-aws-zone-outage/">How Plume Handled Billions of Operations Per Day Despite an AWS Zone Outage</a>
+</h1> </header>
+</article>
+<div class="clear"></div>
+<article class="post type-post format-standard">
+<header class="entry-header">
+<h1 class="rltdpstsplgn_posts_title"> <a href="https://blog.yugabyte.com/four-data-sharding-strategies-we-analyzed-in-building-a-distributed-sql-database/">Four Data Sharding Strategies We Analyzed in Building a Distributed SQL Database</a>
+</h1> </header>
+</article>
+<div class="clear"></div>
+<article class="post type-post format-standard">
+<header class="entry-header">
+<h1 class="rltdpstsplgn_posts_title"> <a href="https://blog.yugabyte.com/distributed-sql-tricks-and-tips-dec-20-2019/">Distributed SQL Tricks and Tips – Dec 20, 2019</a>
+</h1> </header>
+</article>
+</div>
+</div><div id="categories-2" class="widget widget_categories"><h6 class="eltd-widget-title"><span></span>Categories</h6> <ul>
+<li class="cat-item cat-item-73"><a href="https://blog.yugabyte.com/category/acid/">ACID Transactions</a>
+</li>
+<li class="cat-item cat-item-2311"><a href="https://blog.yugabyte.com/category/databases/aws-aurora/">Amazon Aurora</a>
+</li>
+<li class="cat-item cat-item-46"><a href="https://blog.yugabyte.com/category/databases/dynamodb/">Amazon DynamoDB</a>
+</li>
+<li class="cat-item cat-item-50"><a href="https://blog.yugabyte.com/category/cloud-providers/aws/">Amazon Web Services</a>
+</li>
+<li class="cat-item cat-item-44"><a href="https://blog.yugabyte.com/category/databases/cassandra/">Apache Cassandra</a>
+</li>
+<li class="cat-item cat-item-1743"><a href="https://blog.yugabyte.com/category/ecosystem-integrations/kafka/">Apache Kafka</a>
+</li>
+<li class="cat-item cat-item-57"><a href="https://blog.yugabyte.com/category/cloud-providers/">Cloud Providers</a>
+</li>
+<li class="cat-item cat-item-55"><a href="https://blog.yugabyte.com/category/databases/cockroachdb/">CockroachDB</a>
+</li>
+<li class="cat-item cat-item-42"><a href="https://blog.yugabyte.com/category/community-news/">Community News</a>
+</li>
+<li class="cat-item cat-item-32"><a href="https://blog.yugabyte.com/category/company-news/">Company News</a>
+</li>
+<li class="cat-item cat-item-58"><a href="https://blog.yugabyte.com/category/containers/">Containers</a>
+</li>
+<li class="cat-item cat-item-56"><a href="https://blog.yugabyte.com/category/databases/">Databases</a>
+</li>
+<li class="cat-item cat-item-1389"><a href="https://blog.yugabyte.com/category/distributedsql/">Distributed SQL</a>
+</li>
+<li class="cat-item cat-item-59"><a href="https://blog.yugabyte.com/category/containers/docker/">Docker</a>
+</li>
+<li class="cat-item cat-item-1742"><a href="https://blog.yugabyte.com/category/ecosystem-integrations/">Ecosystem Integrations</a>
+</li>
+<li class="cat-item cat-item-51"><a href="https://blog.yugabyte.com/category/cloud-providers/google-cloud/">Google Cloud Platform</a>
+</li>
+<li class="cat-item cat-item-49"><a href="https://blog.yugabyte.com/category/databases/cloud-spanner/">Google Spanner</a>
+</li>
+<li class="cat-item cat-item-41"><a href="https://blog.yugabyte.com/category/how-it-works/">How It Works</a>
+</li>
+<li class="cat-item cat-item-40"><a href="https://blog.yugabyte.com/category/how-to/">How To</a>
+</li>
+<li class="cat-item cat-item-1282"><a href="https://blog.yugabyte.com/category/jepsen/">Jepsen Tests</a>
+</li>
+<li class="cat-item cat-item-60"><a href="https://blog.yugabyte.com/category/containers/kubernetes/">Kubernetes</a>
+</li>
+<li class="cat-item cat-item-52"><a href="https://blog.yugabyte.com/category/cloud-providers/microsoft-azure/">Microsoft Azure</a>
+</li>
+<li class="cat-item cat-item-47"><a href="https://blog.yugabyte.com/category/databases/cosmosdb/">Microsoft Azure Cosmos DB</a>
+</li>
+<li class="cat-item cat-item-45"><a href="https://blog.yugabyte.com/category/databases/mongodb/">MongoDB</a>
+</li>
+<li class="cat-item cat-item-30"><a href="https://blog.yugabyte.com/category/performance-benchmarks/">Performance Benchmarks</a>
+</li>
+<li class="cat-item cat-item-64"><a href="https://blog.yugabyte.com/category/cloud-providers/pivotal-container-service-pks/">Pivotal Container Service (PKS)</a>
+</li>
+<li class="cat-item cat-item-76"><a href="https://blog.yugabyte.com/category/databases/postgresql/">PostgreSQL</a>
+</li>
+<li class="cat-item cat-item-74"><a href="https://blog.yugabyte.com/category/release-announcements/">Release Announcements</a>
+</li>
+<li class="cat-item cat-item-1744"><a href="https://blog.yugabyte.com/category/ecosystem-integrations/spring/">Spring</a>
+</li>
+<li class="cat-item cat-item-43"><a href="https://blog.yugabyte.com/category/week-in-review/">Week in Review</a>
+</li>
+<li class="cat-item cat-item-75"><a href="https://blog.yugabyte.com/category/release-announcements/yugabyte-db-1-1/">YugabyteDB 1.1</a>
+</li>
+<li class="cat-item cat-item-1167"><a href="https://blog.yugabyte.com/category/release-announcements/yugabyte-db-1-2/">YugabyteDB 1.2</a>
+</li>
+<li class="cat-item cat-item-1987"><a href="https://blog.yugabyte.com/category/release-announcements/yugabyte-db-1-3/">YugabyteDB 1.3</a>
+</li>
+<li class="cat-item cat-item-2407"><a href="https://blog.yugabyte.com/category/release-announcements/yugabyte-db-2-0/">YugabyteDB 2.0</a>
+</li>
+</ul>
+</div> </aside>
+</div> </div>
+</div>
+</div>
+</div>
+<footer class="footer">
+<div class="cta">
+<div class="container">
+<div class="row">
+<div class="title">Get started in any cloud, container or data center</div>
+</div>
+<div class="row">
+<div class="brands">
+<a href="https://blog.yugabyte.com/a-primer-on-acid-transactions/">
+<i class="fab fa-aws"></i>
+</a>
+<a href="https://blog.yugabyte.com/a-primer-on-acid-transactions/">
+<i class="fab fa-google"></i>
+</a>
+<a href="https://blog.yugabyte.com/a-primer-on-acid-transactions/">
+<i class="fab fa-windows"></i>
+</a>
+<a href="https://blog.yugabyte.com/a-primer-on-acid-transactions/">
+<i class="fab fa-docker"></i>
+</a>
+<a href="https://blog.yugabyte.com/a-primer-on-acid-transactions/">
+<img src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/5-kubernetes.svg">
+</a>
+<a href="https://blog.yugabyte.com/a-primer-on-acid-transactions/">
+<img src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/8-pivotalcontainerservice.svg">
+</a>
+<a href="https://blog.yugabyte.com/a-primer-on-acid-transactions/">
+<img src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/6-privatedb.svg">
+</a>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-6 button-container">
+<div class="navbar-black" id="bc-ee0">
+<div class="menu">
+<div class="menu-item">
+<a href="https://www.yugabyte.com/platform/" class="button slide-in">YugaByte Platform</a>
+</div>
+</div>
+</div>
+</div>
+<div class="col-sm-6 button-container">
+<div class="navbar-black">
+<div class="menu">
+<div class="menu-item">
+<a href="https://download.yugabyte.com/" class="button slide-in">YugaByte DB</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="menu-footer-container"><ul id="menu-footer" class="menu"><li id="menu-item-397" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-397"><a href="https://www.yugabyte.com/">Products</a>
+<ul class="sub-menu">
+<li id="menu-item-399" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-399"><a href="https://www.yugabyte.com/yugabytedb/">Open Source</a></li>
+<li id="menu-item-398" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-398"><a href="https://www.yugabyte.com/platform/">Self-Managed Platform</a></li>
+<li id="menu-item-480" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-480"><a href="https://www.yugabyte.com/cloud/">Fully-Managed Cloud</a></li>
+<li id="menu-item-403" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-403"><a href="https://www.yugabyte.com/pricing/">Pricing</a></li>
+<li id="menu-item-400" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-400"><a href="https://www.yugabyte.com/support/">Support</a></li>
+<li id="menu-item-401" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-401"><a href="https://www.yugabyte.com/services/">Professional Services</a></li>
+<li id="menu-item-402" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-402"><a href="https://www.yugabyte.com/training/">Training</a></li>
+</ul>
+</li>
+<li id="menu-item-405" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-405"><a href="https://www.yugabyte.com/">Use Cases</a>
+<ul class="sub-menu">
+<li id="menu-item-406" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-406"><a href="https://www.yugabyte.com/globally-distributed-applications/">Globally Distributed Applications</a></li>
+<li id="menu-item-407" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-407"><a href="https://www.yugabyte.com/real-time-streaming-and-analytics/">Real-Time Streaming &amp; Analytics</a></li>
+<li id="menu-item-409" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-409"><a href="https://www.yugabyte.com/planet-scale-sql/">Planet-Scale SQL</a></li>
+<li id="menu-item-408" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-408"><a href="https://www.yugabyte.com/transactional-nosql/">Transactional NoSQL</a></li>
+</ul>
+</li>
+<li id="menu-item-411" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-411"><a href="https://www.yugabyte.com/all-resources/">Resources</a>
+<ul class="sub-menu">
+<li id="menu-item-412" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-412"><a href="https://download.yugabyte.com/">Get Started</a></li>
+<li id="menu-item-413" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-413"><a href="https://docs.yugabyte.com/">Documentation</a></li>
+<li id="menu-item-414" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-414"><a href="https://blog.yugabyte.com/">Blog</a></li>
+<li id="menu-item-415" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-415"><a href="https://docs.yugabyte.com/latest/comparisons/">Comparisons</a></li>
+<li id="menu-item-645" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-645"><a href="https://www.yugabyte.com/slack">Slack</a></li>
+<li id="menu-item-416" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-416"><a href="https://github.com/YugaByte/yugabyte-db">GitHub</a></li>
+<li id="menu-item-417" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-417"><a href="https://forum.yugabyte.com/">Forum</a></li>
+<li id="menu-item-404" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-404"><a href="https://docs.yugabyte.com/latest/faq/">FAQ</a></li>
+</ul>
+</li>
+<li id="menu-item-419" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-419"><a href="https://www.yugabyte.com/about/">Company</a>
+<ul class="sub-menu">
+<li id="menu-item-420" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-420"><a href="https://www.yugabyte.com/about/">About</a></li>
+<li id="menu-item-421" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-421"><a href="https://hire.withgoogle.com/public/jobs/yugabyte">Careers</a></li>
+<li id="menu-item-422" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-422"><a href="https://www.yugabyte.com/#success-stories">Success Stories</a></li>
+<li id="menu-item-423" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-423"><a href="https://www.yugabyte.com/contact-us/">Contact Us</a></li>
+<li id="menu-item-424" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-424"><a href="https://www.yugabyte.com/privacy-policy/">Privacy Policy</a></li>
+<li id="menu-item-425" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-425"><a href="https://www.yugabyte.com/cookie-policy">Cookie Policy</a></li>
+</ul>
+</li>
+</ul></div> </div>
+<div class="row clearfix">
+<div class="col-md-6 col-sm social-icons">
+<a class="social" href="https://github.com/yugabyte/yugabyte-db">
+<i class="fa fa-github-square"></i>
+</a>
+<a class="social" href="https://www.yugabyte.com/slack">
+
+<svg width="32px" height="32px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 2447.6 2452.5" xml:space="preserve">
+<style type="text/css">
+	.st0{fill-rule:evenodd;clip-rule:evenodd;}
+</style>
+<g>
+<path class="st0" d="M897.4,0C762.1,0.1,652.6,109.9,652.7,245.2c-0.1,135.3,109.5,245.1,244.8,245.2h244.8V245.3
+		C1142.4,110,1032.8,0.2,897.4,0C897.5,0,897.5,0,897.4,0 M897.4,654H244.8C109.5,654.1-0.1,763.9,0,899.2
+		c-0.2,135.3,109.4,245.1,244.7,245.3h652.7c135.3-0.1,244.9-109.9,244.8-245.2C1142.3,763.9,1032.7,654.1,897.4,654L897.4,654z"></path>
+<path class="st0" d="M2447.6,899.2c0.1-135.3-109.5-245.1-244.8-245.2c-135.3,0.1-244.9,109.9-244.8,245.2v245.3h244.8
+		C2338.1,1144.4,2447.7,1034.6,2447.6,899.2z M1794.9,899.2v-654C1795,110,1685.5,0.2,1550.2,0c-135.3,0.1-244.9,109.9-244.8,245.2
+		v654c-0.2,135.3,109.4,245.1,244.7,245.3C1685.4,1144.4,1795,1034.6,1794.9,899.2z"></path>
+<path class="st0" d="M1550.1,2452.5c135.3-0.1,244.9-109.9,244.8-245.2c0.1-135.3-109.5-245.1-244.8-245.2h-244.8v245.2
+		C1305.2,2342.5,1414.8,2452.3,1550.1,2452.5z M1550.1,1798.4h652.7c135.3-0.1,244.9-109.9,244.8-245.2
+		c0.2-135.3-109.4-245.1-244.7-245.3h-652.7c-135.3,0.1-244.9,109.9-244.8,245.2C1305.3,1688.5,1414.8,1798.3,1550.1,1798.4
+		L1550.1,1798.4z"></path>
+<path class="st0" d="M0,1553.2c-0.1,135.3,109.5,245.1,244.8,245.2c135.3-0.1,244.9-109.9,244.8-245.2V1308H244.8
+		C109.5,1308.1-0.1,1417.9,0,1553.2z M652.7,1553.2v654c-0.2,135.3,109.4,245.1,244.7,245.3c135.3-0.1,244.9-109.9,244.8-245.2
+		v-653.9c0.2-135.3-109.4-245.1-244.7-245.3C762.1,1308.1,652.6,1417.9,652.7,1553.2C652.7,1553.2,652.7,1553.3,652.7,1553.2"></path>
+</g>
+</svg>
+</a>
+<a class="social" href="https://www.twitter.com/yugabyte">
+<i class="fa fa-twitter-square"></i>
+</a>
+<a class="social" href="https://www.linkedin.com/company/yugabyte">
+<i class="fa fa-linkedin-square"></i>
+</a>
+<a class="social" href="https://www.facebook.com/yugabyte">
+<i class="fa fa-facebook-square"></i>
+</a>
+</div>
+<div class="col-md-6 col-sm">
+<p class="copyright">
+Copyright © 2017-19 YugaByte, Inc. All rights reserved.
+</p>
+<p class="disclaimers">
+</p>
+</div>
+</div>
+</div>
+</footer>
+<script type="text/javascript">
+/* <![CDATA[ */
+var wpcf7 = {"apiSettings":{"root":"https:\/\/blog.yugabyte.com\/wp-json\/contact-form-7\/v1","namespace":"contact-form-7\/v1"},"recaptcha":{"messages":{"empty":"Please verify that you are not a robot."}},"cached":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/scripts.js"></script>
+<script type="text/javascript" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/core.min.js"></script>
+<script type="text/javascript" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/widget.min.js"></script>
+<script type="text/javascript" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/tabs.min.js"></script>
+<script type="text/javascript" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/accordion.min.js"></script>
+<script type="text/javascript">
+var mejsL10n = {"language":"en","strings":{"mejs.install-flash":"You are using a browser that does not have Flash player enabled or installed. Please turn on your Flash player plugin or download the latest version from https:\/\/get.adobe.com\/flashplayer\/","mejs.fullscreen-off":"Turn off Fullscreen","mejs.fullscreen-on":"Go Fullscreen","mejs.download-video":"Download Video","mejs.fullscreen":"Fullscreen","mejs.time-jump-forward":["Jump forward 1 second","Jump forward %1 seconds"],"mejs.loop":"Toggle Loop","mejs.play":"Play","mejs.pause":"Pause","mejs.close":"Close","mejs.time-slider":"Time Slider","mejs.time-help-text":"Use Left\/Right Arrow keys to advance one second, Up\/Down arrows to advance ten seconds.","mejs.time-skip-back":["Skip back 1 second","Skip back %1 seconds"],"mejs.captions-subtitles":"Captions\/Subtitles","mejs.captions-chapters":"Chapters","mejs.none":"None","mejs.mute-toggle":"Mute Toggle","mejs.volume-help-text":"Use Up\/Down Arrow keys to increase or decrease volume.","mejs.unmute":"Unmute","mejs.mute":"Mute","mejs.volume-slider":"Volume Slider","mejs.video-player":"Video Player","mejs.audio-player":"Audio Player","mejs.ad-skip":"Skip ad","mejs.ad-skip-info":["Skip in 1 second","Skip in %1 seconds"],"mejs.source-chooser":"Source Chooser","mejs.stop":"Stop","mejs.speed-rate":"Speed Rate","mejs.live-broadcast":"Live Broadcast","mejs.afrikaans":"Afrikaans","mejs.albanian":"Albanian","mejs.arabic":"Arabic","mejs.belarusian":"Belarusian","mejs.bulgarian":"Bulgarian","mejs.catalan":"Catalan","mejs.chinese":"Chinese","mejs.chinese-simplified":"Chinese (Simplified)","mejs.chinese-traditional":"Chinese (Traditional)","mejs.croatian":"Croatian","mejs.czech":"Czech","mejs.danish":"Danish","mejs.dutch":"Dutch","mejs.english":"English","mejs.estonian":"Estonian","mejs.filipino":"Filipino","mejs.finnish":"Finnish","mejs.french":"French","mejs.galician":"Galician","mejs.german":"German","mejs.greek":"Greek","mejs.haitian-creole":"Haitian Creole","mejs.hebrew":"Hebrew","mejs.hindi":"Hindi","mejs.hungarian":"Hungarian","mejs.icelandic":"Icelandic","mejs.indonesian":"Indonesian","mejs.irish":"Irish","mejs.italian":"Italian","mejs.japanese":"Japanese","mejs.korean":"Korean","mejs.latvian":"Latvian","mejs.lithuanian":"Lithuanian","mejs.macedonian":"Macedonian","mejs.malay":"Malay","mejs.maltese":"Maltese","mejs.norwegian":"Norwegian","mejs.persian":"Persian","mejs.polish":"Polish","mejs.portuguese":"Portuguese","mejs.romanian":"Romanian","mejs.russian":"Russian","mejs.serbian":"Serbian","mejs.slovak":"Slovak","mejs.slovenian":"Slovenian","mejs.spanish":"Spanish","mejs.swahili":"Swahili","mejs.swedish":"Swedish","mejs.tagalog":"Tagalog","mejs.thai":"Thai","mejs.turkish":"Turkish","mejs.ukrainian":"Ukrainian","mejs.vietnamese":"Vietnamese","mejs.welsh":"Welsh","mejs.yiddish":"Yiddish"}};
+</script>
+<script type="text/javascript" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/mediaelement-and-player.min.js"></script>
+<script type="text/javascript" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/mediaelement-migrate.min.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var _wpmejsSettings = {"pluginPath":"\/wp-includes\/js\/mediaelement\/","classPrefix":"mejs-","stretching":"responsive"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/wp-mediaelement.min.js"></script>
+<script type="text/javascript" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/third-party.min.js"></script>
+<script type="text/javascript" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/js(1)"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var eltdGlobalVars = {"vars":{"eltdAddForAdminBar":0,"eltdElementAppearAmount":-150,"eltdFinishedMessage":"No more posts","eltdMessage":"Loading new posts...","eltdTopBarHeight":0,"eltdStickyHeaderHeight":50,"eltdStickyHeaderTransparencyHeight":50,"eltdLogoAreaHeight":0,"eltdMenuAreaHeight":250}};
+var eltdPerPageVars = {"vars":{"eltdStickyScrollAmount":0,"eltdHeaderTransparencyHeight":0}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/modules.min.js"></script>
+<script type="text/javascript" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/blog.min.js"></script>
+<script type="text/javascript" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/comment-reply.min.js"></script>
+<script type="text/javascript" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/js_composer_front.min.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var eltdLike = {"ajaxurl":"https:\/\/blog.yugabyte.com\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/like.min.js"></script>
+<script type="text/javascript" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/wp-embed.min.js"></script>
+</div></div></div></div><iframe id="CrossStorageClient-242c5f91-5d67-4d45-8576-959c7111fd02" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/event-store.html" style="display: none; position: absolute; top: -999px; left: -999px;"></iframe><div id="drift-widget-container" style="position: absolute; z-index: 2147483647;"><iframe id="drift-widget" src="./A Primer on ACID Transactions_ The Basics Every Cloud App Developer Must Know - The Distributed SQL Blog_files/index.html" title="Drift Messenger" role="complementary" class="drift-widget-welcome-expanded-online" style="border: none; display: block; height: 351.188px !important; width: 420px !important; position: fixed; top: auto; left: auto; bottom: 24px; right: 24px; visibility: visible; z-index: 2147483647; max-height: 100vh; max-width: 100vw; transition: none 0s ease 0s; background: none transparent; opacity: 1; pointer-events: auto; touch-action: auto;"></iframe></div></body></html>

@@ -1,0 +1,118 @@
+/*
+* styles for frontend
+*/
+
+/* featured-posts */
+.rltdpstsplgn-featured-posts {
+	position: relative;
+	padding: 25px 10px;
+	max-width: 100%;
+	box-sizing: border-box;
+}
+.rltdpstsplgn-featured-posts article {
+    margin: 0 auto;
+	padding-bottom: 15px;
+	max-width: 100%;
+}
+
+/* latest-posts */
+.rltdpstsplgn-latest-posts article {
+	position: relative;
+	width: auto;
+	border: 0;
+	padding: 0 0 15px;
+    margin: 0;
+}
+.rltdpstsplgn-latest-posts header {
+	width: auto;
+	min-width: 100%;
+	padding: 0;
+	margin: 0;
+}
+.rltdpstsplgn-latest-posts img {
+	float: left;
+	padding: 5px 5px 5px 0;
+}
+.rltdpstsplgn-latest-posts article .entry-content {
+	float: none !important;
+	padding: 0;
+	width: auto !important;
+}
+.rltdpstsplgn-latest-posts article .entry-header {
+	padding-right: 0;
+	padding-left: 0;
+}
+.rltdpstsplgn-latest-posts .entry-meta,
+.rltdpstsplgn-popular-posts .entry-meta,
+.rltdpstsplgn-related-posts .entry-meta {
+	color: #999;
+}
+.rltdpstsplgn-latest-posts .entry-meta > span:not(:first-child):before,
+.rltdpstsplgn-related-posts .entry-meta > span:not(:first-child):before,
+.rltdpstsplgn-featured-posts .entry-meta > span:not(:first-child):before,
+.rltdpstsplgn-popular-posts .entry-meta > span:not(:first-child):before {
+	content: "\2022";
+	margin: 0 5px;
+}
+
+/* popular-posts */
+.rltdpstsplgn-popular-posts article,
+.rltdpstsplgn-related-posts article,
+.rltdpstsplgn-featured-posts article {
+	position: relative;
+	width: auto;
+	border: 0;
+	padding: 0 0 15px;
+}
+.rltdpstsplgn-popular-posts header,
+.rltdpstsplgn-related-posts header,
+.rltdpstsplgn-featured-posts header {
+	width: auto;
+	padding: 0;
+}
+.rltdpstsplgn-popular-posts img,
+.rltdpstsplgn-related-posts img,
+.rltdpstsplgn-featured-posts img {
+	float: left;
+	padding: 5px 5px 5px 0;
+	box-shadow: none !important;
+}
+.rtl .rltdpstsplgn-popular-posts img,
+.rtl .rltdpstsplgn-related-posts img,
+.rtl .rltdpstsplgn-featured-posts img {
+	float: right;
+	padding: 5px 0 5px 5px;
+}
+.rltdpstsplgn-popular-posts article .entry-content,
+.rltdpstsplgn-related-posts article .entry-content,
+.rltdpstsplgn-featured-posts article .entry-content {
+	float: none !important;
+	padding: 0;
+}
+.sidebar .rltdpstsplgn-popular-posts .entry-header,
+.sidebar .rltdpstsplgn-related-posts .entry-header,
+.sidebar .rltdpstsplgn-featured-posts .entry-header {
+	padding-right: 0;
+	padding-left: 0;
+}
+.rltdpstsplgn-author span.author.vcard {
+	display: inline-block;
+}
+.rltdpstsplgn-featured-posts header {
+	margin-right: 0;
+}
+/* shortcode-posts */
+#primary .rltdpstsplgn-featured-post-block .post.type-post.format-standard .entry-header,
+#primary .rltdpstsplgn-popular-post-block .post.type-post.format-standard .entry-header{
+	float: none;
+	width: 100%;
+}
+#primary .rltdpstsplgn-featured-post-block  .post.type-post.format-standard div.entry-content,
+#primary .rltdpstsplgn-popular-post-block .post.type-post.format-standard div.entry-content{
+	float: none;
+	width: 100%;
+}
+body.page-two-column:not(.archive) #page #primary .entry-content{
+	float: none;
+	width: 100%;
+}

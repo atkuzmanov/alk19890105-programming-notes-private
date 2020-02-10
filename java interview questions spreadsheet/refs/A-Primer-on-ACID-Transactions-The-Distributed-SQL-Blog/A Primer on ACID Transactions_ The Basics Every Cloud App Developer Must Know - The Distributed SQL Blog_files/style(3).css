@@ -1,0 +1,186 @@
+/*
+Theme Name: Flow Child
+Theme URI: http://flow.elated-themes.com/
+Description: A child theme of Flow Theme
+Author: Elated Themes
+Author URI: http://themeforest.net/user/elated-themes
+Version: 1.1.0
+Template: flow
+*/
+
+@import url("./yugabyte.css?ver=1.0.84");
+
+.eltd-container {
+  position: static;
+  margin-bottom: 20px;
+  background: #F5F6F8;
+}
+
+.top-banner {
+  margin-bottom: 320px;
+}
+
+.yb-header .top-banner {
+  margin-bottom: 0;
+}
+
+section.footer {
+  position: static;
+  z-index: 10000;
+}
+
+.contact-sales-button {
+  display: none;
+}
+
+body p,
+body a {
+  font-family: 'Open Sans', sans-serif  !important;
+}
+
+h1, h2, h3, h4, h5, h6,
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+  font-family: Montserrat, sans-serif !important;
+  text-transform: none;
+}
+
+h2.eltd-post-title {
+  font-size: 30px;
+}
+
+h3.eltd-post-title {
+  font-size: 24px;
+}
+
+.eltd-text-holder p {
+  margin-bottom: 18px !important;
+}
+
+.eltd-text-holder h2 {
+  font-size: 26px;
+}
+
+.eltd-text-holder h3 {
+  font-size: 20px;
+  margin-bottom: 14px !important;
+}
+
+.hero-section {
+
+    position: relative;
+    min-height: 360px;
+    padding-top: 80px;
+    padding-bottom: 100px;
+    margin-top: -10px;
+    background-color: #151838;
+    background-position: top center;
+    background-size: cover;
+    margin-bottom: 40px;
+}
+
+.hero-section h2 {
+  font-family: 'Open Sans', sans-serif !important;
+  font-size: 42px!important;
+  font-weight: 600;
+  color: #FFF;
+}
+
+.hero-section p {
+    font-family: 'Open Sans', sans-serif !important;
+    font-size: 24px;
+    font-weight: 200;
+    color: #fff;
+}
+
+.hero-section .headline {
+    padding: 100px 0 80px;
+}
+
+.headline img {
+    width: 85%;
+}
+
+@media(max-width: 786px) {
+  .hero-section {
+    padding-bottom: 22px;
+  }
+
+  .hero-section .solutions-image {
+    max-width: 300px;
+  }
+
+  .hero-section .headline {
+    padding: 70px 0 10px;
+  }
+
+  .hero-section h2 {
+    font-size: 22px!important;
+    margin-bottom: 20px;
+  }
+
+  .hero-section p {
+    font-size: 15px;
+    line-height: 20px;
+    max-width: 400px;
+    margin: 0 auto 0;
+  }
+}
+
+.small-title {
+  margin-bottom: 30px;
+  font-size: 28px;
+}
+
+.eltd-post-text {
+  color: #202951;
+}
+.eltd-post-text h1 {
+  font-size: 32px !important;
+  font-weight: 600 !important;
+  text-align: left !important;
+  color: #202951 !important;
+}
+.eltd-post-text h2 {
+  font-size: 24px !important;
+  font-weight: 600 !important;
+}
+.eltd-post-text h3 {
+  font-size: 18px !important;
+  font-weight: 600 !important;
+}
+.eltd-post-text h4 {
+  font-family: 'Open Sans', sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  margin-bottom: 18px !important;
+  color: #202951 !important;
+}
+
+.eltd-post-text ul {
+  margin-left: 35px;
+}
+
+.eltd-post-text li {
+  line-height:  28px;
+  list-style-position: outside;
+  font-family: 'Open Sans', sans-serif !important;
+}
+
+.eltd-pagination li.active a,
+.eltd-pagination li:hover a,
+.eltd-pagination li a:hover,
+.eltd-pagination li.active span,
+.eltd-pagination li:hover span,
+.eltd-pagination li span:hover {
+  color: #f75821 !important;
+}
+
+.eltd-pagination li.active a, .eltd-pagination li.active span, .eltd-pagination li:hover a, .eltd-pagination li:hover span {
+  color: #f75821 !important;
+}
+
+.blog .eltd-post-text-inner h2,
+.archive .eltd-post-text-inner h2,
+.search .eltd-post-text-inner h2 {
+  font-size: 20px !important;
+}
