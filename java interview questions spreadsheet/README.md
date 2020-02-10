@@ -6675,6 +6675,8 @@ https://dev.mysql.com/doc/refman/8.0/en/select.html
 
 # Index (good for select bad for insert?)
 
+## Database index
+
 |Junior |Mid  |Senior |
 |-------|-----|-------|
 |       |  x  |   x   |
@@ -6713,6 +6715,41 @@ https://vladmihalcea.com/a-beginners-guide-to-acid-and-database-transactions/
 
 # View
 
+## SQL view
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
+
+- SQL Views
+
+```text
+In SQL, a view is a virtual table based on the result-set of an SQL statement.
+
+A view contains rows and columns, just like a real table. The fields in a view are fields from one or more real tables in the database.
+
+You can add SQL functions, WHERE, and JOIN statements to a view and present the data as if the data were coming from one single table.
+```
+
+`references:`
+https://www.w3schools.com/sql/sql_view.asp
+
+- [SQL-Views-GeeksforGeeks](refs/SQL-Views-GeeksforGeeks)
+
+`references:`
+https://www.geeksforgeeks.org/sql-views/
+
+- [SQL-Using-Views-Tutorialspoint](refs/SQL-Using-Views-Tutorialspoint)
+
+`references:`
+https://www.tutorialspoint.com/sql/sql-using-views.htm
+
+----
+
+# Trigger
+
+## SQL trigger
+
 |Junior |Mid  |Senior |
 |-------|-----|-------|
 |   x   |  x  |   x   |
@@ -6720,7 +6757,6 @@ https://vladmihalcea.com/a-beginners-guide-to-acid-and-database-transactions/
 
 
 
-----
 ----
 ----
 ----
