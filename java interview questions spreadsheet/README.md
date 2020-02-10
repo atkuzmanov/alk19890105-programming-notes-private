@@ -6711,6 +6711,11 @@ https://www.geeksforgeeks.org/acid-properties-in-dbms/
 `references:`
 https://vladmihalcea.com/a-beginners-guide-to-acid-and-database-transactions/
 
+- [A-Primer-on-ACID-Transactions-The-Distributed-SQL-Blog](refs/A-Primer-on-ACID-Transactions-The-Distributed-SQL-Blog)
+
+`references:`
+https://blog.yugabyte.com/a-primer-on-acid-transactions/
+
 ----
 
 # View
