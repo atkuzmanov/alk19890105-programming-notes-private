@@ -6699,6 +6699,8 @@ https://www.geeksforgeeks.org/indexing-in-databases-set-1/
 
 - [ACID-Properties-in-DBMS-GeeksforGeeks](refs/ACID-Properties-in-DBMS-GeeksforGeeks)
 
+![ACID-Properties.jpg](refs/ACID-Properties-in-DBMS-GeeksforGeeks/ACID%20Properties%20in%20DBMS%20-%20GeeksforGeeks_files/ACID-Properties.jpg)
+
 `references:`
 https://www.geeksforgeeks.org/acid-properties-in-dbms/
 
@@ -6708,6 +6710,16 @@ https://www.geeksforgeeks.org/acid-properties-in-dbms/
 https://vladmihalcea.com/a-beginners-guide-to-acid-and-database-transactions/
 
 ----
+
+# View
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
+
+
+
+
 ----
 ----
 ----
