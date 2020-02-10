@@ -6697,9 +6697,15 @@ https://www.geeksforgeeks.org/indexing-in-databases-set-1/
 |-------|-----|-------|
 |       |  x  |   x   |
 
+- [ACID-Properties-in-DBMS-GeeksforGeeks](refs/ACID-Properties-in-DBMS-GeeksforGeeks)
 
+`references:`
+https://www.geeksforgeeks.org/acid-properties-in-dbms/
 
+- [A-beginners-guide-to-ACID-and-database-transactions-Vlad-Mihalcea](refs/A-beginners-guide-to-ACID-and-database-transactions-Vlad-Mihalcea)
 
+`references:`
+https://vladmihalcea.com/a-beginners-guide-to-acid-and-database-transactions/
 
 ----
 ----
