@@ -6862,6 +6862,11 @@ Performance: The SQL Server stored procedure when executed for the first time cr
 `references:`
 https://www.sqlshack.com/sql-server-stored-procedures-for-beginners/
 
+- [Partial-stored-procedures-in-SQL-Server-sqlshack](refs/Partial-stored-procedures-in-SQL-Server-sqlshack)
+
+`references:`
+https://www.sqlshack.com/partial-stored-procedures-in-sql-server/
+
 ----
 
 # Functions
@@ -6871,6 +6876,16 @@ https://www.sqlshack.com/sql-server-stored-procedures-for-beginners/
 |Junior |Mid  |Senior |
 |-------|-----|-------|
 |   x   |  x  |   x   |
+
+- [Functions-vs-stored-procedures-in-SQL-Server-sqlshack](refs/Functions-vs-stored-procedures-in-SQL-Server-sqlshack)
+
+`references:`
+https://www.sqlshack.com/functions-vs-stored-procedures-sql-server/
+
+- [Functions-and-stored-procedures-comparisons-in-SQL-Server-sqlshack](refs/Functions-and-stored-procedures-comparisons-in-SQL-Server-sqlshack)
+
+`references:`
+https://www.sqlshack.com/functions-stored-procedures-comparisons-sql-server/
 
 
 
