@@ -6754,10 +6754,63 @@ https://www.tutorialspoint.com/sql/sql-using-views.htm
 |-------|-----|-------|
 |   x   |  x  |   x   |
 
+- [PL-SQL-Triggers-Tutorialspoint](refs/PL-SQL-Triggers-Tutorialspoint)
 
+```text
+Triggers are stored programs, which are automatically executed or fired when some events occur. Triggers are, in fact, written to be executed in response to any of the following events −
 
+A database manipulation (DML) statement (DELETE, INSERT, or UPDATE)
+
+A database definition (DDL) statement (CREATE, ALTER, or DROP).
+
+A database operation (SERVERERROR, LOGON, LOGOFF, STARTUP, or SHUTDOWN).
+
+Triggers can be defined on the table, view, schema, or database with which the event is associated.
+
+Benefits of Triggers
+Triggers can be written for the following purposes:
+
+- Generating some derived column values automatically
+
+- Enforcing referential integrity
+
+- Event logging and storing information on table access
+
+- Auditing
+
+- Synchronous replication of tables
+
+- Imposing security authorizations
+
+- Preventing invalid transactions
+```
+
+`references:`
+https://www.tutorialspoint.com/plsql/plsql_triggers.htm
+
+- [SQL-Server-Trigger-Example-mssqltips](refs/SQL-Server-Trigger-Example-mssqltips)
+
+`references:`
+https://www.mssqltips.com/sqlservertip/5909/sql-server-trigger-example/
+
+- SQL Server Triggers
+
+`references:`
+https://www.sqlservertutorial.net/sql-server-triggers/
 
 ----
+
+# Stored Procedure
+
+## SQL Stored Procedure
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
+
+
+
+
 ----
 ----
 ----
