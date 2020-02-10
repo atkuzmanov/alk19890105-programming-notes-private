@@ -6840,6 +6840,11 @@ https://www.sqlservertutorial.net/sql-server-stored-procedures/
 `references:`
 https://www.sqlservertutorial.net/sql-server-stored-procedures/basic-sql-server-stored-procedures/
 
+- [Learn-about-Stored-Procedures-Essential-SQL-essentialsql](refs/Learn-about-Stored-Procedures-Essential-SQL-essentialsql)
+
+`references:`
+https://www.essentialsql.com/what-is-a-stored-procedure/
+
 - [SQL-Server-stored-procedures-for-beginners-sqlshack](refs/SQL-Server-stored-procedures-for-beginners-sqlshack)
 
 ```text
