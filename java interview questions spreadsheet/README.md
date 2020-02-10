@@ -6635,6 +6635,18 @@ https://github.com/iluwatar/java-design-patterns
 SQL
 ```
 
+# SQL (Structured Query Language)
+
+- [SQL-Wikipedia](refs/SQL-Wikipedia)
+
+`references:`
+https://en.wikipedia.org/wiki/SQL
+
+- [MySQL-Wikipedia](refs/MySQL-Wikipedia)
+
+`references:`
+https://en.wikipedia.org/wiki/MySQL
+
 # SQL select
 
 |Junior |Mid  |Senior |
@@ -6892,10 +6904,45 @@ https://www.sqlshack.com/functions-vs-stored-procedures-sql-server/
 `references:`
 https://www.sqlshack.com/functions-stored-procedures-comparisons-sql-server/
 
+- [How-to-use-SQL-Server built-in-functions-and-create-user-defined-scalar-functions-sqlshack](refs/How-to-use-SQL-Server built-in-functions-and-create-user-defined-scalar-functions-sqlshack)
 
+`references:`
+https://www.sqlshack.com/use-sql-server-built-functions-create-user-defined-scalar-functions/
 
+- [SQL-Functions-Aggregate-and-Scalar Functions-GeeksforGeeks](refs/SQL-Functions-Aggregate-and-Scalar Functions-GeeksforGeeks)
+
+`references:`
+https://www.geeksforgeeks.org/sql-functions-aggregate-scalar-functions/
+
+- [SQL-Advanced-Functions-GeeksforGeeks](refs/SQL-Advanced-Functions-GeeksforGeeks)
+
+`references:`
+https://www.geeksforgeeks.org/sql-advanced-functions/
+
+- [SQL-Server-Functions-w3schools](refs/SQL-Server-Functions-w3schools)
+
+`references:`
+https://www.w3schools.com/sql/sql_ref_sqlserver.asp
 
 ----
+
+```text
+Spring
+```
+
+# Spring
+
+----
+
+# IoC and Dependency injection
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
+
+
+
+
 ----
 ----
 ----
