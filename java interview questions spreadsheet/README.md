@@ -6813,10 +6813,68 @@ https://www.sqlservertutorial.net/sql-server-triggers/
 |-------|-----|-------|
 |   x   |  x  |   x   |
 
+- SQL Stored Procedures for SQL Server
 
+```text
+A stored procedure is a prepared SQL code that you can save, so the code can be reused over and over again.
 
+So if you have an SQL query that you write over and over again, save it as a stored procedure, and then just call it to execute it.
+
+You can also pass parameters to a stored procedure, so that the stored procedure can act based on the parameter value(s) that is passed.
+```
+
+`references:`
+https://www.w3schools.com/sql/sql_stored_procedures.asp
+
+- SQL Server Stored Procedures
+
+```text
+A SQL Server stored procedure groups one or more Transact-SQL statements into a logical unit and is stored as an object in the Database Server. When a stored procedure is called at the first time, SQL Server creates an execution plan and stores it in the plan cache. In the subsequent executions of the stored procedure, SQL Server reuses the plan so that the stored procedure can execute very fast with reliable performance.
+```
+
+`references:`
+https://www.sqlservertutorial.net/sql-server-stored-procedures/
+
+- [A-Basic-Guide-to-SQL-Server-Stored-Procedures-sqlservertutorial](refs/A-Basic-Guide-to-SQL-Server-Stored-Procedures-sqlservertutorial)
+
+`references:`
+https://www.sqlservertutorial.net/sql-server-stored-procedures/basic-sql-server-stored-procedures/
+
+- [SQL-Server-stored-procedures-for-beginners-sqlshack](refs/SQL-Server-stored-procedures-for-beginners-sqlshack)
+
+```text
+SQL Server stored procedure is a batch of statements grouped as a logical unit and stored in the database. The stored procedure accepts the parameters and executes the T-SQL statements in the procedure, returns the result set if any.
+
+To understand differences between functions and stored procedures in SQL Server, you can refer to this article, Functions vs stored procedures in SQL Server and to learn about Partial stored procedures in SQL Server, click Partial stored procedures in SQL Server.
+
+Benefits of using a stored procedure
+It can be easily modified: We can easily modify the code inside the stored procedure without the need to restart or deploying the application. For example, If the T-SQL queries are written in the application and if we need to change the logic, we must change the code in the application and re-deploy it. SQL Server Stored procedures eliminate such challenges by storing the code in the database. so, when we want to change the logic inside the procedure we can just do it by simple ALTER PROCEDURE statement.
+
+Reduced network traffic: When we use stored procedures instead of writing T-SQL queries at the application level, only the procedure name is passed over the network instead of the whole T-SQL code.
+
+Reusable: Stored procedures can be executed by multiple users or multiple client applications without the need of writing the code again.
+
+Security: Stored procedures reduce the threat by eliminating direct access to the tables. we can also encrypt the stored procedures while creating them so that source code inside the stored procedure is not visible. Use third-party tools like ApexSQL Decrypt to decrypt the encrypted stored procedures.
+
+Performance: The SQL Server stored procedure when executed for the first time creates a plan and stores it in the buffer pool so that the plan can be reused when it executes next time.
+```
+
+`references:`
+https://www.sqlshack.com/sql-server-stored-procedures-for-beginners/
 
 ----
+
+# Functions
+
+## SQL functions
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
+
+
+
+
 ----
 ----
 ----
