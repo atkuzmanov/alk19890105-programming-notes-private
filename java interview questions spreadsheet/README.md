@@ -6679,10 +6679,28 @@ https://dev.mysql.com/doc/refman/8.0/en/select.html
 |-------|-----|-------|
 |       |  x  |   x   |
 
+- [mysql-why-and-where-to-use-INDEXes-pros-and-cons-StackOverflow](refs/mysql-why-and-where-to-use-INDEXes-pros-and-cons-StackOverflow)
 
+`references:`
+https://stackoverflow.com/questions/29842622/why-and-where-to-use-indexes-pros-and-cons/29842998
 
+- [Indexing-in-Databases-Set1-GeeksforGeeks](refs/Indexing-in-Databases-Set1-GeeksforGeeks)
+
+`references:`
+https://www.geeksforgeeks.org/indexing-in-databases-set-1/
 
 ----
+
+# Property of a transaction A.C.I.D
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
+
+
+
+
 ----
 ----
 ----
