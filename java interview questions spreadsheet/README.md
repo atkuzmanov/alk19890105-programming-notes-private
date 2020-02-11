@@ -6629,6 +6629,22 @@ https://sourcemaking.com/design_patterns
 `references:`
 https://github.com/iluwatar/java-design-patterns
 
+`references:`
+https://en.wikipedia.org/wiki/Design_Patterns
+
+## Creational Design Patterns
+
+## Structural Design Patterns
+
+## Behavioural Design Patterns
+
+### Strategy Design Pattern
+
+- [c#-Factory-method-with-DI-and-IoC-StackOverflow](refs/c#-Factory-method-with-DI-and-IoC-StackOverflow)
+
+`references:`
+https://stackoverflow.com/questions/31950362/factory-method-with-di-and-ioc
+
 ----
 
 ```text
@@ -6979,8 +6995,23 @@ https://docs.spring.io/spring/docs/3.2.x/spring-framework-reference/html/beans.h
 
 ----
 
+# Spring Design Patterns
+
+## Spring IoC (Inversion Of Control) Design Patterns
+
+### Dependency Injection (DI) Pattern
+
+### Factory Pattern
 
 
+
+### Service Locator Pattern
+
+### Strategy Pattern
+
+### Observer Pattern
+
+### Template Method Pattern
 
 ----
 ----
