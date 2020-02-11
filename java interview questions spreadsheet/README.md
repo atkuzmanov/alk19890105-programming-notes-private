@@ -6997,13 +6997,44 @@ https://docs.spring.io/spring/docs/3.2.x/spring-framework-reference/html/beans.h
 
 # Spring Design Patterns
 
+## Design Patterns used in Spring Framework Part 2 - Creational Patterns - Factory - Builder - Singleton - Prototype
+
+- [Design-Patterns-Spring-Framework-Part-2-Creational-Patterns-Factory-Builder-Singleton-Prototype-Devdiaries](refs/Design-Patterns-Spring-Framework-Part-2-Creational-Patterns-Factory-Builder-Singleton-Prototype-Devdiaries)
+
+`references:`
+https://www.devdiaries.net/blog/Spring-Design-Patterns-Creational-Patterns/
+
+## Design Patterns Spring Framework Part 1 - Inversion of Control - Dependency Injection
+
+- [Design-Patterns-Spring-Framework-Part-1-Inversion-of-Control-Dependency-Injection-Devdiaries](refs/Design-Patterns-Spring-Framework-Part-1-Inversion-of-Control-Dependency-Injection-Devdiaries)
+
+`references:`
+https://www.devdiaries.net/blog/Spring-Design-Patterns-Dependency-Injection/
+
 ## Spring IoC (Inversion Of Control) Design Patterns
+
+- [Design Patterns Spring Framework Part 1 - Inversion of Control - Dependency Injection](#DesignPatternsSpringFrameworkPart1-InversionofControl-DependencyInjection)
 
 ### Dependency Injection (DI) Pattern
 
+- [Design Patterns Spring Framework Part 1 - Inversion of Control - Dependency Injection](#DesignPatternsSpringFrameworkPart1-InversionofControl-DependencyInjection)
+
 ### Factory Pattern
 
+- [Design Patterns used in Spring Framework Part 2 - Creational Patterns - Factory - Builder - Singleton - Prototype](#DesignPatternsusedinSpringFrameworkPart2-CreationalPatterns-Factory-Builder-Singleton-Prototype)
 
+### Builder Pattern
+
+- [Design Patterns used in Spring Framework Part 2 - Creational Patterns - Factory - Builder - Singleton - Prototype](#DesignPatternsusedinSpringFrameworkPart2-CreationalPatterns-Factory-Builder-Singleton-Prototype)
+
+
+### Singleton Pattern
+
+- [Design Patterns used in Spring Framework Part 2 - Creational Patterns - Factory - Builder - Singleton - Prototype](#DesignPatternsusedinSpringFrameworkPart2-CreationalPatterns-Factory-Builder-Singleton-Prototype)
+
+### Prototype Pattern
+
+- [Design Patterns used in Spring Framework Part 2 - Creational Patterns - Factory - Builder - Singleton - Prototype](#DesignPatternsusedinSpringFrameworkPart2-CreationalPatterns-Factory-Builder-Singleton-Prototype)
 
 ### Service Locator Pattern
 
