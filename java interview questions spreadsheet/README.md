@@ -6967,12 +6967,21 @@ https://www.baeldung.com/spring-annotations-resource-inject-autowire
 `references:`
 https://howtodoinjava.com/spring-core/spring-ioc-vs-di/
 
+- [Spring-IoC-Spring-Bean-Example-Tutorial-JournalDev](refs/Spring-IoC-Spring-Bean-Example-Tutorial-JournalDev)
+
+`references:`
+https://www.journaldev.com/2461/spring-ioc-bean-example-tutorial
+
 - The IoC container
 
 `references:`
 https://docs.spring.io/spring/docs/3.2.x/spring-framework-reference/html/beans.html
 
 ----
+
+
+
+
 ----
 ----
 ----
