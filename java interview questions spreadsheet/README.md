@@ -6940,8 +6940,32 @@ Spring
 |-------|-----|-------|
 |   x   |  x  |   x   |
 
+- [Inversion-of-Control-and-Dependency-Injection-with-Spring-Baeldung](refs/Inversion-of-Control-and-Dependency-Injection-with-Spring-Baeldung)
 
+`references:`
+https://www.baeldung.com/inversion-control-and-dependency-injection-in-spring
 
+- [Inversion-of-Control-Containers-and-Dependency-Injection-pattern-martinfowler](refs/Inversion-of-Control-Containers-and-Dependency-Injection-pattern-martinfowler)
+
+`references:`
+https://martinfowler.com/articles/injection.html
+
+- [Inversion-of-Control-martinfowler](refs/Inversion-of-Control-martinfowler)
+
+`references:`
+https://martinfowler.com/bliki/InversionOfControl.html
+
+- [Difference-between-IoC-and-Dependency-Injection-in-Spring-howtodoinjava](refs/Difference-between-IoC-and-Dependency-Injection-in-Spring-howtodoinjava)
+
+![container-magic.png](refs/Difference-between-IoC-and-Dependency-Injection-in-Spring-howtodoinjava/Difference%20between%20IoC%20and%20Dependency%20Injection%20in%20Spring_files/container-magic.png)
+
+`references:`
+https://howtodoinjava.com/spring-core/spring-ioc-vs-di/
+
+- The IoC container
+
+`references:`
+https://docs.spring.io/spring/docs/3.2.x/spring-framework-reference/html/beans.html
 
 ----
 ----
