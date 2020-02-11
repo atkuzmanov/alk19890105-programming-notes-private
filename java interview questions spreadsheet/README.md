@@ -6955,6 +6955,11 @@ https://martinfowler.com/articles/injection.html
 `references:`
 https://martinfowler.com/bliki/InversionOfControl.html
 
+- [Wiring-in-Spring-@Autowired-@Resource-and-@Inject-Baeldung](refs/Wiring-in-Spring-@Autowired-@Resource-and-@Inject-Baeldung)
+
+`references:`
+https://www.baeldung.com/spring-annotations-resource-inject-autowire
+
 - [Difference-between-IoC-and-Dependency-Injection-in-Spring-howtodoinjava](refs/Difference-between-IoC-and-Dependency-Injection-in-Spring-howtodoinjava)
 
 ![container-magic.png](refs/Difference-between-IoC-and-Dependency-Injection-in-Spring-howtodoinjava/Difference%20between%20IoC%20and%20Dependency%20Injection%20in%20Spring_files/container-magic.png)
