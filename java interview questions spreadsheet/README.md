@@ -7014,6 +7014,16 @@ https://docs.spring.io/spring/docs/3.2.x/spring-framework-reference/html/beans.h
 ### Template Method Pattern
 
 ----
+
+# @Autowired and @Qualifier
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
+
+
+
 ----
 ----
 ----
