@@ -7181,8 +7181,29 @@ https://medium.com/@amitkma/understanding-inversion-of-control-ioc-principle-163
 
 ### Strategy Pattern
 
+- [Design-Patterns-Strategy-Pattern-Tutorialspoint](refs/Design-Patterns-Strategy-Pattern-Tutorialspoint)
 
+    `references:`
+    https://www.tutorialspoint.com/design_pattern/strategy_pattern.htm
 
+- [Strategy-refactoringguru](refs/Strategy-refactoringguru)
+    - [Strategy-example-refactoringguru](refs/Strategy-example-refactoringguru)
+
+    `references:`
+    
+    https://refactoring.guru/design-patterns/strategy
+    
+    https://refactoring.guru/design-patterns/strategy/java/example
+
+- [Strategy-Design-Pattern-in-Java-Example-Tutorial-JournalDev](refs/Strategy-Design-Pattern-in-Java-Example-Tutorial-JournalDev)
+
+    `references:`
+    https://www.journaldev.com/1754/strategy-design-pattern-in-java-example-tutorial    
+
+- [Can-we-completely-replace-inheritance-using-strategy-pattern-and-dependency-injection-SoftwareEngineeringStackExchange](refs/Can-we-completely-replace-inheritance-using-strategy-pattern-and-dependency-injection-SoftwareEngineeringStackExchange)
+
+    `references:`
+    https://softwareengineering.stackexchange.com/questions/393065/can-we-completely-replace-inheritance-using-strategy-pattern-and-dependency-inje
 
 ### Observer Pattern
 
