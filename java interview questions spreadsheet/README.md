@@ -7317,10 +7317,27 @@ https://stackoverflow.com/questions/8428439/spring-annotation-based-di-vs-xml-co
 |-------|-----|-------|
 |       |  x  |   x   |
 
+- [Quick-Guide-to-Spring-Bean-Scopes-Baeldung](refs/Quick-Guide-to-Spring-Bean-Scopes-Baeldung)
 
+`references:`
+https://www.baeldung.com/spring-bean-scopes
 
+- [java-Spring-Bean-Scopes-StackOverflow](refs/java-Spring-Bean-Scopes-StackOverflow)
+
+`references:`
+https://stackoverflow.com/questions/17599216/spring-bean-scopes
 
 ----
+
+# Spring security
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
+
+
+
 ----
 ----
 ----
