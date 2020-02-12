@@ -7280,10 +7280,46 @@ https://www.baeldung.com/spring-annotations-resource-inject-autowire
 |-------|-----|-------|
 |       |  x  |   x   |
 
+- [Spring-Framework-XML-vs-Annotations-DZone](refs/Spring-Framework-XML-vs-Annotations-DZone)
+
+    `references:`
+    https://dzone.com/articles/spring-framework-xml-vs-annotations
+
+- [XML-vs-annotations-which-is-better-in-Spring-Why-Quora](refs/XML-vs-annotations-which-is-better-in-Spring-Why-Quora)
+
+```text
+Are annotations better than XML for configuring Spring?
+
+The introduction of annotation-based configurations raised the question of whether this approach is 'better' than XML. The short answer is it depends. The long answer is that each approach has its pros and cons, and usually it is up to the developer to decide which strategy suits them better. Due to the way they are defined, annotations provide a lot of context in their declaration, leading to shorter and more concise configuration. However, XML excels at wiring up components without touching their source code or recompiling them. Some developers prefer having the wiring close to the source while others argue that annotated classes are no longer POJOs and, furthermore, that the configuration becomes decentralized and harder to control.
+
+No matter the choice, Spring can accommodate both styles and even mix them together. It’s worth pointing out that through its JavaConfig option, Spring allows annotations to be used in a non-invasive way, without touching the target components source code and that in terms of tooling, all configuration styles are supported by the Spring Tool Suite.
+```
+
+    `references:`
+    https://www.quora.com/XML-vs-annotations-which-is-better-in-Spring-Why
+
+- [XML-vs-annotations-Spring-forum-at-Coderanch](refs/XML-vs-annotations-Spring-forum-at-Coderanch)
+
+    `references:`
+    https://coderanch.com/t/641229/frameworks/XML-annotations
 
 
+- [java-Spring-annotation-based-DI-vs-xml-configuration-StackOverflow](refs/java-Spring-annotation-based-DI-vs-xml-configuration-StackOverflow)
+
+`references:`
+https://stackoverflow.com/questions/8428439/spring-annotation-based-di-vs-xml-configuration
 
 ----
+
+# bean scopes
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
+
+
+
 ----
 ----
 ----
