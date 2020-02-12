@@ -7077,6 +7077,11 @@ https://www.journaldev.com/2461/spring-ioc-bean-example-tutorial
     `references:`
     https://stackoverflow.com/questions/6390810/implement-a-simple-factory-pattern-with-spring-3-annotations
 
+- [Factory-Method-Design-Pattern-Spring-Framework-Guru](refs/Factory-Method-Design-Pattern-Spring-Framework-Guru)
+
+    `references:`
+    https://springframework.guru/gang-of-four-design-patterns/factory-method-design-pattern/
+
 ### Builder Pattern
 
 - [Design Patterns used in Spring Framework Part 2 - Creational Patterns - Factory - Builder - Singleton - Prototype](#DesignPatternsusedinSpringFrameworkPart2-CreationalPatterns-Factory-Builder-Singleton-Prototype)
