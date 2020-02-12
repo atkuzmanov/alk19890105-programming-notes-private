@@ -6988,10 +6988,7 @@ https://howtodoinjava.com/spring-core/spring-ioc-vs-di/
 `references:`
 https://www.journaldev.com/2461/spring-ioc-bean-example-tutorial
 
-- The IoC container
 
-`references:`
-https://docs.spring.io/spring/docs/3.2.x/spring-framework-reference/html/beans.html
 
 ----
 
@@ -7001,15 +6998,15 @@ https://docs.spring.io/spring/docs/3.2.x/spring-framework-reference/html/beans.h
 
 - [Design-Patterns-Spring-Framework-Part-2-Creational-Patterns-Factory-Builder-Singleton-Prototype-Devdiaries](refs/Design-Patterns-Spring-Framework-Part-2-Creational-Patterns-Factory-Builder-Singleton-Prototype-Devdiaries)
 
-`references:`
-https://www.devdiaries.net/blog/Spring-Design-Patterns-Creational-Patterns/
+    `references:`
+    https://www.devdiaries.net/blog/Spring-Design-Patterns-Creational-Patterns/
 
 ## Design Patterns Spring Framework Part 1 - Inversion of Control - Dependency Injection
 
 - [Design-Patterns-Spring-Framework-Part-1-Inversion-of-Control-Dependency-Injection-Devdiaries](refs/Design-Patterns-Spring-Framework-Part-1-Inversion-of-Control-Dependency-Injection-Devdiaries)
 
-`references:`
-https://www.devdiaries.net/blog/Spring-Design-Patterns-Dependency-Injection/
+    `references:`
+    https://www.devdiaries.net/blog/Spring-Design-Patterns-Dependency-Injection/
 
 ## Spring IoC (Inversion Of Control) Design Patterns
 
@@ -7022,6 +7019,26 @@ https://www.devdiaries.net/blog/Spring-Design-Patterns-Dependency-Injection/
 ### Factory Pattern
 
 - [Design Patterns used in Spring Framework Part 2 - Creational Patterns - Factory - Builder - Singleton - Prototype](#DesignPatternsusedinSpringFrameworkPart2-CreationalPatterns-Factory-Builder-Singleton-Prototype)
+
+- [Difference-between-Dependency-Injection-and-Factory-Design-Pattern-in-Java-Spring](refs/Difference-between-Dependency-Injection-and-Factory-Design-Pattern-in-Java-Spring)
+
+    `references:`
+    https://javarevisited.blogspot.com/2015/06/difference-between-dependency-injection.htmlj
+
+- [Factory-Pattern-vs-Dependency-Injection-SoftwareEngineeringStackExchange](refs/Factory-Pattern-vs-Dependency-Injection-SoftwareEngineeringStackExchange)
+
+    `references:`
+    https://softwareengineering.stackexchange.com/questions/293826/usage-factory-pattern-vs-dependency-injection
+
+- [Dependency-Injection-vs-Factory-Pattern-StackOverflow](refs/Dependency-Injection-vs-Factory-Pattern-StackOverflow)
+
+    `references:`
+    https://stackoverflow.com/questions/557742/dependency-injection-vs-factory-pattern
+
+- [java-Implement-a-simple-factory-pattern-with-Spring-3-annotations-StackOverflow](refs/java-Implement-a-simple-factory-pattern-with-Spring-3-annotations-StackOverflow)
+
+    `references:`
+    https://stackoverflow.com/questions/6390810/implement-a-simple-factory-pattern-with-spring-3-annotations
 
 ### Builder Pattern
 
