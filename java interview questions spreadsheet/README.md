@@ -7174,8 +7174,10 @@ https://www.journaldev.com/2461/spring-ioc-bean-example-tutorial
 
 ### Service Locator Pattern
 
+- [Understanding-Inversion-of-Control-IoC-Principle-Amit-Kumar-Medium](refs/Understanding-Inversion-of-Control-IoC-Principle-Amit-Kumar-Medium)
 
-
+`references:`
+https://medium.com/@amitkma/understanding-inversion-of-control-ioc-principle-163b1dc97454
 
 ### Strategy Pattern
 
@@ -7195,6 +7197,13 @@ https://www.sitepoint.com/three-design-patterns-that-use-inversion-of-control/
 
 `references:`
 https://www.sitepoint.com/three-design-patterns-that-use-inversion-of-control/
+
+### Mixin Injection Pattern
+
+- [Mixin-Injection-Inversion-of-Control-Patterns-Toptal](refs/Mixin-Injection-Inversion-of-Control-Patterns-Toptal)
+
+`references:`
+https://www.toptal.com/full-stack/exploring-dependency-injection-patterns
 
 ----
 
