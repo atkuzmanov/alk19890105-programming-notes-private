@@ -7025,8 +7025,6 @@ https://howtodoinjava.com/spring-core/spring-ioc-vs-di/
 `references:`
 https://www.journaldev.com/2461/spring-ioc-bean-example-tutorial
 
-
-
 ----
 
 # Spring Design Patterns
