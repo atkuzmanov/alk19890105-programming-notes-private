@@ -7335,10 +7335,62 @@ https://stackoverflow.com/questions/17599216/spring-bean-scopes
 |-------|-----|-------|
 |       |  x  |   x   |
 
+- Spring Security
 
+```text
+Spring Security is a powerful and highly customizable authentication and access-control framework. It is the de-facto standard for securing Spring-based applications.
 
+Spring Security is a framework that focuses on providing both authentication and authorization to Java applications. Like all Spring projects, the real power of Spring Security is found in how easily it can be extended to meet custom requirements
+
+Features
+Comprehensive and extensible support for both Authentication and Authorization
+
+Protection against attacks like session fixation, clickjacking, cross site request forgery, etc
+
+Servlet API integration
+
+Optional integration with Spring Web MVC
+
+Much more…
+```
+
+`references:`
+https://spring.io/projects/spring-security
+
+- [Getting-Started-Securing-a-Web-Application](refs/Getting-Started-Securing-a-Web-Application)
+
+`references:`
+https://spring.io/guides/gs/securing-web/
+
+- [Introduction-to-Java-Config-for-Spring-Security-Baeldung](refs/Introduction-to-Java-Config-for-Spring-Security-Baeldung)
+
+`references:`
+https://www.baeldung.com/java-config-spring-security
+
+- Security with Spring
+
+`references:`
+https://www.baeldung.com/security-spring
 
 ----
+
+# JDBC
+
+```text
+JDBC
+```
+
+----
+
+# Statement/ Prepare statement / ResultSet
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
+
+
+
+
 ----
 ----
 ----
