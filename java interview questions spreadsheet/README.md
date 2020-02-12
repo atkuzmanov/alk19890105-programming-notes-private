@@ -2481,9 +2481,10 @@ There are two ways to achieve abstraction in java
 |-------|-----|-------|
 |   x   |  x  |   x   |
 
+- [Java-OOPs-Concepts-Object-Oriented-Principles-HowToDoInJava](refs/Java-OOPs-Concepts-Object-Oriented-Principles-HowToDoInJava)
+
 `references:`
 https://howtodoinjava.com/oops/object-oriented-principles/
-[Java-OOPs-Concepts-Object-Oriented-Principles-HowToDoInJava](refs/Java-OOPs-Concepts-Object-Oriented-Principles-HowToDoInJava)
 
 **Java OOPs Concepts – Object Oriented Principles**
 
@@ -3136,6 +3137,13 @@ https://en.wikipedia.org/wiki/GRASP_(object-oriented_design)
 GRASP (object-oriented design)
 
 General Responsibility Assignment Software Patterns (or Principles), abbreviated GRASP, consist of guidelines for assigning responsibility to classes and objects in object-oriented design. It is not related to the SOLID design principle.
+
+----
+
+- [Object-Oriented-Design-Principles-Everythone-Should-Know-Devdiaries](refs/Object-Oriented-Design-Principles-Everythone-Should-Know-Devdiaries)
+
+`references:`
+https://www.devdiaries.net/blog/10-Object-oriented-design-principles-everythone-should-know/
 
 ----
 
