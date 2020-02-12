@@ -6956,6 +6956,35 @@ Spring
 |-------|-----|-------|
 |   x   |  x  |   x   |
 
+- [Inversion-of-control-Wikipedia](refs/Inversion-of-control-Wikipedia)
+
+```text
+In software engineering, inversion of control (IoC) is a programming principle. IoC inverts the flow of control as compared to traditional control flow. In IoC, custom-written portions of a computer program receive the flow of control from a generic framework. A software architecture with this design inverts control as compared to traditional procedural programming: in traditional programming, the custom code that expresses the purpose of the program calls into reusable libraries to take care of generic tasks, but with inversion of control, it is the framework that calls into the custom, or task-specific, code.
+
+Inversion of control is used to increase modularity of the program and make it extensible,[1] and has applications in object-oriented programming and other programming paradigms. 
+```
+
+`references:`
+https://en.wikipedia.org/wiki/Inversion_of_control
+
+- [Dependency-injection-Wikipedia](refs/Dependency-injection-Wikipedia)
+
+```text
+In software engineering, dependency injection is a technique whereby one object supplies the dependencies of another object. A "dependency" is an object that can be used, for example as a service. Instead of a client specifying which service it will use, something tells the client what service to use. The "injection" refers to the passing of a dependency (a service) into the object (a client) that would use it. The service is made part of the client's state.[1] Passing the service to the client, rather than allowing a client to build or find the service, is the fundamental requirement of the pattern.
+
+The intent behind dependency injection is to achieve Separation of Concerns of construction and use of objects. This can increase readability and code reuse.
+
+Dependency injection is one form of the broader technique of inversion of control. A client who wants to call some services should not have to know how to construct those services. Instead, the client delegates the responsibility of providing its services to external code (the injector). The client is not allowed to call the injector code;[2] it is the injector that constructs the services. The injector then injects (passes) the services into the client which might already exist or may also be constructed by the injector. The client then uses the services. This means the client does not need to know about the injector, how to construct the services, or even which actual services it is using. The client only needs to know about the intrinsic interfaces of the services because these define how the client may use the services. This separates the responsibility of "use" from the responsibility of "construction".
+```
+
+`references:`
+https://en.wikipedia.org/wiki/Dependency_injection
+
+- [James-Shore-Dependency-Injection-Demystified](refs/James-Shore-Dependency-Injection-Demystified)
+
+`references:`
+https://www.jamesshore.com/Blog/Dependency-Injection-Demystified.html
+
 - [Inversion-of-Control-and-Dependency-Injection-with-Spring-Baeldung](refs/Inversion-of-Control-and-Dependency-Injection-with-Spring-Baeldung)
 
 `references:`
