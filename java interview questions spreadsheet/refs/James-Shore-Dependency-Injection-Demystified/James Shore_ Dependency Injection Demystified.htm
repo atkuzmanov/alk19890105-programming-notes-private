@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<!-- saved from url=(0069)https://www.jamesshore.com/Blog/Dependency-Injection-Demystified.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <title>James Shore: Dependency Injection Demystified
+</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="./James Shore_ Dependency Injection Demystified_files/simple7.css" type="text/css" media="all">
+    <link rel="stylesheet" href="./James Shore_ Dependency Injection Demystified_files/print5.css" type="text/css" media="print">
+	  <style type="text/css" media="all">@import "//www.jamesshore.com/sophisto.css";</style>
+
+    <!-- Help Firefox find the RSS feed -->
+    <link rel="alternate" type="application/rss+xml" title="James Shore" href="https://www.jamesshore.com/index.rss">
+
+    <!-- Advertising -->
+    <meta name="keywords" content="James Shore, Jim Shore, software development, Agile, Scrum, Lean, Extreme Programming, XP, test-driven development, coaching, consulting, software, IT, profitability, Titanium I.T., Titanium IT, Portland, Oregon, Pacific Northwest">
+
+    <!-- Normal junk -->
+    
+    <meta http-equiv="cache-control" content="max-age: 3600">
+<!--
+    <meta http-equiv="expires" content="-1" />
+    <meta http-equiv="pragma" content="no-cache" />
+-->
+    <meta name="author" content="Titanium I.T.">
+    <meta name="robots" content="all">
+
+		<!-- Google Analytics -->
+		<script async="" src="./James Shore_ Dependency Injection Demystified_files/analytics.js"></script><script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-32448964-2', 'jamesshore.com');
+		  ga('send', 'pageview');
+		</script>
+  </head>
+
+  <body>
+
+
+    <table summary="">
+      <!-- BEGIN HEADER -->
+
+      <tbody><tr onclick="document.location.href=&#39;//www.jamesshore.com/&#39;;" style="cursor:pointer">
+        <td id="header" colspan="2">
+  			<div class="centered-block">
+  				<div class="centered"><div>
+					<h1>The Art of Agile<sup><span style="font-size: 50%">SM</span></sup></h1>
+					<h1>James Shore</h1>
+				</div></div>
+				<div class="pull-right">
+					<p>“More than anything else, Jim taught us how to think about large-<wbr>scale organ­ization structure and processes.”</p>
+					<p style="text-align: right">—Jim Gochee, Chief Product Officer, New Relic</p>
+				</div>
+			</div>
+
+        </td>
+      </tr>
+
+      <!-- END HEADER -->
+
+
+      <tr> <!-- menu and body -->
+
+
+        <!-- BEGIN MENU -->
+
+        <td id="menu">
+          <dl>
+            <dt>Services</dt>
+	          <dd><a href="https://www.jamesshore.com/">Overview</a></dd>
+            <dd><a href="https://www.jamesshore.com/Consulting/Large-Scale-Agile.html">Large-Scale Agile</a></dd>
+            <dd><a href="https://www.jamesshore.com/Consulting/Immersion.html">Agile Immersion</a></dd>
+            <dd><a href="https://www.jamesshore.com/Consulting/Real-World-Training.html">Real-World Training</a></dd>
+						<dd>
+							<!-- when events are scheduled, rename No-Events file to .draft and use:
+								<a href="//www.jamesshore.com/Calendar/">Public Events</a>
+							-->
+							<!-- when no events are scheduled, rename No-Events file to .live and use:
+							-->
+								<a href="https://www.jamesshore.com/Calendar/No-Events.html">Public Events</a>
+							<div class="details">
+								<ul>
+								<!--
+									<li><a href="//www.jamesshore.com/Calendar/2019-12-11.html">Dec 11: Faster TDD Workshop (Melbourne, Australia)</a></li>
+									<li><a href="//www.jamesshore.com/Calendar/2019-12-12.html">Dec 12-13: Evolutionary Design (Melbourne, Australia)</a></li>
+								-->
+								<!--
+									<li class="outdent"><a href="//www.jamesshore.com/Calendar/">more...</a></li>
+								-->
+								</ul>
+							</div>
+						</dd>
+
+	          <dt>About James</dt>
+	          <dd><a href="https://www.jamesshore.com/Consulting/Credentials.html">Biography</a></dd>
+	          <dd><a href="https://www.jamesshore.com/Consulting/Contact.html">Contact Me</a></dd>
+
+	          <dt>Content</dt>
+	          <dd><a href="https://www.jamesshore.com/Blog/">Blog</a>
+		          <div class="details">
+			          <ul>
+				          <li><a href="https://www.jamesshore.com/Blog/Three-Challenges-of-Distributed-Teams.html">Three Challenges of Distributed Teams</a></li>
+				          <li><a href="https://www.jamesshore.com/Blog/Dont-Measure-Unit-Test-Code-Coverage.html">Don't Measure Unit Test Code Coverage</a></li>
+				          <li><a href="https://www.jamesshore.com/Blog/Where-Do-You-Want-Your-Complexity.html">Large-Scale Agile: Where Do You Want Your Complexity?</a></li>
+				          <li class="outdent"><a href="https://www.jamesshore.com/Blog/">more...</a></li>
+			          </ul>
+		          </div>
+	          </dd>
+	          <!--
+	          <dd><a href="//www.jamesshore.com/Blog/Lets-Play">Let's Play TDD</a>
+		          <div class="details">
+			          <ul>
+				          <li><a href="//www.jamesshore.com/Blog/Lets-Play/Episode-201.html">#201: From Mock-Based to State-Based</a></li>
+				          <li><a href="//www.jamesshore.com/Blog/Lets-Play/Episode-200.html">#200: To Kill a Mock</a></li>
+				          <li><a href="//www.jamesshore.com/Blog/Lets-Play/Episode-199.html">#199: Constructor Cleanup</a></li>
+				          <li class="outdent"><a href="//www.jamesshore.com/Blog/Lets-Play">more...</a></li>
+			          </ul>
+		          </div>
+	          </dd>
+	          -->
+	          <dd><a href="https://www.jamesshore.com/index.abstract">Most Popular</a>
+		          <div class="details">
+			          <ul>
+				          <li><a href="https://www.jamesshore.com/Blog/Dependency-Injection-Demystified.html">Dependency Injection Demystified</a>
+				          </li>
+				          <li><a href="https://www.jamesshore.com/Blog/Continuous-Integration-on-a-Dollar-a-Day.html">Continuous Integration on a Dollar a Day</a></li>
+				          <li><a href="https://www.jamesshore.com/Blog/Testing-Without-Mocks.html">Testing Without Mocks: A Pattern Language</a></li>
+				          <li class="outdent"><a href="https://www.jamesshore.com/index.abstract">more...</a></li>
+			          </ul>
+		          </div>
+	          </dd>
+	          <dd><a href="https://www.jamesshore.com/In-the-News/">In the News</a>
+		          <div class="details">
+			          <ul>
+				          <li><a href="https://www.jamesshore.com/In-the-News/Agile-Without-Dedicated-QA.html">Agile Without Dedicated QA</a>
+				          </li>
+				          <li><a href="https://www.jamesshore.com/In-the-News/Thinking-In-Tests.html">Thinking In Tests</a></li>
+				          <li><a href="https://www.jamesshore.com/In-the-News/Agile-Fluency-Model-Overview-Video.html">Agile Fluency™ Model Overview Video</a>
+				          </li>
+				          <li class="outdent"><a href="https://www.jamesshore.com/In-the-News/">more...</a></li>
+			          </ul>
+		          </div>
+	          </dd>
+	          <dd><a href="https://www.jamesshore.com/index.rss"><img src="./James Shore_ Dependency Injection Demystified_files/feed.png" alt="&gt;"> Subscribe
+		          <small>(RSS)</small>
+	          </a></dd>
+	          <dd><a href="http://twitter.com/jamesshore"><img src="./James Shore_ Dependency Injection Demystified_files/twitter.png" alt="&gt;"> Follow Me
+		          <small>(Twitter)</small>
+	          </a></dd>
+
+	          <dt>The Book</dt>
+	          <dd><a href="https://www.jamesshore.com/Agile-Book/"><img src="./James Shore_ Dependency Injection Demystified_files/cover-small.jpg" alt="The Art of Agile Development"></a></dd>
+	          <dd><a href="http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675">Buy from Amazon</a></dd>
+	          <dd><a href="https://www.jamesshore.com/Agile-Book/">Bonus Content</a></dd>
+	          <dd>
+		          <a href="https://www.jamesshore.com/Agile-Book/">Read Online</a>
+		          <div class="details">
+			          <ul>
+				          <li><a href="https://www.jamesshore.com/Agile-Book/preface.html">Preface</a></li>
+				          <li><a href="https://www.jamesshore.com/Agile-Book/refactoring.html">Refactoring</a></li>
+				          <li><a href="https://www.jamesshore.com/Agile-Book/release_planning.html">Release Planning</a></li>
+				          <li class="outdent"><a href="https://www.jamesshore.com/Agile-Book/">more...</a></li>
+			          </ul>
+		          </div>
+	          </dd>
+
+	          <dt>Site</dt>
+	          <dd><a href="https://www.jamesshore.com/index.index">Index</a></dd>
+	          <dd><a href="http://www.google.com/search?q=site%3Ajamesshore.com">Search</a></dd>
+	          <dd><a href="https://www.jamesshore.com/Blog/Colophon.html">Colophon</a></dd>
+          </dl>
+
+        </td>
+
+        <!-- END MENU -->
+
+
+        <!-- BEGIN BODY -->
+
+        <td id="body">
+          <p class="breadcrumbs"><a href="https://www.jamesshore.com/">Home</a> &#8594; <a href="https://www.jamesshore.com/Blog/">Blog</a> &#8594; Dependency-Injection-Demystified</p>
+
+          <!--
+<blockquote class="site-notice">
+	<p><a href="http://www.letscodejavascript.com">Let's Code: Test-Driven JavaScript</a>, my new screencast series on rigorous, professional JavaScript development, is now available! Check out <a href="http://www.letscodejavascript.com#demo">the demo video here</a>.</p>
+</blockquote>
+-->
+
+  <div class="print" onclick="javascript:window.print()"><img src="./James Shore_ Dependency Injection Demystified_files/print.gif" alt="">&nbsp;Print</div>
+
+
+<h2><a href="https://www.jamesshore.com/Blog/Dependency-Injection-Demystified.html">Dependency Injection Demystified</a></h2>
+
+<p class="byline">by James Shore</p>
+<p class="date">22 Mar, 2006</p>
+
+
+<div class="story">
+  
+<p>When I first heard about dependency injection, I thought, "Dependendiwhatsit?" and promptly forgot about it.  When I finally took the time to figure out what people were talking about, I laughed.  "<em>That's</em> all it is?"</p>
+
+<p>"Dependency Injection" is a 25-dollar term for a 5-cent concept.  That's not to say that it's a bad term... and it's a good tool.  But the top articles on Google focus on bells and whistles at the expense of the basic concept.  I figured I should say something, well, <em>simpler</em>.</p>
+
+
+<h3>The Really Short Version</h3>
+
+<p>Dependency injection means giving an object its instance variables.  Really.  That's it.</p>
+
+
+<h3>The Slightly Longer Version, Part I: Dependency Non-Injection</h3>
+
+<p>Classes have these things they call methods on.  Let's call those "dependencies."  Most people call them "variables."  Sometimes, when they're feeling fancy, they call them "instance variables."
+
+</p><blockquote class="code">
+  public class Example {
+  <br>&nbsp;&nbsp;<em>private DatabaseThingie myDatabase;</em>
+  <br>
+  <br>&nbsp;&nbsp;public Example() {
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;<em>myDatabase = new DatabaseThingie();</em>
+  <br>&nbsp;&nbsp;}
+  <br>
+  <br>&nbsp;&nbsp;public void DoStuff() {
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;...
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;<em>myDatabase.GetData();</em>
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;...
+  <br>&nbsp;&nbsp;}
+  <br>}
+</blockquote>
+
+<p>Here, we have a variable... uh, dependency... named "myDatabase."  We initialize it in the constructor.</p>
+
+
+<h3>The Slightly Longer Version, Part II: Dependency Injection</h3>
+
+<p>If we wanted to, we could pass the variable <em>into</em> the constructor.  That would "inject" the "dependency" into the class.  Now when we use the variable (dependency), we use the object that we were given rather than the one we created.</p>
+
+<blockquote class="code">
+  public class Example {
+  <br>&nbsp;&nbsp;private DatabaseThingie myDatabase;
+  <br>
+  <br>&nbsp;&nbsp;public Example() {
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;myDatabase = new DatabaseThingie();
+  <br>&nbsp;&nbsp;}
+  <br>
+  <br><div class="em">
+    &nbsp;&nbsp;public Example(DatabaseThingie useThisDatabaseInstead) {
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;myDatabase = useThisDatabaseInstead;
+    <br>&nbsp;&nbsp;}
+  </div>
+  <br>&nbsp;&nbsp;public void DoStuff() {
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;...
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;myDatabase.GetData();
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;...
+  <br>&nbsp;&nbsp;}
+  <br>}
+</blockquote>
+
+<p>That's really all there is to it.  The rest is just variations on the theme.  You could set the dependency (&lt;cough&gt; <em>variable</em>) in... wait for it... a setter method.  You could set the dependency by calling a setter method that's defined in a special interface.  You can have the dependency be an interface and then polymorphically pass in some polyjuice.  Whatever.</p>
+
+
+<h3>The Slightly Longer Version, Part III: Why Do We Do This?</h3>
+
+<p>Among other things, it's handy for isolating classes during testing.</p>
+
+<blockquote class="code">
+  <div class="em">
+    public class ExampleTest {
+    <br>&nbsp;&nbsp;TestDoStuff() {
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;MockDatabase mockDatabase = new MockDatabase();
+    <br>
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;// MockDatabase is a subclass of DatabaseThingie, so we can
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;// "inject" it here:
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;Example example = new Example(mockDatabase);
+    <br>
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;example.DoStuff();
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;mockDatabase.AssertGetDataWasCalled();
+    <br>&nbsp;&nbsp;}
+    <br>}
+  </div>
+  <br>
+  public class Example {
+  <br>&nbsp;&nbsp;private DatabaseThingie myDatabase;
+  <br>
+  <br>&nbsp;&nbsp;public Example() {
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;myDatabase = new DatabaseThingie();
+  <br>&nbsp;&nbsp;}
+  <br>
+  <br>&nbsp;&nbsp;public Example(DatabaseThingie useThisDatabaseInstead) {
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;myDatabase = useThisDatabaseInstead;
+  <br>&nbsp;&nbsp;}
+  <br>
+  <br>&nbsp;&nbsp;public void DoStuff() {
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;...
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;myDatabase.GetData();
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;...
+  <br>&nbsp;&nbsp;}
+  <br>}
+</blockquote>
+
+<p>That's it.  Dependency injection is really just passing in an instance variable.</p>
+
+
+<h3>Further Reading</h3>
+
+<p>There's a lot of ways to make this simple concept very complicated.  (There's lots of ways to make <em>any</em> concept complicated!  Simplicity is hard.)  Sometimes such complexity is necessary... and it's never my first choice.  I've chosen not to discuss those bells and whistles here, but if you really want to know, check out these resources:</p>
+
+<ul>
+  <li><p><a href="http://www.martinfowler.com/articles/injection.html">Inversion of Control Containers and the Dependency Injection Pattern</a>.  Martin Fowler is my favorite author.  Usually he's clear and concise.  Here he succeeds in making dependency injection sound terribly complicated.  Still, this article has a thorough discussion of the various ways dependency injection can be tweaked.</p></li>
+  
+  <li><p><a href="http://www.theserverside.com/articles/article.tss?l=IOCBeginners">A Beginner's Guide to Dependency Injection</a>.  This article is more about "DI containers" than it is about dependency injection itself.  It takes a simple example and shows how it could be implemented using multiple off-the-shelf containers.  I'm left wondering what the value is, but I'm a heretic, so feel free to ignore me on this one.  Still, you have to marvel at any approach that takes three concepts ("TripPlanner," "CabAgency," and "AirlineAgency"), turns them into nine-plus classes, and then adds dozens of lines of glue code and configuration XML before a single line of application logic is written.</p></li>
+</ul>
+
+<p class="update">Updated 25 Mar, 2006: Added references to further reading.</p>
+
+
+  <div style="clear: both"></div>   <!-- make sure figures, etc., don't dangle down -->
+
+  
+</div>
+
+<!-- JS-Kit Comments discontinued
+
+	<a name="comments"></a>
+
+-->
+
+<!-- JS-Kit Ratings discontinued
+
+	<div class="ratings">	
+		<div class="js-kit-rating" style="float: left; clear: left" title="Dependency Injection Demystified" path="/Blog/Dependency-Injection-Demystified.html" permalink="//www.jamesshore.com/Blog/Dependency-Injection-Demystified.html">
+			<div style="margin: 0.25em 1.75em 1em 0.25em">
+				<img src="/images/js-kit/gray.png" alt="" /><img src="/images/js-kit/gray.png" alt="" /><img src="/images/js-kit/gray.png" alt="" /><img src="/images/js-kit/gray.png" alt="" /><img src="/images/js-kit/gray.png" alt="" />
+				<br /><p style="font-size: 80%; text-align: center">Loading...</p>
+			</div>
+		</div>
+	</div>
+
+-->
+
+<p class="permlink">
+	<a href="https://www.jamesshore.com/">Home</a> &#8594; <a href="https://www.jamesshore.com/Blog/">Blog</a> |
+<!-- JS-Kit Comments discontinued -->
+<a href="https://www.jamesshore.com/Blog/Dependency-Injection-Demystified.html">Permanent Link</a>
+<!-- JS-Kit Comments discontinued
+	
+	<a href="//www.jamesshore.com/Blog/Dependency-Injection-Demystified.html#comments">Comments (<span class="js-kit-comments-count" path="/Blog/Dependency-Injection-Demystified.html"><img src="/images/spinner.gif" alt="..." /></span>)</a>
+-->
+</p>
+
+<div style="clear: both"></div>   <!-- start next section below rating -->
+<!-- JS-Kit Comments discontinued
+
+	<div class="comments">
+		<div class="js-kit-comments" path="/Blog/Dependency-Injection-Demystified.html" permalink="//www.jamesshore.com/Blog/Dependency-Injection-Demystified.html">
+			<p style="font-variant: small-caps">Loading comments...</p>
+			<p><img src="/images/spinner.gif" alt="" /></p>
+		</div>
+	</div>
+
+-->
+          <div id="footer">
+            
+
+            <p class="promo">I work with people who want their teams to be great. People who are willing to change their environment and established ways of working to maximize their productivity, throughput, and value. If that's you—particularly if you're in a product-focused, entrepreneurial environment—<a href="https://www.jamesshore.com/">I want to hear from you</a>. We can do great things together.</p>
+
+              <p class="mini-bio"><em>James Shore</em> teaches, writes, and consults on Agile development processes. He is a recipient of the Agile Alliance's Gordon Pask Award for Contributions to Agile Practice, co-author of <cite>The Art of Agile Development</cite>, and co-creator of the Agile Fluency™ Model. You can find more of his writing on his <em>Art of Agile</em> blog at http://jamesshore.com.</p>
+            
+
+            <div class="copyright">
+           	  <p><span style="white-space: nowrap">© 2002-2020, Titanium I.T. LLC</span> | <span style="white-space: nowrap">Phone: 503-267-5490</span> | <span style="white-space: nowrap">Email: <a href="mailto:jshore@jamesshore.com">jshore@jamesshore.com</a></span></p>
+            </div>
+          </div>
+        </td>
+
+        <!-- END BODY -->
+
+
+      </tr>  <!-- end body and menu -->
+
+    </tbody></table>
+
+  
+
+</body></html>

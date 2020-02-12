@@ -1,0 +1,116 @@
+body {
+  font-family: Times, serif;
+  font-size: 13pt;
+}
+
+#body {
+  padding: 0;
+}
+
+#body h2 {
+  padding: 0;
+  border: 0;
+  font-size: 150%;
+  text-align: center;
+  font-weight: bold;
+}
+
+.byline {
+  font-size: 110%;
+  display: block;
+  text-align: center;
+  margin: 0.5em 0 2em 0;
+  font-weight: normal;
+}
+
+/*
+.date {
+  text-align: center;
+  margin: 0 0 2em 0;
+  font-variant: normal;
+  font-weight: normal;
+}
+*/
+
+.story p {
+  line-height: 1.3em;
+}
+
+.postscript, .aside, .figure .caption {
+  font-size: .9em;
+}
+
+#header {
+  display: none;
+}
+
+#menu, .banner, .permlink, .breadcrumbs, #footer .promo, .print, .series, blockquote.site-notice {
+  display: none;
+}
+
+.ratings, .comments {
+  display: none;
+}
+
+.changed {
+  margin-left: 0;
+}
+
+/* FOOTER */
+#footer .mini-bio {
+  display: block;
+  font-style: italic;
+  font-size: 90%;
+}
+
+#footer .mini-bio em {
+  font-weight: bold;
+}
+
+#footer .mini-bio .book, #footer .mini-bio cite {
+  font-style: normal;
+}
+
+/* END FOOTER */
+
+a, a:visited, a:link, a:active, a:hover {
+  font-weight: normal;
+  color: black;
+}
+
+#body a {
+  border-bottom: none;
+}
+
+.story a {
+  font-weight: bold;
+}
+
+.story a:after {
+  font-weight: normal;
+  content: " (" attr(href) ")";
+  font-size: 90%;
+}
+
+/* Don't display URLs for links within a page */
+.story a[href^="#"]:after {
+  content: "";
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: black !important;
+}
+
+/* With URLs embedded, full justification doesn't display well. */
+.story {
+  text-align: left;
+}
+
+/* URLs embedded in figures don't work well; turn them off. */
+.story .figure a:after, .story .figure-left a:after {
+  content: "";
+}
+
+.story .figure a, .story .figure-left a {
+  font-weight: normal;
+}
