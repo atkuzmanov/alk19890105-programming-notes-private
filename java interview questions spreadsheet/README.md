@@ -7095,11 +7095,27 @@ https://www.journaldev.com/2461/spring-ioc-bean-example-tutorial
 
 ### Service Locator Pattern
 
+
+
+
 ### Strategy Pattern
+
+
+
 
 ### Observer Pattern
 
+- [Three-Design-Patterns-That-Use-Inversion-of-Control-SitePoint](refs/Three-Design-Patterns-That-Use-Inversion-of-Control-SitePoint)
+
+`references:`
+https://www.sitepoint.com/three-design-patterns-that-use-inversion-of-control/
+
 ### Template Method Pattern
+
+- [Three-Design-Patterns-That-Use-Inversion-of-Control-SitePoint](refs/Three-Design-Patterns-That-Use-Inversion-of-Control-SitePoint)
+
+`references:`
+https://www.sitepoint.com/three-design-patterns-that-use-inversion-of-control/
 
 ----
 
