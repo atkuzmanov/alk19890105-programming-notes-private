@@ -7087,11 +7087,6 @@ https://martinfowler.com/articles/injection.html
 `references:`
 https://martinfowler.com/bliki/InversionOfControl.html
 
-- [Wiring-in-Spring-@Autowired-@Resource-and-@Inject-Baeldung](refs/Wiring-in-Spring-@Autowired-@Resource-and-@Inject-Baeldung)
-
-`references:`
-https://www.baeldung.com/spring-annotations-resource-inject-autowire
-
 - [Difference-between-IoC-and-Dependency-Injection-in-Spring-howtodoinjava](refs/Difference-between-IoC-and-Dependency-Injection-in-Spring-howtodoinjava)
 
 ![container-magic.png](refs/Difference-between-IoC-and-Dependency-Injection-in-Spring-howtodoinjava/Difference%20between%20IoC%20and%20Dependency%20Injection%20in%20Spring_files/container-magic.png)
@@ -7234,10 +7229,26 @@ https://www.toptal.com/full-stack/exploring-dependency-injection-patterns
 |-------|-----|-------|
 |       |  x  |   x   |
 
+- [Guide-to-Spring-Autowired-Baeldung](refs/Guide-to-Spring-Autowired-Baeldung)
 
+`references:`
+https://www.baeldung.com/spring-autowire
 
+- [Spring-Qualifier-Annotation-Baeldung](refs/Spring-Qualifier-Annotation-Baeldung)
+
+`references:`
+https://www.baeldung.com/spring-qualifier-annotation
+
+- [Wiring-in-Spring-@Autowired-@Resource-and-@Inject-Baeldung](refs/Wiring-in-Spring-@Autowired-@Resource-and-@Inject-Baeldung)
+
+`references:`
+https://www.baeldung.com/spring-annotations-resource-inject-autowire
 
 ----
+
+
+
+
 ----
 ----
 ----
