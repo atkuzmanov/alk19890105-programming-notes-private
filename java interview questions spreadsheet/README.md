@@ -1,14 +1,17 @@
-# java interview questions spreadsheet 2019-12-22-1502 
+# 1. java interview questions spreadsheet 2019-12-22-1502 
 
 ```text
 For learning and study
 ```
+
+<!-- TOC -->
+
 - [java interview questions spreadsheet 2019-12-22-1502](#java-interview-questions-spreadsheet-2019-12-22-1502)
 - [Java CORE](#java-core)
-- [How does multiple inheritance work in Java?](#how-does-multiple-inheritance-work-in-java-)
-- [What is an interface?](#what-is-an-interface-)
-- [What is an Abstract class?](#what-is-an-abstract-class-)
-- [What is the difference between an interface and an abstract class?](#what-is-the-difference-between-an-interface-and-an-abstract-class-)
+- [How does multiple inheritance work in Java?](#how-does-multiple-inheritance-work-in-java)
+- [What is an interface?](#what-is-an-interface)
+- [What is an Abstract class?](#what-is-an-abstract-class)
+- [What is the difference between an interface and an abstract class?](#what-is-the-difference-between-an-interface-and-an-abstract-class)
 - [Access modifiers](#access-modifiers)
 - [Inheritance](#inheritance)
 - [Polymorphism](#polymorphism)
@@ -18,23 +21,24 @@ For learning and study
 - [Abstraction](#abstraction)
 - [Java Object Oriented Programming (OOP) Principals and Concepts](#java-object-oriented-programming-oop-principals-and-concepts)
 - [Static keyword](#static-keyword)
-- [instance members accessed from within static context?](#instance-members-accessed-from-within-static-context-)
+- [instance members accessed from within static context?](#instance-members-accessed-from-within-static-context)
 - [java static import best practice](#java-static-import-best-practice)
 - [Java static methods](#java-static-methods)
 - [Marker interfaces](#marker-interfaces)
-- [Why constructor in abstract class?](#why-constructor-in-abstract-class-)
-- [final/finally/finalize keywords usage](#final-finally-finalize-keywords-usage)
+- [Why constructor in abstract class?](#why-constructor-in-abstract-class)
+- [final/finally/finalize keywords usage](#finalfinallyfinalize-keywords-usage)
 - [Exceptions hierarchy](#exceptions-hierarchy)
 - [Checked vs Unchecked exceptions](#checked-vs-unchecked-exceptions)
-- [Exceptions supressing when throwing exception from finally clause?](#exceptions-supressing-when-throwing-exception-from-finally-clause-)
-- [equals() vs "=="](#equals---vs-)
-- [hashCode() in Java](#hashcode---in-java)
-- [Why overriding both equals() and hashCode()? Uses in Hash collections?](#why-overriding-both-equals---and-hashcode----uses-in-hash-collections-)
+- [Exceptions supressing when throwing exception from finally clause?](#exceptions-supressing-when-throwing-exception-from-finally-clause)
+- [Java Try With Resources](#java-try-with-resources)
+- [equals() vs "=="](#equals-vs-)
+- [hashCode() in Java](#hashcode-in-java)
+- [Why overriding both equals() and hashCode()? Uses in Hash collections?](#why-overriding-both-equals-and-hashcode-uses-in-hash-collections)
 - [Annotations in Java](#annotations-in-java)
-- [JAVA 101: LEARN JAVA By Jeff Friesen](#java-101--learn-java-by-jeff-friesen)
+- [JAVA 101: LEARN JAVA By Jeff Friesen](#java-101-learn-java-by-jeff-friesen)
 - [String pool affecting String comparison](#string-pool-affecting-string-comparison)
 - [Collections hierarchy](#collections-hierarchy)
-- [List and Set extending Collection, Map not?](#list-and-set-extending-collection--map-not-)
+- [List and Set extending Collection, Map not?](#list-and-set-extending-collection-map-not)
 - [Java List Interface](#java-list-interface)
 - [List Interface in Java with Examples](#list-interface-in-java-with-examples)
 - [Java ArrayList class](#java-arraylist-class)
@@ -45,117 +49,127 @@ For learning and study
 - [Difference between ArrayList and LinkedList](#difference-between-arraylist-and-linkedlist)
 - [ArrayList vs LinkedList in Java](#arraylist-vs-linkedlist-in-java)
 - [List vs ArrayList](#list-vs-arraylist)
-  * [Difference Between List and ArrayList in Java](#difference-between-list-and-arraylist-in-java)
-  * [Array vs ArrayList in Java](#array-vs-arraylist-in-java)
+    - [Difference Between List and ArrayList in Java](#difference-between-list-and-arraylist-in-java)
+    - [Array vs ArrayList in Java](#array-vs-arraylist-in-java)
 - [HashMap vs TreeMap vs LinkedHashMap](#hashmap-vs-treemap-vs-linkedhashmap)
-  * [Difference between HashMap, LinkedHashMap and TreeMap](#difference-between-hashmap--linkedhashmap-and-treemap)
+    - [Difference between HashMap, LinkedHashMap and TreeMap](#difference-between-hashmap-linkedhashmap-and-treemap)
 - [NATURAL ordering - implementing Comparable interface VS CUSTOM ordering - implementing Comparator](#natural-ordering---implementing-comparable-interface-vs-custom-ordering---implementing-comparator)
-  * [Comparable vs Comparator in Java](#comparable-vs-comparator-in-java)
+    - [Comparable vs Comparator in Java](#comparable-vs-comparator-in-java)
 - [Tree collections created with Comparator as an argument or naturally ordered entities](#tree-collections-created-with-comparator-as-an-argument-or-naturally-ordered-entities)
-- [generics - type erasure and polymorphism?](#generics---type-erasure-and-polymorphism-)
-- [autoboxing/unboxing of primitives and their wrapper classes](#autoboxing-unboxing-of-primitives-and-their-wrapper-classes)
-  * [Autoboxing and Unboxing](#autoboxing-and-unboxing)
-  * [Autoboxing and Unboxing in Java](#autoboxing-and-unboxing-in-java)
+- [generics - type erasure and polymorphism?](#generics---type-erasure-and-polymorphism)
+- [autoboxing/unboxing of primitives and their wrapper classes](#autoboxingunboxing-of-primitives-and-their-wrapper-classes)
+    - [Autoboxing and Unboxing](#autoboxing-and-unboxing)
+    - [Autoboxing and Unboxing in Java](#autoboxing-and-unboxing-in-java)
 - [order of initialization in a class](#order-of-initialization-in-a-class)
-  * [Java Initialization order](#java-initialization-order)
+    - [Java Initialization order](#java-initialization-order)
 - [Order of execution of Initialization blocks and Constructors in Java](#order-of-execution-of-initialization-blocks-and-constructors-in-java)
 - [initialization and static blocks](#initialization-and-static-blocks)
 - [Clone and Serialize objects](#clone-and-serialize-objects)
-- [Deep and Shallow cloning; Deep cloning - how to?](#deep-and-shallow-cloning--deep-cloning---how-to-)
-- [Inner/Nested/Local classes](#inner-nested-local-classes)
-- [Nested class as a normal outer class?](#nested-class-as-a-normal-outer-class-)
-- [Nested vs Anonymous Inner classes?](#nested-vs-anonymous-inner-classes-)
-- [Parameters passing - parameters to methods passing by val; For objects reference is passed by val?](#parameters-passing---parameters-to-methods-passing-by-val--for-objects-reference-is-passed-by-val-)
-- [final parameters as objects? What can change?](#final-parameters-as-objects--what-can-change-)
-- [The “final” Keyword in Java](#the--final--keyword-in-java)
-- [Too Many Parameters in Java Methods, Part 2: Parameters Object](#too-many-parameters-in-java-methods--part-2--parameters-object)
+- [Deep and Shallow cloning; Deep cloning - how to?](#deep-and-shallow-cloning-deep-cloning---how-to)
+- [Java Bean](#java-bean)
+- [Inner/Nested/Local classes](#innernestedlocal-classes)
+- [Nested class as a normal outer class?](#nested-class-as-a-normal-outer-class)
+- [Nested vs Anonymous Inner classes?](#nested-vs-anonymous-inner-classes)
+- [Parameters passing - parameters to methods passing by val; For objects reference is passed by val?](#parameters-passing---parameters-to-methods-passing-by-val-for-objects-reference-is-passed-by-val)
+- [final parameters as objects? What can change?](#final-parameters-as-objects-what-can-change)
+- [The “final” Keyword in Java](#the-final-keyword-in-java)
+- [Too Many Parameters in Java Methods, Part 2: Parameters Object](#too-many-parameters-in-java-methods-part-2-parameters-object)
 - [Varargs vs Arrays when overloading](#varargs-vs-arrays-when-overloading)
 - [Arrays as objects](#arrays-as-objects)
-- [creating objects without "new"; Reflection - Class.newInstance() vs Constructor.newInstance(...)](#creating-objects-without--new---reflection---classnewinstance---vs-constructornewinstance--)
-- [accessing private fields and constructors using reflection?](#accessing-private-fields-and-constructors-using-reflection-)
-- [transient/volatile keywords](#transient-volatile-keywords)
-- [why make private fields also final if they cannot be accessed if getters and setters not provided? How do Spring inject private object fields?](#why-make-private-fields-also-final-if-they-cannot-be-accessed-if-getters-and-setters-not-provided--how-do-spring-inject-private-object-fields-)
-  * [why make private fields also final if they cannot be accessed if getters and setters not provided?](#why-make-private-fields-also-final-if-they-cannot-be-accessed-if-getters-and-setters-not-provided-)
-  * [How does Spring inject private object fields?](#how-does-spring-inject-private-object-fields-)
+- [creating objects without "new"; Reflection - Class.newInstance() vs Constructor.newInstance(...)](#creating-objects-without-new-reflection---classnewinstance-vs-constructornewinstance)
+- [accessing private fields and constructors using reflection?](#accessing-private-fields-and-constructors-using-reflection)
+- [transient/volatile keywords](#transientvolatile-keywords)
+- [why make private fields also final if they cannot be accessed if getters and setters not provided? How do Spring inject private object fields?](#why-make-private-fields-also-final-if-they-cannot-be-accessed-if-getters-and-setters-not-provided-how-do-spring-inject-private-object-fields)
+    - [why make private fields also final if they cannot be accessed if getters and setters not provided?](#why-make-private-fields-also-final-if-they-cannot-be-accessed-if-getters-and-setters-not-provided)
+    - [How does Spring inject private object fields?](#how-does-spring-inject-private-object-fields)
 - [Defensive copying](#defensive-copying)
-- [GC algorithm (mark and sweep)](#gc-algorithm--mark-and-sweep-)
+- [GC algorithm (mark and sweep)](#gc-algorithm-mark-and-sweep)
 - [Heap zones for GC](#heap-zones-for-gc)
 - [java memory management for java virtual machine jvm](#java-memory-management-for-java-virtual-machine-jvm)
-- [How does GC free the memory for circular references?](#how-does-gc-free-the-memory-for-circular-references-)
+- [How does GC free the memory for circular references?](#how-does-gc-free-the-memory-for-circular-references)
 - [ClassLoaders](#classloaders)
 - [XML DOM vs SAX vs Stax](#xml-dom-vs-sax-vs-stax)
-- [XSD, XJC - serialize objects in xml](#xsd--xjc---serialize-objects-in-xml)
+- [XSD, XJC - serialize objects in xml](#xsd-xjc---serialize-objects-in-xml)
 - [XML binding of objects to xml](#xml-binding-of-objects-to-xml)
-- [System.out.println(); what is each element?](#systemoutprintln----what-is-each-element-)
+- [System.out.println(); what is each element?](#systemoutprintln-what-is-each-element)
 - [How to print elements of a Stream in Java 8](#how-to-print-elements-of-a-stream-in-java-8)
 - [Streams](#streams)
 - [Java 8 Method Reference](#java-8-method-reference)
-- [synchronized blocks/methods](#synchronized-blocks-methods)
-- [thread locks on entire object for accesing synchronized method?](#thread-locks-on-entire-object-for-accesing-synchronized-method-)
-- [wait() and notify()](#wait---and-notify--)
-- [Producer and Consumer problem with wait and notify vs BlockingQueue?](#producer-and-consumer-problem-with-wait-and-notify-vs-blockingqueue-)
+- [synchronized blocks/methods](#synchronized-blocksmethods)
+- [thread locks on entire object for accesing synchronized method?](#thread-locks-on-entire-object-for-accesing-synchronized-method)
+- [wait() and notify()](#wait-and-notify)
+- [Producer and Consumer problem with wait and notify vs BlockingQueue?](#producer-and-consumer-problem-with-wait-and-notify-vs-blockingqueue)
 - [thread lifecycle](#thread-lifecycle)
 - [using Future with Callable](#using-future-with-callable)
-- [When to create threads by implementing Runnable and when by extending Thread?](#when-to-create-threads-by-implementing-runnable-and-when-by-extending-thread-)
+- [When to create threads by implementing Runnable and when by extending Thread?](#when-to-create-threads-by-implementing-runnable-and-when-by-extending-thread)
 - [javax.util.concurrent synchronized Collections](#javaxutilconcurrent-synchronized-collections)
-- [ConcurrentHashMap vs Collections.synchronizedMap(...)?](#concurrenthashmap-vs-collectionssynchronizedmap---)
+- [ConcurrentHashMap vs Collections.synchronizedMap(...)?](#concurrenthashmap-vs-collectionssynchronizedmap)
 - [Atomic classes](#atomic-classes)
 - [ThreadLocal](#threadlocal)
-- [immutable objects thread safe?](#immutable-objects-thread-safe-)
-- [Ancestor of HashMap, Hashtable thread safe?](#ancestor-of-hashmap--hashtable-thread-safe-)
+- [immutable objects thread safe?](#immutable-objects-thread-safe)
+- [Ancestor of HashMap, Hashtable thread safe?](#ancestor-of-hashmap-hashtable-thread-safe)
 - [Executor Service](#executor-service)
 - [Java memory model](#java-memory-model)
 - [null](#null)
-- [Dead-lock/Starvation/Live lock](#dead-lock-starvation-live-lock)
-  * [Deadlock](#deadlock)
-  * [Starvation](#starvation)
-  * [Livelock](#livelock)
-  * [Deadlock, Livelock and Starvation](#deadlock--livelock-and-starvation)
-- [Parallel stream/ Fork / Join](#parallel-stream--fork---join)
-  * [Fork-Join Framework API](#fork-join-framework-api)
-  * [Fork-Join and Parallel Streams](#fork-join-and-parallel-streams)
+- [Dead-lock/Starvation/Live lock](#dead-lockstarvationlive-lock)
+    - [Deadlock](#deadlock)
+    - [Starvation](#starvation)
+    - [Livelock](#livelock)
+    - [Deadlock, Livelock and Starvation](#deadlock-livelock-and-starvation)
+- [Parallel stream/ Fork / Join](#parallel-stream-fork--join)
+    - [Fork-Join Framework API](#fork-join-framework-api)
+    - [Fork-Join and Parallel Streams](#fork-join-and-parallel-streams)
 - [Design patterns](#design-patterns)
-  * [Creational Design Patterns](#creational-design-patterns)
-  * [Structural Design Patterns](#structural-design-patterns)
-  * [Behavioural Design Patterns](#behavioural-design-patterns)
-    + [Strategy Design Pattern](#strategy-design-pattern)
-- [SQL (Structured Query Language)](#sql--structured-query-language-)
+    - [Creational Design Patterns](#creational-design-patterns)
+    - [Structural Design Patterns](#structural-design-patterns)
+    - [Behavioural Design Patterns](#behavioural-design-patterns)
+        - [Strategy Design Pattern](#strategy-design-pattern)
+- [SQL (Structured Query Language)](#sql-structured-query-language)
 - [SQL select](#sql-select)
-- [Index (good for select bad for insert?)](#index--good-for-select-bad-for-insert--)
-  * [Database index](#database-index)
+- [Index (good for select bad for insert?)](#index-good-for-select-bad-for-insert)
+    - [Database index](#database-index)
 - [Property of a transaction A.C.I.D](#property-of-a-transaction-acid)
 - [View](#view)
-  * [SQL view](#sql-view)
+    - [SQL view](#sql-view)
 - [Trigger](#trigger)
-  * [SQL trigger](#sql-trigger)
+    - [SQL trigger](#sql-trigger)
 - [Stored Procedure](#stored-procedure)
-  * [SQL Stored Procedure](#sql-stored-procedure)
+    - [SQL Stored Procedure](#sql-stored-procedure)
 - [Functions](#functions)
-  * [SQL functions](#sql-functions)
+    - [SQL functions](#sql-functions)
 - [Spring](#spring)
 - [IoC and Dependency injection](#ioc-and-dependency-injection)
 - [Spring Design Patterns](#spring-design-patterns)
-  * [Design Patterns used in Spring Framework Part 2 - Creational Patterns - Factory - Builder - Singleton - Prototype](#design-patterns-used-in-spring-framework-part-2---creational-patterns---factory---builder---singleton---prototype)
-  * [Design Patterns Spring Framework Part 1 - Inversion of Control - Dependency Injection](#design-patterns-spring-framework-part-1---inversion-of-control---dependency-injection)
-  * [Spring IoC (Inversion Of Control) Design Patterns](#spring-ioc--inversion-of-control--design-patterns)
-    + [Dependency Injection (DI) Pattern](#dependency-injection--di--pattern)
-    + [Factory Pattern](#factory-pattern)
-    + [Builder Pattern](#builder-pattern)
-    + [Singleton Pattern](#singleton-pattern)
-    + [Prototype Pattern](#prototype-pattern)
-    + [Service Locator Pattern](#service-locator-pattern)
-    + [Strategy Pattern](#strategy-pattern)
-    + [Observer Pattern](#observer-pattern)
-    + [Template Method Pattern](#template-method-pattern)
-- [@Autowired and @Qualifier](#-autowired-and--qualifier)
+    - [Design Patterns used in Spring Framework Part 2 - Creational Patterns - Factory - Builder - Singleton - Prototype](#design-patterns-used-in-spring-framework-part-2---creational-patterns---factory---builder---singleton---prototype)
+    - [Design Patterns Spring Framework Part 1 - Inversion of Control - Dependency Injection](#design-patterns-spring-framework-part-1---inversion-of-control---dependency-injection)
+    - [Spring IoC (Inversion Of Control) Design Patterns](#spring-ioc-inversion-of-control-design-patterns)
+        - [Dependency Injection (DI) Pattern](#dependency-injection-di-pattern)
+        - [Factory Pattern](#factory-pattern)
+        - [Builder Pattern](#builder-pattern)
+        - [Singleton Pattern](#singleton-pattern)
+        - [Prototype Pattern](#prototype-pattern)
+        - [Service Locator Pattern](#service-locator-pattern)
+        - [Strategy Pattern](#strategy-pattern)
+        - [Observer Pattern](#observer-pattern)
+        - [Template Method Pattern](#template-method-pattern)
+        - [Mixin Injection Pattern](#mixin-injection-pattern)
+- [@Autowired and @Qualifier](#autowired-and-qualifier)
+- [xml based configuration Vs annotation based config](#xml-based-configuration-vs-annotation-based-config)
+- [bean scopes](#bean-scopes)
+- [Spring security](#spring-security)
+- [JDBC](#jdbc)
+- [Statement/ Prepare statement / ResultSet](#statement-prepare-statement--resultset)
+- [Stored procedure from java Code](#stored-procedure-from-java-code)
 
-# Java CORE
+<!-- /TOC -->
+
+# 2. Java CORE
 
 ```text
 Java CORE
 ```
 
-# How does multiple inheritance work in Java?
+# 3. How does multiple inheritance work in Java?
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -459,7 +473,7 @@ This flexibility in method invocation is not available in inheritance and boosts
 Unit testing is easy in composition because we know what all methods we are using from superclass and we can mock it up for testing whereas in inheritance we depend heavily on superclass and don’t know what all methods of superclass will be used, so we need to test all the methods of superclass, that is an extra work and we need to do it unnecessarily because of inheritance.
 That’s all for multiple inheritances in java and a brief look at composition.
 
-# What is an interface?
+# 4. What is an interface?
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -882,7 +896,7 @@ From Java 8 a new concept was introduced called functional interfaces. In short,
 
 Functional interfaces are often intended to be implemented by a [Java Lambda Expression](http://tutorials.jenkov.com/java/lambda-expressions.html).
 
-# What is an Abstract class?
+# 5. What is an Abstract class?
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -994,7 +1008,7 @@ An example of a class in the JDK that implements several interfaces is HashMap, 
 
 `Note that many software libraries use both abstract classes and interfaces; the HashMap class implements several interfaces and also extends the abstract class AbstractMap.`
 
-# What is the difference between an interface and an abstract class?
+# 6. What is the difference between an interface and an abstract class?
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -1015,7 +1029,7 @@ So what are abstract classes exactly? Let’s go over the basics. An abstract cl
 
 An interface is not a class, like the abstract class, but it is very similar to it. It contains methods without a signature (a body). An interface cannot do anything on its own. Think of it as an empty template that you can copy and fill. It, too, is used to impose guidelines and hierarchies and provide methods to sub classes. A class cannot inherit from more than one abstract class at one time in languages like Java and C. Because of the lack of support for multiple-inheritance, interfaces are used instead.
 
-# Access modifiers
+# 7. Access modifiers
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -1101,7 +1115,7 @@ For attributes and methods, you can use the one of the following:
 |synchronized|Methods can only be accessed by one thread at a time|
 |volatile|The value of an attribute is not cached thread-locally, and is always read from the "main memory"|
 
-# Inheritance
+# 8. Inheritance
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -1491,7 +1505,7 @@ https://docs.oracle.com/javase/tutorial/java/IandI/subclasses.html
 
 ----
 
-# Polymorphism
+# 9. Polymorphism
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -1698,7 +1712,7 @@ subclass2
 https://docs.oracle.com/javase/tutorial/java/IandI/polymorphism.html
 
 
-# Method overriding
+# 10. Method overriding
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -2203,7 +2217,7 @@ https://www.geeksforgeeks.org/different-ways-method-overloading-java/
 
 ----
 
-# Method hiding
+# 11. Method hiding
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -2405,7 +2419,7 @@ child variable
 
 In most cases, we should avoid creating variables with the same name both in parent and child classes. Instead, we should use a proper access modifier like private and provide getter/setter methods for that purpose.
 
-# Encapsulation
+# 12. Encapsulation
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -2529,7 +2543,7 @@ Advantages of Encapsulation:
 This article is contributed by Harsh Agarwal. If you like GeeksforGeeks and would like to contribute, you can also write an article using contribute.geeksforgeeks.org or mail your article to contribute@geeksforgeeks.org. See your article appearing on the GeeksforGeeks main page and help other Geeks.
 ```
 
-# Abstraction
+# 13. Abstraction
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -2554,7 +2568,7 @@ There are two ways to achieve abstraction in java
 
 ----
 
-# Java Object Oriented Programming (OOP) Principals and Concepts
+# 14. Java Object Oriented Programming (OOP) Principals and Concepts
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -3226,7 +3240,7 @@ https://www.devdiaries.net/blog/10-Object-oriented-design-principles-everythone-
 
 ----
 
-# Static keyword
+# 15. Static keyword
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -3443,7 +3457,7 @@ _Key Points to Remember_
 
 ----
 
-# instance members accessed from within static context?
+# 16. instance members accessed from within static context?
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -3479,7 +3493,8 @@ manouti
 ```
 
 ----
-# java static import best practice
+
+# 17. java static import best practice
 
 `references:`
 https://stackoverflow.com/questions/420791/what-is-a-good-use-case-for-static-import-of-methods
@@ -3495,7 +3510,7 @@ https://coderanch.com/t/430739/java/advantages-disadvantages-static-import-featu
 
 ----
 
-# Java static methods
+# 18. Java static methods
 
 `references:`
 https://stackoverflow.com/questions/9541233/java-static-methods-pros-cons
@@ -3505,7 +3520,7 @@ https://www.javacodegeeks.com/2012/05/java-static-methods-can-be-code-smell.html
 
 ----
 
-# Marker interfaces
+# 19. Marker interfaces
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -3657,7 +3672,7 @@ Hence, although we can achieve the same results by using a typical interface as 
 
 ----
 
-# Why constructor in abstract class?
+# 20. Why constructor in abstract class?
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -3745,7 +3760,7 @@ jfpoilpret
 
 ----
 
-# final/finally/finalize keywords usage
+# 21. final/finally/finalize keywords usage
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -4167,7 +4182,7 @@ Peter Lawrey
 
 ----
 
-# Exceptions hierarchy
+# 22. Exceptions hierarchy
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -4218,7 +4233,7 @@ https://4comprehension.com/sneakily-throwing-exceptions-in-lambda-expressions-in
 
 ----
 
-# Checked vs Unchecked exceptions
+# 23. Checked vs Unchecked exceptions
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -4274,7 +4289,7 @@ _NullPointerException, IllegalArgumentException, and SecurityException_
 
 ----
 
-# Exceptions supressing when throwing exception from finally clause?
+# 24. Exceptions supressing when throwing exception from finally clause?
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -4427,7 +4442,16 @@ https://eclipsesource.com/blogs/2013/04/25/when-an-exception-gets-lost/
 
 ----
 
-# equals() vs "=="
+# 25. Java Try With Resources
+
+- [jenkov-Java-Try-With-Resources](refs/jenkov-Java-Try-With-Resources)
+
+`references:`
+http://tutorials.jenkov.com/java-exception-handling/try-with-resources.html
+
+----
+
+# 26. equals() vs "=="
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -4467,7 +4491,7 @@ https://www.java67.com/2012/11/difference-between-operator-and-equals-method-in.
 
 ----
 
-# hashCode() in Java
+# 27. hashCode() in Java
 
 `references:`
 https://stackabuse.com/javas-object-methods-hashcode/
@@ -4476,7 +4500,7 @@ https://stackabuse.com/javas-object-methods-hashcode/
 
 ----
 
-# Why overriding both equals() and hashCode()? Uses in Hash collections?
+# 28. Why overriding both equals() and hashCode()? Uses in Hash collections?
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -4491,7 +4515,7 @@ Please see:
 `references:`
 https://www.geeksforgeeks.org/annotations-in-java/
 
-# Annotations in Java
+# 29. Annotations in Java
 
 
 `references:`
@@ -4504,13 +4528,13 @@ http://tutorials.jenkov.com/java/annotations.html
 `references:`
 https://www.javaworld.com/blog/java-101/
 
-# JAVA 101: LEARN JAVA By Jeff Friesen
+# 30. JAVA 101: LEARN JAVA By Jeff Friesen
 
 ^ Do not know how good are these?
 
 ----
 
-# String pool affecting String comparison
+# 31. String pool affecting String comparison
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -4551,7 +4575,7 @@ https://www.javaworld.com/article/3276354/string-comparisons-in-java.html#key
 
 ----
 
-# Collections hierarchy
+# 32. Collections hierarchy
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -4613,7 +4637,7 @@ https://www.baeldung.com/java-collections
 
 ----
 
-# List and Set extending Collection, Map not?
+# 33. List and Set extending Collection, Map not?
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -4627,14 +4651,14 @@ Please see:
 
 ----
 
-# Java List Interface
+# 34. Java List Interface
 
 `references:`
 https://www.javatpoint.com/java-list
 
 List Interface is the subinterface of Collection. It contains index-based methods to insert and delete elements. It is a factory of ListIterator interface.
 
-# List Interface in Java with Examples
+# 35. List Interface in Java with Examples
 
 `references:`
 https://www.geeksforgeeks.org/list-interface-java-examples/
@@ -4643,7 +4667,7 @@ The Java.util.List is a child interface of Collection. It is an ordered collecti
 
 ----
 
-# Java ArrayList class
+# 36. Java ArrayList class
 
 `references:`
 https://www.javatpoint.com/java-arraylist
@@ -4664,7 +4688,7 @@ The important points about Java ArrayList class are:
 
 - Can contain null.
 
-# ArrayList in Java
+# 37. ArrayList in Java
 
 `references:`
 https://www.geeksforgeeks.org/arraylist-in-java/
@@ -4685,7 +4709,7 @@ ArrayList is a part of collection framework and is present in java.util package.
 
 - Allows `null`.
 
-# Guide to the Java ArrayList
+# 38. Guide to the Java ArrayList
 
 `references:`
 https://www.baeldung.com/java-arraylist
@@ -4701,7 +4725,7 @@ ArrayList is one of the List implementations built atop an array, which is able 
 
 ----
 
-# Java LinkedList class
+# 39. Java LinkedList class
 
 `references:`
 https://www.javatpoint.com/java-linkedlist
@@ -4720,7 +4744,7 @@ The important points about Java LinkedList are:
 
 - Java LinkedList class can be used as a list, stack or queue.
 
-# LinkedList in Java
+# 40. LinkedList in Java
 
 `references:`
 https://www.geeksforgeeks.org/linked-list-in-java/
@@ -4733,34 +4757,34 @@ In Java, LinkedList class implements the list interface. The LinkedList class al
 
 ----
 
-# Difference between ArrayList and LinkedList
+# 41. Difference between ArrayList and LinkedList
 
 `Refernce:`
 https://www.javatpoint.com/difference-between-arraylist-and-linkedlist
 
 [Difference-between-ArrayList-LinkedList-javatpoint](refs/Difference-between-ArrayList-LinkedList-javatpoint)
 
-# ArrayList vs LinkedList in Java
+# 42. ArrayList vs LinkedList in Java
 
 `references:`
 https://www.geeksforgeeks.org/arraylist-vs-linkedlist-java/
 
 ----
 
-# List vs ArrayList
+# 43. List vs ArrayList
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
 |   x   |  x  |   x   |
 
-## Difference Between List and ArrayList in Java
+## 43.1. Difference Between List and ArrayList in Java
 
 `references:`
 https://techdifferences.com/difference-between-list-and-arraylist-in-java.html
 
 [Difference-Between-List-ArrayList-Java-Tech-Differences](refs/Difference-Between-List-ArrayList-Java-Tech-Differences)
 
-## Array vs ArrayList in Java
+## 43.2. Array vs ArrayList in Java
 
 `references:`
 https://www.geeksforgeeks.org/array-vs-arraylist-in-java/
@@ -4768,7 +4792,8 @@ https://www.geeksforgeeks.org/array-vs-arraylist-in-java/
 [Array-vs-ArrayList-Java-GeeksforGeeks](refs/Array-vs-ArrayList-Java-GeeksforGeeks)
 
 ----
-# HashMap vs TreeMap vs LinkedHashMap
+
+# 44. HashMap vs TreeMap vs LinkedHashMap
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -4779,7 +4804,7 @@ https://www.geeksforgeeks.org/differences-treemap-hashmap-linkedhashmap-java/
 [Differences-between-TreeMap-HashMap-LinkedHashMap-GeeksforGeeks](refs/Differences-between-TreeMap-HashMap-LinkedHashMap-GeeksforGeeks)
 
 
-## Difference between HashMap, LinkedHashMap and TreeMap
+## 44.1. Difference between HashMap, LinkedHashMap and TreeMap
 
 `references:`
 https://stackoverflow.com/questions/2889777/difference-between-hashmap-linkedhashmap-and-treemap
@@ -4797,14 +4822,14 @@ All three classes implement the Map interface and offer mostly the same function
 
 ----
 
-# NATURAL ordering - implementing Comparable interface VS CUSTOM ordering - implementing Comparator
+# 45. NATURAL ordering - implementing Comparable interface VS CUSTOM ordering - implementing Comparator
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
 |       |  x  |   x   |
 
 
-## Comparable vs Comparator in Java
+## 45.1. Comparable vs Comparator in Java
 
 `references:`
 https://www.geeksforgeeks.org/comparable-vs-comparator-in-java/
@@ -4827,7 +4852,7 @@ https://www.codejava.net/java-core/collections/understanding-object-ordering-in-
 
 ----
 
-# Tree collections created with Comparator as an argument or naturally ordered entities
+# 46. Tree collections created with Comparator as an argument or naturally ordered entities
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -4852,7 +4877,7 @@ See [NATURAL ordering - implementing Comparable interface VS CUSTOM ordering - i
 
 ----
 
-# generics - type erasure and polymorphism?
+# 47. generics - type erasure and polymorphism?
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -4867,13 +4892,14 @@ https://www.baeldung.com/java-type-erasure
 https://docs.oracle.com/javase/tutorial/java/generics/genTypes.html
 
 ----
-# autoboxing/unboxing of primitives and their wrapper classes
+
+# 48. autoboxing/unboxing of primitives and their wrapper classes
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
 |   x   |  x  |   x   |
 
-## Autoboxing and Unboxing
+## 48.1. Autoboxing and Unboxing
 
 `references:`
 https://docs.oracle.com/javase/tutorial/java/data/autoboxing.html
@@ -4889,7 +4915,7 @@ https://docs.oracle.com/javase/tutorial/java/data/autoboxing.html
 |short      |Short|
 |double     |Double|
 
-## Autoboxing and Unboxing in Java
+## 48.2. Autoboxing and Unboxing in Java
 
 `references:`
 https://www.geeksforgeeks.org/autoboxing-unboxing-java/
@@ -4898,13 +4924,13 @@ https://www.geeksforgeeks.org/autoboxing-unboxing-java/
 
 ----
 
-# order of initialization in a class
+# 49. order of initialization in a class
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
 |       |  x  |   x   |
 
-## Java Initialization order
+## 49.1. Java Initialization order
 
 `references:`
 https://farenda.com/java/java-initialization-order/
@@ -5020,7 +5046,7 @@ Initializing 'Base ctorI' to '7'
 References:
 [Java primitive types default values](https://farenda.com/java/primitive-types-default-values/)
 
-# Order of execution of Initialization blocks and Constructors in Java
+# 50. Order of execution of Initialization blocks and Constructors in Java
 
 `references:`
 https://www.geeksforgeeks.org/order-execution-initialization-blocks-constructors-java/
@@ -5028,7 +5054,7 @@ https://www.geeksforgeeks.org/order-execution-initialization-blocks-constructors
 
 ----
 
-# initialization and static blocks
+# 51. initialization and static blocks
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -5039,7 +5065,8 @@ Please see:
 [order of initialization in a class](#order-of-initialization-in-a-class)
 
 ----
-# Clone and Serialize objects
+
+# 52. Clone and Serialize objects
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -5122,7 +5149,7 @@ https://www.baeldung.com/jackson-object-mapper-tutorial
 
 ----
 
-# Deep and Shallow cloning; Deep cloning - how to?
+# 53. Deep and Shallow cloning; Deep cloning - how to?
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -5134,7 +5161,7 @@ Please see:
 
 ----
 
-# Java Bean
+# 54. Java Bean
 
 - [java-What-is-a-JavaBean-exactly-StackOverflow](refs/java-What-is-a-JavaBean-exactly-StackOverflow)
 
@@ -5162,7 +5189,7 @@ https://stackoverflow.com/questions/3295496/what-is-a-javabean-exactly
 
 ----
 
-# Inner/Nested/Local classes
+# 55. Inner/Nested/Local classes
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -5193,7 +5220,7 @@ https://www.geeksforgeeks.org/anonymous-inner-class-java/
 
 ----
 
-# Nested class as a normal outer class?
+# 56. Nested class as a normal outer class?
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -5230,7 +5257,7 @@ http://tutorials.jenkov.com/java/nested-classes.html
 
 ----
 
-# Nested vs Anonymous Inner classes?
+# 57. Nested vs Anonymous Inner classes?
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -5283,7 +5310,7 @@ https://www.baeldung.com/java-nested-classes
 
 ----
 
-# Parameters passing - parameters to methods passing by val; For objects reference is passed by val?
+# 58. Parameters passing - parameters to methods passing by val; For objects reference is passed by val?
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -5301,7 +5328,7 @@ https://www.javaworld.com/article/3512039/does-java-pass-by-reference-or-pass-by
 
 ----
 
-# final parameters as objects? What can change?
+# 59. final parameters as objects? What can change?
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -5391,7 +5418,7 @@ https://stackoverflow.com/questions/500508/why-should-i-use-the-keyword-final-on
 
 ----
 
-# The “final” Keyword in Java
+# 60. The “final” Keyword in Java
 
 `references:`
 https://www.baeldung.com/java-final
@@ -5480,7 +5507,7 @@ http://www.javapractices.com/topic/TopicAction.do?Id=23
 
 ----
 
-# Too Many Parameters in Java Methods, Part 2: Parameters Object
+# 61. Too Many Parameters in Java Methods, Part 2: Parameters Object
 
 `references:`
 https://www.javaworld.com/article/2074935/too-many-parameters-in-java-methods--part-2--parameters-object.html
@@ -5492,7 +5519,7 @@ https://www.javaworld.com/article/2074932/too-many-parameters-in-java-methods-pa
 
 ----
 
-# Varargs vs Arrays when overloading
+# 62. Varargs vs Arrays when overloading
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -5505,7 +5532,7 @@ https://www.geeksforgeeks.org/method-overloading-ambiguity-varargs-java/
 
 ----
 
-# Arrays as objects
+# 63. Arrays as objects
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -5518,7 +5545,7 @@ https://www.geeksforgeeks.org/array-primitive-type-object-java/
 
 ----
 
-# creating objects without "new"; Reflection - Class.newInstance() vs Constructor.newInstance(...)
+# 64. creating objects without "new"; Reflection - Class.newInstance() vs Constructor.newInstance(...)
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -5551,7 +5578,7 @@ https://www.geeksforgeeks.org/new-operator-vs-newinstance-method-java/
 
 ----
 
-# accessing private fields and constructors using reflection?
+# 65. accessing private fields and constructors using reflection?
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -5638,7 +5665,7 @@ http://tutorials.jenkov.com/java-reflection/modules.html
 
 ----
 
-# transient/volatile keywords
+# 66. transient/volatile keywords
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -5787,14 +5814,14 @@ http://tutorials.jenkov.com/java-concurrency/volatile.html
 
 ----
 
-# why make private fields also final if they cannot be accessed if getters and setters not provided? How do Spring inject private object fields?
+# 67. why make private fields also final if they cannot be accessed if getters and setters not provided? How do Spring inject private object fields?
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
 |       |  x  |   x   |
 
 
-## why make private fields also final if they cannot be accessed if getters and setters not provided?
+## 67.1. why make private fields also final if they cannot be accessed if getters and setters not provided?
 
 - [final-keyword-java-GeeksforGeeks](refs/final-keyword-java-GeeksforGeeks)
 
@@ -5811,7 +5838,7 @@ https://stackoverflow.com/questions/19577079/why-declare-a-copy-of-a-private-fie
 `references:`
 https://en.wikipedia.org/wiki/Final_(Java)
 
-## How does Spring inject private object fields?
+## 67.2. How does Spring inject private object fields?
 
 - [dependency-injection-How-does-Spring-annotation-Autowired-work-Stack-Overflow](refs/dependency-injection-How-does-Spring-annotation-Autowired-work-Stack-Overflow)
 
@@ -5845,14 +5872,14 @@ https://dzone.com/articles/spring-di-patterns-the-good-the-bad-and-the-ugly
 
 ----
 
-# Defensive copying
+# 68. Defensive copying
 
 `references:`
 http://www.javapractices.com/topic/TopicAction.do?Id=15
 
 ----
 
-# GC algorithm (mark and sweep)
+# 69. GC algorithm (mark and sweep)
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -5880,7 +5907,7 @@ https://www.cubrid.org/blog/how-to-tune-java-garbage-collection
 
 ----
 
-# Heap zones for GC
+# 70. Heap zones for GC
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -5902,7 +5929,7 @@ https://dzone.com/articles/java-memory-architecture-model-garbage-collection
 
 ----
 
-# java memory management for java virtual machine jvm
+# 71. java memory management for java virtual machine jvm
 
 - [Java-Memory-Management-JVM-Betsol](refs/Java-Memory-Management-JVM-Betsol)
 
@@ -5911,7 +5938,7 @@ https://betsol.com/2017/06/java-memory-management-for-java-virtual-machine-jvm
 
 ----
 
-# How does GC free the memory for circular references?
+# 72. How does GC free the memory for circular references?
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -5933,7 +5960,7 @@ https://stackoverflow.com/questions/1910194/how-does-java-garbage-collection-wor
 
 ----
 
-# ClassLoaders
+# 73. ClassLoaders
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -5956,7 +5983,7 @@ https://www.journaldev.com/349/java-classloader
 
 ----
 
-# XML DOM vs SAX vs Stax
+# 74. XML DOM vs SAX vs Stax
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -6014,7 +6041,7 @@ http://tutorials.jenkov.com/java-xml/sax-vs-stax.html
 
 ----
 
-# XSD, XJC - serialize objects in xml
+# 75. XSD, XJC - serialize objects in xml
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -6088,7 +6115,7 @@ https://thoughts-on-java.org/generate-your-jaxb-classes-in-second/
 
 ----
 
-# XML binding of objects to xml
+# 76. XML binding of objects to xml
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -6100,7 +6127,7 @@ https://thoughts-on-java.org/generate-your-jaxb-classes-in-second/
 
 ----
 
-# System.out.println(); what is each element?
+# 77. System.out.println(); what is each element?
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -6113,7 +6140,7 @@ https://javapapers.com/core-java/system-out-println/
 
 ----
 
-# How to print elements of a Stream in Java 8
+# 78. How to print elements of a Stream in Java 8
 
 - [How-to-print-elements-of-a-Stream-Java8-GeeksforGeeks](refs/How-to-print-elements-of-a-Stream-Java8-GeeksforGeeks)
 
@@ -6121,7 +6148,8 @@ https://javapapers.com/core-java/system-out-println/
 https://www.geeksforgeeks.org/how-to-print-elements-of-a-stream-in-java-8/
 
 ----
-# Streams
+
+# 79. Streams
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -6149,7 +6177,7 @@ https://www.baeldung.com/java-8-streams
 
 ----
 
-# Java 8 Method Reference
+# 80. Java 8 Method Reference
 
 - [Java-8-Method-Reference-How-to-Use-it-Codementor](refs/Java-8-Method-Reference-How-to-Use-it-Codementor)
 
@@ -6162,7 +6190,7 @@ https://www.codementor.io/@eh3rrera/using-java-8-method-reference-du10866vx
 Threads
 ```
 
-# synchronized blocks/methods
+# 81. synchronized blocks/methods
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -6175,7 +6203,7 @@ http://tutorials.jenkov.com/java-concurrency/synchronized.html
 
 ----
 
-# thread locks on entire object for accesing synchronized method?
+# 82. thread locks on entire object for accesing synchronized method?
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -6193,7 +6221,7 @@ https://howtodoinjava.com/java/multi-threading/object-vs-class-level-locking/
 
 ----
 
-# wait() and notify()
+# 83. wait() and notify()
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -6216,7 +6244,7 @@ https://www.journaldev.com/1034/java-blockingqueue-example
 
 ----
 
-# Producer and Consumer problem with wait and notify vs BlockingQueue?
+# 84. Producer and Consumer problem with wait and notify vs BlockingQueue?
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -6239,7 +6267,7 @@ https://stackoverflow.com/questions/2536692/a-simple-scenario-using-wait-and-not
 
 ----
 
-# thread lifecycle
+# 85. thread lifecycle
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -6264,7 +6292,7 @@ https://www.tutorialspoint.com/java/java_multithreading.htm
 
 ----
 
-# using Future with Callable
+# 86. using Future with Callable
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -6323,7 +6351,7 @@ https://dzone.com/articles/java-callable-future-understanding
 
 ----
 
-# When to create threads by implementing Runnable and when by extending Thread?
+# 87. When to create threads by implementing Runnable and when by extending Thread?
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -6356,7 +6384,7 @@ https://stackoverflow.com/questions/541487/implements-runnable-vs-extends-thread
 
 ----
 
-# javax.util.concurrent synchronized Collections
+# 88. javax.util.concurrent synchronized Collections
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -6374,7 +6402,7 @@ https://www.geeksforgeeks.org/difference-traditional-collections-concurrent-coll
 
 ----
 
-# ConcurrentHashMap vs Collections.synchronizedMap(...)?
+# 89. ConcurrentHashMap vs Collections.synchronizedMap(...)?
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -6408,7 +6436,7 @@ https://stackoverflow.com/questions/1291836/concurrenthashmap-vs-synchronized-ha
 
 ----
 
-# Atomic classes
+# 90. Atomic classes
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -6453,7 +6481,7 @@ https://en.wikipedia.org/wiki/Lock_(computer_science)
 
 ----
 
-# ThreadLocal
+# 91. ThreadLocal
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -6486,7 +6514,7 @@ http://avasseur.blogspot.com/2003/11/threadlocal-and-memory-leaks.html
 
 ----
 
-# immutable objects thread safe?
+# 92. immutable objects thread safe?
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -6509,7 +6537,7 @@ https://dzone.com/articles/do-immutability-really-means
 
 ----
 
-# Ancestor of HashMap, Hashtable thread safe?
+# 93. Ancestor of HashMap, Hashtable thread safe?
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -6545,7 +6573,7 @@ https://codepumpkin.com/hashtable-vs-synchronizedmap-vs-concurrenthashmap/
 
 ----
 
-# Executor Service
+# 94. Executor Service
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -6563,7 +6591,7 @@ https://www.baeldung.com/java-executor-service-tutorial
 
 ----
 
-# Java memory model
+# 95. Java memory model
 
 - [jenkov-Java-Memory-Model](refs/jenkov-Java-Memory-Model)
 
@@ -6572,7 +6600,7 @@ http://tutorials.jenkov.com/java-concurrency/java-memory-model.html
 
 ----
 
-# null
+# 96. null
 
 - [What-is-null-in-Java-StackOverflow](refs/What-is-null-in-Java-StackOverflow)
 
@@ -6586,13 +6614,13 @@ https://www.geeksforgeeks.org/interesting-facts-about-null-in-java/
 
 ----
 
-# Dead-lock/Starvation/Live lock
+# 97. Dead-lock/Starvation/Live lock
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
 |       |     |   x   |
 
-## Deadlock
+## 97.1. Deadlock
 
 - [Deadlock-in-Java-Multithreading-GeeksforGeeks](refs/Deadlock-in-Java-Multithreading-GeeksforGeeks)
 
@@ -6606,7 +6634,7 @@ https://www.geeksforgeeks.org/deadlock-in-java-multithreading/
 `references:`
 https://www.tutorialspoint.com/java/java_thread_deadlock.htm
 
-## Starvation
+## 97.2. Starvation
 
 - [Deadlock-and-Starvation-in-Java-GeeksforGeeks](refs/Deadlock-and-Starvation-in-Java-GeeksforGeeks)
 
@@ -6625,7 +6653,7 @@ https://www.logicbig.com/tutorials/core-java-tutorial/java-multi-threading/threa
 `references:`
 https://netjs.blogspot.com/2017/10/thread-starvation-in-java-multi-threading.html
 
-## Livelock
+## 97.3. Livelock
 
 - [Whats-the-difference-between-deadlock-and-livelock-StackOverflow](refs/Whats-the-difference-between-deadlock-and-livelock-StackOverflow)
 
@@ -6637,7 +6665,7 @@ https://stackoverflow.com/questions/6155951/whats-the-difference-between-deadloc
 ```text
 ```
 
-## Deadlock, Livelock and Starvation
+## 97.4. Deadlock, Livelock and Starvation
 
 - [Understanding-Deadlock-Livelock-and-Starvation-with-Code-Examples-in-Java](refs/Understanding-Deadlock-Livelock-and-Starvation-with-Code-Examples-in-Java)
 
@@ -6652,13 +6680,13 @@ https://www.codejava.net/java-core/concurrency/understanding-deadlock-livelock-a
 
 ----
 
-# Parallel stream/ Fork / Join
+# 98. Parallel stream/ Fork / Join
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
 |       |     |   x   |
 
-## Fork-Join Framework API
+## 98.1. Fork-Join Framework API
 
 - [Understanding-Java-Fork-Join-Framework-with-Examples](refs/Understanding-Java-Fork-Join-Framework-with-Examples)
 
@@ -6692,7 +6720,7 @@ https://www.tutorialspoint.com/java_concurrency/concurrency_fork_join.htm
 `references:`
 https://www.baeldung.com/java-fork-join
 
-## Fork-Join and Parallel Streams
+## 98.2. Fork-Join and Parallel Streams
 
 - [A-Look-at-ForkJoinPool-and-Parallel-Streams-DZone](refs/A-Look-at-ForkJoinPool-and-Parallel-Streams-DZone)
 
@@ -6724,7 +6752,7 @@ https://blog.overops.com/forkjoin-framework-vs-parallel-streams-vs-executorservi
 Design patterns
 ```
 
-# Design patterns
+# 99. Design patterns
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -6747,13 +6775,13 @@ https://github.com/iluwatar/java-design-patterns
 `references:`
 https://en.wikipedia.org/wiki/Design_Patterns
 
-## Creational Design Patterns
+## 99.1. Creational Design Patterns
 
-## Structural Design Patterns
+## 99.2. Structural Design Patterns
 
-## Behavioural Design Patterns
+## 99.3. Behavioural Design Patterns
 
-### Strategy Design Pattern
+### 99.3.1. Strategy Design Pattern
 
 - [c#-Factory-method-with-DI-and-IoC-StackOverflow](refs/c#-Factory-method-with-DI-and-IoC-StackOverflow)
 
@@ -6766,7 +6794,7 @@ https://stackoverflow.com/questions/31950362/factory-method-with-di-and-ioc
 SQL
 ```
 
-# SQL (Structured Query Language)
+# 100. SQL (Structured Query Language)
 
 - [SQL-Wikipedia](refs/SQL-Wikipedia)
 
@@ -6778,7 +6806,7 @@ https://en.wikipedia.org/wiki/SQL
 `references:`
 https://en.wikipedia.org/wiki/MySQL
 
-# SQL select
+# 101. SQL select
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -6816,9 +6844,9 @@ https://dev.mysql.com/doc/refman/8.0/en/select.html
 
 ----
 
-# Index (good for select bad for insert?)
+# 102. Index (good for select bad for insert?)
 
-## Database index
+## 102.1. Database index
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -6836,7 +6864,7 @@ https://www.geeksforgeeks.org/indexing-in-databases-set-1/
 
 ----
 
-# Property of a transaction A.C.I.D
+# 103. Property of a transaction A.C.I.D
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -6861,9 +6889,9 @@ https://blog.yugabyte.com/a-primer-on-acid-transactions/
 
 ----
 
-# View
+# 104. View
 
-## SQL view
+## 104.1. SQL view
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -6894,9 +6922,9 @@ https://www.tutorialspoint.com/sql/sql-using-views.htm
 
 ----
 
-# Trigger
+# 105. Trigger
 
-## SQL trigger
+## 105.1. SQL trigger
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -6948,9 +6976,9 @@ https://www.sqlservertutorial.net/sql-server-triggers/
 
 ----
 
-# Stored Procedure
+# 106. Stored Procedure
 
-## SQL Stored Procedure
+## 106.1. SQL Stored Procedure
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -7017,9 +7045,9 @@ https://www.sqlshack.com/partial-stored-procedures-in-sql-server/
 
 ----
 
-# Functions
+# 107. Functions
 
-## SQL functions
+## 107.1. SQL functions
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -7061,11 +7089,11 @@ https://www.w3schools.com/sql/sql_ref_sqlserver.asp
 Spring
 ```
 
-# Spring
+# 108. Spring
 
 ----
 
-# IoC and Dependency injection
+# 109. IoC and Dependency injection
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -7129,31 +7157,31 @@ https://www.journaldev.com/2461/spring-ioc-bean-example-tutorial
 
 ----
 
-# Spring Design Patterns
+# 110. Spring Design Patterns
 
-## Design Patterns used in Spring Framework Part 2 - Creational Patterns - Factory - Builder - Singleton - Prototype
+## 110.1. Design Patterns used in Spring Framework Part 2 - Creational Patterns - Factory - Builder - Singleton - Prototype
 
 - [Design-Patterns-Spring-Framework-Part-2-Creational-Patterns-Factory-Builder-Singleton-Prototype-Devdiaries](refs/Design-Patterns-Spring-Framework-Part-2-Creational-Patterns-Factory-Builder-Singleton-Prototype-Devdiaries)
 
     `references:`
     https://www.devdiaries.net/blog/Spring-Design-Patterns-Creational-Patterns/
 
-## Design Patterns Spring Framework Part 1 - Inversion of Control - Dependency Injection
+## 110.2. Design Patterns Spring Framework Part 1 - Inversion of Control - Dependency Injection
 
 - [Design-Patterns-Spring-Framework-Part-1-Inversion-of-Control-Dependency-Injection-Devdiaries](refs/Design-Patterns-Spring-Framework-Part-1-Inversion-of-Control-Dependency-Injection-Devdiaries)
 
     `references:`
     https://www.devdiaries.net/blog/Spring-Design-Patterns-Dependency-Injection/
 
-## Spring IoC (Inversion Of Control) Design Patterns
+## 110.3. Spring IoC (Inversion Of Control) Design Patterns
 
 - [Design Patterns Spring Framework Part 1 - Inversion of Control - Dependency Injection](#DesignPatternsSpringFrameworkPart1-InversionofControl-DependencyInjection)
 
-### Dependency Injection (DI) Pattern
+### 110.3.1. Dependency Injection (DI) Pattern
 
 - [Design Patterns Spring Framework Part 1 - Inversion of Control - Dependency Injection](#DesignPatternsSpringFrameworkPart1-InversionofControl-DependencyInjection)
 
-### Factory Pattern
+### 110.3.2. Factory Pattern
 
 - [Design Patterns used in Spring Framework Part 2 - Creational Patterns - Factory - Builder - Singleton - Prototype](#DesignPatternsusedinSpringFrameworkPart2-CreationalPatterns-Factory-Builder-Singleton-Prototype)
 
@@ -7182,27 +7210,27 @@ https://www.journaldev.com/2461/spring-ioc-bean-example-tutorial
     `references:`
     https://springframework.guru/gang-of-four-design-patterns/factory-method-design-pattern/
 
-### Builder Pattern
+### 110.3.3. Builder Pattern
 
 - [Design Patterns used in Spring Framework Part 2 - Creational Patterns - Factory - Builder - Singleton - Prototype](#DesignPatternsusedinSpringFrameworkPart2-CreationalPatterns-Factory-Builder-Singleton-Prototype)
 
 
-### Singleton Pattern
+### 110.3.4. Singleton Pattern
 
 - [Design Patterns used in Spring Framework Part 2 - Creational Patterns - Factory - Builder - Singleton - Prototype](#DesignPatternsusedinSpringFrameworkPart2-CreationalPatterns-Factory-Builder-Singleton-Prototype)
 
-### Prototype Pattern
+### 110.3.5. Prototype Pattern
 
 - [Design Patterns used in Spring Framework Part 2 - Creational Patterns - Factory - Builder - Singleton - Prototype](#DesignPatternsusedinSpringFrameworkPart2-CreationalPatterns-Factory-Builder-Singleton-Prototype)
 
-### Service Locator Pattern
+### 110.3.6. Service Locator Pattern
 
 - [Understanding-Inversion-of-Control-IoC-Principle-Amit-Kumar-Medium](refs/Understanding-Inversion-of-Control-IoC-Principle-Amit-Kumar-Medium)
 
 `references:`
 https://medium.com/@amitkma/understanding-inversion-of-control-ioc-principle-163b1dc97454
 
-### Strategy Pattern
+### 110.3.7. Strategy Pattern
 
 - [Design-Patterns-Strategy-Pattern-Tutorialspoint](refs/Design-Patterns-Strategy-Pattern-Tutorialspoint)
 
@@ -7228,21 +7256,21 @@ https://medium.com/@amitkma/understanding-inversion-of-control-ioc-principle-163
     `references:`
     https://softwareengineering.stackexchange.com/questions/393065/can-we-completely-replace-inheritance-using-strategy-pattern-and-dependency-inje
 
-### Observer Pattern
+### 110.3.8. Observer Pattern
 
 - [Three-Design-Patterns-That-Use-Inversion-of-Control-SitePoint](refs/Three-Design-Patterns-That-Use-Inversion-of-Control-SitePoint)
 
 `references:`
 https://www.sitepoint.com/three-design-patterns-that-use-inversion-of-control/
 
-### Template Method Pattern
+### 110.3.9. Template Method Pattern
 
 - [Three-Design-Patterns-That-Use-Inversion-of-Control-SitePoint](refs/Three-Design-Patterns-That-Use-Inversion-of-Control-SitePoint)
 
 `references:`
 https://www.sitepoint.com/three-design-patterns-that-use-inversion-of-control/
 
-### Mixin Injection Pattern
+### 110.3.10. Mixin Injection Pattern
 
 - [Mixin-Injection-Inversion-of-Control-Patterns-Toptal](refs/Mixin-Injection-Inversion-of-Control-Patterns-Toptal)
 
@@ -7251,7 +7279,7 @@ https://www.toptal.com/full-stack/exploring-dependency-injection-patterns
 
 ----
 
-# @Autowired and @Qualifier
+# 111. @Autowired and @Qualifier
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -7274,7 +7302,7 @@ https://www.baeldung.com/spring-annotations-resource-inject-autowire
 
 ----
 
-# xml based configuration Vs annotation based config
+# 112. xml based configuration Vs annotation based config
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -7311,7 +7339,7 @@ https://stackoverflow.com/questions/8428439/spring-annotation-based-di-vs-xml-co
 
 ----
 
-# bean scopes
+# 113. bean scopes
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -7329,7 +7357,7 @@ https://stackoverflow.com/questions/17599216/spring-bean-scopes
 
 ----
 
-# Spring security
+# 114. Spring security
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -7374,7 +7402,7 @@ https://www.baeldung.com/security-spring
 
 ----
 
-# JDBC
+# 115. JDBC
 
 ```text
 JDBC
@@ -7397,7 +7425,7 @@ https://www.theserverside.com/definition/Java-Database-Connectivity-JDBC
 
 ----
 
-# Statement/ Prepare statement / ResultSet
+# 116. Statement/ Prepare statement / ResultSet
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -7425,7 +7453,7 @@ http://tutorials.jenkov.com/jdbc/batchupdate.html
 
 ----
 
-# Stored procedure from java Code
+# 117. Stored procedure from java Code
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
