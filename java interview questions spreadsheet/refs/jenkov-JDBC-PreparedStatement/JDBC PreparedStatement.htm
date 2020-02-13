@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)http://tutorials.jenkov.com/jdbc/preparedstatement.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+    <!--<meta name="viewport" content="width=device-width, height=device-height initial-scale=1.0, maximum-scale=1.0, user-scalable=0">-->
+    <meta name="viewport" content="width=device-width, height=device-height initial-scale=1, user-scalable=1">
+
+    <title>JDBC PreparedStatement</title>
+
+    <meta name="description" content="The JDBC PreparedStatement class can parameterize your SQL statements, so they can be reused again with different parameter values. This JDBC PreparedStatement tutorial explains how to use and reuse a PreparedStatement.">
+    <meta name="keywords" content="java jdbc preparedstatement">
+    <meta name="author" content="Jakob Jenkov">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jjenkov">
+    <meta name="twitter:title" content="JDBC PreparedStatement">
+    <meta name="twitter:description" content="The JDBC PreparedStatement class can parameterize your SQL statements, so they can be reused again with different parameter values. This JDBC PreparedStatement tutorial explains how to use and reuse a PreparedStatement.">
+    <meta name="twitter:creator" content="@jjenkov">
+    <meta name="twitter:domain" content="jenkov.com">
+
+    <meta name="twitter:image:src" content="http://tutorials.jenkov.com/images/java-jdbc/java-jdbc-teaser-500-300.png">
+
+    <meta name="og:type" content="article">
+    <meta name="og:title" content="JDBC PreparedStatement">
+    <meta property="og:url" content="http://tutorials.jenkov.com/jdbc/preparedstatement.html">
+    <meta property="og:description" content="The JDBC PreparedStatement class can parameterize your SQL statements, so they can be reused again with different parameter values. This JDBC PreparedStatement tutorial explains how to use and reuse a PreparedStatement.">
+
+    <meta property="og:image" content="http://tutorials.jenkov.com/images/java-jdbc/java-jdbc-teaser-500-300.png">
+
+    <link href="https://plus.google.com/108227213807945109821" rel="publisher">
+
+    <meta name="google-site-verification" content="i_TwzdElg-by5uXLvyAjuIaCjxo0yjtW8LdRPUDEEcw">
+<script charset="utf-8" src="./JDBC PreparedStatement_files/button.a657e8de41cd5e7b38cde1f36c9ab9c2.js"></script></head>
+
+<body>
+
+<style>
+body {background-color: #f0f0f0; xbackground-image: linear-gradient(180deg, #f0f0f0, #e0e0e0); margin: 0px; font-family: arial;}
+
+.grid {
+  display: grid;
+
+}
+.topBar, .footer {
+  grid-column-start: 1;
+  grid-column-end: 12;
+  background-color: #000000;
+  color: #ffffff;
+  height: 64px;
+  box-shadow: 0px 8px 6px -6px #999999;
+}
+
+.content {
+  grid-column-start: 1;
+  grid-column-end: 12;
+  text-align: center;
+}
+.category, .main, .right {
+	display: inline-block;
+    vertical-align: top;
+	box-sizing: border-box;
+	text-align: left;
+}
+.footer {
+  height: 64px;
+  position: relative;
+  padding-bottom: 48px;
+}
+#footerCopyright {
+	position: absolute;
+	top: 20px;
+	left:20px;
+}
+
+.card{ background-color: #ffffff; box-shadow: 0px 8px 6px -6px #999999;padding: 20px 30px;border: 1px solid #e0e0e0; margin: 8px 4px;}
+.cardLeft  { margin-left:   8px; }
+.cardRight { margin-right:  8px; }
+.cardTop   { margin-top:    8px; }
+.cardBottom{ margin-bottom: 8px; }
+
+#topBarMenu    { position: absolute; top: 20px; left: 20px; }
+#topBarMenu a  { color: #ffffff; text-decoration: none; }
+#topBarLogoBox { text-align: right; padding-top:6px; margin-right: 16px;}
+#topBarLogo    { height: 38px; }
+#topBarPhrase  { padding-right: 4px; font-size: 0.8em; }
+</style>
+
+<style>
+a{ text-decoration:none; }
+#main, #mainBody { text-align: left; }
+
+#mainBody h1{margin-top: 0px; text-align:left; }
+#mainBody h2{margin: 24px 0px 0px 0px; text-align:left; }
+#mainBody a{font-weight: bold; color: #339;}
+#mainBody img{max-width:100%;}
+#mainBody svg{max-width:100%;overflow: auto;}
+
+.card{ background-color: #ffffff; box-shadow: 0px 8px 6px -6px #999999;padding: 20px 30px;border: 1px solid #e0e0e0;}
+#trailToc ol li{border-bottom: 1px solid #f0f0f0;padding: 4px 20px;vertical-align: top;}
+.codeBox {background-color: #f0f0f0;border: 1px solid #cccccc;padding: 10px;max-width: 100%;overflow: auto;}
+code{font-size: 1.2em;}
+.dataTable{background-color: #f0f0f0;border: 1px solid #cccccc;max-width: 100%;overflow: auto;}
+.dataTable th{text-align: left;}
+.dataTable th, .dataTable td{padding: 2px 8px; }
+#pageToc{border: 1px solid #f0f0f0; text-align:left; }
+#pageToc li{margin: 6px 0px;}
+#pageToc a{color: #339;font-weight: normal;}
+#lastUpdate{border: 1px solid #f0f0f0;border-top:none;padding: 6px 24px;font-size: 0.8em;color: #666; text-align:left; }
+#next{border-top: 1px solid #f0f0f0;padding: 10px 0px;font-size: 1.1em;}
+#bottomSocial{border-top: 1px solid #f0f0f0;padding: 10px 0px;font-size: 0.9em;}
+</style>
+
+
+<style>
+@media only screen and (max-width: 799px) {
+	.main     { width: 100%;}
+	.category { display: none; }
+	.right    {	display: none; }
+	.card     { padding: 10px 8px; margin: 8px 0px;}
+    .bigScreen{ display: none; }
+}
+@media only screen and (min-width: 800px) and (max-width: 1199px) {
+	.main     { width: 75%; }
+	.category {	width: 25%;	}
+	.right    { display:none;}
+	.smallScreen { display: none; }
+}
+@media only screen and (min-width: 1200px) {
+	.main     { width: 50%;	max-width: 900px; }
+	.category { width: 25%;	max-width: 300px; }
+	.right    { width: 25%; max-width: 400px; display:none;}
+	.smallScreen { display: none; }
+}
+
+@media only screen and (max-width: 600px) {
+  #topBarLogo{transform: scale(0.75, 0.75) translate(0px, 0px);}
+}
+@media only screen and (max-width: 480px) {
+  #topBarLogo{transform: scale(0.6, 0.6) translate(136px, 0px);}
+  #topBarMenu a{ font-size: 0.8em; }
+  h1{ font-size: 1.6em; }
+  h2{ font-size: 1.4em; }
+  h3{ font-size: 1.2em; }
+}
+</style>
+
+<div class="grid">
+
+    <div class="topBar">
+
+        <div id="topBarMenu">
+            <a href="http://tutorials.jenkov.com/" title="Tutorials">Tutorials</a>
+            &nbsp;&nbsp;&nbsp;
+            <a href="http://jenkov.com/about/index.html" title="Tutorials">About</a>
+            &nbsp;&nbsp;&nbsp;
+            <a href="http://jenkov.com/rss.xml" title="RSS">RSS</a>
+        </div>
+
+        <div id="topBarLogoBox">
+            <div id="topBarLogo"><svg x="0px" y="0px" width="409px" height="48px" viewBox="0 0 409 100" style="enable-background:new 0 0 409 100;" xml:space="preserve">  <path d="M53,32 l10,0  l0,26  c-7,21 -30,21 -53,10  l4,-9  c18,11 33,10 39,-3  z " style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M69,32 l50,0  l0,9  l-50,0 z" style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M69,49 l50,0  l0,9  l-50,0 z" style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M69,65 l50,0  l0,9  l-50,0 z" style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M126,32 l13,0  l40,31  l0,-31  l10,0  l0,42  l-10,0 l-43,-32 l0,32 l-10,0 z " style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M179,32  l10,0  l0,15 l5,0  l32.5,-14.5  l19,0  l-41,19  l40,22  l-19,0  l-33,-18  l-3.5,0  l0,19  l-10,0 z " style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M238,49  c10,-24 60,-24 70,0  l-11,0  c-10,-12 -38,-12 -48,0  z " style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M238,57  c10,24 60,24 70,0  l-11,0  c-10,12 -38,12 -48,0  z " style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M304,32  l13,0  l25,34 l25,-34  l13,0  l-32,42 l-12.5,0 z" style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M369,65  l12,0 l0,8 l-12,0 z" style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M390,53  c3,-27 54,-27 67,-10  l-15,0  c-10,-5 -40,-5 -41.5,10 l-10,0  " style="stroke: none;  stroke-width: 1; fill: #ffffff;"></path>  <path d="M390,53  c3,27 54,27 67,10  l-15,0  c-10,5 -40,5 -41.5,-10 l-10,0  " style="stroke: none;  stroke-width: 1; fill: #ffffff;"></path>  <path d="M460,49  c10,-24 60,-24 70,0  l-11,0  c-10,-12 -38,-12 -48,0  z " style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M460,57  c10,24 60,24 70,0  l-11,0  c-10,12 -38,12 -48,0  z " style="stroke: none; stroke-width: 1; fill: #ffffff;"></path>  <path d="M534,34  l10,0  l0,6 c13,-10 26,-10 37,0  c12,-10 32,-10 39,3  l0,30  l-10,0  l0,-27  c-3,-9 -24,-9 -28,3 l0,24  -10,0  l0,-27  c-3,-9 -24,-9 -28,3 l0,24  -10,0 z" style="stroke: none; stroke-width: 1; fill: #ffffff;"></path></svg></div>
+            <div id="topBarPhrase">Tech and Media Labs</div>
+        </div>
+
+    </div>
+
+
+    <div class="content">
+        <div class="site-menu">
+
+            <!--
+              <div class="card cardLeft cardTop">Software Development
+                <ul>
+                  <li>Java &amp; JVM</li>
+                  <li>Web</li>
+                  <li>Distributed Systems</li>
+                </ul>
+            </div>
+            -->
+        </div><div class="category">
+        <div id="trailToc" class="card cardTop cardBottom">
+            <div id="trailTitle">Java JDBC</div><ol><li><a href="http://tutorials.jenkov.com/jdbc/index.html">Java JDBC</a></li><li><a href="http://tutorials.jenkov.com/jdbc/overview.html">JDBC Overview</a></li><li><a href="http://tutorials.jenkov.com/jdbc/driver-types.html">JDBC Driver Types</a></li><li><a href="http://tutorials.jenkov.com/jdbc/connection.html">JDBC Connection</a></li><li><a href="http://tutorials.jenkov.com/jdbc/query.html">JDBC: Query the Database</a></li><li><a href="http://tutorials.jenkov.com/jdbc/update.html">JDBC: Update the Database</a></li><li><a href="http://tutorials.jenkov.com/jdbc/statement.html">JDBC Statement</a></li><li><a href="http://tutorials.jenkov.com/jdbc/resultset.html">JDBC ResultSet</a></li><li><a href="http://tutorials.jenkov.com/jdbc/preparedstatement.html"><b>JDBC PreparedStatement</b></a></li><li><a href="http://tutorials.jenkov.com/jdbc/batchupdate.html">JDBC Batch Updates</a></li><li><a href="http://tutorials.jenkov.com/jdbc/transaction.html">JDBC: Transactions</a></li><li><a href="http://tutorials.jenkov.com/jdbc/callablestatement.html">JDBC: CallableStatement</a></li><li><a href="http://tutorials.jenkov.com/jdbc/databasemetadata.html">JDBC: DatabaseMetaData</a></li></ol>
+        </div>
+    </div><div class="main">
+        <div class="card cardTop cardBottom">
+            <h1 style="text-align: left;">JDBC PreparedStatement</h1>
+
+            <div id="pageToc" itemscope="" itemtype="http://schema.org/SiteNavigationElement">
+                <ul><li><a href="http://tutorials.jenkov.com/jdbc/preparedstatement.html#creating-a-preparedstatement">Creating a PreparedStatement</a></li><li><a href="http://tutorials.jenkov.com/jdbc/preparedstatement.html#inserting-parameters-into-a-preparedstatement">Inserting Parameters into a PreparedStatement</a></li><li><a href="http://tutorials.jenkov.com/jdbc/preparedstatement.html#executing-the-preparedstatement">Executing the PreparedStatement</a></li><li><a href="http://tutorials.jenkov.com/jdbc/preparedstatement.html#reusing-a-preparedstatement">Reusing a PreparedStatement</a></li><li><a href="http://tutorials.jenkov.com/jdbc/preparedstatement.html#preparedstatement-performance">PreparedStatement Performance</a></li></ul>
+            </div>
+            <div id="lastUpdate">
+                <table><tbody><tr><td class="authorPhoto"></td>
+                    <td><p style="margin: 0px 0px 6px 0px;">
+                        Jakob Jenkov<br>
+                        Last update: 2019-02-13
+                    </p>
+                        <div class="authorSocialLinks"></div>
+                    </td>
+                </tr>
+                </tbody></table>
+            </div>
+
+            <div id="mainBody">
+                <p>
+    A Java JDBC <em>PreparedStatement</em> is a special kind of <a href="http://tutorials.jenkov.com/jdbc/statement.html">Java JDBC Statement</a> object with some useful
+    additional features. Remember, you need a <code>Statement</code> in order to execute either a <a href="http://tutorials.jenkov.com/jdbc/query.html">query</a>
+    or an <a href="http://tutorials.jenkov.com/jdbc/update.html">update</a>. You can use a Java JDBC <code>PreparedStatement</code> instead of a
+    <code>Statement</code> and benefit from the features of the <code>PreparedStatement</code>.
+</p>
+
+<p>
+    The Java JDBC <code>PreparedStatement</code> primary features are:
+</p>
+
+<br>
+<ul>
+    <li>Easy to insert parameters into the SQL statement.</li>
+    <li>Easy to reuse the <code>PreparedStatement</code> with new parameter values.</li>
+    <li>May increase performance of executed statements.</li>
+    <li>Enables easier batch updates.</li>
+</ul>
+<br>
+
+<p>
+    I will show you how to insert parameters into SQL statements in this text, and also how to reuse
+    a <code>PreparedStatement</code>. The batch updates is explained in a separate text.
+</p>
+
+<p>
+    Here is a quick example, to give you a sense of how it looks in code:
+</p>
+
+<pre class="codeBox">String sql = "update people set firstname=? , lastname=? where id=?";
+
+PreparedStatement preparedStatement =
+        connection.prepareStatement(sql);
+
+preparedStatement.setString(1, "Gary");
+preparedStatement.setString(2, "Larson");
+preparedStatement.setLong  (3, 123);
+
+int rowsAffected = preparedStatement.executeUpdate();
+</pre>
+
+
+<a name="creating-a-preparedstatement"></a>
+<h2>Creating a PreparedStatement</h2>
+<p>
+    Before you can use a <code>PreparedStatement</code> you must first create it. You do so
+    using the <code>Connection.prepareStatement()</code>, like this:
+</p>
+
+<pre class="codeBox">String sql = "select * from people where id=?";
+
+PreparedStatement preparedStatement =
+        connection.prepareStatement(sql);
+</pre>
+
+<p>
+    The <code>PreparedStatement</code> is now ready to have parameters inserted.
+</p>
+
+
+<a name="inserting-parameters-into-a-preparedstatement"></a>
+<h2>Inserting Parameters into a PreparedStatement</h2>
+<p>
+    Everywhere you need to insert a parameter into your SQL, you write a question mark (?).
+    For instance:
+</p>
+
+<pre class="codeBox">String sql = "select * from people where id=?";
+</pre>
+
+<p>
+    Once a <code>PreparedStatement</code> is created (prepared) for the above SQL statement, you can insert
+    parameters at the location of the question mark. This is done using the many <code>setXXX()</code> methods.
+    Here is an example:
+</p>
+
+<pre class="codeBox">preparedStatement.setLong(1, 123);
+</pre>
+
+<p>
+    The first number (1) is the index of the parameter to insert the value for. The second number (123)
+    is the value to insert into the SQL statement.
+</p>
+
+<p>
+    Here is the same example with a bit more details:
+</p>
+
+<pre class="codeBox">String sql = "select * from people where id=?";
+
+PreparedStatement preparedStatement =
+        connection.prepareStatement(sql);
+
+preparedStatement.setLong(123);
+</pre>
+
+<p>
+    You can have more than one parameter in an SQL statement. Just insert more than one question mark.
+    Here is a simple example:
+</p>
+
+<pre class="codeBox">String sql = "select * from people where firstname=? and lastname=?";
+
+PreparedStatement preparedStatement =
+        connection.prepareStatement(sql);
+
+preparedStatement.setString(1, "John");
+preparedStatement.setString(2, "Smith");
+</pre>
+
+
+
+<a name="executing-the-preparedstatement"></a>
+<h2>Executing the PreparedStatement</h2>
+<p>
+    Executing the <code>PreparedStatement</code> looks like executing a regular <code>Statement</code>.
+    To execute a query, call the <code>executeQuery()</code> or <code>executeUpdate</code> method.
+    Here is an <code>executeQuery()</code> example:
+</p>
+
+<pre class="codeBox">String sql = "select * from people where firstname=? and lastname=?";
+
+PreparedStatement preparedStatement =
+        connection.prepareStatement(sql);
+
+preparedStatement.setString(1, "John");
+preparedStatement.setString(2, "Smith");
+
+ResultSet result = preparedStatement.executeQuery();
+</pre>
+
+
+<p>
+    As you can see, the <code>executeQuery()</code> method returns a <code>ResultSet</code>.
+    Iterating the <code>ResultSet</code> is described in the <a href="http://tutorials.jenkov.com/jdbc/query.html">Query the Database</a> text.
+</p>
+
+
+<p>
+    Here is an <code>executeUpdate()</code> example:
+</p>
+
+<pre class="codeBox">String sql = "update people set firstname=? , lastname=? where id=?";
+
+PreparedStatement preparedStatement =
+        connection.prepareStatement(sql);
+
+preparedStatement.setString(1, "Gary");
+preparedStatement.setString(2, "Larson");
+preparedStatement.setLong  (3, 123);
+
+int rowsAffected = preparedStatement.executeUpdate();
+</pre>
+
+<p>
+    The <code>executeUpdate()</code> method is used when updating the database. It returns an int
+    which tells how many records in the database were affected by the update.
+</p>
+
+
+<a name="reusing-a-preparedstatement"></a>
+<h2>Reusing a PreparedStatement</h2>
+<p>
+    Once a <code>PreparedStatement</code> is prepared, it can be reused after execution.
+    You reuse a <code>PreparedStatement</code> by setting new values for the parameters
+    and then execute it again. Here is a simple example:
+</p>
+
+<pre class="codeBox">String sql = "update people set firstname=? , lastname=? where id=?";
+
+PreparedStatement preparedStatement =
+        connection.prepareStatement(sql);
+
+preparedStatement.setString(1, "Gary");
+preparedStatement.setString(2, "Larson");
+preparedStatement.setLong  (3, 123);
+
+int rowsAffected = preparedStatement.executeUpdate();
+
+preparedStatement.setString(1, "Stan");
+preparedStatement.setString(2, "Lee");
+preparedStatement.setLong  (3, 456);
+
+int rowsAffected = preparedStatement.executeUpdate();
+</pre>
+
+<p>
+    This works for executing queries too, using the <code>executeQuery()</code> method,
+    which returns a <code>ResultSet</code>.
+</p>
+
+
+
+<a name="preparedstatement-performance"></a>
+<h2>PreparedStatement Performance</h2>
+<p>
+    It takes time for a database to parse an SQL string, and create a query plan for it.
+    A query plan is an analysis of how the database can execute the query in the most
+    efficient way.
+</p>
+
+<p>
+    If you submit a new, full SQL statement for every query or update to the database,
+    the database has to parse the SQL and for queries create a query plan. By reusing an
+    existing <code>PreparedStatement</code> you can reuse both the SQL parsing and query
+    plan for subsequent queries. This speeds up query execution, by decreasing the parsing
+    and query planning overhead of each execution.
+</p>
+
+<p>
+    There are two levels of potential reuse for a <code>PreparedStatement</code>.
+</p>
+
+<ol>
+    <li>Reuse of PreparedStatement by the JDBC driver.</li>
+    <li>Reuse of PreparedStatement by the database.</li>
+</ol>
+
+<p>
+    First of all, the JDBC driver can cache <code>PreparedStatement</code> objects internally,
+    and thus reuse the <code>PreparedStatement</code> objects. This may save a little of the
+    <code>PreparedStatement</code> creation time.
+</p>
+
+<p>
+    Second, the cached parsing and query plan could potentially be reused across Java applications,
+    for instance application servers in a cluster, using the same database.
+</p>
+
+<p>
+    Here is a diagram illustrating the caching of statements in the database:
+</p>
+
+<center>
+    <table style="padding:10px;">
+        <tbody><tr><td align="center"><img src="./JDBC PreparedStatement_files/prepared-statement-performance-1.png" alt="The caching of PreparedStatement&#39;s in the database."></td></tr>
+        <tr><td align="center"><b>The caching of PreparedStatement's in the database.</b></td></tr>
+    </tbody></table>
+</center>
+
+<p>
+    The diagram does not show the JDBC driver <code>PreparedStatement</code> cache. You will have to imagine that.
+</p>
+            </div>
+
+            <div id="next">Next: <a href="http://tutorials.jenkov.com/jdbc/batchupdate.html">JDBC Batch Updates</a></div>
+            <div id="bottomSocial">
+
+                <div style="display:inline-block;">
+                    <table>
+                        <tbody><tr><td colspan="2">
+                            <div id="___plus_0" style="position: absolute; width: 450px; left: -10000px;"><iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position:absolute;top:-10000px;width:450px;margin:0px;border-style:none" tabindex="0" vspace="0" width="100%" id="I0_1581611913475" name="I0_1581611913475" src="./JDBC PreparedStatement_files/sharebutton.html" data-gapiattached="true"></iframe></div><div class="g-plus" data-action="share" data-height="24" data-annotation="none" data-gapiscan="true" data-onload="true" data-gapistub="true"></div>
+                            <script src="./JDBC PreparedStatement_files/cb=gapi.loaded_1" async=""></script><script src="./JDBC PreparedStatement_files/cb=gapi.loaded_0" async=""></script><script async="" src="./JDBC PreparedStatement_files/analytics.js"></script><script id="twitter-wjs" src="./JDBC PreparedStatement_files/widgets.js"></script><script type="text/javascript" async="" src="./JDBC PreparedStatement_files/platform.js" gapi_processed="true"></script><script type="text/javascript">
+                                (function() {
+                                    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                                    po.src = 'https://apis.google.com/js/platform.js';
+                                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                                 })();
+                            </script>
+
+                            <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button" style="position: static; visibility: visible; width: 61px; height: 20px;" title="Twitter Tweet Button" src="./JDBC PreparedStatement_files/tweet_button.7303c29a8108bca4ac5c9ef008ed8164.en.html"></iframe>
+                            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+                        </td></tr>
+                        <tr><td class="authorPhoto"></td><td><p style="margin: 0px 0px 6px 0px;">Jakob Jenkov</p><div class="authorSocialLinks"></div></td></tr>
+                    </tbody></table>
+                </div>
+
+                <div style="display: none;" class="newsletterForm"></div>
+
+            </div>
+
+        </div>
+    </div><div class="right">
+        <div class="card cardRight cardTop cardBottom">Right 1
+            <div>Right 2</div>
+        </div>
+    </div>
+    </div>
+    <div class="footer">
+        <div id="footerCopyright">Copyright Jenkov Aps</div>
+    </div>
+</div>
+
+<style>
+.navButton{color: #ffffff; font-weight: bold;}
+#trailTocFixedDiv{position: fixed;  top : 0px; left : 0px; width : 100%; height : 100%;  display : none; background-color: #ffffff;}
+#trailTocFixedInnerDiv{width: 400px; max-width: 94%; height: calc(100% - 72px); overflow : auto; margin: 20px auto 20px auto; padding: 0px 0px 180px 0px;}
+#trailTocFixedInnerDiv th{border-bottom: 1px solid #f0f0f0;padding: 6px 10px;text-align: left;font-size: 1.2em;}
+#trailTocFixedInnerDiv td{border-bottom: 1px solid #f0f0f0;padding: 6px 20px;vertical-align: top;}
+#trailTocFixedCloseButton{width : 72px; padding: 10px 20px; background-color: #009900; border: 2px solid #006600; color: #ffffff; font-size: 0.8em; font-weight: bold; position: absolute; right: 0px; cursor: pointer; box-shadow: 2px 2px 2px 2px #cccccc;}
+#bottomNavBarDiv{position:fixed; bottom: 0px; width: 100%;  background-color: #202020; border-top: 1px solid #444444;}
+.buttonNavBarButtonDivActive{background-color: #404040;}
+#bottomNavBarRow>div{border-left: 1px solid #404040; border-right: 1px solid #000000;  height: 48px;  padding-top:16px; text-align: center; cursor: pointer;}
+#bottomNavBarDiv a{color: #ffffff; font-weight: bold;}
+#bottomNavBarDiv br{display:none;}
+#bottomNavBarDiv img{ height: 20px; }
+#nextButton2{ display:none; }
+@media only screen and (max-width: 700px){
+  #bottomNavBarDiv, #bottomNavBarDiv [jqc-cell] { height: 58px; }
+  #bottomNavBarDiv [jqc-cell] {padding-top: 12px;}
+  #bottomNavBarDiv a { font-size: 0.8em; }
+  #bottomNavBarDiv br { display: inline; }
+  #nextButton1 { display: none; }
+  #nextButton2 { display: inline; }
+}
+@media only screen and (max-width: 400px){
+  #bottomNavBarDiv [jqc-cell] {padding-top: 10px;}
+  #bottomNavBarDiv a {font-size: 0.5em;}
+  #bottomNavBarDiv img {height: 24px;}
+}
+</style>
+
+
+<div id="trailTocFixedDiv">
+    <div id="trailTocFixedCloseButton">Close TOC</div>
+    <div id="trailTocFixedInnerDiv"></div>
+</div>
+
+<style>
+#bottomNavBar2Parent{position:fixed; bottom: 0px; width: 100%;  background-color: #202020; border-top: 1px solid #444444;}
+#bottomNavBar2>div{border-left: 1px solid #404040; border-right: 1px solid #000000;  height: 48px;  padding-top:16px; text-align: center; cursor: pointer;}
+
+
+#bottomNavBar2{
+  display: grid;
+}
+#allTrailsButtonDiv2{
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+#trailTocButtonDiv2 {
+  grid-column-start: 3;
+  grid-column-end: 5;
+}
+
+#pageTocButtonDiv2{
+  grid-column-start: 5;
+  grid-column-end: 7;
+}
+
+#prevButtonDiv2 {
+  grid-column-start: 7;
+  grid-column-end: 9;
+}
+
+#nextButtonDiv2 {
+  grid-column-start: 9;
+  grid-column-end: 13;
+}
+
+</style>
+
+<div id="bottomNavBar2Parent">
+<div id="bottomNavBar2">
+
+    <div id="allTrailsButtonDiv2">
+        <span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAbUlEQVRIx+3SQQrAIAxEUenNewrvmkXUQgVJEwWdQEED4kb+QzSEPw0z389yi6d3JJKaWY5ryBKgxSVS9jgF9OItQkRXRaBxDYHHJeISt34XND5EEHETQcY/iEfcvAkqbD7yAaYB1PkD7AB4TAY0StbUr69awQAAAABJRU5ErkJggg=="></span> <br>
+        <span class="navButton" style="position:relative; top:-4px;">All Trails</span>
+    </div>
+
+    <div id="trailTocButtonDiv2">
+        <span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAPElEQVRIx2P4TwPAgAzoZgEDrQDdLaB6cI1aMHgtoFriGRkWEB3eg9YHo0E08BaM8CAiWoLaFlAL0NwCANELs4XjmhvVAAAAAElFTkSuQmCC"></span> <br>
+        <span class="navButton" style="position:relative; top:-4px;">Trail TOC</span>
+    </div>
+
+    <div id="pageTocButtonDiv2">
+        <span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAANUlEQVRIx2NggIL/VAYM6GDUglELqGcBA4Vg1ALqWkBOhA4uH4wG0cBbMBpEw9QCagG6WQAAX980BcIgiscAAAAASUVORK5CYII="></span> <br>
+        <span class="navButton" style="position:relative; top:-4px;">Page TOC</span>
+    </div>
+
+    <div id="prevButtonDiv2">
+        <span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuNvyMY98AAACCSURBVEhL3ZRRCsAgDEM9iez+dxJPUl0K9W+MtKMiC/RL80Lz0eKViNQxRpsvwnvHv8ssvGD8ORzjh7Odf4F34zxK30O1qImEV7Pw0nUJeEuFY/xwspZceKiWVLgqPUC1JQSAc0Iwh2+iZiIkdiqWdobknOslmM8JwcbxELaujSGl3GNH6mWcCMu2AAAAAElFTkSuQmCC"></span> <br>
+        <span class="navButton" style="position:relative; top:-4px;">Previous</span>
+    </div>
+
+    <div id="nextButtonDiv2">
+        <!--<span class="navButton" id="nextButton1_2" style="position:relative; top:-4px;">Next</span>-->
+        <span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAb0lEQVRIx82W2w1AIQhDmcS4/07GScDbu4AvUlMSv9QeA6RohnD3GhF9TAL7DeeK3cYuBEscgss6kBc16VlI2YTULKStIH9aMzXRgTxJlzaECpAQv+okaptSX35gFed+RBWn2jV14FBHJvVnwRT/AGJL6mWb6M7pAAAAAElFTkSuQmCC"></span> <br>
+        <span class="navButton" id="nextButton2_2" style="position:relative; top:-4px;">Next</span>
+    </div>
+
+</div>
+</div>
+
+
+<script>
+var prevArticleInCategory = "/jdbc/resultset.html";
+var nextArticleInCategory = "/jdbc/batchupdate.html";
+</script>
+
+
+<script>
+function qid(id) { return document.getElementById(id); }
+</script>
+
+<!-- Nav bar code -->
+<script>
+function toggle(el){
+    if(el.isShown == null || el.isShown == false) {
+        el.isShown = true;
+        el.style.display = "block";
+    } else {
+        el.isShown = false;
+        el.style.display = "none";
+    }
+}
+
+qid("allTrailsButtonDiv2").addEventListener("mouseup", function(e) {
+    location.href="/";
+    e.preventDefault();
+    e.stopPropagation();
+});
+qid("trailTocButtonDiv2").addEventListener("mouseup", function(e) {
+    var tocHtml = qid("trailToc").innerHTML;
+    qid("trailTocFixedInnerDiv").innerHTML = tocHtml + "<br><br><br><br><br><br><br><br><br><br>";
+    toggle(qid("trailTocFixedDiv"));
+    e.preventDefault();
+    e.stopPropagation();
+});
+qid("trailTocFixedCloseButton").addEventListener("mouseup", function(e) {
+    toggle(qid("trailTocFixedDiv"));
+    e.preventDefault();
+    e.stopPropagation();
+});
+qid("pageTocButtonDiv2").addEventListener("mouseup", function(e) {
+    location.href="#pageToc";
+    e.preventDefault();
+    e.stopPropagation();
+});
+qid("prevButtonDiv2").addEventListener("mouseup", function(e) {
+    if(prevArticleInCategory != "") {
+        location.href = prevArticleInCategory;
+    } else {
+        alert("This is the first article in this trail");
+    }
+});
+qid("nextButtonDiv2").addEventListener("mouseup", function(e) {
+  if(nextArticleInCategory != "") {
+    location.href= nextArticleInCategory;
+  } else {
+    alert("This is the last article in this trail.");
+  }
+  e.preventDefault();
+  e.stopPropagation();
+});
+</script>
+
+
+<!-- Google Analytics Script -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-4036229-3', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<!-- Google Adsense Script -->
+<script data-ad-client="ca-pub-5569543489255665" async="" src="./JDBC PreparedStatement_files/f.txt"></script>
+
+
+
+
+
+<iframe name="oauth2relay1712213760" id="oauth2relay1712213760" src="./JDBC PreparedStatement_files/postmessageRelay.html" tabindex="-1" aria-hidden="true" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe><iframe scrolling="no" frameborder="0" allowtransparency="true" src="./JDBC PreparedStatement_files/widget_iframe.7303c29a8108bca4ac5c9ef008ed8164.html" title="Twitter settings iframe" style="display: none;"></iframe></body></html>
