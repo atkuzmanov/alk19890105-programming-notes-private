@@ -7380,7 +7380,7 @@ https://www.baeldung.com/security-spring
 JDBC
 ```
 
-- [jenkov-Java-JDBC](refs/jenkov-Java-JDBC)
+- [jenkov-JDBC-Java](refs/jenkov-JDBC-Java)
 
 `references:`
 http://tutorials.jenkov.com/jdbc/index.html
@@ -7403,10 +7403,36 @@ https://www.theserverside.com/definition/Java-Database-Connectivity-JDBC
 |-------|-----|-------|
 |   x   |  x  |   x   |
 
+- [jenkov-JDBC-Statement](refs/jenkov-JDBC-Statement)
 
+`references:`
+http://tutorials.jenkov.com/jdbc/statement.html
 
+- [jenkov-JDBC-ResultSet](refs/jenkov-JDBC-ResultSet)
+
+`references:`
+http://tutorials.jenkov.com/jdbc/resultset.html
+
+- [jenkov-JDBC-PreparedStatement](refs/jenkov-JDBC-PreparedStatement)
+
+`references:`
+http://tutorials.jenkov.com/jdbc/preparedstatement.html
+
+- [jenkov-JDBC-Batch-Updates](refs/jenkov-JDBC-Batch-Updates)
+
+`references:`
+http://tutorials.jenkov.com/jdbc/batchupdate.html
 
 ----
+
+# Stored procedure from java Code
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
+
+
 ----
 ----
 ----
