@@ -7380,6 +7380,21 @@ https://www.baeldung.com/security-spring
 JDBC
 ```
 
+- [jenkov-Java-JDBC](refs/jenkov-Java-JDBC)
+
+`references:`
+http://tutorials.jenkov.com/jdbc/index.html
+
+- [What-is-JDBC-Introduction-to-Java-Database-Connectivity-JavaWorld](refs/What-is-JDBC-Introduction-to-Java-Database-Connectivity-JavaWorld)
+
+`references:`
+https://www.javaworld.com/article/3388036/what-is-jdbc-introduction-to-java-database-connectivity.html
+
+- [What-is-Java-Database-Connectivity-JDBC-Definition-from-WhatIs.com](refs/What-is-Java-Database-Connectivity-JDBC-Definition-from-WhatIs.com)
+
+`references:`
+https://www.theserverside.com/definition/Java-Database-Connectivity-JDBC
+
 ----
 
 # Statement/ Prepare statement / ResultSet
