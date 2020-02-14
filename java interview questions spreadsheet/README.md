@@ -162,6 +162,8 @@ For learning and study
 - [Stored procedure from java Code](#stored-procedure-from-java-code)
 - [Connection pooling](#connection-pooling)
 - [SQL Injection](#sql-injection)
+- [Hibernate](#hibernate)
+- [HQL](#hql)
 
 <!-- /TOC -->
 
@@ -7512,9 +7514,79 @@ https://github.com/brettwooldridge/HikariCP/
 |-------|-----|-------|
 |   x   |  x  |   x   |
 
+- [A-beginners-guide-to-SQL-injection-and-how-you-should-prevent-it-Vlad-Mihalcea](refs/A-beginners-guide-to-SQL-injection-and-how-you-should-prevent-it-Vlad-Mihalcea)
 
+`references:`
+https://vladmihalcea.com/a-beginners-guide-to-sql-injection-and-how-you-should-prevent-it/
+
+- [How-to-Protect-a-JDBC-Application-Against-SQL-Injection-Developer.com](refs/How-to-Protect-a-JDBC-Application-Against-SQL-Injection-Developer.com)
+
+`references:`
+https://www.developer.com/db/how-to-protect-a-jdbc-application-against-sql-injection.html
+
+- [JDBC-Statement-vs-PreparedStatement-SQL-Injection-Example-JournalDev](refs/JDBC-Statement-vs-PreparedStatement-SQL-Injection-Example-JournalDev)
+
+```text
+Some points to remember about JDBC PreparedStatement are:
+
+PreparedStatement helps us in preventing SQL injection attacks because it automatically escapes the special characters.
+
+PreparedStatement allows us to execute dynamic queries with parameter inputs.
+
+PreparedStatement provides different types of setter methods to set the input parameters for the query.
+
+PreparedStatement is faster than Statement. It becomes more visible when we reuse the PreparedStatement or use it’s batch processing methods for executing multiple queries.
+
+PreparedStatement helps us in writing object Oriented code with setter methods whereas with Statement we have to use String Concatenation to create the query. 
+
+If there are multiple parameters to set, writing Query using String concatenation looks very ugly and error prone.
+
+PreparedStatement returns FORWARD_ONLY ResultSet, so we can only move in forward direction.
+
+Unlike Java Arrays or List, the indexing of PreparedStatement variables starts with 1.
+
+One of the limitation of PreparedStatement is that we can’t use it for SQL queries with IN clause because PreparedStatement doesn’t allow us to bind multiple values for single placeholder (?). However there are few alternative approaches to use PreparedStatement for IN clause, read more at JDBC PreparedStatement IN clause.
+
+That’s all for the comparison of JDBC Statement vs PreparedStatement. You should always use PreparedStatement because it’s fast, object oriented, dynamic and more reliable.
+```
+
+`references:`
+https://www.journaldev.com/2489/jdbc-statement-vs-preparedstatement-sql-injection-example
+
+- [java-How-does-a-PreparedStatement-avoid-or-prevent-SQL-injection-StackOverflow](refs/java-How-does-a-PreparedStatement-avoid-or-prevent-SQL-injection-StackOverflow
+
+`referenes:`
+https://stackoverflow.com/questions/1582161/how-does-a-preparedstatement-avoid-or-prevent-sql-injection
+
+- [SQL-Injection-and-How-to-Prevent-It-Baeldung](refs/SQL-Injection-and-How-to-Prevent-It-Baeldung)
+
+`references:`
+https://www.baeldung.com/sql-injection
+
+- [How-PreparedStatement-in-Java-prevents-SQL-Injection-JavaByPatel](refs/How-PreparedStatement-in-Java-prevents-SQL-Injection-JavaByPatel)
+
+`references:`
+http://javabypatel.blogspot.com/2015/09/how-prepared-statement-in-java-prevents-sql-injection.html
 
 ----
+
+# 120. Hibernate
+
+```text
+Hibernate
+```
+
+----
+
+# 121. HQL
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
+
+
+
+
 ----
 ----
 ----
