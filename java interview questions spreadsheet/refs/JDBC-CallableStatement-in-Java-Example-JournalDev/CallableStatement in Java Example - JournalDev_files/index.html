@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)https://s0.2mdn.net/3797665/1565193214141/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta content="ie=edge" http-equiv="x-ua-compatible">
+    <title></title>
+    <style> body { margin: 0; } </style><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="ad.size" content="height=250,width=300"><script>var clickTag = "https://vimeo.com/";</script>
+  <script type="text/javascript">
+    
+  (function() {
+    var MAX_URL_PARAM_LENGTH = 34;
+    var CLICK_X_URL_KEY = 'nx';
+    var CLICK_Y_URL_KEY = 'ny';
+    var CREATIVE_DIMENSIONS_KEY = 'dim';
+    var AD_URL_PARAM = '&adurl=';
+
+    var relegateNavigation = '';
+    var urlParamMap = {};
+
+    urlParamMap[CLICK_X_URL_KEY] = null;
+    urlParamMap[CLICK_Y_URL_KEY] = null;
+    urlParamMap[CREATIVE_DIMENSIONS_KEY] = null;
+
+    var handleClickTagMessage = function(e) {
+      try {
+        var eventData = JSON.parse(e.data);
+      } catch (err) {
+        return;
+      }
+      if (eventData.isInitClickTag) {
+        if (eventData.clickTags) {
+          for (var i = 0; i < eventData.clickTags.length; i++) {
+            var clkTag = eventData.clickTags[i];
+            window[clkTag.name] = clkTag.url;
+          }
+        } else if (eventData.clickTag) {
+          window.clickTag = eventData.clickTag;
+        }
+        relegateNavigation = eventData.relegateNavigation;
+      }
+    };
+
+    var storeClickCoordinates = function(e) {
+      urlParamMap[CLICK_X_URL_KEY] = Math.round(e.clientX);
+      urlParamMap[CLICK_Y_URL_KEY] = Math.round(e.clientY);
+    };
+
+    var getCreativeDimensions = function() {
+      return window.innerWidth + 'x' + window.innerHeight;
+    }
+
+    var getExitClickParams = function(e) {
+      urlParamMap[CREATIVE_DIMENSIONS_KEY] = getCreativeDimensions();
+
+      var exitParams = '';
+      for (var key in urlParamMap) {
+        exitParams += '&' + key + '=';
+        if (urlParamMap[key] !== null) {
+          exitParams += urlParamMap[key];
+        }
+      }
+      return exitParams;
+    }
+
+    var appendExitClickParams = function(url) {
+      var adUrlIndex = url.toLowerCase().indexOf(AD_URL_PARAM);
+      var paramsToBeAdded = getExitClickParams();
+      if (adUrlIndex > -1 && paramsToBeAdded.length <= MAX_URL_PARAM_LENGTH) {
+        url = url.substr(0, adUrlIndex) + paramsToBeAdded +
+          url.substr(adUrlIndex);
+      };
+      return url;
+    };
+
+    if (open.call) {
+      window.open = function(open) {
+        return function(url, name, features) {
+          url = appendExitClickParams(url);
+          if (relegateNavigation === 'parent') {
+            var message = {'clickTag': url, 'isPostClickTag': true};
+            parent.postMessage(JSON.stringify(message), '*');
+          } else {
+            var args = [url, name];
+            if (features) {
+              args.push(features);
+            }
+            open.apply(window, args);
+          }
+        };
+      }(window.open);
+    }
+
+    if (window.addEventListener) {
+      window.addEventListener(
+          'message', handleClickTagMessage, false);
+      window.addEventListener('mousedown', storeClickCoordinates, true);
+    } else {
+      window.attachEvent('onmessage', handleClickTagMessage);
+    }
+  })();
+    
+  </script></head>
+  <body>
+    <script src="./tweenmax_1.20.0_d360d9a082ccc13b1a1a9b153f86b378_min.js" type="text/javascript"></script>
+    <script src="./blueprint.js" type="text/javascript"></script>
+    <script src="./banner.js" type="text/javascript"></script>
+  
+
+<div id="banner" style="cursor: pointer; overflow: hidden; background-color: rgb(131, 130, 199); height: 250px; width: 300px; position: absolute; transform: translate3d(0px, 0px, 0px);"><div id="stage" style="height: 250px; width: 300px; line-height: 0; top: 0px; left: 0px; position: absolute; transform: translate3d(0px, 0px, 0px);"></div><div id="bg" style="height: 250px; width: 300px; line-height: 0; top: 0px; left: 0px; position: absolute; transform: translate3d(0px, 0px, 0px);"></div><div id="txt_1" style="background-size: contain; background-repeat: no-repeat; height: 199px; width: 299px; background-image: url(&quot;https://s0.2mdn.net/3797665/1565193214141/txt_1.png&quot;); line-height: 35.84; top: 13px; left: -11px; position: absolute; transform: translate3d(-276px, 0px, 0px); opacity: 1;"></div><div id="txt_2" style="background-size: contain; background-repeat: no-repeat; height: 148px; width: 288px; background-image: url(&quot;https://s0.2mdn.net/3797665/1565193214141/txt_2.png&quot;); line-height: 37.05; top: 22px; left: -18px; position: absolute; transform: translate3d(0px, 0px, 0px); opacity: 1;"></div><div id="txt_3" style="background-size: contain; background-repeat: no-repeat; height: 57px; width: 262px; background-image: url(&quot;https://s0.2mdn.net/3797665/1565193214141/txt_3.png&quot;); line-height: 20.8; top: 126px; left: 5px; position: absolute; transform: translate3d(0px, 0px, 0px); opacity: 1;"></div><div style="position: absolute; transform: translate3d(0px, 0px, 0px); top: 113px; left: 276px;"><!--?xml version="1.0" encoding="utf-8"?--> <!-- Generator: Adobe Illustrator 23.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --> <svg version="1.1" id="linesContainer" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1379.5" height="599" viewBox="0 0 1379.5 599" style="transform: matrix(1, 0, 0, 1, -276, 0);" xml:space="preserve"> <style type="text/css"> 	.st0{fill:none;stroke:#000000;stroke-width:4;stroke-miterlimit:10;} </style> <g id="d"> 	<path id="line4" class="st0" d="M0,343c0,0,11.9,0,40.9,0s19,90,80.3,90S357,459.9,364,518.9s41,78.1,77.4,78.1 		s50.3-20.3,70.6-72.9c20.3-52.6,78.1-48.9,81.9-79.6s19.7-44.3,45.8-44.3s90.3,55.5,167.5,55.5S892,418.3,957,410.4 		s95.1,10.1,115.2-3.8c20.1-13.9,35.2-26.3,93.1-26.3c57.9,0,81.2-37.4,140.6-37.4c59.4,0,73.6,0,73.6,0" style="stroke-dashoffset: 2e-05; stroke-dasharray: none;"></path> </g> <g id="c"> 	<path id="line3" class="st0" d="M0,318.5c0,0,15.2,0,53,0s45.4,63.1,91.1,63.1s168.3-70.5,200.5-38.3s45,70.6,68.3,70.6 		s118.6-75.8,205.8-75.8s172.6,75.4,262.8,33.8c33.6-15.5,17.9-64.8,66.8-72.8c82.2-13.5,99.3,38.7,178.5,38.7 		s116.3-19.3,208.8-19.3c34.2,0,43.9,0,43.9,0" style="stroke-dashoffset: 2e-05; stroke-dasharray: none;"></path> </g> <g id="b"> 	<path id="line2" class="st0" d="M0,295.9c0,0,13.6,0,60.7,0s56.4-43.3,101-43.3S243.6,290,309.9,290s60-94.7,94.4-94.7 		s28.3,15.5,56.5,15.5s33-11.6,58.9-11.6s28.5,112.3,85.2,112.3s114.9-108.4,199.8-108.4s233.8,79.3,301.6,79.3 		c67.8,0,148.3,13.5,201.4,13.5c53.1,0,71.8,0,71.8,0" style="stroke-dashoffset: 2e-05; stroke-dasharray: none;"></path> </g> <g id="a"> 	<path id="line1" class="st0" d="M0,272.5h36.2c35.4,0,71.1-103.1,102.9-103.1s60.6,20.5,114.3,20.5S352.4,2,432.2,2 		s140.4,135,234,135s103.9-58.3,224.1-58.3S1048,213.8,1120.1,241s165.8,31.5,205.1,31.5c39.3,0,54.3,0,54.3,0" style="stroke-dashoffset: 2e-05; stroke-dasharray: none;"></path> </g> </svg> </div><div id="cta" style="line-height: 15.6; top: 196px; left: 176px; position: absolute; transform: translate3d(0px, 0px, 0px); border-radius: 4px; background-color: rgb(0, 0, 0); height: 35px; width: 103px;"><div id="cta_1" style="background-size: contain; background-repeat: no-repeat; height: 35px; width: 103px; background-image: url(&quot;https://s0.2mdn.net/3797665/1565193214141/cta_1.png&quot;); position: absolute; transform: translate3d(0px, 0px, 0px);"></div></div><div id="ctaHover" style="line-height: 15.6; top: -2px; left: -2px; position: absolute; transform: translate3d(0px, 0px, 0px); opacity: 0;"><div id="ctaHover_1" style="background-size: contain; background-repeat: no-repeat; height: 35px; width: 103px; background-image: url(&quot;https://s0.2mdn.net/3797665/1565193214141/ctaHover_1.png&quot;); position: absolute; transform: translate3d(0px, 0px, 0px);"></div></div><div id="logo_vimeo" style="background-size: contain; background-repeat: no-repeat; height: 23px; width: 80px; background-image: url(&quot;https://s0.2mdn.net/3797665/1565193214141/logo_vimeo.png&quot;); line-height: 0; top: 200px; left: 20px; position: absolute; transform: translate3d(0px, 0px, 0px);"></div><div id="container_endframe" style="height: 167px; width: 260px; line-height: 0; top: 28px; left: 20px; position: absolute; transform: translate3d(0px, 0px, 0px);"></div><div id="top" style="height: 10px; width: 300px; line-height: 0; top: -10px; left: 0px; position: absolute; transform: translate3d(0px, 0px, 0px);"></div><div id="bottom" style="height: 10px; width: 300px; line-height: 0; top: 250px; left: 0px; position: absolute; transform: translate3d(0px, 0px, 0px);"></div><div id="left" style="height: 250px; width: 10px; line-height: 0; top: 0px; left: -10px; position: absolute; transform: translate3d(0px, 0px, 0px);"></div><div id="right" style="height: 250px; width: 10px; line-height: 0; top: 0px; left: 300px; position: absolute; transform: translate3d(0px, 0px, 0px);"></div><div style="box-sizing: border-box; border: 1px solid rgb(0, 0, 0); height: 100%; width: 100%; position: absolute; transform: translate3d(0px, 0px, 0px);"></div></div></body></html>
