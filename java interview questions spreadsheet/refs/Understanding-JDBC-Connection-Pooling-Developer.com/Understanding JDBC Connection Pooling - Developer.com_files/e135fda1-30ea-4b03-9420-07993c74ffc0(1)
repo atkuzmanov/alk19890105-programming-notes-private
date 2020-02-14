@@ -1,0 +1,1 @@
+Krux.ns.quinstreet.kxjsonp_consent_get_0({"status":400,"body":{"settings":{"dc":0,"al":0,"tg":0,"cd":0,"sh":0,"re":0},"pr":"gdpr","code":"bad_request","source":"unk","errors":{"idv":"user opted out via (optout or dnt)","query":"no queryable id; user opted out"}}});

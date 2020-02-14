@@ -1,0 +1,414 @@
+#loudvoice .providers {
+	float: left;
+	position: relative;
+}
+
+#loudvoice .providers .providers_group {
+	float: left;
+	width: 100%;
+}
+
+#loudvoice .providers .providers_group.hidden {
+	display: none;
+}
+
+#loudvoice .providers .providers_group .providers_block {
+	overflow: hidden;
+	clear: both;
+}
+
+#loudvoice .providers.providers_paginated .providers_group .providers_block {
+	padding: 0 20px;
+}
+
+#loudvoice .providers .providers_group .providers_block .providers_row {
+	clear: both;
+}
+
+#loudvoice .providers .providers_group .scroll {
+	height: 100%;
+	min-height: 100%;
+	cursor: pointer;
+	position: absolute;
+	width: 20px;
+	bottom: 0;
+	top: 0;
+}
+
+#loudvoice .providers .providers_group .scroll.scroll_left {
+	left: 0;
+}
+
+#loudvoice .providers .providers_group .scroll.scroll_right {
+	right: 0;
+}
+
+#loudvoice .providers .providers_group .scroll div {
+	position: relative;
+	background: url("/img/api/themes/assets/arrows_lr.png") no-repeat scroll 0 50% transparent;
+	height: 100%;
+	margin: 0 auto !important;
+}
+
+.plugin #ie #providers .providers_group .scroll div {
+	margin-top: 0 !important;
+}
+
+#loudvoice .providers .providers_group .scroll.scroll_right div {
+	background-position: -50px 50%;
+}
+
+#loudvoice .providers .providers_group .scroll.scroll_right:hover div {
+	background-position: -10px 50%;
+}
+
+#loudvoice .providers .providers_group .scroll.scroll_left div {
+	background-position: -130px 50%;
+}
+
+#loudvoice .providers .providers_group .scroll.scroll_left:hover div {
+	background-position: -90px 50%;
+}
+
+#loudvoice .providers .provider {
+	float: left;
+	width: 32px;
+	height: 32px;
+	margin: 3px;
+	opacity: 0.9;
+}
+
+#loudvoice .providers .provider .button {
+	cursor: pointer;
+	display: block;
+	outline: 0 none;
+	background-image: url("/img/api/themes/iconsets/flat_w32_h32_w_b_v1.png");
+	background-repeat: no-repeat;
+	height: inherit;
+	border-radius: 4px;
+}
+
+#loudvoice .providers .provider .button .tick {
+	display: inline-block;
+	position: absolute;
+	height: 16px;
+	width: 16px;
+	z-index: 9999;
+}
+
+#loudvoice .providers .provider .name {
+	color: #555;
+	text-align: center;
+	font-size: 11px;
+	line-height: 14px;
+	margin: 1px 0 2px;
+}
+
+#loudvoice .providers .provider_linked .button .tick {
+	background: url("/img/api/themes/assets/tick.png") no-repeat 0 0 transparent;
+}
+
+#loudvoice .providers .provider_linked .name {
+	font-weight: bold;
+}
+
+#loudvoice .providers .provider .name {
+	display: none;
+	visibility: hidden;
+}
+
+#loudvoice .providers .provider:hover {
+	opacity: 1;
+}
+
+#loudvoice .providers .providers_group .scroll div {
+	margin: 0 auto !important;
+}
+
+#loudvoice .providers .provider .name {
+	border-left: 1px solid rgba(255, 255, 255, 0.22);
+	color: #fff;
+	cursor: pointer;
+	font-size: 12px;
+	line-height: 29px;
+	margin: -31px 0 0 35px;
+	padding-left: 10px;
+	position: absolute;
+	z-index: 9999;
+	display: block !important;
+}
+
+#loudvoice .providers .provider .button .tick {
+	right: -4px;
+}
+
+/* Buttons */
+#loudvoice .providers .provider #button_amazon {
+	background-position: 50% -47px;
+	background-color: #FF9900;
+}
+
+#loudvoice .providers .provider #button_aol {
+	background-position: 50% -141px;
+	background-color: #000000;
+}
+
+#loudvoice .providers .provider #button_blogger {
+	background-position: 50% -235px;
+	background-color: #F57D00;
+}
+
+#loudvoice .providers .provider #button_deviantart {
+	background-position: 50% -329px;
+	background-color: #4B5;
+}
+
+#loudvoice .providers .provider #button_digg {
+	background-position: 50% -423px;
+	background-color: #14589E;
+}
+
+#loudvoice .providers .provider #button_disqus {
+	background-position: 50% -517px;
+	background-color: #36D794;
+}
+
+#loudvoice .providers .provider #button_draugiem {
+	background-position: 50% -611px;
+	background-color: #FF6600;
+}
+
+#loudvoice .providers .provider #button_dribbble {
+	background-position: 50% -705px;
+	background-color: #EA4C89;
+}
+
+#loudvoice .providers .provider #button_facebook {
+	background-position: 50% -1175px;
+	background-color: #3B5998;
+}
+
+#loudvoice .providers .provider #button_flickr {
+	background-position: 50% -1269px;
+	background-color: #0063DB;
+}
+
+#loudvoice .providers .provider #button_foursquare {
+	background-position: 50% -1363px;
+	background-color: #2398C9;
+}
+
+#loudvoice .providers .provider #button_github {
+	background-position: 50% -1457px;
+	background-color: #4183C4;
+}
+
+#loudvoice .providers .provider #button_google {
+	background-position: 50% -6631px;
+    background-color: #e6e6e6;
+}
+
+#loudvoice .providers .provider #button_googleplus {
+	background-position: 50% -1645px;
+	background-color: #D14836;
+}
+
+#loudvoice .providers .provider #button_instagram {
+	background-position: 50% -1739px;
+	background-color: #3F729B;
+}
+
+#loudvoice .providers .provider #button_linkedin {
+	background-position: 50% -1834px;
+	background-color: #007FB1;
+}
+
+#loudvoice .providers .provider #button_livejournal {
+	background-position: 50% -1927px;
+	background-color: #195397;
+}
+
+#loudvoice .providers .provider #button_mailru {
+	background-position: 50% -2021px;
+	background-color: #134785;
+}
+
+#loudvoice .providers .provider #button_myspace {
+	background-position: 50% -1739px;
+	background-color: #008DDE;
+}
+
+#loudvoice .providers .provider #button_netlog {
+	background-position: 50% -1833px;
+	background-color: #000000;
+}
+
+#loudvoice .providers .provider #button_odnoklassniki {
+	background-position: 50% -2396px;
+	background-color: #E77924;
+}
+
+#loudvoice .providers .provider #button_openid {
+	background-position: 50% -2491px;
+	background-color: #F7931E;
+}
+
+#loudvoice .providers .provider #button_paypal {
+	background-position: 50% -2584px;
+	background-color: #1F356F;
+}
+
+#loudvoice .providers .provider #button_pinterest {
+	background-position: 50% -2209px;
+	background-color: #CB2027;
+}
+
+#loudvoice .providers .provider #button_reddit {
+	background-position: 50% -2772px;
+	background-color: #FF4500;
+}
+
+#loudvoice .providers .provider #button_skyrock {
+	background-position: 50% -2866px;
+	background-color: #009AFF;
+}
+
+#loudvoice .providers .provider #button_spotify {
+	background-position: 50% -2491px;
+	background-color: #80B719;
+}
+
+#loudvoice .providers .provider #button_stackexchange {
+	background-position: 50% -3053px;
+	background-color: #1F5196;
+}
+
+#loudvoice .providers .provider #button_steam {
+	background-position: 50% -3147px;
+	background-color: #000000;
+}
+
+#loudvoice .providers .provider #button_tencentqq {
+	background-position: 50% -2773px;
+	background-color: #000;
+}
+
+#loudvoice .providers .provider #button_tumblr {
+	background-position: 50% -2867px;
+	background-color: #2C4762;
+}
+
+#loudvoice .providers .provider #button_twitch {
+	background-position: 50% -3430px;
+	background-color: #6441A5;
+}
+
+#loudvoice .providers .provider #button_twitter {
+	background-position: 50% -3524px;
+	background-color: #00ACED;
+}
+
+#loudvoice .providers .provider #button_typepad {
+	background-position: 50% -3149px;
+	background-color: #000;
+}
+
+#loudvoice .providers .provider #button_verisign {
+	background-position: 50% -3243px;
+	background-color: #FFC10C;
+}
+
+#loudvoice .providers .provider #button_viadeo {
+	background-position: 50% -3337px;
+	background-color: #F4982B;
+}
+
+#loudvoice .providers .provider #button_vimeo {
+	background-position: 50% -3900px;
+	background-color: #44BBFF;
+}
+
+#loudvoice .providers .provider #button_vine {
+	background-position: 50% -3525px;
+	background-color: #00A47A;
+}
+
+#loudvoice .providers .provider #button_vk {
+	background-position: 50% -3619px;
+	background-color: #45668E;
+}
+
+#loudvoice .providers .provider #button_vkontakte {
+	background-position: 50% -4088px;
+	background-color: #45668E;
+}
+
+#loudvoice .providers .provider #button_windowslive {
+	background-position: 50% -2115px;
+	background-color: #2f2f2f;
+}
+
+#loudvoice .providers .provider #button_wordpress {
+	background-position: 50% -4370px;
+	background-color: #21759B
+}
+
+#loudvoice .providers .provider #button_yahoo {
+	background-position: 50% -4558px;
+	background-color: #731A8B;
+}
+
+#loudvoice .providers .provider #button_youtube {
+	background-position: 50% -4652px;
+	background-color: #CD332D;
+}
+
+#loudvoice .providers .provider #button_battlenet {
+	background-position: 50% -4745px;
+	background-color: #000000;
+}
+
+#loudvoice .providers .provider #button_pinterest {
+	background-position: 50% -2209px;
+	background-color: #CB2027;
+}
+
+#loudvoice .providers .provider #button_pixelpin {
+	background-position: 50% -4836px;
+	background-color: #000000;
+}
+
+#loudvoice .providers .provider #button_storage {
+	background-position: 50% -4927px;
+	background-color: #717171;
+}
+
+#loudvoice .providers .provider #button_xing {
+    background-position: 50% -4464px;
+    background-color: #007575;
+}
+
+#loudvoice .providers .provider #button_meetup {
+	background-position: 50% -5939px;
+	background-color: #ED1C40;
+}
+
+#loudvoice .providers .provider #button_line {
+	background-position: 50% -6031px;
+	background-color: #5cbb2b;
+}
+
+#loudvoice .providers .provider #button_soundcloud {
+	background-position: 50% -6124px;
+	background-color: #FF7200;
+}
+
+#loudvoice .providers .provider #button_discord {
+	background-position: 50% -6216px;
+	background-color: #7289DA;
+}
+
+#loudvoice .providers .provider #button_weibo {
+	background-position: 50% -5572px;
+	background-color: #CB2123;
+}
