@@ -125,6 +125,7 @@ For learning and study
     - [Behavioural Design Patterns](#behavioural-design-patterns)
         - [Strategy Design Pattern](#strategy-design-pattern)
 - [SQL (Structured Query Language)](#sql-structured-query-language)
+- [ER Diagram](#er-diagram)
 - [SQL select](#sql-select)
 - [Index (good for select bad for insert?)](#index-good-for-select-bad-for-insert)
     - [Database index](#database-index)
@@ -6812,7 +6813,28 @@ https://en.wikipedia.org/wiki/SQL
 `references:`
 https://en.wikipedia.org/wiki/MySQL
 
-# 101. SQL select
+----
+
+# 101. ER Diagram
+
+- [Entity-relationship-model-Wikipedia](refs/Entity-relationship-model-Wikipedia)
+
+`references:`
+https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model
+
+- [Entity-Relationship-Diagram-Symbols-and-Notation-Lucidchart](refs/Entity-Relationship-Diagram-Symbols-and-Notation-Lucidchart)
+
+`references:`
+https://www.lucidchart.com/pages/ER-diagram-symbols-and-meaning
+
+- [ER-Diagram-ERD-Definition-&-Overview-Lucidchart](refs/ER-Diagram-ERD-Definition-&-Overview-Lucidchart)
+
+`references:`
+https://www.lucidchart.com/pages/er-diagrams
+
+----
+
+# 102. SQL select
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -6850,9 +6872,9 @@ https://dev.mysql.com/doc/refman/8.0/en/select.html
 
 ----
 
-# 102. Index (good for select bad for insert?)
+# 103. Index (good for select bad for insert?)
 
-## 102.1. Database index
+## 103.1. Database index
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -6870,7 +6892,7 @@ https://www.geeksforgeeks.org/indexing-in-databases-set-1/
 
 ----
 
-# 103. Property of a transaction A.C.I.D
+# 104. Property of a transaction A.C.I.D
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -6895,9 +6917,9 @@ https://blog.yugabyte.com/a-primer-on-acid-transactions/
 
 ----
 
-# 104. View
+# 105. View
 
-## 104.1. SQL view
+## 105.1. SQL view
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -6928,9 +6950,9 @@ https://www.tutorialspoint.com/sql/sql-using-views.htm
 
 ----
 
-# 105. Trigger
+# 106. Trigger
 
-## 105.1. SQL trigger
+## 106.1. SQL trigger
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -6982,9 +7004,9 @@ https://www.sqlservertutorial.net/sql-server-triggers/
 
 ----
 
-# 106. Stored Procedure
+# 107. Stored Procedure
 
-## 106.1. SQL Stored Procedure
+## 107.1. SQL Stored Procedure
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -7051,9 +7073,9 @@ https://www.sqlshack.com/partial-stored-procedures-in-sql-server/
 
 ----
 
-# 107. Functions
+# 108. Functions
 
-## 107.1. SQL functions
+## 108.1. SQL functions
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -7095,11 +7117,11 @@ https://www.w3schools.com/sql/sql_ref_sqlserver.asp
 Spring
 ```
 
-# 108. Spring
+# 109. Spring
 
 ----
 
-# 109. IoC and Dependency injection
+# 110. IoC and Dependency injection
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -7163,31 +7185,31 @@ https://www.journaldev.com/2461/spring-ioc-bean-example-tutorial
 
 ----
 
-# 110. Spring Design Patterns
+# 111. Spring Design Patterns
 
-## 110.1. Design Patterns used in Spring Framework Part 2 - Creational Patterns - Factory - Builder - Singleton - Prototype
+## 111.1. Design Patterns used in Spring Framework Part 2 - Creational Patterns - Factory - Builder - Singleton - Prototype
 
 - [Design-Patterns-Spring-Framework-Part-2-Creational-Patterns-Factory-Builder-Singleton-Prototype-Devdiaries](refs/Design-Patterns-Spring-Framework-Part-2-Creational-Patterns-Factory-Builder-Singleton-Prototype-Devdiaries)
 
     `references:`
     https://www.devdiaries.net/blog/Spring-Design-Patterns-Creational-Patterns/
 
-## 110.2. Design Patterns Spring Framework Part 1 - Inversion of Control - Dependency Injection
+## 111.2. Design Patterns Spring Framework Part 1 - Inversion of Control - Dependency Injection
 
 - [Design-Patterns-Spring-Framework-Part-1-Inversion-of-Control-Dependency-Injection-Devdiaries](refs/Design-Patterns-Spring-Framework-Part-1-Inversion-of-Control-Dependency-Injection-Devdiaries)
 
     `references:`
     https://www.devdiaries.net/blog/Spring-Design-Patterns-Dependency-Injection/
 
-## 110.3. Spring IoC (Inversion Of Control) Design Patterns
+## 111.3. Spring IoC (Inversion Of Control) Design Patterns
 
 - [Design Patterns Spring Framework Part 1 - Inversion of Control - Dependency Injection](#DesignPatternsSpringFrameworkPart1-InversionofControl-DependencyInjection)
 
-### 110.3.1. Dependency Injection (DI) Pattern
+### 111.3.1. Dependency Injection (DI) Pattern
 
 - [Design Patterns Spring Framework Part 1 - Inversion of Control - Dependency Injection](#DesignPatternsSpringFrameworkPart1-InversionofControl-DependencyInjection)
 
-### 110.3.2. Factory Pattern
+### 111.3.2. Factory Pattern
 
 - [Design Patterns used in Spring Framework Part 2 - Creational Patterns - Factory - Builder - Singleton - Prototype](#DesignPatternsusedinSpringFrameworkPart2-CreationalPatterns-Factory-Builder-Singleton-Prototype)
 
@@ -7216,27 +7238,27 @@ https://www.journaldev.com/2461/spring-ioc-bean-example-tutorial
     `references:`
     https://springframework.guru/gang-of-four-design-patterns/factory-method-design-pattern/
 
-### 110.3.3. Builder Pattern
+### 111.3.3. Builder Pattern
 
 - [Design Patterns used in Spring Framework Part 2 - Creational Patterns - Factory - Builder - Singleton - Prototype](#DesignPatternsusedinSpringFrameworkPart2-CreationalPatterns-Factory-Builder-Singleton-Prototype)
 
 
-### 110.3.4. Singleton Pattern
+### 111.3.4. Singleton Pattern
 
 - [Design Patterns used in Spring Framework Part 2 - Creational Patterns - Factory - Builder - Singleton - Prototype](#DesignPatternsusedinSpringFrameworkPart2-CreationalPatterns-Factory-Builder-Singleton-Prototype)
 
-### 110.3.5. Prototype Pattern
+### 111.3.5. Prototype Pattern
 
 - [Design Patterns used in Spring Framework Part 2 - Creational Patterns - Factory - Builder - Singleton - Prototype](#DesignPatternsusedinSpringFrameworkPart2-CreationalPatterns-Factory-Builder-Singleton-Prototype)
 
-### 110.3.6. Service Locator Pattern
+### 111.3.6. Service Locator Pattern
 
 - [Understanding-Inversion-of-Control-IoC-Principle-Amit-Kumar-Medium](refs/Understanding-Inversion-of-Control-IoC-Principle-Amit-Kumar-Medium)
 
 `references:`
 https://medium.com/@amitkma/understanding-inversion-of-control-ioc-principle-163b1dc97454
 
-### 110.3.7. Strategy Pattern
+### 111.3.7. Strategy Pattern
 
 - [Design-Patterns-Strategy-Pattern-Tutorialspoint](refs/Design-Patterns-Strategy-Pattern-Tutorialspoint)
 
@@ -7262,21 +7284,21 @@ https://medium.com/@amitkma/understanding-inversion-of-control-ioc-principle-163
     `references:`
     https://softwareengineering.stackexchange.com/questions/393065/can-we-completely-replace-inheritance-using-strategy-pattern-and-dependency-inje
 
-### 110.3.8. Observer Pattern
+### 111.3.8. Observer Pattern
 
 - [Three-Design-Patterns-That-Use-Inversion-of-Control-SitePoint](refs/Three-Design-Patterns-That-Use-Inversion-of-Control-SitePoint)
 
 `references:`
 https://www.sitepoint.com/three-design-patterns-that-use-inversion-of-control/
 
-### 110.3.9. Template Method Pattern
+### 111.3.9. Template Method Pattern
 
 - [Three-Design-Patterns-That-Use-Inversion-of-Control-SitePoint](refs/Three-Design-Patterns-That-Use-Inversion-of-Control-SitePoint)
 
 `references:`
 https://www.sitepoint.com/three-design-patterns-that-use-inversion-of-control/
 
-### 110.3.10. Mixin Injection Pattern
+### 111.3.10. Mixin Injection Pattern
 
 - [Mixin-Injection-Inversion-of-Control-Patterns-Toptal](refs/Mixin-Injection-Inversion-of-Control-Patterns-Toptal)
 
@@ -7285,7 +7307,7 @@ https://www.toptal.com/full-stack/exploring-dependency-injection-patterns
 
 ----
 
-# 111. @Autowired and @Qualifier
+# 112. @Autowired and @Qualifier
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -7308,7 +7330,7 @@ https://www.baeldung.com/spring-annotations-resource-inject-autowire
 
 ----
 
-# 112. xml based configuration Vs annotation based config
+# 113. xml based configuration Vs annotation based config
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -7345,7 +7367,7 @@ https://stackoverflow.com/questions/8428439/spring-annotation-based-di-vs-xml-co
 
 ----
 
-# 113. bean scopes
+# 114. bean scopes
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -7363,7 +7385,7 @@ https://stackoverflow.com/questions/17599216/spring-bean-scopes
 
 ----
 
-# 114. Spring security
+# 115. Spring security
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -7408,7 +7430,7 @@ https://www.baeldung.com/security-spring
 
 ----
 
-# 115. JDBC
+# 116. JDBC
 
 ```text
 JDBC
@@ -7431,7 +7453,7 @@ https://www.theserverside.com/definition/Java-Database-Connectivity-JDBC
 
 ----
 
-# 116. Statement/ Prepare statement / ResultSet
+# 117. Statement/ Prepare statement / ResultSet
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -7459,7 +7481,7 @@ http://tutorials.jenkov.com/jdbc/batchupdate.html
 
 ----
 
-# 117. Stored procedure from java Code
+# 118. Stored procedure from java Code
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -7477,7 +7499,7 @@ https://www.journaldev.com/2502/callablestatement-in-java-example
 
 ----
 
-# 118. Connection pooling
+# 119. Connection pooling
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -7510,7 +7532,7 @@ https://github.com/brettwooldridge/HikariCP/
 
 ----
 
-# 119. SQL Injection
+# 120. SQL Injection
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -7572,7 +7594,7 @@ http://javabypatel.blogspot.com/2015/09/how-prepared-statement-in-java-prevents-
 
 ----
 
-# 120. J2EE JavaEE JakartaEE
+# 121. J2EE JavaEE JakartaEE
 
 - [JavaEE-J2EE-JakartaEE-Baeldung](refs/JavaEE-J2EE-JakartaEE-Baeldung)
 
@@ -7581,14 +7603,14 @@ https://www.baeldung.com/java-enterprise-evolution
 
 ----
 
-# 121. Hibernate
+# 122. Hibernate
 
 ```text
 Hibernate
 ```
 ----
 
-# 122. JPA
+# 123. JPA
 
 - [What-is-JPA-Introduction-to-the-Java-Persistence-API-JavaWorld](refs/What-is-JPA-Introduction-to-the-Java-Persistence-API-JavaWorld)
 
@@ -7607,7 +7629,7 @@ https://www.developer.com/java/data/what-is-jpa-technology.html
 
 ----
 
-# 123. HQL
+# 124. HQL
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
