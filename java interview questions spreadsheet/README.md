@@ -166,6 +166,7 @@ For learning and study
 - [J2EE JavaEE JakartaEE](#j2ee-javaee-jakartaee)
 - [Hibernate](#hibernate)
 - [JPA](#jpa)
+- [ORM](#orm)
 - [HQL](#hql)
 
 <!-- /TOC -->
@@ -7629,7 +7630,21 @@ https://www.developer.com/java/data/what-is-jpa-technology.html
 
 ----
 
-# 124. HQL
+# 124. ORM
+
+- [Hibernate-ORM-Overview-Tutorialspoint](refs/Hibernate-ORM-Overview-Tutorialspoint)
+
+`refrences:`
+https://www.tutorialspoint.com/hibernate/orm_overview.htm
+
+- [database-What-is-an-ORM-how-does-it-work-StackOverflow](refs/database-What-is-an-ORM-how-does-it-work-StackOverflow)
+
+`refernces:`
+https://stackoverflow.com/questions/1279613/what-is-an-orm-how-does-it-work-and-how-should-i-use-one
+
+----
+
+# 125. HQL
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
