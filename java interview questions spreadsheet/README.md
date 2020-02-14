@@ -169,6 +169,8 @@ For learning and study
 - [JPA](#jpa)
 - [ORM](#orm)
 - [HQL](#hql)
+- [Random](#random)
+- [Convention over Configuration](#convention-over-configuration)
 
 <!-- /TOC -->
 
@@ -7734,6 +7736,37 @@ https://stackoverflow.com/questions/1279613/what-is-an-orm-how-does-it-work-and-
 ----
 ----
 ----
+
+# Random
+
+```text
+Random
+```
+
+----
+
+# Convention over Configuration
+
+- [What-is-Convention-Over-Configuration-Simplicable](refs/What-is-Convention-Over-Configuration-Simplicable)
+
+`references:`
+https://simplicable.com/new/convention-over-configuration
+
+- [Convention-over-configuration-Wikipedia](refs/Convention-over-configuration-Wikipedia)
+
+`references:`
+https://en.wikipedia.org/wiki/Convention_over_configuration
+
+- [is-convention-over-configuration-violating-basic-programming-principles-SoftwareEngineeringStackExchange](refs/is-convention-over-configuration-violating-basic-programming-principles-SoftwareEngineeringStackExchange)
+
+`references:`
+https://softwareengineering.stackexchange.com/questions/165649/is-convention-over-configuration-not-violating-basic-programming-principles
+
+- [Convention-Over-Configuration-markheath](refs/Convention-Over-Configuration-markheath)
+
+`references:`
+https://markheath.net/post/convention-over-configuration
+
 ----
 ----
 
