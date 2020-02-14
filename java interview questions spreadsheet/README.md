@@ -161,6 +161,7 @@ For learning and study
 - [Statement/ Prepare statement / ResultSet](#statement-prepare-statement--resultset)
 - [Stored procedure from java Code](#stored-procedure-from-java-code)
 - [Connection pooling](#connection-pooling)
+- [SQL Injection](#sql-injection)
 
 <!-- /TOC -->
 
@@ -7478,10 +7479,41 @@ https://www.journaldev.com/2502/callablestatement-in-java-example
 |-------|-----|-------|
 |       |  x  |   x   |
 
+- [A-Simple-Guide-to-Connection-Pooling-in-Java-Baeldung](refs/A-Simple-Guide-to-Connection-Pooling-in-Java-Baeldung)
 
+`references:`
+https://www.baeldung.com/java-connection-pooling
 
+- [Understanding-JDBC-Connection-Pooling-Developer.com](refs/Understanding-JDBC-Connection-Pooling-Developer.com)
+
+`references:`
+https://www.developer.com/java/data/understanding-jdbc-connection-pooling.html
+
+- [Database-Connection-Pooling-with-Java-Heroku-Dev-Center](refs/Database-Connection-Pooling-with-Java-Heroku-Dev-Center)
+
+`references:`
+https://devcenter.heroku.com/articles/database-connection-pooling-with-java
+
+- [java-How-to-establish-a-connection-pool-in-JDBC-StackOverflow](refs/java-How-to-establish-a-connection-pool-in-JDBC-StackOverflow)
+
+`references:`
+https://stackoverflow.com/questions/2835090/how-to-establish-a-connection-pool-in-jdbc
+
+- HikariCP
+
+`references:`
+https://github.com/brettwooldridge/HikariCP/
 
 ----
+
+# 119. SQL Injection
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
+
+
+
 ----
 ----
 ----
