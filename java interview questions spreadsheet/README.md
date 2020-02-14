@@ -7695,6 +7695,11 @@ https://www.journaldev.com/2954/hibernate-query-language-hql-example-tutorial
 `references:`
 https://www.codejava.net/frameworks/hibernate/hibernate-query-language-hql-example
 
+- [Hibernate-HQL-Hibernate-Query-Language-Examples-HowToDoInJava](refs/Hibernate-HQL-Hibernate-Query-Language-Examples-HowToDoInJava)
+
+`references:`
+https://howtodoinjava.com/hibernate/complete-hibernate-query-language-hql-tutorial/
+
 ----
 
 # POJO mapped to SQL tables
