@@ -169,8 +169,10 @@ For learning and study
 - [JPA](#jpa)
 - [ORM](#orm)
 - [HQL](#hql)
+- [POJO mapped to SQL tables](#pojo-mapped-to-sql-tables)
 - [Random](#random)
 - [Convention over Configuration](#convention-over-configuration)
+- [Cartesian product](#cartesian-product)
 
 <!-- /TOC -->
 
@@ -7678,10 +7680,31 @@ https://stackoverflow.com/questions/1279613/what-is-an-orm-how-does-it-work-and-
 |-------|-----|-------|
 |   x   |  x  |   x   |
 
+- [HQL-Introduction-GeeksforGeeks](refs/HQL-Introduction-GeeksforGeeks)
 
+`references:`
+https://www.geeksforgeeks.org/hql-introduction/
 
+- [HQL-Hibernate-Query-Language-Example-Tutorial-JournalDev](refs/HQL-Hibernate-Query-Language-Example-Tutorial-JournalDev)
+
+`references:`
+https://www.journaldev.com/2954/hibernate-query-language-hql-example-tutorial
+
+- [Hibernate-Query-Language-HQL-Example](refs/Hibernate-Query-Language-HQL-Example)
+
+`references:`
+https://www.codejava.net/frameworks/hibernate/hibernate-query-language-hql-example
 
 ----
+
+# POJO mapped to SQL tables
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
+
+
+
 ----
 ----
 ----
@@ -7766,6 +7789,20 @@ https://softwareengineering.stackexchange.com/questions/165649/is-convention-ove
 
 `references:`
 https://markheath.net/post/convention-over-configuration
+
+----
+
+# Cartesian product
+
+- [Cartesian-product-Wikipedia](refs/Cartesian-product-Wikipedia)
+
+`references:`
+https://en.wikipedia.org/wiki/Cartesian_product
+
+- [Cartesian-Product-Mathstopia](refs/Cartesian-Product-Mathstopia)
+
+`references:`
+https://www.mathstopia.net/sets/cartesian-product
 
 ----
 ----
