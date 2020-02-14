@@ -162,7 +162,9 @@ For learning and study
 - [Stored procedure from java Code](#stored-procedure-from-java-code)
 - [Connection pooling](#connection-pooling)
 - [SQL Injection](#sql-injection)
+- [J2EE JavaEE JakartaEE](#j2ee-javaee-jakartaee)
 - [Hibernate](#hibernate)
+- [JPA](#jpa)
 - [HQL](#hql)
 
 <!-- /TOC -->
@@ -7570,15 +7572,42 @@ http://javabypatel.blogspot.com/2015/09/how-prepared-statement-in-java-prevents-
 
 ----
 
-# 120. Hibernate
+# 120. J2EE JavaEE JakartaEE
+
+- [JavaEE-J2EE-JakartaEE-Baeldung](refs/JavaEE-J2EE-JakartaEE-Baeldung)
+
+`references:`
+https://www.baeldung.com/java-enterprise-evolution
+
+----
+
+# 121. Hibernate
 
 ```text
 Hibernate
 ```
+----
+
+# 122. JPA
+
+- [What-is-JPA-Introduction-to-the-Java-Persistence-API-JavaWorld](refs/What-is-JPA-Introduction-to-the-Java-Persistence-API-JavaWorld)
+
+`references:`
+https://www.javaworld.com/article/3379043/what-is-jpa-introduction-to-the-java-persistence-api.html
+
+- [JPA-Introduction-Tutorialspoint](refs/JPA-Introduction-Tutorialspoint)
+
+`references:`
+https://www.tutorialspoint.com/jpa/jpa_introduction.htm
+
+- [What-Is-JPA-Technology-Developer.com](refs/What-Is-JPA-Technology-Developer.com)
+
+`references:`
+https://www.developer.com/java/data/what-is-jpa-technology.html
 
 ----
 
-# 121. HQL
+# 123. HQL
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
