@@ -7609,6 +7609,12 @@ https://www.baeldung.com/java-enterprise-evolution
 ```text
 Hibernate
 ```
+
+- [Hibernate-Tutorial-HowToDoInJava](refs/Hibernate-Tutorial-HowToDoInJava)
+
+`references:`
+https://howtodoinjava.com/hibernate-tutorials/
+
 ----
 
 # 123. JPA
