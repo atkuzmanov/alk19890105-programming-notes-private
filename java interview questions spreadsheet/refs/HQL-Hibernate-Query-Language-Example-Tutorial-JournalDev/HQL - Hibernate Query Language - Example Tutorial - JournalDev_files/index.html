@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<!-- saved from url=(0061)https://s0.2mdn.net/sadbundle/15879727201843675136/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<title>Postbank: Consumer Loan</title>
+		<meta name="ad.size" content="width=728,height=90">
+		<script>var clickTag = 'https://www.google.com/';</script>
+		<script src="./tweenmax_1.20.0_d360d9a082ccc13b1a1a9b153f86b378_min.js"></script>
+		<script src="./easepack_1.20.0_f9d13d59407792e37168747225359927_min.js"></script>
+		<script src="./cssplugin_1.20.0_35574bbb2cf06c392e9036c87b5a8474_min.js"></script>
+
+		<style type="text/css">
+			html, body, div {
+				margin: 0;
+				padding: 0;
+			}
+			#main-panel {
+				position: relative;
+				overflow: hidden;
+				display: none;
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+			}
+			.layer {
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 1;
+			}
+			#border {
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 1;
+				width: 100%;
+				height: 100%;
+				border: 1px solid #eaeaea;
+				box-sizing: border-box;
+				pointer-events: none;
+			}
+			img {
+				display: block;
+				max-width: 100%;
+				height: auto;
+			}
+			#creativelink {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 1;
+				display: block;
+				border: 0;
+				text-decoration: none;
+			}
+			/* Banner */
+			#main-panel {
+				width: 728px;
+				height: 90px;
+			}
+			.layer {
+				width: 100%;
+				height: 100%;
+			}
+			#main-panel {
+				background: #fff;
+			}
+			#cover2 {
+				background: #b0271d;
+			}
+			
+			#cover1 {
+				background: #1e598d;
+			}
+			
+			#cover3 {
+				background: #1e598d;
+			}
+			#curtain {
+				background: #1e598d;
+			}
+			#band {
+				width: 1128px;
+			}
+		</style>
+	<script type="text/javascript">
+    
+  (function() {
+    var MAX_URL_PARAM_LENGTH = 34;
+    var CLICK_X_URL_KEY = 'nx';
+    var CLICK_Y_URL_KEY = 'ny';
+    var CREATIVE_DIMENSIONS_KEY = 'dim';
+    var AD_URL_PARAM = '&adurl=';
+
+    var relegateNavigation = '';
+    var urlParamMap = {};
+
+    urlParamMap[CLICK_X_URL_KEY] = null;
+    urlParamMap[CLICK_Y_URL_KEY] = null;
+    urlParamMap[CREATIVE_DIMENSIONS_KEY] = null;
+
+    var handleClickTagMessage = function(e) {
+      try {
+        var eventData = JSON.parse(e.data);
+      } catch (err) {
+        return;
+      }
+      if (eventData.isInitClickTag) {
+        if (eventData.clickTags) {
+          for (var i = 0; i < eventData.clickTags.length; i++) {
+            var clkTag = eventData.clickTags[i];
+            window[clkTag.name] = clkTag.url;
+          }
+        } else if (eventData.clickTag) {
+          window.clickTag = eventData.clickTag;
+        }
+        relegateNavigation = eventData.relegateNavigation;
+      }
+    };
+
+    var storeClickCoordinates = function(e) {
+      urlParamMap[CLICK_X_URL_KEY] = Math.round(e.clientX);
+      urlParamMap[CLICK_Y_URL_KEY] = Math.round(e.clientY);
+    };
+
+    var getCreativeDimensions = function() {
+      return window.innerWidth + 'x' + window.innerHeight;
+    }
+
+    var getExitClickParams = function(e) {
+      urlParamMap[CREATIVE_DIMENSIONS_KEY] = getCreativeDimensions();
+
+      var exitParams = '';
+      for (var key in urlParamMap) {
+        exitParams += '&' + key + '=';
+        if (urlParamMap[key] !== null) {
+          exitParams += urlParamMap[key];
+        }
+      }
+      return exitParams;
+    }
+
+    var appendExitClickParams = function(url) {
+      var adUrlIndex = url.toLowerCase().indexOf(AD_URL_PARAM);
+      var paramsToBeAdded = getExitClickParams();
+      if (adUrlIndex > -1 && paramsToBeAdded.length <= MAX_URL_PARAM_LENGTH) {
+        url = url.substr(0, adUrlIndex) + paramsToBeAdded +
+          url.substr(adUrlIndex);
+      };
+      return url;
+    };
+
+    if (open.call) {
+      window.open = function(open) {
+        return function(url, name, features) {
+          url = appendExitClickParams(url);
+          if (relegateNavigation === 'parent') {
+            var message = {'clickTag': url, 'isPostClickTag': true};
+            parent.postMessage(JSON.stringify(message), '*');
+          } else {
+            var args = [url, name];
+            if (features) {
+              args.push(features);
+            }
+            open.apply(window, args);
+          }
+        };
+      }(window.open);
+    }
+
+    if (window.addEventListener) {
+      window.addEventListener(
+          'message', handleClickTagMessage, false);
+      window.addEventListener('mousedown', storeClickCoordinates, true);
+    } else {
+      window.attachEvent('onmessage', handleClickTagMessage);
+    }
+  })();
+    
+  </script></head>
+	
+	<body>
+		<div id="main-panel" style="display: block;">
+			<div id="cover1" class="layer" style="backface-visibility: hidden; transform: matrix3d(1, 0.000174533, 0, 0, -0.000174533, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0.01, 1);"></div>
+			<div id="slogan1" class="layer slogan" style="backface-visibility: hidden; transform: matrix3d(1, 0.000174533, 0, 0, -0.000174533, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0.01, 1); opacity: 1;"><img src="./slogan-1.svg" style="backface-visibility: hidden; transform: matrix3d(1, 0.000174533, 0, 0, -0.000174533, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0.01, 1);"></div>
+			<div id="slogan2" class="layer slogan" style="backface-visibility: hidden; transform: matrix3d(1, 0.000174533, 0, 0, -0.000174533, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0.01, 1); opacity: 1;"><img src="./slogan-2.svg" style="backface-visibility: hidden; transform: matrix3d(1, 0.000174533, 0, 0, -0.000174533, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0.01, 1);"></div>
+			<div id="cover2" class="layer" style="backface-visibility: hidden; transform: matrix3d(1, 0.000174533, 0, 0, -0.000174533, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0.01, 1); opacity: 1;"></div>
+			<div id="product" class="layer" style="backface-visibility: hidden; transform: matrix3d(0.7, 0.000122173, 0, 0, -0.000122173, 0.7, 0, 0, 0, 0, 1, 0, -80, 0, 0.01, 1); transform-origin: 0px 50% 0px; opacity: 1;"><img src="./product.svg" style="backface-visibility: hidden; transform: matrix3d(1, 0.000174533, 0, 0, -0.000174533, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0.01, 1);"></div>
+			<div id="band" class="layer" style="backface-visibility: hidden; transform: matrix3d(1, 0.000174533, 0, 0, -0.000174533, 1, 0, 0, 0, 0, 1, 0, -20, 0, 0.01, 1);"><img src="./band.svg" style="backface-visibility: hidden; transform: matrix3d(1, 0.000174533, 0, 0, -0.000174533, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0.01, 1);"></div>
+			<div id="copy1" class="layer" style="backface-visibility: hidden; transform: matrix3d(1, 0.000174533, 0, 0, -0.000174533, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0.01, 1); opacity: 1;"><img src="./copy-1.svg" style="backface-visibility: hidden; transform: matrix3d(1, 0.000174533, 0, 0, -0.000174533, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0.01, 1);"></div>
+			<div id="copy2" class="layer" style="backface-visibility: hidden; transform: matrix3d(1, 0.000174533, 0, 0, -0.000174533, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0.01, 1); opacity: 0;"><img src="./copy-2.svg" style="backface-visibility: hidden; transform: matrix3d(1, 0.000174533, 0, 0, -0.000174533, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0.01, 1);"></div>
+			<div id="cta_1" class="layer" style="backface-visibility: hidden; transform: matrix3d(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0.01, 1); transform-origin: 454px 44px 0px;"><img src="./cta-1.svg" style="backface-visibility: hidden; transform: matrix3d(1, 0.000174533, 0, 0, -0.000174533, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0.01, 1);"></div>
+			<div id="cta_2" class="layer" style="backface-visibility: hidden; transform: matrix3d(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0.01, 1); transform-origin: 642px 44px 0px;"><img src="./cta-2.svg" style="backface-visibility: hidden; transform: matrix3d(1, 0.000174533, 0, 0, -0.000174533, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0.01, 1);"></div>
+			<div id="cover3" class="layer" style="backface-visibility: hidden; transform: matrix3d(1, 0.000174533, 0, 0, -0.000174533, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0.01, 1); opacity: 0;"></div>
+			<div id="legal" class="layer" style="backface-visibility: hidden; transform: matrix3d(1, 0.000174533, 0, 0, -0.000174533, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0.01, 1); opacity: 0;"><img src="./legal.svg" style="backface-visibility: hidden; transform: matrix3d(1, 0.000174533, 0, 0, -0.000174533, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0.01, 1);"></div>
+			<div id="logo" class="layer" style="backface-visibility: hidden; transform: matrix3d(1, 0.000174533, 0, 0, -0.000174533, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0.01, 1); opacity: 0;"><img src="./logo.png" style="backface-visibility: hidden; transform: matrix3d(1, 0.000174533, 0, 0, -0.000174533, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0.01, 1);"></div>
+			<div id="curtain" class="layer" style="backface-visibility: hidden; transform: matrix3d(1, 0.000174533, 0, 0, -0.000174533, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0.01, 1); opacity: 0;"></div>
+			<div id="border"></div>
+			<a id="creativelink" href="javascript:window.open(window.clickTag)"></a>
+		</div>
+
+		<script>
+			var adContainer = document.getElementById('main-panel');
+			var adLoop = 1;
+			var adStartTime = 0;
+
+			window.onload = function() {
+				init();
+			};
+
+			function init() {
+				adContainer.style.display = 'block';
+				TweenMax.set(['.layer', 'img'], {force3D: true, backfaceVisibility: 'hidden', rotationZ: '0.01deg', z:0.01});
+				adStartTime = Date.now();
+				timeline();
+			}
+			
+			var adLoops = 1;
+			var adTimeout = 2.5;
+			var adOffset = .25;
+			
+			function timeline() {
+				var adDelay = 0;
+				
+				TweenMax.set(curtain, { opacity: 0 });
+				TweenMax.set(product, { transformOrigin: '0 50%' });
+				TweenMax.set(cta_1, { transformOrigin: '454px 44px' });
+				TweenMax.set(cta_2, { transformOrigin: '642px 44px' });
+				TweenMax.set(band, { x: -20 });
+				
+				TweenMax.staggerFrom('.slogan', .75, { x: 10, ease: Power1.easeOut, delay: adDelay }, adOffset);
+				TweenMax.staggerFrom('.slogan', .5, { opacity: 0, ease: Power0.easeNone, delay: adDelay }, adOffset);
+				adDelay += adTimeout;
+				TweenMax.from(cover2, .75, { opacity: 0, ease: Power0.easeNone, delay: adDelay });
+				adDelay += .5;
+				TweenMax.from(product, .5, { x: 10, ease: Power1.easeOut, delay: adDelay });
+				TweenMax.from(product, .5, { opacity: 0, ease: Power0.easeNone, delay: adDelay });
+				adDelay += adTimeout-.5;
+				TweenMax.from(band, .75, { x: 370, ease: Power1.easeOut, delay: adDelay });
+				TweenMax.to(product, .75, { x:-80, scale: .7, ease: Power1.easeOut, delay: adDelay });
+				adDelay += .5;
+				TweenMax.from(copy1, .75, { opacity: 0, ease: Power0.easeNone, delay: adDelay });
+				adDelay += adTimeout;
+				//TweenMax.to(band, .75, { x: -380, ease: Power1.easeOut, delay: adDelay });
+				TweenMax.to(copy1, .5, { opacity: 0, ease: Power0.easeNone, delay: adDelay });
+				adDelay += .5;
+				TweenMax.from(copy2, .75, { opacity: 0, ease: Power0.easeNone, delay: adDelay });
+				adDelay += adTimeout;
+				TweenMax.to(copy2, .5, { opacity: 0, ease: Power0.easeNone, delay: adDelay });
+				adDelay += .5;
+				TweenMax.from(cta_1, .75, { scale: 0, ease: Back.easeOut, delay: adDelay });
+				adDelay += .25;
+				TweenMax.from(cta_2, .75, { scale: 0, ease: Back.easeOut, delay: adDelay });
+				adDelay += adTimeout;
+				TweenMax.from(cover3, .75, { opacity: 0, ease: Power0.easeNone, delay: adDelay });
+				adDelay += .5;
+				TweenMax.from(legal, .75, { opacity: 0, ease: Power0.easeNone, delay: adDelay });
+				adDelay += adTimeout;
+				TweenMax.to(legal, .5, { opacity: 0, ease: Power0.easeNone, delay: adDelay });
+				adDelay += .5;
+				TweenMax.from(logo, .75, { opacity: 0, ease: Power0.easeNone, delay: adDelay });
+				adDelay += .75;
+				if(adLoop < adLoops) {
+					adDelay += adTimeout;
+					TweenMax.to(curtain, .5, { opacity: 1, ease: Power0.easeNone, delay: adDelay, onComplete: replay });
+					adDelay += .5;
+				} else {
+					TweenMax.delayedCall(adDelay, logTime);
+				}
+			}
+
+			function replay() {
+				logTime();
+				adLoop++;
+				TweenMax.set('.layer', { x: 0, y: 0, scale: 1, opacity: 1 });
+				timeline();
+			}
+			
+			function logTime() {
+				console.log('loop ' + adLoop + ': ' + Math.floor((Date.now() - adStartTime)/1000) + ' sec');
+			}
+		</script>
+	
+</body></html>
