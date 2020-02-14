@@ -145,8 +145,8 @@ For learning and study
     - [Design Patterns used in Spring Framework Part 2 - Creational Patterns - Factory - Builder - Singleton - Prototype](#design-patterns-used-in-spring-framework-part-2---creational-patterns---factory---builder---singleton---prototype)
     - [Design Patterns Spring Framework Part 1 - Inversion of Control - Dependency Injection](#design-patterns-spring-framework-part-1---inversion-of-control---dependency-injection)
     - [Spring IoC (Inversion Of Control) Design Patterns](#spring-ioc-inversion-of-control-design-patterns)
-        - [Dependency Injection (DI) Pattern](#dependency-injection-di-pattern)
-        - [Factory Pattern](#factory-pattern)
+    - [Dependency Injection (DI) Pattern](#dependency-injection-di-pattern)
+    - [Factory Pattern](#factory-pattern)
         - [Builder Pattern](#builder-pattern)
         - [Singleton Pattern](#singleton-pattern)
         - [Prototype Pattern](#prototype-pattern)
@@ -4786,14 +4786,14 @@ https://www.geeksforgeeks.org/arraylist-vs-linkedlist-java/
 |-------|-----|-------|
 |   x   |  x  |   x   |
 
-##1. Difference Between List and ArrayList in Java
+## Difference Between List and ArrayList in Java
 
 `references:`
 https://techdifferences.com/difference-between-list-and-arraylist-in-java.html
 
 [Difference-Between-List-ArrayList-Java-Tech-Differences](refs/Difference-Between-List-ArrayList-Java-Tech-Differences)
 
-##2. Array vs ArrayList in Java
+## Array vs ArrayList in Java
 
 `references:`
 https://www.geeksforgeeks.org/array-vs-arraylist-in-java/
@@ -4813,7 +4813,7 @@ https://www.geeksforgeeks.org/differences-treemap-hashmap-linkedhashmap-java/
 [Differences-between-TreeMap-HashMap-LinkedHashMap-GeeksforGeeks](refs/Differences-between-TreeMap-HashMap-LinkedHashMap-GeeksforGeeks)
 
 
-##1. Difference between HashMap, LinkedHashMap and TreeMap
+## Difference between HashMap, LinkedHashMap and TreeMap
 
 `references:`
 https://stackoverflow.com/questions/2889777/difference-between-hashmap-linkedhashmap-and-treemap
@@ -4838,7 +4838,7 @@ All three classes implement the Map interface and offer mostly the same function
 |       |  x  |   x   |
 
 
-##1. Comparable vs Comparator in Java
+## Comparable vs Comparator in Java
 
 `references:`
 https://www.geeksforgeeks.org/comparable-vs-comparator-in-java/
@@ -4908,7 +4908,7 @@ https://docs.oracle.com/javase/tutorial/java/generics/genTypes.html
 |-------|-----|-------|
 |   x   |  x  |   x   |
 
-##1. Autoboxing and Unboxing
+## Autoboxing and Unboxing
 
 `references:`
 https://docs.oracle.com/javase/tutorial/java/data/autoboxing.html
@@ -4924,7 +4924,7 @@ https://docs.oracle.com/javase/tutorial/java/data/autoboxing.html
 |short      |Short|
 |double     |Double|
 
-##2. Autoboxing and Unboxing in Java
+## Autoboxing and Unboxing in Java
 
 `references:`
 https://www.geeksforgeeks.org/autoboxing-unboxing-java/
@@ -4939,7 +4939,7 @@ https://www.geeksforgeeks.org/autoboxing-unboxing-java/
 |-------|-----|-------|
 |       |  x  |   x   |
 
-##1. Java Initialization order
+## Java Initialization order
 
 `references:`
 https://farenda.com/java/java-initialization-order/
@@ -5849,7 +5849,7 @@ http://tutorials.jenkov.com/java-concurrency/volatile.html
 |       |  x  |   x   |
 
 
-##1. why make private fields also final if they cannot be accessed if getters and setters not provided?
+## why make private fields also final if they cannot be accessed if getters and setters not provided?
 
 - [final-keyword-java-GeeksforGeeks](refs/final-keyword-java-GeeksforGeeks)
 
@@ -6648,7 +6648,7 @@ https://www.geeksforgeeks.org/interesting-facts-about-null-in-java/
 |-------|-----|-------|
 |       |     |   x   |
 
-##1. Deadlock
+## Deadlock
 
 - [Deadlock-in-Java-Multithreading-GeeksforGeeks](refs/Deadlock-in-Java-Multithreading-GeeksforGeeks)
 
@@ -6662,7 +6662,7 @@ https://www.geeksforgeeks.org/deadlock-in-java-multithreading/
 `references:`
 https://www.tutorialspoint.com/java/java_thread_deadlock.htm
 
-##2. Starvation
+## Starvation
 
 - [Deadlock-and-Starvation-in-Java-GeeksforGeeks](refs/Deadlock-and-Starvation-in-Java-GeeksforGeeks)
 
@@ -6681,7 +6681,7 @@ https://www.logicbig.com/tutorials/core-java-tutorial/java-multi-threading/threa
 `references:`
 https://netjs.blogspot.com/2017/10/thread-starvation-in-java-multi-threading.html
 
-##3. Livelock
+## Livelock
 
 - [Whats-the-difference-between-deadlock-and-livelock-StackOverflow](refs/Whats-the-difference-between-deadlock-and-livelock-StackOverflow)
 
@@ -6693,7 +6693,7 @@ https://stackoverflow.com/questions/6155951/whats-the-difference-between-deadloc
 ```text
 ```
 
-##4. Deadlock, Livelock and Starvation
+## Deadlock, Livelock and Starvation
 
 - [Understanding-Deadlock-Livelock-and-Starvation-with-Code-Examples-in-Java](refs/Understanding-Deadlock-Livelock-and-Starvation-with-Code-Examples-in-Java)
 
@@ -6714,7 +6714,7 @@ https://www.codejava.net/java-core/concurrency/understanding-deadlock-livelock-a
 |-------|-----|-------|
 |       |     |   x   |
 
-##1. Fork-Join Framework API
+## Fork-Join Framework API
 
 - [Understanding-Java-Fork-Join-Framework-with-Examples](refs/Understanding-Java-Fork-Join-Framework-with-Examples)
 
@@ -6748,7 +6748,7 @@ https://www.tutorialspoint.com/java_concurrency/concurrency_fork_join.htm
 `references:`
 https://www.baeldung.com/java-fork-join
 
-##2. Fork-Join and Parallel Streams
+## Fork-Join and Parallel Streams
 
 - [A-Look-at-ForkJoinPool-and-Parallel-Streams-DZone](refs/A-Look-at-ForkJoinPool-and-Parallel-Streams-DZone)
 
@@ -6803,13 +6803,13 @@ https://github.com/iluwatar/java-design-patterns
 `references:`
 https://en.wikipedia.org/wiki/Design_Patterns
 
-##1. Creational Design Patterns
+## Creational Design Patterns
 
-##2. Structural Design Patterns
+## Structural Design Patterns
 
-##3. Behavioural Design Patterns
+## Behavioural Design Patterns
 
-###3.1. Strategy Design Pattern
+### Strategy Design Pattern
 
 - [c#-Factory-method-with-DI-and-IoC-StackOverflow](refs/c#-Factory-method-with-DI-and-IoC-StackOverflow)
 
@@ -6895,7 +6895,7 @@ https://dev.mysql.com/doc/refman/8.0/en/select.html
 
 # Index (good for select bad for insert?)
 
-##1. Database index
+## Database index
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -6940,7 +6940,7 @@ https://blog.yugabyte.com/a-primer-on-acid-transactions/
 
 # View
 
-##1. SQL view
+## SQL view
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -6973,7 +6973,7 @@ https://www.tutorialspoint.com/sql/sql-using-views.htm
 
 # Trigger
 
-##1. SQL trigger
+## SQL trigger
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -7027,7 +7027,7 @@ https://www.sqlservertutorial.net/sql-server-triggers/
 
 # Stored Procedure
 
-##1. SQL Stored Procedure
+## SQL Stored Procedure
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -7096,7 +7096,7 @@ https://www.sqlshack.com/partial-stored-procedures-in-sql-server/
 
 # Functions
 
-##1. SQL functions
+## SQL functions
 
 |Junior |Mid  |Senior |
 |-------|-----|-------|
@@ -7208,29 +7208,29 @@ https://www.journaldev.com/2461/spring-ioc-bean-example-tutorial
 
 # Spring Design Patterns
 
-##1. Design Patterns used in Spring Framework Part 2 - Creational Patterns - Factory - Builder - Singleton - Prototype
+## Design Patterns used in Spring Framework Part 2 - Creational Patterns - Factory - Builder - Singleton - Prototype
 
 - [Design-Patterns-Spring-Framework-Part-2-Creational-Patterns-Factory-Builder-Singleton-Prototype-Devdiaries](refs/Design-Patterns-Spring-Framework-Part-2-Creational-Patterns-Factory-Builder-Singleton-Prototype-Devdiaries)
 
     `references:`
     https://www.devdiaries.net/blog/Spring-Design-Patterns-Creational-Patterns/
 
-##2. Design Patterns Spring Framework Part 1 - Inversion of Control - Dependency Injection
+## Design Patterns Spring Framework Part 1 - Inversion of Control - Dependency Injection
 
 - [Design-Patterns-Spring-Framework-Part-1-Inversion-of-Control-Dependency-Injection-Devdiaries](refs/Design-Patterns-Spring-Framework-Part-1-Inversion-of-Control-Dependency-Injection-Devdiaries)
 
     `references:`
     https://www.devdiaries.net/blog/Spring-Design-Patterns-Dependency-Injection/
 
-##3. Spring IoC (Inversion Of Control) Design Patterns
+## Spring IoC (Inversion Of Control) Design Patterns
 
 - [Design Patterns Spring Framework Part 1 - Inversion of Control - Dependency Injection](#DesignPatternsSpringFrameworkPart1-InversionofControl-DependencyInjection)
 
-###3.1. Dependency Injection (DI) Pattern
+## Dependency Injection (DI) Pattern
 
 - [Design Patterns Spring Framework Part 1 - Inversion of Control - Dependency Injection](#DesignPatternsSpringFrameworkPart1-InversionofControl-DependencyInjection)
 
-###3.2. Factory Pattern
+## Factory Pattern
 
 - [Design Patterns used in Spring Framework Part 2 - Creational Patterns - Factory - Builder - Singleton - Prototype](#DesignPatternsusedinSpringFrameworkPart2-CreationalPatterns-Factory-Builder-Singleton-Prototype)
 
@@ -7259,27 +7259,27 @@ https://www.journaldev.com/2461/spring-ioc-bean-example-tutorial
     `references:`
     https://springframework.guru/gang-of-four-design-patterns/factory-method-design-pattern/
 
-###3.3. Builder Pattern
+### Builder Pattern
 
 - [Design Patterns used in Spring Framework Part 2 - Creational Patterns - Factory - Builder - Singleton - Prototype](#DesignPatternsusedinSpringFrameworkPart2-CreationalPatterns-Factory-Builder-Singleton-Prototype)
 
 
-###3.4. Singleton Pattern
+### Singleton Pattern
 
 - [Design Patterns used in Spring Framework Part 2 - Creational Patterns - Factory - Builder - Singleton - Prototype](#DesignPatternsusedinSpringFrameworkPart2-CreationalPatterns-Factory-Builder-Singleton-Prototype)
 
-###3.5. Prototype Pattern
+### Prototype Pattern
 
 - [Design Patterns used in Spring Framework Part 2 - Creational Patterns - Factory - Builder - Singleton - Prototype](#DesignPatternsusedinSpringFrameworkPart2-CreationalPatterns-Factory-Builder-Singleton-Prototype)
 
-###3.6. Service Locator Pattern
+### Service Locator Pattern
 
 - [Understanding-Inversion-of-Control-IoC-Principle-Amit-Kumar-Medium](refs/Understanding-Inversion-of-Control-IoC-Principle-Amit-Kumar-Medium)
 
 `references:`
 https://medium.com/@amitkma/understanding-inversion-of-control-ioc-principle-163b1dc97454
 
-###3.7. Strategy Pattern
+### Strategy Pattern
 
 - [Design-Patterns-Strategy-Pattern-Tutorialspoint](refs/Design-Patterns-Strategy-Pattern-Tutorialspoint)
 
@@ -7305,21 +7305,21 @@ https://medium.com/@amitkma/understanding-inversion-of-control-ioc-principle-163
     `references:`
     https://softwareengineering.stackexchange.com/questions/393065/can-we-completely-replace-inheritance-using-strategy-pattern-and-dependency-inje
 
-###3.8. Observer Pattern
+### Observer Pattern
 
 - [Three-Design-Patterns-That-Use-Inversion-of-Control-SitePoint](refs/Three-Design-Patterns-That-Use-Inversion-of-Control-SitePoint)
 
 `references:`
 https://www.sitepoint.com/three-design-patterns-that-use-inversion-of-control/
 
-###3.9. Template Method Pattern
+### Template Method Pattern
 
 - [Three-Design-Patterns-That-Use-Inversion-of-Control-SitePoint](refs/Three-Design-Patterns-That-Use-Inversion-of-Control-SitePoint)
 
 `references:`
 https://www.sitepoint.com/three-design-patterns-that-use-inversion-of-control/
 
-###3.10. Mixin Injection Pattern
+###  Mixin Injection Pattern
 
 - [Mixin-Injection-Inversion-of-Control-Patterns-Toptal](refs/Mixin-Injection-Inversion-of-Control-Patterns-Toptal)
 
