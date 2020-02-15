@@ -170,6 +170,7 @@ For learning and study
 - [ORM](#orm)
 - [HQL](#hql)
 - [POJO mapped to SQL tables](#pojo-mapped-to-sql-tables)
+- [Criteria / Criterion](#criteria--criterion)
 - [Random](#random)
 - [Convention over Configuration](#convention-over-configuration)
 - [Cartesian product](#cartesian-product)
@@ -7744,6 +7745,15 @@ https://www.tutorialspoint.com/hibernate/hibernate_annotations.htm
 https://dzone.com/articles/all-hibernate-annotations-mapping-annotations
 
 ----
+
+# Criteria / Criterion
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
+
+
 ----
 ----
 ----
