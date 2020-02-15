@@ -5870,7 +5870,7 @@ https://stackoverflow.com/questions/19577079/why-declare-a-copy-of-a-private-fie
 `references:`
 https://en.wikipedia.org/wiki/Final_(Java)
 
-##2. How does Spring inject private object fields?
+## How does Spring inject private object fields?
 
 - [dependency-injection-How-does-Spring-annotation-Autowired-work-Stack-Overflow](refs/dependency-injection-How-does-Spring-annotation-Autowired-work-Stack-Overflow)
 
@@ -7708,7 +7708,40 @@ https://howtodoinjava.com/hibernate/complete-hibernate-query-language-hql-tutori
 |-------|-----|-------|
 |   x   |  x  |   x   |
 
+- [Hibernate-Persistent-Class-Tutorialspoint](refs/Hibernate-Persistent-Class-Tutorialspoint)
 
+`references:`
+https://www.tutorialspoint.com/hibernate/hibernate_persistent_classes.htm
+
+- [Hibernate-Mapping-Files-Tutorialspoint](refs/Hibernate-Mapping-Files-Tutorialspoint)
+
+`references:`
+https://www.tutorialspoint.com/hibernate/hibernate_mapping_files.htm
+
+- [Hibernate-Mapping-Types-Tutorialspoint](refs/Hibernate-Mapping-Types-Tutorialspoint)
+
+`references:`
+https://www.tutorialspoint.com/hibernate/hibernate_mapping_types.htm
+
+- [Hibernate-Examples-Tutorialspoint](refs/Hibernate-Examples-Tutorialspoint)
+
+`references:`
+https://www.tutorialspoint.com/hibernate/hibernate_examples.htm
+
+- [Hibernate-O_R-Mappings-Tutorialspoint](refs/Hibernate-O_R-Mappings-Tutorialspoint)
+
+`references:`
+https://www.tutorialspoint.com/hibernate/hibernate_or_mappings.htm
+
+- [Hibernate-Annotations-Tutorialspoint](refs/Hibernate-Annotations-Tutorialspoint)
+
+`references:`
+https://www.tutorialspoint.com/hibernate/hibernate_annotations.htm
+
+- [All-Hibernate-Annotations-Mapping-Annotations-DZone](refs/All-Hibernate-Annotations-Mapping-Annotations-DZone)
+
+`references:`
+https://dzone.com/articles/all-hibernate-annotations-mapping-annotations
 
 ----
 ----
