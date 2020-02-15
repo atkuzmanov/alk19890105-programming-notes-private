@@ -7744,6 +7744,26 @@ https://www.tutorialspoint.com/hibernate/hibernate_annotations.htm
 `references:`
 https://dzone.com/articles/all-hibernate-annotations-mapping-annotations
 
+- [Mapping-JPA-and-Hibernate-Annotations-XML-or-both-thoughtsonjava](refs/Mapping-JPA-and-Hibernate-Annotations-XML-or-both-thoughtsonjava)
+
+`references:`
+https://thoughts-on-java.org/mapping-definitions-jpa-hibernate-annotations-xml/
+
+- [Hibernate-Inheritance-Mapping-Baeldung](refs/Hibernate-Inheritance-Mapping-Baeldung)
+
+`references:`
+https://www.baeldung.com/hibernate-inheritance
+
+- [Mapping-A-Hibernate-Query-To-A-Custom-Class-Baeldung](refs/Mapping-A-Hibernate-Query-To-A-Custom-Class-Baeldung)
+
+`references:`
+https://www.baeldung.com/hibernate-query-to-custom-class
+
+- [Dynamic-Mapping-with-Hibernate-Baeldung](refs/Dynamic-Mapping-with-Hibernate-Baeldung)
+
+`references:`
+https://www.baeldung.com/hibernate-dynamic-mapping
+
 ----
 
 # Criteria / Criterion
@@ -7751,6 +7771,7 @@ https://dzone.com/articles/all-hibernate-annotations-mapping-annotations
 |Junior |Mid  |Senior |
 |-------|-----|-------|
 |       |  x  |   x   |
+
 
 
 
