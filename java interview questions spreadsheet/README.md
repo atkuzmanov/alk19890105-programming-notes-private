@@ -8108,8 +8108,15 @@ https://thoughts-on-java.org/free-mini-course-find-fix-n1-select-issues-hibernat
 |-------|-----|-------|
 |       |  x  |   x   |
 
+- [Hibernate-save-persist-update-merge-Baeldung](refs/Hibernate-save-persist-update-merge-Baeldung)
 
+`references:`
+https://www.baeldung.com/hibernate-save-persist-update-merge-saveorupdate
 
+- [How-do-JPA-persist-merge-and-Hibernate-save-update-saveOrUpdate-methods-work-VladMihalcea](refs/How-do-JPA-persist-merge-and-Hibernate-save-update-saveOrUpdate-methods-work-VladMihalcea)
+
+`references:`
+https://vladmihalcea.com/jpa-persist-merge-hibernate-save-update-saveorupdate/
 
 ----
 
@@ -8118,6 +8125,7 @@ https://thoughts-on-java.org/free-mini-course-find-fix-n1-select-issues-hibernat
 |Junior |Mid  |Senior |
 |-------|-----|-------|
 |   x   |  x  |   x   |
+
 
 
 
