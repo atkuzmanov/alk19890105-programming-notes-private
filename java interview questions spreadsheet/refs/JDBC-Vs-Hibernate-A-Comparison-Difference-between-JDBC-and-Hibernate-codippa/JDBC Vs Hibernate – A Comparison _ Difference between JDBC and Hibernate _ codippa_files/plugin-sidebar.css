@@ -1,0 +1,12 @@
+.wp-applaud-exclude-sidebar-content-wrap {
+	padding: 10px;
+}
+
+svg.wp-applaud-icon {
+	stroke: #006BCC !important;
+	fill: #006BCC !important;
+}
+svg.wp-applaud-icon > .st0 {
+	stroke: #006BCC !important;
+	fill: #006BCC !important;
+}
