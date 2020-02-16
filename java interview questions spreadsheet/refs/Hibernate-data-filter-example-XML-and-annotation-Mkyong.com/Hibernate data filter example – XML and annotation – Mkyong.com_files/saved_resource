@@ -1,0 +1,1 @@
+(function (doc) { var d = new Date(); var script = document.createElement('script'); script.src = '//tag.vlitag.com/jsv1/1581651508/?q=143a72bc43ddb2f41dc327516787656f&n='; var head = document.getElementsByTagName('head')[0]; head.appendChild(script); })(document);window._VLIOBJ={geo:'BG', state: []};

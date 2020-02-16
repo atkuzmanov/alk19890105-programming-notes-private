@@ -175,6 +175,7 @@ For learning and study
     - [Criteria vs Criterion](#criteria-vs-criterion)
 - [JNDI](#jndi)
 - [Filter](#filter)
+- [JOIN Vs JOIN FETCH in HQL or Hibernate.initialize](#join-vs-join-fetch-in-hql-or-hibernateinitialize)
 - [Random](#random)
 - [Convention over Configuration](#convention-over-configuration)
 - [Cartesian product](#cartesian-product)
@@ -7763,6 +7764,7 @@ https://www.baeldung.com/hibernate-inheritance
 `references:`
 https://www.baeldung.com/hibernate-query-to-custom-class
 
+<a id="dynamic-mapping-with-hibernate-baeldung" name="dynamic-mapping-with-hibernate-baeldung">Dynamic-Mapping-with-Hibernate-Baeldung</a>
 - [Dynamic-Mapping-with-Hibernate-Baeldung](refs/Dynamic-Mapping-with-Hibernate-Baeldung)
 
 `references:`
@@ -7830,10 +7832,39 @@ https://stackoverflow.com/questions/4365621/what-is-jndi-what-is-its-basic-use-w
 |-------|-----|-------|
 |       |  x  |   x   |
 
+- [Hibernate-Filter-and-FilterJoinTable-Annotation-Example](refs/Hibernate-Filter-and-FilterJoinTable-Annotation-Example)
 
+`references:`
+https://www.concretepage.com/hibernate/hibernate-filter-and-filterjointable-annotation-example
 
+- Please see:
+    - [Dynamic-Mapping-with-Hibernate-Baeldung](#dynamic-mapping-with-hibernate-baeldung)
+
+- [Hibernate-data-filter-example-XML-and-annotation-Mkyong.com](refs/Hibernate-data-filter-example-XML-and-annotation-Mkyong.com)
+
+`references:`
+https://mkyong.com/hibernate/hibernate-data-filter-example-xml-and-annotation/
+
+- [Chapter-19-Filtering-data-jbossorg](refs/Chapter-19-Filtering-data-jbossorg)
+
+`references:`
+https://docs.jboss.org/hibernate/core/3.6/reference/en-US/html/filters.html
+
+- [Chapter-17-Filtering-data-jbossorg](refs/Chapter-17-Filtering-data-jbossorg)
+
+`references:`
+https://docs.jboss.org/hibernate/core/3.3/reference/en/html/filters.html
 
 ----
+
+# JOIN Vs JOIN FETCH in HQL or Hibernate.initialize
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
+
+
 ----
 ----
 ----
