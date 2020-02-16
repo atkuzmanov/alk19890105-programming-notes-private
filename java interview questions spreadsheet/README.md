@@ -8126,8 +8126,55 @@ https://vladmihalcea.com/jpa-persist-merge-hibernate-save-update-saveorupdate/
 |-------|-----|-------|
 |   x   |  x  |   x   |
 
+- [JDBC-vs-Hibernate-Which-to-Choose-DevTeam](refs/JDBC-vs-Hibernate-Which-to-Choose-DevTeam)
 
+`references:`
+https://www.devteam.space/blog/hibernate-vs-jdbc-which-to-choose/
 
+- [JDBC-Vs-Hibernate-A-Comparison-Difference-between-JDBC-and-Hibernate-codippa](refs/JDBC-Vs-Hibernate-A-Comparison-Difference-between-JDBC-and-Hibernate-codippa)
+
+`references:`
+https://codippa.com/jdbc-hibernate-comparison/
+
+- [java-Hibernate-or-JDBC-StackOverflow](refs/java-Hibernate-or-JDBC-StackOverflow)
+
+`references:`
+https://stackoverflow.com/questions/1353137/hibernate-or-jdbc
+
+- [java-Hibernate-or-JPA-or-JDBC-or-StackOverflow](refs/java-Hibernate-or-JPA-or-JDBC-or-StackOverflow)
+
+`references:`
+https://stackoverflow.com/questions/2560500/hibernate-or-jpa-or-jdbc-or
+
+- [Hibernate-vs-JPA-difference-between-these-database-ORM-APIs-Coffee-Talk-Java-News-Stories-and-Opinions](refs/Hibernate-vs-JPA-difference-between-these-database-ORM-APIs-Coffee-Talk-Java-News-Stories-and-Opinions)
+
+`references:`
+https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Set-the-record-straight-on-the-JPA-and-Hibernate-debate
+
+- [What-Is-the-Difference-Between-Hibernate-and-Spring-Data-JPA-DZone](refs/What-Is-the-Difference-Between-Hibernate-and-Spring-Data-JPA-DZone)
+
+`references:`
+https://dzone.com/articles/what-is-the-difference-between-hibernate-and-sprin-1
+
+- Spring Data JPA Tutorial
+
+`references:`
+https://www.javaguides.net/p/spring-data-jpa-tutorial.html
+
+- [Hibernate-vs-JPA-Learn-The-Top-5-Most-Successful-Differences-educba](refs/Hibernate-vs-JPA-Learn-The-Top-5-Most-Successful-Differences-educba
+
+`references:`
+https://www.educba.com/hibernate-vs-jpa/
+
+- [What-are-the-advantages-of-Hibernate-JPA-over-JDBC-Quora](refs/What-are-the-advantages-of-Hibernate-JPA-over-JDBC-Quora)
+
+`references:`
+https://www.quora.com/What-are-the-advantages-of-Hibernate-JPA-over-JDBC
+
+- [Overview-Java-Persistence-using-JDBC-JPA-Hibernate-and-JDBI-LinkedIn](refs/Overview-Java-Persistence-using-JDBC-JPA-Hibernate-and-JDBI-LinkedIn)
+
+`references:`
+https://www.linkedin.com/pulse/overview-java-persistence-using-jdbc-jpahibernate-jdbi-sabir-moglad/
 
 ----
 

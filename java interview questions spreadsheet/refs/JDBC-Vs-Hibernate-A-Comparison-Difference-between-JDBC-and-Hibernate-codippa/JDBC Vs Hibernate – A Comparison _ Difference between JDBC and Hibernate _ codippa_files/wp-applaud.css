@@ -1,0 +1,54 @@
+.wp-applaud {
+	background: url(../images/applaud.svg) no-repeat 50% 50%;
+	border: 0 !important;
+	display: inline-block;
+	margin:0 0 20px 0 !important;
+	padding-left: 58px !important;
+	text-decoration: none;
+	height: 37px;
+	/*float: right;
+	position: fixed;*/
+}
+.wp-applaud:hover,
+.wp-applaud.active {
+	background: url(../images/applaud_active.svg) no-repeat 50% 50%;
+	border: 0 !important;
+	margin: 0 0 20px 0 !important;
+	padding-left: 58px !important;
+	text-decoration: none;
+	height: 37px;
+}
+
+/*.zilla-blog-widget .wp-applaud,
+.tz_recentwork_widget .wp-applaud,
+.tz_blog_widget .wp-applaud,
+.home div#the_body #slider .excerpt .wp-applaud,
+.archive div#the_body #slider .excerpt .wp-applaud { display: none; }*/
+
+/*@media only screen and (min-width: 1201px){
+	.wp-applaud {
+		left: 61.5%;
+		bottom: 55%;
+	}
+}
+@media only screen and (max-width: 1200px) and (min-width: 861px){
+	.wp-applaud {
+		left: 55%;
+		bottom: 55%;
+	}
+}
+
+@media only screen and (max-width: 860px){
+	.wp-applaud {
+		bottom: 55px;
+    	right: 2px;
+	}
+	.wp-applaud-count {
+		position: fixed;
+		bottom: 110px;
+    	right: 25px;
+	}
+}*/
+
+
+    

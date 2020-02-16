@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)https://codippa.com/jdbc-hibernate-comparison/ -->
+<html class="html" xmlns="http://www.w3.org/1999/xhtml" prefix="" lang="en-US" itemscope="" itemtype="http://schema.org/WebPage" slick-uniqueid="3"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+
+	
+<!-- BEGIN Metadata added by the Add-Meta-Tags WordPress plugin -->
+<meta name="description" content="JDBC is an acronym for Java DataBase Connectivity and is a technology for interaction of java application and its objects with a database. Hibernate on the other hand is a java based framework which also facilitates the interaction of application objects with a database but in a completely different...">
+<meta name="keywords" content="jdbc vs hibernate,jdbc hibernate difference,difference jdbc hibernate,jdbc and hibernate difference,jdbc hibernate comparison,compare jdbc and hibernate">
+<!-- END Metadata added by the Add-Meta-Tags WordPress plugin -->
+
+<title>JDBC Vs Hibernate – A Comparison / Difference between JDBC and Hibernate | codippa</title>
+<link rel="pingback" href="https://codippa.com/xmlrpc.php">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- All in One SEO Pack 3.3.4 by Michael Torbert of Semper Fi Web Design[897,998] -->
+
+<meta name="keywords" content="comparison,difference,hibernate,jdbc">
+
+<script src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/sdk.js" async="" crossorigin="anonymous"></script><script async="" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/analytics.js"></script><script id="facebook-jssdk" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/sdk(1).js"></script><script type="text/javascript" async="" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/recaptcha__en.js"></script><script type="application/ld+json" class="aioseop-schema">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://codippa.com/#organization","url":"https://codippa.com/","name":"codippa","sameAs":[]},{"@type":"WebSite","@id":"https://codippa.com/#website","url":"https://codippa.com/","name":"codippa","publisher":{"@id":"https://codippa.com/#organization"}},{"@type":"WebPage","@id":"https://codippa.com/jdbc-hibernate-comparison/#webpage","url":"https://codippa.com/jdbc-hibernate-comparison/","inLanguage":"en-US","name":"JDBC Vs Hibernate &#8211; A Comparison / Difference between JDBC and Hibernate","isPartOf":{"@id":"https://codippa.com/#website"},"datePublished":"2016-06-16T18:51:58+00:00","dateModified":"2016-06-21T16:14:38+00:00"},{"@type":"Article","@id":"https://codippa.com/jdbc-hibernate-comparison/#article","isPartOf":{"@id":"https://codippa.com/jdbc-hibernate-comparison/#webpage"},"author":{"@id":"https://codippa.com/author/codipp5_wp/#author"},"headline":"JDBC Vs Hibernate &#8211; A Comparison / Difference between JDBC and Hibernate","datePublished":"2016-06-16T18:51:58+00:00","dateModified":"2016-06-21T16:14:38+00:00","commentCount":"2","mainEntityOfPage":{"@id":"https://codippa.com/jdbc-hibernate-comparison/#webpage"},"publisher":{"@id":"https://codippa.com/#organization"},"articleSection":"Hibernate, J2EE, comparison, difference, hibernate, jdbc"},{"@type":"Person","@id":"https://codippa.com/author/codipp5_wp/#author","name":"codippa","sameAs":[],"image":{"@type":"ImageObject","@id":"https://codippa.com/#personlogo","url":"https://secure.gravatar.com/avatar/c48ed64ec06985112febc1cb0f835e3f?s=96&d=mm&r=g","width":96,"height":96,"caption":"codippa"}}]}</script>
+<link rel="canonical" href="https://codippa.com/jdbc-hibernate-comparison/">
+<!-- All in One SEO Pack -->
+<link rel="dns-prefetch" href="https://s0.wp.com/">
+<link rel="dns-prefetch" href="https://secure.gravatar.com/">
+<link rel="dns-prefetch" href="https://www.google.com/">
+<link rel="dns-prefetch" href="https://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="codippa » Feed" href="https://codippa.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="codippa » Comments Feed" href="https://codippa.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="codippa » JDBC Vs Hibernate – A Comparison / Difference between JDBC and Hibernate Comments Feed" href="https://codippa.com/jdbc-hibernate-comparison/feed/">
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/codippa.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.0.8"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55358,56760,9792,65039],[55358,56760,8203,9792,65039]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/wp-emoji-release.min.js" type="text/javascript" defer=""></script>
+		<!-- managing ads with Advanced Ads – https://wpadvancedads.com/ -->		<script>
+			//@formatter:off
+						advanced_ads_ready=function(){var fns=[],listener,doc=typeof document==="object"&&document,hack=doc&&doc.documentElement.doScroll,domContentLoaded="DOMContentLoaded",loaded=doc&&(hack?/^loaded|^c/:/^loaded|^i|^c/).test(doc.readyState);if(!loaded&&doc){listener=function(){doc.removeEventListener(domContentLoaded,listener);window.removeEventListener("load",listener);loaded=1;while(listener=fns.shift())listener()};doc.addEventListener(domContentLoaded,listener);window.addEventListener("load",listener)}return function(fn){loaded?setTimeout(fn,0):fns.push(fn)}}();
+			</script><style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="validate-engine-css-css" href="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/validationEngine.jquery.css" type="text/css" media="all">
+<link rel="stylesheet" id="codepeople-search-in-place-style-css" href="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/codepeople_shearch_in_place.css" type="text/css" media="all">
+<link rel="stylesheet" id="fx-editor-front-css" href="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/front.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-block-library-css" href="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/style.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="jetpack-email-subscribe-css" href="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/jetpack-email-subscribe.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-applaud-backend-gutenberg-css-css" href="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/plugin-sidebar.css" type="text/css" media="all">
+<link rel="stylesheet" id="aalb_basics_css-css" href="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/aalb_basics.css" type="text/css" media="all">
+<link rel="stylesheet" id="drawit-css-css" href="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/drawit.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="theme.css-css" href="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/theme.css" type="text/css" media="all">
+<link rel="stylesheet" id="ResetFormStyle.css-css" href="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/ResetFormStyle.css" type="text/css" media="all">
+<link rel="stylesheet" id="SubscriptionForm.css-css" href="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/SubscriptionForm.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-applaud-css" href="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/wp-applaud.css" type="text/css" media="all">
+<link rel="stylesheet" id="wpdiscuz-font-awesome-css" href="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/fontawesome-all.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="wpdiscuz-frontend-css-css" href="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/wpdiscuz.css" type="text/css" media="all">
+<link rel="stylesheet" id="wpdiscuz-user-content-css-css" href="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/wpdiscuz-user-content.css" type="text/css" media="all">
+<link rel="stylesheet" id="amazon-auto-links-./wp-content/plugins/amazon-auto-links/template/category-css" href="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="amazon-auto-links-./wp-content/plugins/amazon-auto-links/template/search-css" href="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/style(1).css" type="text/css" media="all">
+<link rel="stylesheet" id="amazon-auto-links-./wp-content/plugins/amazon-auto-links/template/list-css" href="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/style(2).css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-syntax-css-css" href="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/wp-syntax.css" type="text/css" media="all">
+<link rel="stylesheet" id="font-awesome-css" href="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/font-awesome.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="simple-line-icons-css" href="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/simple-line-icons.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="magnific-popup-css" href="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/magnific-popup.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="slick-css" href="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/slick.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="oceanwp-style-css" href="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/style.min(1).css" type="text/css" media="all">
+<link rel="stylesheet" id="style-css" href="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/style(3).css" type="text/css" media="all">
+<link rel="stylesheet" id="enlighter-local-css" href="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/EnlighterJS.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="social-logos-css" href="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/social-logos.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="jetpack_css-css" href="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/jetpack.css" type="text/css" media="all">
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/jquery.js"></script>
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/jquery-migrate.min.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var codepeople_search_in_place = {"own_only":"0","result_number":"10","more":"More Results","empty":"0 results","char_number":"3","root":"\/\/codippa.com\/wp-admin\/","home":"https:\/\/codippa.com","lang":"en"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/codepeople_shearch_in_place.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var related_posts_js_options = {"post_heading":"h4"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/related-posts.min.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var sgpbPublicUrl = "https:\/\/codippa.com\/wp-content\/plugins\/popup-builder\/public\/";
+/* ]]> */
+</script>
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/Popup.js"></script>
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/PopupConfig.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var SGPB_POPUP_PARAMS = {"popupTypeAgeRestriction":"ageRestriction","defaultThemeImages":{"1":"iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAADHElEQVQ4jaWVQU8bRxiGHxYHrwdbHW8gFhU5IKurWM0plTiQC1SqUFD6C7hEorfmSv9ChBC39NZDFCm3xrkl6gWoKjBCizgRoS0uh0Y1BjQ7ks3sGkK2B2MLY4dE7Xvd93v0zXzfvNsXxzG9VKlUprXWk8aYceAOkAOqwK4QYlNKuToyMvJbr9q+q1Ct9bflcvkRMCuEsNKZDIn+\/vb39+fn1Gs1jDEfgBf5fP6ZlHL5o9D9\/f0flFLzQgjXGf4SkRrgRn8ftm23PVEUcXYeY8JT1NE\/GGN8x3EWx8bGfml5EleAT27lckOZdBopv+h5LbZtYwOZwRTJREytXncPq9UnAC1wonVkpdT8rVxuSGZvkhlM9QRelZSS\/htJgKHDanU+m83+JaVctgDK5fIjIYSbSac\/G9hSZjBFJp1GCOFezIJEpVKZBmallEgp2+a\/373jT98H4CvX5fboKABr6+s0ooikbXN\/YqLdcRiGGGNmK5XKC0trPSmEsFKpzg5l9iZ7e3uUSiXevH5N7SRkbX2d1ZUVSqUSTjbb4b+ot7TWk5YxZjydyXRMuHWsBzMzABwdHfHH7yusr60BUCgUKBQKHX7btnEcB2PMuEVzsXvq9ugok1NTAGxvb3N6esrw8DDfTT\/o8l5q6o5F86V0ddrSN\/fuMTAwQL1eZ2dnh6\/v3v3UMHMWUH1\/dvZRR7H4io2NDXzfp9Fo8PPTp2itr4NWLWAXmi\/lqra2tnj58lcA5ubmSCaTNBoNFhYWuryX6nctIcSmUqoLqrVmaWkJANd1mZmZ4cfHjwHwfZ9isdgFVUohhNhMSClXjTE\/hWFoXd7TnbdvefjwewCmpiYBuD8xQfXggChqEEWNDmgYhgAfpJSrxHGM53nPPc+LgyCI\/4uCIIg9z4s9z3sexzEWQD6ffwb4QRBQOwmvG0KXaichQRAA+BecJlRKuew4zqJS6vj48OBT021La83x4QFKqWPHcRZbudqOvlZsKaXmoyhywzAklUo1o+5KnkZRRBiGaK175um1yQ9YjuMAzcfR2hClFMDnJf9l\/Z9\/1L81r78oUzK1YgAAAABJRU5ErkJggg==","2":"iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAABWWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI+CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24+CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgpMwidZAAABWUlEQVQ4Ee2SS46CQBCGf8gAcgHFG+jGtfEWXIBHOBcKR+EScAQfG90RSGCGvyY9MtIuTFzMYippuqur6qO6qozPQfBGMd\/IEtQ\/8F7R2+0GLorqm9qv16vYlH6PAj7Gijqfz2fs93sYhoEwDLFcLsVE\/XQ6Icsy0eM4xmKxUGGya5tSVRWappHFYEIoCkZb27Yoy1Luxx8tcLVaYTabSYYMJrQoCtmpU2zbxnq9HrPkbAx1mAw2ry6XC9I0Rdd16Pv+23l4Ms\/8WRRF8DxvAtRmyFrN53MkSQLLsn41hbZnMNK1QBoYyEy5THPqpnkYw54Dj8cj8jyX4vOZYwBryknQyfTXgxedCavrWmJc14Xv+3AcR3Q25nA4\/HR\/DNYC1djw2YQEQYDNZiO1U1CODf0eRQvcbrfSFNVNDjbh7CobQigHerfbPfKgHZuJ1wsX2gxfiJ+4\/n3gF7OOrAbt6WEPAAAAAElFTkSuQmCC","3":"iVBORw0KGgoAAAANSUhEUgAAACcAAAAUCAMAAAA5k9QEAAAAllBMVEVHcEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC0tbUhISHFxcYICAitr7EqKipKSkrMzMzHyMqIiouQkZO9vb0QEBB7e3tDRESlpaapq61qamvBw8Tk5ebe3t\/R0tMZGRo6Ojp\/gIGgoqRSUlLq6uuZmZnW1te3ubt2d3hf8fIfAAAAEXRSTlMAzFVEMRFmd7vumd2qbCKID4nBdwUAAADPSURBVCjPhdLXEoIwFATQBSIIVkKxACrdXv7\/50RCDQj7krk7hwyTBERa6KNZEIDIwhjTxDV+EdUhJRCUIQNQmKCOVNVntmzKedZkwLyoj1Eu3Me9KOQWg8haw9yZGXTjmLJCBZfi8+0+g06S0AOb57wTapimL7tgusK7qV7B\/a7cbch9vMg0t6MupO+n7XmnERcGtmsZAaWnQWfcfMfKFt92eo8PUFh\/uVq5P1psXvJu0nvFU+DPhu2QroPWZTL6suKUKqI\/ktb4yZnSfFFfkB8jKwCptUAAAAAASUVORK5CYII=","5":"iVBORw0KGgoAAAANSUhEUgAAABEAAAARCAYAAAA7bUf6AAAAAXNSR0IArs4c6QAAAVlpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IlhNUCBDb3JlIDUuNC4wIj4KICAgPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KTMInWQAAAVRJREFUOBGtVDuugzAQXBwhIA1UUKWgoOMAnIETcJwchxNwEgokSiqQUtAEEL\/HWNongwJ6T8oWxti7w+CZtfZ6vdZ5nilNU2rblpIkIdd1qXu\/aVkW4hBCkHW\/U9M0MjcIAorjmMZxJMEA2ByGQSZgjgIUIo4AyMvznLIsI13X6fZ4PJ4o4gBoURTk+z45jkPrxsa0rF8GAOBAHdgLDMdQGZ0BcE1ZlqRtw4rzUL\/ACYZhyPOpqoqXdk\/s4wy1jckKWmdAuyrlhQEggoAKmAARG38JFQD1AjL+B+gIgHqpISZD35PneZLVFRv4A3nIZx9JEPjAME2q61pKeQUCNZCHfMVHeyd+UkkFVeVnQ35HnSt5cYiboz+qpjK6bfI+P\/0CqxBFkWwBtAJaQg1uEWHbtrou5wwA\/\/Rdd+kjqCW49RlJBYB\/pmk69VEYhvI60L5xn\/wAjtgb\/fA0ZZYAAAAASUVORK5CYII=","6":"iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAA6HWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMzggNzkuMTU5ODI0LCAyMDE2LzA5LzE0LTAxOjA5OjAxICAgICAgICAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iCiAgICAgICAgICAgIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIKICAgICAgICAgICAgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIgogICAgICAgICAgICB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIKICAgICAgICAgICAgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIKICAgICAgICAgICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iCiAgICAgICAgICAgIHhtbG5zOmV4aWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20vZXhpZi8xLjAvIj4KICAgICAgICAgPHhtcDpDcmVhdGVEYXRlPjIwMTgtMDItMjdUMTQ6MTQ6MzgrMDQ6MDA8L3htcDpDcmVhdGVEYXRlPgogICAgICAgICA8eG1wOk1vZGlmeURhdGU+MjAxOC0wMi0yN1QxNDoxNjoxMSswNDowMDwveG1wOk1vZGlmeURhdGU+CiAgICAgICAgIDx4bXA6TWV0YWRhdGFEYXRlPjIwMTgtMDItMjdUMTQ6MTY6MTErMDQ6MDA8L3htcDpNZXRhZGF0YURhdGU+CiAgICAgICAgIDx4bXA6Q3JlYXRvclRvb2w+QWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpPC94bXA6Q3JlYXRvclRvb2w+CiAgICAgICAgIDxkYzpmb3JtYXQ+aW1hZ2UvcG5nPC9kYzpmb3JtYXQ+CiAgICAgICAgIDxwaG90b3Nob3A6Q29sb3JNb2RlPjM8L3Bob3Rvc2hvcDpDb2xvck1vZGU+CiAgICAgICAgIDx4bXBNTTpJbnN0YW5jZUlEPnhtcC5paWQ6MWNlZWE3YWMtNTIxMC02MjQ2LWFiMDQtZTA1YmEwYjljOTQ1PC94bXBNTTpJbnN0YW5jZUlEPgogICAgICAgICA8eG1wTU06RG9jdW1lbnRJRD5hZG9iZTpkb2NpZDpwaG90b3Nob3A6MzFlZDk3OGEtMWJhNy0xMWU4LTg0YTctZjA4OTdlNjEzNGM0PC94bXBNTTpEb2N1bWVudElEPgogICAgICAgICA8eG1wTU06T3JpZ2luYWxEb2N1bWVudElEPnhtcC5kaWQ6OWFmYzkxOTgtOWNlNC1lZDQ4LThlNjYtNmFkMzdiNGFmOTQxPC94bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ+CiAgICAgICAgIDx4bXBNTTpIaXN0b3J5PgogICAgICAgICAgICA8cmRmOlNlcT4KICAgICAgICAgICAgICAgPHJkZjpsaSByZGY6cGFyc2VUeXBlPSJSZXNvdXJjZSI+CiAgICAgICAgICAgICAgICAgIDxzdEV2dDphY3Rpb24+c2F2ZWQ8L3N0RXZ0OmFjdGlvbj4KICAgICAgICAgICAgICAgICAgPHN0RXZ0Omluc3RhbmNlSUQ+eG1wLmlpZDo5YWZjOTE5OC05Y2U0LWVkNDgtOGU2Ni02YWQzN2I0YWY5NDE8L3N0RXZ0Omluc3RhbmNlSUQ+CiAgICAgICAgICAgICAgICAgIDxzdEV2dDp3aGVuPjIwMTgtMDItMjdUMTQ6MTY6MTErMDQ6MDA8L3N0RXZ0OndoZW4+CiAgICAgICAgICAgICAgICAgIDxzdEV2dDpzb2Z0d2FyZUFnZW50PkFkb2JlIFBob3Rvc2hvcCBDQyAyMDE3IChXaW5kb3dzKTwvc3RFdnQ6c29mdHdhcmVBZ2VudD4KICAgICAgICAgICAgICAgICAgPHN0RXZ0OmNoYW5nZWQ+Lzwvc3RFdnQ6Y2hhbmdlZD4KICAgICAgICAgICAgICAgPC9yZGY6bGk+CiAgICAgICAgICAgICAgIDxyZGY6bGkgcmRmOnBhcnNlVHlwZT0iUmVzb3VyY2UiPgogICAgICAgICAgICAgICAgICA8c3RFdnQ6YWN0aW9uPnNhdmVkPC9zdEV2dDphY3Rpb24+CiAgICAgICAgICAgICAgICAgIDxzdEV2dDppbnN0YW5jZUlEPnhtcC5paWQ6MWNlZWE3YWMtNTIxMC02MjQ2LWFiMDQtZTA1YmEwYjljOTQ1PC9zdEV2dDppbnN0YW5jZUlEPgogICAgICAgICAgICAgICAgICA8c3RFdnQ6d2hlbj4yMDE4LTAyLTI3VDE0OjE2OjExKzA0OjAwPC9zdEV2dDp3aGVuPgogICAgICAgICAgICAgICAgICA8c3RFdnQ6c29mdHdhcmVBZ2VudD5BZG9iZSBQaG90b3Nob3AgQ0MgMjAxNyAoV2luZG93cyk8L3N0RXZ0OnNvZnR3YXJlQWdlbnQ+CiAgICAgICAgICAgICAgICAgIDxzdEV2dDpjaGFuZ2VkPi88L3N0RXZ0OmNoYW5nZWQ+CiAgICAgICAgICAgICAgIDwvcmRmOmxpPgogICAgICAgICAgICA8L3JkZjpTZXE+CiAgICAgICAgIDwveG1wTU06SGlzdG9yeT4KICAgICAgICAgPHRpZmY6T3JpZW50YXRpb24+MTwvdGlmZjpPcmllbnRhdGlvbj4KICAgICAgICAgPHRpZmY6WFJlc29sdXRpb24+NzIwMDAwLzEwMDAwPC90aWZmOlhSZXNvbHV0aW9uPgogICAgICAgICA8dGlmZjpZUmVzb2x1dGlvbj43MjAwMDAvMTAwMDA8L3RpZmY6WVJlc29sdXRpb24+CiAgICAgICAgIDx0aWZmOlJlc29sdXRpb25Vbml0PjI8L3RpZmY6UmVzb2x1dGlvblVuaXQ+CiAgICAgICAgIDxleGlmOkNvbG9yU3BhY2U+NjU1MzU8L2V4aWY6Q29sb3JTcGFjZT4KICAgICAgICAgPGV4aWY6UGl4ZWxYRGltZW5zaW9uPjMwPC9leGlmOlBpeGVsWERpbWVuc2lvbj4KICAgICAgICAgPGV4aWY6UGl4ZWxZRGltZW5zaW9uPjMwPC9leGlmOlBpeGVsWURpbWVuc2lvbj4KICAgICAgPC9yZGY6RGVzY3JpcHRpb24+CiAgIDwvcmRmOlJERj4KPC94OnhtcG1ldGE+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgCjw\/eHBhY2tldCBlbmQ9InciPz7HmtNXAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAjWSURBVHjanFd9bFPXFf\/d9\/zsZ\/v5ObZfAnbIUpI0fCxMhGlJkxaNKpFAKkqntUIIaYRJJR9FiEGoJqoOov1RMVE1UxvSsoIqbVJVCoJuomVlypYh8aERWEoZ6dwSlYJxkmcndj7s5\/d19k9s4TZM64509a7ufff+zjn3nHN\/l+HRwhhjICIAIAAIBoNuv9\/v1XVdBCAA4Fwul+F2u\/XZ2VnNNM2ZiYkJ27Is\/F\/CGGMcxzHGGHM6nS5FUb5XWVnZuHPnzhey2ewJIjpPRKNEdJeI\/kVEf83lcr+bn5\/\/6c6dO6uXL1\/u5TjuO2MyQRB4nuedHo9naWtra9ulS5fO0oJkMhlSVZXi8TjFYjGKx+Okqipls9n8Lyki+k1XV9fampqaPDr7FtA3+zzPcwAckUjk+z09PZ179uzZAcD54MEDOxqN2oODg45bt25hamoKuq7D5XIhGAyivr4ejY2NZl1dHR+JRBiADBHt37Jlyx9Onz49t7A\/LaYAA+AAEFyzZk3LtWvXPiYimp6eppMnTxotLS3k8\/koHA5TRUUFVVZWFlpFRQUtXbqUZFmmTZs20ZkzZ\/RUKpX3QP\/WrVuVR1rO87wAwBeJRDZcuHDhBhHR119\/Tdu3bydJkigSiVB1dTVVVVU9slVXV1MkEiFZlqmjo4NisVge\/PiWLVskp9NZfKZOp5MnIpdlWSuOHj36i87Ozp89ePAA3d3duHDhAsrLy\/PR\/T9LPB5HW1sb+vr6EA6HAeClcDjcNz4+bgEAD4C5XC53LpdbsmHDhrY33nhjXyaTsXt6etiHH36IioqK7wwKAH6\/H8PDw0gmk1i\/fj253e6GL7\/88tytW7cmLctinCAIfCaTkWVZXnfgwIHNAHDmzBnr5MmTWLZsGWzbBsdxME0TiUQCqqpC13Xk04XjOORyOUxOTiKRSMA0TTDGYNs2IpEI3nvvPZw7d44AlLz99tsvSJIkAiBeFEUvEZU3Nze39Pb2botGo+zQoUN8JpOBw+EAABiGAZ\/Ph40bN2Lt2rWIxWKYmpqCJEmYnp6Goihoa2tDbW0tVFWFpmkFxQRBwMTEBGtubkYgEPjh\/fv3\/zQyMhIHgDJFUX5y6tSpvxERvf766yQIAtXU1BSCxuv1Und3dz5QaGBggMLhMImiSEuWLKFjx44V5trb20mW5aKA83g8dOzYMbIsi4joV5WVlW4OgOx2u6uam5t\/MDs7i88++wyhUAi2bRfOi4gK1gNAd3c3enp6oCgK9u\/fj46OjsJ\/PM8XnTURIRAIYGRkBHNzc7Asq9Xr9fodAEoFQSiNRCKusbExXLt2DS6Xq2hxMBjERx99hJqaGuzevRuMMXR2dqK5uRn19fUAANM00dfXh6GhIfj9\/qL1DocDw8PDmJ2dhSzL6zRN8zgACBzHuQF4NU3D5OQkvF5v0UJRFJFOp3H48GHkcjns2LEDpaWlaGpqAgCMj4\/j+PHj6O\/vBxFBluUij\/E8j\/v370PXdQCQNE1zcwAEp9MpAIBt24umjm3bCAQCSCQSePPNN3H37t2i+Tt37uDo0aNIp9MoKSkpAs2LpmmwLIsWMoHjAIg8z3vzqbHYrcJxHKamphAMBrFnzx5UV1cXza9cuRK7d++GLMtIpVKL7uFwOMBYoWKSAwBpmjYDICMIgsfr9cKyrKIgyeVy8Pv92Lt3L3bt2lUY+\/zzz7F69WqEQiG8\/PLLcLlceOutt5DL5SAIQpHHFEWB0+lkAFIALA6Akc1mM6qqpgOBAFavXg3DMIq0TSaT2Lx5cwEUAAYGBvD888\/jnXfeKYz19PTg6aefRiqVKlpvWRaqqqrgdrsxMzMzbZqmwQGYm5mZyV66dGkmFArhySefRCqVetgtYIxB07Qi0CNHjmBsbAyvvvoqTpw4UeSdh13NGMPc3BwaGhrg9\/uh6\/q\/LcvK8oyxkK7rwVwuV7J169aVbrcbn3zyCUzTLGwgiiLGx8cRjUYxNDSEd999F3Nzc1i2bBnS6TQ+\/fRTxGIxnD17FpcvXy6KFdu2IUkSXnnlFZSXl2Pfvn29w8PD\/2QAKgH8SFGUpqtXr25\/7LHHlL1792JgYADLly8v1Gpd15FIJArnJYpiYS6bzSKZTILneYRCIQiCACICx3G4d+8edu3ahSNHjoDjuIQkST+en5+\/zXs8HrIsS9Y0zZ9MJtlzzz234vHHH8fo6Cii0SgkSSoASJIEn88HnucLaZevaj6fD5IkFSxljCGRSKC1tRW9vb0IBALo6Oj49cjIyN9N09R4APZCDZVHR0edq1atWvrUU08Famtrcf78eaiqCp\/P952uRo7joKoqysvL0d\/fjxUrVuDmzZt\/6erqOmwYxgQAxtu2TR6PxzAMg7dt2zs8PGw0NjaWPvHEE3JDQwO++OIL3LhxA5IkfasOL8IUYZom7t27h9bWVvT19WHdunWIx+NT7e3tB8bHx0eIyCIixjPGGBHZRKQzxrjp6WnH7du3cy0tLUvXrFnjbWhogG3b+OqrrxCPx+FwOMDzfCHq89xb0zQkEgkoioJt27bh4MGDqKurg6qq0+3t7b1DQ0Mf27adyReQh4mek+O4CgAtAF6qq6v7\/fvvv3+HiEjXdbp48SIdPHiQNm7cSCUlJSSKIkmSRKIoUiAQoGeeeYYOHTpEV65cIV3XiYhocHBwpKmp6ecAyvJsJ0\/42EPsjwA4GWNlRFQLYFUwGKzatGlTzWuvvbY+HA4HACAWi2FychKGYdiWZVkcx\/Eul4srKytDJBIBAMzOzqovvvjiB4ODg3+Ox+P\/ADAFwPxvFBcAnAsaNgDYBuCXVVVVv3322Wf\/ePHixZtElKTFJXH9+vWxzs7OD2pra7sA1AMoWdiPfZPaskXAyeFwOJxOpzuTyZQu5LkCoLSsrEwpLS1dIoqijzFGjDHONE3dMIyUZVnJdDqtxuPxO0QUdblcKcuycqZpGotZyh71WFsgbAIACYAPQACAZ6EvALABcAB0AGkA8wCmF75ZjuN0Iip69D0s\/xkAalh5iwp88nkAAAAASUVORK5CYII="},"homePageUrl":"https:\/\/codippa.com\/","isPreview":"","convertedIdsReverse":[],"dontShowPopupExpireTime":"365","conditionalJsClasses":[]};
+var SGPB_JS_PACKAGES = {"packages":{"current":1,"free":1,"silver":2,"gold":3,"platinum":4},"extensions":{"geo-targeting":false,"advanced-closing":false}};
+var SGPB_JS_PARAMS = {"ajaxUrl":"https:\/\/codippa.com\/wp-admin\/admin-ajax.php","nonce":"eb7d4faf09"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/PopupBuilder.js"></script>
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/Subscription.js"></script>
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/Validate.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var wp_applaud = {"ajaxurl":"https:\/\/codippa.com\/wp-admin\/admin-ajax.php","user_likes":"-1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/wp-applaud.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var sgr_recaptcha = {"site_key":"6LdNQ14UAAAAAB5EoY6GLi2cbrOr9fgNfd5cRiTF"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/main.js"></script>
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/api.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var quicktagsL10n = {"closeAllOpenTags":"Close all open tags","closeTags":"close tags","enterURL":"Enter the URL","enterImageURL":"Enter the URL of the image","enterImageDescription":"Enter a description of the image","textdirection":"text direction","toggleTextdirection":"Toggle Editor Text Direction","dfw":"Distraction-free writing mode","strong":"Bold","strongClose":"Close bold tag","em":"Italic","emClose":"Close italic tag","link":"Insert link","blockquote":"Blockquote","blockquoteClose":"Close blockquote tag","del":"Deleted text (strikethrough)","delClose":"Close deleted text tag","ins":"Inserted text","insClose":"Close inserted text tag","image":"Insert image","ul":"Bulleted list","ulClose":"Close bulleted list tag","ol":"Numbered list","olClose":"Close numbered list tag","li":"List item","liClose":"Close list item tag","code":"Code","codeClose":"Close code tag","more":"Insert Read More tag"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/quicktags.min.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var drawitFE = {"mediaupload":"https:\/\/codippa.com\/wp-admin\/\/media-upload.php"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/qt-btn.js"></script>
+<!-- This site uses the Better Analytics plugin.  https://marketplace.digitalpoint.com/better-analytics.3354/item -->
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/loader.php"></script><link rel="https://api.w.org/" href="https://codippa.com/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://codippa.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://codippa.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="How to select an element in jQuery" href="https://codippa.com/jquery-selectors/">
+<link rel="next" title="How to solve org.hibernate.HibernateException: No CurrentSessionContext configured!" href="https://codippa.com/how-to-solve-org-hibernate-hibernateexception-no-currentsessioncontext-configured/">
+<meta name="generator" content="WordPress 5.0.8">
+<link rel="shortlink" href="https://wp.me/p7xzdy-7a">
+<link rel="alternate" type="application/json+oembed" href="https://codippa.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcodippa.com%2Fjdbc-hibernate-comparison%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://codippa.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcodippa.com%2Fjdbc-hibernate-comparison%2F&amp;format=xml">
+<style>
+.search-in-place {background-color: #F9F9F9;}
+.search-in-place {border: 1px solid #DDDDDD;}
+.search-in-place .item{border-bottom: 1px solid #DDDDDD;}.search-in-place .label{color:#333333;}
+.search-in-place .label{text-shadow: 0 1px 0 #FFFFFF;}
+.search-in-place .label{
+				background: #ECECEC;
+				background: -moz-linear-gradient(top,  #F9F9F9 0%, #ECECEC 100%);
+				background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#F9F9F9), color-stop(100%,#ECECEC));
+				background: -webkit-linear-gradient(top,  #F9F9F9 0%,#ECECEC 100%);
+				background: -o-linear-gradient(top,  #F9F9F9 0%,#ECECEC 100%);
+				background: -ms-linear-gradient(top,  #F9F9F9 0%,#ECECEC 100%);
+				background: linear-gradient(to bottom,  #F9F9F9 0%,#ECECEC 100%);
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#F9F9F9', endColorstr='#ECECEC',GradientType=0 );
+			}
+.search-in-place .item.active{background-color:#FFFFFF;}
+</style>            <style>
+                #wpcomm .wc_new_comment{background:#00B38F;}
+                #wpcomm .wc_new_reply{background:#00B38F;}
+                #wpcomm .wc-form-wrapper{ background:none; } /* ->formBGColor */
+                #wpcomm .wpdiscuz-front-actions{background:#F9F9F9;}
+                #wpcomm .wpdiscuz-subscribe-bar{background:#F9F9F9;}
+                #wpcomm select,
+                #wpcomm input[type="text"],
+                #wpcomm input[type="email"],
+                #wpcomm input[type="url"],
+                #wpcomm input[type="date"],
+                #wpcomm input[type="color"]{border:#D9D9D9 1px solid;}
+                #wpcomm .wc-comment .wc-comment-right{background:#FEFEFE;}
+                #wpcomm .wc-reply .wc-comment-right{background:#F8F8F8;}
+                #wpcomm .wc-comment-right .wc-comment-text, 
+                #wpcomm .wc-comment-right .wc-comment-text *{
+                    font-size:14px;
+                }
+                #wpcomm .wc-blog-administrator > .wc-comment-right .wc-comment-author, #wpcomm .wc-blog-administrator > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-administrator > .wc-comment-left .wc-comment-label{color:#00B38F; border:none; border-bottom: 1px solid #dddddd; }#wpcomm .wc-blog-editor > .wc-comment-right .wc-comment-author, #wpcomm .wc-blog-editor > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-editor > .wc-comment-left .wc-comment-label{color:#00B38F; border:none; border-bottom: 1px solid #dddddd; }#wpcomm .wc-blog-author > .wc-comment-right .wc-comment-author, #wpcomm .wc-blog-author > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-author > .wc-comment-left .wc-comment-label{color:#00B38F; border:none; border-bottom: 1px solid #dddddd; }#wpcomm .wc-blog-contributor > .wc-comment-right .wc-comment-author, #wpcomm .wc-blog-contributor > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-contributor > .wc-comment-left .wc-comment-label{color:#00B38F; border:none; border-bottom: 1px solid #dddddd; }#wpcomm .wc-blog-subscriber > .wc-comment-right .wc-comment-author, #wpcomm .wc-blog-subscriber > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-subscriber > .wc-comment-left .wc-comment-label{color:#00B38F; border:none; border-bottom: 1px solid #dddddd; }#wpcomm .wc-blog-post_author > .wc-comment-right .wc-comment-author, #wpcomm .wc-blog-post_author > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-post_author > .wc-comment-left .wc-comment-label{color:#00B38F; border:none; border-bottom: 1px solid #dddddd; }#wpcomm .wc-blog-guest > .wc-comment-right .wc-comment-author, #wpcomm .wc-blog-guest > .wc-comment-right .wc-comment-author a{color:#00B38F;}#wpcomm .wc-blog-guest > .wc-comment-left .wc-comment-label{color:#00B38F; border:none; border-bottom: 1px solid #dddddd; }                #wpcomm .wc-comment .wc-comment-left .wc-comment-label{ background: #ffffff;}
+                #wpcomm .wc-comment-left .wc-follow-user{color:#00B38F;}
+                #wpcomm .wc-load-more-submit{border:1px solid #D9D9D9;}
+                #wpcomm .wc-new-loaded-comment > .wc-comment-right{background:#FFFAD6;}
+                #wpcomm .wpdiscuz-subscribe-bar{color:#777;}
+                #wpcomm .wpdiscuz-front-actions .wpdiscuz-sbs-wrap span{color: #777;}
+                #wpcomm .page-numbers{color:#555;border:#555 1px solid;}
+                #wpcomm span.current{background:#555;}
+                #wpcomm .wpdiscuz-readmore{cursor:pointer;color:#00B38F;}
+                #wpcomm .wpdiscuz-textarea-wrap{border:#D9D9D9 1px solid;} .wpd-custom-field .wcf-pasiv-star, #wpcomm .wpdiscuz-item .wpdiscuz-rating > label {color: #DDDDDD;}
+                #wpcomm .wpdiscuz-item .wpdiscuz-rating:not(:checked) > label:hover,.wpdiscuz-rating:not(:checked) > label:hover ~ label {   }#wpcomm .wpdiscuz-item .wpdiscuz-rating > input ~ label:hover, #wpcomm .wpdiscuz-item .wpdiscuz-rating > input:not(:checked) ~ label:hover ~ label, #wpcomm .wpdiscuz-item .wpdiscuz-rating > input:not(:checked) ~ label:hover ~ label{color: #FFED85;} 
+                #wpcomm .wpdiscuz-item .wpdiscuz-rating > input:checked ~ label:hover, #wpcomm .wpdiscuz-item .wpdiscuz-rating > input:checked ~ label:hover, #wpcomm .wpdiscuz-item .wpdiscuz-rating > label:hover ~ input:checked ~ label, #wpcomm .wpdiscuz-item .wpdiscuz-rating > input:checked + label:hover ~ label, #wpcomm .wpdiscuz-item .wpdiscuz-rating > input:checked ~ label:hover ~ label, .wpd-custom-field .wcf-active-star, #wpcomm .wpdiscuz-item .wpdiscuz-rating > input:checked ~ label{ color:#FFD700;}
+                #wpcomm .wc-comment-header{border-top: 1px solid #dedede;}
+                #wpcomm .wc-reply .wc-comment-header{border-top: 1px solid #dedede;}
+                /* Buttons */
+                #wpcomm button, 
+                #wpcomm input[type="button"], 
+                #wpcomm input[type="reset"], 
+                #wpcomm input[type="submit"]{ border: 1px solid #555555; color: #FFFFFF; background-color: #555555; }
+                #wpcomm button:hover, 
+                #wpcomm button:focus,
+                #wpcomm input[type="button"]:hover, 
+                #wpcomm input[type="button"]:focus, 
+                #wpcomm input[type="reset"]:hover, 
+                #wpcomm input[type="reset"]:focus, 
+                #wpcomm input[type="submit"]:hover, 
+                #wpcomm input[type="submit"]:focus{ border: 1px solid #333333; background-color: #333333;  }
+                #wpcomm .wpdiscuz-sort-buttons{color:#777777;}
+                #wpcomm .wpdiscuz-sort-button{color:#777777; cursor:pointer;}
+                #wpcomm .wpdiscuz-sort-button:hover{color:#00B38F!important;cursor:pointer;}
+                #wpcomm .wpdiscuz-sort-button-active{color:#00B38F!important;cursor:default!important;}
+                #wpcomm .wc-cta-button, 
+                #wpcomm .wc-cta-button-x{color:#777777; }
+                #wpcomm .wc-vote-link.wc-up{color:#999999;}
+                #wpcomm .wc-vote-link.wc-down{color:#999999;}
+                #wpcomm .wc-vote-result{color:#999999;}
+                #wpcomm .wpf-cta{color:#999999; }
+                #wpcomm .wc-comment-link .wc-share-link .wpf-cta{color:#eeeeee;}
+                #wpcomm .wc-footer-left .wc-reply-button{border:1px solid #00B38F!important; color: #00B38F;}
+                #wpcomm .wpf-cta:hover{background:#00B38F!important; color:#FFFFFF;}
+                #wpcomm .wc-footer-left .wc-reply-button.wc-cta-active, #wpcomm .wc-cta-active{background:#00B38F!important; color:#FFFFFF;}
+                #wpcomm .wc-cta-button:hover{background:#00B38F!important; color:#FFFFFF;}
+                #wpcomm .wc-footer-right .wc-toggle,
+                #wpcomm .wc-footer-right .wc-toggle a,
+                #wpcomm .wc-footer-right .wc-toggle i{color:#00B38F;}
+                /* STICKY COMMENT HEADER */
+                #wpcomm .wc-sticky-comment.wc-comment .wc-comment-header .wpd-sticky{background: #1ecea8; color: #ffffff; }
+                #wpcomm .wc-closed-comment.wc-comment .wc-comment-header .wpd-closed{background: #aaaaaa; color: #ffffff;}
+                /* PRIVATE COMMENT HEADER */
+                #wpcomm .wc-private-comment.wc-comment .wc-comment-header .wpd-private{background: #999999; color: #ffffff;}
+                /* FOLLOW LINK */
+
+                #wpcomm .wc-follow{color:#777777;}
+                #wpcomm .wc-follow-active{color:#ff7a00;}
+                #wpcomm .wc-follow:hover i,
+                #wpcomm .wc-unfollow:hover i,
+                #wpcomm .wc-follow-active:hover i{color:#00B38F;}
+                                .wpd-wrapper .wpd-list-item.wpd-active{border-top: 3px solid #00B38F;}
+                                .comments-area{width:auto;}
+            </style>
+            <style type="text/css" id="amazon-auto-links-button-css">.amazon-auto-links-button.amazon-auto-links-button-default {background: #4997e5;background-image: -webkit-linear-gradient(top, #4997e5, #3f89ba);background-image: -moz-linear-gradient(top, #4997e5, #3f89ba);background-image: -ms-linear-gradient(top, #4997e5, #3f89ba);background-image: -o-linear-gradient(top, #4997e5, #3f89ba);background-image: linear-gradient(to bottom, #4997e5, #3f89ba);-webkit-border-radius: 4;-moz-border-radius: 4;border-radius: 4px;margin-left: auto;margin-right: auto;text-align: center;white-space: nowrap;color: #ffffff;font-size: 13px;text-shadow-color: transparent;width: 100px;box-shadow-color: #666666;padding: 7px 8px 8px 8px;background: #3498db;border: solid #6891a5 1px;text-decoration: none;}.amazon-auto-links-button.amazon-auto-links-button-default:hover {background: #3cb0fd;background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);background-image: -o-linear-gradient(top, #3cb0fd, #3498db);background-image: linear-gradient(to bottom, #3cb0fd, #3498db);text-decoration: none;}.amazon-auto-links-button.amazon-auto-links-button-3038 {background: #4997e5;background-image: -webkit-linear-gradient(top, #4997e5, #3f89ba);background-image: -moz-linear-gradient(top, #4997e5, #3f89ba);background-image: -ms-linear-gradient(top, #4997e5, #3f89ba);background-image: -o-linear-gradient(top, #4997e5, #3f89ba);background-image: linear-gradient(to bottom, #4997e5, #3f89ba);-webkit-border-radius: 4;-moz-border-radius: 4;border-radius: 4px;margin-left: auto;margin-right: auto;text-align: center;white-space: nowrap;color: #ffffff;font-size: 13px;text-shadow-color: transparent;width: 100px;box-shadow-color: #666666;padding: 7px 8px 8px 8px;background: #3498db;border: solid #6891a5 1px;text-decoration: none;}.amazon-auto-links-button.amazon-auto-links-button-3038:hover {background: #3cb0fd;background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);background-image: -o-linear-gradient(top, #3cb0fd, #3498db);background-image: linear-gradient(to bottom, #3cb0fd, #3498db);text-decoration: none;}</style>
+<link rel="dns-prefetch" href="https://v0.wordpress.com/">
+<link rel="dns-prefetch" href="https://i0.wp.com/">
+<link rel="dns-prefetch" href="https://i1.wp.com/">
+<link rel="dns-prefetch" href="https://i2.wp.com/">
+<link rel="dns-prefetch" href="https://jetpack.wordpress.com/">
+<link rel="dns-prefetch" href="https://s0.wp.com/">
+<link rel="dns-prefetch" href="https://s1.wp.com/">
+<link rel="dns-prefetch" href="https://s2.wp.com/">
+<link rel="dns-prefetch" href="https://public-api.wordpress.com/">
+<link rel="dns-prefetch" href="https://0.gravatar.com/">
+<link rel="dns-prefetch" href="https://1.gravatar.com/">
+<link rel="dns-prefetch" href="https://2.gravatar.com/">
+<style type="text/css">img#wpstats{display:none}</style><link rel="icon" href="https://i1.wp.com/codippa.com/wp-content/uploads/2016/06/cropped-person-thinking-with-question-mark-201008-question-bicubic.png?fit=32%2C32&amp;ssl=1" sizes="32x32">
+<link rel="icon" href="https://i1.wp.com/codippa.com/wp-content/uploads/2016/06/cropped-person-thinking-with-question-mark-201008-question-bicubic.png?fit=192%2C192&amp;ssl=1" sizes="192x192">
+<link rel="apple-touch-icon-precomposed" href="https://i1.wp.com/codippa.com/wp-content/uploads/2016/06/cropped-person-thinking-with-question-mark-201008-question-bicubic.png?fit=180%2C180&amp;ssl=1">
+<meta name="msapplication-TileImage" content="https://i1.wp.com/codippa.com/wp-content/uploads/2016/06/cropped-person-thinking-with-question-mark-201008-question-bicubic.png?fit=270%2C270&amp;ssl=1">
+			<style type="text/css" id="wp-custom-css">
+				.meta-author{display:none}.meta-comments{display:none}.page-header{display:none}ul.meta li:after{content:''}#site-header{border-bottom:3px solid #f1f1f1}.blog-entry{border-bottom:3px solid #f1f1f1}div.highlighter{border:1px solid #008EC2;background-color:#daf8f8;padding:4px}li.newitem a span{color:#F80}li.newitem a span:hover{color:#13aff0}.blog-entry-header a:hover{color:#13aff0!important}div.tax-desc{display:none}li.search-toggle-li{display:none}.menu-items{padding:5px;border-bottom:1px solid #ccc}.current-menu-item a{color:blue;font-weight:bold}#left-sidebar{padding-right:10px!important}#right-sidebar{padding-left:10px!important}			</style>
+		<!-- OceanWP CSS -->
+<style type="text/css">
+/* General CSS */.container{width:1600px}@media only screen and (min-width:960px){.content-area,.content-left-sidebar .content-area{width:75%}}@media only screen and (min-width:960px){.widget-area,.content-left-sidebar .widget-area{width:25%}}@media only screen and (min-width:960px){body.page.content-both-sidebars .content-area{width:62%}body.page.content-both-sidebars.scs-style .widget-area.sidebar-secondary,body.page.content-both-sidebars.ssc-style .widget-area{left:-62%}}@media only screen and (min-width:960px){body.page.content-both-sidebars .widget-area{width:19%}body.page.content-both-sidebars.scs-style .content-area{left:19%}body.page.content-both-sidebars.ssc-style .content-area{left:38%}}/* Header CSS */#site-header.has-header-media .overlay-header-media{background-color:rgba(0,0,0,0.5)}#site-navigation-wrap .dropdown-menu >li >a,.oceanwp-mobile-menu-icon a,#searchform-header-replace-close{color:#000000}.dropdown-menu ul li a.menu-link{color:#000000}body .sidr a,body .sidr-class-dropdown-toggle,#mobile-dropdown ul li a,#mobile-dropdown ul li a .dropdown-toggle,#mobile-fullscreen ul li a,#mobile-fullscreen .oceanwp-social-menu.simple-social ul li a{color:#000000}#mobile-fullscreen a.close .close-icon-inner,#mobile-fullscreen a.close .close-icon-inner::after{background-color:#000000}/* Footer Bottom CSS */#footer-bottom{background-color:#929292}#footer-bottom,#footer-bottom p{color:#000000}/* Typography CSS */body{font-size:16px;color:#000000;line-height:1.6}#site-logo a.site-logo-text{font-weight:800;font-size:35px;line-height:2.1}#site-navigation-wrap .dropdown-menu >li >a,#site-header.full_screen-header .fs-dropdown-menu >li >a,#site-header.top-header #site-navigation-wrap .dropdown-menu >li >a,#site-header.center-header #site-navigation-wrap .dropdown-menu >li >a,#site-header.medium-header #site-navigation-wrap .dropdown-menu >li >a,.oceanwp-mobile-menu-icon a{font-weight:600;font-size:15px}.dropdown-menu ul li a.menu-link,#site-header.full_screen-header .fs-dropdown-menu ul.sub-menu li a{font-weight:600;font-size:14px}.blog-entry.post .blog-entry-header .entry-title a{color:#000000}.single-post .entry-title{font-size:30px;line-height:1.2}#footer-bottom #copyright{font-weight:600;font-size:15px}#footer-bottom #footer-bottom-menu{font-weight:800;font-size:18px}
+</style><link rel="stylesheet" type="text/css" id="gravatar-card-css" href="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/hovercard.min.css"><link rel="stylesheet" type="text/css" id="gravatar-card-services-css" href="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/services.min.css"><style id="fit-vids-style">.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_dialog_advanced{border-radius:8px;padding:10px}.fb_dialog_content{background:#fff;color:#373737}.fb_dialog_close_icon{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{left:5px;right:auto;top:5px}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent}.fb_dialog_close_icon:active{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #365899;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{height:100%;left:0;margin:0;overflow:visible;position:absolute;top:-10000px;transform:none;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{background:none;height:auto;min-height:initial;min-width:initial;width:auto}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{clear:both;color:#fff;display:block;font-size:18px;padding-top:20px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .4);bottom:0;left:0;min-height:100%;position:absolute;right:0;top:0;width:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_mobile .fb_dialog_iframe{position:sticky;top:0}.fb_dialog_content .dialog_header{background:linear-gradient(from(#738aba), to(#2c4987));border-bottom:1px solid;border-color:#043b87;box-shadow:white 0 1px 1px -1px inset;color:#fff;font:bold 14px Helvetica, sans-serif;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:linear-gradient(from(#4267B2), to(#2a4887));background-clip:padding-box;border:1px solid #29487d;border-radius:3px;display:inline-block;line-height:18px;margin-top:3px;max-width:85px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{background:none;border:none;color:#fff;font:bold 12px Helvetica, sans-serif;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #4a4a4a;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f5f6f7;border:1px solid #4a4a4a;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/t-wz8gw1xG1.png);background-position:50% 50%;background-repeat:no-repeat;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}</style></head>
+
+<body class="post-template-default single single-post postid-444 single-format-standard oceanwp-theme sidebar-mobile default-breakpoint has-sidebar content-right-sidebar post-in-category-hibernate post-in-category-j2ee has-breadcrumbs pagination-center wpdiscuz_5.3.5">
+
+	
+	<div id="outer-wrap" class="site clr">
+
+		
+		<div id="wrap" class="clr">
+
+			
+			
+<header id="site-header" class="minimal-header clr" data-height="74" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+
+	
+		
+			
+			<div id="site-header-inner" class="clr container">
+
+				
+				
+
+<div id="site-logo" class="clr" itemscope="" itemtype="http://schema.org/Brand">
+
+	
+	<div id="site-logo-inner" class="clr">
+
+		
+			<a href="https://codippa.com/" rel="home" class="site-title site-logo-text">codippa</a>
+
+		
+	</div><!-- #site-logo-inner -->
+
+	
+	
+</div><!-- #site-logo -->
+
+			<div id="site-navigation-wrap" class="clr">
+		
+			
+			
+			<nav id="site-navigation" class="navigation main-navigation clr" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+
+				<ul id="menu-main" class="main-menu dropdown-menu sf-menu sf-js-enabled" style="touch-action: pan-y;"><li id="menu-item-377" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor menu-item-has-children dropdown menu-item-377"><a href="https://codippa.com/exploring/java/" class="menu-link sf-with-ul"><span class="text-wrap">Java <span class="nav-arrow fa fa-angle-down"></span></span></a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-376" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-376"><a href="https://codippa.com/exploring/java/j2se-core-java/" class="menu-link"><span class="text-wrap">J2SE (Core Java)</span></a></li>	<li id="menu-item-273" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-273"><a href="https://codippa.com/exploring/java/j2ee/" class="menu-link"><span class="text-wrap">J2EE</span></a></li>	<li id="menu-item-825" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-825"><a href="https://codippa.com/exploring/java/programs/" class="menu-link"><span class="text-wrap">Programming Problems</span></a></li></ul>
+</li><li id="menu-item-2298" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children dropdown menu-item-2298"><a href="https://codippa.com/exploring/python/" class="menu-link sf-with-ul"><span class="text-wrap">Python <span class="nav-arrow fa fa-angle-down"></span></span></a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-2522" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2522"><a target="_blank" href="https://tutorials.codippa.com/python" class="menu-link"><span class="text-wrap">Tutorial</span></a></li></ul>
+</li><li id="menu-item-79" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor menu-item-has-children dropdown menu-item-79"><a href="https://codippa.com/exploring/frameworks/" class="menu-link sf-with-ul"><span class="text-wrap">Frameworks <span class="nav-arrow fa fa-angle-down"></span></span></a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-324" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-324"><a href="https://codippa.com/exploring/frameworks/spring/" class="menu-link"><span class="text-wrap">Spring</span></a></li>	<li id="menu-item-81" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-81"><a href="https://codippa.com/exploring/frameworks/hibernate/" class="menu-link"><span class="text-wrap">Hibernate</span></a></li></ul>
+</li><li id="menu-item-82" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children dropdown menu-item-82"><a href="https://codippa.com/exploring/javascript/" class="menu-link sf-with-ul"><span class="text-wrap">Javascript <span class="nav-arrow fa fa-angle-down"></span></span></a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-2577" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2577"><a target="_blank" href="https://tutorials.codippa.com/javascript" class="menu-link"><span class="text-wrap">JS Tutorial</span></a></li></ul>
+</li><li id="menu-item-1829" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children dropdown menu-item-1829"><a href="https://codippa.com/exploring/frameworks/angular/" class="menu-link sf-with-ul"><span class="text-wrap">Angular <span class="nav-arrow fa fa-angle-down"></span></span></a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-2523" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2523"><a target="_blank" href="https://tutorials.codippa.com/angular" class="menu-link"><span class="text-wrap">Tutorial</span></a></li></ul>
+</li><li id="menu-item-2519" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children dropdown menu-item-2519"><a class="menu-link sf-with-ul"><span class="text-wrap">React <span class="nav-arrow fa fa-angle-down"></span></span></a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-2520" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2520"><a target="_blank" href="https://tutorials.codippa.com/react" class="menu-link"><span class="text-wrap">Tutorial</span></a></li></ul>
+</li><li id="menu-item-2588" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children dropdown menu-item-2588 nav-no-click"><a href="https://codippa.com/jdbc-hibernate-comparison/#" class="menu-link sf-with-ul"><span class="text-wrap">Node.js <span class="nav-arrow fa fa-angle-down"></span></span></a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-2589" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2589"><a target="_blank" href="https://tutorials.codippa.com/nodejs" class="menu-link"><span class="text-wrap">Tutorial</span></a></li></ul>
+</li><li id="menu-item-1385" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children dropdown menu-item-1385"><a href="https://codippa.com/exploring/database/" class="menu-link sf-with-ul"><span class="text-wrap">Database <span class="nav-arrow fa fa-angle-down"></span></span></a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-1386" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1386"><a href="https://codippa.com/exploring/database/oracle/" class="menu-link"><span class="text-wrap">Oracle</span></a></li>	<li id="menu-item-1387" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1387"><a href="https://codippa.com/exploring/database/mysql/" class="menu-link"><span class="text-wrap">MySQL</span></a></li></ul>
+</li><li id="menu-item-2938" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2938"><a href="https://codippa.com/exploring/misc/" class="menu-link"><span class="text-wrap">Miscellaneous</span></a></li><li id="menu-item-3532" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3532"><a href="https://codippa.com/tutorials/" class="menu-link"><span class="text-wrap">Tutorials</span></a></li><li class="search-toggle-li"><a href="https://codippa.com/jdbc-hibernate-comparison/#" class="site-search-toggle search-dropdown-toggle"><span class="icon-magnifier"></span></a></li></ul>
+<div id="searchform-dropdown" class="header-searchform-wrap clr">
+	
+<form method="get" class="searchform" id="searchform" action="https://codippa.com/">
+	<input type="text" class="field" name="s" id="s" placeholder="Search">
+	</form></div><!-- #searchform-dropdown -->
+			</nav><!-- #site-navigation -->
+
+			
+			
+					</div><!-- #site-navigation-wrap -->
+		
+		
+	
+				
+	<div class="oceanwp-mobile-menu-icon clr mobile-right">
+
+		
+		
+		
+		<a href="https://codippa.com/jdbc-hibernate-comparison/#" class="mobile-menu">
+							<i class="fa fa-bars"></i>
+							<span class="oceanwp-text">Menu</span>
+
+						</a>
+
+		
+		
+		
+	</div><!-- #oceanwp-mobile-menu-navbar -->
+
+
+			</div><!-- #site-header-inner -->
+
+			
+			
+		
+				
+	
+</header><!-- #site-header -->
+
+
+						
+			<main id="main" class="site-main clr">
+
+				
+
+<header class="page-header">
+
+	
+	<div class="container clr page-header-inner">
+
+		
+			<h1 class="page-header-title clr" itemprop="headline">Blog</h1>
+
+			
+		
+		<nav role="navigation" aria-label="Breadcrumbs" class="site-breadcrumbs clr" itemprop="breadcrumb"><ul class="trail-items" itemscope="" itemtype="http://schema.org/BreadcrumbList"><meta name="numberOfItems" content="4"><meta name="itemListOrder" content="Ascending"><li class="trail-item trail-begin" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"><a href="https://codippa.com/" rel="home"><span itemprop="name"><span class="icon-home"></span><span style="display: none;">Home</span></span></a><meta content="1" itemprop="position"></li><li class="trail-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"><a href="https://codippa.com/exploring/frameworks/"><span itemprop="name">Frameworks</span></a><meta content="2" itemprop="position"></li><li class="trail-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"><a href="https://codippa.com/exploring/frameworks/hibernate/"><span itemprop="name">Hibernate</span></a><meta content="3" itemprop="position"></li><li class="trail-item trail-end" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"><span itemprop="name">JDBC Vs Hibernate – A Comparison / Difference between JDBC and Hibernate</span><meta content="4" itemprop="position"></li></ul></nav>
+	</div><!-- .page-header-inner -->
+
+	
+	
+</header><!-- .page-header -->
+
+
+	
+	<div id="content-wrap" class="container clr">
+
+		
+		<div id="primary" class="content-area clr">
+
+			
+			<div id="content" class="site-content clr">
+
+				
+				
+<article id="post-444">
+
+	
+
+<header class="entry-header clr">
+	<h2 class="single-post-title entry-title" itemprop="headline">JDBC Vs Hibernate – A Comparison / Difference between JDBC and Hibernate</h2><!-- .single-post-title -->
+</header><!-- .entry-header -->
+
+
+
+<ul class="meta clr">
+
+	
+					<li class="meta-author" itemprop="name"><i class="icon-user"></i><a href="https://codippa.com/author/codipp5_wp/" title="Posts by codippa" rel="author" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">codippa</a></li>
+		
+		
+		
+		
+	
+		
+					<li class="meta-date" itemprop="datePublished"><i class="icon-clock"></i>June 16, 2016</li>
+		
+		
+		
+	
+		
+		
+					<li class="meta-cat"><i class="icon-folder"></i><a href="https://codippa.com/exploring/frameworks/hibernate/" rel="category tag">Hibernate</a> / <a href="https://codippa.com/exploring/java/j2ee/" rel="category tag">J2EE</a></li>
+		
+		
+	
+		
+		
+		
+					<li class="meta-comments"><i class="icon-bubble"></i><a href="https://codippa.com/jdbc-hibernate-comparison/#comments" class="comments-link local">2 Comments</a></li>
+		
+		
+</ul>
+
+
+
+<div class="entry-content clr" itemprop="text">
+	<p><strong>JDBC</strong> is an acronym for <span style="font-size: 15px;"><strong>J</strong></span>ava <span style="font-size: 15px;"><strong>D</strong></span>ata<span style="font-size: 15px;"><strong>B</strong></span>ase <span style="font-size: 15px;"><strong>C</strong></span>onnectivity and is a technology for interaction of java application and its objects with a database.<strong> Hibernate</strong> on the other hand is a java based framework which also facilitates the interaction of application objects with a database but <em>in a completely different approach</em>.</p>
+<p>Below are listed some differences between the two. The points do not intend to indicate which is better, they just compare the various aspects of the method of operation of both. <em>The headers before each row indicate the area of comparison</em>.<span id="more-444"></span><br>
+<br>
+<script async="" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/f.txt"></script>
+<!-- Ad1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5893337456694207" data-ad-slot="8937853970" data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</p>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th style="background-color: #dbdcdd; border: 1px solid #D3CDCD;"><center><span style="font-size: 18px;">JDBC</span></center></th>
+<th style="background-color: #dbdcdd; border: 1px solid #D3CDCD;"><center><span style="font-size: 18px;">HIBERNATE</span></center></th>
+</tr>
+</thead>
+<tbody>
+<tr style="background-color: #f4f2f2;">
+<td colspan="2"><strong>Type</strong></td>
+</tr>
+<tr>
+<td>JDBC is a technology for persistence of data.</td>
+<td>Hibernate is a framework for persistence of objects.</td>
+</tr>
+<tr style="background-color: #f4f2f2;">
+<td colspan="2"><strong>Query Language</strong></td>
+</tr>
+<tr>
+<td>JDBC uses SQL (Structured Query Language) to interact with the database.</td>
+<td>Hibernate uses HQL primarily uses (Hibernate Query Language) and also SQL (Structured Query Language) to interact with the database.</td>
+</tr>
+<tr style="background-color: #f4f2f2;">
+<td colspan="2"><strong>Database Dependence</strong></td>
+</tr>
+<tr>
+<td>JDBC uses SQL queries for database interaction which vary with the type of database. Hence, when the underlying database changes, queries have to be updated.</td>
+<td>Hibernate uses HQL which are independent of database. Hence, changing application database requires no change in application code.</td>
+</tr>
+<tr style="background-color: #f4f2f2;">
+<td colspan="2"><strong>Caching</strong></td>
+</tr>
+<tr>
+<td>JDBC provides no caching support. It has to be separately implemented and integrated with the application.</td>
+<td>Hibernate provides two levels of caching. Separate implementation is not required.</td>
+</tr>
+<tr style="background-color: #f4f2f2;">
+<td colspan="2"><strong>Connection pooling</strong></td>
+</tr>
+<tr>
+<td>JDBC by itself does not provide any connection pooling facility. It has to be implemented by the developer using java or third party libraries such as DBCP from Apache.</td>
+<td>With Hibernate you can use connection pooling merely by adding a dependency in your application build file and configuring it in hibernate configuration file. Example is c3p0, which has a hibernate package.</td>
+</tr>
+<tr style="background-color: #f4f2f2;">
+<td colspan="2"><strong>Multiple Table data fetch</strong></td>
+</tr>
+<tr>
+<td>If you have nested objects (<em>whose data is distributed over multiple tables</em>), then SQL queries to fetch the data can become too complex. <strong>For example</strong>, suppose you have employee’s official details in one table and his personal details in some other table then the query to fetch complete employee data will be quite long and cumbersome.</td>
+<td>Hibernate’s<em> One-To-One</em>, <em>One-To-Many</em> and <em>Many-To-Many</em> relations manage this very well and fetching top level entity will automatically fetch the data from all related tables automatically.</td>
+</tr>
+<tr style="background-color: #f4f2f2;">
+<td colspan="2"><strong>Object-Database table Relationship</strong></td>
+</tr>
+<tr>
+<td>In order to convert database record into an object, explicit code needs to be written where each column data will be mapped to its respective java class field.</td>
+<td>Hibernate automatically does this via configuration file or annotations. Moreover, column names are automatically mapped with the respective entity fields if they share the same name.</td>
+</tr>
+<tr style="background-color: #f4f2f2;">
+<td colspan="2"><strong>Primary Key Generation</strong></td>
+</tr>
+<tr>
+<td>With JDBC we cannot auto generate primary key value for a record, we need to explicitly set it before saving.</td>
+<td>Hibernate provides automatic primary key generation so that when we save a record, primary key value for that record is automatically generated.</td>
+</tr>
+<tr style="background-color: #f4f2f2;">
+<td colspan="2"><strong>Cascading</strong></td>
+</tr>
+<tr>
+<td>An object may contain another object <strong>such as</strong> a Test Script and a list of its test steps. When you save (or delete) a test script, you will obviously want the test steps to be saved (or deleted) as well. This is called <strong>Cascading</strong>. With JDBC, this has to be manually handled by the developer. Save the test script, then set the id of this test script in each of the test steps as a foreign key; delete the test script, then delete all test steps related to the given test script id and so on.</td>
+<td>Hibernate manages all this stuff by itself. You just need to apply appropriate <code>Cascade</code> and <code>CascadeType</code> either in the form of annotations or in configuration file.</td>
+</tr>
+<tr style="background-color: #f4f2f2;">
+<td colspan="2"><strong>Automatic Database Creation</strong></td>
+</tr>
+<tr>
+<td>You cannot create a non-existent database or table if you are using JDBC provided you don’t execute a query to do that.</td>
+<td>With Hibernate you can create database or table at application startup by using appropriate value of configuration property <code>hbm2ddl.auto</code>.</td>
+</tr>
+<tr style="background-color: #f4f2f2;">
+<td colspan="2"><strong>Query Statistics</strong></td>
+</tr>
+<tr>
+<td>With JDBC, it is not possible to figure out the time taken by a query unless you manually calculate the time or set logging at database level.</td>
+<td>Hibernate can easily generate the statistics for query execution in an application. It can also tell the number of database connections, statements utilized and the time taken for these operations, the cache usage and number of flushes. All required is the configuration <code>hibernate.generate_statistics</code> to be set.</td>
+</tr>
+<tr style="background-color: #f4f2f2;">
+<td colspan="2"><strong>Row Versioning</strong></td>
+</tr>
+<tr>
+<td>Versioning of rows is not possible using JDBC. Although this can also be managed explicitly by incrementing a particular column value after every update. But again its a manual effort.</td>
+<td>Hibernate manages versioning automatically provided that you have configured a field to be used as a version by annotating it with <code>@Version</code> or by setting a field as versioned using <code> </code>in XML configuration.</td>
+</tr>
+</tbody>
+</table>
+<p>Hope the points made the comparison clear and worth reading. If yes, then show the agreement by giving your comments and don’t forget to share the post.<span style="font-size: 15px;"> <strong>coDippa !!!</strong></span><br>
+<br>
+<script async="" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/f.txt"></script>
+<!-- Ad-3 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5893337456694207" data-ad-slot="2566589578" data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<a href="https://codippa.com/jdbc-hibernate-comparison/#" class="wp-applaud" id="wp-applaud-444" title=""><span class="wp-applaud-count">2</span></a></p><div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon sd-sharing"><h3 class="sd-title">Spread the word !!!</h3><div class="sd-content"><ul><li class="share-twitter"><a rel="nofollow noopener noreferrer" data-shared="sharing-twitter-444" class="share-twitter sd-button share-icon no-text" href="https://codippa.com/jdbc-hibernate-comparison/?share=twitter&amp;nb=1" target="_blank" title="Click to share on Twitter"><span></span><span class="sharing-screen-reader-text">Click to share on Twitter (Opens in new window)</span></a></li><li class="share-facebook"><a rel="nofollow noopener noreferrer" data-shared="sharing-facebook-444" class="share-facebook sd-button share-icon no-text" href="https://codippa.com/jdbc-hibernate-comparison/?share=facebook&amp;nb=1" target="_blank" title="Click to share on Facebook"><span></span><span class="sharing-screen-reader-text">Click to share on Facebook (Opens in new window)</span></a></li><li class="share-google-plus-1"><a rel="nofollow noopener noreferrer" data-shared="sharing-google-444" class="share-google-plus-1 sd-button share-icon no-text" href="https://codippa.com/jdbc-hibernate-comparison/?share=google-plus-1&amp;nb=1" target="_blank" title="Click to share on Google+"><span></span><span class="sharing-screen-reader-text">Click to share on Google+ (Opens in new window)</span></a></li><li class="share-tumblr"><a rel="nofollow noopener noreferrer" data-shared="" class="share-tumblr sd-button share-icon no-text" href="https://codippa.com/jdbc-hibernate-comparison/?share=tumblr&amp;nb=1" target="_blank" title="Click to share on Tumblr"><span></span><span class="sharing-screen-reader-text">Click to share on Tumblr (Opens in new window)</span></a></li><li class="share-reddit"><a rel="nofollow noopener noreferrer" data-shared="" class="share-reddit sd-button share-icon no-text" href="https://codippa.com/jdbc-hibernate-comparison/?share=reddit&amp;nb=1" target="_blank" title="Click to share on Reddit"><span></span><span class="sharing-screen-reader-text">Click to share on Reddit (Opens in new window)</span></a></li><li class="share-end"></li></ul></div></div></div>
+<div id="jp-relatedposts" class="jp-relatedposts" style="display: block;">
+	
+<div class="jp-relatedposts-items jp-relatedposts-items-minimal jp-relatedposts-grid "><p class="jp-relatedposts-post jp-relatedposts-post0" data-post-id="503" data-post-format="false"><span class="jp-relatedposts-post-title"><a class="jp-relatedposts-post-a" href="https://codippa.com/database-interaction-using-jdbc/" title="JDBC in java with example
+
+JDBC stands for Java DataBase Connectivity and is a technology for database connectivity from java program. JDBC is a collection of multiple interfaces and classes which provides methods for database connection and operations. Operations include executing SQL queries for fetching records, inserting and updating or deleting data from a database table…" rel="nofollow" data-origin="444" data-position="0">JDBC in java with example</a></span><span class="jp-relatedposts-post-date">June 26, 2016</span><span class="jp-relatedposts-post-context">In "J2SE (Core Java)"</span></p><p class="jp-relatedposts-post jp-relatedposts-post1" data-post-id="1398" data-post-format="false"><span class="jp-relatedposts-post-title"><a class="jp-relatedposts-post-a" href="https://codippa.com/how-to-execute-a-database-script-in-java/" title="How to execute a database script in java / Various ways to execute a database query file in java
+
+A database script is a file which contains multiple queries separated by some separator. Executing a script is most commonly used to apply patches on an application where multiple database operations are performed on an existing database such as some values of existing records need to be changed, a new…" rel="nofollow" data-origin="444" data-position="1">How to execute a database script in java / Various ways to execute a database query file in java</a></span><span class="jp-relatedposts-post-date">August 18, 2017</span><span class="jp-relatedposts-post-context">In "J2SE (Core Java)"</span></p><p class="jp-relatedposts-post jp-relatedposts-post2" data-post-id="416" data-post-format="false"><span class="jp-relatedposts-post-title"><a class="jp-relatedposts-post-a" href="https://codippa.com/how-to-soft-delete-a-record-in-hibernate-jpa/" title="How to soft delete a record in Hibernate or JPA / Soft deletion of Entities in Hibernate or JPA
+
+Soft Delete !!! What the heck ? Soft delete means that the record is not removed from the database table but a flag is set to a value which indicates that this record should not be fetched while fetching the records from this table. The flag shall be a value…" rel="nofollow" data-origin="444" data-position="2">How to soft delete a record in Hibernate or JPA / Soft deletion of Entities in Hibernate or JPA</a></span><span class="jp-relatedposts-post-date">June 11, 2016</span><span class="jp-relatedposts-post-context">In "Hibernate"</span></p></div></div></div><!-- .entry -->
+
+<div class="post-tags clr">
+	Tags: <a href="https://codippa.com/tag/comparison/" rel="tag">comparison</a>, <a href="https://codippa.com/tag/difference/" rel="tag">difference</a>, <a href="https://codippa.com/tag/hibernate/" rel="tag">hibernate</a>, <a href="https://codippa.com/tag/jdbc/" rel="tag">jdbc</a></div>
+
+
+	<nav class="navigation post-navigation" role="navigation">
+		<h2 class="screen-reader-text">Continue Reading</h2>
+		<div class="nav-links"><div class="nav-previous"><a href="https://codippa.com/how-to-soft-delete-a-record-in-hibernate-jpa/" rel="prev"><span class="title"><i class="fa fa-long-arrow-left"></i>Previous Post</span><span class="post-title">How to soft delete a record in Hibernate or JPA / Soft deletion of Entities in Hibernate or JPA</span></a></div><div class="nav-next"><a href="https://codippa.com/optimistic-locking-in-hibernate-auto-versioning-in-hibernate/" rel="next"><span class="title"><i class="fa fa-long-arrow-right"></i>Next Post</span><span class="post-title">How to version rows automatically in Hibernate / Optimistic locking in Hibernate / Version-controlled optimistic concurrency control in Hibernate</span></a></div></div>
+	</nav>
+
+	<section id="related-posts" class="clr">
+
+		<h3 class="theme-heading related-posts-title">
+			<span class="text">You Might Also Like</span>
+		</h3>
+
+		<div class="oceanwp-row clr">
+
+			
+			
+				
+				<article class="related-post clr col span_1_of_3 col-1 post-929 post type-post status-publish format-standard hentry category-hibernate entry">
+
+					
+					<h3 class="related-post-title">
+						<a href="https://codippa.com/how-to-resolve-a-collection-with-cascadeall-delete-orphan-was-no-longer-referenced-by-the-owning-entity-instance/" title="How to resolve [A collection with cascade=“all-delete-orphan” was no longer referenced by the owning entity instance]" rel="bookmark">How to resolve [A collection with cascade=“all-delete-orphan” was no longer referenced by the owning entity instance]</a>
+					</h3><!-- .related-post-title -->
+									
+					<time class="published" datetime="2016-10-26T15:53:16+00:00"><i class="icon-clock"></i>October 26, 2016</time>
+
+				</article><!-- .related-post -->
+				
+				
+			
+				
+				<article class="related-post clr col span_1_of_3 col-2 post-268 post type-post status-publish format-standard hentry category-j2ee category-j2se-core-java tag-application-request tag-jsp tag-scope tag-session entry">
+
+					
+					<h3 class="related-post-title">
+						<a href="https://codippa.com/how-to-send-data-from-one-jsp-page-to-another/" title="How to send data from one JSP page to another" rel="bookmark">How to send data from one JSP page to another</a>
+					</h3><!-- .related-post-title -->
+									
+					<time class="published" datetime="2016-05-23T18:40:35+00:00"><i class="icon-clock"></i>May 23, 2016</time>
+
+				</article><!-- .related-post -->
+				
+				
+			
+				
+				<article class="related-post clr col span_1_of_3 col-3 post-275 post type-post status-publish format-standard hentry category-j2ee tag-collection tag-foreach tag-html tag-jsp tag-jstl tag-scriptlet tag-spring entry">
+
+					
+					<h3 class="related-post-title">
+						<a href="https://codippa.com/how-to-iterate-over-list-of-objects-jstl/" title="How to iterate over a list of objects in jsp / How to create a table from a list of objects in jsp / How to iterate over a collection using jstl" rel="bookmark">How to iterate over a list of objects in jsp / How to create a table from a list of objects in jsp / How to iterate over a collection using jstl</a>
+					</h3><!-- .related-post-title -->
+									
+					<time class="published" datetime="2016-05-25T18:49:16+00:00"><i class="icon-clock"></i>May 25, 2016</time>
+
+				</article><!-- .related-post -->
+				
+				
+			
+		</div><!-- .oceanwp-row -->
+
+	</section><!-- .related-posts -->
+
+
+
+    <div class="wpdiscuz_top_clearing"></div>
+    <div id="comments" class="comments-area"><div id="respond" style="width: 0;height: 0;clear: both;margin: 0;padding: 0;"></div>            <h3 id="wc-comment-header">
+                                    <div class="wpdiscuz-comment-count">
+                        <div class="wpd-cc-value">2</div>
+                        <div class="wpd-cc-arrow"></div>
+                    </div>
+                                Leave a Reply            </h3>
+                    <div id="wpcomm" class="wpdiscuz_unauth wpd-default">
+            <div class="wpdiscuz-form-top-bar">
+                <div class="wpdiscuz-ftb-left">
+                                                            <div id="wc_show_hide_loggedin_username">
+                                            </div>
+                </div>
+                                <div class="wpd-clear"></div>
+            </div>
+
+
+            
+		<div id="respond" class="comment-respond">
+							<h3 id="reply-title" class="comment-reply-title">Mark Your Impression					<small><a rel="nofollow" id="cancel-comment-reply-link" href="https://codippa.com/jdbc-hibernate-comparison/#respond" style="display:none;">Cancel reply</a></small>
+				</h3>
+						<form id="commentform" class="comment-form">
+				<iframe title="Comment Form" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/saved_resource.html" style="width: 100%; height: 58px; border: 0px;" name="jetpack_remote_comment" class="jetpack_remote_comment" id="jetpack_remote_comment" sandbox="allow-same-origin allow-top-navigation allow-scripts allow-forms allow-popups" scrolling="no"></iframe>
+									<!--[if !IE]><!-->
+					<script>
+						document.addEventListener('DOMContentLoaded', function () {
+							var commentForms = document.getElementsByClassName('jetpack_remote_comment');
+							for (var i = 0; i < commentForms.length; i++) {
+								commentForms[i].allowTransparency = false;
+								commentForms[i].scrolling = 'no';
+							}
+						});
+					</script>
+					<!--<![endif]-->
+							</form>
+		</div>
+
+		
+		<input type="hidden" name="comment_parent" id="comment_parent" value="">
+
+		                                   
+
+                                    <div class="wpdiscuz-front-actions">
+                                                    <div class="wpdiscuz-sbs-wrap">
+                                <span><i class="far fa-envelope" aria-hidden="true"></i>&nbsp; Subscribe &nbsp;<i class="fas fa-caret-down" aria-hidden="true"></i></span>
+                            </div>
+                                                                        
+                            <div class="wpdiscuz-sort-buttons" style="font-size:14px; color: #777;">
+                                <i class="fas fa-caret-up" aria-hidden="true"></i> 
+                                <span class="wpdiscuz-sort-button wpdiscuz-date-sort-desc ">newest</span> <i class="fas fa-caret-up" aria-hidden="true"></i> 
+                                <span class="wpdiscuz-sort-button wpdiscuz-date-sort-asc wpdiscuz-sort-button-active">oldest</span>
+                                                                    <i class="fas fa-caret-up" aria-hidden="true"></i> <span class="wpdiscuz-sort-button wpdiscuz-vote-sort-up ">most voted</span>
+                                                            </div>
+                                                <div class="clearfix"></div>
+                    </div>
+                                                    <div class="wpdiscuz-subscribe-bar wpdiscuz-hidden">
+                                                    <form action="https://codippa.com/wp-admin/admin-ajax.php?action=addSubscription" method="post" id="wpdiscuz-subscribe-form">
+                                <div class="wpdiscuz-subscribe-form-intro">Notify of </div>
+                                <div class="wpdiscuz-subscribe-form-option" style="width:40%;">
+                                    <select class="wpdiscuz_select" name="wpdiscuzSubscriptionType">
+                                                                                    <option value="post">new follow-up comments</option>
+                                                                                                                            <option value="all_comment">new replies to my comments</option>
+                                                                            </select>
+                                </div>
+                                                                    <div class="wpdiscuz-item wpdiscuz-subscribe-form-email">
+                                        <input class="email" type="email" name="wpdiscuzSubscriptionEmail" required="required" value="" placeholder="Email">
+                                    </div>
+                                                                <div class="wpdiscuz-subscribe-form-button">
+                                    <input id="wpdiscuz_subscription_button" type="submit" value="›" name="wpdiscuz_subscription_button">
+                                </div> 
+                                                                <input type="hidden" id="wpdiscuz_subscribe_form_nonce" name="wpdiscuz_subscribe_form_nonce" value="9099726491"><input type="hidden" name="_wp_http_referer" value="/jdbc-hibernate-comparison/">                                                                <input type="hidden" value="444" name="wpdiscuzSubscriptionPostId">
+                            </form>
+                                                <div class="wpdiscuz_clear"></div>
+                                            </div>
+                    
+                                <div id="wcThreadWrapper" class="wc-thread-wrapper">
+                    <div id="wc-comm-147_0" class="wc-comment wc-blog-guest wc_comment_level-1"><div class="wc-comment-left "><div class="wpd-xborder"></div><img alt="Nissi" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/d17f59df00a14a1c1e1cb5b00b3b0a3d.gif" srcset="https://codippa.com/wp-content/uploads/wpdiscuz/cache/gravatars/d17f59df00a14a1c1e1cb5b00b3b0a3d.gif 2x" class="avatar avatar-64 photo" height="64" width="64"><div class="wc-blog-guest wc-comment-label"><span>Guest</span></div></div><div id="comment-147" class="wc-comment-right"><div class="wc-comment-header"><div class="wc-comment-author ">Nissi</div><div class="wc-comment-link"><div class="wc-share-link wpf-cta wpd-tooltip-right"><i class="fas fa-share-alt" aria-hidden="true" title="Share"></i><wpdtip><a class="wc_tw" target="_blank" href="https://twitter.com/intent/tweet?text=this+is+really+Incredible+stuff%21%21%21+Keep+it+up%2C+you+are+helping+many+to+get+co...+&amp;url=https%3A%2F%2Fcodippa.com%2Fjdbc-hibernate-comparison%2F%23comment-147" title="Share On Twitter"><i class="fab fa-twitter wpf-cta" aria-hidden="true"></i></a><a class="wc_go" target="_blank" href="https://plus.google.com/share?url=https://codippa.com/jdbc-hibernate-comparison/" title="Share On Google"><i class="fab fa-google wpf-cta" aria-hidden="true"></i></a><a class="wc_vk" target="_blank" href="http://vk.com/share.php?url=https://codippa.com/jdbc-hibernate-comparison/" title="Share On VKontakte"><i class="fab fa-vk wpf-cta" aria-hidden="true"></i></a><a class="wc_ok" target="_blank" href="http://www.odnoklassniki.ru/dk?st.cmd=addShare&amp;st.s=1&amp;st._surl=https://codippa.com/jdbc-hibernate-comparison/" title=""><i class="fab fa-odnoklassniki wpf-cta" aria-hidden="true"></i></a></wpdtip></div><span class="wc-comment-img-link-wrap"><i class="fas fa-link wc-comment-img-link wpf-cta" data-comment-url="https://codippa.com/jdbc-hibernate-comparison/#comment-147" aria-hidden="true"></i></span></div><div class="wpdiscuz_clear"></div></div><div class="wc-comment-text"><p>this is really Incredible stuff!!! Keep it up, you are helping many to get comprehensive understanding of many concepts<br>
+thank you so much.</p>
+</div><div class="wc-comment-footer"><div class="wc-footer-left"><span class="wc-vote-link wc-up wc_vote wc_not_clicked"><i class="fas fa-plus wc-vote-img-up"></i><span>Vote Up</span></span><span class="wc-vote-result">0</span><span class="wc-vote-link wc-down wc_vote wc_not_clicked"><i class="fas fa-minus wc-vote-img-down"></i><span>Vote Down</span></span>&nbsp;<span class="wc-reply-button wc-cta-button" title="Reply"><i class="far fa-comments" aria-hidden="true"></i> Reply</span></div><div class="wc-footer-right"><div class="wc-comment-date"><i class="far fa-clock" aria-hidden="true"></i>1 year ago</div><div class="wc-toggle"><i class="fas fa-chevron-up" title="Hide Replies"></i></div></div><div class="wpdiscuz_clear"></div></div></div><div class="wpdiscuz-comment-message"></div><div id="wpdiscuz_form_anchor-147_0" class="wpdiscuz_clear"></div><div id="wc-comm-148_147" class="wc-comment wc-reply wc-blog-user wc-blog-post_author wc_comment_level-2"><div class="wc-comment-left "><div class="wpd-xborder"></div><a href="https://codippa.com/author/codipp5_wp/" target="_blank"><img alt="codippa" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/c48ed64ec06985112febc1cb0f835e3f.png" srcset="https://secure.gravatar.com/avatar/c48ed64ec06985112febc1cb0f835e3f?s=128&amp;d=mm&amp;r=g 2x" class="avatar avatar-64 photo grav-hashed grav-hijack" height="64" width="64" id="grav-c48ed64ec06985112febc1cb0f835e3f-0"></a><div class="wc-blog-user wc-blog-post_author wc-comment-label"><span>Author</span></div></div><div id="comment-148" class="wc-comment-right"><div class="wc-comment-header"><div class="wc-comment-author "><a href="https://codippa.com/author/codipp5_wp/" rel="nofollow" target="_blank">codippa</a></div><div class="wc-comment-link"><div class="wc-share-link wpf-cta wpd-tooltip-right"><i class="fas fa-share-alt" aria-hidden="true" title="Share"></i><wpdtip><a class="wc_tw" target="_blank" href="https://twitter.com/intent/tweet?text=Thank+you%26%238230%3B.Keep+visiting%21%21%21%0A&amp;url=https%3A%2F%2Fcodippa.com%2Fjdbc-hibernate-comparison%2F%23comment-148" title="Share On Twitter"><i class="fab fa-twitter wpf-cta" aria-hidden="true"></i></a><a class="wc_go" target="_blank" href="https://plus.google.com/share?url=https://codippa.com/jdbc-hibernate-comparison/" title="Share On Google"><i class="fab fa-google wpf-cta" aria-hidden="true"></i></a><a class="wc_vk" target="_blank" href="http://vk.com/share.php?url=https://codippa.com/jdbc-hibernate-comparison/" title="Share On VKontakte"><i class="fab fa-vk wpf-cta" aria-hidden="true"></i></a><a class="wc_ok" target="_blank" href="http://www.odnoklassniki.ru/dk?st.cmd=addShare&amp;st.s=1&amp;st._surl=https://codippa.com/jdbc-hibernate-comparison/" title=""><i class="fab fa-odnoklassniki wpf-cta" aria-hidden="true"></i></a></wpdtip></div><span class="wc-comment-img-link-wrap"><i class="fas fa-link wc-comment-img-link wpf-cta" data-comment-url="https://codippa.com/jdbc-hibernate-comparison/#comment-148" aria-hidden="true"></i></span></div><div class="wpdiscuz_clear"></div></div><div class="wc-comment-text"><p>Thank you….Keep visiting!!!</p>
+</div><div class="wc-comment-footer"><div class="wc-footer-left"><span class="wc-vote-link wc-up wc_vote wc_not_clicked"><i class="fas fa-plus wc-vote-img-up"></i><span>Vote Up</span></span><span class="wc-vote-result">0</span><span class="wc-vote-link wc-down wc_vote wc_not_clicked"><i class="fas fa-minus wc-vote-img-down"></i><span>Vote Down</span></span>&nbsp;<span class="wc-reply-button wc-cta-button" title="Reply"><i class="far fa-comments" aria-hidden="true"></i> Reply</span></div><div class="wc-footer-right"><div class="wc-comment-date"><i class="far fa-clock" aria-hidden="true"></i>1 year ago</div><div class="wc-toggle"></div></div><div class="wpdiscuz_clear"></div></div></div><div class="wpdiscuz-comment-message"></div><div id="wpdiscuz_form_anchor-148_147" class="wpdiscuz_clear"></div></div></div>                
+                    <div class="wpdiscuz-comment-pagination">
+                                            </div>
+                </div>
+                <div class="wpdiscuz_clear"></div>
+                                                                                </div>
+        </div>
+        <div id="wpdiscuz-loading-bar" class="wpdiscuz-loading-bar wpdiscuz-loading-bar-unauth"></div>
+        
+</article>
+				
+			</div><!-- #content -->
+
+			
+		</div><!-- #primary -->
+
+		
+		
+
+<aside id="right-sidebar" class="sidebar-container widget-area sidebar-primary" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+
+	
+	<div id="right-sidebar-inner" class="clr">
+
+		<div id="custom_html-5" class="widget_text sidebar-box widget_custom_html clr"><h4 class="widget-title">Youtube channel Subscription</h4><div class="textwidget custom-html-widget"><div style="font-size:14px">Subscribe to our Youtube channel and get new video notifications !!!</div>
+<form method="post" action="https://bit.ly/2KGlVv5">
+	<input type="email" style="height:40px;padding:6px 12 px;border-radius:5px" placeholder="Your email...">
+<button style="margin-top:10px;background-color:red" type="submit">
+	Subscribe!
+	</button></form></div></div><div id="search-17" class="sidebar-box widget_search clr"><h4 class="widget-title">Explore…!!</h4>
+<form method="get" class="searchform" id="searchform" action="https://codippa.com/">
+	<input type="text" class="field" name="s" id="s" placeholder="Search">
+	</form></div><div id="weblizar_facebook_likebox-9" class="sidebar-box widget_weblizar_facebook_likebox clr"><h4 class="widget-title">Connect with codippa...!!</h4>		<style>
+		@media (max-width:767px) {
+			.fb_iframe_widget {
+				width: 100%;
+			}
+			.fb_iframe_widget span {
+				width: 100% !important;
+			}
+			.fb_iframe_widget iframe {
+				width: 100% !important;
+			}
+			._8r {
+				margin-right: 5px;
+				margin-top: -4px !important;
+			}
+		}
+		</style>
+        <div style="display:block;width:100%;float:left;overflow:hidden;margin-bottom:20px">
+			<div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; width: 0px; height: 0px;"><div></div></div></div>
+			<script>(function(d, s, id) {
+			  var js, fjs = d.getElementsByTagName(s)[0];
+			  if (d.getElementById(id)) return;
+			  js = d.createElement(s); js.id = id;
+			  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7";
+			  fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));</script>
+			<div class="fb-like-box fb_iframe_widget" style="background-color: auto;" data-small-header="true" data-height="560" data-href="https://www.facebook.com/thewebsiteCodippa" data-show-border="true" data-show-faces="true" data-stream="false" data-width="292" data-force-wall="false" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=&amp;container_width=390&amp;force_wall=false&amp;height=560&amp;href=https%3A%2F%2Fwww.facebook.com%2FthewebsiteCodippa&amp;locale=en_GB&amp;sdk=joey&amp;show_border=true&amp;show_faces=true&amp;stream=false&amp;width=292"><span style="vertical-align: bottom; width: 292px; height: 180px;"><iframe name="f3a25819da84304" width="292px" height="560px" title="fb:like_box Facebook Social Plugin" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/like_box.html" style="border: none; visibility: visible; width: 292px; height: 180px;" class=""></iframe></span></div>
+			<div style="display:none;">Facebook By Weblizar Powered By Weblizar</div>
+		</div>
+        </div><div id="wysija-10" class="sidebar-box widget_wysija clr"><h4 class="widget-title">Stay In Sync…!!</h4><div class="widget_wysija_cont"><div id="msg-form-wysija-10" class="wysija-msg ajax"></div><form id="form-wysija-10" method="post" action="https://codippa.com/jdbc-hibernate-comparison/#wysija" class="widget_wysija">
+<hr>
+
+Want to know more about your favorite technology. <br>Get a new article directly delivered to you for <b>FREE!!!</b>
+<p class="wysija-paragraph">
+    
+    
+    	<input type="text" name="wysija[user][email]" class="wysija-input validate[required,custom[email]]" title="Your email..." placeholder="Your email..." value="">
+    
+    
+    
+    <span class="abs-req">
+        <input type="text" name="wysija[user][abs][email]" class="wysija-input validated[abs][email]" value="">
+    </span>
+    
+</p>
+
+<input class="wysija-submit wysija-submit-field" type="submit" value="Subscribe!">
+
+    <input type="hidden" name="form_id" value="1">
+    <input type="hidden" name="action" value="save">
+    <input type="hidden" name="controller" value="subscribers">
+    <input type="hidden" value="1" name="wysija-page">
+
+    
+        <input type="hidden" name="wysija[user_list][list_ids]" value="1">
+    
+ </form></div></div><div id="custom_html-3" class="widget_text sidebar-box widget_custom_html clr"><div class="textwidget custom-html-widget"><script async="" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/f.txt"></script>
+<!-- SidebarAd3 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5893337456694207" data-ad-slot="8105520265" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div></div>
+	</div><!-- #sidebar-inner -->
+
+	
+</aside><!-- #right-sidebar -->
+
+
+	</div><!-- #content-wrap -->
+
+	
+
+        </main><!-- #main -->
+
+        
+        
+        
+            
+<footer id="footer" class="site-footer" itemscope="itemscope" itemtype="http://schema.org/WPFooter">
+
+    
+    <div id="footer-inner" class="clr">
+
+        
+
+<div id="footer-bottom" class="clr">
+
+	
+	<div id="footer-bottom-inner" class="container clr">
+
+		
+			<div id="footer-bottom-menu" class="navigation clr">
+				<div class="menu-footer-container"><ul id="menu-footer" class="menu"><li id="menu-item-2594" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2594"><a title="About codippa.com" href="https://codippa.com/about/">About</a></li>
+<li id="menu-item-3715" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3715"><a title="Publish your own article." href="https://codippa.com/contribute/">Publish article</a></li>
+</ul></div>
+			</div><!-- #footer-bottom-menu -->
+
+		
+		
+			<div id="copyright" class="clr" role="contentinfo">
+				Copyright codippa.com			</div><!-- #copyright -->
+
+		
+	</div><!-- #footer-bottom-inner -->
+
+	
+</div><!-- #footer-bottom -->
+
+        
+    </div><!-- #footer-inner -->
+
+    
+</footer><!-- #footer -->            
+        
+                        
+    </div><!-- #wrap -->
+
+    
+</div><!-- #outer-wrap -->
+
+
+
+<a id="scroll-top" class="scroll-top-right" href="https://codippa.com/jdbc-hibernate-comparison/#" style="display: none;"><span class="fa fa-angle-up"></span></a>
+
+
+<div id="sidr-close">
+	<a href="https://codippa.com/jdbc-hibernate-comparison/#" class="toggle-sidr-close">
+		<i class="icon icon-close"></i><span class="close-text">Close Menu</span>
+	</a>
+</div>
+    
+    
+<div id="mobile-menu-search" class="clr">
+	<form method="get" action="https://codippa.com/" class="mobile-searchform">
+		<input type="search" name="s" autocomplete="off" placeholder="Search">
+		<button type="submit" class="searchform-submit">
+			<i class="icon icon-magnifier"></i>
+		</button>
+			</form>
+</div><!-- .mobile-menu-search -->
+
+
+
+
+<meta id="ba_s" property="options" content="" data-o="{&quot;tid&quot;:&quot;UA-77410342-1&quot;,&quot;et&quot;:15,&quot;co&quot;:&quot;auto&quot;,&quot;g&quot;:1074203624,&quot;dl&quot;:&quot;\\.avi|\\.dmg|\\.doc|\\.exe|\\.gz|\\.mpg|\\.mp3|\\.pdf|\\.ppt|\\.psd|\\.rar|\\.wmv|\\.xls|\\.zip&quot;,&quot;s&quot;:0,&quot;a&quot;:0}"><a id="wpdUserContentInfoAnchor" style="display:none;" rel="#wpdUserContentInfo" data-wpd-lity="">wpDiscuz</a><div id="wpdUserContentInfo" style="overflow:auto;background:#FDFDF6;padding:20px;width:600px;max-width:100%;border-radius:6px;" class="lity-hide"></div>	<div style="display:none">
+	<div class="grofile-hash-map-c48ed64ec06985112febc1cb0f835e3f">
+	</div>
+	<div class="grofile-hash-map-d17f59df00a14a1c1e1cb5b00b3b0a3d">
+	</div>
+	<div class="grofile-hash-map-c48ed64ec06985112febc1cb0f835e3f">
+	</div>
+	</div>
+<div style="position:fixed;bottom: -999999999999999999999px;">
+							
+						  </div>
+	<script type="text/javascript">
+		window.WPCOM_sharing_counts = {"https:\/\/codippa.com\/jdbc-hibernate-comparison\/":444};
+	</script>
+				<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/photon.min.js"></script>
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/drawit-iframe.js"></script>
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/devicepx-jetpack.js"></script>
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/wpdcc.js"></script>
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/jquery.autogrowtextarea.min.js"></script>
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/jquery.form.min.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var wpdiscuzAjaxObj = {"url":"https:\/\/codippa.com\/wp-admin\/admin-ajax.php","customAjaxUrl":"https:\/\/codippa.com\/wp-content\/plugins\/wpdiscuz\/utils\/ajax\/wpdiscuz-ajax.php","wpdiscuz_options":{"wc_hide_replies_text":"Hide Replies","wc_show_replies_text":"View Replies","wc_msg_required_fields":"Please fill out required fields","wc_invalid_field":"Some of field value is invalid","wc_error_empty_text":"please fill out this field to comment","wc_error_url_text":"url is invalid","wc_error_email_text":"email address is invalid","wc_invalid_captcha":"Invalid Captcha Code","wc_login_to_vote":"You Must Be Logged In To Vote","wc_deny_voting_from_same_ip":"You are not allowed to vote for this comment","wc_self_vote":"You cannot vote for your comment","wc_vote_only_one_time":"You've already voted for this comment","wc_voting_error":"Voting Error","wc_held_for_moderate":"Comment awaiting moderation","wc_comment_edit_not_possible":"Sorry, this comment no longer possible to edit","wc_comment_not_updated":"Sorry, the comment was not updated","wc_comment_not_edited":"You've not made any changes","wc_new_comment_button_text":"new comment","wc_new_comments_button_text":"new comments","wc_new_reply_button_text":"new reply on your comment","wc_new_replies_button_text":"new replies on your comments","wc_msg_input_min_length":"Input is too short","wc_msg_input_max_length":"Input is too long","wc_follow_user":"Follow this user","wc_unfollow_user":"Unfollow this user","wc_follow_success":"You started following this comment author","wc_follow_canceled":"You stopped following this comment author.","wc_follow_email_confirm":"Please check your email and confirm the user following request.","wc_follow_email_confirm_fail":"Sorry, we couldn't send confirmation email.","wc_follow_login_to_follow":"Please login to follow users.","wc_follow_impossible":"We are sorry, but you can't follow this user.","wc_follow_not_added":"Following failed. Please try again later.","is_user_logged_in":false,"commentListLoadType":"0","commentListUpdateType":"0","commentListUpdateTimer":"30","liveUpdateGuests":"1","wc_comment_bg_color":"#FEFEFE","wc_reply_bg_color":"#F8F8F8","wpdiscuzCommentsOrder":"asc","wpdiscuzCommentOrderBy":"comment_date_gmt","commentsVoteOrder":false,"wordpressThreadCommentsDepth":"5","wordpressIsPaginate":"","commentTextMaxLength":null,"storeCommenterData":100000,"isCaptchaInSession":true,"isGoodbyeCaptchaActive":false,"socialLoginAgreementCheckbox":"1","enableFbLogin":"0","enableFbShare":"0","facebookAppID":"","facebookUseOAuth2":0,"enableGoogleLogin":"0","googleAppID":"","cookiehash":"1f2cd011108cfedfae4674bd4a7fc9bc","isLoadOnlyParentComments":"0","ahk":"fw=f=tar@2-m(g&!(iah1*5m%ufc3@u8","enableDropAnimation":1,"isNativeAjaxEnabled":1,"cookieCommentsSorting":"wpdiscuz_comments_sorting","enableLastVisitCookie":0,"version":"5.3.5","wc_post_id":444,"loadLastCommentId":0,"lastVisitKey":"wpdiscuz_last_visit","isCookiesEnabled":true,"wc_captcha_show_for_guest":"0","wc_captcha_show_for_members":"0","is_email_field_required":"1"}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/wpdiscuz.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var wpdiscuzUCObj = {"msgConfirmDeleteComment":"Are you sure you want to delete this comment?","msgConfirmCancelSubscription":"Are you sure you want to cancel this subscription?","msgConfirmCancelFollow":"Are you sure you want to cancel this follow?"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/wpdiscuz-user-content.js"></script>
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/lity.js"></script>
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/wp-syntax.js"></script>
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/gprofiles.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/wpgroho.js"></script>
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/comment-reply.min.js"></script>
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/imagesloaded.min.js"></script>
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/magnific-popup.min.js"></script>
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/lightbox.min.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var oceanwpLocalize = {"isRTL":"","menuSearchStyle":"drop_down","sidrSource":"#sidr-close, #site-navigation, #mobile-menu-search","sidrDisplace":"1","sidrSide":"left","sidrDropdownTarget":"icon","verticalHeaderTarget":"icon","customSelects":".woocommerce-ordering .orderby, #dropdown_product_cat, .widget_categories select, .widget_archive select, .single-product .variations_form .variations select"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/main.min.js"></script>
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/mootools-core-yc.js"></script>
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/EnlighterJS.min.js"></script>
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/wp-embed.min.js"></script>
+<!--[if lt IE 9]>
+<script type='text/javascript' src='https://codippa.com/wp-content/themes/oceanwp/assets/js//third/html5.min.js?x64602'></script>
+<![endif]-->
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/jquery.validationEngine-en.js"></script>
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/jquery.validationEngine.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var wysijaAJAX = {"action":"wysija_ajax","controller":"subscribers","ajaxurl":"https:\/\/codippa.com\/wp-admin\/admin-ajax.php","loadingTrans":"Loading...","is_rtl":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/front-subscribers.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var sharing_js_options = {"lang":"en","counts":"1","is_stats_active":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/sharing.min.js"></script>
+<script type="text/javascript">
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-twitter', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-facebook', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-google-plus-1', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomgoogle-plus-1', 'menubar=1,resizable=1,width=480,height=550' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-tumblr', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomtumblr', 'menubar=1,resizable=1,width=450,height=450' );
+				return false;
+			});
+</script>
+<script type="text/javascript">/* <![CDATA[ */EnlighterJS_Config = {"selector":{"block":"pre.EnlighterJSRAW","inline":"code.EnlighterJSRAW"},"language":"generic","theme":"classic","indent":2,"hover":"hoverEnabled","showLinenumbers":true,"rawButton":false,"infoButton":false,"windowButton":false,"rawcodeDoubleclick":false,"grouping":true,"cryptex":{"enabled":false,"email":"mail@example.tld"}};!function(){var a=function(a){var b="Enlighter Error: ";console.error?console.error(b+a):console.log&&console.log(b+a)};return window.addEvent?"undefined"==typeof EnlighterJS?void a("Javascript Resources not loaded yet!"):"undefined"==typeof EnlighterJS_Config?void a("Configuration not loaded yet!"):void window.addEvent("domready",function(){EnlighterJS.Util.Init(EnlighterJS_Config.selector.block,EnlighterJS_Config.selector.inline,EnlighterJS_Config)}):void a("MooTools Framework not loaded yet!")}();;/* ]]> */</script>
+		<!--[if IE]>
+		<script type="text/javascript">
+			if ( 0 === window.location.hash.indexOf( '#comment-' ) ) {
+				// window.location.reload() doesn't respect the Hash in IE
+				window.location.hash = window.location.hash;
+			}
+		</script>
+		<![endif]-->
+		<script type="text/javascript">
+			(function () {
+				var comm_par_el = document.getElementById( 'comment_parent' ),
+					comm_par = ( comm_par_el && comm_par_el.value ) ? comm_par_el.value : '',
+					frame = document.getElementById( 'jetpack_remote_comment' ),
+					tellFrameNewParent;
+
+				tellFrameNewParent = function () {
+					if ( comm_par ) {
+						frame.src = "https://jetpack.wordpress.com/jetpack-comment/?blogid=111434556&postid=444&comment_registration=0&require_name_email=0&stc_enabled=0&stb_enabled=1&show_avatars=1&avatar_default=mystery&greeting=Mark+Your+Impression&greeting_reply=Leave+a+Reply+to+%25s&color_scheme=light&lang=en_US&jetpack_version=6.9.1&show_cookie_consent=10&has_cookie_consent=0&sig=bd25e59c6432ce88103b06d15c8254f9aadccab5#parent=https%3A%2F%2Fcodippa.com%2Fjdbc-hibernate-comparison%2F" + '&replytocom=' + parseInt( comm_par, 10 ).toString();
+					} else {
+						frame.src = "https://jetpack.wordpress.com/jetpack-comment/?blogid=111434556&postid=444&comment_registration=0&require_name_email=0&stc_enabled=0&stb_enabled=1&show_avatars=1&avatar_default=mystery&greeting=Mark+Your+Impression&greeting_reply=Leave+a+Reply+to+%25s&color_scheme=light&lang=en_US&jetpack_version=6.9.1&show_cookie_consent=10&has_cookie_consent=0&sig=bd25e59c6432ce88103b06d15c8254f9aadccab5#parent=https%3A%2F%2Fcodippa.com%2Fjdbc-hibernate-comparison%2F";
+					}
+				};
+
+				
+				if ( 'undefined' !== typeof addComment ) {
+					addComment._Jetpack_moveForm = addComment.moveForm;
+
+					addComment.moveForm = function ( commId, parentId, respondId, postId ) {
+						var returnValue = addComment._Jetpack_moveForm( commId, parentId, respondId, postId ),
+							cancelClick, cancel;
+
+						if ( false === returnValue ) {
+							cancel = document.getElementById( 'cancel-comment-reply-link' );
+							cancelClick = cancel.onclick;
+							cancel.onclick = function () {
+								var cancelReturn = cancelClick.call( this );
+								if ( false !== cancelReturn ) {
+									return cancelReturn;
+								}
+
+								if ( ! comm_par ) {
+									return cancelReturn;
+								}
+
+								comm_par = 0;
+
+								tellFrameNewParent();
+
+								return cancelReturn;
+							};
+						}
+
+						if ( comm_par == parentId ) {
+							return returnValue;
+						}
+
+						comm_par = parentId;
+
+						tellFrameNewParent();
+
+						return returnValue;
+					};
+				}
+
+				
+				// Do the post message bit after the dom has loaded.
+				document.addEventListener( 'DOMContentLoaded', function () {
+					var iframe_url = "https:\/\/jetpack.wordpress.com";
+					if ( window.postMessage ) {
+						if ( document.addEventListener ) {
+							window.addEventListener( 'message', function ( event ) {
+								var origin = event.origin.replace( /^http:\/\//i, 'https://' );
+								if ( iframe_url.replace( /^http:\/\//i, 'https://' ) !== origin ) {
+									return;
+								}
+								jQuery( frame ).height( event.data );
+							});
+						} else if ( document.attachEvent ) {
+							window.attachEvent( 'message', function ( event ) {
+								var origin = event.origin.replace( /^http:\/\//i, 'https://' );
+								if ( iframe_url.replace( /^http:\/\//i, 'https://' ) !== origin ) {
+									return;
+								}
+								jQuery( frame ).height( event.data );
+							});
+						}
+					}
+				})
+
+			})();
+		</script>
+
+		<script type="text/javascript" src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/e-202007.js" async="async" defer="defer"></script>
+<script type="text/javascript">
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:6.9.1',blog:'111434556',post:'444',tz:'0',srv:'codippa.com'} ]);
+	_stq.push([ 'clickTrackerInit', '111434556', '444' ]);
+</script>
+
+
+<!--
+Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk: enhanced 
+Content Delivery Network via N/A
+
+Served from: codippa.com @ 2020-02-16 18:27:40 by W3 Total Cache
+--><div id="sidr" class="sidr left" style="transition: left 0.3s ease 0s;"><div class="sidr-inner">
+	<a href="https://codippa.com/jdbc-hibernate-comparison/#" class="sidr-class-toggle-sidr-close">
+		<i class="sidr-class-icon icon-close"></i><span class="sidr-class-close-text">Close Menu</span>
+	</a>
+</div><div class="sidr-inner">
+
+				<ul id="sidr-id-menu-main" class="sidr-class-main-menu sidr-class-dropdown-menu sidr-class-sf-menu"><li id="sidr-id-menu-item-377" class="sidr-class-menu-item sidr-class-menu-item-type-taxonomy sidr-class-menu-item-object-category sidr-class-current-post-ancestor sidr-class-menu-item-has-children sidr-class-dropdown sidr-class-menu-item-377"><a href="https://codippa.com/exploring/java/" class="sidr-class-menu-link"><span class="sidr-class-text-wrap">Java <span class="sidr-class-nav-arrow fa fa-angle-down"></span></span></a>
+<ul class="sidr-class-sub-menu">
+	<li id="sidr-id-menu-item-376" class="sidr-class-menu-item sidr-class-menu-item-type-taxonomy sidr-class-menu-item-object-category sidr-class-menu-item-376"><a href="https://codippa.com/exploring/java/j2se-core-java/" class="sidr-class-menu-link"><span class="sidr-class-text-wrap">J2SE (Core Java)</span></a></li>	<li id="sidr-id-menu-item-273" class="sidr-class-menu-item sidr-class-menu-item-type-taxonomy sidr-class-menu-item-object-category sidr-class-current-post-ancestor sidr-class-current-menu-parent sidr-class-current-post-parent sidr-class-menu-item-273"><a href="https://codippa.com/exploring/java/j2ee/" class="sidr-class-menu-link"><span class="sidr-class-text-wrap">J2EE</span></a></li>	<li id="sidr-id-menu-item-825" class="sidr-class-menu-item sidr-class-menu-item-type-taxonomy sidr-class-menu-item-object-category sidr-class-menu-item-825"><a href="https://codippa.com/exploring/java/programs/" class="sidr-class-menu-link"><span class="sidr-class-text-wrap">Programming Problems</span></a></li></ul>
+</li><li id="sidr-id-menu-item-2298" class="sidr-class-menu-item sidr-class-menu-item-type-taxonomy sidr-class-menu-item-object-category sidr-class-menu-item-has-children sidr-class-dropdown sidr-class-menu-item-2298"><a href="https://codippa.com/exploring/python/" class="sidr-class-menu-link"><span class="sidr-class-text-wrap">Python <span class="sidr-class-nav-arrow fa fa-angle-down"></span></span></a>
+<ul class="sidr-class-sub-menu">
+	<li id="sidr-id-menu-item-2522" class="sidr-class-menu-item sidr-class-menu-item-type-custom sidr-class-menu-item-object-custom sidr-class-menu-item-2522"><a target="_blank" href="https://tutorials.codippa.com/python" class="sidr-class-menu-link"><span class="sidr-class-text-wrap">Tutorial</span></a></li></ul>
+</li><li id="sidr-id-menu-item-79" class="sidr-class-menu-item sidr-class-menu-item-type-taxonomy sidr-class-menu-item-object-category sidr-class-current-post-ancestor sidr-class-menu-item-has-children sidr-class-dropdown sidr-class-menu-item-79"><a href="https://codippa.com/exploring/frameworks/" class="sidr-class-menu-link"><span class="sidr-class-text-wrap">Frameworks <span class="sidr-class-nav-arrow fa fa-angle-down"></span></span></a>
+<ul class="sidr-class-sub-menu">
+	<li id="sidr-id-menu-item-324" class="sidr-class-menu-item sidr-class-menu-item-type-taxonomy sidr-class-menu-item-object-category sidr-class-menu-item-324"><a href="https://codippa.com/exploring/frameworks/spring/" class="sidr-class-menu-link"><span class="sidr-class-text-wrap">Spring</span></a></li>	<li id="sidr-id-menu-item-81" class="sidr-class-menu-item sidr-class-menu-item-type-taxonomy sidr-class-menu-item-object-category sidr-class-current-post-ancestor sidr-class-current-menu-parent sidr-class-current-post-parent sidr-class-menu-item-81"><a href="https://codippa.com/exploring/frameworks/hibernate/" class="sidr-class-menu-link"><span class="sidr-class-text-wrap">Hibernate</span></a></li></ul>
+</li><li id="sidr-id-menu-item-82" class="sidr-class-menu-item sidr-class-menu-item-type-taxonomy sidr-class-menu-item-object-category sidr-class-menu-item-has-children sidr-class-dropdown sidr-class-menu-item-82"><a href="https://codippa.com/exploring/javascript/" class="sidr-class-menu-link"><span class="sidr-class-text-wrap">Javascript <span class="sidr-class-nav-arrow fa fa-angle-down"></span></span></a>
+<ul class="sidr-class-sub-menu">
+	<li id="sidr-id-menu-item-2577" class="sidr-class-menu-item sidr-class-menu-item-type-custom sidr-class-menu-item-object-custom sidr-class-menu-item-2577"><a target="_blank" href="https://tutorials.codippa.com/javascript" class="sidr-class-menu-link"><span class="sidr-class-text-wrap">JS Tutorial</span></a></li></ul>
+</li><li id="sidr-id-menu-item-1829" class="sidr-class-menu-item sidr-class-menu-item-type-taxonomy sidr-class-menu-item-object-category sidr-class-menu-item-has-children sidr-class-dropdown sidr-class-menu-item-1829"><a href="https://codippa.com/exploring/frameworks/angular/" class="sidr-class-menu-link"><span class="sidr-class-text-wrap">Angular <span class="sidr-class-nav-arrow fa fa-angle-down"></span></span></a>
+<ul class="sidr-class-sub-menu">
+	<li id="sidr-id-menu-item-2523" class="sidr-class-menu-item sidr-class-menu-item-type-custom sidr-class-menu-item-object-custom sidr-class-menu-item-2523"><a target="_blank" href="https://tutorials.codippa.com/angular" class="sidr-class-menu-link"><span class="sidr-class-text-wrap">Tutorial</span></a></li></ul>
+</li><li id="sidr-id-menu-item-2519" class="sidr-class-menu-item sidr-class-menu-item-type-custom sidr-class-menu-item-object-custom sidr-class-menu-item-has-children sidr-class-dropdown sidr-class-menu-item-2519"><a class="sidr-class-menu-link"><span class="sidr-class-text-wrap">React <span class="sidr-class-nav-arrow fa fa-angle-down"></span></span></a>
+<ul class="sidr-class-sub-menu">
+	<li id="sidr-id-menu-item-2520" class="sidr-class-menu-item sidr-class-menu-item-type-custom sidr-class-menu-item-object-custom sidr-class-menu-item-2520"><a target="_blank" href="https://tutorials.codippa.com/react" class="sidr-class-menu-link"><span class="sidr-class-text-wrap">Tutorial</span></a></li></ul>
+</li><li id="sidr-id-menu-item-2588" class="sidr-class-menu-item sidr-class-menu-item-type-custom sidr-class-menu-item-object-custom sidr-class-menu-item-has-children sidr-class-dropdown sidr-class-menu-item-2588 sidr-class-nav-no-click"><a href="https://codippa.com/jdbc-hibernate-comparison/#" class="sidr-class-menu-link"><span class="sidr-class-text-wrap">Node.js <span class="sidr-class-nav-arrow fa fa-angle-down"></span></span></a>
+<ul class="sidr-class-sub-menu">
+	<li id="sidr-id-menu-item-2589" class="sidr-class-menu-item sidr-class-menu-item-type-custom sidr-class-menu-item-object-custom sidr-class-menu-item-2589"><a target="_blank" href="https://tutorials.codippa.com/nodejs" class="sidr-class-menu-link"><span class="sidr-class-text-wrap">Tutorial</span></a></li></ul>
+</li><li id="sidr-id-menu-item-1385" class="sidr-class-menu-item sidr-class-menu-item-type-taxonomy sidr-class-menu-item-object-category sidr-class-menu-item-has-children sidr-class-dropdown sidr-class-menu-item-1385"><a href="https://codippa.com/exploring/database/" class="sidr-class-menu-link"><span class="sidr-class-text-wrap">Database <span class="sidr-class-nav-arrow fa fa-angle-down"></span></span></a>
+<ul class="sidr-class-sub-menu">
+	<li id="sidr-id-menu-item-1386" class="sidr-class-menu-item sidr-class-menu-item-type-taxonomy sidr-class-menu-item-object-category sidr-class-menu-item-1386"><a href="https://codippa.com/exploring/database/oracle/" class="sidr-class-menu-link"><span class="sidr-class-text-wrap">Oracle</span></a></li>	<li id="sidr-id-menu-item-1387" class="sidr-class-menu-item sidr-class-menu-item-type-taxonomy sidr-class-menu-item-object-category sidr-class-menu-item-1387"><a href="https://codippa.com/exploring/database/mysql/" class="sidr-class-menu-link"><span class="sidr-class-text-wrap">MySQL</span></a></li></ul>
+</li><li id="sidr-id-menu-item-2938" class="sidr-class-menu-item sidr-class-menu-item-type-taxonomy sidr-class-menu-item-object-category sidr-class-menu-item-2938"><a href="https://codippa.com/exploring/misc/" class="sidr-class-menu-link"><span class="sidr-class-text-wrap">Miscellaneous</span></a></li><li id="sidr-id-menu-item-3532" class="sidr-class-menu-item sidr-class-menu-item-type-post_type sidr-class-menu-item-object-page sidr-class-menu-item-3532"><a href="https://codippa.com/tutorials/" class="sidr-class-menu-link"><span class="sidr-class-text-wrap">Tutorials</span></a></li><li class="sidr-class-search-toggle-li"><a href="https://codippa.com/jdbc-hibernate-comparison/#" class="sidr-class-site-search-toggle sidr-class-search-dropdown-toggle"><span class="icon-magnifier"></span></a></li></ul>
+<div id="sidr-id-searchform-dropdown" class="sidr-class-header-searchform-wrap sidr-class-clr">
+	
+<form method="get" class="sidr-class-searchform" id="sidr-id-searchform" action="https://codippa.com/">
+	<input type="text" class="sidr-class-field" name="s" id="sidr-id-s" placeholder="Search">
+	</form></div><!-- #searchform-dropdown -->
+			</div><div class="sidr-inner">
+	<form method="get" action="https://codippa.com/" class="sidr-class-mobile-searchform">
+		<input type="search" name="s" autocomplete="off" placeholder="Search">
+		<button type="submit" class="sidr-class-searchform-submit">
+			<i class="sidr-class-icon icon-magnifier"></i>
+		</button>
+			</form>
+</div></div><div id="sgpb-popup-dialog-main-div-wrapper" class="sgpb-popup-dialog-main-div-wrapper" style="display: none;"><div class="sgpb-popup-dialog-main-div-theme-wrapper-1" style="z-index: 999910; position: fixed; left: 559px; top: 409.5px; animation-timing-function: linear; animation-duration: 500ms;"><img class="sgpb-popup-close-button-1" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAADHElEQVQ4jaWVQU8bRxiGHxYHrwdbHW8gFhU5IKurWM0plTiQC1SqUFD6C7hEorfmSv9ChBC39NZDFCm3xrkl6gWoKjBCizgRoS0uh0Y1BjQ7ks3sGkK2B2MLY4dE7Xvd93v0zXzfvNsXxzG9VKlUprXWk8aYceAOkAOqwK4QYlNKuToyMvJbr9q+q1Ct9bflcvkRMCuEsNKZDIn+/vb39+fn1Gs1jDEfgBf5fP6ZlHL5o9D9/f0flFLzQgjXGf4SkRrgRn8ftm23PVEUcXYeY8JT1NE/GGN8x3EWx8bGfml5EleAT27lckOZdBopv+h5LbZtYwOZwRTJREytXncPq9UnAC1wonVkpdT8rVxuSGZvkhlM9QRelZSS/htJgKHDanU+m83+JaVctgDK5fIjIYSbSac/G9hSZjBFJp1GCOFezIJEpVKZBmallEgp2+a/373jT98H4CvX5fboKABr6+s0ooikbXN/YqLdcRiGGGNmK5XKC0trPSmEsFKpzg5l9iZ7e3uUSiXevH5N7SRkbX2d1ZUVSqUSTjbb4b+ot7TWk5YxZjydyXRMuHWsBzMzABwdHfHH7yusr60BUCgUKBQKHX7btnEcB2PMuEVzsXvq9ugok1NTAGxvb3N6esrw8DDfTT/o8l5q6o5F86V0ddrSN/fuMTAwQL1eZ2dnh6/v3v3UMHMWUH1/dvZRR7H4io2NDXzfp9Fo8PPTp2itr4NWLWAXmi/lqra2tnj58lcA5ubmSCaTNBoNFhYWuryX6nctIcSmUqoLqrVmaWkJANd1mZmZ4cfHjwHwfZ9isdgFVUohhNhMSClXjTE/hWFoXd7TnbdvefjwewCmpiYBuD8xQfXggChqEEWNDmgYhgAfpJSrxHGM53nPPc+LgyCI/4uCIIg9z4s9z3sexzEWQD6ffwb4QRBQOwmvG0KXaichQRAA+BecJlRKuew4zqJS6vj48OBT021La83x4QFKqWPHcRZbudqOvlZsKaXmoyhywzAklUo1o+5KnkZRRBiGaK175um1yQ9YjuMAzcfR2hClFMDnJf9l/Z9/1L81r78oUzK1YgAAAABJRU5ErkJggg==" style="z-index: 999920; position: absolute; float: left; right: 9px; bottom: 9px; width: 21px; cursor: pointer; height: 21px; background-repeat: no-repeat; background-size: cover;"><div id="sgpb-popup-dialog-main-div" class="sgpb-content sgpb-content-3610 sgpb-theme-1-content sg-popup-content" style="box-sizing: content-box; min-width: 120px; max-height: 984px; max-width: 1844px; border-style: solid; border-color: rgb(255, 0, 0); border-width: 0px; padding: 7px; width: 788px; background-repeat: no-repeat; background-position: center center; background-color: rgb(255, 255, 255); box-shadow: rgb(204, 204, 204) 0px 0px 0px 14px; overflow: auto;"><div style="height:100%;width:100%;overflow:auto;"><div class="sg-popup-builder-content" id="sg-popup-content-wrapper-3610" data-id="3610" data-events="[{&quot;param&quot;:&quot;load&quot;,&quot;value&quot;:&quot;5&quot;,&quot;hiddenOption&quot;:[]}]" data-options="YTo4ODp7czoyMzoic2dwYi1zdWJzLWZvcm0tYmctY29sb3IiO3M6NzoiI2YyZjJmMiI7czoyNToic2dwYi1zdWJzLWZvcm0tYmctb3BhY2l0eSI7czo0OiIwLjk2IjtzOjIyOiJzZ3BiLXN1YnMtZm9ybS1wYWRkaW5nIjtzOjI6IjIyIjtzOjI3OiJzZ3BiLXN1YnMtZW1haWwtcGxhY2Vob2xkZXIiO3M6MTY6IkVudGVyIHlvdXIgZW1haWwiO3M6MTk6InNncGItc3Vicy1nZHByLXRleHQiO3M6MTE5OiJjb2RpcHBhIHdpbGwgdXNlIHRoZSBpbmZvcm1hdGlvbiB5b3UgcHJvdmlkZSBvbiB0aGlzIGZvcm0gdG8gYmUgaW4gdG91Y2ggd2l0aCB5b3UgYW5kIHRvIHByb3ZpZGUgdXBkYXRlcyBhbmQgbWFya2V0aW5nLiI7czoyODoic2dwYi1zdWJzLXZhbGlkYXRpb24tbWVzc2FnZSI7czoyMzoiVGhpcyBmaWVsZCBpcyByZXF1aXJlZC4iO3M6MjA6InNncGItc3Vicy10ZXh0LXdpZHRoIjtzOjU6IjUwMHB4IjtzOjIxOiJzZ3BiLXN1YnMtdGV4dC1oZWlnaHQiO3M6NDoiNDBweCI7czoyNzoic2dwYi1zdWJzLXRleHQtYm9yZGVyLXdpZHRoIjtzOjM6IjJweCI7czoyMzoic2dwYi1zdWJzLXRleHQtYmctY29sb3IiO3M6NzoiI2ZmZmZmZiI7czoyNzoic2dwYi1zdWJzLXRleHQtYm9yZGVyLWNvbG9yIjtzOjc6IiNDQ0NDQ0MiO3M6MjA6InNncGItc3Vicy10ZXh0LWNvbG9yIjtzOjc6IiMzMjU5MDAiO3M6MzI6InNncGItc3Vicy10ZXh0LXBsYWNlaG9sZGVyLWNvbG9yIjtzOjc6IiNhYWE2OGYiO3M6MTk6InNncGItc3Vicy1idG4td2lkdGgiO3M6NToiMzAwcHgiO3M6MjA6InNncGItc3Vicy1idG4taGVpZ2h0IjtzOjQ6IjQwcHgiO3M6MjY6InNncGItc3Vicy1idG4tYm9yZGVyLXdpZHRoIjtzOjM6IjBweCI7czoyNzoic2dwYi1zdWJzLWJ0bi1ib3JkZXItcmFkaXVzIjtzOjM6IjRweCI7czoyNjoic2dwYi1zdWJzLWJ0bi1ib3JkZXItY29sb3IiO3M6NzoiIzRDQUY1MCI7czoxOToic2dwYi1zdWJzLWJ0bi10aXRsZSI7czo5OiJTdWJzY3JpYmUiO3M6Mjg6InNncGItc3Vicy1idG4tcHJvZ3Jlc3MtdGl0bGUiO3M6MTQ6IlBsZWFzZSB3YWl0Li4uIjtzOjIyOiJzZ3BiLXN1YnMtYnRuLWJnLWNvbG9yIjtzOjc6IiMxM2FmZjAiO3M6MjQ6InNncGItc3Vicy1idG4tdGV4dC1jb2xvciI7czo3OiIjRkZGRkZGIjtzOjIzOiJzZ3BiLXN1YnMtZXJyb3ItbWVzc2FnZSI7czo3MToiVGhlcmUgd2FzIGFuIGVycm9yIHdoaWxlIHRyeWluZyB0byBzZW5kIHlvdXIgcmVxdWVzdC4gUGxlYXNlIHRyeSBhZ2Fpbi4iO3M6MjU6InNncGItc3Vicy1pbnZhbGlkLW1lc3NhZ2UiO3M6MzU6IlBsZWFzZSBlbnRlciBhIHZhbGlkIGVtYWlsIGFkZHJlc3MuIjtzOjI1OiJzZ3BiLXN1YnMtaGlkZS1zdWJzLXVzZXJzIjtzOjI6Im9uIjtzOjI2OiJzZ3BiLXN1YnMtc3VjY2Vzcy1iZWhhdmlvciI7czo5OiJoaWRlUG9wdXAiO3M6MjU6InNncGItc3Vicy1zdWNjZXNzLW1lc3NhZ2UiO3M6NTA6IllvdSBoYXZlIHN1Y2Nlc3NmdWxseSBzdWJzY3JpYmVkIHRvIHRoZSBuZXdzbGV0dGVyIjtzOjMwOiJzZ3BiLXN1YnMtc3VjY2Vzcy1yZWRpcmVjdC1VUkwiO3M6MDoiIjtzOjE1OiJzZ3BiLXN1YnMtZW1haWwiO3M6MDoiIjtzOjIwOiJzZ3BiLXN1YnMtZmlyc3QtbmFtZSI7czowOiIiO3M6MTk6InNncGItc3Vicy1sYXN0LW5hbWUiO3M6MDoiIjtzOjI0OiJzZ3BiLXN1YnMtaGlkZGVuLWNoZWNrZXIiO3M6MDoiIjtzOjk6InNncGItdHlwZSI7czoxMjoic3Vic2NyaXB0aW9uIjtzOjE1OiJzZ3BiLWlzLXByZXZpZXciO3M6MToiMCI7czoxNDoic2dwYi1pcy1hY3RpdmUiO3M6NzoiY2hlY2tlZCI7czozNDoic2dwYi1iZWhhdmlvci1hZnRlci1zcGVjaWFsLWV2ZW50cyI7YToxOntpOjA7YToxOntpOjA7YToxOntzOjU6InBhcmFtIjtzOjEyOiJzZWxlY3RfZXZlbnQiO319fXM6MjA6InNncGItY29udGVudC1wYWRkaW5nIjtzOjE6IjciO3M6MTg6InNncGItcG9wdXAtei1pbmRleCI7czo0OiI5OTk5IjtzOjE3OiJzZ3BiLXBvcHVwLXRoZW1lcyI7czoxMjoic2dwYi10aGVtZS0xIjtzOjI1OiJzZ3BiLW92ZXJsYXktY3VzdG9tLWNsYXNzIjtzOjE4OiJzZ3BiLXBvcHVwLW92ZXJsYXkiO3M6MTg6InNncGItb3ZlcmxheS1jb2xvciI7czowOiIiO3M6MjA6InNncGItb3ZlcmxheS1vcGFjaXR5IjtzOjM6IjAuOCI7czoyNToic2dwYi1jb250ZW50LWN1c3RvbS1jbGFzcyI7czoxNjoic2ctcG9wdXAtY29udGVudCI7czoyNjoic2dwYi1iYWNrZ3JvdW5kLWltYWdlLW1vZGUiO3M6OToibm8tcmVwZWF0IjtzOjI0OiJzZ3BiLWVuYWJsZS1jbG9zZS1idXR0b24iO3M6Mjoib24iO3M6MjM6InNncGItY2xvc2UtYnV0dG9uLWRlbGF5IjtzOjE6IjAiO3M6MjY6InNncGItY2xvc2UtYnV0dG9uLXBvc2l0aW9uIjtzOjExOiJib3R0b21SaWdodCI7czoyNDoic2dwYi1idXR0b24tcG9zaXRpb24tdG9wIjtzOjA6IiI7czoyNjoic2dwYi1idXR0b24tcG9zaXRpb24tcmlnaHQiO3M6MToiOSI7czoyNzoic2dwYi1idXR0b24tcG9zaXRpb24tYm90dG9tIjtzOjE6IjkiO3M6MjU6InNncGItYnV0dG9uLXBvc2l0aW9uLWxlZnQiO3M6MDoiIjtzOjE3OiJzZ3BiLWJ1dHRvbi1pbWFnZSI7czowOiIiO3M6MjM6InNncGItYnV0dG9uLWltYWdlLXdpZHRoIjtzOjI6IjIxIjtzOjI0OiJzZ3BiLWJ1dHRvbi1pbWFnZS1oZWlnaHQiO3M6MjoiMjEiO3M6MTc6InNncGItYm9yZGVyLWNvbG9yIjtzOjc6IiMwMDAwMDAiO3M6MTg6InNncGItYm9yZGVyLXJhZGl1cyI7czoxOiIwIjtzOjIzOiJzZ3BiLWJvcmRlci1yYWRpdXMtdHlwZSI7czoxOiIlIjtzOjE2OiJzZ3BiLWJ1dHRvbi10ZXh0IjtzOjU6IkNsb3NlIjtzOjI1OiJzZ3BiLXBvcHVwLWRpbWVuc2lvbi1tb2RlIjtzOjE0OiJyZXNwb25zaXZlTW9kZSI7czozMzoic2dwYi1yZXNwb25zaXZlLWRpbWVuc2lvbi1tZWFzdXJlIjtzOjQ6ImF1dG8iO3M6MTA6InNncGItd2lkdGgiO3M6NToiNjQwcHgiO3M6MTE6InNncGItaGVpZ2h0IjtzOjU6IjQ4MHB4IjtzOjE0OiJzZ3BiLW1heC13aWR0aCI7czowOiIiO3M6MTU6InNncGItbWF4LWhlaWdodCI7czowOiIiO3M6MTQ6InNncGItbWluLXdpZHRoIjtzOjM6IjEyMCI7czoxNToic2dwYi1taW4taGVpZ2h0IjtzOjA6IiI7czoyNToic2dwYi1zaG93LXBvcHVwLXNhbWUtdXNlciI7czoyOiJvbiI7czozMToic2dwYi1zaG93LXBvcHVwLXNhbWUtdXNlci1jb3VudCI7czoxOiIxIjtzOjMyOiJzZ3BiLXNob3ctcG9wdXAtc2FtZS11c2VyLWV4cGlyeSI7czoxOiIxIjtzOjE5OiJzZ3BiLW9wZW4tYW5pbWF0aW9uIjtzOjI6Im9uIjtzOjI2OiJzZ3BiLW9wZW4tYW5pbWF0aW9uLWVmZmVjdCI7czoxNDoic2dwYi1zbGlkZUluVXAiO3M6MjU6InNncGItb3Blbi1hbmltYXRpb24tc3BlZWQiO3M6MzoiMC41IjtzOjIwOiJzZ3BiLWNsb3NlLWFuaW1hdGlvbiI7czoyOiJvbiI7czoyNzoic2dwYi1jbG9zZS1hbmltYXRpb24tZWZmZWN0IjtzOjE1OiJzZ3BiLXNsaWRlT3V0VXAiO3M6MjY6InNncGItY2xvc2UtYW5pbWF0aW9uLXNwZWVkIjtzOjM6IjAuNSI7czoxNjoic2dwYi1wb3B1cC1maXhlZCI7czoyOiJvbiI7czoyNToic2dwYi1wb3B1cC1maXhlZC1wb3NpdGlvbiI7czoxOiI1IjtzOjI5OiJzZ3BiLWVuYWJsZS1jb250ZW50LXNjcm9sbGluZyI7czoyOiJvbiI7czoxNjoic2dwYi1wb3B1cC1vcmRlciI7czoxOiIwIjtzOjE2OiJzZ3BiLXBvcHVwLWRlbGF5IjtzOjE6IjAiO3M6Nzoic2dwYi1qcyI7czoyOiJKUyI7czo4OiJzZ3BiLWNzcyI7czozOiJDU1MiO3M6MTI6InNncGItcG9zdC1pZCI7czo0OiIzNjEwIjtzOjE2OiJzZ3BiLXN1YnMtZmllbGRzIjthOjY6e3M6NToiZW1haWwiO2E6NDp7czo2OiJpc1Nob3ciO3M6MToiMSI7czo1OiJhdHRycyI7YTo2OntzOjQ6InR5cGUiO3M6NToiZW1haWwiO3M6MTM6ImRhdGEtcmVxdWlyZWQiO3M6MToiMSI7czo0OiJuYW1lIjtzOjE1OiJzZ3BiLXN1YnMtZW1haWwiO3M6MTE6InBsYWNlaG9sZGVyIjtzOjE2OiJFbnRlciB5b3VyIGVtYWlsIjtzOjU6ImNsYXNzIjtzOjM5OiJqcy1zdWJzLXRleHQtaW5wdXRzIGpzLXN1YnMtZW1haWwtaW5wdXQiO3M6MjQ6ImRhdGEtZXJyb3ItbWVzc2FnZS1jbGFzcyI7czoyOToic2dwYi1zdWJzLWVtYWlsLWVycm9yLW1lc3NhZ2UiO31zOjU6InN0eWxlIjthOjc6e3M6NToid2lkdGgiO3M6NToiNTAwcHgiO3M6NjoiaGVpZ2h0IjtzOjQ6IjQwcHgiO3M6MTI6ImJvcmRlci13aWR0aCI7czozOiIycHgiO3M6MTI6ImJvcmRlci1jb2xvciI7czo3OiIjQ0NDQ0NDIjtzOjE2OiJiYWNrZ3JvdW5kLWNvbG9yIjtzOjc6IiNmZmZmZmYiO3M6NToiY29sb3IiO3M6NzoiIzMyNTkwMCI7czoxMjoiYXV0b2NvbXBsZXRlIjtzOjM6Im9mZiI7fXM6MjE6ImVycm9yTWVzc2FnZUJveFN0eWxlcyI7czo1OiI1MDBweCI7fXM6MTA6ImZpcnN0LW5hbWUiO2E6NDp7czo2OiJpc1Nob3ciO3M6MDoiIjtzOjU6ImF0dHJzIjthOjY6e3M6NDoidHlwZSI7czo0OiJ0ZXh0IjtzOjEzOiJkYXRhLXJlcXVpcmVkIjtzOjA6IiI7czo0OiJuYW1lIjtzOjIwOiJzZ3BiLXN1YnMtZmlyc3QtbmFtZSI7czoxMToicGxhY2Vob2xkZXIiO3M6MDoiIjtzOjU6ImNsYXNzIjtzOjQ0OiJqcy1zdWJzLXRleHQtaW5wdXRzIGpzLXN1YnMtZmlyc3QtbmFtZS1pbnB1dCI7czoyNDoiZGF0YS1lcnJvci1tZXNzYWdlLWNsYXNzIjtzOjM0OiJzZ3BiLXN1YnMtZmlyc3QtbmFtZS1lcnJvci1tZXNzYWdlIjt9czo1OiJzdHlsZSI7YTo3OntzOjU6IndpZHRoIjtzOjU6IjUwMHB4IjtzOjY6ImhlaWdodCI7czo0OiI0MHB4IjtzOjEyOiJib3JkZXItd2lkdGgiO3M6MzoiMnB4IjtzOjEyOiJib3JkZXItY29sb3IiO3M6NzoiI0NDQ0NDQyI7czoxNjoiYmFja2dyb3VuZC1jb2xvciI7czo3OiIjZmZmZmZmIjtzOjU6ImNvbG9yIjtzOjc6IiMzMjU5MDAiO3M6MTI6ImF1dG9jb21wbGV0ZSI7czozOiJvZmYiO31zOjIxOiJlcnJvck1lc3NhZ2VCb3hTdHlsZXMiO3M6NToiNTAwcHgiO31zOjk6Imxhc3QtbmFtZSI7YTo0OntzOjY6ImlzU2hvdyI7czowOiIiO3M6NToiYXR0cnMiO2E6Njp7czo0OiJ0eXBlIjtzOjQ6InRleHQiO3M6MTM6ImRhdGEtcmVxdWlyZWQiO3M6MDoiIjtzOjQ6Im5hbWUiO3M6MTk6InNncGItc3Vicy1sYXN0LW5hbWUiO3M6MTE6InBsYWNlaG9sZGVyIjtzOjA6IiI7czo1OiJjbGFzcyI7czo0MzoianMtc3Vicy10ZXh0LWlucHV0cyBqcy1zdWJzLWxhc3QtbmFtZS1pbnB1dCI7czoyNDoiZGF0YS1lcnJvci1tZXNzYWdlLWNsYXNzIjtzOjMzOiJzZ3BiLXN1YnMtbGFzdC1uYW1lLWVycm9yLW1lc3NhZ2UiO31zOjU6InN0eWxlIjthOjc6e3M6NToid2lkdGgiO3M6NToiNTAwcHgiO3M6NjoiaGVpZ2h0IjtzOjQ6IjQwcHgiO3M6MTI6ImJvcmRlci13aWR0aCI7czozOiIycHgiO3M6MTI6ImJvcmRlci1jb2xvciI7czo3OiIjQ0NDQ0NDIjtzOjE2OiJiYWNrZ3JvdW5kLWNvbG9yIjtzOjc6IiNmZmZmZmYiO3M6NToiY29sb3IiO3M6NzoiIzMyNTkwMCI7czoxMjoiYXV0b2NvbXBsZXRlIjtzOjM6Im9mZiI7fXM6MjE6ImVycm9yTWVzc2FnZUJveFN0eWxlcyI7czo1OiI1MDBweCI7fXM6NDoiZ2RwciI7YTo2OntzOjY6ImlzU2hvdyI7czowOiIiO3M6NToiYXR0cnMiO2E6Njp7czo0OiJ0eXBlIjtzOjE0OiJjdXN0b21DaGVja2JveCI7czoxMzoiZGF0YS1yZXF1aXJlZCI7czowOiIiO3M6NDoibmFtZSI7czoxNDoic2dwYi1zdWJzLWdkcHIiO3M6NToiY2xhc3MiO3M6Mzg6ImpzLXN1YnMtZ2Rwci1pbnB1dHMganMtc3Vicy1nZHByLWxhYmVsIjtzOjI6ImlkIjtzOjIxOiJzZ3BiLWdkcHItZmllbGQtbGFiZWwiO3M6MjQ6ImRhdGEtZXJyb3ItbWVzc2FnZS1jbGFzcyI7czoyMzoic2dwYi1nZHByLWVycm9yLW1lc3NhZ2UiO31zOjU6InN0eWxlIjthOjE6e3M6NToid2lkdGgiO3M6NToiNTAwcHgiO31zOjU6ImxhYmVsIjtzOjEyOiJBY2NlcHQgVGVybXMiO3M6NDoidGV4dCI7czoxMTk6ImNvZGlwcGEgd2lsbCB1c2UgdGhlIGluZm9ybWF0aW9uIHlvdSBwcm92aWRlIG9uIHRoaXMgZm9ybSB0byBiZSBpbiB0b3VjaCB3aXRoIHlvdSBhbmQgdG8gcHJvdmlkZSB1cGRhdGVzIGFuZCBtYXJrZXRpbmcuIjtzOjIxOiJlcnJvck1lc3NhZ2VCb3hTdHlsZXMiO3M6NToiNTAwcHgiO31zOjE0OiJoaWRkZW4tY2hlY2tlciI7YTozOntzOjY6ImlzU2hvdyI7czowOiIiO3M6NToiYXR0cnMiO2E6NTp7czo0OiJ0eXBlIjtzOjY6ImhpZGRlbiI7czoxMzoiZGF0YS1yZXF1aXJlZCI7czowOiIiO3M6NDoibmFtZSI7czoyNDoic2dwYi1zdWJzLWhpZGRlbi1jaGVja2VyIjtzOjU6InZhbHVlIjtzOjA6IiI7czo1OiJjbGFzcyI7czo0MzoianMtc3Vicy10ZXh0LWlucHV0cyBqcy1zdWJzLWxhc3QtbmFtZS1pbnB1dCI7fXM6NToic3R5bGUiO2E6Mzp7czo4OiJwb3NpdGlvbiI7czo4OiJhYnNvbHV0ZSI7czo0OiJsZWZ0IjtzOjc6Ii01MDAwcHgiO3M6NzoicGFkZGluZyI7czoxOiIwIjt9fXM6Njoic3VibWl0IjthOjM6e3M6NjoiaXNTaG93IjtzOjE6IjEiO3M6NToiYXR0cnMiO2E6Njp7czo0OiJ0eXBlIjtzOjY6InN1Ym1pdCI7czo0OiJuYW1lIjtzOjE2OiJzZ3BiLXN1YnMtc3VibWl0IjtzOjU6InZhbHVlIjtzOjk6IlN1YnNjcmliZSI7czoxMDoiZGF0YS10aXRsZSI7czo5OiJTdWJzY3JpYmUiO3M6MTk6ImRhdGEtcHJvZ3Jlc3MtdGl0bGUiO3M6MTQ6IlBsZWFzZSB3YWl0Li4uIjtzOjU6ImNsYXNzIjtzOjE4OiJqcy1zdWJzLXN1Ym1pdC1idG4iO31zOjU6InN0eWxlIjthOjk6e3M6NToid2lkdGgiO3M6NToiMzAwcHgiO3M6NjoiaGVpZ2h0IjtzOjQ6IjQwcHgiO3M6MTY6ImJhY2tncm91bmQtY29sb3IiO3M6NzoiIzEzYWZmMCI7czo1OiJjb2xvciI7czo3OiIjRkZGRkZGIjtzOjEzOiJib3JkZXItcmFkaXVzIjtzOjM6IjRweCI7czoxMjoiYm9yZGVyLXdpZHRoIjtzOjM6IjBweCI7czoxMjoiYm9yZGVyLWNvbG9yIjtzOjc6IiM0Q0FGNTAiO3M6MTQ6InRleHQtdHJhbnNmb3JtIjtzOjE1OiJub25lICFpbXBvcnRhbnQiO3M6MTI6ImJvcmRlci1zdHlsZSI7czo1OiJzb2xpZCI7fX19czoyNToic2dwYi1lbmFibGUtcG9wdXAtb3ZlcmxheSI7czoyOiJvbiI7czoyMjoic2dwYi1idXR0b24taW1hZ2UtZGF0YSI7czowOiIiO3M6MjY6InNncGItYmFja2dyb3VuZC1pbWFnZS1kYXRhIjtzOjA6IiI7czoxNDoic2dwYkNvbmRpdGlvbnMiO047fQ==">
+								<div class="sgpb-popup-builder-content-3610 sgpb-popup-builder-content-html"><p style="text-align: center;"><strong><span style="color: #99cc00; font-size: 18pt;">Never Miss an article !<br>
+</span><br>
+<span style="font-size: 14pt;">Get the new post delivered straight into your inbox, enter your email and hit the button</span></strong></p>
+<div class="sgpb-subs-form-3610 sgpb-subscription-form">		<div class="subs-form-messages sgpb-alert sgpb-alert-success sg-hide-element">
+			<p>You have successfully subscribed to the newsletter</p>
+		</div>
+		<div class="subs-form-messages sgpb-alert sgpb-alert-danger sg-hide-element">
+			<p>There was an error while trying to send your request. Please try again.</p>
+		</div>
+		<form class="sgpb-form" id="sgpb-form" method="post" novalidate="novalidate"><div class="sgpb-form-wrapper">			<div class="sgpb-inputs-wrapper js-email-wrapper js-sgpb-form-field-email-wrapper ">
+				<input type="email" data-required="1" name="sgpb-subs-email" placeholder="Enter your email" class="js-subs-text-inputs js-subs-email-input" data-error-message-class="sgpb-subs-email-error-message" style="width:500px; height:40px; border-width:2px; border-color:#CCCCCC; background-color:#ffffff; color:#325900; autocomplete:off; "><div class="sgpb-subs-email-error-message"></div>			</div>
+						<div class="sgpb-inputs-wrapper js-first-name-wrapper js-sgpb-form-field-first-name-wrapper sg-js-hide">
+				<input type="text" data-required="" name="sgpb-subs-first-name" placeholder="" class="js-subs-text-inputs js-subs-first-name-input" data-error-message-class="sgpb-subs-first-name-error-message" style="width:500px; height:40px; border-width:2px; border-color:#CCCCCC; background-color:#ffffff; color:#325900; autocomplete:off; "><div class="sgpb-subs-first-name-error-message"></div>			</div>
+						<div class="sgpb-inputs-wrapper js-last-name-wrapper js-sgpb-form-field-last-name-wrapper sg-js-hide">
+				<input type="text" data-required="" name="sgpb-subs-last-name" placeholder="" class="js-subs-text-inputs js-subs-last-name-input" data-error-message-class="sgpb-subs-last-name-error-message" style="width:500px; height:40px; border-width:2px; border-color:#CCCCCC; background-color:#ffffff; color:#325900; autocomplete:off; "><div class="sgpb-subs-last-name-error-message"></div>			</div>
+						<div class="sgpb-inputs-wrapper js-gdpr-wrapper js-sgpb-form-field-gdpr-wrapper sg-js-hide">
+				<div class="sgpb-gdpr-label-wrapper" style="color:; width:500px; "><input type="checkbox" data-required="" name="sgpb-subs-gdpr" class="js-subs-gdpr-inputs js-subs-gdpr-label" id="sgpb-gdpr-field-label" data-error-message-class="sgpb-gdpr-error-message"><label class="js-login-remember-me-label-edit" for="sgpb-gdpr-field-label">Accept Terms</label><div class="sgpb-gdpr-error-message"></div></div><div class="sgpb-alert-info sgpb-alert sgpb-gdpr-info js-subs-text-checkbox sgpb-gdpr-text-js" style="color:; width:500px; ">codippa will use the information you provide on this form to be in touch with you and to provide updates and marketing.</div>			</div>
+						<div class="sgpb-inputs-wrapper js-hidden-checker-wrapper js-sgpb-form-field-hidden-checker-wrapper sg-js-hide">
+				<input type="hidden" data-required="" name="sgpb-subs-hidden-checker" value="" class="js-subs-text-inputs js-subs-last-name-input" style="position:absolute; left:-5000px; padding:0; "><div class="sgpb-subs-hidden-checker-error-message"></div>			</div>
+						<div class="sgpb-inputs-wrapper js-submit-wrapper js-sgpb-form-field-submit-wrapper ">
+				<input type="submit" name="sgpb-subs-submit" value="Subscribe" data-title="Subscribe" data-progress-title="Please wait..." class="js-subs-submit-btn" style="width:300px; height:40px; background-color:#13aff0; color:#FFFFFF; border-radius:4px; border-width:0px; border-color:#4CAF50; text-transform:none !important; border-style:solid; "><div class="sgpb-subs-submit-error-message"></div>			</div>
+			</div></form></div><script type="text/javascript">var sgpbSubsValidateObj3610 = { rules: { "sgpb-subs-email": {required: true, email: true}},messages: { "sgpb-subs-email": {
+					"required": "This field is required.",
+					"email": "Please enter a valid email address."
+				}}};</script>			<style type="text/css">
+				.sgpb-subs-form-3610 {background-color: rgba(242,242,242,0.96);padding: 22px}
+				.sgpb-subs-form-3610 .js-subs-text-inputs::-webkit-input-placeholder {color: #aaa68f;font-weight: lighter;}
+				.sgpb-subs-form-3610 .js-subs-text-inputs::-moz-placeholder {color:#aaa68f;font-weight: lighter;}
+				.sgpb-subs-form-3610 .js-subs-text-inputs:-ms-input-placeholder {color:#aaa68f;font-weight: lighter;} /* ie */
+				.sgpb-subs-form-3610 .js-subs-text-inputs:-moz-placeholder {color:#aaa68f;font-weight: lighter;}
+			</style>
+		<script id="sgpb-custom-script-3610"></script><style id="sgpb-custom-style-3610">/*popup content wrapper*/
+.sgpb-content-3610 {
+
+}
+
+/*overlay*/
+.sgpb-popup-overlay-3610 {
+
+}
+
+/*popup wrapper*/
+.sgpb-popup-builder-content-3610 {
+
+}
+
+</style></div>
+							</div></div></div></div></div><img src="./JDBC Vs Hibernate – A Comparison _ Difference between JDBC and Hibernate _ codippa_files/g.gif" alt=":)" width="6" height="5" id="wpstats"></body></html>

@@ -1,0 +1,91 @@
+(function(){ try { var writeCookie = window._sp_.writeCookie || function(){}; writeCookie("_sp_v1_uid=1:1:65bf6bad-14cc-4574-b808-16f436e9f86a; Max-Age=2592000; Path=/;"); writeCookie("_sp_v1_data=2:66445:1581603529:7:5:1:1:4:5:34f2f2de-087f-4259-a167-1d7552d00192:86272; Max-Age=2592000; Path=/;"); writeCookie("_sp_v1_ss=1:H4sIAAAAAAAAAItWqo5RKimOUbLKK83J0YlRSkVil4AlqmtrlXTgyqKxMvJADIPaWFwGkC4xQqyMBQCrRzxhgQEAAA%3D%3D; Max-Age=2592000; Path=/;"); writeCookie("_sp_v1_opt=1:; Max-Age=2592000; Path=/;"); writeCookie("_sp_v1_consent=1!1:1:1:0; Max-Age=2592000; Path=/;"); writeCookie("_sp_v1_stage=; Max-Age=0; Path=/;"); writeCookie("_sp_v1_csv=2.0.1115; Max-Age=2592000; Path=/;"); writeCookie("_sp_v1_lt=1:ab|true:msg|true:; Max-Age=2592000; Path=/;"); } catch (e) { console.error('set cookies error: ', e); }  var msg = {
+  "data" : {
+    "subType" : "inline",
+    "msgContent" : {
+      "contentType" : "html",
+      "contentData" : {
+        "title" : "Privacy Notice",
+        "body" : "TechTarget and its partners employ technology such as cookies to improve user experience, performance, for personalizing content and advertising. For more information, see our <b><a href =\"//www.techtarget.com/cookie-policy/?utm_source=cmp&utm_medium=banner&utm_campaign=consent&utm_term=cookie\" target=\"_blank\">Cookie Policy</a></b> or to manage your preferences, <b><span onclick=\"javascript:cipheredClassName = _sp_.msg.getMorphedClassName('sp_choice_type_12');var el = document.getElementsByClassName(cipheredClassName)[0];el.click();\" class=\"sp_pm_link\">click here.</span>\n</b> By closing this message box or continuing to use our site, you agree to our use of cookies  and our <b><a href =\"//www.techtarget.com/privacy-policy-may25/?utm_source=cmp&utm_medium=banner&utm_campaign=consent&utm_term=privacy\" target=\"_blank\">Privacy Policy.</a></b>"
+      }
+    },
+    "theme" : "default",
+    "style" : {
+      "includeDefaultStyles" : false,
+      "template" : "consent",
+      "definedStyles" : false,
+      "title" : {
+        "fontSize" : "25px",
+        "color" : "black",
+        "backgroundColor" : "transparent"
+      },
+      "body" : {
+        "fontSize" : "14px",
+        "color" : "#30425C",
+        "backgroundColor" : "transparent"
+      },
+      "backdrop" : {
+        "backgroundColor" : "rgba(51,56,63,0.85)"
+      },
+      "general" : {
+        "backgroundColor" : "#F7F8FA",
+        "border" : "1px solid #DDDDDD",
+        "closeButtonColor" : "#666666",
+        "zIndex" : 10000
+      },
+      "buttons" : {
+        "backgroundColor" : "#3B7BB3",
+        "border" : "0 none",
+        "color" : "#FFF",
+        "fontSize" : "14px",
+        "hoverBackgroundColor" : "#27669D",
+        "hoverColor" : "#FFF"
+      },
+      "customStyles" : "/* Default settings */\n.sp_veil {\n  position: fixed;\n  top:0;\n  bottom:0;\n  left:0;\n  right:0;\n  z-index: 99999999;\n  display: block;\n  overflow: hidden;\n}\n\n.sp_message {\n    z-index: 99999999;\n}\n\nbutton.sp_choice {\n  outline: none;\n  cursor: pointer;\n}\n\n.sp_message_dismiss {\n  outline: none;\n  cursor: pointer;\n}\n\n#sp_message_id .sp_choice-2{\n    display:none;\n}\n\n.sp_veil iframe {\n    overflow: hidden;\n    z-index: 9999998;\n}\n\n.sp_iframe_container {\n    position: fixed;\n    z-index: 9999999;\n    left: 0;\n    right: 0;\n    top: 0;\n    bottom: 0;\n    overflow: hidden;\n    background-color: rgba(0, 0, 0, 0.5);\n}\n\n.sp_iframe_container iframe {\n    height: 100%;\n    width: 100%;\n    z-index: 9999999;\n    overflow: hidden;\n}\n\n/* START CUSTOMIZATION HERE */\n/* Background overlay */\n#bg-overlay {\n    position: fixed;\n    overflow: hidden;\n    background: #000000;\n    opacity: 0.5;\n    left: 0;\n    right: 0;\n    top: 0;\n    bottom: 0;\n}\n\n/* Message modal */\n.sp_message_panel {\n    width: auto;\n    background-color: #F5F5F5;\n    padding: 15px;\n    z-index: 99999999;\n}\n\n.sp_message_column.sp_message_content {\n  display: flex;\n  flex-direction: row;\n  max-width: 1200px;\n  margin: auto;\n  align-items: center;\n  z-index: 99999999;\n}\n\n/* Close button */\n.sp_message_dismiss {\n    display: none;\n}\n\n.sp_message_body {\n  margin-right: 30px;\n}\n\n/* Title text */\n.sp_message_title {\n  font-family: Arial;\n    font-size:14px;\n    font-weight:bold;\n}\n\n/* Body text */\n.sp_message_text {\n    font-family: Arial;\n    font-size:12px;\n    margin:10px 0;\n    line-height: 130%;\n}\n\n.sp_message a {\n  color: #00A69F;\n}\n\n.sp_message a:hover{\n    color: #006860;\n}\n\nspan.sp_pm_link{\n     color: #00A69F;\n     cursor: pointer;\n}\nspan:hover.sp_pm_link{\n     color: #006860;\n}\n\n/* Choice options */\n.sp_choices {\n  display: flex;\n  flex-direction: row;\n}\n\nbutton.sp_choice {\n    border:0px;\n    background-color: #f0f0f0;\n    padding:10px 15px;\n    border-radius: 5px;\n}\n\nbutton.sp_choice-0 {\n    background-color: #00A69F;\n    color: #fff;\n    padding:10px 25px;\n    border-radius: 5px;\n    font-size:16px;\n    font-weight: 600;\n}\n\nbutton.sp_choice-1 {\n    position: absolute;\n    top: 0px;\n    right: 0px;\n    background-color: transparent;\n    padding:10px;\n    font-size:16px;\n}\n\n/* Button Hover */\nbutton.sp_choice:hover {\n  opacity: .8;\n}\n\n/* Button Pressed */\nbutton.sp_choice:active {\n  opacity: .6;\n}\n\n\n/* Mobile */\n@media only screen and (max-width: 480px) {\n\n.sp_message_panel {\n  width: 90%;\n}\n\n.sp_message_column.sp_message_content {\n  flex-direction: column;\n  align-items: baseline;\n  z-index: 99999999;\n}\n.sp_message_body {\n  margin-right: 0px;\n}"
+    },
+    "options" : {
+      "destinationSelector" : "#cmp-banner",
+      "removePageElementsSelector" : "",
+      "destination" : "",
+      "delayType" : "none",
+      "delayAfterSeconds" : 0,
+      "delayAfterScroll" : 0,
+      "detectExitIntent" : false,
+      "custom" : {
+        "html" : "",
+        "callback" : {
+          "invokeJS" : true
+        }
+      }
+    },
+    "userData" : {
+      "customScreenshotUrl" : "https://searchcrm.techtarget.com/"
+    },
+    "choice" : {
+      "renderMethod" : 1,
+      "options" : [ {
+        "choice_id" : 469886,
+        "type" : 11,
+        "iframe_url" : null,
+        "button_text" : "OK"
+      }, {
+        "choice_id" : 469887,
+        "type" : 11,
+        "iframe_url" : null,
+        "button_text" : "×"
+      }, {
+        "choice_id" : 469888,
+        "type" : 12,
+        "iframe_url" : "https://pm.sourcepoint.mgr.consensu.org?privacy_manager_id=$$privacyManagerIdHiddenVarriable$$",
+        "button_text" : "Show Purposes"
+      }, {
+        "choice_id" : 469889,
+        "type" : 15,
+        "iframe_url" : null,
+        "button_text" : "Dismiss"
+      } ]
+    }
+  },
+  "type" : "lock",
+  "msg_id" : 86272,
+  "version" : 1
+}; var html = {"msg_html":"<div id=\"sp_message_id1581879000923\" class=\"sp_message_container1581879000923\" style=\"display: none;\"><div class=\"sp_message1581879000923\"><div id=\"sp_message_panel_id1581879000923\" class=\"sp_message_panel1581879000923\"><div class=\"sp_message_frame1581879000923\"><div class=\"sp_message_row1581879000923\"><button class=\"sp_message_dismiss1581879000923\">x</button><div class=\"sp_side_image1581879000923 sp_left_image1581879000923 sp_message_column1581879000923\"></div><div class=\"sp_message_column1581879000923 sp_message_content1581879000923\"><div class=\"sp_message_body1581879000923\" id=\"sp_message_body_id1581879000923\"><div class=\"sp_message_title1581879000923\">Privacy Notice</div><div class=\"sp_message_text1581879000923\">TechTarget and its partners employ technology such as cookies to improve user experience, performance, for personalizing content and advertising. For more information, see our <b><a href =\"//www.techtarget.com/cookie-policy/?utm_source=cmp&utm_medium=banner&utm_campaign=consent&utm_term=cookie\" target=\"_blank\">Cookie Policy</a></b> or to manage your preferences, <b><span onclick=\"javascript:cipheredClassName = _sp_.msg.getMorphedClassName('sp_choice_type_12');var el = document.getElementsByClassName(cipheredClassName)[0];el.click();\" class=\"sp_pm_link1581879000923\">click here.</span>\n</b> By closing this message box or continuing to use our site, you agree to our use of cookies  and our <b><a href =\"//www.techtarget.com/privacy-policy-may25/?utm_source=cmp&utm_medium=banner&utm_campaign=consent&utm_term=privacy\" target=\"_blank\">Privacy Policy.</a></b></div></div> <div class=\"sp_choices1581879000923\">  <button class=\"sp_choice1581879000923 sp_choice-01581879000923 sp_choice_type_111581879000923\">OK</button>  <button class=\"sp_choice1581879000923 sp_choice-11581879000923 sp_choice_type_111581879000923\">×</button>  <button class=\"sp_choice1581879000923 sp_choice-21581879000923 sp_choice_type_121581879000923\">Show Purposes</button>  <button class=\"sp_choice1581879000923 sp_choice-31581879000923 sp_choice_type_151581879000923\">Dismiss</button> </div> </div><div class=\"sp_side_image1581879000923 sp_right_image1581879000923 sp_message_column1581879000923\"></div></div></div><div class=\"clearfix1581879000923\"></div></div></div></div>","veil_html":"<div class=\"sp_veil1581879000923\" style=\"display: block\"></div>","css":"/* Default settings */\n.sp_veil1581879000923 {\n  position: fixed;\n  top:0;\n  bottom:0;\n  left:0;\n  right:0;\n  z-index: 99999999;\n  display: block;\n  overflow: hidden;\n}\n\n.sp_message1581879000923 {\n    z-index: 99999999;\n}\n\nbutton.sp_choice1581879000923 {\n  outline: none;\n  cursor: pointer;\n}\n\n.sp_message_dismiss1581879000923 {\n  outline: none;\n  cursor: pointer;\n}\n\n#sp_message_id1581879000923 .sp_choice-21581879000923{\n    display:none;\n}\n\n.sp_veil1581879000923 iframe {\n    overflow: hidden;\n    z-index: 9999998;\n}\n\n.sp_iframe_container1581879000923 {\n    position: fixed;\n    z-index: 9999999;\n    left: 0;\n    right: 0;\n    top: 0;\n    bottom: 0;\n    overflow: hidden;\n    background-color: rgba(0, 0, 0, 0.5);\n}\n\n.sp_iframe_container1581879000923 iframe {\n    height: 100%;\n    width: 100%;\n    z-index: 9999999;\n    overflow: hidden;\n}\n\n/* START CUSTOMIZATION HERE */\n/* Background overlay */\n#bg-overlay {\n    position: fixed;\n    overflow: hidden;\n    background: #000000;\n    opacity: 0.5;\n    left: 0;\n    right: 0;\n    top: 0;\n    bottom: 0;\n}\n\n/* Message modal */\n.sp_message_panel1581879000923 {\n    width: auto;\n    background-color: #F5F5F5;\n    padding: 15px;\n    z-index: 99999999;\n}\n\n.sp_message_column1581879000923.sp_message_content1581879000923 {\n  display: flex;\n  flex-direction: row;\n  max-width: 1200px;\n  margin: auto;\n  align-items: center;\n  z-index: 99999999;\n}\n\n/* Close button */\n.sp_message_dismiss1581879000923 {\n    display: none;\n}\n\n.sp_message_body1581879000923 {\n  margin-right: 30px;\n}\n\n/* Title text */\n.sp_message_title1581879000923 {\n  font-family: Arial;\n    font-size:14px;\n    font-weight:bold;\n}\n\n/* Body text */\n.sp_message_text1581879000923 {\n    font-family: Arial;\n    font-size:12px;\n    margin:10px 0;\n    line-height: 130%;\n}\n\n.sp_message1581879000923 a {\n  color: #00A69F;\n}\n\n.sp_message1581879000923 a:hover{\n    color: #006860;\n}\n\nspan.sp_pm_link1581879000923{\n     color: #00A69F;\n     cursor: pointer;\n}\nspan:hover.sp_pm_link1581879000923{\n     color: #006860;\n}\n\n/* Choice options */\n.sp_choices1581879000923 {\n  display: flex;\n  flex-direction: row;\n}\n\nbutton.sp_choice1581879000923 {\n    border:0px;\n    background-color: #f0f0f0;\n    padding:10px 15px;\n    border-radius: 5px;\n}\n\nbutton.sp_choice-01581879000923 {\n    background-color: #00A69F;\n    color: #fff;\n    padding:10px 25px;\n    border-radius: 5px;\n    font-size:16px;\n    font-weight: 600;\n}\n\nbutton.sp_choice-11581879000923 {\n    position: absolute;\n    top: 0px;\n    right: 0px;\n    background-color: transparent;\n    padding:10px;\n    font-size:16px;\n}\n\n/* Button Hover */\nbutton.sp_choice1581879000923:hover {\n  opacity: .8;\n}\n\n/* Button Pressed */\nbutton.sp_choice1581879000923:active {\n  opacity: .6;\n}\n\n\n/* Mobile */\n@media only screen and (max-width: 480px) {\n\n.sp_message_panel1581879000923 {\n  width: 90%;\n}\n\n.sp_message_column1581879000923.sp_message_content1581879000923 {\n  flex-direction: column;\n  align-items: baseline;\n  z-index: 99999999;\n}\n.sp_message_body1581879000923 {\n  margin-right: 0px;\n}button.sp_choice-31581879000923{display: none};","class_map":{"sp_side_image1581879000923":"sp_side_image","sp_message_title1581879000923":"sp_message_title","sp_choice_type_111581879000923":"sp_choice_type_11","sp_message_frame1581879000923":"sp_message_frame","sp_choices1581879000923":"sp_choices","sp_iframe_container1581879000923":"sp_iframe_container","sp_message_panel1581879000923":"sp_message_panel","sp_choice_type_121581879000923":"sp_choice_type_12","sp_message_text1581879000923":"sp_message_text","sp_veil1581879000923":"sp_veil","sp_choice-21581879000923":"sp_choice-2","sp_right_image1581879000923":"sp_right_image","sp_choice_type_151581879000923":"sp_choice_type_15","sp_choice-31581879000923":"sp_choice-3","sp_message_body1581879000923":"sp_message_body","sp_message_column1581879000923":"sp_message_column","sp_message_container1581879000923":"sp_message_container","sp_message1581879000923":"sp_message","sp_message_dismiss1581879000923":"sp_message_dismiss","clearfix1581879000923":"clearfix","sp_left_image1581879000923":"sp_left_image","sp_message_content1581879000923":"sp_message_content","sp_message_row1581879000923":"sp_message_row","sp_choice-11581879000923":"sp_choice-1","sp_choice-01581879000923":"sp_choice-0","sp_pm_link1581879000923":"sp_pm_link","sp_choice1581879000923":"sp_choice"},"id_map":{"sp_message_body_id1581879000923":"sp_message_body_id","sp_message_panel_id1581879000923":"sp_message_panel_id","sp_message_id1581879000923":"sp_message_id"},"choice_class_id_map":{"sp_choice-11581879000923":469887,"sp_choice-01581879000923":469886,"sp_choice-21581879000923":469888,"sp_choice-31581879000923":469889},"choice_class_type_map":{"sp_choice-11581879000923":11,"sp_choice-01581879000923":11,"sp_choice-21581879000923":12,"sp_choice-31581879000923":15}};  window._sp_.msg.displayMessage(msg, html);  try { if (typeof window._sp_.msg._internal.cdc1 === 'function') { window._sp_.msg._internal.cdc1({"msgID":86272,"d":{"abp":true,"abt":false},"o":{"wl":false,"oir":false},"ci":{"comp":false,"src":0},"u":{"uuid":"65bf6bad-14cc-4574-b808-16f436e9f86a","bucket":1},"info":{"cmpgn_id":66445,"prtn_uuid":"34f2f2de-087f-4259-a167-1d7552d00192","msg_id":86272,"msg_desc":"TechTarget Consent Banner - GDPR"}});}} catch(e) {console.log("mms cdc:" + e);} })();

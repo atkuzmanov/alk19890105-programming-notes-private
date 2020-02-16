@@ -1,0 +1,68 @@
+.search-in-place-type-page,
+.search-in-place-type-post{
+	background:url(arrow.png) no-repeat 0px bottom;
+	color: #AAA;
+	text-transform:uppercase;
+	font-size:12px;
+}
+
+.search-in-place {
+	position:absolute; 
+	background-color: #F9F9F9;
+	z-index: 9999; 
+	margin:0; 
+	padding:0;
+	border:1px solid #DDD;
+	overflow:hidden;
+}
+
+.search-in-place .loading{
+	width:16px;
+	height:11px;
+	background : url(../images/loading.gif) no-repeat;
+	margin: 0 auto;	
+	position: relative;
+}
+
+.search-in-place>div{
+	padding: 0 5px;
+}
+
+.search-in-place .label{
+	color: #333333;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+	background-color: #F1F1F1;
+    background-image: -moz-linear-gradient(center top , #F9F9F9, #ECECEC);
+	text-transform: uppercase;
+	font-size:12px;
+}
+.search-in-place .item{
+	border-top:1px solid #FFF;
+	border-bottom: 1px solid #DFDFDF;
+}
+
+.search-in-place .item.active{
+	background-color:#FFF;
+}
+
+.search-in-place .title{
+	display:block;
+}
+.search-in-place .resume{
+	display:block;
+	font-size:10px;
+}
+
+.search-in-place .author{
+	font-size:small;
+	font-weight:bold;
+}
+
+.search-in-place .date{
+	font-size:small;
+	margin-left:5px;
+	font-style:italic;
+}
+.search-in-place .more{
+	text-align:right;
+}
