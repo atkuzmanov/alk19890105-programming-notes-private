@@ -179,6 +179,7 @@ For learning and study
 - [JOIN Vs JOIN FETCH in HQL or Hibernate.initialize](#join-vs-join-fetch-in-hql-or-hibernateinitialize)
     - [Hibernate.initialize](#hibernateinitialize)
 - [Lazy Vs Eager initialziation](#lazy-vs-eager-initialziation)
+- [Hibernate n+1 problem](#hibernate-n1-problem)
 - [update vs merge](#update-vs-merge)
 - [JDBC Vs Hibernate](#jdbc-vs-hibernate)
 - [WEB](#web)
@@ -8057,6 +8058,50 @@ https://vladmihalcea.com/hibernate-facts-the-importance-of-fetch-strategy/
 
 ----
 
+# Hibernate n+1 problem
+
+- [What-is-N+1-problem-in-Hibernate-how-will-you-identify-and-solve-it-javacodemonk](refs/What-is-N+1-problem-in-Hibernate-how-will-you-identify-and-solve-it-javacodemonk)
+
+`references:`
+https://www.javacodemonk.com/what-is-n-1-problem-in-hibernate-how-will-you-identify-and-solve-it-894097b9
+
+- [What-is-the-N+1-selects-problem-in-ORM-Object-Relational-Mapping-StackOverflow](refs/What-is-the-N+1-selects-problem-in-ORM-Object-Relational-Mapping-StackOverflow)
+
+`references:`
+https://stackoverflow.com/questions/97197/what-is-the-n1-selects-problem-in-orm-object-relational-mapping
+
+- [The-best-way-to-handle-the-LazyInitializationException-VladMihalcea](refs/The-best-way-to-handle-the-LazyInitializationException-VladMihalcea)
+
+`references:`
+https://vladmihalcea.com/the-best-way-to-handle-the-lazyinitializationexception/
+
+- [How-to-detect-the-Hibernate-N+1-query-problem-during-testing-VladMihalcea](refs/How-to-detect-the-Hibernate-N+1-query-problem-during-testing-VladMihalcea)
+
+`references:`
+https://vladmihalcea.com/how-to-detect-the-n-plus-one-query-problem-during-testing/
+
+- [JPA-Tips-Avoiding-the-N-plus-1-select-problem-JavaCodeGeeks](refs/JPA-Tips-Avoiding-the-N-plus-1-select-problem-JavaCodeGeeks)
+
+`references:`
+https://www.javacodegeeks.com/2018/04/jpa-tips-avoiding-the-n-1-select-problem.html
+
+- [Hibernate-N+1-Queries-Problem-Mansoor-Ali-Medium](refs/Hibernate-N+1-Queries-Problem-Mansoor-Ali-Medium)
+
+`references:`
+https://medium.com/@mansoor_ali/hibernate-n-1-queries-problem-8a926b69f618
+
+- [Hibernate-and-the-n+1-selections-problem-QuintoAndar-Tech-Blog-Medium](refs/Hibernate-and-the-n+1-selections-problem-QuintoAndar-Tech-Blog-Medium)
+
+`references:`
+https://medium.com/quintoandar-tech-blog/hibernate-and-the-n-1-selections-problem-c497710fa3fe
+
+- Free Mini Course: How to find and fix n+1 select issues with Hibernate
+
+`references:`
+https://thoughts-on-java.org/free-mini-course-find-fix-n1-select-issues-hibernate/
+
+----
+
 # update vs merge
 
 |Junior |Mid  |Senior |
@@ -8065,14 +8110,15 @@ https://vladmihalcea.com/hibernate-facts-the-importance-of-fetch-strategy/
 
 
 
+
 ----
 
 # JDBC Vs Hibernate
 
-
 |Junior |Mid  |Senior |
 |-------|-----|-------|
 |   x   |  x  |   x   |
+
 
 
 ----
