@@ -183,6 +183,7 @@ For learning and study
 - [update vs merge](#update-vs-merge)
 - [JDBC Vs Hibernate](#jdbc-vs-hibernate)
 - [WEB](#web)
+- [REST vs SOAP](#rest-vs-soap)
 - [Random](#random)
 - [SQL Normal Forms](#sql-normal-forms)
 - [Convention over Configuration](#convention-over-configuration)
@@ -8184,6 +8185,13 @@ https://www.linkedin.com/pulse/overview-java-persistence-using-jdbc-jpahibernate
 WEB
 ```
 ----
+
+# REST vs SOAP
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
 
 
 
