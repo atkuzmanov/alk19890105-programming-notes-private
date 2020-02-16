@@ -177,6 +177,7 @@ For learning and study
 - [JNDI](#jndi)
 - [Filter](#filter)
 - [JOIN Vs JOIN FETCH in HQL or Hibernate.initialize](#join-vs-join-fetch-in-hql-or-hibernateinitialize)
+- [Lazy Vs Eager initialziation](#lazy-vs-eager-initialziation)
 - [Random](#random)
 - [SQL Normal Forms](#sql-normal-forms)
 - [Convention over Configuration](#convention-over-configuration)
@@ -7979,10 +7980,56 @@ https://docs.jboss.org/hibernate/core/3.3/reference/en/html/filters.html
 |-------|-----|-------|
 |       |  x  |   x   |
 
+- [JPA-Join-Types-Baeldung](refs/JPA-Join-Types-Baeldung)
+
+`references:`
+https://www.baeldung.com/jpa-join-types
+
+- [Hibernate-Tip-Whats-the-Difference-between-JOIN-LEFT-JOIN-JOIN-FETCH-thoughts-on-java](refs/Hibernate-Tip-Whats-the-Difference-between-JOIN-LEFT-JOIN-JOIN-FETCH-thoughts-on-java)
+
+`references:`
+https://thoughts-on-java.org/hibernate-tips-difference-join-left-join-fetch-join/
+
+- [Hibernate-Tip-Using-LEFT-JOIN-and-FETCH-JOIN-in-a-CriteriaQuery-thoughts-on-java](refs/Hibernate-Tip-Using-LEFT-JOIN-and-FETCH-JOIN-in-a-CriteriaQuery-thoughts-on-java)
+
+`references:`
+https://thoughts-on-java.org/hibernate-tip-left-join-fetch-join-criteriaquery/
+
+- [java-difference between-JOIN-and-JOIN-FETCH-when-using-JPA-and-Hibernate-StackOverflow](refs/java-difference-between-JOIN-and-JOIN-FETCH-when-using-JPA-and-Hibernate-StackOverflow)
+
+`references:`
+https://stackoverflow.com/questions/17431312/what-is-the-difference-between-join-and-join-fetch-when-using-jpa-and-hibernate
+
+- [java-How-to-express-JPQL-join-fetch-with-where-clause-as-JPA-2-CriteriaQuery-StackOverflow](refs/java-How-to-express-JPQL-join-fetch-with-where-clause-as-JPA-2-CriteriaQuery-StackOverflow)
+
+`references:`
+https://stackoverflow.com/questions/5816417/how-to-properly-express-jpql-join-fetch-with-where-clause-as-jpa-2-criteriaq
+
+- [JPA-Hibernate-JPQL-FETCH-JOIN-Query-example-logicbig](refs/JPA-Hibernate-JPQL-FETCH-JOIN-Query-example-logicbig)
+
+`references:`
+https://www.logicbig.com/tutorials/java-ee-tutorial/jpa/fetch-join.html
+
 
 
 
 ----
+
+# Lazy Vs Eager initialziation
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
+
+
+
+- 
+
+`references:`
+https://vladmihalcea.com/hibernate-facts-the-importance-of-fetch-strategy/
+
+
+
 ----
 ----
 ----
