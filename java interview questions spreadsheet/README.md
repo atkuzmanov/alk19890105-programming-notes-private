@@ -179,6 +179,9 @@ For learning and study
 - [JOIN Vs JOIN FETCH in HQL or Hibernate.initialize](#join-vs-join-fetch-in-hql-or-hibernateinitialize)
     - [Hibernate.initialize](#hibernateinitialize)
 - [Lazy Vs Eager initialziation](#lazy-vs-eager-initialziation)
+- [update vs merge](#update-vs-merge)
+- [JDBC Vs Hibernate](#jdbc-vs-hibernate)
+- [WEB](#web)
 - [Random](#random)
 - [SQL Normal Forms](#sql-normal-forms)
 - [Convention over Configuration](#convention-over-configuration)
@@ -8023,6 +8026,9 @@ https://stackoverflow.com/questions/17318340/how-hibernate-initialize-works
 `references:`
 https://vladmihalcea.com/initialize-lazy-proxies-collections-jpa-hibernate/
 
+
+<a id="chapter-19-improving-performance-jbossorg" name ="chapter-19-improving-performance-jbossorg">Chapter-19-Improving-performance-jbossorg</a>
+
 - [Chapter-19-Improving-performance-jbossorg](refs/Chapter-19-Improving-performance-jbossorg)
 
 `references:`
@@ -8036,19 +8042,50 @@ https://docs.jboss.org/hibernate/core/3.3/reference/en/html/performance.html
 |-------|-----|-------|
 |   x   |  x  |   x   |
 
+- [Eager-Lazy-Loading-In-Hibernate-Baeldung](refs/Eager-Lazy-Loading-In-Hibernate-Baeldung)
 
+`references:`
+https://www.baeldung.com/hibernate-lazy-eager-loading
 
-- 
+- [A-beginners-guide-to-Hibernate-fetching-strategies-VladMihalcea](refs/A-beginners-guide-to-Hibernate-fetching-strategies-VladMihalcea)
 
 `references:`
 https://vladmihalcea.com/hibernate-facts-the-importance-of-fetch-strategy/
 
+- Please see:
+    - [Chapter-19-Improving-performance-jbossorg](#chapter-19-improving-performance-jbossorg)
+
+----
+
+# update vs merge
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
+
+
+----
+
+# JDBC Vs Hibernate
+
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
 
 
 ----
+
+# WEB
+
+```text
+WEB
+```
 ----
-----
-----
+
+
+
 ----
 ----
 ----
