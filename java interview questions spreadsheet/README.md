@@ -177,6 +177,7 @@ For learning and study
 - [JNDI](#jndi)
 - [Filter](#filter)
 - [JOIN Vs JOIN FETCH in HQL or Hibernate.initialize](#join-vs-join-fetch-in-hql-or-hibernateinitialize)
+    - [Hibernate.initialize](#hibernateinitialize)
 - [Lazy Vs Eager initialziation](#lazy-vs-eager-initialziation)
 - [Random](#random)
 - [SQL Normal Forms](#sql-normal-forms)
@@ -8010,8 +8011,22 @@ https://stackoverflow.com/questions/5816417/how-to-properly-express-jpql-join-fe
 `references:`
 https://www.logicbig.com/tutorials/java-ee-tutorial/jpa/fetch-join.html
 
+## Hibernate.initialize
 
+- [java-How-Hibernate.initialize-works-StackOverflow](refs/java-How-Hibernate.initialize-works-StackOverflow)
 
+`references:`
+https://stackoverflow.com/questions/17318340/how-hibernate-initialize-works
+
+- [initialize-LAZY-entity-and-collection-proxies-with-JPA-and-Hibernate-VladMihalcea](refs/initialize-LAZY-entity-and-collection-proxies-with-JPA-and-Hibernate-VladMihalcea)
+
+`references:`
+https://vladmihalcea.com/initialize-lazy-proxies-collections-jpa-hibernate/
+
+- [Chapter-19-Improving-performance-jbossorg](refs/Chapter-19-Improving-performance-jbossorg)
+
+`references:`
+https://docs.jboss.org/hibernate/core/3.3/reference/en/html/performance.html
 
 ----
 
