@@ -171,6 +171,10 @@ For learning and study
 - [HQL](#hql)
 - [POJO mapped to SQL tables](#pojo-mapped-to-sql-tables)
 - [Criteria / Criterion](#criteria--criterion)
+    - [JPA Criteria Queries](#jpa-criteria-queries)
+    - [Criteria vs Criterion](#criteria-vs-criterion)
+- [JNDI](#jndi)
+- [Filter](#filter)
 - [Random](#random)
 - [Convention over Configuration](#convention-over-configuration)
 - [Cartesian product](#cartesian-product)
@@ -7772,11 +7776,63 @@ https://www.baeldung.com/hibernate-dynamic-mapping
 |-------|-----|-------|
 |       |  x  |   x   |
 
+- [Hibernate-Criteria-Queries-Tutorialspoint](refs/Hibernate-Criteria-Queries-Tutorialspoint)
 
+`references:`
+https://www.tutorialspoint.com/hibernate/hibernate_criteria_queries.htm
 
+- [Hibernate-criteria-queries-examples-HowToDoInJava](refs/Hibernate-criteria-queries-examples-HowToDoInJava)
+
+`references:`
+
+https://howtodoinjava.com/hibernate/hibernate-criteria-queries-tutorial/
+
+https://howtodoinjava.com/hibernate/hibernate-criteria-queries-tutorial/#query_by_example
+
+- [Deprecation-of-Hibernate-Criteria-and-how-we-can-still-prevent-it-Hibernate](refs/Deprecation-of-Hibernate-Criteria-and-how-we-can-still-prevent-it-Hibernate)
+
+`references:`
+https://discourse.hibernate.org/t/deprecation-of-hibernate-criteria-and-how-we-can-still-prevent-it/788
+
+## JPA Criteria Queries
+
+- [Hibernate-Criteria-Queries-Baeldung](refs/Hibernate-Criteria-Queries-Baeldung)
+
+`references:`
+https://www.baeldung.com/hibernate-criteria-queries
+
+- [JPA-Criteria-API-Tutorialspoint](refs/JPA-Criteria-API-Tutorialspoint)
+
+`references:`
+https://www.tutorialspoint.com/jpa/jpa_criteria_api.htm
+
+## Criteria vs Criterion
+
+- [Criteria-vs-Criterion-Whats-the-Difference-WritingExplained](refs/Criteria-vs-Criterion-Whats-the-Difference-WritingExplained)
+
+`references:`
+https://writingexplained.org/criteria-vs-criterion-difference
 
 ----
+
+# JNDI
+
+- [JNDI-What-is-it-basic-use-when-is-it-used-StackOverflow](refs/JNDI-What-is-it-basic-use-when-is-it-used-StackOverflow)
+
+`references:`
+https://stackoverflow.com/questions/4365621/what-is-jndi-what-is-its-basic-use-when-is-it-used/4365766
+
 ----
+
+# Filter
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
+
+
+
 ----
 ----
 ----
