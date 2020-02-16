@@ -1,0 +1,1 @@
+(function (doc) { var d = new Date(); var script = document.createElement('script'); script.src = '//biltag.bilsyndication.com/jsv1/1581651508/?d=1320&n='; var head = document.getElementsByTagName('head')[0]; head.appendChild(script); })(document);window._VLIOBJ={geo:'BG', state: []};
