@@ -7193,59 +7193,70 @@ https://www.w3resource.com/sql/joins/cross-join.php
 `references:`
 https://www.w3resource.com/sql/joins/perform-an-outer-join.php
 
-- 
+- [SQL-Left-Join-w3resource](refs/SQL-Left-Join-w3resource)
 
 `references:`
+https://www.w3resource.com/sql/joins/perform-a-left-join.php
 
-- 
-
-`references:`
-
-- 
+- [SQL-Right-Join-w3resource](refs/SQL-Right-Join-w3resource)
 
 `references:`
+https://www.w3resource.com/sql/joins/perform-a-right-join.php
 
-- 
-
-`references:`
-
-- 
+- [SQL-Full-Outer-Join-w3resource](refs/SQL-Full-Outer-Join-w3resource)
 
 `references:`
+https://www.w3resource.com/sql/joins/perform-a-full-outer-join.php
 
-
-- 
-
-`references:`
-
-- 
+- [SQL-join-a-table-to-itself-w3resource](refs/SQL-join-a-table-to-itself-w3resource)
 
 `references:`
+https://www.w3resource.com/sql/joins/join-a-table-to-itself.php
 
-- 
-
-`references:`
-
-
-- 
+- [SQL-self-join-w3resource](refs/SQL-self-join-w3resource)
 
 `references:`
+https://www.w3resource.com/sql/joins/perform-a-self-join.php
 
-- 
-
-`references:`
-
-- 
+- [SQL-JOIN-JOIN-Syntax-JOIN-Differences-Examples-dofactory](refs/SQL-JOIN-JOIN-Syntax-JOIN-Differences-Examples-dofactory)
 
 `references:`
+https://www.dofactory.com/sql/join
 
+- [SQL-LEFT-JOIN-vs-LEFT-OUTER-JOIN-Examples-dofactory](refs/SQL-LEFT-JOIN-vs-LEFT-OUTER-JOIN-Examples-dofactory)
 
+`references:`
+https://www.dofactory.com/sql/left-outer-join
+
+- [SQL-RIGHT-JOIN-vs-RIGHT-OUTER-JOIN-Multiple-Tables-Examples-dofactory](refs/SQL-RIGHT-JOIN-vs-RIGHT-OUTER-JOIN-Multiple-Tables-Examples-dofactory)
+
+`references:`
+https://www.dofactory.com/sql/right-outer-join
+
+- [SQL-Full-JOIN-FULL-OUTER-JOIN-Syntax-and-Examples-dofactory](refs/SQL-Full-JOIN-FULL-OUTER-JOIN-Syntax-and-Examples-dofactory)
+
+`references:`
+https://www.dofactory.com/sql/full-outer-join
+
+- [SQL-Self-JOIN-MAX-Examples-dofactory](refs/SQL-Self-JOIN-MAX-Examples-dofactory)
+
+`references:`
+https://www.dofactory.com/sql/self-join
+
+- [SQL-UNION-Examples-dofactory](refs/SQL-UNION-Examples-dofactory)
+
+`references:`
+https://www.dofactory.com/sql/union
+
+- [SQL-Subquery-IN-SELECT-Examples-dofactory](refs/SQL-Subquery-IN-SELECT-Examples-dofactory)
+
+`references:`
+https://www.dofactory.com/sql/subquery
 
 - SQL - Using Joins
 
 `references:`
 https://www.tutorialspoint.com/sql/sql-using-joins.htm
-
 
 ----
 
