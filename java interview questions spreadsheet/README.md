@@ -139,6 +139,7 @@ For learning and study
     - [SQL Stored Procedure](#sql-stored-procedure)
 - [Functions](#functions)
     - [SQL functions](#sql-functions)
+- [SQL Joins](#sql-joins)
 - [Spring](#spring)
 - [IoC and Dependency injection](#ioc-and-dependency-injection)
 - [Spring Design Patterns](#spring-design-patterns)
@@ -177,6 +178,7 @@ For learning and study
 - [Filter](#filter)
 - [JOIN Vs JOIN FETCH in HQL or Hibernate.initialize](#join-vs-join-fetch-in-hql-or-hibernateinitialize)
 - [Random](#random)
+- [SQL Normal Forms](#sql-normal-forms)
 - [Convention over Configuration](#convention-over-configuration)
 - [Cartesian product](#cartesian-product)
 
@@ -7144,6 +7146,109 @@ https://www.w3schools.com/sql/sql_ref_sqlserver.asp
 
 ----
 
+# SQL Joins
+
+- [Join-SQL-Wikipedia](refs/Join-SQL-Wikipedia)
+
+`references:`
+https://en.wikipedia.org/wiki/Join_(SQL)
+
+- [MySQL-JOINS-Tutorial-INNER-OUTER-LEFT-RIGHT-CROSS-guru99](refs/MySQL-JOINS-Tutorial-INNER-OUTER-LEFT-RIGHT-CROSS-guru99)
+
+`references:`
+https://www.guru99.com/joins.html
+
+- [SQL-JOINS-w3resource](refs/SQL-JOINS-w3resource)
+
+`references:`
+https://www.w3resource.com/sql/joins/sql-joins.php
+
+- [SQL-Equi-join-w3resource](refs/SQL-Equi-join-w3resource)
+
+`references:`
+https://www.w3resource.com/sql/joins/perform-an-equi-join.php
+
+- [SQL-non-equi-join-w3resource](refs/SQL-non-equi-join-w3resource)
+
+`references:`
+https://www.w3resource.com/sql/joins/perform-a-non-equi-join.php
+
+- [SQL-INNER-JOIN-w3resource](refs/SQL-INNER-JOIN-w3resource)
+
+`references:`
+https://www.w3resource.com/sql/joins/perform-an-inner-join.php
+
+- [SQL-natural-join-w3resource](refs/SQL-natural-join-w3resource)
+
+`references:`
+https://www.w3resource.com/sql/joins/natural-join.php
+
+- [SQL-Cross-Join-w3resource](refs/SQL-Cross-Join-w3resource)
+
+`references:`
+https://www.w3resource.com/sql/joins/cross-join.php
+
+- [SQL-outer-join-w3resource](refs/SQL-outer-join-w3resource)
+
+`references:`
+https://www.w3resource.com/sql/joins/perform-an-outer-join.php
+
+- 
+
+`references:`
+
+- 
+
+`references:`
+
+- 
+
+`references:`
+
+- 
+
+`references:`
+
+- 
+
+`references:`
+
+
+- 
+
+`references:`
+
+- 
+
+`references:`
+
+- 
+
+`references:`
+
+
+- 
+
+`references:`
+
+- 
+
+`references:`
+
+- 
+
+`references:`
+
+
+
+- SQL - Using Joins
+
+`references:`
+https://www.tutorialspoint.com/sql/sql-using-joins.htm
+
+
+----
+
 ```text
 Spring
 ```
@@ -7865,6 +7970,7 @@ https://docs.jboss.org/hibernate/core/3.3/reference/en/html/filters.html
 
 
 
+
 ----
 ----
 ----
@@ -7921,6 +8027,10 @@ https://docs.jboss.org/hibernate/core/3.3/reference/en/html/filters.html
 ```text
 Random
 ```
+
+----
+
+# SQL Normal Forms
 
 ----
 
