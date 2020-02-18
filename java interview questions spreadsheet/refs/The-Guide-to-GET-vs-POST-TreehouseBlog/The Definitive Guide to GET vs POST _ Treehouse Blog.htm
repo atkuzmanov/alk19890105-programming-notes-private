@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<!-- saved from url=(0066)https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post -->
+<html lang="en-US" class=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" async="" src="./The Definitive Guide to GET vs POST _ Treehouse Blog_files/vc705b7s"></script><script type="text/javascript" src="./The Definitive Guide to GET vs POST _ Treehouse Blog_files/elqCfg.min.js"></script>
+
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <link rel="shortcut icon" href="https://teamtreehouse.com/assets/favicon.png">
+
+  <title>The Definitive Guide to GET vs POST | Treehouse Blog</title>
+
+<!-- This site is optimized with the Yoast SEO plugin v11.3 - https://yoast.com/wordpress/plugins/seo/ -->
+<link rel="canonical" href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Definitive Guide to GET vs POST | Treehouse Blog">
+<meta property="og:description" content="Unfortunately there is a lot misuse of GET over POST and vice versa. Both HTTP methods can achieve the same goals, but an incorrect choice between them can lead to unexpected and potentially harmful outcomes. So, to make sure we...">
+<meta property="og:url" content="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post">
+<meta property="og:site_name" content="Treehouse Blog">
+<meta property="article:publisher" content="https://www.facebook.com/TeamTreehouse/">
+<meta property="article:tag" content="code">
+<meta property="article:section" content="Learn">
+<meta property="article:published_time" content="2009-08-14T08:00:41-07:00">
+<meta property="article:modified_time" content="2015-05-21T22:25:20-07:00">
+<meta property="og:updated_time" content="2015-05-21T22:25:20-07:00">
+<meta property="og:image" content="https://blog.teamtreehouse.com/wp-content/uploads/2018/08/treehouse-blog_placeholder.jpg">
+<meta property="og:image:secure_url" content="https://blog.teamtreehouse.com/wp-content/uploads/2018/08/treehouse-blog_placeholder.jpg">
+<meta property="og:image:width" content="1520">
+<meta property="og:image:height" content="960">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="Unfortunately there is a lot misuse of GET over POST and vice versa. Both HTTP methods can achieve the same goals, but an incorrect choice between them can lead to unexpected and potentially harmful outcomes. So, to make sure we...">
+<meta name="twitter:title" content="The Definitive Guide to GET vs POST | Treehouse Blog">
+<meta name="twitter:site" content="@treehouse">
+<meta name="twitter:image" content="https://blog.teamtreehouse.com/wp-content/uploads/2018/08/treehouse-blog_placeholder.jpg">
+<meta name="twitter:creator" content="@treehouse">
+<script type="text/javascript" async="" src="./The Definitive Guide to GET vs POST _ Treehouse Blog_files/ga.js"></script><script type="text/javascript" async="" src="./The Definitive Guide to GET vs POST _ Treehouse Blog_files/analytics.min.js"></script><script type="application/ld+json" class="yoast-schema-graph yoast-schema-graph--main">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://blog.teamtreehouse.com/#organization","name":"Treehouse","url":"https://blog.teamtreehouse.com/","sameAs":["https://www.facebook.com/TeamTreehouse/","https://www.instagram.com/teamtreehouse/","https://www.linkedin.com/school/treehouse-island-inc-/","https://www.youtube.com/channel/UCqHktcPJV7C7T3e9Cg4T4iw","https://www.pinterest.com/teamtreehouse/","https://twitter.com/treehouse"],"logo":{"@type":"ImageObject","@id":"https://blog.teamtreehouse.com/#logo","url":"https://blog.teamtreehouse.com/wp-content/uploads/2017/06/Treehouse-Logo-Green-Medium.png","width":1540,"height":497,"caption":"Treehouse"},"image":{"@id":"https://blog.teamtreehouse.com/#logo"}},{"@type":"WebSite","@id":"https://blog.teamtreehouse.com/#website","url":"https://blog.teamtreehouse.com/","name":"Treehouse Blog","publisher":{"@id":"https://blog.teamtreehouse.com/#organization"},"potentialAction":{"@type":"SearchAction","target":"https://blog.teamtreehouse.com/?s={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"WebPage","@id":"https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#webpage","url":"https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post","inLanguage":"en-US","name":"The Definitive Guide to GET vs POST | Treehouse Blog","isPartOf":{"@id":"https://blog.teamtreehouse.com/#website"},"image":{"@type":"ImageObject","@id":"https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#primaryimage","url":"https://blog.teamtreehouse.com/wp-content/uploads/2018/08/treehouse-blog_placeholder.jpg","width":1520,"height":960},"primaryImageOfPage":{"@id":"https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#primaryimage"},"datePublished":"2009-08-14T08:00:41-07:00","dateModified":"2015-05-21T22:25:20-07:00","breadcrumb":{"@id":"https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#breadcrumb"}},{"@type":"BreadcrumbList","@id":"https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"WebPage","@id":"https://blog.teamtreehouse.com/","url":"https://blog.teamtreehouse.com/","name":"Home"}},{"@type":"ListItem","position":2,"item":{"@type":"WebPage","@id":"https://blog.teamtreehouse.com/category/learn","url":"https://blog.teamtreehouse.com/category/learn","name":"Learn"}},{"@type":"ListItem","position":3,"item":{"@type":"WebPage","@id":"https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post","url":"https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post","name":"The Definitive Guide to GET vs POST"}}]},{"@type":"Article","@id":"https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#article","isPartOf":{"@id":"https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#webpage"},"author":{"@id":"https://blog.teamtreehouse.com/author/teamtreehouse#author"},"headline":"The Definitive Guide to GET vs POST","datePublished":"2009-08-14T08:00:41-07:00","dateModified":"2015-05-21T22:25:20-07:00","commentCount":"91","mainEntityOfPage":"https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#webpage","publisher":{"@id":"https://blog.teamtreehouse.com/#organization"},"image":{"@id":"https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#primaryimage"},"keywords":"code","articleSection":"Learn"},{"@type":["Person"],"@id":"https://blog.teamtreehouse.com/author/teamtreehouse#author","name":"Treehouse","image":{"@type":"ImageObject","@id":"https://blog.teamtreehouse.com/#authorlogo","url":"https://blog.teamtreehouse.com/wp-content/uploads/2018/05/Treehouse-logo_Social.png","caption":"Treehouse"},"description":"Our mission is to bring affordable Technology education to people everywhere, in order to help them achieve their dreams and change the world.","sameAs":[]}]}</script>
+<!-- / Yoast SEO plugin. -->
+
+<link rel="dns-prefetch" href="https://cloud.typography.com/">
+<link rel="dns-prefetch" href="https://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="Treehouse Blog » Feed" href="https://blog.teamtreehouse.com/feed">
+<link rel="alternate" type="application/rss+xml" title="Treehouse Blog » Comments Feed" href="https://blog.teamtreehouse.com/comments/feed">
+<link rel="alternate" type="application/rss+xml" title="Treehouse Blog » The Definitive Guide to GET vs POST Comments Feed" href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post/feed">
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/blog.teamtreehouse.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.3.2"}};
+			!function(e,a,t){var r,n,o,i,p=a.createElement("canvas"),s=p.getContext&&p.getContext("2d");function c(e,t){var a=String.fromCharCode;s.clearRect(0,0,p.width,p.height),s.fillText(a.apply(this,e),0,0);var r=p.toDataURL();return s.clearRect(0,0,p.width,p.height),s.fillText(a.apply(this,t),0,0),r===p.toDataURL()}function l(e){if(!s||!s.fillText)return!1;switch(s.textBaseline="top",s.font="600 32px Arial",e){case"flag":return!c([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])&&(!c([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!c([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]));case"emoji":return!c([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340])}return!1}function d(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(i=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},o=0;o<i.length;o++)t.supports[i[o]]=l(i[o]),t.supports.everything=t.supports.everything&&t.supports[i[o]],"flag"!==i[o]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[i[o]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(r=t.source||{}).concatemoji?d(r.concatemoji):r.wpemoji&&r.twemoji&&(d(r.twemoji),d(r.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="./The Definitive Guide to GET vs POST _ Treehouse Blog_files/wp-emoji-release.min.js" type="text/javascript" defer=""></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel="stylesheet" id="wp-block-library-css" href="./The Definitive Guide to GET vs POST _ Treehouse Blog_files/style.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="font-css" href="./The Definitive Guide to GET vs POST _ Treehouse Blog_files/fonts.css" type="text/css" media="all">
+<link rel="stylesheet" id="custom-css" href="./The Definitive Guide to GET vs POST _ Treehouse Blog_files/all.css" type="text/css" media="all">
+<link rel="stylesheet" id="popup-maker-site-css" href="./The Definitive Guide to GET vs POST _ Treehouse Blog_files/pum-site-styles.css" type="text/css" media="all">
+<script type="text/javascript" src="./The Definitive Guide to GET vs POST _ Treehouse Blog_files/jquery.js"></script>
+<script type="text/javascript" src="./The Definitive Guide to GET vs POST _ Treehouse Blog_files/jquery-migrate.min.js"></script>
+<script type="text/javascript">
+	!function(){var analytics=window.analytics=window.analytics||[];if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.0.0";
+		window.analytics.load("DMUKccVYvuuUIVSJlokCJe0YQyGm9qVb");
+	window.analytics.page();
+	  }}();
+</script>
+<link rel="https://api.w.org/" href="https://blog.teamtreehouse.com/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://blog.teamtreehouse.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://blog.teamtreehouse.com/wp-includes/wlwmanifest.xml"> 
+<link rel="shortlink" href="https://blog.teamtreehouse.com/?p=2856">
+<link rel="alternate" type="application/json+oembed" href="https://blog.teamtreehouse.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fblog.teamtreehouse.com%2Fthe-definitive-guide-to-get-vs-post">
+<link rel="alternate" type="text/xml+oembed" href="https://blog.teamtreehouse.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fblog.teamtreehouse.com%2Fthe-definitive-guide-to-get-vs-post&amp;format=xml">
+<meta name="generator" content="Powered by WPBakery Page Builder - drag and drop page builder for WordPress.">
+<!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="https://3wga6448744j404mpt11pbx4-wpengine.netdna-ssl.com/wp-content/plugins/js_composer/assets/css/vc_lte_ie9.min.css" media="screen"><![endif]--><link rel="icon" href="https://3wga6448744j404mpt11pbx4-wpengine.netdna-ssl.com/wp-content/uploads/2018/08/favicon.png" sizes="32x32">
+<link rel="icon" href="https://3wga6448744j404mpt11pbx4-wpengine.netdna-ssl.com/wp-content/uploads/2018/08/favicon.png" sizes="192x192">
+<link rel="apple-touch-icon-precomposed" href="https://3wga6448744j404mpt11pbx4-wpengine.netdna-ssl.com/wp-content/uploads/2018/08/favicon.png">
+<meta name="msapplication-TileImage" content="https://blog.teamtreehouse.com/wp-content/uploads/2018/08/favicon.png">
+<noscript><style type="text/css"> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript>  <script>var $ = jQuery.noConflict();</script>
+
+  <!-- OneTrust Cookies Consent Notice (Production Standard, teamtreehouse.com, en-GB) start -->
+  <script src="./The Definitive Guide to GET vs POST _ Treehouse Blog_files/39d1ae64-085b-42e6-a239-a988d6530b80.js" type="text/javascript" charset="UTF-8"></script><link type="text/css" href="./The Definitive Guide to GET vs POST _ Treehouse Blog_files/optanon.css" rel="stylesheet"><style>#optanon ul#optanon-menu li { background-color: #F9FAFA !important }#optanon ul#optanon-menu li.menu-item-selected { background-color: #EDEFF0 !important }#optanon #optanon-popup-wrapper .optanon-white-button-middle { background-color: #387BAB !important }.optanon-alert-box-wrapper .optanon-alert-box-button-middle { background-color: #387BAB !important; border-color: #387BAB !important; }#optanon #optanon-popup-wrapper .optanon-white-button-middle a { color: #ffffff !important }.optanon-alert-box-wrapper .optanon-alert-box-button-middle a { color: #ffffff !important }#optanon #optanon-popup-bottom { background-color: #F9FAFA !important }#optanon.modern #optanon-popup-top, #optanon.modern #optanon-popup-body-left-shading { background-color: #F9FAFA !important }.optanon-alert-box-wrapper { background-color:#F9FAFA !important }.optanon-alert-box-wrapper .optanon-alert-box-bg p { color:#4B5658 !important }</style>
+
+  <script type="text/javascript">
+
+  function OptanonWrapper() { window.dataLayer.push({ event: "OneTrustGroupsUpdated" }) }
+
+  </script>
+
+  <!-- OneTrust Cookies Consent Notice (Production Standard, teamtreehouse.com, en-GB) end -->
+
+        <script type="text/javascript" class="optanon-category-3">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-25670760-10']);
+    _gaq.push(['_trackPageview']);
+
+      (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+                  })();
+    </script>
+
+        <script type="text/javascript" class="optanon-category-4">
+    /* <![CDATA[ */
+    var google_conversion_id = 1017883234;
+    var google_conversion_label = "hbMzCI7rvAMQ4tSu5QM";
+    var google_custom_params = window.google_tag_params;
+    var google_remarketing_only = true;
+    /* ]]> */
+    </script>
+    <script src="./The Definitive Guide to GET vs POST _ Treehouse Blog_files/f.txt" type="text/javascript" class="optanon-category-4">
+  // here ends google retargeting
+    </script>
+
+
+  <!-- Start Eloqua alena -->
+    <script type="text/javascript">
+      window._elqQ = [];
+        function _elqInitialize() {
+            if(!window._elqInitialized) {
+                window._elqInitialized = true;
+              _elqQ.push(['elqSetSiteId', '1855842777']);
+                var s = document.createElement('script'); s.type = 'text/javascript';
+                s.src = '//img04.en25.com/i/elqCfg.min.js';
+                var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+            }
+        };
+    </script>
+
+    <script type="text/javascript" class="optanon-category-2">
+        _elqInitialize();
+    </script>
+    <script type="text/javascript" class="optanon-category-4">
+        _elqInitialize();
+        _elqQ.push(['elqTrackPageView']);
+    </script>
+
+<style id="fit-vids-style">.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style><script src="./The Definitive Guide to GET vs POST _ Treehouse Blog_files/f(1).txt"></script></head>
+
+<body class="post-template-default single single-post postid-2856 single-format-standard wpb-js-composer js-comp-ver-5.5.4 vc_responsive">
+    <nav>
+  <section>
+    <a href="https://teamtreehouse.com/" class="brand">
+      <svg class="treehouse-icon" viewBox="0 0 139 32" preserveAspectRatio="xMinYMin meet">
+        <g>
+          <path class="icon-treehouse" d="M42.8,21c-0.4,0.1-0.9,0.2-1.4,0.2c-1,0-1.4-0.6-1.4-1.6v-4.5h2.8c0.7,0,1.4-0.5,1.4-1.3s-0.6-1.3-1.4-1.3
+            H40V11c0-0.9-0.7-1.5-1.5-1.5S37,10.2,37,11v8.7c0,2.5,1.2,4.3,4,4.3c0.8,0,1.9-0.1,2.7-0.5c0.7-0.3,0.9-0.8,0.9-1.3
+            C44.6,21.5,43.9,20.8,42.8,21z M52.8,12.1c-0.4-0.1-1.2-0.2-1.9-0.2c-2.5,0-3.9,1.5-3.9,3.8v6.8c0,0.8,0.7,1.5,1.5,1.5
+            s1.5-0.7,1.5-1.5v-6.2c0-1,0.4-1.4,1.1-1.4c0.7,0,1.1,0.2,1.7,0.2c0.9,0,1.4-0.8,1.4-1.4C54.1,12.9,53.7,12.4,52.8,12.1z M61.1,11.9
+            c-2.8,0-4.8,1.8-5.1,4.7c0,0.7-0.1,1.9,0,2.8c0.2,2.8,2.2,4.7,5.2,4.7c1.4,0,2.7-0.3,3.5-0.8c0.6-0.4,0.7-0.8,0.7-1.2
+            c0-0.8-0.7-1.6-1.9-1.2c-0.7,0.3-1.5,0.5-2.3,0.5c-1.4,0-2.5-0.7-2.5-2.1V19h5.7c1,0,1.5-0.6,1.5-1.5V17C66,13.9,64,11.9,61.1,11.9z
+             M63,17h-4.2c0-1.5,0.7-2.5,2.3-2.5c1.4,0,2.2,0.9,2.1,2.2C63.2,16.9,63.2,17,63,17z M73.1,11.9c-2.8,0-4.8,1.8-5.1,4.7
+            c0,0.7-0.1,1.9,0,2.8c0.2,2.8,2.2,4.7,5.2,4.7c1.4,0,2.7-0.3,3.5-0.8c0.6-0.4,0.7-0.8,0.7-1.2c0-0.8-0.7-1.6-1.9-1.2
+            c-0.7,0.3-1.5,0.5-2.3,0.5c-1.4,0-2.5-0.7-2.5-2.1V19h5.7c1,0,1.5-0.6,1.5-1.5V17C78,13.9,76,11.9,73.1,11.9z M75,17h-4.2
+            c0-1.5,0.7-2.5,2.3-2.5c1.4,0,2.2,0.9,2.1,2.2C75.2,16.9,75.2,17,75,17z M123.6,16.9l-1.6-0.4c-1-0.2-1.3-0.5-1.3-1s0.5-0.9,1.6-0.9
+            c0.6,0,1.3,0.2,1.9,0.5c0.7,0.4,1.5,0.3,1.9-0.2c0.5-0.5,0.5-1.4-0.1-2c-0.8-0.6-2.2-1-3.6-1c-2.6,0-4.5,1.3-4.5,3.7
+            c0,1.9,1.4,2.9,3.2,3.4c0.9,0.2,0.8,0.2,1.6,0.4c0.9,0.2,1.3,0.6,1.3,1c0,0.6-0.5,1-1.7,1c-1,0-1.9-0.3-2.6-0.7
+            c-0.7-0.5-1.5-0.3-1.9,0.3c-0.4,0.6-0.3,1.4,0.3,1.8c0.8,0.7,2.1,1.3,4.2,1.3c2.6,0,4.6-1.4,4.6-3.8
+            C126.9,18.5,125.8,17.4,123.6,16.9z M137.5,19c1,0,1.5-0.6,1.5-1.5l0,0V17c0-3.1-2-5.1-4.9-5.1c-2.8,0-4.8,1.8-5.1,4.7
+            c0,0.7-0.1,1.9,0,2.8c0.2,2.8,2.2,4.7,5.2,4.7c1.4,0,2.7-0.3,3.5-0.8c0.6-0.4,0.7-0.8,0.7-1.2c0-0.8-0.7-1.6-1.9-1.2
+            c-0.7,0.3-1.5,0.5-2.3,0.5c-1.4,0-2.5-0.7-2.5-2.1V19H137.5z M134.1,14.5c1.4,0,2.2,0.9,2.1,2.2c0,0.2-0.1,0.3-0.2,0.3h-4.2
+            C131.8,15.5,132.6,14.5,134.1,14.5z M97.5,11.9c-3,0-5.2,1.9-5.5,4.5c-0.1,0.9-0.1,2.3,0,3.2c0.2,2.6,2.5,4.5,5.5,4.5
+            s5.2-1.9,5.4-4.5c0.1-0.9,0.1-2.2,0-3.1C102.7,13.8,100.5,11.9,97.5,11.9z M99.9,19.1c-0.1,1.3-1,2.1-2.4,2.1s-2.3-0.9-2.4-2.1
+            c0-0.6,0-1.6,0-2.2c0.1-1.3,1-2.1,2.4-2.1s2.3,0.9,2.4,2.1C100,17.5,100,18.5,99.9,19.1z M85.6,11.9c-1.1,0-2.3,0.4-2.7,0.9l0,0V9.6
+            c0-0.9-0.6-1.5-1.4-1.5s-1.4,0.7-1.4,1.5v12.9c0,0.8,0.7,1.5,1.5,1.5s1.4-0.7,1.4-1.5v-6.7c0.5-0.5,1.3-0.9,2.3-0.9
+            c1.2,0,1.9,0.7,1.9,2.1v5.5c0,0.9,0.6,1.6,1.4,1.6c0.9,0,1.5-0.7,1.5-1.6v-5.7C90,13.6,88.4,11.9,85.6,11.9z M113.6,12
+            c-0.8,0-1.5,0.7-1.5,1.5v7.1c-0.5,0.3-1.2,0.6-2.1,0.6c-1.2,0-2.1-0.7-2.1-2.1v-5.6c0-0.9-0.7-1.6-1.5-1.6c-0.9,0-1.4,0.7-1.4,1.6
+            v5.7c0,3.1,1.8,4.8,4.9,4.8c2.3,0,3.9-0.8,4.6-1.3c0.4-0.2,0.5-0.5,0.5-1v-8.2C115,12.7,114.4,12,113.6,12z"></path>
+          <path class="icon-logo" d="M28.4,7c-0.4-0.2-1.3-0.6-2.3-1.2c-1.1-0.6-2.8,0.4-3.9,2.1l-1.9,3.2c-0.7,1.4-0.6,2.9,0.3,4.2l0.1,0.1
+            c0.9,1.3,2.1,2.4,2.4,2.8c0.2,0.2,0.4,0.6,0.5,0.9c0.3,1.2-0.3,2.3-1.5,2.6c-1.1,0.3-2.3-0.4-2.7-1.5c-0.1-0.3-0.1-0.6-0.1-0.9
+            c0.1-0.5-0.1-1.3-0.8-1.9c-0.7-0.8-2.1,0.7-2.5,2.1v0.1c-0.4,1.5-0.7,2.7-0.6,2.8c0,0.1,0.1,0.2,0.1,0.2c0.6,1.2,0.2,2.6-1,3.2
+            s-2.7,0.2-3.3-1s-0.2-2.6,1-3.2c0.1,0,0.1-0.1,0.2-0.1c0.1,0,0.3-0.7,0.6-1.4c0.2-0.7,0.4-1.3,0.4-1.3c0-0.1,0-0.2,0.1-0.2l1.2-4.2
+            l-1.2,2.5c-0.2-0.5-0.4-0.5-1-0.1c-0.3,0.2-0.9,0.7-1.1,0.9c-0.5,0.4-0.9,1.1-1.1,1.5c-0.1,0.3-0.3,0.5-0.5,0.7
+            c-0.9,0.8-2.3,0.6-3-0.3s-0.5-2.1,0.4-2.8c0.3-0.2,0.6-0.4,0.9-0.4c0.5-0.1,2.4-1.3,3.5-2c0.2-0.1,0.4-0.3,0.5-0.4l2.9-2.1l-2.6,1.4
+            c0,0-0.3,0-0.6,0c-0.8,0.1-1.8,0.2-2,0.5c-0.1,0.1-0.2,0.3-0.4,0.4c-0.8,0.4-2,0.2-2.7-0.6c-0.6-0.9-0.4-2,0.4-2.6
+            c0.5-0.3,0.9-0.4,1.3-0.4c0.7,0,2.5,0.4,4,0.1l0.4-0.1c1.5-0.3,3.3-1.5,4-2.9c0,0,0.7-1.3,1.6-2.7c0.9-1.5,0.8-3.1-0.1-3.7l-1.7-1
+            c-0.9-0.5-2.3-0.5-3.2,0L1.6,6.8C0.7,7.3,0,8.6,0,9.6v12.8c0,1,0.7,2.1,1.6,2.6l11.9,6.6c0.9,0.5,2.3,0.5,3.2,0l11.7-6.7
+            c0.9-0.5,1.6-1.6,1.6-2.6V9.6C30,8.6,29.3,7.5,28.4,7z"></path>
+        </g>
+      </svg>
+    </a>
+    <div id="mobile-nav-toggle">
+      <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#" id="nav-toggle" data-nav-toggle="">
+        <span class="hamburger"></span>
+      </a>
+    </div>
+    <a class="fixed-cta" href="https://teamtreehouse.com/subscribe/plans?trial=yes&amp;cid=3842">Learn to code.<span> Start your free trial with Treehouse.</span></a>
+    <ul class="nav-list">
+      <li class="nav-item ">
+        <a href="https://blog.teamtreehouse.com/search" class="nav-anchor search">
+          <svg viewBox="0 0 24 24" preserveAspectRatio="xMinYMin meet">
+            <path id="XMLID_3_" fill="none" d="M15.8,9.2C15.8,5.8,13,3,9.6,3C6.1,3,3.4,5.8,3.4,9.2c0,3.4,2.8,6.2,6.2,6.2
+              C13,15.4,15.8,12.6,15.8,9.2z"></path>
+            <path id="XMLID_10_" d="M23.2,21.4L16.7,15c1.3-1.6,2-3.6,2-5.8c0-5.1-4.1-9.2-9.2-9.2C4.5,0,0.4,4.1,0.4,9.2
+              c0,5.1,4.1,9.2,9.2,9.2c1.8,0,3.5-0.5,4.9-1.4l6.6,6.6c0.3,0.3,0.7,0.4,1.1,0.4s0.8-0.1,1.1-0.4C23.8,23,23.8,22,23.2,21.4z
+               M3.4,9.2C3.4,5.8,6.1,3,9.6,3c3.4,0,6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2C6.1,15.4,3.4,12.6,3.4,9.2z"></path>
+          </svg>
+        </a>
+      </li>
+      <li class="nav-item ">
+        <a href="https://blog.teamtreehouse.com/" class="nav-anchor">Home</a>
+      </li>
+      <li class="nav-item nav-item-free-trial">
+        <a href="https://join.teamtreehouse.com/techdegree/?id=5750&amp;utm_source=blog&amp;utm_medium=blog&amp;cid=10755" class="nav-anchor">Free trial</a>
+      </li>
+    </ul>
+  </section>
+</nav>
+<!-- Admin Nav
+  -->
+  <div class="page-container">
+
+<section style="background-image: url(https://3wga6448744j404mpt11pbx4-wpengine.netdna-ssl.com/wp-content/uploads/2018/08/treehouse-blog_placeholder.jpg);" class="hero has-image-bg post-2856 post type-post status-publish format-standard has-post-thumbnail hentry category-learn tag-code"><h1 class="post-title"><small class="category"><a href="https://blog.teamtreehouse.com/category/learn">Learn</a></small>The Definitive Guide to GET vs POST</h1></section>
+
+  <section class="page-content">
+
+    <div class="row">
+
+      <div class="skinny-read">
+
+        <div class="meta">
+  <a href="https://blog.teamtreehouse.com/author/teamtreehouse"><img src="./The Definitive Guide to GET vs POST _ Treehouse Blog_files/Treehouse-logo_Social-150x150.png" alt="Treehouse" class="avatar avatar-80 wp-user-avatar wp-user-avatar-80 alignnone photo"></a>
+  <p><strong><a href="https://blog.teamtreehouse.com/author/teamtreehouse">Treehouse</a></strong><br><em>writes on August 14, 2009</em></p>
+</div>
+        <p><!-- .article.hentry .hentry-body .getorpost_reminder p { 	margin: 0; } -->Unfortunately there is a lot misuse of GET over POST and vice versa. Both HTTP methods can achieve the same goals, but an incorrect choice between them can lead to unexpected and potentially harmful outcomes.</p>
+<p>So, to make sure we get things right, I present to you the definitive guide of choosing between GET and POST.</p>
+<p><em>Editor’s Note: Mike McDerment of FreshBooks.com will be teaching a 1/2 day workshop on ‘How to Build a Web App from A-Z’ at <a href="http://events.carsonified.com/fowa/2009/london/workshops#workshop_53?utm_source=TV&amp;utm_medium=Text%2Blink&amp;utm_campaign=The%2BDefinitive%20Guide%20to%20GET%20vs%20POST">The Future of Web Apps</a>.</em></p>
+<p><span id="more-2856"></span></p>
+<div style="border: 1px solid #ddd; background: #f7f7f7; padding: 1em; font-size: 0.85em;">
+<p><strong>Note:</strong> Remember that query strings (i.e. name/value pairs) get transferred in the URL of GET requests:</p>
+<div style="background: black; color: white; padding: 0.5em 1em; font-family: verdana; font-size: 0.95em; margin: 20px 0;">GET /blog/?<strong>name1=value1&amp;name2=value2</strong> HTTP/1.1<br>
+Host: carsonified.com</div>
+<p>and in the body of POST requests:</p>
+<div style="background: black; color: white; padding: 0.5em 1em; font-family: verdana; font-size: 0.95em; margin: 20px 0;">POST /blog/ HTTP/1.1<br>
+Host: carsonified.com<br>
+<strong>name1=value1&amp;name2=value2</strong></div>
+</div>
+<h3>GET vs POST Basics</h3>
+<p>In between new additions to our vocabularies (think “<a href="http://en.wikipedia.org/wiki/Idempotence">idempotent</a>“), sections <a href="http://www.rfc2616.com/#9.1">9.1</a>, <a href="http://www.rfc2616.com/#9.3">9.3</a> &amp; <a href="http://www.rfc2616.com/#9.5">9.5</a> of <a href="http://www.rfc2616.com/">RFC 2616</a> help us to conclude the first rule of GET vs POST…</p>
+<p class="getorpost_rule"><strong>Rule #1: Use GET for safe actions and POST for unsafe actions.</strong></p>
+<p>The RFC instructs internet browsers to make users aware that, when reissuing a previously made POST request, that the action (e.g. placing an order) is potentially unsafe. Hence the existence of dialogue boxes like this:</p>
+<p>However, whilst browser compliance with this RFC instruction might explain why POST should be used for unsafe actions, why shouldn’t we use POST for safe ones?</p>
+<p>Simply put, because GET requests are more useable:</p>
+<ol>
+<li><strong>GET requests can be cached</strong></li>
+<li><strong>GET requests can remain in the browser history</strong></li>
+<li><strong>GET requests can be bookmarked</strong></li>
+<li><strong>GET requests can be distributed &amp; shared</strong></li>
+<li><strong>GET requests can be hacked</strong> (<a href="http://www.useit.com/alertbox/990321.html">ask Jakob</a>!)</li>
+</ol>
+<p><strong>Note:</strong> If you need the best of both worlds, an unsafe action can be made safe by making it idempotent, so that it makes no difference how many times it’s requested. You do this by giving the request a unique ID and using server-side validation to ensure that a request with that ID hasn’t already been processed. In fact, if you’re in search of excellence, all unsafe actions should be made idempotent as nothing can stop users from ignoring warnings.</p>
+<h3>GET vs POST Extended</h3>
+<p><strong>Rule #2: Use POST when dealing with sensitive data.</strong></p>
+<p>Because query strings are transferred openly in GET requests, we have to consider our security and that of our users when dealing with sensitive data like passwords or credit card numbers:</p>
+<ol>
+<li>Our users… because they may not realise that they are sharing sensitive data when they share a URL or that it can be viewed in the browser history by other people using the same computer.*</li>
+<li>Ourselves… because we may be breaking laws by unexpectedly storing data that we’re not allowed to (like credit card CV2s) in log files.</li>
+</ol>
+<p>* This doesn’t apply when working within an AJAX environment.</p>
+<p><strong>Rule #3: Use POST when dealing with long requests.</strong></p>
+<p>Although the RFC doesn’t lay down any length-related guidelines, Internet Explorer – with its insistence on finding ways to make things difficult for us – enforces a maximum URL length of 2,048 characters.</p>
+<p><strong>Rule #4: Use GET in AJAX environments.</strong></p>
+<p>When using XMLHttpRequest, browsers implement POST as a two-step process (sending the headers first and then the data). This means that GET requests are more responsive – something you need in AJAX environments.</p>
+<h3>Summary</h3>
+<p>Although rules <em>usually</em> exist for good reasons, it’s good to know the logic behind them so they can be embraced fully. I, myself, hate rules that don’t have explanations and I hope that the above helps to justify the rules of GET vs POST.</p>
+<p>Choosing between methods is a systematic process which should be part of second nature.</p>
+
+        <ul class="tag-bar"><li><a href="https://blog.teamtreehouse.com/tag/code" rel="tag">code</a></li></ul>
+      </div>
+
+    </div>
+
+  </section>
+
+
+<section class="page-content th-comments">
+  <div class="row">
+    <div class="skinny-read">
+      
+<!-- You can start editing here. -->
+
+  <h3 id="comments">
+    91 Responses to “The Definitive Guide to GET vs POST”  </h3>
+
+  <div class="navigation">
+    <div class="alignleft"></div>
+    <div class="alignright"></div>
+  </div>
+
+  <ol class="commentlist">
+    <li class="comment even thread-even depth-1" id="comment-482262">
+    <div id="div-comment-482262" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://pvccurtainschennai.com/" rel="external nofollow ugc" class="url">pvc strip curtains</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-482262">
+    January 7, 2018 at 10:50 pm</a> said:  </div>
+  
+  <p>I’m not positive the place you’re getting your<br>
+information, however good topic. I needs to spend some time studying more or<br>
+understanding more. Thanks for wonderful information I was looking for this information for my mission.</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+  <li class="comment odd alt thread-odd thread-alt depth-1" id="comment-453942">
+    <div id="div-comment-453942" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn">Parth Pandit</cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-453942">
+    November 7, 2017 at 12:18 pm</a> said:  </div>
+  
+  <p>Hi There,</p>
+<p>Do you have any suggestion on what should be done to perform a GET operation to just retrieve data in an idempotent way, but the request has to have a request body with JSON content in order to answer the request? </p>
+<p>I cannot use GET for this purpose as GET does not support request body. And, as per most of the suggestions, I should not use PUT or POST as my request is just to retrieve the information and not to update or create it. In that case, what are my options?</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+  <li class="comment even thread-even depth-1" id="comment-445478">
+    <div id="div-comment-445478" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://chennaipvcstripcurtain.in/" rel="external nofollow ugc" class="url">pvc strip curtains chennai</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-445478">
+    October 15, 2017 at 1:54 am</a> said:  </div>
+  
+  <p>I think this is among the most significant information for<br>
+me. And i am glad reading your article. But wanna remark on some general things,<br>
+The web site style is wonderful, the articles is really excellent :<br>
+D. Good job, cheers</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+  <li class="comment odd alt thread-odd thread-alt depth-1" id="comment-427041">
+    <div id="div-comment-427041" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="https://sohoriverview.org/" rel="external nofollow ugc" class="url">https://sohoriverview.org</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-427041">
+    September 1, 2017 at 6:50 pm</a> said:  </div>
+  
+  <p>Do you mind if I quote a couple of your articles as long as I<br>
+provide credit and sources back to your webpage?<br>
+My blog site is in the exact same area of interest as yours and my visitors would certainly benefit<br>
+from some of the information you present here. Please let me know if this okay with<br>
+you. Thanks!</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+  <li class="comment even thread-even depth-1" id="comment-261046">
+    <div id="div-comment-261046" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn">Binh Thanh Nguyen</cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-261046">
+    July 11, 2016 at 12:57 am</a> said:  </div>
+  
+  <p>Thanks, nice explanation</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+  <li class="comment odd alt thread-odd thread-alt depth-1" id="comment-132831">
+    <div id="div-comment-132831" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://www.msnbrand.com/brand-copy-IP-4.html" rel="external nofollow ugc" class="url">業界最高峰のブランドコピー 激安、コピーブランド、スーパーコピーブランド(N級品)通販専門店!ブランドコピー,コピーブランド,スーパーコピーブランド,ブランドコピー 激安,偽物ブラン</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-132831">
+    November 14, 2015 at 6:30 am</a> said:  </div>
+  
+  <p>日本スーパーコピーブランド時計販売店日本時計スーパーコピーを買うなら質屋がお得。ロレックススーパーコピー、ガガ?ミラノコピー、ブルガリ偽物、フランクミュラーレプリカ、<br>
+業界最高峰のブランドコピー 激安、コピーブランド、スーパーコピーブランド(N級品)通販専門店!ブランドコピー,コピーブランド,スーパーコピーブランド,ブランドコピー 激安,偽物ブランド、偽物のバッグ、腕時計、財布など激安で買える！全部のスーパーコピー販売品物のなかで私達のブランド激安が一番有名です <a href="http://www.msnbrand.com/brand-copy-IP-4.html" rel="nofollow ugc">http://www.msnbrand.com/brand-copy-IP-4.html</a></p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+  <li class="comment even thread-even depth-1" id="comment-132829">
+    <div id="div-comment-132829" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://www.bagkakaku.com/chanel_bag.html" rel="external nofollow ugc" class="url">スーパーコピー腕時計,ロレックスコピー,ブライトリングコピー,ボーム&amp;メルシエコピー時計コピー業界最高峰スーパーコピー時計通販専門！7年以上の販売実績を 持つ時計コピー老舗！</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-132829">
+    November 14, 2015 at 6:29 am</a> said:  </div>
+  
+  <p>スーパーコピー商品、ブランドコピ ー財布、偽物バッグコピー財布コピーN 級品、ブ ランドスーパーコピー商 品、グッチ財布コピー,ミュウミュウ 財布激安。ブランドスーパーコ ピー銀座、ランドスーパーコピー財布。ブラ ンドスーパーコピー代引き、ブランドスーパーコピー専門店、ご購入する度、ご安心とご満足の届けることを旨にしておりますよろしくお願いします ありがとうございます<br>
+スーパーコピー腕時計,ロレックスコピー,ブライトリングコピー,ボーム&amp;メルシエコピー時計コピー業界最高峰スーパーコピー時計通販専門！7年以上の販売実績を 持つ時計コピー老舗！時計コピーであれば何でも揃えられます コピー時計 時計スーパーコピー通販専門店！時計コピー時計販売通販！ コピー時計スーパー コピー等の 最高級のレプリカコピー時計を販売ロレックスコピー，ガガミラノコピー ，IWCコピー ，オメガコピー ，フェラーリコピー ，フランクミュラーコピー ，ベル&amp;ロスコピー ，各種のブランドはコピーを表しますコピーを表して、時計をコピーして、スーパーコピーは代 金引換払いにして、スーパーはブランドをコピーして、スー パーは時計をコピーして代金引換払いにして、スーパーは時 計をコピーして、スーパーは腕時計をコピーして、ブランド はスーパーマーケットを表してコピーして、ブランドのスー パーマーケットはコピーして、ブランドはコピーを表して、 腕時計はコピーします ,ボーム&amp;メルシエコピー時計コピー業界最高峰スーパーコピー時計通販専門！7年以上の販売実績を 持つ時計コピー老舗！時計コピーであれば何でも揃えられます コピー時計 時計スーパーコピー通販専門店！時計コピー時計販売通販！ コピー時計スーパー コピー等の 最高級のレプリカコピー時計を販売ロレックスコピー，ガガミラノコピー ，IWCコピー ，オメガコピー ，フェラーリコピー ，フランクミュラーコピー ，ベル&amp;ロスコピー ，各種のブランドはコピーを表しますコピーを表して、時計をコピーして、スーパーコピーは代 金引換払いにして、スーパーはブランドをコピーして、スー パーは時計をコピーして代金引換払いにして、スーパーは時 計をコピーして、スーパーは腕時計をコピーして、ブランド はスーパーマーケットを表してコピーして、ブランドのスー パーマーケットはコピーして、ブランドはコピーを表して、 腕時計はコピーします <a href="http://www.bagkakaku.com/chanel_bag.html" rel="nofollow ugc">http://www.bagkakaku.com/chanel_bag.html</a></p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+  <li class="comment odd alt thread-odd thread-alt depth-1" id="comment-132826">
+    <div id="div-comment-132826" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://www.bagkakaku.com/celine_bag.html" rel="external nofollow ugc" class="url">スーパーコピー腕時計,ロレックスコピー,ブライトリングコピー,ボーム&amp;メルシエコピー時計コピー業界最高峰スーパーコピー時計通販専門！7年以上の販売実績を 持つ時計コピー老舗！</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-132826">
+    November 14, 2015 at 6:28 am</a> said:  </div>
+  
+  <p>ブランドスーパーコピーバッグ、財布、靴、時計各種のブランドは表して、かばん複製品をコピーしますルイヴィトバッグ コピールイヴィトン財布 コピールイヴィトン長財布 コピーブランド偽物、偽物ブランド、ルイヴィトンコピー、 ロレックスコピー、シャネルコピー、グッチコピー、エルメスコピー、 ボッテガ?ヴェネタコピー、 バーバリーコピー、ミュウミュウコピー、トリーバーチコピー、バレンシアガコピー、ディオールコピー、ブルガリコピー、ブラダコピー、 ドルチェ＆ガッバーナコピー、オメガコピー、フランク ミュラーコピー、gagaコピー。ルイヴィトン 時計 コピールイヴィトン 靴 コピールイヴィトン アクセサリー コピールイヴィトン 小物入れ コピールイヴィトン コインケース当店の全ての商品は、全部一番安い値段で販売いたします！ご来店を期待しております!<br>
+スーパーコピー腕時計,ロレックスコピー,ブライトリングコピー,ボーム&amp;メルシエコピー時計コピー業界最高峰スーパーコピー時計通販専門！7年以上の販売実績を 持つ時計コピー老舗！時計コピーであれば何でも揃えられます コピー時計 時計スーパーコピー通販専門店！時計コピー時計販売通販！ コピー時計スーパー コピー等の 最高級のレプリカコピー時計を販売ロレックスコピー，ガガミラノコピー ，IWCコピー ，オメガコピー ，フェラーリコピー ，フランクミュラーコピー ，ベル&amp;ロスコピー ，各種のブランドはコピーを表しますコピーを表して、時計をコピーして、スーパーコピーは代 金引換払いにして、スーパーはブランドをコピーして、スー パーは時計をコピーして代金引換払いにして、スーパーは時 計をコピーして、スーパーは腕時計をコピーして、ブランド はスーパーマーケットを表してコピーして、ブランドのスー パーマーケットはコピーして、ブランドはコピーを表して、 腕時計はコピーします ,ボーム&amp;メルシエコピー時計コピー業界最高峰スーパーコピー時計通販専門！7年以上の販売実績を 持つ時計コピー老舗！時計コピーであれば何でも揃えられます コピー時計 時計スーパーコピー通販専門店！時計コピー時計販売通販！ コピー時計スーパー コピー等の 最高級のレプリカコピー時計を販売ロレックスコピー，ガガミラノコピー ，IWCコピー ，オメガコピー ，フェラーリコピー ，フランクミュラーコピー ，ベル&amp;ロスコピー ，各種のブランドはコピーを表しますコピーを表して、時計をコピーして、スーパーコピーは代 金引換払いにして、スーパーはブランドをコピーして、スー パーは時計をコピーして代金引換払いにして、スーパーは時 計をコピーして、スーパーは腕時計をコピーして、ブランド はスーパーマーケットを表してコピーして、ブランドのスー パーマーケットはコピーして、ブランドはコピーを表して、 腕時計はコピーします <a href="http://www.bagkakaku.com/celine_bag.html" rel="nofollow ugc">http://www.bagkakaku.com/celine_bag.html</a></p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+  <li class="comment even thread-even depth-1" id="comment-99452">
+    <div id="div-comment-99452" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://www.tiempodenoticias.com.ar//www.blogger.com/rearrange?blogID=8843983401585658549&amp;widgetType=HTML&amp;widgetId=HTML18&amp;action=editWidget&amp;sectionId=header1" rel="external nofollow ugc" class="url">Directorio de Medios de Comunicación de la República ArgentinaITelevisiónIRevistasIPeriódicosIPortalesIDiarios OnlineIRadiosIInstitucionesIWebs OficialesIAgencias de NoticiasITodos los Medios de Comunicación de la República Argentina en un solo luga</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-99452">
+    October 2, 2015 at 11:14 am</a> said:  </div>
+  
+  <p>Hey there,  You’ve performed an incredible job. I’ll certainly digg it and for my part suggest to my friends. I’m confident they’ll be benefited from this site.</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+  <li class="comment odd alt thread-odd thread-alt depth-1" id="comment-89445">
+    <div id="div-comment-89445" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://kalyanamandapam.directory/cat/beauty-parlours-salons/famous" rel="external nofollow ugc" class="url">beauty parlours in chennai|good beauty parlours in chennai|list of beauty parlours in chennai|good beauty parlours in chennai|famous beauty parlours in chennai|beauty parlours in chennai|top beauty parlours in chennai|beauty parlours at chennai|beauty par</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-89445">
+    September 16, 2015 at 3:00 am</a> said:  </div>
+  
+  <p>At this time I am going away to do my breakfast, when having my breakfast coming yet again to read other news.|</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+  <li class="comment even thread-even depth-1" id="comment-81057">
+    <div id="div-comment-81057" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://url2s.nl/mira_mas_informacion_para_barras_de_sonido_832439" rel="external nofollow ugc" class="url">ningun sitio mas barato en barras de sonido que aqui</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-81057">
+    September 3, 2015 at 5:55 am</a> said:  </div>
+  
+  <p>pasaros por aqui que merece la pena por<br>
+la variedad de modelos</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+  <li class="comment odd alt thread-odd thread-alt depth-1" id="comment-74294">
+    <div id="div-comment-74294" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://eloboostking.com/" rel="external nofollow ugc" class="url">Eloboost</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-74294">
+    August 21, 2015 at 3:34 am</a> said:  </div>
+  
+  <p>Superb blog! Do you have any suggestions for<br>
+aspiring writers? I’m hoping to start my own blog soon but I’m<br>
+a little lost on everything. Would you recommend starting with a free platform<br>
+like WordPress or go for a paid option? There are so many options out<br>
+there that I’m totally confused .. Any ideas? Bless<br>
+you!</p>
+<p>My web page <a href="http://eloboostking.com/" rel="nofollow">Eloboost</a></p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+  <li class="comment even thread-even depth-1" id="comment-24951">
+    <div id="div-comment-24951" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn">umairaslambhatti</cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-24951">
+    June 19, 2013 at 3:07 am</a> said:  </div>
+  
+  <p>Nicely writtern , I found a bit different in MCTS asp.net book as </p>
+<p><a href="http://umairaslam.com/index.php/post-vs-get/" rel="nofollow ugc">http://umairaslam.com/index.php/post-vs-get/</a></p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+  <li class="comment odd alt thread-odd thread-alt depth-1 parent" id="comment-24769">
+    <div id="div-comment-24769" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn">Greg Brown</cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-24769">
+    June 5, 2013 at 9:29 am</a> said:  </div>
+  
+  <p>“query strings are transferred openly in GET requests” – Unless you are using HTTPS, POST is no more secure than GET. An observer can still see the unencrypted data stream of the POST request.<br>
+If you are using HTTPS, both the query string and the message body are sent securely, so both methods are essentially equivalent.</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  <ul class="children">
+  <li class="comment even depth-2" id="comment-25156">
+    <div id="div-comment-25156" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn">Raine</cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-25156">
+    July 7, 2013 at 12:23 pm</a> said:  </div>
+  
+  <p>Even with HTTPS, URL’s may be still be stored in logs on servers, which may store things like credit card information in violation of security laws.</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+  <li class="comment odd alt thread-even depth-1" id="comment-11146">
+    <div id="div-comment-11146" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://twitter.com/gidea" rel="external nofollow ugc" class="url">Vlad Gidea</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-11146">
+    March 30, 2011 at 9:26 am</a> said:  </div>
+  
+  <p>Thanks for the info.</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+  <li class="comment even thread-odd thread-alt depth-1" id="comment-11145">
+    <div id="div-comment-11145" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://twitter.com/geekroom_de" rel="external nofollow ugc" class="url">Geekroom.de</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-11145">
+    February 26, 2011 at 9:34 am</a> said:  </div>
+  
+  <p>The difference is that GET sends data open and POST hidden (in the http-header).</p>
+<p>So get is better for non-secure data, like query strings in Google. Auth-data shall never be send via GET – so use POST here. Of course the whole theme is a little more complicated… who wants to read more, try this: <a href="http://bit.ly/gXpgzY" rel="nofollow ugc">http://bit.ly/gXpgzY</a></p>
+<p>I hope that helped a little.</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+  <li class="comment odd alt thread-even depth-1" id="comment-11141">
+    <div id="div-comment-11141" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn">Bile</cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-11141">
+    November 16, 2010 at 8:50 pm</a> said:  </div>
+  
+  <p>POST /Microsoft-Server-ActiveSync?Cmd=Sync&amp;User=user%40domain.domDeviceId=androidc259148960&amp;DeviceType=Android HTTP/1.1</p>
+<p>This little line was taken from my active sync device as it was talking to the server. The rest of the HTTP header followed with the body having some active sync traffic. What do?!</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+  <li class="comment even thread-odd thread-alt depth-1" id="comment-10974">
+    <div id="div-comment-10974" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://upeke.net/blog" rel="external nofollow ugc" class="url">adenner</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10974">
+    March 10, 2010 at 8:10 pm</a> said:  </div>
+  
+  <p>You appear to have a dead link to the image that is in your summary. <a href="http://www.onlineassociates.ae/wp-content/images/external/carsonified-get-post.gif" rel="nofollow ugc">http://www.onlineassociates.ae/wp-content/images/external/carsonified-get-post.gif</a> returns a 404 not found error.</p>
+<p>Otherwise a good article, I confess that I have used gets where posts should have been used before…</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+  <li class="comment odd alt thread-even depth-1" id="comment-10973">
+    <div id="div-comment-10973" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn">gagnelteboalp</cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10973">
+    December 10, 2009 at 2:08 pm</a> said:  </div>
+  
+  <p>Uncoriegrouro<br>
+<a href="http://avsfedmzhssk.com/" rel="nofollow">rwof</a></p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+  <li class="comment even thread-odd thread-alt depth-1" id="comment-10969">
+    <div id="div-comment-10969" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://bteva.co.il/Shop.asp?CatID=131&amp;CatIDLevel1=131" rel="external nofollow ugc" class="url">ויטמין</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10969">
+    October 29, 2009 at 9:04 am</a> said:  </div>
+  
+  <p>There is no difference in security between POST and GET. The major difference in “security” is that POSTed data is not visible in a URL. Both are open to packet sniffing</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+  <li class="comment odd alt thread-even depth-1" id="comment-10966">
+    <div id="div-comment-10966" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://www.onlineassociates.ae/" rel="external nofollow ugc" class="url">Fahed</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10966">
+    August 31, 2009 at 3:03 pm</a> said:  </div>
+  
+  <p>For anyone still wondering about AJAX POST using 2 TCP packets and AJAX GET only using 1, Joseph Scott has checked it and detailed his findings:</p>
+<p><a href="http://josephscott.org/archives/2009/08/xmlhttprequest-xhr-uses-multiple-packets-for-http-post/" rel="nofollow ugc">http://josephscott.org/archives/2009/08/xmlhttprequest-xhr-uses-multiple-packets-for-http-post/</a></p>
+<p>Except for FF, all browsers implement AJAX POST using 2 packets.</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+  <li class="comment even thread-odd thread-alt depth-1" id="comment-10953">
+    <div id="div-comment-10953" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://simonwillison.net/" rel="external nofollow ugc" class="url">Simon Willison</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10953">
+    August 18, 2009 at 11:39 am</a> said:  </div>
+  
+  <p>That Iain Lamb quote is the first I’ve heard of that performance issue – very interesting. I’d like to know which browsers it affects.</p>
+<p>I don’t think it should affect the decision of whether to use GET or POST for the vast majority of cases. Ajax autocomplete is the most performance critical Ajax interaction, and that uses GET already. This might be a consideration for real-time collaboration applications (MobWrite / EtherPad etc) but for everything else I’d stick to the HTTP standard defined rules of which verb to use.</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+  <li class="comment odd alt thread-even depth-1" id="comment-10947">
+    <div id="div-comment-10947" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://tutorijali.hdonweb.com/" rel="external nofollow ugc" class="url">Ivan Mišić</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10947">
+    August 17, 2009 at 8:11 pm</a> said:  </div>
+  
+  <p>Verry nice explained</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+  <li class="comment even thread-odd thread-alt depth-1 parent" id="comment-10941">
+    <div id="div-comment-10941" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://smartic.us/" rel="external nofollow ugc" class="url">bryanl</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10941">
+    August 16, 2009 at 4:04 pm</a> said:  </div>
+  
+  <p>I believe this article my have caused more problems than it attempted to solved.  Interesting attempt, though.</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  <ul class="children">
+  <li class="comment odd alt depth-2" id="comment-10942">
+    <div id="div-comment-10942" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://www.onlineassociates.ae/" rel="external nofollow ugc" class="url">Fahed</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10942">
+    August 16, 2009 at 4:07 pm</a> said:  </div>
+  
+  <p>Lol! You can say that again!</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+  <li class="comment even thread-even depth-1 parent" id="comment-10939">
+    <div id="div-comment-10939" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://www.subbu.org/" rel="external nofollow ugc" class="url">Subbu Allamaraju</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10939">
+    August 15, 2009 at 7:26 pm</a> said:  </div>
+  
+  <p>1. Your Rule #2 is misguided. Please don’t circulate such myths about security. If you want security, either use encrypted URIs or switch to SSL.</p>
+<p>2. Your Rule #4 is incorrect. All HTTP requests have the same format – a request line, headers, and optionally body. GET requests do have headers.</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  <ul class="children">
+  <li class="comment odd alt depth-2" id="comment-10940">
+    <div id="div-comment-10940" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://www.onlineassociates.ae/" rel="external nofollow ugc" class="url">Fahed</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10940">
+    August 16, 2009 at 6:17 am</a> said:  </div>
+  
+  <p>Take it easy!</p>
+<p>1. My point assumes that SSL is already in use (i.e. a given) – check my comments above.</p>
+<p>Also, what exactly are “encrypted URIs” and how would you go about using them?</p>
+<p>2. My claim is based on research done by Iain Lamb, cofounder of the Oddpost webmail startup that was acquired by Yahoo! and eventually became the basis for the all-new Yahoo! Mail.</p>
+<p>His research showed “rather baffling finding: POST requests, made via the XMLHTTP object, send header and body data in separate tcp/ip packets [and therefore,] xmlhttp GET performs better when sending small amounts of data than an xmlhttp POST.”</p>
+<p>That is why Yahoo includes the use of GET instead of POST as one of their high performance speed optimisation rules.</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+  <li class="comment even depth-2" id="comment-10948">
+    <div id="div-comment-10948" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://andrewingram.net/" rel="external nofollow ugc" class="url">Andrew Ingram</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10948">
+    August 18, 2009 at 12:30 am</a> said:  </div>
+  
+  <p>Just a quick point that encrypting the URLs by itself isn’t necessarily secure, because a potential hacker has access to the same black box (the site) for encrypting the URLs as the victim. If you have the ability to create your own encypted string it becomes much easier to exploit any weaknesses in the algorithms.</p>
+<p>In reality, it’s always safter to stick with established methods of securing traffic such as SSL (or its successors) rather than trying to implement your own security layer. Unless you’re a real security genius you’re likely to end up making things less secure.</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+  <li class="comment odd alt depth-2" id="comment-10964">
+    <div id="div-comment-10964" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://josephscott.org/" rel="external nofollow ugc" class="url">Joseph Scott</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10964">
+    August 27, 2009 at 3:58 pm</a> said:  </div>
+  
+  <p>I was curious about this 2 packet claim with XHR over HTTP POST as well.  I ran tests on several browsers to see if this was the case – <a href="http://josephscott.org/archives/2009/08/xmlhttprequest-xhr-uses-multiple-packets-for-http-post/" rel="nofollow ugc">http://josephscott.org/archives/2009/08/xmlhttprequest-xhr-uses-multiple-packets-for-http-post/</a></p>
+<p>Bottom line: all of the browsers I tested except for Firefox will use 2 packets to send this data instead of just 1.</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+  <li class="comment even thread-odd thread-alt depth-1 parent" id="comment-10937">
+    <div id="div-comment-10937" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://robotterror.com/" rel="external nofollow ugc" class="url">Robert Taylor</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10937">
+    August 15, 2009 at 4:16 pm</a> said:  </div>
+  
+  <p>Just a quick comment on the bullet point “GET requests can be hacked” — so may POST requests. In fact, there are extensions for Firefox that make doing so trivial and make converting from GET to POST and back automatic. Better yet, nothing about GET or POST itself protects any data transmission (both are clear text — encryption is another matter altogether), source verification (referring page, source IP, etc., are not factored by GET or POST). Bottom line, security will not be hurt or enhanced by use of GET or POST.</p>
+<p>Another point, using POST doesn’t mean you’re not storing sensitive information. You can enable POST logging in Apache and other web servers. Besides, once the data is transmitted via GET or POST it’s probably used by some program and that is another point at which the data could be stored. Securing data is a multi-faceted vigil than depends little on which HTTP protocol one uses.</p>
+<p>Want to discuss more? Email me: rjamestaylor @ gmail</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  <ul class="children">
+  <li class="comment odd alt depth-2" id="comment-10938">
+    <div id="div-comment-10938" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://www.onlineassociates.ae/" rel="external nofollow ugc" class="url">Fahed</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10938">
+    August 15, 2009 at 4:23 pm</a> said:  </div>
+  
+  <p>Agreed on both points.</p>
+<p>With regards to the first, though, I was referring to a different definition of “hacked”… see <a href="http://www.useit.com/alertbox/990321.html" rel="nofollow ugc">http://www.useit.com/alertbox/990321.html</a></p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+  <li class="comment even thread-even depth-1" id="comment-10934">
+    <div id="div-comment-10934" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://www.thedjbook.com/" rel="external nofollow ugc" class="url">Matt Auckland</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10934">
+    August 15, 2009 at 12:04 am</a> said:  </div>
+  
+  <p>It is always important to remember that you cannot trust a user, meaning validate everything. No matter if that’s in a contact form or a CMS.</p>
+<p>Further more, if you’re building a clean url function for say a blog, then add an extra level of validation/security to your htaccess file. Such as a rule to only accept letters and numbers and dashes. Rules such as that will add additional protection before the incoming request reaches your script.</p>
+<p>Of course no amount of input sanitization can help you if your server is insecure, so why not invest in a good security package, and turn off all unused services and firewall ports.</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+  <li class="comment odd alt thread-odd thread-alt depth-1" id="comment-10930">
+    <div id="div-comment-10930" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://www.johntopley.com/" rel="external nofollow ugc" class="url">John Topley</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10930">
+    August 14, 2009 at 4:22 pm</a> said:  </div>
+  
+  <p>Simon Willison is totally right. If you’re modifying server-side state then use a POST.</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+  <li class="comment even thread-even depth-1 parent" id="comment-10929">
+    <div id="div-comment-10929" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://www.onlineassociates.ae/" rel="external nofollow ugc" class="url">Fahed</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10929">
+    August 14, 2009 at 3:13 pm</a> said:  </div>
+  
+  <p>@Simon  #comment-13475</p>
+<p>(Unfortunately, nesting only goes 2 or 3 levels deep.)</p>
+<p>“How can you have an action that is idempotent but doesn’t modify state on the server?”</p>
+<p>Apologies, what i meant to say was, “if you could make the action safe”; something which you can do through validation.</p>
+<p>“Do you have any further information to back up your claim that GET is more responsive than POST?”</p>
+<p>Yes. When using XMLHttpRequest, browsers implement POST as a two-step process, sending the headers first and then the data, whilst GET is just one.</p>
+<p>“The HTTP 1.1 RFC says “In particular, the convention has been established…”</p>
+<p>These specifications must be implemented by browsers, servers etc. We, as developers, are simply using it for guidance on how things work, rather than pure instruction. We’re free to break such conventions if we see fit, and that does occasionally occur.  RFC, for example, doesn’t take into consideration query lengths, usability or security. Sticking to it like glue, therefore, (IMHO) is not required as long as we understand it and its implications.</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  <ul class="children">
+  <li class="comment odd alt depth-2 parent" id="comment-10931">
+    <div id="div-comment-10931" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn">David</cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10931">
+    August 14, 2009 at 4:46 pm</a> said:  </div>
+  
+  <p>Can you define “two-step process”?  Two TCP connections?  Because the difference between headers and data in HTTP is just an extra carriage-return.  The overhead of that carriage-return is minimal, to say the least.</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  <ul class="children">
+  <li class="comment even depth-3" id="comment-10932">
+    <div id="div-comment-10932" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://www.onlineassociates.ae/" rel="external nofollow ugc" class="url">Fahed</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10932">
+    August 14, 2009 at 5:44 pm</a> said:  </div>
+  
+  <p>Yes. XMLHTTP POST sends header/body in 2 separate tcp/ip packets, making GET more responsive.</p>
+<p>I thought this was old news <img draggable="false" role="img" class="emoji" alt="🙁" src="./The Definitive Guide to GET vs POST _ Treehouse Blog_files/1f641.svg"></p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+  <li class="comment odd alt depth-2" id="comment-10943">
+    <div id="div-comment-10943" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn">Yaron</cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10943">
+    August 16, 2009 at 4:46 pm</a> said:  </div>
+  
+  <p>The discussion of idempotent/safe/validated misses a point (in favour of POST for all cases where you change something). POST already provides an important service in making sure that you can send it accidentally by following a link or typing the URL. Remember the problems when some Google extension started to do extensive pre-fetching.</p>
+<p>All you need is to have a link pointing to your “delete whatever” action, and you’re losing control.<br>
+You can, of course, send back a verify screen. But if the verify screen also uses GET, then any sort of bot/browser/extension/other-program can follow that one as well. So you have to use POST in the verification screen. And if you’re using POST anyway, why not use POST to begin with and spare everyone a verification screen that may not be needed?</p>
+<p>Again, GETs can happen in unplanned situations. POSTs don’t happen by mistake, and don’t happen accidentally by otherwise well behaving software. It’s a mistake to allow your server to change state after a GET request, since you can never know that the GET request was genuine/intentional.</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+  <li class="comment even thread-odd thread-alt depth-1" id="comment-10928">
+    <div id="div-comment-10928" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://www.mrdin.com/" rel="external nofollow ugc" class="url">MRDIN.COM</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10928">
+    August 14, 2009 at 3:12 pm</a> said:  </div>
+  
+  <p>So, to make sure we get things right, I present to you the definitive guide of choosing between GET and POST.</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+  <li class="comment odd alt thread-even depth-1" id="comment-10925">
+    <div id="div-comment-10925" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://www.onlineassociates.ae/" rel="external nofollow ugc" class="url">Fahed</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10925">
+    August 14, 2009 at 2:48 pm</a> said:  </div>
+  
+  <p>Another point I’d like to make is that I do agree with most/many of the comments here and that Michael’s guideline (which most follow) should keep developers safe most of the time.</p>
+<p>I think that a lot of confusion has arisen from Ryan chopping out the original intro to this article (which he justly did due to its length). My goal was to be most comprehensive and counter for the fact that rules without justified explanations do not stand with everybody (with me being one such person).</p>
+<p>To put things into context, I developed an application a few months back which simply returned the date-restricted results of a database. Because the site had a rigid object-orientated form processor that was geared towards accepting POST, I went with the flow and used POST instead of GET. Although I always followed the simple “GET to get and POST to post” guideline, I deviated in this occasion because i thought “why not?”.</p>
+<p>This article, therefore, aimed to fully explain all the options available so that myself, and others who might end up in my position, don’t deviate and are aware of the different possibilities (like the single-click opt-out link at the bottom of emails which action a process and not a resource, and the idea of using GET in AJAX instead of POST).</p>
+<p>For reference, here’s the original intro:</p>
+<blockquote><p>
+The great thing about web development is that, driven by the desire to achieve goals, so much can be self-taught through trial &amp; error, experimentation, tutorials, forums and mailing lists etc.<br>
+Not only does this mean that you don’t need a formal education to become a developer, but it also means that you can bring great ideas to digital life – even if you never imagined you’d develop.<br>
+As great as this might be, a negative consequence of goal-driven self-teaching is that goals often get achieved through subpar, and even incorrect, means.<br>
+One commonly found example is the misuse of GET over POST and vice versa.
+</p></blockquote>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+  <li class="comment even thread-odd thread-alt depth-1" id="comment-10923">
+    <div id="div-comment-10923" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://www.onlineassociates.ae/" rel="external nofollow ugc" class="url">Fahed</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10923">
+    August 14, 2009 at 2:37 pm</a> said:  </div>
+  
+  <p>Just to touch on the security point… I took it as a given that all sensitive data would be passed over using SSL.</p>
+<p>My point was that, even if SSL was being used, passing sensitive data over GET would keep it exposed to other users of the browser.</p>
+<p>As angry as it makes me to see my credit card details show when hitting the down arrow on a previously filled credit card field, it would make me much angrier if the address bar’s auto-search would show my card details to someone typing in a URL in the address bar. (Much like the time the address bar decided to show my wife a matrimonial site I was looking at for a potential client.)</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+  <li class="comment odd alt thread-even depth-1" id="comment-10919">
+    <div id="div-comment-10919" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn">Ben</cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10919">
+    August 14, 2009 at 1:59 pm</a> said:  </div>
+  
+  <p>Just to reiterate what Simon Willison points out above. The Rule #2:</p>
+<p>&gt;&gt; Because query strings are transferred openly in GET requests, we have to consider our security and that of our users when dealing with sensitive data like passwords or credit card numbers</p>
+<p>is actually a misnomer. There is no difference in security between POST and GET. The major difference in “security” is that POSTed data is not visible in a URL. Both are open to packet sniffing. Posted variables can also be accessed through a browser like Firefox’s history (see my comment above).</p>
+<p>The only true way of protecting sensitive data is through SSL.</p>
+<p>More here: <a href="http://stackoverflow.com/questions/198462/get-versus-post-in-terms-of-security" rel="nofollow ugc">http://stackoverflow.com/questions/198462/get-versus-post-in-terms-of-security</a></p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+  <li class="comment even thread-odd thread-alt depth-1 parent" id="comment-10914">
+    <div id="div-comment-10914" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn">Simon Willison</cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10914">
+    August 14, 2009 at 11:50 am</a> said:  </div>
+  
+  <p>I don’t think it’s a good idea to use GET instead of POST in Ajax requests if the request is changing state on the server. Ajax applications should be thought of as clients to a web service, and no good web service should accept GET requests for modifying state.</p>
+<p>Sensitive data should be transferred over HTTPS – using POST instead of GET there provides no additional protection at all.</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  <ul class="children">
+  <li class="comment odd alt depth-2 parent" id="comment-10916">
+    <div id="div-comment-10916" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn">Chris</cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10916">
+    August 14, 2009 at 12:32 pm</a> said:  </div>
+  
+  <p>@Simon Willison:<br>
+“Sensitive data should be transferred over HTTPS – using POST instead of GET there provides no additional protection at all.”<br>
+Yes it does. As fahed explained there’s also the risk that other users on the same browser see the history entries. In case you use POST the data isn’t stored in the browser’s history (or elsewhere in the browser).</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  <ul class="children">
+  <li class="comment even depth-3" id="comment-10918">
+    <div id="div-comment-10918" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn">Ben</cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10918">
+    August 14, 2009 at 1:54 pm</a> said:  </div>
+  
+  <p>&gt;&gt;In case you use POST the data isn’t stored in the browser’s history (or elsewhere in the browser).</p>
+<p>Actually this is not true per se. Try submitting a form (e.g. a contact form) in Firefox. Single text entires are remembered by the browser – double click that text field again after submitting and you can see the previous entries that have been submitted.</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+  <li class="comment odd alt depth-3" id="comment-10926">
+    <div id="div-comment-10926" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://simonwillison.net/" rel="external nofollow ugc" class="url">Simon Willison</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10926">
+    August 14, 2009 at 3:00 pm</a> said:  </div>
+  
+  <p>Good point about GET being potentially visible in the browser history even if used over SSL – but if you’re accepting sensitive information (credit cards etc) you’re almost certainly using it to update state on your server so you should be using POST anyway.</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+  <li class="comment even depth-2 parent" id="comment-10924">
+    <div id="div-comment-10924" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://www.onlineassociates.ae/" rel="external nofollow ugc" class="url">Fahed</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10924">
+    August 14, 2009 at 2:40 pm</a> said:  </div>
+  
+  <p>Hi Simon,</p>
+<p>Thanks for your comments.</p>
+<p>Can you further explain why “no good web service should accept GET requests for modifying state”? As long as the action can be idempotent, why not use GET and make the application more responsive as, after all, responsiveness is the primary objective of using AJAX in the first place?</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  <ul class="children">
+  <li class="comment odd alt depth-3" id="comment-10927">
+    <div id="div-comment-10927" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://simonwillison.net/" rel="external nofollow ugc" class="url">Simon Willison</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10927">
+    August 14, 2009 at 3:03 pm</a> said:  </div>
+  
+  <p>How can you have an action that is idempotent but doesn’t modify state on the server?</p>
+<p>The HTTP 1.1 RFC says “In particular, the convention has been established that the GET and HEAD methods SHOULD NOT have the significance of taking an action other than retrieval.” – <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html" rel="nofollow ugc">http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html</a></p>
+<p>Do you have any further information to back up your claim that GET is more responsive than POST? Do you just mean that GET requests can be cached?</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+  <li class="comment even thread-even depth-1 parent" id="comment-10912">
+    <div id="div-comment-10912" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://blog.michael-romer.de/" rel="external nofollow ugc" class="url">Michael</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10912">
+    August 14, 2009 at 10:25 am</a> said:  </div>
+  
+  <p>I think it is helpful to take the method’s name literally. “POST” is for posting something to a webserver, data that should go (persistently) “into” the application (e.g. database or so). “GET” in contrast is a request for getting something “out” of the application while the data (parameters) given with the request is just “meta-information” to tell the server which data should be returned.</p>
+<p>If you follow this rule whenever possible, it’s very likely that you choose the correct HTTP method.</p>
+<p>Cheers,<br>
+Michael</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  <ul class="children">
+  <li class="comment odd alt depth-2" id="comment-10921">
+    <div id="div-comment-10921" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://www.onlineassociates.ae/" rel="external nofollow ugc" class="url">Fahed</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10921">
+    August 14, 2009 at 2:31 pm</a> said:  </div>
+  
+  <p>That’s quite a good guideline which I quite like; it should keep you safe *most*, but not all, of the time.</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+  <li class="comment even thread-odd thread-alt depth-1 parent" id="comment-10911">
+    <div id="div-comment-10911" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://genezys.net/" rel="external nofollow ugc" class="url">Vincent Robert</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10911">
+    August 14, 2009 at 9:52 am</a> said:  </div>
+  
+  <p>Wait wait wait! You can use query variables in the URI for POST requests too. The important thing to remember is that the URI is used to identify a resource while posted content is intended to be processed by the resource.</p>
+<p>Which means you can POST “first=Vincent&amp;last=Robert” to “/users?country=FR”. This is a way to say to the resource “list of users from France” to process (maybe add in this case) this user content.</p>
+<p>I think REST describes it right. GET is only about URIs, it is about getting the representation of a resource identified by a URI. Now some prefer pretty URIs but using query variables is perfectly legal in HTTP.</p>
+<p>POST is about processing. It is about sending content to a resource for processing. Again, this resource can have a URI using query variables.</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  <ul class="children">
+  <li class="comment odd alt depth-2 parent" id="comment-10917">
+    <div id="div-comment-10917" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://jason.karns.name/" rel="external nofollow ugc" class="url">Jason Karns</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10917">
+    August 14, 2009 at 12:53 pm</a> said:  </div>
+  
+  <p>I’d like to second what Vincent said about POST and GET. Querystrings are not tied to one particular type of request. All types of HTTP requests (POST, PUT, DELETE, et. al.) can have querystrings. The querystring is part of the URI and is NOT passed in the body as per the article. The querystring and the POST body are two separate pieces. True, they are both name/value pairs, but please don’t conflate the two.</p>
+<p>For further reading… <a href="http://www.sitepoint.com/blogs/2009/02/05/on-get-and-post/" rel="nofollow ugc">http://www.sitepoint.com/blogs/2009/02/05/on-get-and-post/</a></p>
+
+  <div class="reply">
+    </div>
+    </div>
+  <ul class="children">
+  <li class="comment even depth-3" id="comment-10920">
+    <div id="div-comment-10920" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://www.onlineassociates.ae/" rel="external nofollow ugc" class="url">Fahed</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10920">
+    August 14, 2009 at 2:26 pm</a> said:  </div>
+  
+  <p>Hi Jason,</p>
+<p>Thanks for your comment.</p>
+<p>You’ve got me a bit lost on the following statement, though:</p>
+<p>“The query string is part of the URI and is NOT passed in the body as per the article.”</p>
+<p>Are you referring to GET, POST or both?</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+  <li class="comment odd alt depth-3" id="comment-10950">
+    <div id="div-comment-10950" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://jason.karns.name/" rel="external nofollow ugc" class="url">Jason Karns</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10950">
+    August 18, 2009 at 1:08 am</a> said:  </div>
+  
+  <p>As you mentioned, Fahed, replies can’t nest deeper than 3 levels, so I’m replying to myself <img draggable="false" role="img" class="emoji" alt="😉" src="./The Definitive Guide to GET vs POST _ Treehouse Blog_files/1f609.svg"></p>
+<p>As I mentioned in my first comment/reply “The query string is part of the URI and is NOT passed in the body as per the article.” I am referring to all HTTP Requests, irrespective of method (GET, POST, PUT, DELETE, or other). All HTTP Requests target a URI. Per RFC 2396 (section 3), a URI is defined as: ://?</p>
+<p>So all Requests have URIs and all URIs ‘may’ have querystrings, including POSTs. There is no difference between GET and POST as to how the querystring is handled. A POST request’s body is comprised of the name/value pairs of a serialized form element. In order to generate a POST request that contains a querystring separate from the body, create a form where the @action attribute is such: “handler.php?article=DefinitiveGuide”. If you were to inspect the body of this post request via Fiddler (or other) you’ll notice that the body does not contain an ‘article’ key (unless also specified as a form field). This can lead to some interesting server-side code, especially if you have querystring keys colliding with form fields of the same name. PHP makes this even more confusing by naming its querystring autoglobal $_GET which doesn’t neccisarily imply a GET request. Given my previous form example, $_GET would contain a key for ‘article’ and $_POST would contain the fields of the form. See this post on SitePoint regarding GET/POST with PHP in particular: <a href="http://www.sitepoint.com/blogs/2009/02/05/on-get-and-post/" rel="nofollow ugc">http://www.sitepoint.com/blogs/2009/02/05/on-get-and-post/</a></p>
+<p>I don’t disagree with any other point in your article. I even agree with your security point in GET. As Robert Taylor said “Securing data is a multi-faceted vigil”. Simply preventing browser auto-complete of sensitive information is one (if minor) defense. But I digress…</p>
+<p>My only reason for posting is to illuminate yet another misconception regarding GET/POST and the ever lovely querystring.</p>
+<p>Feel free to email me or twitter (@jasonkarns) with further discussion.</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+  <li class="comment even depth-3" id="comment-10951">
+    <div id="div-comment-10951" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://jason.karns.name/" rel="external nofollow ugc" class="url">Jason Karns</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10951">
+    August 18, 2009 at 1:11 am</a> said:  </div>
+  
+  <p>It seems the comment form ate my comment.</p>
+<p>Per RFC 2396, section 3 a URI is defined as:</p>
+<p>[scheme] :// [authority] [path] ? [query] </p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+  <li class="comment odd alt depth-2" id="comment-80698">
+    <div id="div-comment-80698" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn">John</cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-80698">
+    September 2, 2015 at 1:21 pm</a> said:  </div>
+  
+  <p>There is a limit to query string length with GET (varies by container, but I believe Apache is 2KB, for example), but there is no ‘parameter’ limit with with POST.  The REST approach fails horribly in this regard, and instead the API should have been standardized around action words and all requests should have been of type POST.</p>
+<p>For example, standardized action prefixes such as “create”, “get”, “update”, “delete”:</p>
+<p>action=getAccount<br>
+action=updateAccount<br>
+action=deleteAccount<br>
+action=createAccount</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+  <li class="comment even thread-even depth-1 parent" id="comment-10910">
+    <div id="div-comment-10910" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://yoan.dosimple.ch/" rel="external nofollow ugc" class="url">Yoan Blanc</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10910">
+    August 14, 2009 at 9:09 am</a> said:  </div>
+  
+  <p>I you try to display an HTTP request; please don’t forget the *two* line feeds between the head and the body.</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  <ul class="children">
+  <li class="comment odd alt depth-2" id="comment-10922">
+    <div id="div-comment-10922" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn"><a href="http://www.onlineassociates.ae/" rel="external nofollow ugc" class="url">Fahed</a></cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10922">
+    August 14, 2009 at 2:33 pm</a> said:  </div>
+  
+  <p>Agreed. The second line break got lost along the way.</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+  <li class="comment even depth-2" id="comment-10958">
+    <div id="div-comment-10958" class="comment-body">
+    <div class="comment-author vcard">
+  <cite class="fn">Ricky Martin</cite> on  <a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#comment-10958">
+    August 19, 2009 at 9:08 am</a> said:  </div>
+  
+  <p>i liked the idea</p>
+
+  <div class="reply">
+    </div>
+    </div>
+  </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+  </ol>
+
+  <div class="navigation">
+    <div class="alignleft"></div>
+    <div class="alignright"></div>
+  </div>
+ 
+    </div>
+  </div>
+</section>
+
+<section class="treehouse-ad post-2856 post type-post status-publish format-standard has-post-thumbnail hentry category-learn tag-code">
+
+  <div class="row">
+
+    <div class="skinny-read">
+
+      <div class="block">
+        <img src="./The Definitive Guide to GET vs POST _ Treehouse Blog_files/web-design.png" alt="">      </div>
+
+      <div class="block">
+        <h2>
+          Learn to code with Treehouse          </h2>
+        <p>
+          Start your 7 day free trial today and get access to hundreds of video courses in web development, design and business!        </p>
+        <a href="https://teamtreehouse.com/subscribe/plans?trial=yes&amp;cid=4032" class="button secondary">Learn more</a>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section>
+
+  <footer id="footer">
+
+    <div class="treehouse-typelockup"></div>
+
+    <p>
+      ©2020 Treehouse Island, Inc.
+      <br>
+      <br>
+      <a href="https://teamtreehouse.com/about">About</a> •
+      <a href="https://teamtreehouse.com/jobs">Careers</a> •
+      <a href="https://blog.teamtreehouse.com/">Blog</a> •
+      <a href="https://teamtreehouse.com/affiliate-program">Affiliate Program</a> •
+      <a href="https://teamtreehouse.com/terms">Terms</a> •
+      <a href="https://teamtreehouse.com/privacy">Privacy</a> •
+      <a href="https://teamtreehouse.com/support">Contact</a>
+    </p>
+
+    <ul class="social">
+      <li><a href="https://twitter.com/treehouse" class="twitter"></a></li>
+      <li><a href="https://youtube.com/gotreehouse" class="youtube"></a></li>
+      <li><a href="https://facebook.com/teamtreehouse" class="facebook"></a></li>
+      <li><a href="https://linkedin.com/company/treehouse-island-inc-" class="linkedin"></a></li>
+      <li><a href="https://instagram.com/teamtreehouse" class="instagram"></a></li>
+    </ul>
+
+    <div class="stripes"></div>
+
+  </footer>
+
+</section>
+
+ <script type="text/javascript">
+  analytics.track("Viewed Post", {"title":"The Definitive Guide to GET vs POST","category":"Learn","noninteraction":true}, {"library":"analytics-wordpress"});
+    
+</script>
+<div id="pum-28502" class="pum pum-overlay pum-theme-28498 pum-theme-enterprise-blue popmake-overlay pum-click-to-close auto_open click_open" data-popmake="{&quot;id&quot;:28502,&quot;slug&quot;:&quot;popmake-techdegree-main&quot;,&quot;theme_id&quot;:28498,&quot;cookies&quot;:[{&quot;event&quot;:&quot;on_popup_close&quot;,&quot;settings&quot;:{&quot;name&quot;:&quot;pum-28502&quot;,&quot;key&quot;:&quot;&quot;,&quot;session&quot;:false,&quot;time&quot;:&quot;1 week&quot;,&quot;path&quot;:true}}],&quot;triggers&quot;:[{&quot;type&quot;:&quot;auto_open&quot;,&quot;settings&quot;:{&quot;cookie_name&quot;:[&quot;pum-28502&quot;],&quot;delay&quot;:&quot;5000&quot;}},{&quot;type&quot;:&quot;click_open&quot;,&quot;settings&quot;:{&quot;extra_selectors&quot;:&quot;&quot;,&quot;cookie_name&quot;:null}}],&quot;mobile_disabled&quot;:null,&quot;tablet_disabled&quot;:null,&quot;meta&quot;:{&quot;display&quot;:{&quot;stackable&quot;:false,&quot;overlay_disabled&quot;:false,&quot;scrollable_content&quot;:false,&quot;disable_reposition&quot;:false,&quot;size&quot;:&quot;small&quot;,&quot;responsive_min_width&quot;:&quot;0%&quot;,&quot;responsive_min_width_unit&quot;:false,&quot;responsive_max_width&quot;:&quot;100%&quot;,&quot;responsive_max_width_unit&quot;:false,&quot;custom_width&quot;:&quot;640px&quot;,&quot;custom_width_unit&quot;:false,&quot;custom_height&quot;:&quot;380px&quot;,&quot;custom_height_unit&quot;:false,&quot;custom_height_auto&quot;:false,&quot;location&quot;:&quot;center top&quot;,&quot;position_from_trigger&quot;:false,&quot;position_top&quot;:&quot;100&quot;,&quot;position_left&quot;:&quot;0&quot;,&quot;position_bottom&quot;:&quot;0&quot;,&quot;position_right&quot;:&quot;0&quot;,&quot;position_fixed&quot;:false,&quot;animation_type&quot;:&quot;fade&quot;,&quot;animation_speed&quot;:&quot;350&quot;,&quot;animation_origin&quot;:&quot;center top&quot;,&quot;overlay_zindex&quot;:false,&quot;zindex&quot;:&quot;1999999999&quot;},&quot;close&quot;:{&quot;text&quot;:&quot;&quot;,&quot;button_delay&quot;:&quot;0&quot;,&quot;overlay_click&quot;:&quot;1&quot;,&quot;esc_press&quot;:&quot;1&quot;,&quot;f4_press&quot;:false},&quot;click_open&quot;:[]}}" role="dialog" aria-hidden="true">
+
+	<div id="popmake-28502" class="pum-container popmake theme-28498 pum-responsive pum-responsive-small responsive size-small">
+
+				
+
+				
+
+		
+
+				<div class="pum-content popmake-content">
+			<h2 style="text-align: left;">With a starting salary of up to $75,000 per<b>&nbsp;year</b>, working in tech isn’t a job — it’s a career.</h2>
+<p>Did you know? There are more than 500,000 positions in the tech industry waiting to be filled.</p>
+<p>Our Techdegree program is a complete, guided program that will teach you everything you need to know to land your dream job in tech. Explore the programs available with a <strong>seven day free trial</strong>.</p>
+<form action="https://join.teamtreehouse.com/techdegree/?id=5750&amp;utm_source=blog&amp;utm_medium=blog&amp;cid=10755"><input style="background-color: #5fcf80; border-radius: 12px; border: none; color: white; padding: 2rem; text-align: center; text-decoration: none; font-weight: bold; display: inline-block; font-size: default; margin: 4px 2px; cursor: pointer;" type="submit" value="Start my trial"><input type="hidden" name="pum_form_popup_id" value="28502"></form>
+		</div>
+
+
+				
+
+				            <button type="button" class="pum-close popmake-close" aria-label="Close">
+			×            </button>
+		
+	</div>
+
+</div>
+<script type="text/javascript" src="./The Definitive Guide to GET vs POST _ Treehouse Blog_files/jquery.fitvids.js"></script>
+<script type="text/javascript" src="./The Definitive Guide to GET vs POST _ Treehouse Blog_files/main.js"></script>
+<script type="text/javascript" src="./The Definitive Guide to GET vs POST _ Treehouse Blog_files/core.min.js"></script>
+<script type="text/javascript" src="./The Definitive Guide to GET vs POST _ Treehouse Blog_files/position.min.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var pum_vars = {"version":"1.8.6","ajaxurl":"https:\/\/blog.teamtreehouse.com\/wp-admin\/admin-ajax.php","restapi":"https:\/\/blog.teamtreehouse.com\/wp-json\/pum\/v1","rest_nonce":null,"default_theme":"28496","debug_mode":"","disable_tracking":"","home_url":"\/","message_position":"top","core_sub_forms_enabled":"1","popups":[]};
+var ajaxurl = "https:\/\/blog.teamtreehouse.com\/wp-admin\/admin-ajax.php";
+var pum_debug_vars = {"debug_mode_enabled":"Popup Maker: Debug Mode Enabled","debug_started_at":"Debug started at:","debug_more_info":"For more information on how to use this information visit https:\/\/docs.wppopupmaker.com\/?utm_medium=js-debug-info&utm_campaign=ContextualHelp&utm_source=browser-console&utm_content=more-info","global_info":"Global Information","localized_vars":"Localized variables","popups_initializing":"Popups Initializing","popups_initialized":"Popups Initialized","single_popup_label":"Popup: #","theme_id":"Theme ID: ","label_method_call":"Method Call:","label_method_args":"Method Arguments:","label_popup_settings":"Settings","label_triggers":"Triggers","label_cookies":"Cookies","label_delay":"Delay:","label_conditions":"Conditions","label_cookie":"Cookie:","label_settings":"Settings:","label_selector":"Selector:","label_mobile_disabled":"Mobile Disabled:","label_tablet_disabled":"Tablet Disabled:","label_event":"Event: %s","triggers":{"click_open":"Click Open","auto_open":"Time Delay \/ Auto Open"},"cookies":{"on_popup_close":"On Popup Close","on_popup_open":"On Popup Open","pum_sub_form_success":"Subscription Form: Successful","pum_sub_form_already_subscribed":"Subscription Form: Already Subscribed","manual":"Manual JavaScript"}};
+var pum_sub_vars = {"ajaxurl":"https:\/\/blog.teamtreehouse.com\/wp-admin\/admin-ajax.php","message_position":"top"};
+var pum_popups = {"pum-28502":{"disable_on_mobile":false,"disable_on_tablet":false,"custom_height_auto":false,"scrollable_content":false,"position_from_trigger":false,"position_fixed":false,"overlay_disabled":false,"stackable":false,"disable_reposition":false,"close_on_overlay_click":true,"close_on_esc_press":true,"close_on_f4_press":false,"disable_form_reopen":false,"disable_accessibility":false,"triggers":[{"type":"auto_open","settings":{"cookie_name":["pum-28502"],"delay":"5000"}}],"cookies":[{"event":"on_popup_close","settings":{"name":"pum-28502","key":"","session":false,"time":"1 week","path":true}}],"theme_id":"28498","size":"small","responsive_min_width":"0%","responsive_max_width":"100%","custom_width":"640px","custom_height":"380px","animation_type":"fade","animation_speed":"350","animation_origin":"center top","location":"center top","position_top":"100","position_bottom":"0","position_left":"0","position_right":"0","zindex":"1999999999","close_button_delay":"0","theme_slug":"enterprise-blue","id":28502,"slug":"popmake-techdegree-main"}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./The Definitive Guide to GET vs POST _ Treehouse Blog_files/pum-site-scripts.js"></script>
+<script type="text/javascript" src="./The Definitive Guide to GET vs POST _ Treehouse Blog_files/wp-embed.min.js"></script>
+
+</div> <!-- / .page-container -->
+
+
+
+<div id="optanon" class="modern"><div id="optanon-popup-bg"></div><div id="optanon-popup-wrapper" role="dialog" aria-modal="true" tabindex="-1" lang="en-GB"><div id="optanon-popup-top"><a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#" onclick="Optanon.TriggerGoogleAnalyticsEvent(&#39;OneTrust Cookie Consent&#39;, &#39;Preferences Close Button&#39;);" class="optanon-close-link optanon-close optanon-close-ui" title="Close Preference Centre"><div id="optanon-close" style="background: url(https://optanon.blob.core.windows.net/skins/default_flat_bottom_two_button_white/v2/images/optanon-pop-up-close.png);width:34px;height:34px;"></div></a></div><div id="optanon-popup-body"><div id="optanon-popup-body-left"><div id="optanon-popup-body-left-shading"></div><div id="optanon-branding-top-logo" style="background-image: url(https://optanon.blob.core.windows.net/logos/5950/5950:teamtreehouse.com/treehouse-icon.png) !important;"></div><ul id="optanon-menu"><li class="menu-item-on menu-item-about" title="Your Privacy"><p><a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#">Your Privacy</a></p></li><li class="menu-item-necessary menu-item-on" title="Essential Cookies"><p><a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#">Essential Cookies</a></p></li><li class="menu-item-on menu-item-performance" title="Performance and Functionality Cookies"><p><a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#">Performance and Functionality Cookies</a></p></li><li class="menu-item-on menu-item-functional" title="Analytics and Customization Cookies"><p><a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#">Analytics and Customization Cookies</a></p></li><li class="menu-item-on menu-item-advertising" title="Targeting Cookies"><p><a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#">Targeting Cookies</a></p></li><li class="menu-item-moreinfo menu-item-off" title="Cookie Policy"><p><a target="_blank" href="https://teamtreehouse.com/cookies" onclick="Optanon.TriggerGoogleAnalyticsEvent(&#39;OneTrust Cookie Consent&#39;, &#39;Preferences Cookie Policy&#39;);">Cookie Policy</a></p></li></ul></div><div id="optanon-popup-body-right"><h2 aria-label="true">Privacy Preference Center</h2><h3></h3><div id="optanon-popup-more-info-bar"><div class="optanon-status"><div class="optanon-status-editable"><form><fieldset><p><input type="checkbox" value="check" id="chkMain" checked="" class="optanon-status-checkbox"><label for="chkMain">Active</label></p></fieldset></form></div><div class="optanon-status-always-active optanon-status-on"><p>Always Active</p></div></div></div><div id="optanon-main-info-text"></div></div><div class="optanon-bottom-spacer"></div></div><div id="optanon-popup-bottom"> <a href="https://onetrust.com/poweredbyonetrust" target="_blank"><div id="optanon-popup-bottom-logo" style="background: url(https://optanon.blob.core.windows.net/skins/default_flat_bottom_two_button_white/v2/images/cookie-collective-top-bottom.png);width:155px;height:35px;" title="powered by OneTrust"></div></a><div class="optanon-button-wrapper optanon-save-settings-button optanon-close optanon-close-consent"><div class="optanon-white-button-left"></div><div class="optanon-white-button-middle"><a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#" onclick="Optanon.TriggerGoogleAnalyticsEvent(&#39;OneTrust Cookie Consent&#39;, &#39;Preferences Save Settings&#39;);">Save Settings</a></div><div class="optanon-white-button-right"></div></div><div class="optanon-button-wrapper optanon-allow-all-button optanon-allow-all" style="display: none;"><div class="optanon-white-button-left"></div><div class="optanon-white-button-middle"><a href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#" onclick="Optanon.TriggerGoogleAnalyticsEvent(&#39;OneTrust Cookie Consent&#39;, &#39;Preferences Allow All&#39;);">Allow All</a></div><div class="optanon-white-button-right"></div></div></div></div></div><div class="optanon-alert-box-wrapper  " style="display:none"><div class="optanon-alert-box-bottom-top"><div class="optanon-alert-box-corner-close"><a class="optanon-alert-box-close" href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#" title="Close Banner" onclick="Optanon.TriggerGoogleAnalyticsEvent(&#39;OneTrust Cookie Consent&#39;, &#39;Banner Close Button&#39;);"></a></div></div><div class="optanon-alert-box-bg"><div class="optanon-alert-box-logo"> </div><div class="optanon-alert-box-body"><p>We use cookies to remember you when you log in, administer our website, analyze our traffic and provide social media features to you. We also share information about your use of our site with our social media, advertising and analytics partners. Click on Cookie Settings to modify your Cookie preferences.</p></div><div class="optanon-clearfix"></div><div class="optanon-alert-box-button-container"><div class="optanon-alert-box-button optanon-button-close"><div class="optanon-alert-box-button-middle"><a class="optanon-alert-box-close" href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#">Close</a></div></div><div class="optanon-alert-box-button optanon-button-allow"><div class="optanon-alert-box-button-middle"><a class="optanon-allow-all" href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#" onclick="Optanon.TriggerGoogleAnalyticsEvent(&#39;OneTrust Cookie Consent&#39;, &#39;Banner Accept Cookies&#39;);">Accept Cookies</a></div></div><div class="optanon-alert-box-button optanon-button-more"><div class="optanon-alert-box-button-middle"><a class="optanon-toggle-display" href="https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post#" onclick="Optanon.TriggerGoogleAnalyticsEvent(&#39;OneTrust Cookie Consent&#39;, &#39;Banner Open Preferences&#39;);">Cookie Settings</a></div></div></div><div class="optanon-clearfix optanon-alert-box-bottom-padding"></div></div></div><iframe id="intercom-frame" style="position: absolute !important; opacity: 0 !important; width: 1px !important; height: 1px !important; top: 0 !important; left: 0 !important; border: none !important; display: block !important; z-index: -1 !important;" aria-hidden="true" tabindex="-1" title="Intercom" src="./The Definitive Guide to GET vs POST _ Treehouse Blog_files/saved_resource.html"></iframe><div id="intercom-css-container"><style data-emotion="intercom-global"></style></div><div id="intercom-container" class="intercom-namespace"><style>html.intercom-mobile-messenger-active,html.intercom-mobile-messenger-active > body,html.intercom-modal-open,#intercom-container-body{overflow:hidden !important;}html.intercom-mobile-messenger-active,html.intercom-mobile-messenger-active > body{position:static !important;}html.intercom-mobile-messenger-active > body{height:0 !important;margin:0 !important;}iframe#intercom-frame{position:absolute !important;opacity:0 !important;width:1px !important;height:1px !important;top:0 !important;left:0 !important;border:none !important;display:block !important;z-index:-1 !important;}</style><div class="intercom-app" aria-live="polite"><div id="intercom-modal-container"></div></div></div></body></html>
