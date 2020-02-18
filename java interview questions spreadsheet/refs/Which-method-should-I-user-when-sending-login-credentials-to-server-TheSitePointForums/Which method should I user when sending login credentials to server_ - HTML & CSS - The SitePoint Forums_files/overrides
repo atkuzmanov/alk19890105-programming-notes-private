@@ -1,0 +1,2 @@
+I18n._mfOverrides = {};
+I18n._overrides = {"js.user.email.sso_override_instructions":"Email can be updated at your Sitepoint profile page."};

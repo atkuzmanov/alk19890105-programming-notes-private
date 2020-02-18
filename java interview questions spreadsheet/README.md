@@ -198,6 +198,8 @@ For learning and study
 - [HTTP request methods](#http-request-methods)
 - [HTTP headers](#http-headers)
 - [CRUD C.R.U.D.](#crud-crud)
+- [What HTTP method to use for Login and sensitive data?](#what-http-method-to-use-for-login-and-sensitive-data)
+- [JWebToken](#jwebtoken)
 - [Random](#random)
 - [SQL Normal Forms](#sql-normal-forms)
 - [HTTP](#http)
@@ -8620,7 +8622,47 @@ https://www.codecademy.com/articles/what-is-crud
 https://en.wikipedia.org/wiki/Create,_read,_update_and_delete
 
 ----
+
+# What HTTP method to use for Login and sensitive data?
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
+
+```text
+Use POST HTTP request method.
+```
+
+- Please see:
+    - [GET vs POST](#get-vs-post)
+    - [HTTP request methods](#http-request-methods)
+
+- [should-I-use-GET-or-POST-when-requesting-sensitive-data-StackOverflow](refs/should-I-use-GET-or-POST-when-requesting-sensitive-data-StackOverflow)
+
+`references:`
+https://stackoverflow.com/questions/37328684/should-i-use-get-or-post-when-requesting-sensitive-data
+
+- [Which-method-should-I-user-when-sending-login-credentials-to-server-TheSitePointForums](refs/Which-method-should-I-user-when-sending-login-credentials-to-server-TheSitePointForums)
+
+`references:`
+https://www.sitepoint.com/community/t/which-method-should-i-user-when-sending-login-credentials-to-server/117881
+
+- [is-it-bad-practice-to-use-GET-method-as-login-username-password-for-administrators-Information-SecurityStackExchange](refs/is-it-bad-practice-to-use-GET-method-as-login-username-password-for-administrators-Information-SecurityStackExchange)
+
+`references:`
+https://security.stackexchange.com/questions/147188/is-it-bad-practice-to-use-get-method-as-login-username-password-for-administrato
+
 ----
+
+# JWebToken
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
+
+
+
+
 ----
 ----
 ----
