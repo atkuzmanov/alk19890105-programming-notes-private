@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)https://www.tutorialspoint.com/restful/restful_first_application.htm -->
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">.mui-textfield.mui-textfield--float-label > label {-webkit-transition:all .15s ease-out;-moz-transition:all .15s ease-out;-o-transition:all .15s ease-out;transition:all .15s ease-out;}</style><style type="text/css">@keyframes mui-btn-inserted{from{transform:none;}to{transform:none;}}.mui-btn{animation-duration:0.0001s;animation-name:mui-btn-inserted;}@keyframes mui-dropdown-inserted{from{transform:none;}to{transform:none;}}[data-mui-toggle="dropdown"]{animation-duration:0.0001s;animation-name:mui-dropdown-inserted;}@keyframes mui-btn-inserted,mui-dropdown-inserted{from{transform:none;}to{transform:none;}}.mui-btn[data-mui-toggle="dropdown"]{animation-duration:0.0001s;animation-name:mui-btn-inserted,mui-dropdown-inserted;}@keyframes mui-tab-inserted{from{transform:none;}to{transform:none;}}[data-mui-toggle="tab"]{animation-duration:0.0001s;animation-name:mui-tab-inserted;}@keyframes mui-textfield-inserted{from{transform:none;}to{transform:none;}}.mui-textfield > input{animation-duration:0.0001s;animation-name:mui-textfield-inserted;}@keyframes mui-textfield-inserted{from{transform:none;}to{transform:none;}}.mui-textfield > textarea{animation-duration:0.0001s;animation-name:mui-textfield-inserted;}@keyframes mui-select-inserted{from{transform:none;}to{transform:none;}}.mui-select > select{animation-duration:0.0001s;animation-name:mui-select-inserted;}@keyframes mui-node-inserted{from{transform:none;}to{transform:none;}}.mui-select > select ~ .mui-event-trigger{animation-duration:0.0001s;animation-name:mui-node-inserted;}@keyframes mui-node-disabled{from{transform:none;}to{transform:none;}}.mui-select > select:disabled ~ .mui-event-trigger{animation-duration:0.0001s;animation-name:mui-node-disabled;}</style>
+<title>RESTful Web Services - First Application - Tutorialspoint</title>
+
+<meta name="description" content="RESTful Web Services - First Application - Let us start writing the actual RESTful web services with Jersey Framework. Before you start writing your first example using the Jersey Framework, you have to ">
+<meta name="keywords" content="C, C++, Python, Java, HTML, CSS, JavaScript, SQL, PHP, jQuery, XML, DOM, Bootstrap, Tutorials, Articles, Programming, training, learning, quiz, preferences, examples, code">
+<link rel="canonical" href="https://www.tutorialspoint.com/restful/restful_first_application.htm">
+<link rel="shortcut icon" href="https://www.tutorialspoint.com/favicon.ico" type="image/x-icon">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<link rel="stylesheet" href="./RESTful Web Services - First Application - Tutorialspoint_files/style-min-v1.css">
+<script type="text/javascript" async="" src="./RESTful Web Services - First Application - Tutorialspoint_files/analytics.js"></script><script src="./RESTful Web Services - First Application - Tutorialspoint_files/script-min-v1.js"></script><link rel="stylesheet" type="text/css" href="./RESTful Web Services - First Application - Tutorialspoint_files/prettify.css">
+<script>function printPage() { window.print(); }</script>
+<script data-cfasync="false" type="text/javascript">(function(w, d) { var s = d.createElement('script'); s.src = '//cdn.adpushup.com/40046/adpushup.js'; s.type = 'text/javascript'; s.async = true; (d.getElementsByTagName('head')[0] || d.getElementsByTagName('body')[0]).appendChild(s); })(window, document);</script><script src="./RESTful Web Services - First Application - Tutorialspoint_files/adpushup.js" type="text/javascript" async=""></script>
+<script data-cfasync="false" type="text/javascript">(function(w, d) { var s = d.createElement('script'); s.src = '//delivery.adrecover.com/18107/adRecover.js'; s.type = 'text/javascript'; s.async = true; (d.getElementsByTagName('head')[0] || d.getElementsByTagName('body')[0]).appendChild(s); })(window, document);</script><script src="./RESTful Web Services - First Application - Tutorialspoint_files/adRecover.js" type="text/javascript" async=""></script>
+
+<style>
+.right-menu .mui-btn {
+    background-color:#008db9;
+}
+a.demo {
+    background:#008db9;
+}
+li.heading {
+    background:#008db9;
+}
+.course-box{background:#008db9}
+.home-intro-sub p{color:#008db9}
+</style>
+<script type="text/javascript" async="" src="./RESTful Web Services - First Application - Tutorialspoint_files/jquery.min.js"></script></head>
+<body>
+<header id="header" class="fixed">
+<!-- Top sub-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid top-menu">
+<div class="mui-container">
+<div class="top-menu-item home">
+<a href="https://www.tutorialspoint.com/index.htm" target="_blank" title="TutorialsPoint - Home"><i class="fal fa-home"></i> <span>Home</span></a>
+</div>
+<div class="top-menu-item qa">
+<a href="https://www.tutorialspoint.com/about/about_careers.htm" target="_blank" title="Job @ Tutorials Point"><i class="fa fa-suitcase"></i> <span>Jobs</span></a>
+</div>
+<div class="top-menu-item tools">
+<a href="https://www.tutorialspoint.com/online_dev_tools.htm" target="_blank" title="Tools - Online Development and Testing Tools"><i class="fal fa-cogs"></i> <span>Tools</span></a>
+</div>
+<div class="top-menu-item coding-ground">
+<a href="https://www.tutorialspoint.com/codingground.htm" target="_blank" title="Coding Ground - Free Online IDE and Terminal"><i class="fal fa-code"></i> <span>Coding Ground </span></a> 
+</div>
+<div class="top-menu-item current-affairs">
+<a href="https://www.tutorialspoint.com/current_affairs.htm" target="_blank" title="Daily Current Affairs"><i class="fal fa-layer-plus"></i> <span>Current Affairs</span></a>
+</div>
+<div class="top-menu-item upsc-notes">
+<a href="https://www.tutorialspoint.com/upsc_ias_exams.htm" target="_blank" title="UPSC IAS Exams Notes - TutorialsPoint"><i class="fal fa-user-tie"></i> <span>UPSC Notes</span></a>
+</div>      
+<div class="top-menu-item online-tutoris">
+<a href="https://www.tutorialspoint.com/tutor_connect/index.php" target="_blank" title="Top Online Tutors - Tutor Connect"><i class="fal fa-user"></i> <span>Online Tutors</span></a>
+</div>
+<div class="top-menu-item whiteboard">
+<a href="https://www.tutorialspoint.com/whiteboard.htm" target="_blank" title="Free Online Whiteboard"><i class="fal fa-chalkboard"></i> <span>Whiteboard</span></a>
+</div>
+<div class="top-menu-item net-meeting">
+<a href="https://www.tutorialspoint.com/netmeeting.php" target="_blank" title="A free tool for online video conferencing"><i class="fal fa-chalkboard-teacher"></i> <span>Net Meeting</span></a> 
+</div>
+<div class="top-menu-item articles">
+<a href="https://www.tutorix.com/" target="_blank" title="Tutorx - The Best Learning App" rel="nofollow"><i class="fal fa-video"></i> <span>Tutorix</span></a> 
+</div>        
+<div class="social-menu-item">
+<a href="https://www.facebook.com/tutorialspointindia" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Facebook"><i class="fab fa-facebook-f"></i></a> 
+<a href="https://www.twitter.com/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Twitter"><i class="fab fa-twitter"></i></a>
+<a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint @ Linkedin"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" rel="nofollow" data-placement="bottom" title="tutorialspoint YouTube"><i class="fab fa-youtube"></i></a>
+</div>        
+</div>
+</div>
+<!-- Top sub-menu Ends Here -->
+<!-- Top main-menu Starts Here -->
+<div class="mui-appbar mui-container-fulid mui--appbar-line-height mui--z1 sticky" id="logo-menu">
+<div class="mui-container">
+<div class="left-menu">
+<a href="https://www.tutorialspoint.com/index.htm" title="Tutorialspoint">
+<img class="tp-logo" alt="tutorialspoint" src="./RESTful Web Services - First Application - Tutorialspoint_files/logo.png">
+</a>
+<div class="mui-dropdown">
+<a class="mui-btn mui-btn--primary categories" data-mui-toggle="dropdown"><i class="fa fa-th-large"></i> 
+<span>Categories <span class="mui-caret"></span></span></a>            
+<ul class="mui-dropdown__menu cat-menu">
+<li>
+<ul>
+<li><a href="https://www.tutorialspoint.com/academic_tutorials.htm"><i class="fa fa-caret-right"></i> Academic Tutorials</a></li>
+<li><a href="https://www.tutorialspoint.com/big_data_tutorials.htm"><i class="fa fa-caret-right"></i> Big Data &amp; Analytics </a></li>
+<li><a href="https://www.tutorialspoint.com/computer_programming_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Programming </a></li>
+<li><a href="https://www.tutorialspoint.com/computer_science_tutorials.htm"><i class="fa fa-caret-right"></i> Computer Science </a></li>
+<li><a href="https://www.tutorialspoint.com/database_tutorials.htm"><i class="fa fa-caret-right"></i> Databases </a></li>
+<li><a href="https://www.tutorialspoint.com/devops_tutorials.htm"><i class="fa fa-caret-right"></i> DevOps </a></li>
+<li><a href="https://www.tutorialspoint.com/digital_marketing_tutorials.htm"><i class="fa fa-caret-right"></i> Digital Marketing </a></li>
+<li><a href="https://www.tutorialspoint.com/engineering_tutorials.htm"><i class="fa fa-caret-right"></i> Engineering Tutorials </a></li>
+<li><a href="https://www.tutorialspoint.com/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> Exams Syllabus </a></li>
+<li><a href="https://www.tutorialspoint.com/famous_monuments.htm"><i class="fa fa-caret-right"></i> Famous Monuments </a></li>
+<li><a href="https://www.tutorialspoint.com/gate_exams_tutorials.htm"><i class="fa fa-caret-right"></i> GATE Exams Tutorials</a></li>
+<li><a href="https://www.tutorialspoint.com/latest_technologies.htm"><i class="fa fa-caret-right"></i> Latest Technologies </a></li>
+<li><a href="https://www.tutorialspoint.com/machine_learning_tutorials.htm"><i class="fa fa-caret-right"></i> Machine Learning </a></li>
+<li><a href="https://www.tutorialspoint.com/mainframe_tutorials.htm"><i class="fa fa-caret-right"></i> Mainframe Development </a></li>
+<li><a href="https://www.tutorialspoint.com/management_tutorials.htm"><i class="fa fa-caret-right"></i> Management Tutorials </a></li>
+<li><a href="https://www.tutorialspoint.com/maths_tutorials.htm"><i class="fa fa-caret-right"></i> Mathematics Tutorials</a></li>
+<li><a href="https://www.tutorialspoint.com/microsoft_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Microsoft Technologies </a></li>
+<li><a href="https://www.tutorialspoint.com/misc_tutorials.htm"><i class="fa fa-caret-right"></i> Misc tutorials </a></li>
+<li><a href="https://www.tutorialspoint.com/mobile_development_tutorials.htm"><i class="fa fa-caret-right"></i> Mobile Development </a></li>
+<li><a href="https://www.tutorialspoint.com/java_technology_tutorials.htm"><i class="fa fa-caret-right"></i> Java Technologies </a></li>
+<li><a href="https://www.tutorialspoint.com/python_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> Python Technologies </a></li>
+<li><a href="https://www.tutorialspoint.com/sap_tutorials.htm"><i class="fa fa-caret-right"></i> SAP Tutorials </a></li>
+<li><a href="https://www.tutorialspoint.com/scripting_lnaguage_tutorials.htm"><i class="fa fa-caret-right"></i>Programming Scripts </a></li>
+<li><a href="https://www.tutorialspoint.com/selected_reading.htm"><i class="fa fa-caret-right"></i> Selected Reading </a></li>
+<li><a href="https://www.tutorialspoint.com/software_quality_tutorials.htm"><i class="fa fa-caret-right"></i> Software Quality </a></li>
+<li><a href="https://www.tutorialspoint.com/soft_skill_tutorials.htm"><i class="fa fa-caret-right"></i> Soft Skills </a></li>
+<li><a href="https://www.tutorialspoint.com/telecom_tutorials.htm"><i class="fa fa-caret-right"></i> Telecom Tutorials </a></li>
+<li><a href="https://www.tutorialspoint.com/upsc_ias_exams.htm"><i class="fa fa-caret-right"></i> UPSC IAS Exams </a></li>
+<li><a href="https://www.tutorialspoint.com/web_development_tutorials.htm"><i class="fa fa-caret-right"></i> Web Development </a></li>
+<li><a href="https://www.tutorialspoint.com/sports_tutorials.htm"><i class="fa fa-caret-right"></i> Sports Tutorials </a></li>
+<li><a href="https://www.tutorialspoint.com/xml_technologies_tutorials.htm"><i class="fa fa-caret-right"></i> XML Technologies </a></li>
+<li><a href="https://www.tutorialspoint.com/multi_language_tutorials.htm"><i class="fa fa-caret-right"></i> Multi-Language</a></li>
+<li><a href="https://www.tutorialspoint.com/questions_and_answers.htm"><i class="fa fa-caret-right"></i> Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+<div class="clear"></div>
+</div> 
+</div>
+<div class="right-menu">
+<div class="toc-toggle">
+<a href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+</div>
+<div class="mobile-search-btn">
+<a href="https://www.tutorialspoint.com/search.htm"><i class="fal fa-search"></i></a>
+</div>
+<div class="search-box">
+<form method="get" class="search-form" name="searchform" action="https://www.google.com/search" target="_blank" novalidate="">
+<input type="hidden" name="sitesearch" value="www.tutorialspoint.com" class="user-valid valid">
+<input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == &#39;Search your favorite tutorials...&#39;) {this.value = &#39;&#39;;}" onblur="if (this.value == &#39;&#39;) {this.value = &#39;Search your favorite tutorials...&#39;;}" autocomplete="off">
+<button><i class="fal fa-search"></i></button>
+</form>
+</div>
+<div class="menu-btn library-btn">
+<a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a>
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/videotutorials/index.php"><i class="fal fa-video"></i> <span>Videos</span></a> 
+</div>
+<div class="menu-btn videos-btn">
+<a href="https://www.tutorialspoint.com/questions/index.php"><i class="fa fa-location-arrow"></i> <span>Q/A</span></a>
+</div>
+<div class="menu-btn ebooks-btn">
+<a href="https://store.tutorialspoint.com/"><i class="fal fa-book"></i> <span>eBooks</span></a>
+</div>
+<div class="mui-dropdown">
+<button class="mui-btn mui-btn--primary mobile-menu" data-mui-toggle="dropdown" type="button">
+<span class="mui-caret"></span>
+</button>
+<ul class="mui-dropdown__menu">
+<li><a href="https://www.tutorialspoint.com/tutorialslibrary.htm"><i class="fal fa-cubes"></i> <span>Library</span></a></li>
+<li><a href="https://www.tutorialspoint.com/videotutorials/index.php"><i class="fal fa-video"></i> <span>Videos</span></a></li>
+<li><a href="https://store.tutorialspoint.com/"><i class="fal fa-book"></i> <span>eBooks</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Top main-menu Ends Here -->
+</header>
+<div class="mui-container-fluid content">
+<div class="mui-container">
+<!-- Tutorial ToC Starts Here -->
+<div class="mui-col-md-3 tutorial-toc">
+<div class="mini-logo">
+<img src="./RESTful Web Services - First Application - Tutorialspoint_files/restful-mini-logo.jpg" alt="RESTful Tutorial">
+</div>
+<ul class="toc chapters">
+<li class="heading">RESTful Tutorial</li>
+<li><a href="https://www.tutorialspoint.com/restful/index.htm">RESTful - Home</a></li>
+<li><a href="https://www.tutorialspoint.com/restful/restful_introduction.htm">RESTful - Introduction</a></li>
+<li><a href="https://www.tutorialspoint.com/restful/restful_environment.htm">RESTful - Environment Setup</a></li>
+<li style="background-color: rgb(214, 214, 214);"><a href="https://www.tutorialspoint.com/restful/restful_first_application.htm">RESTful - First Application</a></li>
+<li><a href="https://www.tutorialspoint.com/restful/restful_resources.htm">RESTful - Resources</a></li>
+<li><a href="https://www.tutorialspoint.com/restful/restful_messages.htm">RESTful - Messages</a></li>
+<li><a href="https://www.tutorialspoint.com/restful/restful_addressing.htm">RESTful - Addressing</a></li>
+<li><a href="https://www.tutorialspoint.com/restful/restful_methods.htm">RESTful - Methods</a></li>
+<li><a href="https://www.tutorialspoint.com/restful/restful_statelessness.htm">RESTful - Statelessness</a></li>
+<li><a href="https://www.tutorialspoint.com/restful/restful_caching.htm">RESTful - Caching</a></li>
+<li><a href="https://www.tutorialspoint.com/restful/restful_security.htm">RESTful - Security</a></li>
+<li><a href="https://www.tutorialspoint.com/restful/restful_jax_rs.htm">RESTful - Java (JAX-RS)</a></li>
+<li class="heading">RESTful Useful Resources</li>
+<li><a href="https://www.tutorialspoint.com/restful/restful_questions_answers.htm">RESTful - Questions and Answers</a></li>
+<li><a href="https://www.tutorialspoint.com/restful/restful_quick_guide.htm">RESTful - Quick Guide</a></li>
+<li><a href="https://www.tutorialspoint.com/restful/restful_useful_resources.htm">RESTful - Useful Resources</a></li>
+<li><a href="https://www.tutorialspoint.com/restful/restful_discussion.htm">RESTful - Discussion</a></li>
+</ul>
+<ul class="toc reading">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="https://www.tutorialspoint.com/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+<div style="height:250px;">
+<div id="430c9911-782f-495d-88f9-69f58ca8c9a4" class="_ap_apex_ad">
+<script>
+var adpushup = adpushup || {};
+adpushup.que = adpushup.que || [];
+adpushup.que.push(function() {
+adpushup.triggerAd("430c9911-782f-495d-88f9-69f58ca8c9a4");
+});
+</script>
+</div>
+<div id="_adr_abp_iframe_4" data-section="1c01c0744357ffb76525419d504c0a82" class="_adr_abp_iframe" style="display: block; clear: both; width: 300px; height: 264px; margin: 0px auto;"><div style="font-family: Arial, Helvetica, sans-serif; font-size: 9px; text-transform: uppercase; color: rgb(128, 129, 143); background-color: rgba(255, 255, 255, 0.3); line-height: 10px; padding: 2px 4px; width: 98%; height: 8px;"><span style="float: left; font-size: 9px; text-decoration: none; color: rgb(160, 160, 160);">Advertisement</span></div><div id="ad-container-1c01c0744357ffb76525419d504c0a82" style="height: 250px; width: 100%; margin: 0px auto; text-align: center; display: none;"></div><iframe id="iframe-ad-container-1c01c0744357ffb76525419d504c0a82" src="./RESTful Web Services - First Application - Tutorialspoint_files/recover.html" scrolling="no" style="width: 100%; height: 250px; margin: 0px; padding: 0px; border: none; display: block;"></iframe></div></div>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="mui-col-md-6 tutorial-content">
+<h1>RESTful Web Services - First Application</h1>
+<hr>
+<div class="top-ad-heading">Advertisements</div>
+<div style="text-align:center" class="google-top-ads">
+<div id="adp_top_ads" style="text-align:center !important;"><div id="8014640d-fd34-4b2e-9b1b-cc67234a2325" class="_ap_apex_ad"></div></div>
+<script>
+     var adPos = document.getElementById('adp_top_ads');
+     var ad_id_720 = "8014640d-fd34-4b2e-9b1b-cc67234a2325";
+     var ad_id_650 = "2d1bb2c4-eb72-471d-9c80-1bf5514728c1";
+     var ad_id_300 = "df94a1a9-ae2f-432d-9a92-d93823ff4503";
+     var width = window.innerWidth;
+     var ad_id = ad_id_720;
+     if( width <= 768 ){
+        ad_id =  ad_id_300;
+     }else if( width <= 1435 ){
+        ad_id =  ad_id_650;
+     }
+     adPos.innerHTML = '<div id="' + ad_id + '" class="_ap_apex_ad"></div>';
+     var adpushup = adpushup || {};
+     adpushup.que = adpushup.que || [];
+     adpushup.que.push(function() {
+     adpushup.triggerAd(ad_id);
+     });
+</script>
+</div>
+<br>
+<div class="mui-container-fluid button-borders">
+<div class="pre-btn">
+<a href="https://www.tutorialspoint.com/restful/restful_environment.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="https://www.tutorialspoint.com/restful/restful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="clearer"></div>
+<p>Let us start writing the actual RESTful web services with Jersey Framework. Before you start writing your first example using the Jersey Framework, you have to make sure that you have setup your Jersey environment properly as explained in the <a href="https://www.tutorialspoint.com/restful/restful_environment.htm">RESTful Web Services - Environment Setup</a> chapter. Here, I am also assuming that you have a little working knowledge of Eclipse IDE.</p>
+<p>So, let us proceed to write a simple Jersey Application which will expose a web service method to display the list of users.</p>
+<h2>Creating a Java Project</h2>
+<p>The first step is to create a Dynamic Web Project using Eclipse IDE. Follow the option <b>File → New → Project</b> and finally select the <b>Dynamic Web Project</b> wizard from the wizard list. Now name your project as <b>UserManagement</b> using the wizard window as shown in the following screenshot −</p>
+<img src="./RESTful Web Services - First Application - Tutorialspoint_files/wizard.jpg" alt="Dynamic Web Project Wizard">
+<p>Once your project is created successfully, you will have the following content in your <b>Project Explorer</b> −</p>
+<img src="./RESTful Web Services - First Application - Tutorialspoint_files/usermanagement_dir.jpg" alt="Usermanagement Directories">
+<h3>Adding the Required Libraries</h3>
+<p>As a second step let us add Jersey Framework and its dependencies (libraries) in our project. Copy all jars from following directories of download jersey zip folder in WEB-INF/lib directory of the project.</p>
+<ul class="list">
+<li>\jaxrs-ri-2.17\jaxrs-ri\api</li>
+<li>\jaxrs-ri-2.17\jaxrs-ri\ext</li>
+<li>\jaxrs-ri-2.17\jaxrs-ri\lib</li>
+</ul>
+<p>Now, right click on your project name <b>UserManagement</b> and then follow the option available in context menu − <b>Build Path → Configure Build Path</b> to display the Java Build Path window.</p>
+<p>Now use <b>Add JARs</b> button available under <b>Libraries</b> tab to add the JARs present in WEBINF/lib directory.</p>
+<h2>Creating the Source Files</h2>
+<p>Now let us create the actual source files under the <b>UserManagement</b> project. First we need to create a package called <b>com.tutorialspoint</b>. To do this, right click on src in package explorer section and follow the option − <b>New → Package</b>.</p>
+<p>Next we will create <b>UserService.java, User.java,UserDao.java</b> files under the com.tutorialspoint package.</p>
+<p><b>User.java</b></p>
+<pre class="prettyprint notranslate prettyprinted" style=""><span class="kwd">package</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">tutorialspoint</span><span class="pun">;</span><span class="pln">  
+
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">io</span><span class="pun">.</span><span class="typ">Serializable</span><span class="pun">;</span><span class="pln">  
+</span><span class="kwd">import</span><span class="pln"> javax</span><span class="pun">.</span><span class="pln">xml</span><span class="pun">.</span><span class="pln">bind</span><span class="pun">.</span><span class="pln">annotation</span><span class="pun">.</span><span class="typ">XmlElement</span><span class="pun">;</span><span class="pln"> 
+</span><span class="kwd">import</span><span class="pln"> javax</span><span class="pun">.</span><span class="pln">xml</span><span class="pun">.</span><span class="pln">bind</span><span class="pun">.</span><span class="pln">annotation</span><span class="pun">.</span><span class="typ">XmlRootElement</span><span class="pun">;</span><span class="pln"> 
+</span><span class="lit">@XmlRootElement</span><span class="pun">(</span><span class="pln">name </span><span class="pun">=</span><span class="pln"> </span><span class="str">"user"</span><span class="pun">)</span><span class="pln"> 
+
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">User</span><span class="pln"> </span><span class="kwd">implements</span><span class="pln"> </span><span class="typ">Serializable</span><span class="pln"> </span><span class="pun">{</span><span class="pln">  
+   </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">final</span><span class="pln"> </span><span class="kwd">long</span><span class="pln"> serialVersionUID </span><span class="pun">=</span><span class="pln"> </span><span class="lit">1L</span><span class="pun">;</span><span class="pln"> 
+   </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> id</span><span class="pun">;</span><span class="pln"> 
+   </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> name</span><span class="pun">;</span><span class="pln"> 
+   </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> profession</span><span class="pun">;</span><span class="pln">  
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">User</span><span class="pun">(){}</span><span class="pln"> 
+    
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">User</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> id</span><span class="pun">,</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> name</span><span class="pun">,</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> profession</span><span class="pun">){</span><span class="pln">  
+      </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">id </span><span class="pun">=</span><span class="pln"> id</span><span class="pun">;</span><span class="pln"> 
+      </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">name </span><span class="pun">=</span><span class="pln"> name</span><span class="pun">;</span><span class="pln"> 
+      </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">profession </span><span class="pun">=</span><span class="pln"> profession</span><span class="pun">;</span><span class="pln"> 
+   </span><span class="pun">}</span><span class="pln">  
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> getId</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> 
+      </span><span class="kwd">return</span><span class="pln"> id</span><span class="pun">;</span><span class="pln"> 
+   </span><span class="pun">}</span><span class="pln">  
+   </span><span class="lit">@XmlElement</span><span class="pln"> 
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> setId</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> id</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> 
+      </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">id </span><span class="pun">=</span><span class="pln"> id</span><span class="pun">;</span><span class="pln"> 
+   </span><span class="pun">}</span><span class="pln"> 
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> getName</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> 
+      </span><span class="kwd">return</span><span class="pln"> name</span><span class="pun">;</span><span class="pln"> 
+   </span><span class="pun">}</span><span class="pln"> 
+   </span><span class="lit">@XmlElement</span><span class="pln">
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> setName</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> name</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> 
+      </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">name </span><span class="pun">=</span><span class="pln"> name</span><span class="pun">;</span><span class="pln"> 
+   </span><span class="pun">}</span><span class="pln"> 
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> getProfession</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> 
+      </span><span class="kwd">return</span><span class="pln"> profession</span><span class="pun">;</span><span class="pln"> 
+   </span><span class="pun">}</span><span class="pln"> 
+   </span><span class="lit">@XmlElement</span><span class="pln"> 
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> setProfession</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> profession</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> 
+      </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">profession </span><span class="pun">=</span><span class="pln"> profession</span><span class="pun">;</span><span class="pln"> 
+   </span><span class="pun">}</span><span class="pln">   
+</span><span class="pun">}</span><span class="pln"> </span></pre>
+<p><b>UserDao.java</b></p>
+<pre class="prettyprint notranslate prettyprinted" style=""><span class="kwd">package</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">tutorialspoint</span><span class="pun">;</span><span class="pln">  
+
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">io</span><span class="pun">.</span><span class="typ">File</span><span class="pun">;</span><span class="pln"> 
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">io</span><span class="pun">.</span><span class="typ">FileInputStream</span><span class="pun">;</span><span class="pln"> 
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">io</span><span class="pun">.</span><span class="typ">FileNotFoundException</span><span class="pun">;</span><span class="pln">  
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">io</span><span class="pun">.</span><span class="typ">FileOutputStream</span><span class="pun">;</span><span class="pln"> 
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">io</span><span class="pun">.</span><span class="typ">IOException</span><span class="pun">;</span><span class="pln"> 
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">io</span><span class="pun">.</span><span class="typ">ObjectInputStream</span><span class="pun">;</span><span class="pln"> 
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">io</span><span class="pun">.</span><span class="typ">ObjectOutputStream</span><span class="pun">;</span><span class="pln"> 
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">util</span><span class="pun">.</span><span class="typ">ArrayList</span><span class="pun">;</span><span class="pln"> 
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">util</span><span class="pun">.</span><span class="typ">List</span><span class="pun">;</span><span class="pln">  
+
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">UserDao</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> 
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">List</span><span class="pun">&lt;</span><span class="typ">User</span><span class="pun">&gt;</span><span class="pln"> getAllUsers</span><span class="pun">(){</span><span class="pln"> 
+      
+      </span><span class="typ">List</span><span class="pun">&lt;</span><span class="typ">User</span><span class="pun">&gt;</span><span class="pln"> userList </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">;</span><span class="pln"> 
+      </span><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> 
+         </span><span class="typ">File</span><span class="pln"> file </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">File</span><span class="pun">(</span><span class="str">"Users.dat"</span><span class="pun">);</span><span class="pln"> 
+         </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(!</span><span class="pln">file</span><span class="pun">.</span><span class="pln">exists</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> 
+            </span><span class="typ">User</span><span class="pln"> user </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">User</span><span class="pun">(</span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Mahesh"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Teacher"</span><span class="pun">);</span><span class="pln"> 
+            userList </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">ArrayList</span><span class="pun">&lt;</span><span class="typ">User</span><span class="pun">&gt;();</span><span class="pln"> 
+            userList</span><span class="pun">.</span><span class="kwd">add</span><span class="pun">(</span><span class="pln">user</span><span class="pun">);</span><span class="pln"> 
+            saveUserList</span><span class="pun">(</span><span class="pln">userList</span><span class="pun">);</span><span class="pln"> 
+         </span><span class="pun">}</span><span class="pln"> 
+         </span><span class="kwd">else</span><span class="pun">{</span><span class="pln"> 
+            </span><span class="typ">FileInputStream</span><span class="pln"> fis </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">FileInputStream</span><span class="pun">(</span><span class="pln">file</span><span class="pun">);</span><span class="pln"> 
+            </span><span class="typ">ObjectInputStream</span><span class="pln"> ois </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">ObjectInputStream</span><span class="pun">(</span><span class="pln">fis</span><span class="pun">);</span><span class="pln"> 
+            userList </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="typ">List</span><span class="pun">&lt;</span><span class="typ">User</span><span class="pun">&gt;)</span><span class="pln"> ois</span><span class="pun">.</span><span class="pln">readObject</span><span class="pun">();</span><span class="pln"> 
+            ois</span><span class="pun">.</span><span class="pln">close</span><span class="pun">();</span><span class="pln"> 
+         </span><span class="pun">}</span><span class="pln"> 
+      </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">IOException</span><span class="pln"> e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> 
+         e</span><span class="pun">.</span><span class="pln">printStackTrace</span><span class="pun">();</span><span class="pln"> 
+      </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">ClassNotFoundException</span><span class="pln"> e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> 
+         e</span><span class="pun">.</span><span class="pln">printStackTrace</span><span class="pun">();</span><span class="pln"> 
+      </span><span class="pun">}</span><span class="pln">   
+      </span><span class="kwd">return</span><span class="pln"> userList</span><span class="pun">;</span><span class="pln"> 
+   </span><span class="pun">}</span><span class="pln"> 
+   </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> saveUserList</span><span class="pun">(</span><span class="typ">List</span><span class="pun">&lt;</span><span class="typ">User</span><span class="pun">&gt;</span><span class="pln"> userList</span><span class="pun">){</span><span class="pln"> 
+      </span><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> 
+         </span><span class="typ">File</span><span class="pln"> file </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">File</span><span class="pun">(</span><span class="str">"Users.dat"</span><span class="pun">);</span><span class="pln"> 
+         </span><span class="typ">FileOutputStream</span><span class="pln"> fos</span><span class="pun">;</span><span class="pln">  
+         fos </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">FileOutputStream</span><span class="pun">(</span><span class="pln">file</span><span class="pun">);</span><span class="pln"> 
+         </span><span class="typ">ObjectOutputStream</span><span class="pln"> oos </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">ObjectOutputStream</span><span class="pun">(</span><span class="pln">fos</span><span class="pun">);</span><span class="pln"> 
+         oos</span><span class="pun">.</span><span class="pln">writeObject</span><span class="pun">(</span><span class="pln">userList</span><span class="pun">);</span><span class="pln"> 
+         oos</span><span class="pun">.</span><span class="pln">close</span><span class="pun">();</span><span class="pln"> 
+      </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">FileNotFoundException</span><span class="pln"> e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> 
+         e</span><span class="pun">.</span><span class="pln">printStackTrace</span><span class="pun">();</span><span class="pln"> 
+      </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">IOException</span><span class="pln"> e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> 
+         e</span><span class="pun">.</span><span class="pln">printStackTrace</span><span class="pun">();</span><span class="pln"> 
+      </span><span class="pun">}</span><span class="pln"> 
+   </span><span class="pun">}</span><span class="pln">    
+</span><span class="pun">}</span></pre>
+<p><b>UserService.java</b></p>
+<pre class="prettyprint notranslate prettyprinted" style=""><span class="kwd">package</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">tutorialspoint</span><span class="pun">;</span><span class="pln">  
+
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">util</span><span class="pun">.</span><span class="typ">List</span><span class="pun">;</span><span class="pln"> 
+</span><span class="kwd">import</span><span class="pln"> javax</span><span class="pun">.</span><span class="pln">ws</span><span class="pun">.</span><span class="pln">rs</span><span class="pun">.</span><span class="pln">GET</span><span class="pun">;</span><span class="pln"> 
+</span><span class="kwd">import</span><span class="pln"> javax</span><span class="pun">.</span><span class="pln">ws</span><span class="pun">.</span><span class="pln">rs</span><span class="pun">.</span><span class="typ">Path</span><span class="pun">;</span><span class="pln"> 
+</span><span class="kwd">import</span><span class="pln"> javax</span><span class="pun">.</span><span class="pln">ws</span><span class="pun">.</span><span class="pln">rs</span><span class="pun">.</span><span class="typ">Produces</span><span class="pun">;</span><span class="pln"> 
+</span><span class="kwd">import</span><span class="pln"> javax</span><span class="pun">.</span><span class="pln">ws</span><span class="pun">.</span><span class="pln">rs</span><span class="pun">.</span><span class="pln">core</span><span class="pun">.</span><span class="typ">MediaType</span><span class="pun">;</span><span class="pln">  
+</span><span class="lit">@Path</span><span class="pun">(</span><span class="str">"/UserService"</span><span class="pun">)</span><span class="pln"> 
+
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">UserService</span><span class="pln"> </span><span class="pun">{</span><span class="pln">  
+   </span><span class="typ">UserDao</span><span class="pln"> userDao </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">UserDao</span><span class="pun">();</span><span class="pln">  
+   </span><span class="lit">@GET</span><span class="pln"> 
+   </span><span class="lit">@Path</span><span class="pun">(</span><span class="str">"/users"</span><span class="pun">)</span><span class="pln"> 
+   </span><span class="lit">@Produces</span><span class="pun">(</span><span class="typ">MediaType</span><span class="pun">.</span><span class="pln">APPLICATION_XML</span><span class="pun">)</span><span class="pln"> 
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">List</span><span class="pun">&lt;</span><span class="typ">User</span><span class="pun">&gt;</span><span class="pln"> getUsers</span><span class="pun">(){</span><span class="pln"> 
+      </span><span class="kwd">return</span><span class="pln"> userDao</span><span class="pun">.</span><span class="pln">getAllUsers</span><span class="pun">();</span><span class="pln"> 
+   </span><span class="pun">}</span><span class="pln">  
+</span><span class="pun">}</span></pre>
+<p>There are two important points to be noted about the main program,</p>
+<h3>UserService.java</h3>
+<ul class="list">
+<li><p>The first step is to specify a path for the web service using @Path annotation to the UserService.</p></li>
+<li><p>The second step is to specify a path for the particular web service method using @Path annotation to method of UserService.</p></li>
+</ul>
+<h2>Creating the Web.xml configuration File</h2>
+<p>You need to create a Web xml Configuration file which is an XML file and is used to specify Jersey framework servlet for our application.</p>
+<p><b>web.xml</b></p>
+<pre class="prettyprint notranslate prettyprinted" style=""><span class="pun">&lt;?</span><span class="pln">xml version </span><span class="pun">=</span><span class="pln"> </span><span class="str">"1.0"</span><span class="pln"> encoding </span><span class="pun">=</span><span class="pln"> </span><span class="str">"UTF-8"</span><span class="pun">?&gt;</span><span class="pln"> 
+</span><span class="tag">&lt;web-app</span><span class="pln"> </span><span class="atn">xmlns:xsi</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="atv">"http://www.w3.org/2001/XMLSchema-instance"</span><span class="pln">  
+   </span><span class="atn">xmlns</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="atv">"http://java.sun.com/xml/ns/javaee"</span><span class="pln">  
+   </span><span class="atn">xsi:schemaLocation</span><span class="pun">=</span><span class="atv">"http://java.sun.com/xml/ns/javaee  
+   http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"</span><span class="pln">  
+   </span><span class="atn">id</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="atv">"WebApp_ID"</span><span class="pln"> </span><span class="atn">version</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="atv">"3.0"</span><span class="tag">&gt;</span><span class="pln"> 
+   </span><span class="tag">&lt;display-name&gt;</span><span class="pln">User Management</span><span class="tag">&lt;/display-name&gt;</span><span class="pln"> 
+   </span><span class="tag">&lt;servlet&gt;</span><span class="pln"> 
+      </span><span class="tag">&lt;servlet-name&gt;</span><span class="pln">Jersey RESTful Application</span><span class="tag">&lt;/servlet-name&gt;</span><span class="pln"> 
+      </span><span class="tag">&lt;servlet-class&gt;</span><span class="pln">org.glassfish.jersey.servlet.ServletContainer</span><span class="tag">&lt;/servlet-class&gt;</span><span class="pln"> 
+      </span><span class="tag">&lt;init-param&gt;</span><span class="pln"> 
+         </span><span class="tag">&lt;param-name&gt;</span><span class="pln">jersey.config.server.provider.packages</span><span class="tag">&lt;/param-name&gt;</span><span class="pln"> 
+         </span><span class="tag">&lt;param-value&gt;</span><span class="pln">com.tutorialspoint</span><span class="tag">&lt;/param-value&gt;</span><span class="pln"> 
+      </span><span class="tag">&lt;/init-param&gt;</span><span class="pln"> 
+   </span><span class="tag">&lt;/servlet&gt;</span><span class="pln"> 
+   </span><span class="tag">&lt;servlet-mapping&gt;</span><span class="pln"> 
+      </span><span class="tag">&lt;servlet-name&gt;</span><span class="pln">Jersey RESTful Application</span><span class="tag">&lt;/servlet-name&gt;</span><span class="pln"> 
+      </span><span class="tag">&lt;url-pattern&gt;</span><span class="pln">/rest/*</span><span class="tag">&lt;/url-pattern&gt;</span><span class="pln"> 
+   </span><span class="tag">&lt;/servlet-mapping&gt;</span><span class="pln">   
+</span><span class="tag">&lt;/web-app&gt;</span></pre>
+<h3>Deploying the Program</h3>
+<p>Once you are done with creating source and web configuration files, you are ready for this step which is compiling and running your program. To do this, using Eclipse, export your application as a war file and deploy the same in tomcat.</p>
+<p>To create a WAR file using eclipse, follow the option <b>File → export → Web → War File</b> and finally select project UserManagement and destination folder. To deploy a war file in Tomcat, place the UserManagement.war in the <b>Tomcat Installation Directory → webapps directory</b> and start the Tomcat.</p>
+<h3>Running the Program</h3>
+<p>We are using <a target="_blank" rel="nofollow" href="https://www.getpostman.com/">Postman</a>, a Chrome extension, to test our webservices.</p>
+<p>Make a request to UserManagement to get list of all the users. Put http://localhost:8080/UserManagement/rest/UserService/users in POSTMAN with GET request and see the following result.</p>
+<img src="./RESTful Web Services - First Application - Tutorialspoint_files/restful_postman.jpg" alt="RESTful API, All users">
+<p>Congratulations, you have created your first RESTful Application successfully.</p>
+<div class="mui-container-fluid button-borders show" id="bottom_navigation">
+<div class="pre-btn">
+<a href="https://www.tutorialspoint.com/restful/restful_environment.htm"><i class="fal fa-chevron-circle-left"></i> Previous Page</a>
+<a class="hide-on-mobile" href="javascript:printPage();"><i class="fa fa-print"></i> Print Page</a>
+</div>
+<div class="nxt-btn">
+<a href="https://www.tutorialspoint.com/restful/restful_resources.htm">Next Page <i class="fal fa-chevron-circle-right"></i>&nbsp;</a>
+</div>
+</div>
+<div class="google-bottom-ads">
+<div>Advertisements</div>
+<div id="adp_bottom_ads"></div>
+<script>
+var adPos = document.getElementById('adp_bottom_ads');
+var mobile_ad_id = "a8a632a6-046e-4f5c-b25f-8bc82ac89fb2";
+var desktop_ad_id = "e7ddd6f7-1ab0-494a-bade-887daa4373a0";
+var adpushup = adpushup || {};
+adpushup.que = adpushup.que || [];
+adpushup.que.push(function() {
+var ad_id = window.innerWidth <= 768 ? mobile_ad_id : desktop_ad_id;
+adPos.innerHTML = '<div id="' + ad_id + '" class="_ap_apex_ad"></div>';
+adpushup.triggerAd(ad_id);
+});
+</script>
+<div class="space-bottom"></div>
+<div id="_adr_abp_iframe_1" data-section="fee7792ac38de35ba76d18ce65a196e9" class="_adr_abp_iframe" style="display: block; clear: both; width: 300px; height: 264px; margin: 0px auto;"><div style="font-family: Arial, Helvetica, sans-serif; font-size: 9px; text-transform: uppercase; color: rgb(128, 129, 143); background-color: rgba(255, 255, 255, 0.3); line-height: 10px; padding: 2px 4px; width: 98%; height: 8px;"><span style="float: left; font-size: 9px; text-decoration: none; color: rgb(160, 160, 160);">Advertisement</span></div><div id="ad-container-fee7792ac38de35ba76d18ce65a196e9" style="height: 250px; width: 100%; margin: 0px auto; text-align: center; display: none;"></div><iframe id="iframe-ad-container-fee7792ac38de35ba76d18ce65a196e9" src="./RESTful Web Services - First Application - Tutorialspoint_files/recover(1).html" scrolling="no" style="width: 100%; height: 250px; margin: 0px; padding: 0px; border: none; display: block;"></iframe></div></div>
+</div>
+<!-- Tutorial Content Ends Here -->
+<!-- Right Column Starts Here -->
+<div class="mui-col-md-2 google-right-ads">
+<div class="space-top"><div id="_adr_abp_iframe_2" data-section="d44f300a0c3b51404b3aabb2fba19f04" class="_adr_abp_iframe" style="display: block; clear: both; width: 300px; height: 264px; margin: 0px auto 10px;"><div style="font-family: Arial, Helvetica, sans-serif; font-size: 9px; text-transform: uppercase; color: rgb(128, 129, 143); background-color: rgba(255, 255, 255, 0.3); line-height: 10px; padding: 2px 4px; width: 98%; height: 8px;"><span style="float: left; font-size: 9px; text-decoration: none; color: rgb(160, 160, 160);">Advertisement</span></div><div id="ad-container-d44f300a0c3b51404b3aabb2fba19f04" style="height: 250px; width: 100%; margin: 0px auto; text-align: center; display: none;"></div><iframe id="iframe-ad-container-d44f300a0c3b51404b3aabb2fba19f04" src="./RESTful Web Services - First Application - Tutorialspoint_files/recover(2).html" scrolling="no" style="width: 100%; height: 250px; margin: 0px; padding: 0px; border: none; display: block;"></iframe></div></div><div id="_adr_abp_iframe_3" data-section="ea74549340d550a66ea0e5571fba1027" class="_adr_abp_iframe" style="display: block; clear: both; width: 300px; height: 264px; margin: 0px auto;"><div style="font-family: Arial, Helvetica, sans-serif; font-size: 9px; text-transform: uppercase; color: rgb(128, 129, 143); background-color: rgba(255, 255, 255, 0.3); line-height: 10px; padding: 2px 4px; width: 98%; height: 8px;"><span style="float: left; font-size: 9px; text-decoration: none; color: rgb(160, 160, 160);">Advertisement</span></div><div id="ad-container-ea74549340d550a66ea0e5571fba1027" style="height: 250px; width: 100%; margin: 0px auto; text-align: center; display: none;"></div><iframe id="iframe-ad-container-ea74549340d550a66ea0e5571fba1027" src="./RESTful Web Services - First Application - Tutorialspoint_files/recover(3).html" scrolling="no" style="width: 100%; height: 250px; margin: 0px; padding: 0px; border: none; display: block;"></iframe></div>
+<div class="google-right-ad" id="ad300" style="margin: 0px auto !important;margin-top:5px;">
+<div id="f0f6cff6-393d-4170-b63a-d9ff06ca9f25" class="_ap_apex_ad">
+<script>
+var adpushup = adpushup || {};
+adpushup.que = adpushup.que || [];
+adpushup.que.push(function() {
+adpushup.triggerAd("f0f6cff6-393d-4170-b63a-d9ff06ca9f25");
+});
+</script>
+</div>
+</div>
+<div class="google-right-ad" style="margin-top:16px;">
+<div id="5c0affd5-724a-475c-bfcd-cecbc7660c36" class="_ap_apex_ad">
+<script>
+var adpushup = adpushup || {};
+adpushup.que = adpushup.que || [];
+adpushup.que.push(function() {
+adpushup.triggerAd("5c0affd5-724a-475c-bfcd-cecbc7660c36");
+});
+</script>
+</div>
+</div>
+<div class="space-bottom"></div>
+
+<div class="google-right-ad" style="margin-top:16px;margin-bottom:15px;">
+<div id="8f8814c2-d64c-4d26-9cb9-543653c0b48f" class="_ap_apex_ad">
+<script>
+var adpushup = adpushup || {};
+adpushup.que = adpushup.que || [];
+adpushup.que.push(function() {
+adpushup.triggerAd("8f8814c2-d64c-4d26-9cb9-543653c0b48f");
+});
+</script>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column Ends Here -->
+</div>
+
+<div class="clear"></div>
+<footer id="footer">
+<div class="mui--text-center">
+<div class="mui--text-caption mui--text-light">
+<a href="https://www.tutorialspoint.com/index.htm" class="logo"><img class="img-responsive" src="./RESTful Web Services - First Application - Tutorialspoint_files/logo-black.png" alt="Tutorials Point" title="Tutorials Point"></a>
+</div>
+<ul class="mui-list--inline mui--text-body2 mui--text-light">
+<li><a href="https://www.tutorialspoint.com/about/index.htm"><i class="fal fa-globe"></i> About us</a></li>
+<li><a href="https://www.tutorialspoint.com/about/about_terms_of_use.htm"><i class="fal fa-asterisk"></i> Terms of use</a></li>
+<li><a href="https://www.tutorialspoint.com/about/about_privacy.htm"> <i class="fal fa-shield-check"></i> Privacy Policy</a></li>
+<li><a href="https://www.tutorialspoint.com/about/faq.htm"><i class="fal fa-question-circle"></i> FAQ's</a></li>
+<li><a href="https://www.tutorialspoint.com/about/about_helping.htm"><i class="fal fa-hands-helping"></i> Helping</a></li>
+<li><a href="https://www.tutorialspoint.com/about/contact_us.htm"><i class="fal fa-map-marker-alt"></i> Contact</a></li>
+</ul>
+<div class="mui--text-caption mui--text-light bottom-copyright-text">© Copyright 2020. All Rights Reserved.</div>
+</div>
+<script async="" src="./RESTful Web Services - First Application - Tutorialspoint_files/js"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-232293-6');
+</script>
+</footer>
+
+
+
+</body></html>
