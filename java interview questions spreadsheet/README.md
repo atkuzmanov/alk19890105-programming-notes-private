@@ -185,6 +185,7 @@ For learning and study
 - [WEB](#web)
 - [REST vs SOAP](#rest-vs-soap)
 - [What is Rest](#what-is-rest)
+- [HATEOAS](#hateoas)
 - [Hypertext and Hypermedia](#hypertext-and-hypermedia)
     - [Hypertext](#hypertext)
     - [Hypermedia](#hypermedia)
@@ -195,6 +196,8 @@ For learning and study
     - [PUT vs POST](#put-vs-post)
         - [Idepotent Idepotency](#idepotent-idepotency)
 - [HTTP request methods](#http-request-methods)
+- [HTTP headers](#http-headers)
+- [CRUD C.R.U.D.](#crud-crud)
 - [Random](#random)
 - [SQL Normal Forms](#sql-normal-forms)
 - [HTTP](#http)
@@ -210,6 +213,7 @@ For learning and study
 - [SSL](#ssl)
 - [Cookie - Web Cookies](#cookie---web-cookies)
 - [What is the Java Programming Language](#what-is-the-java-programming-language)
+- [API Design Best Practices](#api-design-best-practices)
 - [Convention over Configuration](#convention-over-configuration)
 - [Cartesian product](#cartesian-product)
 
@@ -8304,10 +8308,8 @@ https://dzone.com/articles/creating-a-rest-web-service-with-java-and-spring-p-2
 `references:`
 https://www.codecademy.com/articles/what-is-rest
 
-- [What-is-CRUD-Codecademy](refs/What-is-CRUD-Codecademy)
-
-`references:`
-https://www.codecademy.com/articles/what-is-crud
+- Please see:
+    - [CRUD C.R.U.D.](#CRUD-C.R.U.D.)
 
 - [What-is-REST-Learn-to-create-timeless-REST-APIs-restfulapinet](refs/What-is-REST-Learn-to-create-timeless-REST-APIs-restfulapinet)
 
@@ -8389,6 +8391,14 @@ https://www.sitepoint.com/developers-rest-api/
 
 - Please see:
     - [REST vs SOAP](#rest-vs-soap)
+----
+
+# HATEOAS
+
+- [HATEOAS-Wikipedia](refs/HATEOAS-Wikipedia)
+
+`references:`
+https://en.wikipedia.org/wiki/HATEOAS
 
 ----
 
@@ -8578,9 +8588,37 @@ https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH
 
 ----
 
+# HTTP headers
 
+- [HTTP-headers-HTTP-MDN](refs/HTTP-headers-HTTP-MDN)
+
+`references:`
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers
+
+- [ETag-HTTP-MDN](refs/ETag-HTTP-MDN)
+
+`references:`
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag
+
+- [If-Match-HTTP-MDN](refs/If-Match-HTTP-MDN)
+
+`references:`
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Match
 
 ----
+
+# CRUD C.R.U.D.
+
+- [What-is-CRUD-Codecademy](refs/What-is-CRUD-Codecademy)
+
+`references:`
+https://www.codecademy.com/articles/what-is-crud
+
+- [Create-read-update-and-delete-Wikipedia](refs/Create-read-update-and-delete-Wikipedia)
+
+`references:`
+https://en.wikipedia.org/wiki/Create,_read,_update_and_delete
+
 ----
 ----
 ----
@@ -8761,6 +8799,38 @@ https://www.webopedia.com/TERM/C/cookie.html
 
 `references:`
 https://www.webopedia.com/TERM/J/Java.html
+
+----
+
+# API Design Best Practices
+
+- New Series: API Design Best Practices
+
+`references:`
+https://blogs.mulesoft.com/dev/api-dev/api-best-practices-series-intro/
+
+- [API-Best-Practices-Hypermedia-Part-4-1-MuleSoftBlog](refs/API-Best-Practices-Hypermedia-Part-4-1-MuleSoftBlog)
+
+`references:`
+https://blogs.mulesoft.com/dev/api-dev/api-best-practices-hypermedia-part-1/
+
+- [Best-Practices-for-Designing-a-Pragmatic-RESTful-API-VinaySahni](refs/Best-Practices-for-Designing-a-Pragmatic-RESTful-API-VinaySahni)
+
+`references:`
+https://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api
+
+- [9-Best-Practices-to-implement-in-REST-API-development-merixstudio](refs/9-Best-Practices-to-implement-in-REST-API-development-merixstudio)
+
+`references:`
+https://www.merixstudio.com/blog/best-practices-rest-api-development/
+
+- [10-Best-Practices-for-Better-RESTful-API-M-Way-Solutions-Medium](refs/10-Best-Practices-for-Better-RESTful-API-M-Way-Solutions-Medium)
+
+`references:`
+https://medium.com/@mwaysolutions/10-best-practices-for-better-restful-api-cbe81b06f291
+
+- Please see:
+    - [HATEOAS](#hateoas)
 
 ----
 
