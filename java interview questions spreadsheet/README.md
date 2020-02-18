@@ -190,6 +190,7 @@ For learning and study
     - [Hypermedia](#hypermedia)
 - [HTML](#html)
 - [GET vs POST](#get-vs-post)
+- [GET idempotent](#get-idempotent)
 - [Random](#random)
 - [SQL Normal Forms](#sql-normal-forms)
 - [Convention over Configuration](#convention-over-configuration)
@@ -8427,10 +8428,37 @@ https://en.wikipedia.org/wiki/HTML
 |-------|-----|-------|
 |   x   |  x  |   x   |
 
+- [HTTP-Methods-GET-vs-POST-w3schools](refs/HTTP-Methods-GET-vs-POST-w3schools)
 
+`references:`
+https://www.w3schools.com/tags/ref_httpmethods.asp
 
+- [GET-vs-POST-Difference-and-Comparison-Diffen](refs/GET-vs-POST-Difference-and-Comparison-Diffen)
+
+`references:`
+https://www.diffen.com/difference/GET-vs-POST-HTTP-Requests
+
+- [http-What-is-the-difference-between-POST-and-GET-StackOverflow](refs/http-What-is-the-difference-between-POST-and-GET-StackOverflow)
+
+`references:`
+https://stackoverflow.com/questions/3477333/what-is-the-difference-between-post-and-get
+
+- [The-Guide-to-GET-vs-POST-TreehouseBlog](refs/The-Guide-to-GET-vs-POST-TreehouseBlog)
+
+`references:`
+https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post
 
 ----
+
+# GET idempotent
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
+
+
+
 ----
 ----
 ----
