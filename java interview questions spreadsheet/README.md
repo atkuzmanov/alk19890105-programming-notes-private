@@ -73,7 +73,7 @@ For learning and study
 - [Nested vs Anonymous Inner classes?](#nested-vs-anonymous-inner-classes)
 - [Parameters passing - parameters to methods passing by val; For objects reference is passed by val?](#parameters-passing---parameters-to-methods-passing-by-val-for-objects-reference-is-passed-by-val)
 - [final parameters as objects? What can change?](#final-parameters-as-objects-what-can-change)
-- [The “final” Keyword in Java](#the-final-keyword-in-java)
+- [The "final" Keyword in Java](#the-final-keyword-in-java)
 - [Too Many Parameters in Java Methods, Part 2: Parameters Object](#too-many-parameters-in-java-methods-part-2-parameters-object)
 - [Varargs vs Arrays when overloading](#varargs-vs-arrays-when-overloading)
 - [Arrays as objects](#arrays-as-objects)
@@ -185,6 +185,11 @@ For learning and study
 - [WEB](#web)
 - [REST vs SOAP](#rest-vs-soap)
 - [What is Rest](#what-is-rest)
+- [Hypertext and Hypermedia](#hypertext-and-hypermedia)
+    - [Hypertext](#hypertext)
+    - [Hypermedia](#hypermedia)
+- [HTML](#html)
+- [GET vs POST](#get-vs-post)
 - [Random](#random)
 - [SQL Normal Forms](#sql-normal-forms)
 - [Convention over Configuration](#convention-over-configuration)
@@ -1157,7 +1162,7 @@ Important terminology:
 
 Super Class: The class whose features are inherited is known as super class(or a base class or a parent class).
 Sub Class: The class that inherits the other class is known as sub class(or a derived class, extended class, or child class). The subclass can add its own fields and methods in addition to the superclass fields and methods.
-Reusability: Inheritance supports the concept of “reusability”, i.e. when we want to create a new class and there is already a class that includes some of the code that we want, we can derive our new class from the existing class. By doing this, we are reusing the fields and methods of the existing class.
+Reusability: Inheritance supports the concept of "reusability", i.e. when we want to create a new class and there is already a class that includes some of the code that we want, we can derive our new class from the existing class. By doing this, we are reusing the fields and methods of the existing class.
 
 How to use inheritance in Java
 
@@ -1549,7 +1554,7 @@ The word polymorphism means having many forms. In simple words, we can define po
 
 Real life example of polymorphism: A person at the same time can have different characteristic. Like a man at the same time is a father, a husband, an employee. So the same person posses different behaviour in different situations. This is called polymorphism.
 
-Polymorphism is considered as one of the important features of Object Oriented Programming. Polymorphism allows us to perform a single action in different ways. In other words, polymorphism allows you to define one interface and have multiple implementations. The word “poly” means many and “morphs” means forms, So it means many forms.
+Polymorphism is considered as one of the important features of Object Oriented Programming. Polymorphism allows us to perform a single action in different ways. In other words, polymorphism allows you to define one interface and have multiple implementations. The word "poly" means many and "morphs" means forms, So it means many forms.
 
 **In Java polymorphism is mainly divided into two types:**
 
@@ -1638,7 +1643,7 @@ Output:
 ```
 
 - Operator Overloading: Java also provide option to overload operators. For example, we can make the operator (‘+’) for string class to concatenate two strings. We know that this is the addition operator whose task is to add two operands. So a single operator ‘+’ when placed between integer operands, adds them and when placed between string operands, concatenates them.
-In java, Only “+” operator can be overloaded:
+In java, Only "+" operator can be overloaded:
 
     - To add integers
     - To concatenate strings
@@ -2141,7 +2146,7 @@ GrandChild's show()
 
 **Why Method Overriding?**
 
-As stated earlier, overridden methods allow Java to support run-time polymorphism. Polymorphism is essential to object-oriented programming for one reason: it allows a general class to specify methods that will be common to all of its derivatives while allowing subclasses to define the specific implementation of some or all of those methods. Overridden methods are another way that Java implements the “one interface, multiple methods” aspect of polymorphism.
+As stated earlier, overridden methods allow Java to support run-time polymorphism. Polymorphism is essential to object-oriented programming for one reason: it allows a general class to specify methods that will be common to all of its derivatives while allowing subclasses to define the specific implementation of some or all of those methods. Overridden methods are another way that Java implements the "one interface, multiple methods" aspect of polymorphism.
 
 Dynamic Method Dispatch is one of the most powerful mechanisms that object-oriented design brings to bear on code reuse and robustness. The ability to exist code libraries to call methods on instances of new classes without recompiling while maintaining a clean abstract interface is a profoundly powerful tool.
 
@@ -2711,7 +2716,7 @@ class InformationHiding implements ImplemenatationHiding
 
 Inheritance is another important concept in object oriented programming. Inheritance in Java is a mechanism by which one object acquires the properties and behaviors of the parent object. It’s essentially creating a parent-child relationship between classes. In Java, you will use inheritance mainly for code re-usability and maintainability.
 
-Keyword “extends” is used to inherit a class in java. The “extends” keyword indicates that you are making a new class that derives from an existing class. In the terminology of Java, a class that is inherited is called a super class. The new class is called a subclass.
+Keyword "extends" is used to inherit a class in java. The "extends" keyword indicates that you are making a new class that derives from an existing class. In the terminology of Java, a class that is inherited is called a super class. The new class is called a subclass.
 
 A subclass inherits all the non-private members (fields, methods, and nested classes) from its superclass. Constructors are not members, so they are not inherited by subclasses, but the constructor of the superclass can be invoked from the subclass.
 
@@ -4502,7 +4507,7 @@ https://stackabuse.com/javas-object-methods-equals-object/
 `references:`
 https://www.geeksforgeeks.org/difference-equals-method-java/
 
-In general both equals() and “==” operator in Java are used to compare objects to check equality but here are some of the differences between the two:
+In general both equals() and "==" operator in Java are used to compare objects to check equality but here are some of the differences between the two:
 
 - Main difference between .equals() method and == operator is that one is method and other is operator.
 
@@ -5466,7 +5471,7 @@ https://stackoverflow.com/questions/500508/why-should-i-use-the-keyword-final-on
 
 ----
 
-# The “final” Keyword in Java
+# The "final" Keyword in Java
 
 `references:`
 https://www.baeldung.com/java-final
@@ -8233,7 +8238,7 @@ https://mkyong.com/webservices/jax-ws/jax-ws-hello-world-example-document-style/
 `references:`
 https://www.baeldung.com/spring-boot-soap-web-service
 
-- This guide walks you through the process of creating a “Hello, World” RESTful web service with Spring.
+- This guide walks you through the process of creating a "Hello, World" RESTful web service with Spring.
 
 `references:`
 https://spring.io/guides/gs/rest-service/
@@ -8276,14 +8281,155 @@ https://dzone.com/articles/creating-a-rest-web-service-with-java-and-spring-p-2
 |-------|-----|-------|
 |   x   |  x  |   x   |
 
+- [What-is-REST-Codecademy](refs/What-is-REST-Codecademy)
+
+`references:`
+https://www.codecademy.com/articles/what-is-rest
+
+- [What-is-CRUD-Codecademy](refs/What-is-CRUD-Codecademy)
+
+`references:`
+https://www.codecademy.com/articles/what-is-crud
+
+- [What-is-REST-Learn-to-create-timeless-REST-APIs-restfulapinet](refs/What-is-REST-Learn-to-create-timeless-REST-APIs-restfulapinet)
+
+
+What is REST
+REST is acronym for REpresentational State Transfer. It is architectural style for distributed hypermedia systems and was first presented by Roy Fielding in 2000 in his famous dissertation.
+
+Like any other architectural style, REST also does have it’s own 6 guiding constraints which must be satisfied if an interface needs to be referred as RESTful. These principles are listed below.
+
+Guiding Principles of REST
+Client–server – By separating the user interface concerns from the data storage concerns, we improve the portability of the user interface across multiple platforms and improve scalability by simplifying the server components.
+Stateless – Each request from client to server must contain all of the information necessary to understand the request, and cannot take advantage of any stored context on the server. Session state is therefore kept entirely on the client.
+Cacheable – Cache constraints require that the data within a response to a request be implicitly or explicitly labeled as cacheable or non-cacheable. If a response is cacheable, then a client cache is given the right to reuse that response data for later, equivalent requests.
+Uniform interface – By applying the software engineering principle of generality to the component interface, the overall system architecture is simplified and the visibility of interactions is improved. In order to obtain a uniform interface, multiple architectural constraints are needed to guide the behavior of components. REST is defined by four interface constraints: identification of resources; manipulation of resources through representations; self-descriptive messages; and, hypermedia as the engine of application state.
+Layered system – The layered system style allows an architecture to be composed of hierarchical layers by constraining component behavior such that each component cannot "see" beyond the immediate layer with which they are interacting.
+Code on demand (optional) – REST allows client functionality to be extended by downloading and executing code in the form of applets or scripts. This simplifies clients by reducing the number of features required to be pre-implemented.
+Resource
+The key abstraction of information in REST is a resource. Any information that can be named can be a resource: a document or image, a temporal service, a collection of other resources, a non-virtual object (e.g. a person), and so on. REST uses a resource identifier to identify the particular resource involved in an interaction between components.
+
+The state of the resource at any particular timestamp is known as resource representation. A representation consists of data, metadata describing the data and hypermedia links which can help the clients in transition to the next desired state.
+
+The data format of a representation is known as a media type. The media type identifies a specification that defines how a representation is to be processed. A truly RESTful API looks like hypertext. Every addressable unit of information carries an address, either explicitly (e.g., link and id attributes) or implicitly (e.g., derived from the media type definition and representation structure).
+
+According to Roy Fielding:
+
+Hypertext (or hypermedia) means the simultaneous presentation of information and controls such that the information becomes the affordance through which the user (or automaton) obtains choices and selects actions. Remember that hypertext does not need to be HTML (or XML or JSON) on a browser. Machines can follow links when they understand the data format and relationship types.
+
+Further, resource representations shall be self-descriptive: the client does not need to know if a resource is employee or device. It should act on the basis of media-type associated with the resource. So in practice, you will end up creating lots of custom media-types – normally one media-type associated with one resource.
+
+Every media type defines a default processing model. For example, HTML defines a rendering process for hypertext and the browser behavior around each element. It has no relation to the resource methods GET/PUT/POST/DELETE/… other than the fact that some media type elements will define a process model that goes like "anchor elements with an href attribute create a hypertext link that, when selected, invokes a retrieval request (GET) on the URI corresponding to the CDATA-encoded href attribute."
+
+Resource Methods
+Another important thing associated with REST is resource methods to be used to perform the desired transition. A large number of people wrongly relate resource methods to HTTP GET/PUT/POST/DELETE methods.
+
+Roy Fielding has never mentioned any recommendation around which method to be used in which condition. All he emphasizes is that it should be uniform interface. If you decide HTTP POST will be used for updating a resource – rather than most people recommend HTTP PUT – it’s alright and application interface will be RESTful.
+
+Ideally, everything that is needed to change the resource state shall be part of API response for that resource – including methods and in what state they will leave the representation.
+
+A REST API should be entered with no prior knowledge beyond the initial URI (bookmark) and set of standardized media types that are appropriate for the intended audience (i.e., expected to be understood by any client that might use the API). From that point on, all application state transitions must be driven by client selection of server-provided choices that are present in the received representations or implied by the user’s manipulation of those representations. The transitions may be determined (or limited by) the client’s knowledge of media types and resource communication mechanisms, both of which may be improved on-the-fly (e.g., code-on-demand).
+[Failure here implies that out-of-band information is driving interaction instead of hypertext.]
+
+Another thing which will help you while building RESTful APIs is that query based API results should be represented by a list of links with summary information, not by arrays of original resource representations because the query is not a substitute for identification of resources.
+
+REST and HTTP are not same !!
+A lot of people prefer to compare HTTP with REST. REST and HTTP are not same.
+
+REST != HTTP
+
+Though, because REST also intends to make the web (internet) more streamline and standard, he advocates using REST principles more strictly. And that’s from where people try to start comparing REST with web (HTTP). Roy fielding, in his dissertation, nowhere mentioned any implementation directive – including any protocol preference and HTTP. Till the time, you are honoring the 6 guiding principles of REST, you can call your interface RESTful.
+
+In simplest words, in the REST architectural style, data and functionality are considered resources and are accessed using Uniform Resource Identifiers (URIs). The resources are acted upon by using a set of simple, well-defined operations. The clients and servers exchange representations of resources by using a standardized interface and protocol – typically HTTP.
+
+Resources are decoupled from their representation so that their content can be accessed in a variety of formats, such as HTML, XML, plain text, PDF, JPEG, JSON, and others. Metadata about the resource is available and used, for example, to control caching, detect transmission errors, negotiate the appropriate representation format, and perform authentication or access control. And most importantly, every interaction with a resource is stateless.
+
+All these principles help RESTful applications to be simple, lightweight, and fast.
+
+References:
+
+http://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven
+http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm
+
+`references:`
+https://restfulapi.net/
+
+- [What-is-REST-A-Simple-Explanation-for-Beginners-Part-1-medium](refs/What-is-REST-A-Simple-Explanation-for-Beginners-Part-1-medium)
+
+`references:`
+https://medium.com/extend/what-is-rest-a-simple-explanation-for-beginners-part-1-introduction-b4a072f8740f
+
+- [What-is-REST-A-Simple-Explanation-for-Beginners-Part-2-RESTConstraints-medium](refs/What-is-REST-A-Simple-Explanation-for-Beginners-Part-2-RESTConstraints-medium)
+
+`references:`
+https://medium.com/extend/what-is-rest-a-simple-explanation-for-beginners-part-2-rest-constraints-129a4b69a582
+
+- [Do-You-Know-What-a-REST-API-Is-SitePoint](refs/Do-You-Know-What-a-REST-API-Is-SitePoint)
+
+`references:`
+https://www.sitepoint.com/developers-rest-api/
+
 - Please see:
     - [REST vs SOAP](#rest-vs-soap)
 
-    
+----
+
+# Hypertext and Hypermedia
+
+## Hypertext
+
+- [Hypertext-Wikipedia](refs/Hypertext-Wikipedia)
+
+`references:`
+https://en.wikipedia.org/wiki/Hypertext
+
+- [What-is-Hypertext-w3org](refs/What-is-Hypertext-w3org)
+
+`references:`
+https://www.w3.org/WhatIs.html
+
+- [What-is-Hypertext-Definition-from-Techopedia](refs/What-is-Hypertext-Definition-from-Techopedia)
+
+`references:`
+https://www.techopedia.com/definition/5177/hypertext
+
+## Hypermedia
+
+- [Hypermedia-Wikipedia](refs/Hypermedia-Wikipedia)
+
+`references:`
+https://en.wikipedia.org/wiki/Hypermedia
+
+- [What-is-Hypermedia-smartbear](refs/What-is-Hypermedia-smartbear)
+
+`references:`
+https://smartbear.com/learn/api-design/what-is-hypermedia/
+
+- [What-is-Hypermedia-Definition-from-Techopedia](refs/What-is-Hypermedia-Definition-from-Techopedia)
+
+`references:`
+https://www.techopedia.com/definition/3105/hypermedia
 
 ----
+
+# HTML
+
+- [HTML-Wikipedia](refs/HTML-Wikipedia)
+
+`references:`
+https://en.wikipedia.org/wiki/HTML
+
 ----
-----
+
+# GET vs POST
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
+
+
+
+
 ----
 ----
 ----
