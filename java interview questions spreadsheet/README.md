@@ -8526,49 +8526,60 @@ https://stormpath.com/blog/put-or-post
 
 # HTTP request methods
 
-- 
+- [HTTP-request-methods-HTTP-MDN](refs/HTTP-request-methods-HTTP-MDN)
 
 `references:`
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods
 
-- 
-
-`references:`
-
-- 
+- [GET-HTTP-MDN](refs/GET-HTTP-MDN)
 
 `references:`
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET
 
-- 
-
-`references:`
-
-- 
+- [HEAD-HTTP-MDN](refs/HEAD-HTTP-MDN)
 
 `references:`
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/HEAD
 
-- 
-
-`references:`
-
-- 
+- [POST-HTTP-MDN](refs/POST-HTTP-MDN)
 
 `references:`
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST
 
-- 
-
-`references:`
-
-- 
+- [PUT-HTTP-MDN](refs/PUT-HTTP-MDN)
 
 `references:`
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT
 
-- 
+- [DELETE-HTTP-MDN](refs/DELETE-HTTP-MDN)
 
 `references:`
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/DELETE
 
+- [CONNECT-HTTP-MDN](refs/CONNECT-HTTP-MDN)
 
+`references:`
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/CONNECT
+
+- [OPTIONS-HTTP-MDN](refs/OPTIONS-HTTP-MDN)
+
+`references:`
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/OPTIONS
+
+- [TRACE-HTTP-MDN](refs/TRACE-HTTP-MDN)
+
+`references:`
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/TRACE
+
+- [PATCH-HTTP-MDN](refs/PATCH-HTTP-MDN)
+
+`references:`
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH
 
 ----
+
+
+
 ----
 ----
 ----
