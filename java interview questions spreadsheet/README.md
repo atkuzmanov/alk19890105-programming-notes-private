@@ -193,6 +193,19 @@ For learning and study
 - [GET idempotent](#get-idempotent)
 - [Random](#random)
 - [SQL Normal Forms](#sql-normal-forms)
+- [HTTP](#http)
+- [XMLHttpRequest](#xmlhttprequest)
+- [AJAX](#ajax)
+- [The WebSocket API (WebSockets)](#the-websocket-api-websockets)
+- [Fetch API](#fetch-api)
+- [HTML](#html)
+- [CSS](#css)
+- [Responsive](#responsive)
+- [JavaScript](#javascript)
+- [TLS](#tls)
+- [SSL](#ssl)
+- [Cookie - Web Cookies](#cookie---web-cookies)
+- [What is the Java Programming Language](#what-is-the-java-programming-language)
 - [Convention over Configuration](#convention-over-configuration)
 - [Cartesian product](#cartesian-product)
 
@@ -8509,6 +8522,140 @@ Random
 ----
 
 # SQL Normal Forms
+
+`#TODO`
+
+----
+
+# HTTP
+
+- [An-overview-of-HTTP-HTTP-MDN](refs/An-overview-of-HTTP-HTTP-MDN)
+
+`references:`
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview
+
+- [What-is-HTTP-speedcheck](refs/What-is-HTTP-speedcheck)
+
+`references:`
+https://www.speedcheck.org/wiki/http/
+
+- [What-is-HTTP-w3schools](refs/What-is-HTTP-w3schools)
+
+`references:`
+https://www.w3schools.com/whatis/whatis_http.asp
+
+----
+
+# XMLHttpRequest
+
+- [XMLHttpRequest-Web-APIs-MDN](refs/XMLHttpRequest-Web-APIs-MDN)
+
+`references:`
+https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
+
+----
+
+# AJAX
+
+- [AJAX-MDN-Web-Docs-Glossary-Definitions-of-Web-related-terms-MDN](refs/AJAX-MDN-Web-Docs-Glossary-Definitions-of-Web-related-terms-MDN)
+
+`references:`
+https://developer.mozilla.org/en-US/docs/Glossary/AJAX
+
+- [What-is-AJAX-w3schools](refs/What-is-AJAX-w3schools)
+
+`references:`
+https://www.w3schools.com/whatis/whatis_ajax.asp
+
+----
+
+# The WebSocket API (WebSockets)
+
+- [The-WebSocket-API-WebSockets-Web-APIs-MDN](refs/The-WebSocket-API-WebSockets-Web-APIs-MDN)
+
+`references:`
+https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API
+
+----
+
+# Fetch API
+
+- [Fetch-API-Web-APIs-MDN](refs/Fetch-API-Web-APIs-MDN)
+
+`references:`
+https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
+
+----
+
+# HTML
+
+- [What-is-HTML-w3schools](refs/What-is-HTML-w3schools)
+
+`references:`
+https://www.w3schools.com/whatis/whatis_html.asp
+
+----
+
+# CSS
+
+- [What-is-CSS-w3schools](refs/What-is-CSS-w3schools)
+
+`references:`
+https://www.w3schools.com/whatis/whatis_css.asp
+
+----
+
+# Responsive
+
+- [What-is-Responsive-w3schools](refs/What-is-Responsive-w3schools)
+
+`references:`
+https://www.w3schools.com/whatis/whatis_responsive.asp
+
+----
+
+# JavaScript
+
+- [What-is-JavaScript-w3schools](refs/What-is-JavaScript-w3schools)
+
+`references:`
+https://www.w3schools.com/whatis/whatis_js.asp
+
+----
+
+# TLS
+
+- [What-is-TLS-Webopedia](refs/What-is-TLS-Webopedia)
+
+`references:`
+https://www.webopedia.com/TERM/T/TLS.html
+
+----
+
+# SSL
+
+- [What-is-Secure-Sockets-Layer-SSL-Webopedia](refs/What-is-Secure-Sockets-Layer-SSL-Webopedia)
+
+`references:`
+https://www.webopedia.com/TERM/S/SSL.html
+
+----
+
+# Cookie - Web Cookies
+
+- [What-are-Cookies-Webopedia](refs/What-are-Cookies-Webopedia)
+
+`references:`
+https://www.webopedia.com/TERM/C/cookie.html
+
+----
+
+# What is the Java Programming Language
+
+- [What-is-Java-Programming-Language-Webopedia](refs/What-is-Java-Programming-Language-Webopedia)
+
+`references:`
+https://www.webopedia.com/TERM/J/Java.html
 
 ----
 
