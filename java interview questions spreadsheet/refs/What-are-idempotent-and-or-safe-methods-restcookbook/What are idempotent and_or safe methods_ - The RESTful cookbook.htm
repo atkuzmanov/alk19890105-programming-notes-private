@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<!-- saved from url=(0051)http://restcookbook.com/HTTP%20Methods/idempotency/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="What are idempotent and/or safe methods?">
+
+<title>What are idempotent and/or safe methods? - The RESTful cookbook</title>
+
+<!-- favicon -->
+<link rel="apple-touch-icon" sizes="57x57" href="http://restcookbook.com/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="http://restcookbook.com/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="http://restcookbook.com/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="http://restcookbook.com/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="http://restcookbook.com/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="http://restcookbook.com/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="http://restcookbook.com/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="http://restcookbook.com/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="http://restcookbook.com/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="http://restcookbook.com/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://restcookbook.com/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="http://restcookbook.com/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://restcookbook.com/favicon-16x16.png">
+<link rel="manifest" href="http://restcookbook.com/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+<link rel="stylesheet" type="text/css" href="./What are idempotent and_or safe methods_ - The RESTful cookbook_files/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="./What are idempotent and_or safe methods_ - The RESTful cookbook_files/base.css">
+<link rel="stylesheet" type="text/css" href="./What are idempotent and_or safe methods_ - The RESTful cookbook_files/restcookbook.css">
+
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif] d-->
+
+<!-- Google fonts -->
+<link rel="stylesheet" href="./What are idempotent and_or safe methods_ - The RESTful cookbook_files/css">
+
+    
+<script async="" src="./What are idempotent and_or safe methods_ - The RESTful cookbook_files/analytics.js"></script><script type="text/javascript" async="" src="./What are idempotent and_or safe methods_ - The RESTful cookbook_files/embed.js"></script><link rel="prefetch" as="style" href="https://c.disquscdn.com/next/embed/styles/lounge.15d8f2a22cfa6b9f96345c682b01a08f.css"><link rel="prefetch" as="script" href="https://c.disquscdn.com/next/embed/common.bundle.b9167d06dc7bd01b59d6d6332d6aafa1.js"><link rel="prefetch" as="script" href="https://c.disquscdn.com/next/embed/lounge.bundle.a0b0b564b806112a1c4571475f829256.js"><link rel="prefetch" as="script" href="https://disqus.com/next/config.js"><script src="./What are idempotent and_or safe methods_ - The RESTful cookbook_files/alfie.f51946af45e0b561c60f768335c9eb79.js" async="" charset="UTF-8"></script></head>
+
+<body>
+    <a href="https://github.com/restcookbook/restcookbook"><img style="position: absolute; top: 0; right: 0; border: 0;" src="./What are idempotent and_or safe methods_ - The RESTful cookbook_files/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+    <header id="l-header">
+    <div class="container">
+        <div class="row logo">
+            <h1><a href="http://restcookbook.com/">restcookbook.com</a></h1>
+            <p>How to do stuff RESTful</p>
+        </div>
+
+    </div>
+</header>
+
+
+    <div class="container">
+        <div class="row">
+
+            <div id="content" class="col-xs-12 col-sm-9 col-sm-push-3">
+
+                
+
+                <h2 class="question">What are idempotent and/or safe methods?</h2>
+
+<p>Safe methods are HTTP methods that do not modify resources. For instance, using <span class="http_method">GET</span> or <span class="http_method">HEAD</span> on a resource URL, should
+    NEVER change the resource. However, this is not completely true. It means: it won't change the resource representation.
+    It is still possible, that safe methods do change things on a server or resource, but this should not reflect in a
+    different representation.
+</p>
+
+<p>This means the following is incorrect, if this would actually delete the blogpost:</p>
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml">GET /blog/1234/delete HTTP/1.1</code></pre></figure>
+
+<p>Safe methods are methods that can be cached, prefetched without any repercussions to the resource.</p>
+
+<h3>Idempotent methods</h3>
+<p>An idempotent HTTP method is a HTTP method that can be called many times without different outcomes. It would not
+    matter if the method is called only once, or ten times over. The result should be the same. Again, this only applies
+    to the result, not the resource itself. This still can be manipulated (like an update-timestamp, provided this
+    information is not shared in the (current) resource representation.</p>
+
+<p>Consider the following examples:</p>
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml">  a = 4;</code></pre></figure>
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml">  a++;</code></pre></figure>
+
+<p>The first example is idempotent: no matter how many times we execute this statement, a will always be 4. The second
+    example is not idempotent. Executing this 10 times will result in a different outcome as when running 5 times. Since
+    both examples are changing the value of a, both are non-safe methods.</p>
+
+<p>Idempotency is important in building a fault-tolerant API. Suppose a client wants to update a resource through <span class="http_method">POST</span>.
+    Since <span class="http_method">POST</span> is not a idempotent method, calling it multiple times can result in wrong updates. What would happen if
+    you sent out the <span class="http_method">POST</span> request to the server, but you get a timeout. Is the resource actually updated? Does the
+    timeout happened during sending the request to the server, or the response to the client? Can we safely retry again,
+    or do we need to figure out first what has happened with the resource? By using idempotent methods, we do not have
+    to answer this question, but we can safely resend the request until we actually get a response back from the server.</p>
+
+<p>Be careful when dealing with safe methods as well: if a seemingly safe method like <span class="http_method">GET</span> will change a resource, it might
+    be possible that any middleware client proxy systems between you and the server, will cache this response. Another
+    client who wants to change this resource through the same URL (like: http://example.org/api/article/1234/delete), will
+    not call the server, but return the information directly from the cache. Non-safe (and non-idempotent) methods will
+    never be cached by any middleware proxies</p>
+
+
+
+<h3>Overview of (some) HTTP methods</h3>
+<table style="margin: 3em">
+    <tbody><tr><th>HTTP Method</th><th>Idempotent</th><th>Safe</th></tr>
+    <tr><td>OPTIONS    </td><td>yes       </td><td>yes</td></tr>
+    <tr><td>GET        </td><td>yes       </td><td>yes</td></tr>
+    <tr><td>HEAD       </td><td>yes       </td><td>yes</td></tr>
+    <tr><td>PUT        </td><td>yes       </td><td>no </td></tr>
+    <tr><td>POST       </td><td>no        </td><td>no </td></tr>
+    <tr><td>DELETE     </td><td>yes       </td><td>no </td></tr>
+    <tr><td>PATCH      </td><td>no        </td><td>no </td></tr>
+</tbody></table>
+
+
+<h3>See also</h3>
+<p>
+</p><ul>
+    <li><a href="http://tools.ietf.org/html/rfc7231#section-4.2">RFC 7231 - HTTP-1.1 Spec</a></li>
+    <li><a href="http://restcookbook.com/HTTP%20Methods/put-vs-post/">When to use <span class="http_method">PUT</span> or <span class="http_method">POST</span>?</a></li>
+</ul>
+<p></p>
+
+
+
+
+                <hr>
+
+                <div id="disqus_thread"><iframe id="dsq-app1218" name="dsq-app1218" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" sandbox="allow-forms allow-popups allow-same-origin allow-scripts" width="100%" src="./What are idempotent and_or safe methods_ - The RESTful cookbook_files/saved_resource.html" style="width: 1px !important; min-width: 100% !important; border: none !important; overflow: hidden !important; height: 0px !important;"></iframe><iframe id="dsq-app1215" name="dsq-app1215" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./What are idempotent and_or safe methods_ - The RESTful cookbook_files/saved_resource(1).html" style="width: 1px !important; min-width: 100% !important; border: none !important; overflow: hidden !important; height: 2644px !important;" horizontalscrolling="no" verticalscrolling="no"></iframe></div>
+<script type="text/javascript">
+    var disqus_shortname = "restcookbook";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+            </div>
+            <div class="col-xs-12 col-sm-3 col-sm-pull-9 sidebar">
+                <h2>Topics</h2>
+<ul class="topics">
+
+
+    <li class="topic-header"><b>Basics</b> (5 recipes)</li>
+    
+    <li>
+        <ul class="subnavlist">
+            <li class="recipe"><a href="http://restcookbook.com/Basics/loggingin/">How do I let users log into my RESTful API?</a></li>
+        </ul>
+    </li>
+    
+    <li>
+        <ul class="subnavlist">
+            <li class="recipe"><a href="http://restcookbook.com/Basics/caching/">Caching your REST API</a></li>
+        </ul>
+    </li>
+    
+    <li>
+        <ul class="subnavlist">
+            <li class="recipe"><a href="http://restcookbook.com/Basics/versioning/">How do I version my REST API?</a></li>
+        </ul>
+    </li>
+    
+    <li>
+        <ul class="subnavlist">
+            <li class="recipe"><a href="http://restcookbook.com/Basics/hateoas/">What is HATEOAS and why is it important?</a></li>
+        </ul>
+    </li>
+    
+    <li>
+        <ul class="subnavlist">
+            <li class="recipe"><a href="http://restcookbook.com/Basics/codeondemand/">What is the code-on-demand constraint?</a></li>
+        </ul>
+    </li>
+    
+
+    <li class="topic-header"><b>HTTP Headers</b> (1 recipe)</li>
+    
+    <li>
+        <ul class="subnavlist">
+            <li class="recipe"><a href="http://restcookbook.com/HTTP%20Headers/acceptlanguage/">Unsatisfied Accept-Language header</a></li>
+        </ul>
+    </li>
+    
+
+    <li class="topic-header"><b>HTTP Methods</b> (5 recipes)</li>
+    
+    <li>
+        <ul class="subnavlist">
+            <li class="recipe"><a href="http://restcookbook.com/HTTP%20Methods/options/">How do I know which HTTP methods are supported</a></li>
+        </ul>
+    </li>
+    
+    <li>
+        <ul class="subnavlist">
+            <li class="recipe"><a href="http://restcookbook.com/HTTP%20Methods/put-vs-post/">When to use PUT or POST</a></li>
+        </ul>
+    </li>
+    
+    <li>
+        <ul class="subnavlist">
+            <li class="recipe"><a href="http://restcookbook.com/HTTP%20Methods/patch/">When to use the PATCH method</a></li>
+        </ul>
+    </li>
+    
+    <li>
+        <ul class="subnavlist">
+            <li class="recipe"><a href="http://restcookbook.com/HTTP%20Methods/idempotency/">What are idempotent and/or safe methods?</a></li>
+        </ul>
+    </li>
+    
+    <li>
+        <ul class="subnavlist">
+            <li class="recipe"><a href="http://restcookbook.com/HTTP%20Methods/400-vs-500/">When to send 4xx or 5xx codes</a></li>
+        </ul>
+    </li>
+    
+
+    <li class="topic-header"><b>Mediatypes</b> (1 recipe)</li>
+    
+    <li>
+        <ul class="subnavlist">
+            <li class="recipe"><a href="http://restcookbook.com/Mediatypes/json/">Is my API RESTful when I use JSON?</a></li>
+        </ul>
+    </li>
+    
+
+    <li class="topic-header"><b>Miscellaneous</b> (3 recipes)</li>
+    
+    <li>
+        <ul class="subnavlist">
+            <li class="recipe"><a href="http://restcookbook.com/Miscellaneous/richardsonmaturitymodel/">What is the Richardson Maturity Model?</a></li>
+        </ul>
+    </li>
+    
+    <li>
+        <ul class="subnavlist">
+            <li class="recipe"><a href="http://restcookbook.com/Miscellaneous/rest-and-http/">Are REST and HTTP the same thing?</a></li>
+        </ul>
+    </li>
+    
+    <li>
+        <ul class="subnavlist">
+            <li class="recipe"><a href="http://restcookbook.com/Miscellaneous/rest-presentations/">Where to find REST presentations</a></li>
+        </ul>
+    </li>
+    
+
+    <li class="topic-header"><b>Resources</b> (4 recipes)</li>
+    
+    <li>
+        <ul class="subnavlist">
+            <li class="recipe"><a href="http://restcookbook.com/Resources/using-custom-content-types/">Custom content-types</a></li>
+        </ul>
+    </li>
+    
+    <li>
+        <ul class="subnavlist">
+            <li class="recipe"><a href="http://restcookbook.com/Resources/pagination/">Paginating collections</a></li>
+        </ul>
+    </li>
+    
+    <li>
+        <ul class="subnavlist">
+            <li class="recipe"><a href="http://restcookbook.com/Resources/link-types/">Using link-types in relations</a></li>
+        </ul>
+    </li>
+    
+    <li>
+        <ul class="subnavlist">
+            <li class="recipe"><a href="http://restcookbook.com/Resources/asynchroneous-operations/">Asynchronous operations</a></li>
+        </ul>
+    </li>
+    
+
+
+</ul>
+
+            </div>
+        </div>
+
+    </div>
+
+    
+<footer id="l-footer">
+    <div class="container">
+
+        <p id="legal">
+            Maintained by Joshua Thijssen | Powered by <a href="http://jekyllrb.com/">Jekyll</a> &amp; <a href="http://github.com/restcookbook">GitHub</a> | Design adapted on jekyll theme by <a href="http://unifreak.github.io/">UniFreak</a>
+        </p>
+    </div>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-53222355-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+
+<iframe style="display: none;" src="./What are idempotent and_or safe methods_ - The RESTful cookbook_files/saved_resource(2).html"></iframe></body></html>

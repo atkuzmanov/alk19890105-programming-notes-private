@@ -191,6 +191,10 @@ For learning and study
 - [HTML](#html)
 - [GET vs POST](#get-vs-post)
 - [GET idempotent](#get-idempotent)
+    - [Is GET idempotent?](#is-get-idempotent)
+    - [PUT vs POST](#put-vs-post)
+        - [Idepotent Idepotency](#idepotent-idepotency)
+- [HTTP request methods](#http-request-methods)
 - [Random](#random)
 - [SQL Normal Forms](#sql-normal-forms)
 - [HTTP](#http)
@@ -8465,15 +8469,105 @@ https://blog.teamtreehouse.com/the-definitive-guide-to-get-vs-post
 
 # GET idempotent
 
+## Is GET idempotent?
+
 |Junior |Mid  |Senior |
 |-------|-----|-------|
 |       |  x  |   x   |
 
+- Please see:
+    - [GET vs POST](#get-vs-post)
 
+- [What-is-idempotency-in-HTTP-methods-StackOverflow](refs/What-is-idempotency-in-HTTP-methods-StackOverflow)
 
+```text
++---------+------+------------+
+| Method  | Safe | Idempotent |
++---------+------+------------+
+| CONNECT | no   | no         |
+| DELETE  | no   | yes        |
+| GET     | yes  | yes        |
+| HEAD    | yes  | yes        |
+| OPTIONS | yes  | yes        |
+| POST    | no   | no         |
+| PUT     | no   | yes        |
+| TRACE   | yes  | yes        |
++---------+------+------------+  
+```
+
+`references:`
+https://stackoverflow.com/questions/45016234/what-is-idempotency-in-http-methods
+
+- [Idempotent-REST-APIs-REST-API-Tutorial-restfulapi](refs/Idempotent-REST-APIs-REST-API-Tutorial-restfulapi)
+
+`references:`
+https://restfulapi.net/idempotent-rest-apis/
+
+- [What-are-idempotent-and-or-safe-methods-restcookbook](refs/What-are-idempotent-and-or-safe-methods-restcookbook)
+
+`references:`
+http://restcookbook.com/HTTP%20Methods/idempotency/
+
+- [HTTP-1-1-Method-Definitions-w3org](refs/HTTP-1-1-Method-Definitions-w3org)
+
+`references:`
+https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html
+
+## PUT vs POST
+
+### Idepotent Idepotency
+
+- [To-PUT-or-POST-stormpath](refs/To-PUT-or-POST-stormpath)
+
+`references:`
+https://stormpath.com/blog/put-or-post
 
 ----
-----
+
+# HTTP request methods
+
+- 
+
+`references:`
+
+- 
+
+`references:`
+
+- 
+
+`references:`
+
+- 
+
+`references:`
+
+- 
+
+`references:`
+
+- 
+
+`references:`
+
+- 
+
+`references:`
+
+- 
+
+`references:`
+
+- 
+
+`references:`
+
+- 
+
+`references:`
+
+
+
 ----
 ----
 ----
