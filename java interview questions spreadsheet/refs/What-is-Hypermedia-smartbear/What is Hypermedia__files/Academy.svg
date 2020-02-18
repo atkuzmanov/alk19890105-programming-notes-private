@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="27.285" height="22.499" viewBox="0 0 27.285 22.499">
+  <g id="Academy" transform="translate(-1.357 -1.968)">
+    <line id="Line_1" data-name="Line 1" y2="4.604" transform="translate(26.104 15.274)" fill="none" stroke="#758491" stroke-miterlimit="10" stroke-width="0.75"/>
+    <line id="Line_2" data-name="Line 2" y2="2.302" transform="translate(26.104 19.979)" fill="none" stroke="#758491" stroke-linecap="round" stroke-miterlimit="10" stroke-width="1.5"/>
+    <path id="Path_1" data-name="Path 1" d="M12.471,18.36l-9.4-3.384c-1.785-.643-1.785-1.694,0-2.336l9.4-3.385a8.7,8.7,0,0,1,5.058,0l9.4,3.385c1.785.642,1.785,1.693,0,2.336l-9.4,3.384a8.7,8.7,0,0,1-5.058,0Z" fill="rgba(209,86,86,0)" stroke="#758491" stroke-linecap="round" stroke-miterlimit="10" stroke-width="0.75"/>
+    <path id="Path_2" data-name="Path 2" d="M7.042,16.471v3.311A3.78,3.78,0,0,0,9.6,23.189a13.838,13.838,0,0,0,5.408.894H15a13.838,13.838,0,0,0,5.408-.894,3.78,3.78,0,0,0,2.555-3.407V16.471" fill="none" stroke="#758491" stroke-linecap="round" stroke-miterlimit="10" stroke-width="0.75"/>
+    <line id="Line_3" data-name="Line 3" x2="1.336" y2="1.423" transform="translate(7.413 4.671)" fill="none" stroke="#515050" stroke-linecap="round" stroke-miterlimit="10" stroke-width="1"/>
+    <line id="Line_4" data-name="Line 4" x2="0.614" y2="1.739" transform="translate(12.208 2.631)" fill="none" stroke="#515050" stroke-linecap="round" stroke-miterlimit="10" stroke-width="1"/>
+    <path id="Path_14" data-name="Path 14" d="M1.336,0,0,1.422" transform="translate(20.664 4.646)" fill="none" stroke="#515050" stroke-linecap="round" stroke-width="1"/>
+    <path id="Path_13" data-name="Path 13" d="M.614,0,0,1.739" transform="translate(16.591 2.606)" fill="none" stroke="#515050" stroke-linecap="round" stroke-width="1"/>
+  </g>
+</svg>

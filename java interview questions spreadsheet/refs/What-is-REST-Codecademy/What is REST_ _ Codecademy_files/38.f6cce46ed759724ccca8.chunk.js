@@ -1,0 +1,2 @@
+(window.__LOADABLE_LOADED_CHUNKS__=window.__LOADABLE_LOADED_CHUNKS__||[]).push([[38],{"5Bzr":function(t,n,r){},peVf:function(t,n,r){"use strict";var e=r("q1tI"),u=r.n(e),_=r("/MKj");r("5Bzr");n.a=Object(_.connect)(function mapStateToProps(t){return{butterbar:t.butterbar.content}})(function ButterbarStatic(t){var n=t.butterbar;return n?u.a.createElement("div",{dangerouslySetInnerHTML:{__html:n}}):null})}}]);
+//# sourceMappingURL=38.f6cce46ed759724ccca8.chunk.js.map
