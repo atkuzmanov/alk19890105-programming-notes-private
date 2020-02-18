@@ -184,6 +184,7 @@ For learning and study
 - [JDBC Vs Hibernate](#jdbc-vs-hibernate)
 - [WEB](#web)
 - [REST vs SOAP](#rest-vs-soap)
+- [What is Rest](#what-is-rest)
 - [Random](#random)
 - [SQL Normal Forms](#sql-normal-forms)
 - [Convention over Configuration](#convention-over-configuration)
@@ -8192,10 +8193,94 @@ WEB
 |-------|-----|-------|
 |       |  x  |   x   |
 
+- [SOAP-Vs-REST-Difference-between-Web-API-Services-guru99](refs/SOAP-Vs-REST-Difference-between-Web-API-Services-guru99)
 
+`references:`
+https://www.guru99.com/comparison-between-web-services.html
 
+- [SOAP-vs-REST-vs-JSON-a-2020-comparison-RaygunBlog](refs/SOAP-vs-REST-vs-JSON-a-2020-comparison-RaygunBlog)
+
+`references:`
+https://raygun.com/blog/soap-vs-rest-vs-json/
+
+- [SOAP-vs-REST-Basics-And-Differences-smartbear](refs/SOAP-vs-REST-Basics-And-Differences-smartbear)
+
+`references:`
+https://smartbear.com/blog/test-and-monitor/soap-vs-rest-whats-the-difference/
+
+- [SOAP-vs-REST-web-services-javatpoint](refs/SOAP-vs-REST-web-services-javatpoint)
+
+`references:`
+https://www.javatpoint.com/soap-vs-rest-web-services
+
+- [SOAP-vs-REST-APIs-Which-Is-Right-For-You-SoapUI](refs/SOAP-vs-REST-APIs-Which-Is-Right-For-You-SoapUI)
+
+`references:`
+https://www.soapui.org/learn/api/soap-vs-rest-api.html
+
+- [SOAP-Webservices-in-Java-Example-using-Eclipse-JournalDev](refs/SOAP-Webservices-in-Java-Example-using-Eclipse-JournalDev)
+
+`references:`
+https://www.journaldev.com/9131/soap-webservices-in-java-example-eclipse
+
+- [JAX-WS-Hello-World-Example–Document-Style-Mkyong](refs/JAX-WS-Hello-World-Example–Document-Style-Mkyong)
+
+`references:`
+https://mkyong.com/webservices/jax-ws/jax-ws-hello-world-example-document-style/
+
+- [Creating-a-SOAP-Web-Service-with-Spring-Baeldung](refs/Creating-a-SOAP-Web-Service-with-Spring-Baeldung)
+
+`references:`
+https://www.baeldung.com/spring-boot-soap-web-service
+
+- This guide walks you through the process of creating a “Hello, World” RESTful web service with Spring.
+
+`references:`
+https://spring.io/guides/gs/rest-service/
+
+- [REST-with-Java-JAX-RS-using-Jersey-Tutorial-vogella](refs/REST-with-Java-JAX-RS-using-Jersey-Tutorial-vogella)
+
+`references:`
+https://www.vogella.com/tutorials/REST/article.html
+
+- [RESTful-Web-Services-First-Application-Tutorialspoint](refs/RESTful-Web-Services-First-Application-Tutorialspoint)
+
+`references:`
+https://www.tutorialspoint.com/restful/restful_first_application.htm
+
+- [Creating-a-REST-Web-Service-With-Java-and-Spring-Part-1-DZone](refs/Creating-a-REST-Web-Service-With-Java-and-Spring-Part-1-DZone)
+
+`references:`
+https://dzone.com/articles/creating-a-rest-api-with-java-and-spring
+
+- [Creating-a-REST-Web-Service-With-Java-and-Spring-Part-2-DZone](refs/Creating-a-REST-Web-Service-With-Java-and-Spring-Part-2-DZone)
+
+`references:`
+https://dzone.com/articles/creating-a-rest-web-service-with-java-and-spring-p
+
+- [Creating-a-REST-Web-Service-With-Java-and-Spring-Part-3-DZone](refs/Creating-a-REST-Web-Service-With-Java-and-Spring-Part-3-DZone)
+
+`references:`
+https://dzone.com/articles/creating-a-rest-web-service-with-java-and-spring-p-1
+
+- [Creating-a-REST-Web-Service-With-Java-and-Spring-Part-4-DZone](refs/Creating-a-REST-Web-Service-With-Java-and-Spring-Part-4-DZone)
+
+`references:`
+https://dzone.com/articles/creating-a-rest-web-service-with-java-and-spring-p-2
 
 ----
+
+# What is Rest
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
+
+- Please see:
+    - [REST vs SOAP](#rest-vs-soap)
+
+    
+
 ----
 ----
 ----
