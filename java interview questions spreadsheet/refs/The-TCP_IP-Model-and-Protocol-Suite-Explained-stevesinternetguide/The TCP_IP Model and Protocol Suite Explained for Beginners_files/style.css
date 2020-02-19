@@ -1,0 +1,77 @@
+/*
+Theme Name:     Wellington Child
+Theme URI:      http: //example.com/
+Description:    Child theme for the Wellington theme 
+Author:         By steve
+Author URI:     http: //example.com/about/
+Template:       wellington
+Version:        0.1.0
+*/
+@import url("../wellington/style.css");
+.html_wysija
+{
+margin-left:100px;	
+padding-left:100px;
+background-color:#e0e0e0;
+}
+.outline
+{
+border:1px dashed #e0e0e0;
+border-left:2px solid #404040;
+padding:10px;
+background-color:#e0e0e0;
+}
+.outliney
+{
+border:1px dashed #e0e0e0;
+border-left:2px solid #404040;
+padding:10px;
+background-color:#FFFFc6;
+}
+pre
+{
+font-size: 100% !important;
+}
+code
+{
+font-size: 100% !important;
+}
+.smap
+{
+margin-left:60px;
+}
+.sitemap
+{
+
+line-height:1.6em !important;
+}
+ul.sitemap
+{
+list-style-type: circle !important;
+}
+
+li.sitemap
+{
+font-size: 110% !important;
+
+}
+
+.gad1
+{
+margin-right:100px !important;
+}
+.footer1
+{
+padding-left:100px;
+color:white !important;
+}
+.footer1 a
+{
+color:white !important;
+}
+.newsl a
+{
+color:white !important;
+font-size: 110% !important;
+padding-left:200px !important;
+}

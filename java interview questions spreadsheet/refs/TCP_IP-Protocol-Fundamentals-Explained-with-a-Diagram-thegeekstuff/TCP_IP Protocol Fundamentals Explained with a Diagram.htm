@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/ -->
+<html dir="ltr" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/css.css.gzip" media="screen, projection">
+<title>TCP/IP Protocol Fundamentals Explained with a Diagram</title>
+<meta name="description" content="Have you ever wondered how your computer talks to other computers on your local LAN or to other systems on the internet? Understanding the intricacies of h">
+<meta name="robots" content="noodp, noydir">
+<link rel="canonical" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/">
+<link rel="alternate" type="application/rss+xml" title="The Geek Stuff feed" href="https://www.thegeekstuff.com/feed/">
+<link rel="pingback" href="https://www.thegeekstuff.com/xmlrpc.php">
+<link rel="dns-prefetch" href="https://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="The Geek Stuff » TCP/IP Protocol Fundamentals Explained with a Diagram Comments Feed" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/feed/">
+<link rel="stylesheet" id="wp-block-library-css" href="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/style.min.css.gzip" type="text/css" media="all">
+<link rel="https://api.w.org/" href="https://www.thegeekstuff.com/wp-json/">
+<link rel="alternate" type="application/json+oembed" href="https://www.thegeekstuff.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.thegeekstuff.com%2F2011%2F11%2Ftcp-ip-fundamentals%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://www.thegeekstuff.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.thegeekstuff.com%2F2011%2F11%2Ftcp-ip-fundamentals%2F&amp;format=xml">
+<link rel="shortcut icon" href="https://static.thegeekstuff.com/wp-content/uploads/2015/05/favicon.ico.gzip">
+<script src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/cb=gapi.loaded_1" async=""></script><script src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/cb=gapi.loaded_0" async=""></script><script type="text/javascript" src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/saved_resource"></script><script type="text/javascript" src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/inputtools.js"></script><script charset="utf-8" src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/button.a657e8de41cd5e7b38cde1f36c9ab9c2.js"></script></head>
+<body class="template-single">
+<script type="text/javascript" async="" src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/ga.js"></script><script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-5302569-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<div class="container">
+	<div id="header" class="header">
+		<p id="logo"><a href="https://www.thegeekstuff.com/"><img src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/thegeekstuff.gif" alt="The Geek Stuff"></a>
+</p><div id="header_ad"><div id="header_ad1">
+<script async="" src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/f.txt"></script>
+<!-- TGS Logo Header -->
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-8090601437064582" data-ad-slot="4708993701"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div></div>
+	</div>
+<span class="menu_control">≡ Menu</span>
+<ul id="menu-tgs-menu" class="menu"><li id="menu-item-15798" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-15798"><a href="https://www.thegeekstuff.com/">Home</a></li>
+<li id="menu-item-15797" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15797"><a href="https://www.thegeekstuff.com/linux-101-hacks-ebook/">Free eBook</a></li>
+<li id="menu-item-15805" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15805"><a href="https://www.thegeekstuff.com/best-of-the-blog/">Start Here</a></li>
+<li id="menu-item-15800" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15800"><a href="https://www.thegeekstuff.com/contact/">Contact</a></li>
+<li id="menu-item-15802" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15802"><a href="https://www.thegeekstuff.com/about/">About</a></li>
+</ul>
+<div class="columns">
+	<div class="content">
+		<div id="post-8943" class="post_box grt top" itemscope="" itemtype="http://schema.org/Article">
+			<div class="headline_area">
+				<h1 class="headline" itemprop="name">TCP/IP Protocol Fundamentals Explained with a Diagram</h1>
+<div class="byline small">
+	<span class="post_author_intro">by</span> <span class="post_author">Himanshu Arora</span>
+<span class="post_date_intro">on</span> <span class="post_date" title="2011-11-02">November 2, 2011</span>
+</div>
+			</div>
+<div class="post_content">
+<div style="margin:7px 0px 6px 0px; padding:5px;">
+
+<div style="float:left; width=95px">
+<div id="___plusone_0" style="position: absolute; width: 450px; left: -10000px;"><iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position:absolute;top:-10000px;width:450px;margin:0px;border-style:none" tabindex="0" vspace="0" width="100%" id="I0_1582145651529" name="I0_1582145651529" src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/fastbutton.html" data-gapiattached="true"></iframe></div><g:plusone size="medium" data-gapiscan="true" data-onload="true" data-gapistub="true"></g:plusone>
+</div>
+
+<div style="float:left; padding:2px; width:90px"><iframe src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/like.html" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:21px;" allowtransparency="true"></iframe>
+</div>
+
+<div style="width=95px">
+<iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button" style="position: static; visibility: visible; width: 61px; height: 20px;" title="Twitter Tweet Button" src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/tweet_button.7303c29a8108bca4ac5c9ef008ed8164.en.html"></iframe><script type="text/javascript" src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/widgets.js"></script>
+</div>
+
+</div>
+<p>Have you ever wondered how your computer talks to other computers on your local LAN or to other systems on the internet?</p>
+<p>Understanding the intricacies of how computers interact is an important part of networking and is of equal interest to a sysadmin as well as to a developer. In this article, we will make an attempt to discuss the concept of communication from the very basic fundamental level that needs to be understood by everybody.<br>
+<span id="more-8943"></span></p>
+<h2>TCP/IP PROTOCOL SUITE</h2>
+<p>Communications between computers on a network is done through protocol suits. The most widely used and most widely available protocol suite is TCP/IP protocol suite. A protocol suit consists of a layered architecture where each layer depicts some functionality which can be carried out by a protocol. Each layer usually has more than one protocol options to carry out the responsibility that the layer adheres to. TCP/IP is normally considered to be a 4 layer system. The 4 layers are as follows :</p>
+<ol>
+<li>Application layer</li>
+<li>Transport layer</li>
+<li>Network layer</li>
+<li>Data link layer</li>
+</ol>
+<h3>1. Application layer</h3>
+<p>This is the top layer of TCP/IP protocol suite. This layer includes applications or processes that use transport layer protocols to deliver the data to destination computers.</p>
+<p>At each layer there are certain protocol options to carry out the task designated to that particular layer. So, application layer also has various protocols that applications use to communicate with the second layer, the transport layer. Some of the popular application layer protocols are :</p>
+<ul>
+<li>HTTP (Hypertext transfer protocol)</li>
+<li>FTP (File transfer protocol)</li>
+<li>SMTP (Simple mail transfer protocol)</li>
+<li>SNMP (Simple network management protocol) etc</li>
+</ul>
+<h3>2. Transport Layer</h3>
+<p>This layer provides backbone to data flow between two hosts. This layer receives data from the application layer above it. There are many protocols that work at this layer but the two most commonly used protocols at transport layer are TCP and UDP.</p>
+<p>TCP is used where a reliable connection is required while UDP is used in case of unreliable connections.</p>
+    <center>
+      <div style="margin-left:2px; margin-top:10px; margin-bottom:10px; ">
+
+        <!-- AD BLOCK -->
+		
+<script async="" src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/f.txt"></script>
+<!-- TGS Inside Content -->
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-8090601437064582" data-ad-slot="8643685131"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+        <!-- END AD BLOCK -->
+
+	  </div>
+    </center>
+
+
+<p><strong>TCP</strong> divides the data(coming from the application layer) into proper sized chunks and then passes these chunks onto the network. It acknowledges received packets, waits for the&nbsp;acknowledgments&nbsp;of the packets it sent and sets timeout to resend the packets if acknowledgements are not received in time. The term ‘reliable connection’ is used where it is not desired to loose any information that is being transferred over the network through this connection. So, the protocol used for this type of connection must provide the mechanism to achieve this desired characteristic. For example, while downloading a file, it is not desired to loose any information(bytes) as it may lead to corruption of downloaded content.</p>
+<p><strong>UDP</strong> provides a comparatively simpler but unreliable service by sending packets from one host to another. UDP does not take any extra measures to ensure that the data sent is received by the target host or not. The term ‘unreliable connection’ are used where loss of some information does not hamper the task being fulfilled through this connection. For example while streaming a video, loss of few bytes of information due to some reason is acceptable as this does not harm the user experience much.</p>
+<h3>3. Network Layer</h3>
+<p>This layer is also known as Internet layer. The main purpose of this layer is to organize or handle the movement of data on network. By movement of data, we generally mean routing of data over the network. The main protocol used at this layer is IP. While ICMP(used by popular ‘ping’ command) and IGMP are also used at this layer.</p>
+<h3>4. Data Link Layer</h3>
+<p>This layer is also known as network interface layer. This layer normally consists of device drivers in the OS and the network interface card attached to the system. Both the device drivers and the network interface card take care of the communication details with the media being used to transfer the data over the network. In most of the cases, this media is in the form of cables. Some of the famous protocols that are used at this layer include ARP(Address resolution protocol), PPP(Point to point protocol) etc.</p>
+<h2>TCP/IP CONCEPT EXAMPLE</h2>
+<p>One thing which is worth taking note is that the interaction between two computers over the network through TCP/IP protocol suite takes place in the form of a client server architecture.</p>
+<p>Client requests for a service while the server processes the request for client.</p>
+<p>Now, since we have discussed the underlying layers which help that data flow from host to target over a network. Lets take a very simple example to make the concept more clear.</p>
+<p>Consider the data flow when you open a website.</p>
+<p><img class="aligncenter size-full wp-image-8962" title="TCP/IP" src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/tcp-ip.png" alt="" width="420" height="470" srcset="https://static.thegeekstuff.com/wp-content/uploads/2011/10/tcp-ip.png 420w, https://www.thegeekstuff.com/wp-content/uploads/2011/10/tcp-ip-268x300.png 268w" sizes="(max-width: 420px) 100vw, 420px"></p>
+<p>As seen in the above figure, the information flows downward through each layer on the host machine. At the first layer, since http protocol is being used, so an HTTP request is formed and sent to the transport layer.</p>
+<p>Here the protocol TCP assigns some more information(like sequence number, source port number, destination port number etc) to the data coming from upper layer so that the communication remains reliable i.e, a track of sent data and received data could be maintained.</p>
+<p>At the next lower layer, IP adds its own information over the data coming from transport layer. This information would help in packet travelling over the network. Lastly, the data link layer makes sure that the data transfer to/from the physical media is done properly. Here again the communication done at the data link layer can be reliable or unreliable.</p>
+<p>This information travels on the physical media (like Ethernet) and reaches the target machine.</p>
+<p>Now, at the target machine (which in our case is the machine at which the website is hosted) the same series of interactions happen, but in reverse order.</p>
+<p>The packet is first received at the data link layer. At this layer the information (that was stuffed by the data link layer protocol of the host machine) is read and rest of the data is passed to the upper layer.</p>
+<p>Similarly at the Network layer, the information set by the Network layer protocol of host machine is read and rest of the information is passed on the next upper layer. Same happens at the transport layer and finally the HTTP request sent by the host application(your browser) is received by the target application(Website server).</p>
+<p>One would wonder what happens when information particular to each layer is read by the corresponding protocols at target machine or why is it required? Well, lets understand this by an example of TCP protocol present at transport layer. At the host machine this protocol adds information like sequence number to each packet sent by this layer.</p>
+<p>At the target machine, when packet reaches at this layer, the TCP at this layer makes note of the sequence number of the packet and sends an acknowledgement (which is received seq number + 1).</p>
+<p>Now, if the host TCP does not receive the acknowledgement within some specified time, it re sends the same packet. So this way TCP makes sure that no packet gets lost. So we see that protocol at every layer reads the information set by its counterpart to achieve the functionality of the layer it represents.</p>
+<h2>PORTS, SERVERS AND STANDARDS</h2>
+<p>On a particular machine, a port number coupled with the IP address of the machine is known as a socket. A combination of IP and port on both client and server is known as four tuple. This four tuple uniquely identifies a connection. In this section we will discuss how port numbers are chosen.</p>
+<p>You already know that some of the very common services like FTP, telnet etc run on well known port numbers. While FTP server runs on port 21, Telent server runs on port 23. So, we see that some standard services that are provided by any implementation of TCP/IP have some standard ports on which they run. These standard port numbers are generally chosen from 1 to 1023. The well known ports are managed by Internet Assigned Numbers Authority(IANA).</p>
+<p>While most standard servers (that are provided by the implementation of TCP/IP suite) run on standard port numbers, clients do not require any standard port to run on.</p>
+<p>Client port numbers are known as ephemeral ports. By ephemeral we mean short lived. This is because a client may connect to server, do its work and then disconnect. So we used the term ‘short lived’ and hence no standard ports are required for them.</p>
+<p>Also, since clients need to know the port numbers of the servers to connect to them, so most standard servers run on standard port numbers.</p>
+<p>The ports reserved for clients generally range from 1024 to 5000. Port number higher than 5000 are reserved for those servers which are not standard or well known.</p>
+<p>If we look at the file ‘/etc/services’, you will find most of the standard servers and the port on which they run.</p>
+<pre>$ cat /etc/services
+systat		11/tcp		users
+daytime		13/udp
+netstat		15/tcp
+qotd		17/tcp		quote
+msp		18/udp
+chargen		19/udp		ttytst source
+ftp-data	20/tcp
+ftp		21/tcp
+ssh		22/tcp
+ssh		22/udp
+telnet		23/tcp
+...
+...
+...</pre>
+<p>As you see from the /etc/services file, FTP has port number 21, telent has port number 23 etc. You can use ‘grep’ command on this file to find any server and its associated port.</p>
+<p>As far as the standards are concerned, the following four organizations/groups manage the TCP/IP protocol suite.&nbsp;Both the IRTF and the IETF fall under the IAB.</p>
+<ol>
+<li><a href="http://www.isoc.org/">The Internet Society</a> (ISOC)</li>
+<li><a href="http://www.iab.org/">The Internet Architecture Board (IAB)</a>. The IAB falls under the ISOC.</li>
+<li><a href="http://www.ietf.org/">The Internet Engineering Task Force</a> (IETF)</li>
+<li><a href="http://irtf.org/">The Internet Research Task Force</a> (IRTF)</li>
+</ol>
+<div style="margin:7px 0px 3px 0px; padding:5px; background:#F2F0E8">
+
+<div style="float:left; width=95px">
+<div id="___plusone_1" style="position: absolute; width: 450px; left: -10000px;"><iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position:absolute;top:-10000px;width:450px;margin:0px;border-style:none" tabindex="0" vspace="0" width="100%" id="I1_1582145651544" name="I1_1582145651544" src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/fastbutton(1).html" data-gapiattached="true"></iframe></div><g:plusone size="medium" data-gapiscan="true" data-onload="true" data-gapistub="true"></g:plusone>
+</div>
+
+<div style="float:left; width=95px">
+<iframe id="twitter-widget-1" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button" style="position: static; visibility: visible; width: 61px; height: 20px;" title="Twitter Tweet Button" src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/tweet_button.7303c29a8108bca4ac5c9ef008ed8164.en(1).html"></iframe><script type="text/javascript" src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/widgets.js"></script>
+</div>
+
+<div style="float:left; padding:2px; width:90px"><iframe src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/like(1).html" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:21px;" allowtransparency="true"></iframe>
+</div>
+
+<div style="padding:1px">
+&gt;&nbsp;<a href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#commentform" rel="nofollow">Add your comment</a>
+</div>
+
+</div>
+<h3>If you enjoyed this article, you might also like..</h3>
+<table>
+<tbody><tr>
+<td valign="top">
+<ol>
+<li><a href="https://www.thegeekstuff.com/2010/12/50-unix-linux-sysadmin-tutorials/">50 Linux Sysadmin Tutorials</a></li>
+<li><a href="https://www.thegeekstuff.com/2010/11/50-linux-commands/">50 Most Frequently Used Linux Commands (With Examples)</a></li>
+<li><a href="https://www.thegeekstuff.com/2011/12/linux-performance-monitoring-tools/">Top 25 Best Linux Performance Monitoring and Debugging Tools</a></li>
+<li><a href="https://www.thegeekstuff.com/2009/03/15-practical-linux-find-command-examples/">Mommy, I found it! – 15 Practical Linux Find Command Examples</a></li>
+<li><a href="https://www.thegeekstuff.com/linux-101-hacks-ebook/">Linux 101 Hacks 2nd Edition eBook</a>&nbsp;<img title="Linux 101 Hacks Book" src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/free-small.png" alt="Linux 101 Hacks Book"></li>
+</ol>
+</td>
+<td>
+<ul>
+<li><a href="https://www.thegeekstuff.com/2010/01/awk-introduction-tutorial-7-awk-print-examples/">Awk Introduction – 7 Awk Print Examples</a></li>
+<li><a href="https://www.thegeekstuff.com/2009/10/unix-sed-tutorial-advanced-sed-substitution-examples/">Advanced Sed Substitution Examples</a></li>
+<li><a href="https://www.thegeekstuff.com/2009/03/8-essential-vim-editor-navigation-fundamentals/">8 Essential Vim Editor Navigation Fundamentals</a></li>
+<li><a href="https://www.thegeekstuff.com/2011/06/iptables-rules-examples/">25 Most Frequently Used Linux IPTables Rules Examples</a></li>
+<li><a href="https://www.thegeekstuff.com/2008/08/turbocharge-putty-with-12-powerful-add-ons-software-for-geeks-3/">Turbocharge PuTTY with 12 Powerful Add-Ons</a></li>
+</ul>
+</td>
+</tr>
+</tbody></table>
+<br>
+<center>
+<table id="booktable">
+<tbody><tr>
+<td>
+<a rel="nofollow" href="https://www.thegeekstuff.com/bash-101-hacks-ebook/"><img title="Bash 101 Hacks Book" src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/bash-132.png" alt="Bash 101 Hacks Book"></a>
+</td>
+<td>
+<a rel="nofollow" href="https://www.thegeekstuff.com/sed-awk-101-hacks-ebook/"><img title="Sed and Awk 101 Hacks Book" src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/sed-and-awk-132.png" alt="Sed and Awk 101 Hacks Book"></a>
+</td>
+<td>
+<a rel="nofollow" href="https://www.thegeekstuff.com/nagios-core-ebook/"><img title="Nagios Core 3 Book" src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/nagios-core-132.png" alt="Nagios Core 3 Book"></a>
+</td>
+<td>
+<a rel="nofollow" href="https://www.thegeekstuff.com/vim-101-hacks-ebook/"><img title="Vim 101 Hacks Book" src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/vim-101-hacks-132.png" alt="Vim 101 Hacks Book"></a>
+</td>
+</tr>
+</tbody></table>
+</center>
+<br>
+</div>
+		</div>
+<div id="comments">
+	<p class="comments_intro"><span class="bracket">{</span> <span class="num_comments">72</span> comments… <a href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#commentform" rel="nofollow">add one</a> <span class="bracket">}</span></p>
+<ul class="comment_list">
+	<li class="comment even thread-even depth-1" id="comment-136474">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">Devin</span>
+<span class="comment_date">November 2, 2011, 9:02 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-136474"><p>You left out the most popular application layer protocol – HTTP!</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-136474" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-136476">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">krishnan</span>
+<span class="comment_date">November 2, 2011, 9:09 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-136476"><p>Excellent job. Short and informative</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-136476" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-136509">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">jalal hajigholamali</span>
+<span class="comment_date">November 2, 2011, 12:10 pm</span>
+		</div>
+<div class="comment_text grt" id="comment-body-136509"><p>Hi,</p>
+<p>very nice article<br>
+thanks a lot…</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-136509" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-136546">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">Júlio Hoffimann Mendes</span>
+<span class="comment_date">November 2, 2011, 1:52 pm</span>
+		</div>
+<div class="comment_text grt" id="comment-body-136546"><p>Thank you for the clear explanation! I’ve always wanted to learn a little about TCP/IP. Keep the good work!</p>
+<p>Regards,<br>
+Júlio.</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-136546" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-136560">
+		<div class="comment_head">
+			<span class="avatar"><a href="http://walyonaire.wordpress.com/" rel="nofollow"></a></span>
+<span class="comment_author"><a href="http://walyonaire.wordpress.com/" rel="external nofollow ugc" class="url">Walyonaire</a></span>
+<span class="comment_date">November 2, 2011, 3:17 pm</span>
+		</div>
+<div class="comment_text grt" id="comment-body-136560"><p>This reminds me of my Cisco Lessons, thanks for the “refresh”.<br>
+Excellent Article.</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-136560" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-136618">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">Narendra Kangralkar</span>
+<span class="comment_date">November 2, 2011, 10:21 pm</span>
+		</div>
+<div class="comment_text grt" id="comment-body-136618"><p>Very good explanation !!!<br>
+Keep writing.</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-136618" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment byuser comment-author-admin even thread-even depth-1" id="comment-136622">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">Ramesh Natarajan</span>
+<span class="comment_date">November 2, 2011, 10:27 pm</span>
+		</div>
+<div class="comment_text grt" id="comment-body-136622"><p>@Devin,</p>
+<p>Yes. HTTP is the most popular application layer protocol. This is why the “TCP/IP Concept Example” section explains it using the HTTP protocol.</p>
+<p>Anyway, thanks for pointing it out, HTTP is added to the “Application Layer” section to make the list complete.</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-136622" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-136648">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">Joe</span>
+<span class="comment_date">November 3, 2011, 3:37 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-136648"><p>Thank you for the effort.</p>
+<p>Well written.</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-136648" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-136756">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">Vonskippy</span>
+<span class="comment_date">November 3, 2011, 2:54 pm</span>
+		</div>
+<div class="comment_text grt" id="comment-body-136756"><p>Seems redundant to the OSI model.</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-136756" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-137009">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">ATUL KHACHANE</span>
+<span class="comment_date">November 4, 2011, 8:32 pm</span>
+		</div>
+<div class="comment_text grt" id="comment-body-137009"><p>Yes. Vonskippy 😉</p>
+<p>Great articles here always…………….this is one stop resource…..and you will find almost everything you need…</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-137009" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-137125">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">Himanshu</span>
+<span class="comment_date">November 5, 2011, 12:48 pm</span>
+		</div>
+<div class="comment_text grt" id="comment-body-137125"><p>Thank you all for your valuable comments.</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-137125" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-140019">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">grouch0</span>
+<span class="comment_date">November 13, 2011, 9:15 pm</span>
+		</div>
+<div class="comment_text grt" id="comment-body-140019"><p>Some books say the 5000 upper limit for client (dynamic/ephemeral) ports was a misprint in W. Richard Stevens’ “TCP/IP Illustrated Vol. 1” and should have been 50000. The issue doesn’t seem to have affected the progress of the protocol in taking over the world.</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-140019" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-140068">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">Himanshu</span>
+<span class="comment_date">November 13, 2011, 11:30 pm</span>
+		</div>
+<div class="comment_text grt" id="comment-body-140068"><p>@grouch0<br>
+OK. Can you provide some references?</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-140068" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-147223">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">Devin</span>
+<span class="comment_date">November 28, 2011, 8:37 pm</span>
+		</div>
+<div class="comment_text grt" id="comment-body-147223"><p>You forgot the physical layer.</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-147223" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-147279">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">Himanshu</span>
+<span class="comment_date">November 29, 2011, 12:08 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-147279"><p>Well, I think you are talking about the OSI model where physical layer is the last layer. In TCP/IP model Data link layer is the layer 1. Sometimes this layer is also referred to as “Network Interface Layer” as as to avoid confusion with the data link layer of the OSI model. This Network interface Layer encapsulates physical layer also.</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-147279" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-155687">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">Sravan</span>
+<span class="comment_date">December 15, 2011, 2:48 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-155687"><p>Thanks. Short and informative article.</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-155687" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-171493">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">deepak kumar</span>
+<span class="comment_date">January 3, 2012, 2:23 pm</span>
+		</div>
+<div class="comment_text grt" id="comment-body-171493"><p>nice …..very helpfull<br>
+thnx</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-171493" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-223598">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">Reece</span>
+<span class="comment_date">April 17, 2012, 5:04 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-223598"><p>thanks for the information, it helped me understand TCP/IP</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-223598" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-233603">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">Dharmesh</span>
+<span class="comment_date">May 13, 2012, 9:42 pm</span>
+		</div>
+<div class="comment_text grt" id="comment-body-233603"><p>Thanks a lot!!!</p>
+<p>It was a very short and good explanation…</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-233603" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-233610">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">Asif</span>
+<span class="comment_date">May 13, 2012, 10:08 pm</span>
+		</div>
+<div class="comment_text grt" id="comment-body-233610"><p>Simple nd Superbbbbbbbbbbb</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-233610" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-253217">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">rohan</span>
+<span class="comment_date">June 16, 2012, 1:15 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-253217"><p>an application uses ephemeral port and it uses http as application layer protocol. Now when the packet is sent to destination, will it contain both ephemeral destination port and standard http destination port no. How this packet will be handled by transport layer and application layer at destination?</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-253217" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-283101">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">Tariq</span>
+<span class="comment_date">August 9, 2012, 3:02 pm</span>
+		</div>
+<div class="comment_text grt" id="comment-body-283101"><p>Nice.</p>
+<p>A small demo with<br>
+wireshark or any other tool could be used to show “how” this happens in real time.</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-283101" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-303722">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">raju</span>
+<span class="comment_date">September 13, 2012, 8:54 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-303722"><p>Thanks a pile<br>
+It’s fabulous artical and very knowledgeable for me,</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-303722" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-326068">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">malik usman</span>
+<span class="comment_date">October 3, 2012, 9:15 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-326068"><p>Thanks a lot!!!</p>
+<p>    It was a very short and good explanation…</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-326068" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-395811">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">swathi</span>
+<span class="comment_date">November 24, 2012, 10:13 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-395811"><p>Its is short but soooo…… informative,thank u very much</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-395811" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-516803">
+		<div class="comment_head">
+			<span class="avatar"><a href="http://rediffmail.com/" rel="nofollow"></a></span>
+<span class="comment_author"><a href="http://rediffmail.com/" rel="external nofollow ugc" class="url">Ritu Kushwaha</a></span>
+<span class="comment_date">January 26, 2013, 11:12 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-516803"><p>Useful Information in Short. Well Done!!<br>
+Keep Writing…</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-516803" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-534400">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">Umar Badu</span>
+<span class="comment_date">February 7, 2013, 10:28 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-534400"><p>Useful information,i really appreciate this……Thanks</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-534400" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-541295">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">poonguzhali</span>
+<span class="comment_date">February 14, 2013, 7:37 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-541295"><p>Its very easy to understand.</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-541295" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-547170">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">Nagendra Bhat</span>
+<span class="comment_date">February 20, 2013, 8:20 pm</span>
+		</div>
+<div class="comment_text grt" id="comment-body-547170"><p>Hi..<br>
+Explanation is good and if there any blogs related to this subject please mention it or please mail me..</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-547170" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-578061">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">monica</span>
+<span class="comment_date">March 15, 2013, 3:10 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-578061"><p>Very well explained in simple language</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-578061" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-744284">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">pemo</span>
+<span class="comment_date">May 13, 2013, 2:13 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-744284"><p>nice thanks a lot…</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-744284" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-805578">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">Ameen</span>
+<span class="comment_date">June 12, 2013, 9:49 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-805578"><p>tanx 4 ur explanation.</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-805578" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-863704">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">anand</span>
+<span class="comment_date">July 31, 2013, 12:43 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-863704"><p>very good to understand</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-863704" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-894591">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">brig (retd) ashwani sharma</span>
+<span class="comment_date">August 20, 2013, 9:47 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-894591"><p>An extremely clear, concise and lucid explanation of TCP/IP.<br>
+Great effort. Keep it up.</p>
+<p>Best Wishes</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-894591" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-912702">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">hana</span>
+<span class="comment_date">September 2, 2013, 12:05 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-912702"><p>good understand<br>
+thanks</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-912702" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-954643">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">khanabusd</span>
+<span class="comment_date">September 28, 2013, 6:00 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-954643"><p>very helpful………………………………</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-954643" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-986078">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">zug</span>
+<span class="comment_date">October 16, 2013, 10:29 pm</span>
+		</div>
+<div class="comment_text grt" id="comment-body-986078"><p>We’ll written in a language that I find easy to read and understand. Thank you.</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-986078" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1001960">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">justauser</span>
+<span class="comment_date">October 27, 2013, 2:41 pm</span>
+		</div>
+<div class="comment_text grt" id="comment-body-1001960"><p>great article! the perfect balance of details and general view 🙂<br>
+thanks!</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-1001960" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-1020551">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">maurice</span>
+<span class="comment_date">November 7, 2013, 2:51 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-1020551"><p>it very helpful…….in simple language</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-1020551" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1024456">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">jaco</span>
+<span class="comment_date">November 8, 2013, 9:00 pm</span>
+		</div>
+<div class="comment_text grt" id="comment-body-1024456"><p>Thank u<br>
+u manage to save me<br>
+as i don’t yet have a text book to read<br>
+this gave light into my understanding of TCP/IP im able to<br>
+peruse my dreams 🙂</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-1024456" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-1045989">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">Mehbub</span>
+<span class="comment_date">November 19, 2013, 6:00 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-1045989"><p>very good explanation,u save me also……………………….thank u vry much</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-1045989" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1097591">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">arun mehta</span>
+<span class="comment_date">December 8, 2013, 8:28 pm</span>
+		</div>
+<div class="comment_text grt" id="comment-body-1097591"><p>thanks</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-1097591" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-1108784">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">Mintu Krishna</span>
+<span class="comment_date">December 12, 2013, 12:09 pm</span>
+		</div>
+<div class="comment_text grt" id="comment-body-1108784"><p>very nice, in short &amp; informative explanation. Useful for those who have keen interest in Internet.<br>
+Thanks a lot.</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-1108784" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1228217">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">Ben</span>
+<span class="comment_date">January 24, 2014, 5:57 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-1228217"><p>I found this very useful! Thank you very much 🙂</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-1228217" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-1268322">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">Karm Nath</span>
+<span class="comment_date">February 12, 2014, 3:23 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-1268322"><p>good explanation …….</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-1268322" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1365000">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">joe</span>
+<span class="comment_date">March 19, 2014, 2:22 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-1365000"><p>thanks for this article. Quite good.</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-1365000" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-1384231">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">amar</span>
+<span class="comment_date">March 24, 2014, 3:15 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-1384231"><p>Hi,<br>
+Explanations are very easy to read and understand. I would like to know more depth about encapsulation and decapsulation process of pkts in source side and destination side.</p>
+<p>Thanks</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-1384231" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1446802">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">kamal</span>
+<span class="comment_date">April 9, 2014, 9:29 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-1446802"><p>I really found useful article coz…before the exam usually I don’t read the book I just look and search the info…in the net….</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-1446802" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-1834161">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">ravi</span>
+<span class="comment_date">June 5, 2014, 6:25 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-1834161"><p>short n sweet 🙂</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-1834161" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1853914">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">kul sidhu</span>
+<span class="comment_date">June 10, 2014, 8:11 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-1853914"><p>Plz give difference between osi and tcp/ip with diagram</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-1853914" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-2110835">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">Asamoah Apau Daniel</span>
+<span class="comment_date">August 21, 2014, 6:55 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-2110835"><p>1. what is a transport protocol?<br>
+a.  explain with diagrams different between TCP and UDP<br>
+2. Explain secure Protocol<br>
+a.  explain with diagrams different between FTP and SSH</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-2110835" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2552527">
+		<div class="comment_head">
+			<span class="avatar"><a href="http://nomvuselelo.mathebula@gmail.com/" rel="nofollow"></a></span>
+<span class="comment_author"><a href="http://nomvuselelo.mathebula@gmail.com/" rel="external nofollow ugc" class="url">Anonymous</a></span>
+<span class="comment_date">October 22, 2014, 1:43 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-2552527"><p>Clearly explained</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-2552527" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-3017528">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">Nasham</span>
+<span class="comment_date">November 24, 2014, 12:15 pm</span>
+		</div>
+<div class="comment_text grt" id="comment-body-3017528"><p>It very education tanks a lot</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-3017528" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-3336929">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">INADRAJEET KUMAR VERMA</span>
+<span class="comment_date">December 21, 2014, 9:45 pm</span>
+		</div>
+<div class="comment_text grt" id="comment-body-3336929"><p>Very good explanation !!!<br>
+Keep writing.</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-3336929" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-4124553">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">Arun</span>
+<span class="comment_date">May 16, 2015, 7:00 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-4124553"><p>vrh  well explained in simple langu</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-4124553" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4124555">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">Arun</span>
+<span class="comment_date">May 16, 2015, 7:01 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-4124555"><p>thanks all</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-4124555" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-4156754">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">Zubair Khalid</span>
+<span class="comment_date">May 25, 2015, 6:18 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-4156754"><p>well explained sir!</p>
+<p>most of my confusion is gone and my concepts are clear now. Thank your very much</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-4156754" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4157454">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">RVT</span>
+<span class="comment_date">May 25, 2015, 10:22 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-4157454"><p>Can you compare Modbus TCP and IEC 61850?  What are the advantages and disadvantages between these two communication protocols?</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-4157454" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-4191910">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">jagrati sharma</span>
+<span class="comment_date">June 3, 2015, 8:25 pm</span>
+		</div>
+<div class="comment_text grt" id="comment-body-4191910"><p>dear friend thanks a lot u helped me to understand .thanks♥.</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-4191910" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4205795">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">Danish</span>
+<span class="comment_date">June 7, 2015, 1:22 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-4205795"><p>awesome article.. I had a 3 hour class yesterday but I learned more clearly from this article than I did in that class. So thanks a lot.. really appreciated!!</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-4205795" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-4211956">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">Hum Tum!!</span>
+<span class="comment_date">June 8, 2015, 1:23 pm</span>
+		</div>
+<div class="comment_text grt" id="comment-body-4211956"><p>Can u just tell me the order of osi layer. 1 &gt; 7 or 7 &lt;1 which 1 is correct?</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-4211956" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4302571">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">vignesh</span>
+<span class="comment_date">July 3, 2015, 4:25 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-4302571"><p>any possibility to increase the TCP/IP ports more than 65355.</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-4302571" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-4418804">
+		<div class="comment_head">
+			<span class="avatar"><a href="http://thegeekstuff/" rel="nofollow"></a></span>
+<span class="comment_author"><a href="http://thegeekstuff/" rel="external nofollow ugc" class="url">Aravind Reddy Solipuram</a></span>
+<span class="comment_date">August 21, 2015, 11:11 pm</span>
+		</div>
+<div class="comment_text grt" id="comment-body-4418804"><p>very informative.thanks a lot</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-4418804" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4422482">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">majulalief</span>
+<span class="comment_date">August 23, 2015, 8:31 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-4422482"><p>Nice and clearly explained</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-4422482" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-4477046">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">gopi</span>
+<span class="comment_date">September 14, 2015, 11:20 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-4477046"><p>I like this article. Now I undrstnd hw data is trnsfr through layer. Thnxxx</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-4477046" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4496803">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">Mitravinda</span>
+<span class="comment_date">September 23, 2015, 12:20 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-4496803"><p>The internet model or TCP/IP reference model specifically applies to internet worked systems, and has 4 layers. The movement of data packets across a network would be managed by which layer?<br>
+A) The link layer<br>
+B) The (inter) network layer<br>
+C) The transport layer<br>
+D) The application layer</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-4496803" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-4656172">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">Abdul Mohsin</span>
+<span class="comment_date">December 30, 2015, 3:21 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-4656172"><p>Very nice explanation .ThankYou.</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-4656172" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4681849">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">Prakash</span>
+<span class="comment_date">January 25, 2016, 3:10 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-4681849"><p>nice details on TCP/IP basics.</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-4681849" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-4705681">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">Carol</span>
+<span class="comment_date">February 18, 2016, 12:27 pm</span>
+		</div>
+<div class="comment_text grt" id="comment-body-4705681"><p>Thanks for the short cut TCP/IP lesson.  I’m a bit of a hack with interoperability.  Helped me to understand where to look when I’m stuck.  Well done!</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-4705681" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4745458">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">DONA DILIGA DUKU</span>
+<span class="comment_date">March 17, 2016, 12:55 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-4745458"><p>very interesting. Thanks alot</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-4745458" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-4899821">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">Mark Aguilar</span>
+<span class="comment_date">December 25, 2016, 11:26 pm</span>
+		</div>
+<div class="comment_text grt" id="comment-body-4899821"><p>Very informative and an excellent refresher.</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-4899821" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4949756">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">basavaraj P</span>
+<span class="comment_date">April 20, 2017, 1:00 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-4949756"><p>nice explanation man, many thanks</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#comment-4949756" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+</ul>
+<form id="commentform" method="post" action="https://www.thegeekstuff.com/wp-comments-post.php">
+	<a rel="nofollow" id="cancel-comment-reply-link" href="https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/#respond" style="display:none;">Cancel reply</a>
+<p class="comment_form_title">Leave a Comment</p>
+<p id="comment_form_name">
+	<label for="author">Name</label>
+	<input type="text" id="author" class="input_text" name="author" value="" tabindex="1">
+</p>
+<p id="comment_form_email">
+	<label for="email">Email</label>
+	<input type="text" id="email" class="input_text" name="email" value="" tabindex="2">
+</p>
+<p id="comment_form_url">
+	<label for="url">Website</label>
+	<input type="text" id="url" class="input_text" name="url" value="" tabindex="3">
+</p>
+<p id="comment_form_comment">
+	<label for="comment">Comment</label>
+	<textarea name="comment" id="comment" class="input_text" tabindex="4" rows="6"></textarea>
+</p>
+<p id="comment_form_submit">
+	<input type="submit" id="submit" class="input_submit" name="submit" tabindex="5" value="Submit">
+</p>
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="5e01003af1"></p>
+
+	<p style="clear: both;" class="subscribe-to-comments">
+	<input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;">
+	<label for="subscribe">Notify me of followup comments via e-mail</label>
+	</p>
+
+
+<p style="display: none;"></p><input type="hidden" name="comment_post_ID" value="8943" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+<input type="hidden" id="ak_js" name="ak_js" value="1582145651583"></form>
+</div>
+<div class="prev_next">
+	<p class="next_post">Next post: <a href="https://www.thegeekstuff.com/2011/11/connect-with-us/" rel="next">Connect with The Geek Stuff</a></p>
+<p class="previous_post">Previous post: <a href="https://www.thegeekstuff.com/2011/10/openoffice-calc-tips/" rel="prev">20 OpenOffice Calc Spreadsheet Tips and Tricks</a></p>
+</div>
+	</div>
+<div class="sidebar">
+<div class="widget widget_text" id="text-21">			<div class="textwidget"><a title="Subscribe via RSS" href="https://www.thegeekstuff.com/feed" rel="nofollow">RSS</a>&nbsp; | &nbsp;<a title="Subscribe via Email" href="https://feedburner.google.com/fb/a/mailverify?uri=TheGeekStuff&amp;loc=en_US" rel="nofollow">Email</a>&nbsp; | &nbsp;<a title="Follow us on Twitter" href="https://twitter.com/thegeekstuff" rel="nofollow">Twitter</a>&nbsp; | &nbsp;<a title="Become a fan" href="https://www.facebook.com/thegeekstuff" rel="nofollow">Facebook</a>&nbsp; | &nbsp;<a title="Follow us on Google+" href="https://plus.google.com/112493711428194838421/posts">Google+</a>
+<br><br>
+<form action="https://www.thegeekstuff.com/search" id="cse-search-box">
+  <div>
+    <input type="hidden" name="cx" value="005666763606120661560:zkmegbt_djm">
+    <input type="hidden" name="cof" value="FORID:10">
+    <input type="hidden" name="ie" value="UTF-8">
+    <input style="background: url(&quot;https://www.google.com/cse/static/images/1x/googlelogo_lightgrey_46x16dp.png&quot;) left center no-repeat rgb(255, 255, 255); text-indent: 48px;" type="text" name="q" size="30" placeholder="Custom Search">
+    <input style="border-color:#CCCCCC #999999 #999999 #CCCCCC; border-style:double; border-width:1px; overflow:visible;" type="submit" name="sa" value="Search">
+  </div>
+<input name="siteurl" type="hidden" value="www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/"><input name="ref" type="hidden" value=""><input name="ss" type="hidden" value=""></form>
+<script type="text/javascript" src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/jsapi"></script>
+<script type="text/javascript">google.load("elements", "1", {packages: "transliteration"});</script><script src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/saved_resource(1)" type="text/javascript"></script><link href="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/transliteration.css" type="text/css" rel="stylesheet"><script src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/transliteration.I.js" type="text/javascript"></script>
+<script type="text/javascript" src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/f(1).txt"></script>
+<script type="text/javascript" src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/f(2).txt"></script>
+<br></div>
+		</div><div class="widget widget_text" id="text-3">			<div class="textwidget"><script async="" src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/f.txt"></script>
+<!-- TGS Side Bar -->
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-8090601437064582" data-ad-slot="9054077260"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<br></div>
+		</div><div class="widget widget_text" id="text-4"><p class="widget_title">EBOOKS</p>			<div class="textwidget"><ul>
+<li><img title="Linux 101 Hacks Book" src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/free-small.png" alt="Linux 101 Hacks Book">&nbsp;<a href="https://www.thegeekstuff.com/linux-101-hacks-ebook/">Linux 101 Hacks 2nd Edition eBook</a> - Practical Examples to Build a Strong Foundation in Linux</li>
+<li><a href="https://www.thegeekstuff.com/bash-101-hacks-ebook/">Bash 101 Hacks eBook</a> - Take Control of Your Bash Command Line and Shell Scripting</li>
+<li><a href="https://www.thegeekstuff.com/sed-awk-101-hacks-ebook/">Sed and Awk 101 Hacks eBook</a> - Enhance Your UNIX / Linux Life with Sed and Awk</li>
+<li><a href="https://www.thegeekstuff.com/vim-101-hacks-ebook/">Vim 101 Hacks eBook</a> - Practical Examples for Becoming Fast and Productive in Vim Editor</li>
+<li><a href="https://www.thegeekstuff.com/nagios-core-ebook/">Nagios Core 3 eBook</a> - Monitor Everything, Be Proactive, and Sleep Well</li>
+</ul></div>
+		</div><div class="widget widget_text" id="text-22">			<div class="textwidget"><iframe src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/likebox.html" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:258px;" allowtransparency="true"></iframe></div>
+		</div><div class="widget widget_text" id="text-17"><p class="widget_title">POPULAR POSTS</p>			<div class="textwidget"><ul>
+<li><a href="https://www.thegeekstuff.com/dslr-accessories/">15 Essential Accessories for Your Nikon or Canon DSLR Camera</a></li>
+<li><a href="https://www.thegeekstuff.com/2009/01/12-amazing-and-essential-linux-books-to-enrich-your-brain-and-library/">12 Amazing and Essential Linux Books To Enrich Your Brain and Library</a></li>
+<li><a href="https://www.thegeekstuff.com/2010/12/50-unix-linux-sysadmin-tutorials/">50 UNIX / Linux Sysadmin Tutorials</a></li>
+<li><a href="https://www.thegeekstuff.com/2010/11/50-linux-commands/">50 Most Frequently Used UNIX / Linux Commands (With Examples)</a></li>
+<li><a href="https://www.thegeekstuff.com/2010/08/gtd-getting-things-done/">How To Be Productive and Get Things Done Using GTD</a></li>
+<li><a href="https://www.thegeekstuff.com/2010/03/30-things-to-do-when-you-are-bored-and-have-a-computer/">30 Things To Do When you are Bored and have a Computer</a></li>
+<li><a href="https://www.thegeekstuff.com/2010/09/linux-file-system-structure/">Linux Directory Structure (File System Structure) Explained with Examples</a></li>
+<li><a href="https://www.thegeekstuff.com/2009/06/15-practical-crontab-examples/">Linux Crontab: 15 Awesome Cron Job Examples</a></li>
+<li><a href="https://www.thegeekstuff.com/2009/03/15-practical-unix-grep-command-examples/">Get a Grip on the Grep! – 15 Practical Grep Command Examples</a></li>
+<li><a href="https://www.thegeekstuff.com/2009/07/linux-ls-command-examples/">Unix LS Command: 15 Practical Examples</a></li>
+<li><a href="https://www.thegeekstuff.com/2008/08/15-examples-to-master-linux-command-line-history/">15 Examples To Master Linux Command Line History</a></li>
+<li><a href="https://www.thegeekstuff.com/2010/08/bug-tracking-system/">Top 10 Open Source Bug Tracking System</a></li>
+<li><a href="https://www.thegeekstuff.com/2009/01/vi-and-vim-macro-tutorial-how-to-record-and-play/">Vi and Vim Macro Tutorial: How To Record and Play</a></li>
+<li><a href="https://www.thegeekstuff.com/2009/03/15-practical-linux-find-command-examples/">Mommy, I found it! -- 15 Practical Linux Find Command Examples</a></li>
+<li><a href="https://www.thegeekstuff.com/2009/07/best-gmail-tips-and-tricks/">15 Awesome Gmail Tips and Tricks</a></li>
+<li><a href="https://www.thegeekstuff.com/2009/06/expertise-in-google-search/">15 Awesome Google Search Tips and Tricks</a></li>
+<li><a href="https://www.thegeekstuff.com/2010/08/raid-levels-tutorial/">RAID 0, RAID 1, RAID 5, RAID 10 Explained with Diagrams</a></li>
+<li><a href="https://www.thegeekstuff.com/2010/01/15-practical-unix-linux-top-command-examples/">Can You Top This? 15 Practical Linux Top Command Examples</a></li>
+<li><a href="https://www.thegeekstuff.com/2009/09/top-5-best-network-monitoring-tools/">Top 5 Best System Monitoring Tools</a></li>
+<li><a href="https://www.thegeekstuff.com/2009/06/top-5-best-linux-os-distributions/">Top 5 Best Linux OS Distributions</a></li>
+<li><a href="https://www.thegeekstuff.com/2008/06/how-to-monitor-remote-linux-host-using-nagios-30/">How To Monitor Remote Linux Host using Nagios 3.0</a></li>
+<li><a href="https://www.thegeekstuff.com/2010/01/awk-introduction-tutorial-7-awk-print-examples/">Awk Introduction Tutorial – 7 Awk Print Examples</a></li>
+<li><a href="https://www.thegeekstuff.com/2010/09/rsync-command-examples/">How to Backup Linux? 15 rsync Command Examples</a></li>
+<li><a href="https://www.thegeekstuff.com/2009/09/the-ultimate-wget-download-guide-with-15-awesome-examples/">The Ultimate Wget Download Guide With 15 Awesome Examples</a></li>
+<li><a href="https://www.thegeekstuff.com/2009/07/top-5-best-linux-text-editors/">Top 5 Best Linux Text Editors</a></li>
+<li><a href="https://www.thegeekstuff.com/2010/08/tcpdump-command-examples/">Packet Analyzer: 15 TCPDUMP Command Examples</a></li>
+<li><a href="https://www.thegeekstuff.com/2010/06/bash-array-tutorial/">The Ultimate Bash Array Tutorial with 15 Examples</a></li>
+<li><a href="https://www.thegeekstuff.com/2008/11/3-steps-to-perform-ssh-login-without-password-using-ssh-keygen-ssh-copy-id/">3 Steps to Perform SSH Login Without Password Using ssh-keygen &amp; ssh-copy-id</a></li>
+<li><a href="https://www.thegeekstuff.com/2009/10/unix-sed-tutorial-advanced-sed-substitution-examples/">Unix Sed Tutorial: Advanced Sed Substitution Examples</a></li>
+<li><a href="https://www.thegeekstuff.com/2010/03/netstat-command-examples/">UNIX / Linux: 10 Netstat Command Examples</a></li>
+<li><a href="https://www.thegeekstuff.com/2008/06/the-ultimate-guide-for-creating-strong-passwords/">The Ultimate Guide for Creating Strong Passwords</a></li>
+<li><a href="https://www.thegeekstuff.com/2008/08/6-steps-to-secure-your-home-wireless-network/">6 Steps to Secure Your Home Wireless Network</a></li>
+<li><a href="https://www.thegeekstuff.com/2008/08/turbocharge-putty-with-12-powerful-add-ons-software-for-geeks-3/">Turbocharge PuTTY with 12 Powerful Add-Ons</a></li>
+</ul></div>
+		</div><div class="widget widget_text" id="text-19"><p class="widget_title">CATEGORIES</p>			<div class="textwidget"><ul>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/linux/">Linux Tutorials</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/vim-2/">Vim Editor</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/sed/">Sed Scripting</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/awk/">Awk Scripting</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/bash-2/">Bash Shell Scripting</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/nagios-2/">Nagios Monitoring</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/openssh-2/">OpenSSH</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/iptables/">IPTables Firewall</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/apache/">Apache Web Server</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/mysql/">MySQL Database</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/perl/">Perl Programming</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/google/">Google Tutorials</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/ubuntu/">Ubuntu Tutorials</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/postgresql/">PostgreSQL DB</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/hello-world/">Hello World Examples</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/c-programming/">C Programming</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/c-plus-plus/">C++ Programming</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/dell-2/">DELL Server Tutorials</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/oracle/">Oracle Database</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/vmware/">VMware Tutorials</a></li>
+</ul></div>
+		</div><div class="widget widget_text" id="text-20">			<div class="textwidget"><div id="___person_0" style="position: absolute; width: 450px; left: -10000px;"><iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position:absolute;top:-10000px;width:450px;margin:0px;border-style:none" tabindex="0" vspace="0" width="100%" id="I2_1582145651556" name="I2_1582145651556" src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/person.html" data-gapiattached="true"></iframe></div><g:person href="https://plus.google.com/112493711428194838421" data-rel="author" layout="landscape" data-gapiscan="true" data-onload="true" data-gapistub="true"></g:person></div>
+		</div></div>
+</div>
+<div class="footer">
+<div id="footer_widgets" class="columns_3">
+	<div class="one-third sidebar first">
+<div class="widget widget_text" id="text-7"><h4 class="widget_title">About The Geek Stuff</h4>			<div class="textwidget"><br>
+<img class="float" title="Ramesh Natarajan" src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/ramesh-small.gif" alt="Linux 101 Hacks Book">
+My name is <strong>Ramesh Natarajan</strong>. I will be posting instruction guides, how-to, troubleshooting tips and tricks on Linux, database, hardware, security and web. My focus is to write articles that will either teach you or help you resolve a problem. Read more about <a href="https://www.thegeekstuff.com/about/">Ramesh Natarajan</a> and the blog.</div>
+		</div>	</div>
+	<div class="one-third sidebar">
+<div class="widget widget_text" id="text-9"><h4 class="widget_title">Contact Us</h4>			<div class="textwidget"><br>
+<strong>Email Me :</strong>
+Use this <a href="https://www.thegeekstuff.com/contact" rel="nofollow">Contact Form</a> to get in touch me with your comments, questions or suggestions about this site. You can also simply drop me a line to say hello!.
+<br><br>
+<a title="Follow us on Google+" href="https://plus.google.com/112493711428194838421/posts">Follow us on Google+</a>
+<br><br>
+<a title="Follow us on Twitter" href="https://twitter.com/thegeekstuff" rel="nofollow">Follow us on Twitter</a>
+<br><br>
+<a href="https://www.facebook.com/thegeekstuff" rel="nofollow">Become a fan on Facebook</a>&nbsp;&nbsp;</div>
+		</div>	</div>
+	<div class="one-third sidebar last">
+<div class="widget widget_text" id="text-8"><h4 class="widget_title">Support Us</h4>			<div class="textwidget"><br>
+Support this blog by purchasing one of my ebooks.
+<br><br>
+<a rel="nofollow" href="https://www.thegeekstuff.com/bash-101-hacks-ebook/">Bash 101 Hacks eBook</a>
+<br><br>
+<a rel="nofollow" href="https://www.thegeekstuff.com/sed-awk-101-hacks-ebook/">Sed and Awk 101 Hacks eBook</a>
+<br><br>
+<a rel="nofollow" href="https://www.thegeekstuff.com/vim-101-hacks-ebook/">Vim 101 Hacks eBook</a>
+<br><br>
+<a rel="nofollow" href="https://www.thegeekstuff.com/nagios-core-ebook/">Nagios Core 3 eBook</a></div>
+		</div>	</div>
+	<div style="clear:both;"></div>
+</div>
+	<p class="attribution">Copyright © 2008–2018 Ramesh Natarajan. All rights reserved  | <a href="https://www.thegeekstuff.com/copyright">Terms of Service</a></p>
+</div>
+</div>
+<script type="text/javascript" src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/comment-reply.min.js.gzip"></script>
+<script async="async" type="text/javascript" src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/form.js.gzip"></script>
+<script type="text/javascript">
+(function(){
+	var classes = document.getElementsByClassName('menu_control');
+	for (i = 0; i < classes.length; i++) {
+		classes[i].onclick = function() {
+			var menu = this.nextElementSibling;
+			if (/show_menu/.test(menu.className))
+				menu.className = menu.className.replace('show_menu', '').trim();
+			else
+				menu.className += ' show_menu';
+		};
+	}
+})();
+</script>
+<noscript><style type="text/css" scoped>.menu { display: block; }</style></noscript>
+<script type="text/javascript" src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/plusone.js" gapi_processed="true"></script>
+
+
+
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+Page Caching using disk: enhanced
+Content Delivery Network via Amazon Web Services: CloudFront: static.thegeekstuff.com
+
+ Served from: www.thegeekstuff.com @ 2020-02-19 14:54:11 by W3 Total Cache --><iframe scrolling="no" frameborder="0" allowtransparency="true" src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/widget_iframe.7303c29a8108bca4ac5c9ef008ed8164.html" title="Twitter settings iframe" style="display: none;"></iframe><iframe name="oauth2relay247802327" id="oauth2relay247802327" src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/postmessageRelay.html" tabindex="-1" aria-hidden="true" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe><iframe id="rufous-sandbox" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: none;" title="Twitter analytics iframe" src="./TCP_IP Protocol Fundamentals Explained with a Diagram_files/saved_resource.html"></iframe></body></html>
