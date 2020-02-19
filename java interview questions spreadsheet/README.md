@@ -203,6 +203,7 @@ For learning and study
     - [JSON web token; jwt;](#json-web-token-jwt)
 - [Web socket](#web-socket)
 - [HTTP constructed over TCP](#http-constructed-over-tcp)
+- [](#)
 - [Random](#random)
 - [SQL Normal Forms](#sql-normal-forms)
 - [HTTP](#http)
@@ -8751,12 +8752,26 @@ https://www.pegaxchange.com/2018/01/28/websocket-server-java/
 |-------|-----|-------|
 |       |  x  |   x   |
 
+- [TCP-vs-HTTP-Definitions-and-Differences-Explained-ExtraHop](refs/TCP-vs-HTTP-Definitions-and-Differences-Explained-ExtraHop)
+
+`references:`
+https://www.extrahop.com/company/blog/2018/tcp-vs-http-differences-explained/
+
+- [HTTP-Server-Everything-you-need-to-know-to-Build-a-simple-HTTP-server-from-scratch-mediumcom](refs/HTTP-Server-Everything-you-need-to-know-to-Build-a-simple-HTTP-server-from-scratch-mediumcom)
+
+`references:`
+https://medium.com/from-the-scratch/http-server-what-do-you-need-to-know-to-build-a-simple-http-server-from-scratch-d1ef8945e4fa
+
+----
+
+# 
+
 - [](refs/)
 
 `references:`
 
-
-
+----
+----
 ----
 
 - [](refs/)
