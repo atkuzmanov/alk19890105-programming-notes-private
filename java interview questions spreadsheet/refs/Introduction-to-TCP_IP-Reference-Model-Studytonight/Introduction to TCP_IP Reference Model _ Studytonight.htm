@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<!-- saved from url=(0069)https://www.studytonight.com/computer-networks/tcp-ip-reference-model -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" async="" src="./Introduction to TCP_IP Reference Model _ Studytonight_files/ga.js"></script><script type="text/javascript" src="./Introduction to TCP_IP Reference Model _ Studytonight_files/cmp.complete.bundle.js"></script><script type="text/javascript" async="" src="./Introduction to TCP_IP Reference Model _ Studytonight_files/videoplayer.js"></script><script type="text/javascript" async="" src="./Introduction to TCP_IP Reference Model _ Studytonight_files/prebid.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Introduction to TCP/IP Reference Model | Studytonight</title>
+<meta name="description" content="TCP/IP means transmission control protocol and internet protocol. Here we will cover introduction to TCP/IP model, its layer, it&#39;s application, advantages and disadvantages.">
+<link rel="canonical" href="https://www.studytonight.com/computer-networks/tcp-ip-reference-model">
+
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<link href="./Introduction to TCP_IP Reference Model _ Studytonight_files/bootstrap.v2.1581679379.css" rel="stylesheet">
+<link rel="icon" type="image/png" href="https://www.studytonight.com/css/resource/favicon.png">
+<script async="" type="text/javascript" src="./Introduction to TCP_IP Reference Model _ Studytonight_files/gpt.js"></script><script type="text/javascript" src="./Introduction to TCP_IP Reference Model _ Studytonight_files/3359.js"></script><style type="text/css">#waldo-sticky-footer-wrapper {position: fixed; width: 100%; bottom: 0px; left: 0px; text-align: center; z-index: 9000;}#waldo-sticky-footer-wrapper > div {position: relative; display: inline-block}#waldo-sticky-footer-wrapper iframe, #waldo-sticky-footer-wrapper div {margin-left: auto;margin-right: auto;}.waldo-sticky-sidebar{position: fixed; top: 10px;z-index: 90}.waldo-sticky-css{position: sticky; top: 10px; z-index: 90}.waldo-overlay{position: fixed;height: 100%;width: 100%;top: 0;left: 0;z-index: 105;background: rgba(0,0,0,0.7);}#waldo-counter {position: absolute;bottom: 0;right: 0;color: #fff;font-size: 30px;padding: 15px;}.waldo-bfleft {position: fixed; left: 0; top: 10px;z-index:101;}.waldo-bfright {position: fixed; right: 0; top: 10px;z-index:101;}#waldo-tag-6038 {clear: both !important;}div[class^="app_gdpr-"] a {color: #41afbb !important; text-decoration: underline !important}#waldo-close-button {position: absolute; right: 0;top: -24px;}#waldo-close-button a {border: 1px solid rgba(0,0,0,.35);padding: 3px;font-size: 12px;color: #fff;font-weight: bold;background-color: #777;}</style><script type="text/javascript">googletag.cmd.push(function() {googletag.pubads().addEventListener('slotRenderEnded', function(event) {waldoPassbackCheck(event);waldoAddCloseBtn(event);});googletag.pubads().enableSingleRequest();googletag.enableServices();gptAdSlots[3360] = googletag.defineSlot('/124067137/studytonight300x250FL_1', [[300, 250], [300, 600]], 'waldo-tag-3360').defineSizeMapping(googletag.sizeMapping().addSize([1024, 0], [[300, 250], [300, 600]]).addSize([768, 0], [[300, 250], [300, 600]]).addSize([0, 0], [[300, 250], [300, 600]]).build()).addService(googletag.pubads());googletag.display('waldo-tag-3360');gptAdSlots[3364] = googletag.defineSlot('/124067137/studytonight728x90FL_2', [[728, 90], [970, 90], [970, 250], [320, 50]], 'waldo-tag-3364').defineSizeMapping(googletag.sizeMapping().addSize([1024, 0], [[728, 90], [970, 90], [970, 250]]).addSize([768, 0], [[320, 50]]).addSize([0, 0], [[320, 50]]).build()).addService(googletag.pubads());googletag.display('waldo-tag-3364');gptAdSlots[4103] = googletag.defineSlot('/124067137/studytonight300x250FX_2', [300, 250], 'waldo-tag-4103').defineSizeMapping(googletag.sizeMapping().addSize([1024, 0], [[300, 250]]).addSize([768, 0], [[300, 250]]).addSize([0, 0], [[300, 250]]).build()).addService(googletag.pubads());googletag.display('waldo-tag-4103');gptAdSlots[4846] = googletag.defineSlot('/124067137/studytonight300x250FL_2', [[300, 250], [300, 600]], 'waldo-tag-4846').defineSizeMapping(googletag.sizeMapping().addSize([1024, 0], [[300, 250], [300, 600]]).addSize([768, 0], [[300, 250], [300, 600]]).addSize([0, 0], [[300, 250], [300, 600]]).build()).addService(googletag.pubads());googletag.display('waldo-tag-4846');});</script><link rel="preload" href="./Introduction to TCP_IP Reference Model _ Studytonight_files/f.txt" as="script"><script type="text/javascript" src="./Introduction to TCP_IP Reference Model _ Studytonight_files/f.txt"></script><link rel="preload" href="./Introduction to TCP_IP Reference Model _ Studytonight_files/f(1).txt" as="script"><script type="text/javascript" src="./Introduction to TCP_IP Reference Model _ Studytonight_files/f(1).txt"></script><script src="./Introduction to TCP_IP Reference Model _ Studytonight_files/pubads_impl_2020021301.js" async=""></script><style>[data-ad-unit="LEFT_RAIL_DYNAMIC"]{display:none !important}</style><style>[data-ad-unit="LEFT_RAIL"]{display:none !important}</style><iframe src="./Introduction to TCP_IP Reference Model _ Studytonight_files/serve.html" id="bidt-sra" scrolling="no" allowtransparency="true" frameborder="0" marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" sandbox="allow-forms allow-same-origin allow-scripts allow-top-navigation allow-popups" width="1" height="1"></iframe><style>[data-ad-unit="LEFT_RAIL_DYNAMIC"]{display:none !important}</style><style>[data-ad-unit="LEFT_RAIL"]{display:none !important}</style><img src="./Introduction to TCP_IP Reference Model _ Studytonight_files/notify"><img src="./Introduction to TCP_IP Reference Model _ Studytonight_files/notify(1)"><img src="./Introduction to TCP_IP Reference Model _ Studytonight_files/notify(2)"></head>
+<body>
+
+<div class="navbar varela">
+<div style="margin:0px 15px;">
+<div class="navbar-header">
+<a class="navbar-brand" href="https://www.studytonight.com/">
+<img style="max-height:48px;" id="brand-icon" src="./Introduction to TCP_IP Reference Model _ Studytonight_files/st-icon-dark.png" alt="studytonight.com" title="Take me Home">
+</a>
+</div>
+<ul class="nav navbar-nav hide-on-small">
+<li id="hero-dropdown">
+<a href="https://www.studytonight.com/library/">Tutorials&nbsp;<span style="position:relative;top:-2px;"><img src="./Introduction to TCP_IP Reference Model _ Studytonight_files/Navbar-Arrow-Down.png" style="width:15px;height:auto"></span></a>
+<div class="nav-hero-dropdown">
+<div class="white-container" style="border-radius:2px;box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)">
+<div class="row">
+<div class="col-12">
+<p class="varela dark-grey nav-heading">PROGRAMMING</p>
+<div class="row nav-row">
+<div class="col-4">
+<a href="https://www.studytonight.com/java/" class="inverted" alt="Core Java Tutorial">
+<p><span class="jewel malibu-container"></span>Core Java</p>
+</a>
+<a href="https://www.studytonight.com/cpp/" class="inverted" alt="C++ Tutorial">
+<p><span class="jewel yellow-container"></span>C++</p>
+</a>
+<a href="https://www.studytonight.com/c/" class="inverted" alt="C Language Tutorial">
+<p><span class="jewel cream-container"></span>C Language</p>
+</a>
+<a href="https://www.studytonight.com/network-programming-in-python/" class="inverted" alt="Network Programming with Python Tutorial">
+<p><span class="jewel marine-container"></span>Network Programming</p>
+</a>
+</div>
+<div class="col-4">
+<a href="https://www.studytonight.com/python/" class="inverted" alt="Python Tutorial">
+<p><span class="jewel marine-container"></span>Python</p>
+</a>
+<a href="https://www.studytonight.com/data-structures/" class="inverted" alt="Data Structure Tutorial">
+<p><span class="jewel malibu-light-container"></span>Data Structure</p>
+</a>
+
+<a href="https://www.studytonight.com/android/" class="inverted" alt="Android Tutorial">
+<p><span class="jewel malibu-container"></span>Android</p>
+ </a>
+<a href="https://www.studytonight.com/php/" class="inverted" alt="PHP Tutorial">
+<p><span class="jewel light-purple-container"></span>PHP</p>
+</a>
+</div>
+<div class="col-4">
+<a href="https://www.studytonight.com/ruby/" class="inverted" alt="Ruby Tutorial">
+<p><span class="jewel yellow-container"></span>Ruby</p>
+</a>
+<a href="https://www.studytonight.com/servlet/" class="inverted" alt="Servlet Tutorial">
+<p><span class="jewel cream-container"></span>Servlet</p>
+</a>
+<a href="https://www.studytonight.com/jsp/" class="inverted" alt="JSP Tutorial">
+<p><span class="jewel silver-container"></span>JSP</p>
+</a>
+</div>
+</div>
+</div>
+</div>
+<hr style="margin:0">
+<div class="row">
+<div class="col-12">
+<p class="varela dark-grey nav-heading">WEB</p>
+<div class="row nav-row">
+<div class="col-4">
+<a href="https://www.studytonight.com/code/" class="inverted" alt="HTML Tutorial">
+<p>HTML Course</p>
+</a>
+<a href="https://www.studytonight.com/code/playground/" class="inverted" alt="Practice HTML and CSS">
+<p>Web Playground</p>
+</a>
+</div>
+<div class="col-4">
+<a href="https://www.studytonight.com/cascading-style-sheet/" class="inverted" alt="CSS Tutorial">
+<p><span class="jewel pink-container"></span>CSS</p>
+</a>
+</div>
+<div class="col-4">
+<a href="https://www.studytonight.com/rest-web-service/" class="inverted" alt="REST Web Service Tutorial">
+<p><span class="jewel malibu-light-container"></span>REST Web Service</p>
+</a>
+</div>
+</div>
+</div>
+</div>
+<hr style="margin:0">
+<div class="row">
+<div class="col-12">
+<p class="varela dark-grey nav-heading">COMPUTER</p>
+<div class="row nav-row">
+<div class="col-4">
+<a href="https://www.studytonight.com/computer-networks/" class="inverted" alt="Computer Network Tutorial">
+<p><span class="jewel tree-green-container"></span>Computer Network</p>
+</a>
+</div>
+<div class="col-4">
+<a href="https://www.studytonight.com/operating-system/" class="inverted" alt="Operating System Tutorial">
+<p><span class="jewel light-purple-container"></span>Operating System</p>
+</a>
+</div>
+<div class="col-4">
+<a href="https://www.studytonight.com/computer-architecture/" class="inverted" alt="Computer Architecture Tutorial">
+<p><span class="jewel shamrock-container"></span>Computer Architecture</p>
+</a>
+</div>
+</div>
+</div>
+</div>
+<hr style="margin:0">
+<div class="row">
+<div class="col-12">
+<p class="varela dark-grey nav-heading">GAME DEVELOPMENT</p>
+<div class="row nav-row">
+<div class="col-12">
+<a href="https://www.studytonight.com/game-development-in-2D/" class="inverted" alt="Game Development with Unity Tutorial">
+<p><span class="jewel yellow-container"></span>Game Development with Unity Engine</p>
+</a>
+</div>
+</div>
+</div>
+</div>
+<hr style="margin:0">
+<div class="row">
+<div class="col-12">
+<p class="varela dark-grey nav-heading">DB</p>
+<div class="row nav-row">
+<div class="col-4">
+<a href="https://www.studytonight.com/dbms/" class="inverted" alt="DBMS and SQL Tutorial">
+<p><span class="jewel light-purple-container"></span>DBMS</p>
+</a>
+</div>
+<div class="col-4">
+<a href="https://www.studytonight.com/mongodb/" class="inverted" alt="MongoDB Tutorial">
+<p><span class="jewel tree-green-container"></span>MongoDB</p>
+</a>
+</div>
+<div class="col-4">
+<a href="https://www.studytonight.com/plsql/" class="inverted" alt="PL/SQL Tutorial"><p><span class="jewel malibu-light-container"></span>PL/SQL</p></a>
+</div>
+</div>
+</div>
+</div>
+<hr style="margin:0">
+<div class="row">
+<div class="col-12">
+<p class="varela dark-grey nav-heading">MISCELLANEOUS</p>
+<div class="row nav-row">
+<div class="col-4">
+<a href="https://www.studytonight.com/github/" class="inverted" alt="GIT Tutorial">
+<p><span class="jewel studio-container"></span><span class="jewel-double"></span>GIT</p>
+</a>
+<a href="https://www.studytonight.com/scrum-framework/" class="inverted" alt="Scrum Tutorial">
+<p><span class="jewel light-purple-container"></span>Scrum Framework</p>
+</a>
+</div>
+<div class="col-4">
+<a href="https://www.studytonight.com/jenkins/" class="inverted" alt="Jenkins Tutorial">
+<p><span class="jewel malibu-container"></span>Jenkins</p>
+</a>
+<a href="https://www.studytonight.com/maven/" class="inverted" alt="Maven Tutorial">
+<p><span class="jewel shamrock-container"></span>Maven</p>
+</a>
+</div>
+<div class="col-4">
+ <a href="https://www.studytonight.com/apache-cordova/" class="inverted" alt="Apache Cordova Tutorial">
+<p><span class="jewel studio-container"></span>Apache Cordova</p>
+</a>
+<a href="https://www.studytonight.com/drools/" class="inverted" alt="Drools Tutorial">
+<p><span class="jewel malibu-light-container"></span>Drools</p>
+</a>
+</div>
+</div>
+<br>
+</div>
+</div>
+</div>
+</div>
+</li>
+<li><a href="https://www.studytonight.com/tests/">Tests</a></li>
+<li><a href="https://www.studytonight.com/code/">HTML Course</a></li>
+<li><a href="https://www.studytonight.com/curious/">Curious</a></li>
+<li><a href="https://www.studytonight.com/code/playground/">Practice Coding <sup class="malibu">NEW</sup></a></li>
+</ul>
+<ul class="nav navbar-nav pull-right hide-on-med-large">
+<input type="checkbox" name="mobile-menu-toggle" id="mobile-menu-toggle" value="Hello">
+<label for="mobile-menu-toggle"><span class="glyphicon glyphicon-menu-hamburger"></span></label>
+<div class="mobile-menu">
+<a href="https://www.studytonight.com/library" class="inverted">
+<div class="mobile-menu-option">
+<div class="mobile-menu-option-title">Library</div>
+</div>
+</a>
+<a href="https://www.studytonight.com/tests" class="inverted">
+<div class="mobile-menu-option">
+<div class="mobile-menu-option-title">Tests</div>
+</div>
+</a>
+
+<a href="https://www.studytonight.com/code/html" class="inverted">
+<div class="mobile-menu-option">
+<div class="mobile-menu-option-title">HTML Course</div>
+</div>
+</a>
+<a href="https://www.studytonight.com/curious" class="inverted">
+<div class="mobile-menu-option">
+<div class="mobile-menu-option-title">Curious</div>
+</div>
+</a>
+<a href="https://www.studytonight.com/login.php" class="inverted">
+<div class="mobile-menu-option-last">
+<div class="mobile-menu-option-title">Sign in</div>
+</div>
+</a>
+</div>
+</ul>
+<div class="navbar-form navbar-right hide-on-med-small">
+<a style="position:relative;top:-10px;color:#000000;padding:5px;border:solid 2px #000;border-radius:20px;" href="https://www.studytonight.com/career/">We are Hiring!</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span title="Subscribe to Studytonight Youtube Channel"><a href="https://www.youtube.com/c/Studytonight" target="_blank"><span class="youtube"></span></a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span title="Download Studytonight Android App"><a href="https://play.google.com/store/apps/details?id=com.studytonight.app" target="_blank"><span class="android-logo"></span></a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a style="position:relative;top:-10px;" href="https://www.studytonight.com/login.php"><b>Sign in</b></a>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-12 center margin-10">
+<script async="" src="./Introduction to TCP_IP Reference Model _ Studytonight_files/f(2).txt"></script>
+
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6137246359299957" data-ad-slot="1965829825" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+</div>
+</div>
+</div><div class="row tutorial">
+<div class="col-3">
+<div class="mobile-sidebar-button pull-right fixed">
+<a id="slide-in-sidebar" class="btn btn-success"><img class="img-24" src="./Introduction to TCP_IP Reference Model _ Studytonight_files/line-menu.svg" alt="See the Tutorial List"></a>
+</div>
+<div id="sidebar-sliding-menu">
+<div id="left-sidebar">
+<div class="center hide-on-large" style="padding:5px;">
+<span class="varela" style="position:relative;top:-10px;left:-5px">Available on:&nbsp;&nbsp;</span>
+<span title="Subscribe to Studytonight Youtube Channel"><a href="https://www.youtube.com/c/Studytonight" target="_blank"><span class="youtube"></span></a></span>&nbsp;&nbsp;&nbsp;
+<span title="Download Studytonight Android App"><a href="https://play.google.com/store/apps/details?id=com.studytonight.app" target="_blank"><span class="android-logo"></span></a></span>
+</div>
+<ul class="sidebar-list">
+<li class="main">
+<h4>Computer Network Basics <span class="glyphicon glyphicon-chevron-right pull-right"></span>
+</h4>
+<ul class="sidebar-sublist closed">
+<li><a href="https://www.studytonight.com/computer-networks/overview-of-computer-networks">Introduction to Computer Networks</a></li>
+<li><a href="https://www.studytonight.com/computer-networks/uses-of-computer-networks">Uses of Computer Networks</a></li>
+<li><a href="https://www.studytonight.com/computer-networks/line-configuration">Line Configuration</a></li>
+<li><a href="https://www.studytonight.com/computer-networks/network-topology-types">Types of Network Topology</a></li>
+<li><a href="https://www.studytonight.com/computer-networks/transmission-mode">Transmission Modes</a></li>
+<li><a href="https://www.studytonight.com/computer-networks/transmission-mediums">Transmission Mediums</a></li>
+<li><a href="https://www.studytonight.com/computer-networks/bounded-transmission-media">Bounded/Guided Transmission Media</a></li>
+<li><a href="https://www.studytonight.com/computer-networks/unbounded-transmission-media">UnBounded/UnGuided Transmission Media</a></li>
+<li><a href="https://www.studytonight.com/computer-networks/types-of-networks">Types of Communication Networks</a></li>
+<li><a href="https://www.studytonight.com/computer-networks/connection-oriented-and-connectionless-service">Connection Oriented and Connectionless Services</a></li>
+</ul>
+</li>
+<li class="main">
+<h4>ISO/OSI Reference Model <span class="glyphicon glyphicon-chevron-right pull-right"></span>
+</h4>
+<ul class="sidebar-sublist closed">
+<li><a href="https://www.studytonight.com/computer-networks/reference-models">Introduction to Reference Models</a></li>
+<li><a href="https://www.studytonight.com/computer-networks/complete-osi-model">ISO/OSI Model</a></li>
+<li><a href="https://www.studytonight.com/computer-networks/osi-model-physical-layer">OSI Model: Physical Layer</a></li>
+<li><a href="https://www.studytonight.com/computer-networks/osi-model-datalink-layer">OSI Model: Datalink Layer</a></li>
+<li><a href="https://www.studytonight.com/computer-networks/osi-model-network-layer">OSI Model: Network Layer</a></li>
+<li><a href="https://www.studytonight.com/computer-networks/osi-model-transport-layer">OSI Model: Transport Layer</a></li>
+<li><a href="https://www.studytonight.com/computer-networks/osi-model-session-layer">OSI Model: Session Layer</a></li>
+<li><a href="https://www.studytonight.com/computer-networks/osi-model-presentation-layer">OSI Model: Presentation Layer</a></li>
+<li><a href="https://www.studytonight.com/computer-networks/osi-model-application-layer">OSI Model: Application Layer</a></li>
+</ul>
+</li>
+<li class="main">
+<h4>TCP/IP Reference Model<b>Computer Networks</b> <span class="glyphicon pull-right glyphicon-chevron-down"></span>
+</h4>
+<ul class="sidebar-sublist open">
+<li class="active"><a href="https://www.studytonight.com/computer-networks/tcp-ip-reference-model">The TCP/IP Reference Model</a></li>
+<li><a href="https://www.studytonight.com/computer-networks/comparison-osi-tcp-model">Difference between OSI and TCP/IP Model</a></li>
+<li><a href="https://www.studytonight.com/computer-networks/key-terms-computer-networks">Key Terms</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div class="hide-on-med-small">
+<div class="scroller_anchor"></div>
+<div class="scroller" style="position: relative; top: 0px;">
+<div id="waldo-tag-3360" data-processed="true"><div id="_waldo-tag-3360-2-container" style="margin: auto; text-align: center;"><iframe id="waldo-tag-3360-2" scrolling="no" allowtransparency="true" frameborder="0" marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" sandbox="allow-forms allow-same-origin allow-scripts allow-top-navigation allow-popups" width="300" height="250" src="./Introduction to TCP_IP Reference Model _ Studytonight_files/render.html">
+    </iframe></div></div>
+</div>
+</div>
+
+<div class="hide-on-med-small">
+<div class="scroller_anchor"></div>
+<div class="scroller" style="position: relative; top: 0px;">
+<div id="waldo-tag-3360"></div>
+</div>
+</div>
+</div>
+<div class="col-6">
+<div id="body-content">
+<h1>The TCP/IP Reference Model</h1>
+<p>TCP/IP means Transmission Control Protocol and Internet Protocol. It is the network model used in the current Internet architecture as well. <b>Protocols</b> are set of rules which govern every possible communication over a network. These protocols describe the movement of data between the source and destination or the internet. They also offer simple naming and addressing schemes.</p><br>
+<p class="center"><img src="./Introduction to TCP_IP Reference Model _ Studytonight_files/Figure35-1.png" alt="Diagram Representation of TCP/IP Model"></p>
+<br>
+<p>Protocols and networks in the TCP/IP model:</p>
+<p class="center"><img src="./Introduction to TCP_IP Reference Model _ Studytonight_files/Figure35-2.png" alt="Diagram Representation of TCP/IP Model"></p>
+<hr>
+<h2>Overview of TCP/IP reference model</h2>
+<p>TCP/IP that is Transmission Control Protocol and Internet Protocol was developed by Department of <b>Defence's Project Research Agency</b> (ARPA, later DARPA) as a part of a research project of network interconnection to connect remote machines.</p>
+<p>The features that stood out during the research, which led to making the TCP/IP reference model were:</p>
+<ul class="content">
+<li>Support for a flexible architecture. Adding more machines to a network was easy.</li>
+<li>The network was robust, and connections remained intact untill the source and destination machines were functioning.</li>
+</ul>
+<p>The overall idea was to allow one application on one computer to talk to(send data packets) another application running on different computer.</p>
+<div><div class="center">
+<script async="" src="./Introduction to TCP_IP Reference Model _ Studytonight_files/f(2).txt"></script>
+
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6137246359299957" data-ad-slot="1566023420" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div></div>
+<hr>
+<h2>Different Layers of TCP/IP Reference Model</h2>
+<p>Below we have discussed the 4 layers that form the TCP/IP reference model:</p>
+<br>
+<h3>Layer 1: Host-to-network Layer</h3>
+<ol class="content">
+<li>Lowest layer of the all.</li>
+<li>Protocol is used to connect to the host, so that the packets can be sent over it.</li>
+<li>Varies from host to host and network to network.</li>
+</ol>
+<hr>
+<h3>Layer 2: Internet layer</h3>
+<ol class="content">
+<li>Selection of a packet switching network which is based on a connectionless internetwork layer is called a internet layer.</li>
+<li>It is the layer which holds the whole architecture together.</li>
+<li>It helps the packet to travel independently to the destination.</li>
+<li>Order in which packets are received is different from the way they are sent.</li>
+<li>IP (Internet Protocol) is used in this layer.</li>
+<li>The various functions performed by the Internet Layer are:
+<ul class="content">
+<li>Delivering IP packets</li>
+<li>Performing routing </li>
+<li>Avoiding congestion</li>
+</ul></li>
+</ol>
+<hr>
+<h3>Layer 3: Transport Layer</h3>
+<ol class="content">
+<li>It decides if data transmission should be on parallel path or single path.</li>
+<li>Functions such as multiplexing, segmenting or splitting on the data is done by transport layer. </li>
+<li>The applications can read and write to the transport layer. </li>
+<li>Transport layer adds header information to the data.</li>
+<li>Transport layer breaks the message (data) into small units so that they are handled more efficiently by the network layer. </li>
+<li>Transport layer also arrange the packets to be sent, in sequence.</li>
+</ol>
+<hr>
+<h3>Layer 4: Application Layer</h3>
+<p>The TCP/IP specifications described a lot of applications that were at the top of the protocol stack. Some of them were TELNET, FTP, SMTP, DNS etc.</p>
+<ol class="content">
+<li><b>TELNET</b> is a two-way communication protocol which allows connecting to a remote machine and run applications on it.</li>
+<li><b>FTP</b>(File Transfer Protocol) is a protocol, that allows File transfer amongst computer users connected over a network. It is reliable, simple and efficient.</li>
+<li><b>SMTP</b>(Simple Mail Transport Protocol) is a protocol, which is used to transport electronic mail between a source and destination, directed via a route.</li>
+<li><b>DNS</b>(Domain Name Server) resolves an IP address into a textual address for Hosts connected over a network.</li>
+<li>It allows peer entities to carry conversation.</li>
+<li>It defines two end-to-end protocols: TCP and UDP
+<ul class="content">
+<li><b>TCP(Transmission Control Protocol):</b> It is a reliable connection-oriented protocol which handles byte-stream from source to destination without error and flow control.</li>
+<li><b>UDP(User-Datagram Protocol):</b> It is an unreliable connection-less protocol that do not want TCPs, sequencing and flow control. Eg: One-shot request-reply kind of service.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2>Merits of TCP/IP model</h2>
+<ol class="content">
+<li>It operated independently.</li>
+<li>It is scalable.</li>
+<li>Client/server architecture.</li>
+<li>Supports a number of routing protocols.</li>
+<li>Can be used to establish a connection between two computers.</li>
+</ol>
+<hr>
+<h2>Demerits of TCP/IP</h2>
+<ol class="content">
+<li>In this, the transport layer does not guarantee delivery of packets.</li>
+<li>The model cannot be used in any other application.</li>
+<li>Replacing protocol is not easy.</li>
+<li>It has not clearly separated its services, interfaces and protocols.</li>
+</ol>
+<hr>
+<div><ul class="pager">
+<li class="previous">
+<a href="https://www.studytonight.com/computer-networks/osi-model-application-layer">← Prev</a>
+</li>
+<li class="next">
+<a href="https://www.studytonight.com/computer-networks/comparison-osi-tcp-model">Next →</a>
+</li>
+</ul></div>
+<hr>
+
+<div class="center">
+<div id="waldo-tag-4103" data-processed="true"><div id="_waldo-tag-4103-4-container" style="margin: auto; text-align: center;"><iframe id="waldo-tag-4103-4" scrolling="no" allowtransparency="true" frameborder="0" marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" sandbox="allow-forms allow-same-origin allow-scripts allow-top-navigation allow-popups" width="300" height="250" src="./Introduction to TCP_IP Reference Model _ Studytonight_files/render(1).html">
+    </iframe></div></div>
+</div></div>
+</div>
+<div class="col-3">
+<div id="right-sidebar">
+<div class="right-sidebar-link margin-b10">
+<a href="https://www.studytonight.com/tests/?subject=computer-networks" target="_blank">
+<h4><span class="glyphicon glyphicon-check"></span>&nbsp; Computer Network Tests</h4>
+</a>
+</div>
+<div class="margin-b10">
+
+
+<div>
+<div id="waldo-tag-4846" data-processed="true"></div>
+</div> </div>
+<div class="margin-b10" style="height:500px;">
+<iframe src="./Introduction to TCP_IP Reference Model _ Studytonight_files/posts.html" height="100%" width="100%" style="border-width: 0"></iframe>
+</div>
+</div>
+</div></div>
+<div class="border-top" id="footer">
+<div class="container margin-30">
+<div class="row darkest-grey roboto">
+<div class="col-3  hide-on-med-small">
+<p>What is Studytonight?</p>
+<div>
+<p><a href="https://www.studytonight.com/about">About Us</a></p>
+
+<p><a href="https://www.studytonight.com/authors">Authors</a></p>
+<p><a href="https://www.studytonight.com/collaborate">Collaborate</a></p>
+<p><a href="https://www.studytonight.com/testimonials">Testimonials</a></p>
+<p><a href="https://www.studytonight.com/privacy">Privacy Policy</a></p>
+<p><a href="https://www.studytonight.com/terms">Terms</a></p>
+<p><a href="https://www.studytonight.com/contact">Contact Us</a></p>
+<p><a href="https://www.studytonight.com/suggest">Suggest</a></p>
+
+</div>
+</div>
+<div class="col-3">
+<p>Tutorials</p>
+<div>
+<p><a href="https://www.studytonight.com/android">Android</a></p>
+<p><a href="https://www.studytonight.com/java">Core Java</a></p>
+<p><a href="https://www.studytonight.com/cpp">C++</a></p>
+<p><a href="https://www.studytonight.com/data-structures">Data Structures</a></p>
+<p><a href="https://www.studytonight.com/python">Python</a></p>
+<p><a href="https://www.studytonight.com/network-programming-in-python">Network Programming</a></p>
+<p><a href="https://www.studytonight.com/dbms">DBMS &amp; SQL</a></p>
+<p><a href="https://www.studytonight.com/servlet">Servlet</a></p>
+<p><a href="https://www.studytonight.com/library">More...</a></p>
+</div>
+</div>
+<div class="col-3">
+<p>Tests</p>
+<div>
+<p><a href="https://www.studytonight.com/tests">Core Java</a></p>
+<p><a href="https://www.studytonight.com/tests/?subject=android">Android</a></p>
+<p><a href="https://www.studytonight.com/tests?/?subject=cpp">C++</a></p>
+<p><a href="https://www.studytonight.com/tests?/?subject=dbms">DBMS</a></p>
+<p><a href="https://www.studytonight.com/tests?/?subject=c">C Language</a></p>
+<p><a href="https://www.studytonight.com/tests">More...</a></p>
+</div>
+</div>
+<div class="col-3  hide-on-med-small">
+<p>Learn to Code</p>
+<div>
+<p><a href="https://www.studytonight.com/code/html">HTML</a></p>
+<p><a href="https://www.studytonight.com/cascading-style-sheet/">CSS</a></p>
+<p><a href="https://www.studytonight.com/code/playground">Website Development</a></p>
+</div>
+<p class="margin-20  hide-on-med-small">Interview Questions</p>
+<div>
+<p><a href="https://www.studytonight.com/flashcards/Java">Java Interview Question</a></p>
+<p><a href="https://www.studytonight.com/flashcards/Cpp">C++ Interview Question</a></p>
+<p><a href="https://www.studytonight.com/flashcards/OS">OS Interview Question</a></p>
+<p><a href="https://www.studytonight.com/flashcards/Sql">DBMS Interview Question</a></p>
+<p><a href="https://www.studytonight.com/flashcards" target="blank">More...</a>
+</p></div>
+</div>
+</div>
+<div class="row margin-20 roboto  hide-on-med-small">
+<div class="col-12">
+<p style="margin-left:-10px;">
+<a href="https://facebook.com/Studytonight" target="_blank"><span class="facebook"></span></a>&nbsp;
+<a href="https://twitter.com/studytonight" target="_blank"><span class="twitter"></span></a>&nbsp;
+<a href="https://plus.google.com/+Studytonight/" target="_blank"><span class="google-plus"></span></a>&nbsp;
+<a href="https://www.instagram.com/study.tonight/" target="_blank"><span class="instagram"></span></a>&nbsp;
+<a href="https://www.linkedin.com/company/studytonight" target="_blank"><span class="linkedin"></span></a>
+</p>
+<p class="pull-right" style="margin-right:10px;">Made with <span class="glyphicon glyphicon-heart malibu"></span> by <a class="inverted" href="https://www.instagram.com/ahlawat.abhishek/" target="_blank">Abhishek Ahlawat</a></p>
+<p>© 2020 Studytonight. &nbsp; <small>All rights reserved.</small></p>
+<p><a href="https://www.dmca.com/Protection/Status.aspx?ID=3075061c-0e86-4754-964b-d319a50d06af&amp;refurl=https://www.studytonight.com/computer-networks/tcp-ip-reference-model" title="DMCA.com Protection Status" class="dmca-badge"> <img src="./Introduction to TCP_IP Reference Model _ Studytonight_files/dmca-badge-w100-5x1-01.png" alt="DMCA.com Protection Status"></a> <script src="./Introduction to TCP_IP Reference Model _ Studytonight_files/DMCABadgeHelper.min.js"> </script></p>
+</div>
+</div>
+<div class="center"><div id="waldo-tag-3364" data-processed="true"><div id="_waldo-tag-3364-1-container" style="margin: auto; text-align: center;"><iframe id="waldo-tag-3364-1" scrolling="no" allowtransparency="true" frameborder="0" marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" sandbox="allow-forms allow-same-origin allow-scripts allow-top-navigation allow-popups" width="728" height="90" src="./Introduction to TCP_IP Reference Model _ Studytonight_files/render(2).html">
+    </iframe></div></div></div>
+<br>
+</div>
+</div>
+<script src="./Introduction to TCP_IP Reference Model _ Studytonight_files/jquery.1581679379.js"></script>
+<script src="./Introduction to TCP_IP Reference Model _ Studytonight_files/sidebar.min.1581679379.js"></script>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-39722043-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body></html>

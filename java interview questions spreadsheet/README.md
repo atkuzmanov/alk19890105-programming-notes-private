@@ -218,6 +218,10 @@ For learning and study
 - [TLS](#tls)
 - [SSL](#ssl)
 - [Cookie - Web Cookies](#cookie---web-cookies)
+- [OSI Network Model vs TCP/IP Network Model](#osi-network-model-vs-tcpip-network-model)
+    - [Open Systems Interconnection (OSI) model vs Transmission Control Protocol and Internet Protocol (TCP/IP) model](#open-systems-interconnection-osi-model-vs-transmission-control-protocol-and-internet-protocol-tcpip-model)
+        - [Open Systems Interconnection OSI model](#open-systems-interconnection-osi-model)
+        - [Transmission Control Protocol and Internet Protocol TCP/IP model](#transmission-control-protocol-and-internet-protocol-tcpip-model)
 - [What is the Java Programming Language](#what-is-the-java-programming-language)
 - [API Design Best Practices](#api-design-best-practices)
 - [Convention over Configuration](#convention-over-configuration)
@@ -8945,6 +8949,78 @@ https://www.webopedia.com/TERM/S/SSL.html
 
 `references:`
 https://www.webopedia.com/TERM/C/cookie.html
+
+----
+
+# OSI Network Model vs TCP/IP Network Model
+
+## Open Systems Interconnection (OSI) model vs Transmission Control Protocol and Internet Protocol (TCP/IP) model
+
+```text
+Network layers
+```
+
+### Open Systems Interconnection OSI model
+
+- [Network-Layers-Explained-OSI-TCP_IP-Models-plixer](refs/Network-Layers-Explained-OSI-TCP_IP-Models-plixer)
+
+`references:`
+https://www.plixer.com/blog/network-layers-explained/
+
+- [OSI-Model-Explained-guru99](refs/OSI-Model-Explained-guru99)
+
+`references:`
+https://www.guru99.com/layers-of-osi-model.html
+
+- [OSI-model-explained-the-7-layer-network-model-NetworkWorld](refs/OSI-model-explained-the-7-layer-network-model-NetworkWorld)
+
+`references:`
+https://www.networkworld.com/article/3239677/the-osi-model-explained-how-to-understand-and-remember-the-7-layer-network-model.html
+
+- [OSI-model-Wikipedia](refs/OSI-model-Wikipedia)
+
+`references:`
+https://en.wikipedia.org/wiki/OSI_model
+
+### Transmission Control Protocol and Internet Protocol TCP/IP model
+
+- [Introduction-to-TCP_IP-Reference-Model-Studytonight](refs/Introduction-to-TCP_IP-Reference-Model-Studytonight)
+
+`references:`
+https://www.studytonight.com/computer-networks/tcp-ip-reference-model
+
+- [](refs/)
+
+`references:`
+
+
+- [](refs/)
+
+`references:`
+
+
+- [](refs/)
+
+`references:`
+
+
+- [](refs/)
+
+`references:`
+
+
+- [](refs/)
+
+`references:`
+
+
+- [](refs/)
+
+`references:`
+
+
+
+
 
 ----
 
