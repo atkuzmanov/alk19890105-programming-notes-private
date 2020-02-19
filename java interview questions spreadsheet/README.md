@@ -202,6 +202,7 @@ For learning and study
 - [JWebToken](#jwebtoken)
     - [JSON web token; jwt;](#json-web-token-jwt)
 - [Web socket](#web-socket)
+- [HTTP constructed over TCP](#http-constructed-over-tcp)
 - [Random](#random)
 - [SQL Normal Forms](#sql-normal-forms)
 - [HTTP](#http)
@@ -8702,11 +8703,67 @@ https://en.wikipedia.org/wiki/JSON_Web_Token
 |-------|-----|-------|
 |       |  x  |   x   |
 
+- [The-WebSocket-API-WebSockets-Web-APIs-MDN](refs/The-WebSocket-API-WebSockets-Web-APIs-MDN)
+
+`references:`
+https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API
+
+- [Writing-WebSocket-client-applications-Web-APIs-MDN](refs/Writing-WebSocket-client-applications-Web-APIs-MDN)
+
+`references:`
+https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_client_applications
+
+- [Writing-WebSocket-servers-Web-APIs-MDN](refs/Writing-WebSocket-servers-Web-APIs-MDN)
+
+`references:`
+https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_servers
+
+- [Writing-a-WebSocket-server-in-Java-Web-APIs-MDN](refs/Writing-a-WebSocket-server-in-Java-Web-APIs-MDN)
+
+`references:`
+https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_a_WebSocket_server_in_Java
+
+- [What-are-WebSockets-Pusher](refs/What-are-WebSockets-Pusher)
+
+`references:`
+https://pusher.com/websockets
+
+- [An-Introduction-to-WebSockets-TreehouseBlog](refs/An-Introduction-to-WebSockets-TreehouseBlog)
+
+`references:`
+https://blog.teamtreehouse.com/an-introduction-to-websockets
+
+- [A-Guide-to-the-Java-API-for-WebSocket-Baeldung](refs/A-Guide-to-the-Java-API-for-WebSocket-Baeldung)
+
+`references:`
+https://www.baeldung.com/java-websockets
+
+- [Example-of-Creating-a-WebSocket-Server-in-Java-PegaExchange](refs/Example-of-Creating-a-WebSocket-Server-in-Java-PegaExchange)
+
+`references:`
+https://www.pegaxchange.com/2018/01/28/websocket-server-java/
+
+----
+
+# HTTP constructed over TCP
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
+- [](refs/)
+
+`references:`
 
 
 
 ----
-----
+
+- [](refs/)
+
+`references:`
+
+
 ----
 ----
 ----
