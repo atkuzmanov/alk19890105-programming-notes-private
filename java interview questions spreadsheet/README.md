@@ -203,7 +203,7 @@ For learning and study
     - [JSON web token; jwt;](#json-web-token-jwt)
 - [Web socket](#web-socket)
 - [HTTP constructed over TCP](#http-constructed-over-tcp)
-- [](#)
+- [What is JSP](#what-is-jsp)
 - [Random](#random)
 - [SQL Normal Forms](#sql-normal-forms)
 - [HTTP](#http)
@@ -222,6 +222,8 @@ For learning and study
     - [Open Systems Interconnection (OSI) model vs Transmission Control Protocol and Internet Protocol (TCP/IP) model](#open-systems-interconnection-osi-model-vs-transmission-control-protocol-and-internet-protocol-tcpip-model)
         - [Open Systems Interconnection OSI model](#open-systems-interconnection-osi-model)
         - [Transmission Control Protocol and Internet Protocol TCP/IP model](#transmission-control-protocol-and-internet-protocol-tcpip-model)
+        - [OSI model vs TCP/IP model](#osi-model-vs-tcpip-model)
+- [Address Resolution Protocol (ARP)](#address-resolution-protocol-arp)
 - [What is the Java Programming Language](#what-is-the-java-programming-language)
 - [API Design Best Practices](#api-design-best-practices)
 - [Convention over Configuration](#convention-over-configuration)
@@ -8768,11 +8770,16 @@ https://medium.com/from-the-scratch/http-server-what-do-you-need-to-know-to-buil
 
 ----
 
-# 
+# What is JSP
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
 
 - [](refs/)
 
 `references:`
+
 
 ----
 ----
@@ -8984,43 +8991,71 @@ https://en.wikipedia.org/wiki/OSI_model
 
 ### Transmission Control Protocol and Internet Protocol TCP/IP model
 
+- [TCP_IP-Model-What-is-TCP-IP-Stack-Protocol-Layers-guru99](refs/TCP_IP-Model-What-is-TCP-IP-Stack-Protocol-Layers-guru99)
+
+`references:`
+https://www.guru99.com/tcp-ip-model.html
+
 - [Introduction-to-TCP_IP-Reference-Model-Studytonight](refs/Introduction-to-TCP_IP-Reference-Model-Studytonight)
 
 `references:`
 https://www.studytonight.com/computer-networks/tcp-ip-reference-model
 
-- [](refs/)
+- [The-TCP_IP-Model-and-Protocol-Suite-Explained-stevesinternetguide](refs/The-TCP_IP-Model-and-Protocol-Suite-Explained-stevesinternetguide)
 
 `references:`
+http://www.steves-internet-guide.com/internet-protocol-suite-explained/
 
-
-- [](refs/)
-
-`references:`
-
-
-- [](refs/)
+- [TCP_IP-Model-GeeksforGeeks](refs/TCP_IP-Model-GeeksforGeeks)
 
 `references:`
+https://www.geeksforgeeks.org/tcp-ip-model/
 
-
-- [](refs/)
-
-`references:`
-
-
-- [](refs/)
+- [Computer-Network-TCP_IP-model-javatpoint](refs/Computer-Network-TCP_IP-model-javatpoint)
 
 `references:`
+https://www.javatpoint.com/computer-network-tcp-ip-model
 
-
-- [](refs/)
+- [TCP_IP-Protocol-Fundamentals-Explained-with-a-Diagram-thegeekstuff](refs/TCP_IP-Protocol-Fundamentals-Explained-with-a-Diagram-thegeekstuff)
 
 `references:`
+https://www.thegeekstuff.com/2011/11/tcp-ip-fundamentals/
 
+- [1-4-TCP_IP-Model-Free-CCNA-Study-Guide-freeccnastudyguide](refs/1-4-TCP_IP-Model-Free-CCNA-Study-Guide-freeccnastudyguide)
 
+`references:`
+https://www.freeccnastudyguide.com/study-guides/ccna/ch1/1-4-tcpip-model/
 
+### OSI model vs TCP/IP model
 
+- [TCP_IP-vs-OSI-Model-Whats-the-Difference-guru99](refs/TCP_IP-vs-OSI-Model-Whats-the-Difference-guru99)
+
+`references:`
+https://www.guru99.com/difference-tcp-ip-vs-osi-model.html
+
+- [OSI-Reference-Model-and-TCP_IP-Reference-Model-Studytonight](refs/OSI-Reference-Model-and-TCP_IP-Reference-Model-Studytonight)
+
+`references:`
+https://www.studytonight.com/computer-networks/comparison-osi-tcp-model
+
+- [TCP_IP-vs-OSI-Whats-the-Difference-Between-the-Two-Models-FSCommunity](refs/TCP_IP-vs-OSI-Whats-the-Difference-Between-the-Two-Models-FSCommunity)
+
+`references:`
+https://community.fs.com/blog/tcpip-vs-osi-whats-the-difference-between-the-two-models.html
+
+- [Difference-Between-TCP_IP-and-OSI-Model-TechDifferences](refs/Difference-Between-TCP_IP-and-OSI-Model-TechDifferences)
+
+`references:`
+https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html
+
+----
+
+# Address Resolution Protocol (ARP)
+
+- [Address-Resolution-Protocol-Wikipedia](refs/Address-Resolution-Protocol-Wikipedia)
+
+`references:`
+https://en.wikipedia.org/wiki/Address_Resolution_Protocol
 
 ----
 

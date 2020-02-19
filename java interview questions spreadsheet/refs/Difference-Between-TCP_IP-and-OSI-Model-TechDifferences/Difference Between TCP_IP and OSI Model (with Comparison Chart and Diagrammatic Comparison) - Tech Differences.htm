@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<!-- saved from url=(0072)https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html -->
+<html lang="en-US" slick-uniqueid="3"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" async="" src="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/recaptcha__en_gb.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Difference Between TCP/IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences</title>
+
+<!-- This site is optimized with the Yoast SEO plugin v12.0 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="The basic difference between TCP/IP and OSI Model is that TCP/IP is a client-server model, i.e. when the client requests for service it is provided by the server. Whereas, OSI Model is a conceptual model.">
+<link rel="canonical" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Difference Between TCP/IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences">
+<meta property="og:description" content="The basic difference between TCP/IP and OSI Model is that TCP/IP is a client-server model, i.e. when the client requests for service it is provided by the server. Whereas, OSI Model is a conceptual model.">
+<meta property="og:url" content="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html">
+<meta property="og:site_name" content="Tech Differences">
+<meta property="article:section" content="Networking">
+<meta property="article:published_time" content="2016-03-25T11:34:02+00:00">
+<meta property="article:modified_time" content="2019-12-25T05:56:35+00:00">
+<meta property="og:updated_time" content="2019-12-25T05:56:35+00:00">
+<meta property="og:image" content="https://techdifferences.com/wp-content/uploads/2016/03/Untitled-2.jpg">
+<meta property="og:image:secure_url" content="https://techdifferences.com/wp-content/uploads/2016/03/Untitled-2.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:description" content="The basic difference between TCP/IP and OSI Model is that TCP/IP is a client-server model, i.e. when the client requests for service it is provided by the server. Whereas, OSI Model is a conceptual model.">
+<meta name="twitter:title" content="Difference Between TCP/IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences">
+<meta name="twitter:image" content="https://techdifferences.com/wp-content/uploads/2016/03/Untitled-2.jpg">
+<script async="" src="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/analytics.js"></script><script type="application/ld+json" class="yoast-schema-graph yoast-schema-graph--main">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://techdifferences.com/#website","url":"https://techdifferences.com/","name":"Tech Differences","potentialAction":{"@type":"SearchAction","target":"https://techdifferences.com/?s={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"ImageObject","@id":"https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#primaryimage","url":"https://techdifferences.com/wp-content/uploads/2016/03/Untitled-2.jpg","width":600,"height":161,"caption":"TCP/IP model vs OSI model"},{"@type":"WebPage","@id":"https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#webpage","url":"https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html","inLanguage":"en-US","name":"Difference Between TCP/IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences","isPartOf":{"@id":"https://techdifferences.com/#website"},"primaryImageOfPage":{"@id":"https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#primaryimage"},"datePublished":"2016-03-25T11:34:02+00:00","dateModified":"2019-12-25T05:56:35+00:00","author":{"@id":"https://techdifferences.com/#/schema/person/c88580674fbad20f119c5505f3d90f42"},"description":"The basic difference between TCP/IP and OSI Model is that TCP/IP is a client-server model, i.e. when the client requests for service it is provided by the server. Whereas, OSI Model is a conceptual model."},{"@type":["Person"],"@id":"https://techdifferences.com/#/schema/person/c88580674fbad20f119c5505f3d90f42","name":"bhakti","sameAs":[]}]}</script>
+<!-- / Yoast SEO plugin. -->
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+<link rel="dns-prefetch" href="https://s.w.org/">
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/techdifferences.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.2.5"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/wp-emoji-release.min.js" type="text/javascript" defer=""></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel="stylesheet" id="yarppWidgetCss-css" href="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/widget.css" type="text/css" media="all">
+<link rel="stylesheet" id="magazine-pro-theme-css" href="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-block-library-css" href="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/style.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="contact-form-7-css" href="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/styles.css" type="text/css" media="all">
+<link rel="stylesheet" id="cresta-social-crestafont-css" href="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/csscfont.css" type="text/css" media="all">
+<link rel="stylesheet" id="cresta-social-wp-style-css" href="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/cresta-wp-css.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="cresta-social-googlefonts-css" href="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/css" type="text/css" media="all">
+<link rel="stylesheet" id="google-fonts-css" href="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/css(1)" type="text/css" media="all">
+<link rel="stylesheet" id="tablepress-default-css" href="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/tablepress-combined.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="enlighter-local-css" href="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/EnlighterJS.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="sccss_style-css" href="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/saved_resource" type="text/css" media="all">
+<script type="text/javascript" src="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/jquery.js"></script>
+<script type="text/javascript" src="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/entry-date.js"></script>
+<script type="text/javascript" src="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/responsive-menu.js"></script>
+<link rel="https://api.w.org/" href="https://techdifferences.com/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://techdifferences.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://techdifferences.com/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 5.2.5">
+<link rel="shortlink" href="https://techdifferences.com/?p=5">
+<link rel="alternate" type="application/json+oembed" href="https://techdifferences.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Ftechdifferences.com%2Fdifference-between-tcp-ip-and-osi-model.html">
+<link rel="alternate" type="text/xml+oembed" href="https://techdifferences.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Ftechdifferences.com%2Fdifference-between-tcp-ip-and-osi-model.html&amp;format=xml">
+<style type="text/css">
+			@media (max-width : 640px) {
+				#crestashareicon {
+					display:none !important;
+				}
+			}
+		#crestashareicon {position:fixed; top:20%; left:20px; float:left;z-index:99;}
+
+		#crestashareicon .sbutton {clear:both;display:none;}
+		#crestashareicon .sbutton { float:left;}</style><link rel="icon" href="https://techdifferences.com/wp-content/themes/magazine-pro/images/favicon.ico">
+<link rel="pingback" href="https://techdifferences.com/xmlrpc.php">
+<script async="" src="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/f.txt"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-6923410886982592",
+          enable_page_level_ads: true
+     });
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-75801309-1', 'auto');
+  ga('send', 'pageview');
+
+</script><style type="text/css">.site-title a { background: url(https://techdifferences.com/wp-content/uploads/2017/09/Tech-Differences-logo.jpg) no-repeat !important; }</style>
+</head>
+<body class="post-template-default single single-post postid-5 single-format-standard custom-header header-image content-sidebar genesis-breadcrumbs-hidden magazine-pro-blue primary-nav js"><div class="site-container"><nav class="nav-primary" aria-label="Main"><div class="wrap"><div id="responsive-menu-icon"></div><ul id="menu-top" class="menu genesis-nav-menu menu-primary responsive-menu"><li id="menu-item-78" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-78"><a href="https://techdifferences.com/category/networking"><span>Networking</span></a></li>
+<li id="menu-item-812" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-812"><a href="https://techdifferences.com/category/programming"><span>Programming</span></a></li>
+<li id="menu-item-1958" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1958"><a href="https://techdifferences.com/category/dbms"><span>DBMS</span></a></li>
+<li id="menu-item-1959" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1959"><a href="https://techdifferences.com/category/operating-system"><span>Operating System</span></a></li>
+<li id="menu-item-4846" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4846"><a href="https://techdifferences.com/category/internet"><span>Internet</span></a></li>
+<li id="menu-item-5493" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5493"><a href="https://techdifferences.com/category/hardware"><span>Hardware</span></a></li>
+<li id="menu-item-4847" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4847"><a href="https://techdifferences.com/category/software"><span>Software</span></a></li>
+</ul></div></nav><header class="site-header"><div class="wrap"><div class="title-area"><p class="site-title"><a href="https://techdifferences.com/">Tech Differences</a></p><p class="site-description">Know the Technical Differences</p></div><div class="widget-area header-widget-area"><section id="text-4" class="widget widget_text"><div class="widget-wrap">			<div class="textwidget"><p><script async="" src="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/f.txt"></script><!-- techd_top_resp --><ins class="adsbygoogle" style="display: block;" data-ad-client="ca-pub-6923410886982592" data-ad-slot="1730486208" data-ad-format="auto"></ins><script>
+(adsbygoogle = window.adsbygoogle || []).push({});</script></p>
+</div>
+		</div></section>
+</div></div></header><div class="site-inner"><div class="content-sidebar-wrap"><main class="content"><article class="post-5 post type-post status-publish format-standard category-networking entry"><header class="entry-header"><h1 class="entry-title">Difference Between TCP/IP and OSI Model</h1>
+<p class="entry-meta"><time class="entry-time">March 25, 2016</time> <span class="entry-comments-link"><a href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comments">22 Comments</a></span> </p></header><div class="entry-content"><p><img class="aligncenter size-full wp-image-6837" src="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/Untitled-2.jpg" alt="TCP/IP model vs OSI model" width="600" height="161" srcset="https://techdifferences.com/wp-content/uploads/2016/03/Untitled-2.jpg 600w, https://techdifferences.com/wp-content/uploads/2016/03/Untitled-2-300x81.jpg 300w" sizes="(max-width: 600px) 100vw, 600px">TCP/IP and OSI are the two most widely used networking models for communication. There are some similarities and dissimilarities between them. One of the major difference is that OSI is a conceptual model which is not practically used for communication, whereas, TCP/IP is used for establishing a connection and communicating through the network.</p><div class="code-block code-block-1" style="margin: 8px auto; text-align: center; display: block; clear: both;">
+<script async="" src="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/f.txt"></script>
+<!-- techd_right_top -->
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-6923410886982592" data-ad-slot="5546889558"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+
+<p>The OSI model mainly emphasis on the services, interfaces and protocols; make a clear distinction between these concepts. Conversely, the TCP model is not able to distinctly describe these concepts. Furthermore, the TCP/IP enables only connectionless communication mode in the network layer but both modes (Connectionless and connection-oriented) in the transport layer.</p>
+<p>When it comes to the OSI model, it supports connectionless and connection-oriented communication over the network layer but in the transport layer, connection-oriented communication is merely allowed. Have a look at the article <a href="https://techdifferences.com/difference-between-connection-oriented-and-connection-less-services.html">difference between connectionless and connection-oriented services</a>, for better understanding. Other differences are discussed below.</p>
+<h2>Content: TCP/IP Model Vs OSI Model</h2>
+<ol>
+<li><a href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#ComparisonChart">Comparison Chart</a></li>
+<li><a href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#Definition">Definition</a></li>
+<li><a href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#KeyDifferences">Key Differences</a></li>
+<li><a href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#KeyDifferences2">Diagrammatic Comparison</a></li>
+<li><a href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#Conclusion">Conclusion</a></li>
+</ol>
+<p><a name="ComparisonChart"></a></p>
+<h3>Comparison Chart</h3>
+<p>
+</p><table id="tablepress-1" class="tablepress tablepress-id-1">
+<thead>
+<tr class="row-1 odd">
+	<th class="column-1">Basis for Comparison</th><th class="column-2">TCP/IP Model</th><th class="column-3">OSI Model</th>
+</tr>
+</thead>
+<tbody class="row-hover">
+<tr class="row-2 even">
+	<td class="column-1">Expands To</td><td class="column-2">Transmission Control Protocol/ Internet Protocol</td><td class="column-3">Open system Interconnect</td>
+</tr>
+<tr class="row-3 odd">
+	<td class="column-1">Meaning</td><td class="column-2">It is a client server model used for transmission of data over the internet.</td><td class="column-3">It is a theoretical model which is used for computing system.</td>
+</tr>
+<tr class="row-4 even">
+	<td class="column-1">Number Of Layers</td><td class="column-2">4 Layers</td><td class="column-3">7 Layers</td>
+</tr>
+<tr class="row-5 odd">
+	<td class="column-1">Developed by</td><td class="column-2">Department of Defense (DoD)</td><td class="column-3">ISO (International Standard Organization)</td>
+</tr>
+<tr class="row-6 even">
+	<td class="column-1">Tangible</td><td class="column-2">Yes</td><td class="column-3">No</td>
+</tr>
+<tr class="row-7 odd">
+	<td class="column-1">Usage</td><td class="column-2">Mostly used </td><td class="column-3">Never used</td>
+</tr>
+<tr class="row-8 even">
+	<td class="column-1">Obeys</td><td class="column-2">Horizontal approach</td><td class="column-3">Vertical approach</td>
+</tr>
+</tbody>
+</table>
+<!-- #tablepress-1 from cache --><br>
+<a name="Definition"></a><p></p><div class="code-block code-block-2" style="margin: 8px auto; text-align: center; display: block; clear: both;">
+<script async="" src="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/f.txt"></script>
+<!-- techd_middle2 -->
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-6923410886982592" data-ad-slot="3930555559"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+
+<h3>Definition of TCP/IP MODEL</h3>
+<p><strong>TCP (Transmission Control Protocol) /IP (Internet Protocol)</strong> was developed by the <strong>Department of Defense (DoD)</strong> project agency. Unlike OSI Model, it consists of four layers each having its own protocols. Internet Protocols are the set of rules defined for communication over the network.</p>
+<p>TCP/IP is considered as the standard protocol model for networking. TCP handles data transmission and IP handles addresses. The TCP/IP protocol suite has a set of protocols that includes TCP, UDP, ARP, DNS, HTTP, ICMP, etc. It is a robust and flexible model. The TCP/IP model is mostly used for interconnecting computers over the internet.</p>
+<h4>TCP/IP Model Layers</h4>
+<ol>
+<li><strong>Network Interface Layer</strong>:&nbsp;This layer acts as an interface between hosts and transmission links and used for transmitting datagrams. It also specifies what operation must be performed by links like serial link and classic ethernet to fulfil the requirements of the connectionless internet layer.</li>
+<li><strong>Internet Layer</strong>:&nbsp;The purpose of this layer is to transmit an independent packet into any network which travels to the destination (might be residing in a different network). It includes the IP (Internet Protocol), ICMP (Internet Control Message Protocol) and ARP (Address Resolution Protocol) as the standard packet format for the layer.</li>
+<li><strong>Transport Layer</strong>:&nbsp;It enables a fault-free end-to-end delivery of the data between the source and destination hosts in the form of datagrams. The protocols defined by this layer are TCP (Transmission Control Protocol) and UDP (User Datagram Protocol).</li>
+<li><strong>Application Layer</strong>: This layer permits users to access the services of global or private internet. The various protocols described in this layer are virtual terminal (TELNET), electronic mail (SMTP) and file transfer (FTP). Some additional protocols like DNS (Domain Name System), HTTP (Hypertext Transfer Protocol) and RTP (Real-time Transport Protocol). The working of this layer is a combination of application, presentation and session layer of the OSI model.</li>
+</ol>
+<h3>Definition of OSI Model</h3>
+<p><strong>OSI (Open System Interconnection)</strong> model was introduced by <strong>ISO (International Standard Organization)</strong>. It is not a protocol but a model which is based on the concept of layering. It has a vertical set of layers, each having different functions. It follows a bottom-up approach to transfer the data. It is robust and flexible, but not tangible.</p>
+<p>The main intent of OSI reference model is to conduct the designing and development of the digital communication hardware, devices and software in a way that they can efficiently interoperate.</p>
+<h4>The seven layers of OSI model are:</h4>
+<ol>
+<li><strong>Application Layer</strong>: With this layer, the users can access the network by using interfaces and services like electronic mail, shared database management, file access/transfer and the other services.</li>
+<li><strong>Presentation Layer</strong>: Presentation layer focuses on the syntax and semantics of the transmitting information. It performs tasks such as translation, encryption and compression where the actual information existing in the form of character strings, numbers, symbols is encoded into bit streams, converted into another form and compressed.</li>
+<li><strong>Session Layer</strong>: This layer establishes the session between different machines in order to synchronize and maintain the interaction between them. The services provided by the session layer are dialog control, token management and synchronization.</li>
+<li><strong>Transport Layer</strong>: It accepts the data from its preceding layer in the form of independent packets and transmits it to the succeeding layer in proper order. The other function carried out by this layer are service point addressing, connection control, segmentation and reassembly, flow control and error control.</li>
+<li><strong>Network Layer</strong>: Logical addressing and routing are the major operations performed by the network layer. It translates the network logical address into physical MAC address so that the two systems residing in the different networks could also communicate efficiently. A packet also requires a path to be followed to reach at the destination avoiding congestion and failed components, so it also facilitates the automatic updation of the routes.</li>
+<li><strong>Data Link Layer</strong>: It is responsible for transforming the raw transmission service (Physical layer) into a reliable link. It makes the physical layer free from error by masking them so that the network layer does not notice them. In this layer, the input data is split into frames. The tasks carried out in the data link layer are framing, access control, physical addressing, error and flow control.</li>
+<li><strong>Physical Layer</strong>: It transmits the individual bits over the transmission channel. The physical layer deals with the description of the characteristics of the interface between the devices and the transmission media, representation of bits, synchronization of the bits, data rate, physical topology, line configuration, transmission mode.</li>
+</ol>
+<div id="techd">
+<p><a name="KeyDifferences"></a></p>
+<h2>Key Differences Between TCP/IP and OSI Model</h2>
+<ol>
+<li>TCP/IP is a client-server model, i.e. when the client requests for service it is provided by the server. Whereas, OSI is a conceptual model.</li>
+<li>TCP/IP is a standard protocol used for every network including the Internet, whereas, OSI is not a protocol but a reference model used for understanding and designing the system architecture.</li>
+<li>TCP/IP is a four-layered model, whereas, OSI has seven layers.</li>
+<li>TCP/IP follows Horizontal approach. On the other hand, the OSI Model supports Vertical approach.</li>
+<li>TCP/IP is Tangible, whereas, OSI is not.</li>
+<li>TCP/IP follows top to bottom approach, whereas, OSI Model follows a bottom-up approach.</li>
+</ol>
+</div>
+<p><a name="KeyDifferences2"></a></p>
+<h4>Diagrammatic Comparison</h4>
+<p><img class="size-full wp-image-97 aligncenter" src="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/Untitled-1.jpg" alt="TCP/IP vs OSI Model" width="600" height="548" srcset="https://techdifferences.com/wp-content/uploads/2016/03/Untitled-1.jpg 600w, https://techdifferences.com/wp-content/uploads/2016/03/Untitled-1-300x274.jpg 300w" sizes="(max-width: 600px) 100vw, 600px">The TCP/IP Model was developed before OSI Model, and hence, the layers differ. Concerning the diagram, it is clearly seen that TCP/IP Model has four layers namely, Network Interface, Internet, Transport and Application Layer.</p>
+<p>On the other hand, OSI model has seven layers in which the data link and physical layers are merged to make the network interface layer of TCP/IP model. Application Layer of TCP/IP is a combination of Session, Presentation and Application Layer of the OSI Model.<br>
+<a name="Conclusion"></a></p>
+<h3>Conclusion</h3>
+<p>Concerning the above article, we can conclude that the TCP/IP Model is reliable over OSI Model, TCP/IP is used for end to end connection so as to transmit the data over the internet.</p>
+<p>TCP/IP is robust, flexible, tangible and also suggests how data should be sent over the web. The transport layer of TCP/IP Model checks whether the data has arrived in order, it has an error or not, lost packets are sent or not, acknowledgement is received or not, etc. In contrast, the OSI model is just a conceptual framework to interpret how applications communicate over a network.</p><div class="code-block code-block-3" style="margin: 8px auto; text-align: center; display: block; clear: both;">
+<script async="" src="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/f.txt"></script>
+<!-- techd_bottom2 -->
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-6923410886982592" data-ad-slot="2453822353"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+
+<div class="yarpp-related">
+<h3>Related Differences:</h3><ol>
+<li><a href="https://techdifferences.com/difference-between-tcp-and-udp.html" rel="bookmark" title="Difference Between TCP and UDP">Difference Between TCP and UDP </a></li>
+<li><a href="https://techdifferences.com/difference-between-connection-oriented-and-connection-less-services.html" rel="bookmark" title="Difference Between Connection-oriented and Connection-less Services">Difference Between Connection-oriented and Connection-less Services </a></li>
+<li><a href="https://techdifferences.com/difference-between-bridge-and-gateway.html" rel="bookmark" title="Difference Between Bridge and Gateway">Difference Between Bridge and Gateway </a></li>
+<li><a href="https://techdifferences.com/difference-between-e-r-and-relational-model-in-dbms.html" rel="bookmark" title="Difference Between E-R Model and Relational Model in DBMS">Difference Between E-R Model and Relational Model in DBMS </a></li>
+<li><a href="https://techdifferences.com/difference-between-frame-relay-and-atm.html" rel="bookmark" title="Difference Between Frame Relay and ATM">Difference Between Frame Relay and ATM </a></li>
+</ol>
+</div>
+<!--<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+			xmlns:dc="http://purl.org/dc/elements/1.1/"
+			xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+		<rdf:Description rdf:about="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html"
+    dc:identifier="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html"
+    dc:title="Difference Between TCP/IP and OSI Model"
+    trackback:ping="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html/trackback" />
+</rdf:RDF>-->
+</div><footer class="entry-footer"><p class="entry-meta"><span class="entry-categories">Filed Under: <a href="https://techdifferences.com/category/networking" rel="category tag">Networking</a></span> </p></footer></article><div class="entry-comments" id="comments"><h3>Comments</h3><ol class="comment-list">
+	<li class="comment even thread-even depth-1" id="comment-57">
+	<article>
+
+		
+		<header class="comment-header">
+			<p class="comment-author">
+				<span class="comment-author-name">Mohammad Chaudry</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time"><a class="comment-time-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-57">June 20, 2017 at 9:00 am</a></time></p>		</header>
+
+		<div class="comment-content">
+			
+			<p>Well done!<br>
+Great help for students.</p>
+<p>Please continue the good work.</p>
+<p>Thank you very much</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-57" data-commentid="57" data-postid="5" data-belowelement="comment-57" data-respondelement="respond" aria-label="Reply to Mohammad Chaudry">Reply</a></div>
+		
+	</article>
+	<ul class="children">
+
+	<li class="comment odd alt depth-2" id="comment-740">
+	<article>
+
+		
+		<header class="comment-header">
+			<p class="comment-author">
+				<span class="comment-author-name">billy</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time"><a class="comment-time-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-740">December 11, 2018 at 3:18 pm</a></time></p>		</header>
+
+		<div class="comment-content">
+			
+			<p>agreed my friend thank you <img draggable="false" class="emoji" alt="🙂" src="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/1f642.svg"></p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-740" data-commentid="740" data-postid="5" data-belowelement="comment-740" data-respondelement="respond" aria-label="Reply to billy">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-78">
+	<article>
+
+		
+		<header class="comment-header">
+			<p class="comment-author">
+				<span class="comment-author-name">Networking Signal</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time"><a class="comment-time-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-78">September 1, 2017 at 12:07 pm</a></time></p>		</header>
+
+		<div class="comment-content">
+			
+			<p>An interviewer asks mostly that question. You provide a useful matter to people. Thanks for sharing this article with me and whole people.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-78" data-commentid="78" data-postid="5" data-belowelement="comment-78" data-respondelement="respond" aria-label="Reply to Networking Signal">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-even depth-1" id="comment-380">
+	<article>
+
+		
+		<header class="comment-header">
+			<p class="comment-author">
+				<span class="comment-author-name">Anurag</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time"><a class="comment-time-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-380">July 28, 2018 at 9:07 am</a></time></p>		</header>
+
+		<div class="comment-content">
+			
+			<p>Nice</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-380" data-commentid="380" data-postid="5" data-belowelement="comment-380" data-respondelement="respond" aria-label="Reply to Anurag">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-485">
+	<article>
+
+		
+		<header class="comment-header">
+			<p class="comment-author">
+				<span class="comment-author-name">Zulkaif</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time"><a class="comment-time-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-485">August 31, 2018 at 1:11 pm</a></time></p>		</header>
+
+		<div class="comment-content">
+			
+			<p>Great Job</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-485" data-commentid="485" data-postid="5" data-belowelement="comment-485" data-respondelement="respond" aria-label="Reply to Zulkaif">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-even depth-1" id="comment-671">
+	<article>
+
+		
+		<header class="comment-header">
+			<p class="comment-author">
+				<span class="comment-author-name">Akech andrew</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time"><a class="comment-time-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-671">November 23, 2018 at 12:52 pm</a></time></p>		</header>
+
+		<div class="comment-content">
+			
+			<p>Great work.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-671" data-commentid="671" data-postid="5" data-belowelement="comment-671" data-respondelement="respond" aria-label="Reply to Akech andrew">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-687">
+	<article>
+
+		
+		<header class="comment-header">
+			<p class="comment-author">
+				<span class="comment-author-name">Dave Shanny</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time"><a class="comment-time-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-687">November 27, 2018 at 12:22 pm</a></time></p>		</header>
+
+		<div class="comment-content">
+			
+			<p>Splendid work. I am very pleased and it is of a great help to me.<br>
+Thank you and Big ups for the good work.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-687" data-commentid="687" data-postid="5" data-belowelement="comment-687" data-respondelement="respond" aria-label="Reply to Dave Shanny">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-even depth-1" id="comment-733">
+	<article>
+
+		
+		<header class="comment-header">
+			<p class="comment-author">
+				<span class="comment-author-name">luqman zulkifli</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time"><a class="comment-time-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-733">December 9, 2018 at 1:17 pm</a></time></p>		</header>
+
+		<div class="comment-content">
+			
+			<p>thanks!</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-733" data-commentid="733" data-postid="5" data-belowelement="comment-733" data-respondelement="respond" aria-label="Reply to luqman zulkifli">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-741">
+	<article>
+
+		
+		<header class="comment-header">
+			<p class="comment-author">
+				<span class="comment-author-name">billy</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time"><a class="comment-time-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-741">December 11, 2018 at 3:18 pm</a></time></p>		</header>
+
+		<div class="comment-content">
+			
+			<p>very epic thank you</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-741" data-commentid="741" data-postid="5" data-belowelement="comment-741" data-respondelement="respond" aria-label="Reply to billy">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-even depth-1" id="comment-779">
+	<article>
+
+		
+		<header class="comment-header">
+			<p class="comment-author">
+				<span class="comment-author-name">Ryan Newton</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time"><a class="comment-time-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-779">December 23, 2018 at 8:46 pm</a></time></p>		</header>
+
+		<div class="comment-content">
+			
+			<p>Outstanding! This is the clearest explanation I have heard. Thank you!</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-779" data-commentid="779" data-postid="5" data-belowelement="comment-779" data-respondelement="respond" aria-label="Reply to Ryan Newton">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-803">
+	<article>
+
+		
+		<header class="comment-header">
+			<p class="comment-author">
+				<span class="comment-author-name">Deadbone</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time"><a class="comment-time-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-803">December 29, 2018 at 2:50 am</a></time></p>		</header>
+
+		<div class="comment-content">
+			
+			<p>Wow! Impressive and clear.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-803" data-commentid="803" data-postid="5" data-belowelement="comment-803" data-respondelement="respond" aria-label="Reply to Deadbone">Reply</a></div>
+		
+	</article>
+	<ul class="children">
+
+	<li class="comment odd alt depth-2" id="comment-894">
+	<article>
+
+		
+		<header class="comment-header">
+			<p class="comment-author">
+				<span class="comment-author-name">Adolf</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time"><a class="comment-time-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-894">January 30, 2019 at 12:22 pm</a></time></p>		</header>
+
+		<div class="comment-content">
+			
+			<p>that’s Good <img draggable="false" class="emoji" alt="🙂" src="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/1f642.svg"></p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-894" data-commentid="894" data-postid="5" data-belowelement="comment-894" data-respondelement="respond" aria-label="Reply to Adolf">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+	<li class="comment even thread-even depth-1" id="comment-895">
+	<article>
+
+		
+		<header class="comment-header">
+			<p class="comment-author">
+				<span class="comment-author-name">Mohammed may there be peace</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time"><a class="comment-time-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-895">January 30, 2019 at 12:23 pm</a></time></p>		</header>
+
+		<div class="comment-content">
+			
+			<p>very good and clear</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-895" data-commentid="895" data-postid="5" data-belowelement="comment-895" data-respondelement="respond" aria-label="Reply to Mohammed may there be peace">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-921">
+	<article>
+
+		
+		<header class="comment-header">
+			<p class="comment-author">
+				<span class="comment-author-name">sirajunnisa</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time"><a class="comment-time-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-921">February 6, 2019 at 4:53 am</a></time></p>		</header>
+
+		<div class="comment-content">
+			
+			<p>nice work……… a clear understanding</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-921" data-commentid="921" data-postid="5" data-belowelement="comment-921" data-respondelement="respond" aria-label="Reply to sirajunnisa">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-even depth-1" id="comment-1040">
+	<article>
+
+		
+		<header class="comment-header">
+			<p class="comment-author">
+				<span class="comment-author-name">Akash</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time"><a class="comment-time-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-1040">March 23, 2019 at 6:53 am</a></time></p>		</header>
+
+		<div class="comment-content">
+			
+			<p>Awesome.<br>
+That was really helpful.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-1040" data-commentid="1040" data-postid="5" data-belowelement="comment-1040" data-respondelement="respond" aria-label="Reply to Akash">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1113">
+	<article>
+
+		
+		<header class="comment-header">
+			<p class="comment-author">
+				<span class="comment-author-name">Stephen</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time"><a class="comment-time-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-1113">April 19, 2019 at 6:34 pm</a></time></p>		</header>
+
+		<div class="comment-content">
+			
+			<p>This is the easiest way to understand the difference between OSI setup compared to the TCP/IP setup.  Thanks a lot</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-1113" data-commentid="1113" data-postid="5" data-belowelement="comment-1113" data-respondelement="respond" aria-label="Reply to Stephen">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-even depth-1" id="comment-1115">
+	<article>
+
+		
+		<header class="comment-header">
+			<p class="comment-author">
+				<span class="comment-author-name">Kasuni Kuruppuarachchi</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time"><a class="comment-time-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-1115">April 19, 2019 at 9:11 pm</a></time></p>		</header>
+
+		<div class="comment-content">
+			
+			<p>This article helped me lot for my studies.<br>
+Thank you.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-1115" data-commentid="1115" data-postid="5" data-belowelement="comment-1115" data-respondelement="respond" aria-label="Reply to Kasuni Kuruppuarachchi">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1713">
+	<article>
+
+		
+		<header class="comment-header">
+			<p class="comment-author">
+				<span class="comment-author-name">Shyam Sundar</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time"><a class="comment-time-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-1713">August 30, 2019 at 5:09 am</a></time></p>		</header>
+
+		<div class="comment-content">
+			
+			<p>Very nice article Billy.<br>
+Thanks,<br>
+Shyam.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-1713" data-commentid="1713" data-postid="5" data-belowelement="comment-1713" data-respondelement="respond" aria-label="Reply to Shyam Sundar">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-even depth-1" id="comment-1902">
+	<article>
+
+		
+		<header class="comment-header">
+			<p class="comment-author">
+				<span class="comment-author-name">Sukrala</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time"><a class="comment-time-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-1902">October 3, 2019 at 8:47 am</a></time></p>		</header>
+
+		<div class="comment-content">
+			
+			<p>Thanks For Sharing it Is Very Helpful.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-1902" data-commentid="1902" data-postid="5" data-belowelement="comment-1902" data-respondelement="respond" aria-label="Reply to Sukrala">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2138">
+	<article>
+
+		
+		<header class="comment-header">
+			<p class="comment-author">
+				<span class="comment-author-name">Azhar</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time"><a class="comment-time-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-2138">November 23, 2019 at 3:52 pm</a></time></p>		</header>
+
+		<div class="comment-content">
+			
+			<p>Good Article.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-2138" data-commentid="2138" data-postid="5" data-belowelement="comment-2138" data-respondelement="respond" aria-label="Reply to Azhar">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-even depth-1" id="comment-2155">
+	<article>
+
+		
+		<header class="comment-header">
+			<p class="comment-author">
+				<span class="comment-author-name">Shubham</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time"><a class="comment-time-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-2155">November 28, 2019 at 6:40 pm</a></time></p>		</header>
+
+		<div class="comment-content">
+			
+			<p>Great work.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-2155" data-commentid="2155" data-postid="5" data-belowelement="comment-2155" data-respondelement="respond" aria-label="Reply to Shubham">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2175">
+	<article>
+
+		
+		<header class="comment-header">
+			<p class="comment-author">
+				<span class="comment-author-name">Rahul Prajapat</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time"><a class="comment-time-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-2175">December 4, 2019 at 5:54 pm</a></time></p>		</header>
+
+		<div class="comment-content">
+			
+			<p>All topics are clear in simple<br>
+GOOD WORK<br>
+THANK YOU</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#comment-2175" data-commentid="2175" data-postid="5" data-belowelement="comment-2175" data-respondelement="respond" aria-label="Reply to Rahul Prajapat">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+</ol></div>	<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#respond" style="display:none;">Cancel reply</a></small></h3>			<form action="https://techdifferences.com/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate="">
+				<p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> Required fields are marked <span class="required">*</span></p><p class="comment-form-comment"><label for="comment">Comment</label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea></p><p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" required="required"></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="email" value="" size="30" maxlength="100" aria-describedby="email-notes" required="required"></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="url" value="" size="30" maxlength="200"></p>
+<div class="gglcptch gglcptch_v2"><div id="gglcptch_recaptcha_1134604164" class="gglcptch_recaptcha"><div style="width: 304px; height: 78px;"><div><iframe src="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/anchor.html" width="304" height="78" role="presentation" name="a-di1ymgto3utu" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div></div>
+				<noscript>
+					<div style="width: 302px;">
+						<div style="width: 302px; height: 422px; position: relative;">
+							<div style="width: 302px; height: 422px; position: absolute;">
+								<iframe src="https://www.google.com/recaptcha/api/fallback?k=6LcYtBwTAAAAAIjrwIyYC19oaJEhlYQXwWTSN__z" frameborder="0" scrolling="no" style="width: 302px; height:422px; border-style: none;"></iframe>
+							</div>
+						</div>
+						<div style="border-style: none; bottom: 12px; left: 25px; margin: 0px; padding: 0px; right: 25px; background: #f9f9f9; border: 1px solid #c1c1c1; border-radius: 3px; height: 60px; width: 300px;">
+							<textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px !important; height: 40px !important; border: 1px solid #c1c1c1 !important; margin: 10px 25px !important; padding: 0px !important; resize: none !important;"></textarea>
+						</div>
+					</div>
+				</noscript></div><p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment"> <input type="hidden" name="comment_post_ID" value="5" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="fb23763591"></p><p style="display: none;"></p>			<input type="hidden" id="ak_js" name="ak_js" value="1582147526200"></form>
+			</div><!-- #respond -->
+	</main><aside class="sidebar sidebar-primary widget-area q2w3-fixed-widget-container" role="complementary" aria-label="Primary Sidebar" style="height: 2033px;"><section id="search-2" class="widget widget_search"><div class="widget-wrap"><form class="search-form" method="get" action="https://techdifferences.com/" role="search"><input class="search-form-input" type="search" name="s" id="searchform-1" placeholder="Search the site ..."><input class="search-form-submit" type="submit" value="Search"><meta content="https://techdifferences.com/?s={s}"></form></div></section>
+<section id="nav_menu-2" class="widget widget_nav_menu"><div class="widget-wrap"><h4 class="widget-title widgettitle">Top 10 Differences</h4>
+<div class="menu-most-searched-container"><ul id="menu-most-searched" class="menu"><li id="menu-item-3698" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3698"><a href="https://techdifferences.com/difference-between-logical-and-physical-address.html">Difference Between Logical and Physical Address in Operating System</a></li>
+<li id="menu-item-3699" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3699"><a href="https://techdifferences.com/difference-between-preemptive-and-non-preemptive-scheduling-in-os.html">Difference Between Preemptive and Non-Preemptive Scheduling in OS</a></li>
+<li id="menu-item-3700" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3700"><a href="https://techdifferences.com/difference-between-synchronous-and-asynchronous-transmission.html">Difference Between Synchronous and Asynchronous Transmission</a></li>
+<li id="menu-item-3701" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3701"><a href="https://techdifferences.com/difference-between-paging-and-segmentation-in-os.html">Difference Between Paging and Segmentation in OS</a></li>
+<li id="menu-item-3702" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3702"><a href="https://techdifferences.com/difference-between-internal-and-external-fragmentation.html">Difference Between Internal and External fragmentation</a></li>
+<li id="menu-item-3703" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3703"><a href="https://techdifferences.com/difference-between-while-and-do-while-loop.html">Difference Between while and do-while Loop</a></li>
+<li id="menu-item-3704" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3704"><a href="https://techdifferences.com/difference-between-lan-man-and-wan.html">Difference Between LAN, MAN and WAN</a></li>
+<li id="menu-item-3705" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3705"><a href="https://techdifferences.com/difference-between-pure-aloha-and-slotted-aloha.html">Difference Between Pure ALOHA and Slotted ALOHA</a></li>
+<li id="menu-item-3706" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3706"><a href="https://techdifferences.com/difference-between-recursion-and-iteration-2.html">Difference Between Recursion and Iteration</a></li>
+<li id="menu-item-3707" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3707"><a href="https://techdifferences.com/difference-between-go-back-n-and-selective-repeat-protocol.html">Difference Between Go-Back-N and Selective Repeat Protocol</a></li>
+</ul></div></div></section>
+		<section id="recent-posts-2" class="widget widget_recent_entries"><div class="widget-wrap">		<h4 class="widget-title widgettitle">Recent Addition</h4>
+		<ul>
+											<li>
+					<a href="https://techdifferences.com/difference-between-cohesion-and-coupling.html">Difference Between Cohesion and Coupling</a>
+									</li>
+											<li>
+					<a href="https://techdifferences.com/difference-between-vga-and-svga.html">Difference Between VGA and SVGA</a>
+									</li>
+											<li>
+					<a href="https://techdifferences.com/difference-between-product-and-process.html">Difference Between Product and Process</a>
+									</li>
+											<li>
+					<a href="https://techdifferences.com/difference-between-mpls-and-vpn.html">Difference Between MPLS and VPN</a>
+									</li>
+											<li>
+					<a href="https://techdifferences.com/difference-between-router-and-firewall.html">Difference Between Router and Firewall</a>
+									</li>
+					</ul>
+		</div></section>
+<section id="text-3" class="widget widget_text"><div class="widget-wrap">			<div class="textwidget"><div align="center"><script async="" src="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/f.txt"></script><!-- techd_right_large --><ins class="adsbygoogle" style="display:inline-block;width:300px;height:600px" data-ad-client="ca-pub-6923410886982592" data-ad-slot="9389484378"></ins><br>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+</div>
+		</div></section>
+<section id="categories-2" class="widget widget_categories"><div class="widget-wrap"><h4 class="widget-title widgettitle">Categories</h4>
+		<ul>
+				<li class="cat-item cat-item-4"><a href="https://techdifferences.com/category/dbms">DBMS</a>
+</li>
+	<li class="cat-item cat-item-11"><a href="https://techdifferences.com/category/hardware">Hardware</a>
+</li>
+	<li class="cat-item cat-item-8"><a href="https://techdifferences.com/category/internet">Internet</a>
+</li>
+	<li class="cat-item cat-item-2"><a href="https://techdifferences.com/category/networking">Networking</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="https://techdifferences.com/category/operating-system">Operating System</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="https://techdifferences.com/category/programming">Programming</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="https://techdifferences.com/category/software">Software</a>
+</li>
+		</ul>
+			</div></section>
+<section id="custom_html-2" class="widget_text widget widget_custom_html" style=""><div class="widget_text widget-wrap"><div class="textwidget custom-html-widget"><iframe src="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/page.html" width="340" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowtransparency="true"></iframe></div></div></section>
+</aside></div></div><footer class="site-footer"><div class="wrap"><p>Copyright ©&nbsp;2020 · <a href="https://techdifferences.com/">Tech Differences</a> · <a href="https://techdifferences.com/contact-us/" title="Contact Us">Contact Us</a> · <a href="https://techdifferences.com/about-us/" title="About Us">About Us</a> · <a href="https://techdifferences.com/privacy-policy/" title="Privacy">Privacy</a></p></div></footer></div><!--www.crestaproject.com Social Button Floating Start--><div id="crestashareicon" class="cresta-share-icon  fourth_style show-count-active"><div class="sbutton crestaShadow facebook-cresta-share float" id="facebook-cresta" style="display: block;"><a rel="nofollow" href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Ftechdifferences.com%2Fdifference-between-tcp-ip-and-osi-model.html&amp;t=Difference+Between+TCP%2FIP+and+OSI+Model" title="Share to Facebook" onclick="window.open(this.href,&#39;targetWindow&#39;,&#39;toolbars=0,location=0,status=0,menubar=0,scrollbars=1,resizable=1,width=640,height=320,left=200,top=200&#39;);return false;"><i class="cs c-icon-cresta-facebook"></i></a><span class="cresta-the-count" id="facebook-count">29</span></div><div class="sbutton crestaShadow twitter-cresta-share float noCount noCountTwo noCountThree" id="twitter-cresta" style="display: block;"><a rel="nofollow" href="https://twitter.com/intent/tweet?text=Difference+Between+TCP%2FIP+and+OSI+Model&amp;url=https%3A%2F%2Ftechdifferences.com%2Fdifference-between-tcp-ip-and-osi-model.html" title="Share to Twitter" onclick="window.open(this.href,&#39;targetWindow&#39;,&#39;toolbars=0,location=0,status=0,menubar=0,scrollbars=1,resizable=1,width=640,height=320,left=200,top=200&#39;);return false;"><i class="cs c-icon-cresta-twitter"></i></a></div><div class="sbutton crestaShadow googleplus-cresta-share float" id="googleplus-cresta" style="display: block;"><a rel="nofollow" href="https://plus.google.com/share?url=https%3A%2F%2Ftechdifferences.com%2Fdifference-between-tcp-ip-and-osi-model.html" title="Share to Google Plus" onclick="window.open(this.href,&#39;targetWindow&#39;,&#39;toolbars=0,location=0,status=0,menubar=0,scrollbars=1,resizable=1,width=640,height=320,left=200,top=200&#39;);return false;"><i class="cs c-icon-cresta-gplus"></i></a></div><div class="sbutton crestaShadow linkedin-cresta-share float" id="linkedin-cresta" style="display: block;"><a rel="nofollow" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Ftechdifferences.com%2Fdifference-between-tcp-ip-and-osi-model.html&amp;title=Difference+Between+TCP%2FIP+and+OSI+Model&amp;source=https://techdifferences.com/" title="Share to LinkedIn" onclick="window.open(this.href,&#39;targetWindow&#39;,&#39;toolbars=0,location=0,status=0,menubar=0,scrollbars=1,resizable=1,width=640,height=320,left=200,top=200&#39;);return false;"><i class="cs c-icon-cresta-linkedin"></i></a></div><div class="sbutton crestaShadow pinterest-cresta-share float" id="pinterest-cresta" style="display: block;"><a rel="nofollow" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3A%2F%2Ftechdifferences.com%2Fdifference-between-tcp-ip-and-osi-model.html&amp;media=https://techdifferences.com/wp-content/plugins/cresta-social-share-counter/images/no-image-found.png&amp;description=Difference+Between+TCP%2FIP+and+OSI+Model" title="Share to Pinterest" onclick="window.open(this.href,&#39;targetWindow&#39;,&#39;toolbars=0,location=0,status=0,menubar=0,scrollbars=1,resizable=1,width=640,height=320,left=200,top=200&#39;);return false;"><i class="cs c-icon-cresta-pinterest"></i></a><span class="cresta-the-count" id="pinterest-count">2</span></div><div class="sbutton crestaShadow print-cresta-share float" id="print-cresta" style="display: block;"><a rel="nofollow" href="https://techdifferences.com/difference-between-tcp-ip-and-osi-model.html#" title="Print this page" onclick="window.print();"><i class="cs c-icon-cresta-print"></i></a></div><div class="sbutton" id="total-shares" data-twittershares="0" data-facebookshares="29" data-pinterestshares="2" style="display: block;"><span class="cresta-the-total-count" id="total-count">31</span><span class="cresta-the-total-text">Shares</span></div><div style="clear: both;"></div></div>
+
+<!--www.crestaproject.com Social Button Floating End-->
+<link rel="stylesheet" id="yarppRelatedCss-css" href="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/related.css" type="text/css" media="all">
+<link rel="stylesheet" id="gglcptch-css" href="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/gglcptch.css" type="text/css" media="all">
+<script type="text/javascript">
+/* <![CDATA[ */
+var wpcf7 = {"apiSettings":{"root":"https:\/\/techdifferences.com\/wp-json\/contact-form-7\/v1","namespace":"contact-form-7\/v1"},"cached":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/scripts.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var crestaShareSSS = {"FacebookCount":"nope"};
+var crestaPermalink = {"thePermalink":"https:\/\/techdifferences.com\/difference-between-tcp-ip-and-osi-model.html","themorezero":"nomore","themorenumber":"0"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/jquery.cresta-social-share-counter.min.js"></script>
+<script type="text/javascript" src="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/jquery.cresta-social-effect.min.js"></script>
+<script type="text/javascript" src="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/comment-reply.min.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var q2w3_sidebar_options = [{"sidebar":"sidebar","margin_top":10,"margin_bottom":0,"stop_id":"","screen_max_width":0,"screen_max_height":0,"width_inherit":false,"refresh_interval":1500,"window_load_hook":false,"disable_mo_api":false,"widgets":["custom_html-2"]}];
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/q2w3-fixed-widget.min.js"></script>
+<script type="text/javascript" src="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/mootools-core-yc.js"></script>
+<script type="text/javascript" src="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/EnlighterJS.min.js"></script>
+<script type="text/javascript" src="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/wp-embed.min.js"></script>
+<script async="async" type="text/javascript" src="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/form.js"></script>
+<script type="text/javascript" data-cfasync="false" async="async" defer="defer" src="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/api.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var gglcptch = {"options":{"version":"v2","sitekey":"6LcYtBwTAAAAAIjrwIyYC19oaJEhlYQXwWTSN__z","theme":"light","error":"<strong>Warning<\/strong>:&nbsp;More than one reCAPTCHA has been found in the current form. Please remove all unnecessary reCAPTCHA fields to make it work properly.","disable":0},"vars":{"visibility":false}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/script.js"></script>
+<script type="text/javascript">/* <![CDATA[ */EnlighterJS_Config = {"selector":{"block":"pre.EnlighterJSRAW","inline":"code.EnlighterJSRAW"},"language":"generic","theme":"enlighter","indent":2,"hover":"hoverEnabled","showLinenumbers":true,"rawButton":false,"infoButton":false,"windowButton":false,"rawcodeDoubleclick":false,"grouping":true,"cryptex":{"enabled":false,"email":"mail@example.tld"}};!function(){var a=function(a){var b="Enlighter Error: ";console.error?console.error(b+a):console.log&&console.log(b+a)};return window.addEvent?"undefined"==typeof EnlighterJS?void a("Javascript Resources not loaded yet!"):"undefined"==typeof EnlighterJS_Config?void a("Configuration not loaded yet!"):void window.addEvent("domready",function(){EnlighterJS.Util.Init(EnlighterJS_Config.selector.block,EnlighterJS_Config.selector.inline,EnlighterJS_Config)}):void a("MooTools Framework not loaded yet!")}();;/* ]]> */</script>
+
+<!-- Dynamic page generated in 0.142 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2020-02-19 20:40:07 -->
+
+<!-- super cache --><div style="background-color: rgb(255, 255, 255); border: 1px solid rgb(204, 204, 204); box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 3px; position: absolute; transition: visibility 0s linear 0.3s, opacity 0.3s linear 0s; opacity: 0; visibility: hidden; z-index: 2000000000; left: 0px; top: -10000px;"><div style="width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 2000000000; background-color: rgb(255, 255, 255); opacity: 0.05;"></div><div class="g-recaptcha-bubble-arrow" style="border: 11px solid transparent; width: 0px; height: 0px; position: absolute; pointer-events: none; margin-top: -11px; z-index: 2000000000;"></div><div class="g-recaptcha-bubble-arrow" style="border: 10px solid transparent; width: 0px; height: 0px; position: absolute; pointer-events: none; margin-top: -10px; z-index: 2000000000;"></div><div style="z-index: 2000000000; position: relative;"><iframe title="recaptcha challenge" src="./Difference Between TCP_IP and OSI Model (with Comparison Chart and Diagrammatic Comparison) - Tech Differences_files/bframe.html" name="c-di1ymgto3utu" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox" style="width: 100%; height: 100%;"></iframe></div></div></body></html>
