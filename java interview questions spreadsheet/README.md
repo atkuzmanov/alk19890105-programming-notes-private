@@ -200,6 +200,8 @@ For learning and study
 - [CRUD C.R.U.D.](#crud-crud)
 - [What HTTP method to use for Login and sensitive data?](#what-http-method-to-use-for-login-and-sensitive-data)
 - [JWebToken](#jwebtoken)
+    - [JSON web token; jwt;](#json-web-token-jwt)
+- [Web socket](#web-socket)
 - [Random](#random)
 - [SQL Normal Forms](#sql-normal-forms)
 - [HTTP](#http)
@@ -8656,14 +8658,53 @@ https://security.stackexchange.com/questions/147188/is-it-bad-practice-to-use-ge
 
 # JWebToken
 
+## JSON web token; jwt;
+
 |Junior |Mid  |Senior |
 |-------|-----|-------|
-|   x   |  x  |   x   |
+|       |  x  |   x   |
 
+- [JSON-Web-Tokens-jwtio](refs/JSON-Web-Tokens-jwtio)
 
+`references:`
+https://jwt.io/
 
+- [JSON-Web-Token-JWT-jsonwebtoken](refs/JSON-Web-Token-JWT-jsonwebtoken)
+
+`references:`
+https://www.jsonwebtoken.io/
+
+- [A-Beginners-Guide-to-JWTs-in-Java-Stormpath-User-Identity-API-stormpath](A-Beginners-Guide-to-JWTs-in-Java-Stormpath-User-Identity-API-stormpath)
+
+`references:`
+https://stormpath.com/blog/beginners-guide-jwts-in-java
+
+- [Generate-JWT-Token-and-Verify-Java-Example-metamug](refs/Generate-JWT-Token-and-Verify-Java-Example-metamug)
+
+`references:`
+https://metamug.com/article/security/jwt-java-tutorial-create-verify.html
+
+- [JSON-Web-Token-Tutorial-using-AngularJS-Laravel-Toptal](refs/JSON-Web-Token-Tutorial-using-AngularJS-Laravel-Toptal)
+
+`references:`
+https://www.toptal.com/web/cookie-free-authentication-with-json-web-tokens-an-example-in-laravel-and-angularjs
+
+- [JSON-Web-Token-Wikipedia](refs/JSON-Web-Token-Wikipedia)
+
+`references:`
+https://en.wikipedia.org/wiki/JSON_Web_Token
 
 ----
+
+# Web socket
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
+
+
+
 ----
 ----
 ----
