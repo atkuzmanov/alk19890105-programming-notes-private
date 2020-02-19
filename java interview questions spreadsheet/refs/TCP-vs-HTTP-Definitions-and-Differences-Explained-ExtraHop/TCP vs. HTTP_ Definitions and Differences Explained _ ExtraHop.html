@@ -1,0 +1,2569 @@
+<!DOCTYPE html>
+<!-- saved from url=(0077)https://www.extrahop.com/company/blog/2018/tcp-vs-http-differences-explained/ -->
+<html lang="en" prefix="og: http://ogp.me/ns#" class=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" async="" src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/ga.js"></script><script type="text/javascript" async="" src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/linkid.js"></script><script async="" src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/obtp.js" type="text/javascript"></script><script async="" src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/qevents.js"></script><script type="text/javascript" async="" src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/ei.js"></script><script src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/511627396050190" async=""></script><script src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/1049095138473035" async=""></script><script async="" src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/fbevents.js"></script><script type="text/javascript" async="" src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/elqCfg.min.js"></script><script type="text/javascript" async="" src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/insight.min.js"></script><script type="text/javascript" async="" src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/insight.min.js"></script><script type="text/javascript" async="" src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/hotjar-897647.js"></script><script type="text/javascript" async="" src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/bat.js"></script><script type="text/javascript" async="" src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/analytics.js"></script><script async="" src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/st.js"></script><script async="" src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/gtm.js"></script><script type="text/javascript" async="" src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/geo2.js"></script>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+
+
+<title>TCP vs. HTTP: Definitions and Differences Explained | ExtraHop</title>
+<link rel="icon" type="image/png" href="https://assets.extrahop.com/favicon.ico">
+
+
+
+
+
+
+
+<meta property="og:title" content="TCP vs. HTTP: Definitions and Differences Explained | ExtraHop">
+<meta property="og:type" content="website">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@ExtraHop">
+
+
+<meta property="og:image" content="https://assets.extrahop.com/images/blog/tech-blog-pattern2.jpg">
+
+
+
+<meta name="description" content="What&#39;s the difference between TCP and HTTP? How do they both work, and how do they work together? Read the blog for definitions of both protocols as well as a breakdown of what makes them different.">
+<meta property="og:description" content="What&#39;s the difference between TCP and HTTP? How do they both work, and how do they work together? Read the blog for definitions of both protocols as well as a breakdown of what makes them different.">
+
+
+
+
+<script src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/14601760638.js"></script>
+
+
+
+
+
+<link type="text/css" href="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/style.css" rel="stylesheet">
+
+
+<link rel="stylesheet" type="text/css" href="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/css">
+
+
+<script type="text/javascript">
+    (function(w,d,s,l,i){
+        w[l]=w[l]||[];
+        w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+        var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),
+            dl=l!='dataLayer'?'&l='+l:'';
+        j.async=true;
+        j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;
+        f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MB8XC6');
+</script>
+
+
+
+
+
+    <link href="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/esw.min.css" type="text/css" rel="stylesheet"><script type="text/javascript" async="" src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/lfx.js"></script><link rel="stylesheet" type="text/css" href="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/new_embed-20cee04df5c6e7e2687598f076a0147d.css"><style type="text/css">.st-install-uPfeFKkYC4RCAayMdsK7 .st-ui-result .st-ui-type-heading { color:#00afa9 !important }
+.st-install-uPfeFKkYC4RCAayMdsK7 .st-ui-result em {font-style:normal; font-weight:bold; background-color:#f6fcfe !important}</style><style type="text/css">.exclusive-window-wrapper.hidden { display: block !important; visibility: visible !important; left: 1905px; right: -1905px;  }</style><style type="text/css">.fancybox-margin{padding-right:15px;}</style><script async="" src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/modules.98591d9c2c879f3aa719.js" charset="utf-8"></script><style type="text/css">iframe#_hjRemoteVarsFrame {display: none !important; width: 1px !important; height: 1px !important; opacity: 0 !important; pointer-events: none !important;}</style><script type="text/javascript" src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/svrGP"></script><script type="text/javascript" src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/svrGP(1)"></script><script type="text/javascript" src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/ei_track_all_packed.js"></script><style id="inert-style">
+[inert] {
+	pointer-events: none;
+	cursor: default;
+}
+
+[inert], [inert] * {
+	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+}
+</style></head>
+    
+
+    <body class="blog article" itemscope="" itemtype="http://schema.org/Article">
+    
+<div id="gtm-page-type" data-type="static"></div>
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MB8XC6" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+
+
+
+    
+<header>
+    <div class="container-fluid">
+        <div class="topnav">
+            <div class="brand">
+    <a href="https://www.extrahop.com/" data-sync-host="www" title="ExtraHop Home">
+        <div class="header-logo" alt="ExtraHop Logo"></div>
+    </a>
+</div>
+
+
+            <div class="navitems">
+                <nav class="menu mega" data-meganav="" aria-expanded="false" aria-haspopup="true">
+    <div class="backing" data-meganav-backing=""></div>
+    <ul class="nav-links www-nav">
+        
+        
+        
+        
+        <li class="top-level-item" data-meganav-topnav="" aria-expanded="false" aria-haspopup="true">
+
+            
+            
+
+            
+
+            
+                
+            
+
+            
+
+            <a href="https://www.extrahop.com/products/" class="focusable" data-meganav-focusable="" role="button" data-track-nav-top="www-products" data-sync-host="www">Products</a>
+            
+            <div class="subnav " data-meganav-subnav="">
+                <div class="container-fluid p-sides-none">
+
+                    
+                    
+                    
+                    
+                    <div class="linkset p-top-large">
+                        <div class="linkset-title">
+                            <a href="https://www.extrahop.com/products/security/" data-track-nav="www-products" data-sync-host="www">Reveal(x)</a>
+                            <hr class="divide">
+                        </div>
+                        <div class="linkset-text">
+                            <p>Network Detection &amp; Response</p>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                    
+                    <div class="linkset p-top-large">
+                        <div class="linkset-title">
+                            <a href="https://www.extrahop.com/products/cloud/" data-track-nav="www-products" data-sync-host="www">Reveal(x) Cloud</a>
+                            <hr class="divide">
+                        </div>
+                        <div class="linkset-text">
+                            <p>Detection &amp; Response for AWS</p>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                    
+                    <div class="linkset p-top-large">
+                        <div class="linkset-title">
+                            <a href="https://www.extrahop.com/products/performance/" data-track-nav="www-products" data-sync-host="www">Reveal(x) for IT Ops</a>
+                            <hr class="divide">
+                        </div>
+                        <div class="linkset-text">
+                            <p>Application &amp; Network Performance</p>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                    <div class="linkset nav-sidebar m-top-med">
+                    
+                        <ul class="tertiary-items">
+
+                            
+                            
+                            <li><a href="https://www.extrahop.com/products/the-extrahop-difference/" data-track-nav="www-products" data-sync-host="www">The ExtraHop Difference</a></li>
+                            
+                            <li><a href="https://www.extrahop.com/products/machine-learning/" data-track-nav="www-products" data-sync-host="www">Machine Learning</a></li>
+                            
+                            <li><a href="https://www.extrahop.com/products/security/comparison/" data-track-nav="www-products" data-sync-host="www">Competitive Comparison</a></li>
+                            
+                            <li><a href="https://www.extrahop.com/products/services/" data-track-nav="www-products" data-sync-host="www">Professional Services</a></li>
+                            
+                            <li><a href="https://www.extrahop.com/products/integrations/" data-track-nav="www-products" data-sync-host="www">Integration and Automation</a></li>
+                            
+                        </ul>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
+        </li>
+        
+        <li class="top-level-item" data-meganav-topnav="" aria-expanded="false" aria-haspopup="true">
+
+            
+            
+
+            
+
+            
+                
+            
+
+            
+
+            <a href="https://www.extrahop.com/solutions/" class="focusable" data-meganav-focusable="" role="button" data-track-nav-top="www-solutions" data-sync-host="www">Solutions</a>
+            
+            <div class="subnav " data-meganav-subnav="">
+                <div class="container-fluid p-sides-none">
+
+                    
+                    
+                    
+                    <div class="linkset">
+                    
+                        <div class="linkset-title">
+                            <a href="https://www.extrahop.com/solutions/security/" data-track-nav="www-solutions" data-sync-host="www">Security
+ Operations</a>
+                            <hr class="divide">
+                        </div>
+                    
+                        <ul class="tertiary-items">
+
+                            
+                            
+                            <li><a href="https://www.extrahop.com/solutions/security/threat-detection-response/" data-track-nav="www-solutions" data-sync-host="www">Threat Detection and Response</a></li>
+                            
+                            <li><a href="https://www.extrahop.com/solutions/security/secure-decryption/" data-track-nav="www-solutions" data-sync-host="www">Secure Decryption</a></li>
+                            
+                            <li><a href="https://www.extrahop.com/solutions/security/iot/" data-track-nav="www-solutions" data-sync-host="www">Enterprise IoT Security</a></li>
+                            
+                            <li><a href="https://www.extrahop.com/solutions/security/hygiene-compliance/" data-track-nav="www-solutions" data-sync-host="www">Hygiene and Compliance</a></li>
+                            
+                        </ul>
+                    </div>
+                    
+                    
+                    
+                    <div class="linkset">
+                    
+                        <div class="linkset-title">
+                            <a href="https://www.extrahop.com/solutions/cloud/" data-track-nav="www-solutions" data-sync-host="www">Cloud-Native
+ Security</a>
+                            <hr class="divide">
+                        </div>
+                    
+                        <ul class="tertiary-items">
+
+                            
+                            
+                            <li><a href="https://www.extrahop.com/solutions/cloud/aws-security/" data-track-nav="www-solutions" data-sync-host="www">Security for AWS</a></li>
+                            
+                            <li><a href="https://www.extrahop.com/solutions/cloud/azure-security/" data-track-nav="www-solutions" data-sync-host="www">Security for Azure</a></li>
+                            
+                            <li><a href="https://www.extrahop.com/solutions/cloud/gcp-security/" data-track-nav="www-solutions" data-sync-host="www">Security for Google Cloud Platform</a></li>
+                            
+                            <li><a href="https://www.extrahop.com/solutions/cloud/cloud-migration/" data-track-nav="www-solutions" data-sync-host="www">Cloud Migration</a></li>
+                            
+                        </ul>
+                    </div>
+                    
+                    
+                    
+                    <div class="linkset">
+                    
+                        <div class="linkset-title">
+                            <a href="https://www.extrahop.com/solutions/app-analytics/" data-track-nav="www-solutions" data-sync-host="www">Application
+ Analytics</a>
+                            <hr class="divide">
+                        </div>
+                    
+                        <ul class="tertiary-items">
+
+                            
+                            
+                            <li><a href="https://www.extrahop.com/solutions/app-analytics/commercial-app-visibility/" data-track-nav="www-solutions" data-sync-host="www">Commercial Application Visibility</a></li>
+                            
+                            <li><a href="https://www.extrahop.com/solutions/app-analytics/customer-experience-monitoring/" data-track-nav="www-solutions" data-sync-host="www">Customer Experience Monitoring</a></li>
+                            
+                            <li><a href="https://www.extrahop.com/solutions/app-analytics/app-upgrade-cloud-migration/" data-track-nav="www-solutions" data-sync-host="www">Application Upgrade &amp; Cloud Migration</a></li>
+                            
+                        </ul>
+                    </div>
+                    
+                    
+                    
+                    <div class="linkset">
+                    
+                        <div class="linkset-title">
+                            <a href="https://www.extrahop.com/solutions/network/" data-track-nav="www-solutions" data-sync-host="www">Network
+ Performance</a>
+                            <hr class="divide">
+                        </div>
+                    
+                        <ul class="tertiary-items">
+
+                            
+                            
+                            <li><a href="https://www.extrahop.com/solutions/network/snoc-integration/" data-track-nav="www-solutions" data-sync-host="www">NOC/SOC Integration</a></li>
+                            
+                            <li><a href="https://www.extrahop.com/solutions/network/remote-site-visibility/" data-track-nav="www-solutions" data-sync-host="www">Remote Site Visibility</a></li>
+                            
+                            <li><a href="https://www.extrahop.com/solutions/network/triage-troubleshooting/" data-track-nav="www-solutions" data-sync-host="www">Triage &amp; Troubleshooting</a></li>
+                            
+                            <li><a href="https://www.extrahop.com/solutions/network/virtualization/" data-track-nav="www-solutions" data-sync-host="www">SDN &amp; Virtualization</a></li>
+                            
+                        </ul>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
+        </li>
+        
+        <li class="top-level-item" data-meganav-topnav="" aria-expanded="false" aria-haspopup="true">
+
+            
+            
+
+            
+
+            
+                
+            
+
+            
+
+            <a href="https://www.extrahop.com/customers/" class="focusable" data-meganav-focusable="" role="button" data-track-nav-top="www-customers" data-sync-host="www">Customers</a>
+            
+            <div class="subnav " data-meganav-subnav="">
+                <div class="container-fluid p-sides-none">
+
+                    
+                    
+                    
+                    <div class="linkset">
+                    
+                        <div class="linkset-title">
+                            <a href="https://www.extrahop.com/customers/community/" data-track-nav="www-customers" data-sync-host="www">Community</a>
+                            <hr class="divide">
+                        </div>
+                    
+                        <ul class="tertiary-items">
+
+                            
+                            
+                            <li><a href="https://www.extrahop.com/customers/stories/" data-track-nav="www-customers" data-sync-host="www">Customer Stories</a></li>
+                            
+                            <li><a href="https://www.extrahop.com/customers/community/bundles/" data-track-nav="www-customers" data-sync-host="www">Solution Bundles Gallery</a></li>
+                            
+                            <li><a href="https://forums.extrahop.com/" data-track-nav="www-customers">Community Forums</a></li>
+                            
+                            <li><a href="https://customer.extrahop.com/" data-track-nav="www-customers">Customer Portal</a></li>
+                            
+                        </ul>
+                    </div>
+                    
+                    
+                    
+                    <div class="linkset">
+                    
+                        <div class="linkset-title">
+                            <a href="https://www.extrahop.com/partners/" data-track-nav="www-customers" data-sync-host="www">Partners</a>
+                            <hr class="divide">
+                        </div>
+                    
+                        <ul class="tertiary-items">
+
+                            
+                            
+                            <li><a href="https://partner.extrahop.com/" data-track-nav="www-customers">Partner Portal</a></li>
+                            
+                            <li><a href="https://www.extrahop.com/partners/channel-partners/" data-track-nav="www-customers" data-sync-host="www">Channel Partners</a></li>
+                            
+                            <li><a href="https://www.extrahop.com/partners/tech-partners/" data-track-nav="www-customers" data-sync-host="www">Technology Partners</a></li>
+                            
+                        </ul>
+                    </div>
+                    
+                    
+                    
+                    <div class="linkset">
+                    
+                        <div class="linkset-title">
+                            <a href="https://www.extrahop.com/support/" data-track-nav="www-customers" data-sync-host="www">Support</a>
+                            <hr class="divide">
+                        </div>
+                    
+                        <ul class="tertiary-items">
+
+                            
+                            
+                            <li><a href="https://www.extrahop.com/support/" data-track-nav="www-customers" data-sync-host="www">Support Overview</a></li>
+                            
+                            <li><a href="https://www.extrahop.com/products/services/" data-track-nav="www-customers" data-sync-host="www">Professional Services</a></li>
+                            
+                            <li><a href="https://docs.extrahop.com/" data-track-nav="www-customers">Documentation</a></li>
+                            
+                            <li><a href="https://www.extrahop.com/support/policies" data-track-nav="www-customers" data-sync-host="www">Policies</a></li>
+                            
+                        </ul>
+                    </div>
+                    
+                    
+                    
+                    <div class="linkset">
+                    
+                        <div class="linkset-title">
+                            <a href="https://www.extrahop.com/support/training/" data-track-nav="www-customers" data-sync-host="www">Training</a>
+                            <hr class="divide">
+                        </div>
+                    
+                        <ul class="tertiary-items">
+
+                            
+                            
+                            <li><a href="https://www.extrahop.com/support/training/" data-track-nav="www-customers" data-sync-host="www">Training Overview</a></li>
+                            
+                            <li><a href="https://www.extrahop.com/support/training/options/" data-track-nav="www-customers" data-sync-host="www">Training Sessions</a></li>
+                            
+                        </ul>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
+        </li>
+        
+        <li class="top-level-item" data-meganav-topnav="" aria-expanded="false" aria-haspopup="true">
+
+            
+            
+
+            
+
+            
+                
+            
+
+            
+
+            <a href="https://www.extrahop.com/resources/" class="focusable" data-meganav-focusable="" role="button" data-track-nav-top="www-resources" data-sync-host="www">Resources</a>
+            
+            <div class="subnav " data-meganav-subnav="">
+                <div class="container-fluid p-sides-none">
+
+                    
+                    
+                    
+                    
+                    <div class="linkset p-top-large">
+                        <div class="linkset-title">
+                            <a href="https://www.extrahop.com/customers/stories/" data-track-nav="www-resources" data-sync-host="www">Customer
+ Stories</a>
+                            <hr class="divide">
+                        </div>
+                        <div class="linkset-text">
+                            <p>Digital Business, Accelerated</p>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                    
+                    <div class="linkset p-top-large">
+                        <div class="linkset-title">
+                            <a href="https://www.extrahop.com/resources/" data-track-nav="www-resources" data-sync-host="www">Resources</a>
+                            <hr class="divide">
+                        </div>
+                        <div class="linkset-text">
+                            <p>White Papers, Data Sheets, and More</p>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                    
+                    <div class="linkset p-top-large">
+                        <div class="linkset-title">
+                            <a href="https://www.extrahop.com/products/integrations/" data-track-nav="www-resources" data-sync-host="www">Integrations</a>
+                            <hr class="divide">
+                        </div>
+                        <div class="linkset-text">
+                            <p>Analytics Extended, Workflows Automated</p>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                    <div class="linkset nav-sidebar m-top-med">
+                    
+                        <ul class="tertiary-items">
+
+                            
+                            
+                            <li><a href="https://www.extrahop.com/partners/channel-partners/" data-track-nav="www-resources" data-sync-host="www">Partner Program</a></li>
+                            
+                            <li><a href="https://www.extrahop.com/resources/protocols/" data-track-nav="www-resources" data-sync-host="www">Protocol Library</a></li>
+                            
+                            <li><a href="https://docs.extrahop.com/" data-track-nav="www-resources">Documentation</a></li>
+                            
+                            <li><a href="https://customer.extrahop.com/downloads/firmware/" data-track-nav="www-resources">Firmware</a></li>
+                            
+                            <li><a href="https://www.extrahop.com/support/training/" data-track-nav="www-resources" data-sync-host="www">Training Videos</a></li>
+                            
+                        </ul>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
+        </li>
+        
+        <li class="top-level-item" data-meganav-topnav="" aria-expanded="false" aria-haspopup="true">
+
+            
+            
+
+            
+
+            
+
+            
+
+            <a href="https://www.extrahop.com/company/about-us/" class="focusable" data-meganav-focusable="" role="button" data-track-nav-top="www-company" data-sync-host="www">Company</a>
+            
+            <div class="subnav " data-meganav-subnav="">
+                <div class="container-fluid p-sides-none">
+
+                    
+                    
+                    
+                    
+                    <div class="linkset p-top-large">
+                        <div class="linkset-title">
+                            <a href="https://www.extrahop.com/company/about-us/" data-track-nav="www-company" data-sync-host="www">About Us</a>
+                            <hr class="divide">
+                        </div>
+                        <div class="linkset-text">
+                            <p>Rise Above the Noise.</p>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                    
+                    <div class="linkset p-top-large">
+                        <div class="linkset-title">
+                            <a href="https://www.extrahop.com/company/careers/" data-track-nav="www-company" data-sync-host="www">Careers</a>
+                            <hr class="divide">
+                        </div>
+                        <div class="linkset-text">
+                            <p>Rise to the Opportunity.</p>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                    
+                    <div class="linkset p-top-large">
+                        <div class="linkset-title">
+                            <a href="https://www.extrahop.com/company/newsroom/" data-track-nav="www-company" data-sync-host="www">Newsroom</a>
+                            <hr class="divide">
+                        </div>
+                        <div class="linkset-text">
+                            <p>Get the Latest.</p>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                    <div class="linkset nav-sidebar m-top-med">
+                    
+                        <ul class="tertiary-items">
+
+                            
+                            
+                            <li><a href="https://www.extrahop.com/company/contact/" data-track-nav="www-company" data-sync-host="www">Contact Us</a></li>
+                            
+                            <li><a href="https://www.extrahop.com/company/events/" data-track-nav="www-company" data-sync-host="www">Events</a></li>
+                            
+                            <li><a href="https://www.extrahop.com/company/leadership/" data-track-nav="www-company" data-sync-host="www">Leadership</a></li>
+                            
+                            <li><a href="https://www.extrahop.com/company/board/" data-track-nav="www-company" data-sync-host="www">Board</a></li>
+                            
+                            <li><a href="https://www.extrahop.com/company/investors/" data-track-nav="www-company" data-sync-host="www">Investors</a></li>
+                            
+                            <li><a href="https://www.extrahop.com/partners/channel-partners/" data-track-nav="www-company" data-sync-host="www">Partners</a></li>
+                            
+                        </ul>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
+        </li>
+        
+        <li>
+
+            
+            
+
+            
+
+            
+                
+                
+                    
+                        
+                    
+                
+
+            
+
+            
+
+            
+
+            <a href="https://www.extrahop.com/company/blog/" class=" current-page" data-track-nav-top="www-blog" data-sync-host="www">Blog</a>
+            
+        </li>
+        
+    </ul>
+</nav>
+
+
+                <div class="search-input-wrapper" data-search-input-wrapper="" data-search-header="">
+    <input data-storage="false" data-search-input="" name="query" type="text" class="search-input st-default-search-input" placeholder="Search..." autocomplete="off" autocorrect="off" autocapitalize="off">
+</div>
+
+            </div>
+
+            <div class="utilities">
+
+                <div class="search">
+    <div data-search-indicator="" data-search-toggle="" class="reset search-open"><i class="fas fa-fw fa-search"></i></div>
+    <div data-search-indicator="" data-search-toggle="" class="reset search-close hidden"><img src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/+.svg" alt="X button" height="16px"></div>
+</div>
+
+
+                
+
+                <div class="login-logout" data-login-logout="">
+    <div data-login-logout-login="">
+        <a class="reset loginout" data-login-logout-login-link="" href="https://www.extrahop.com/login?returnPath=%2Fcompany%2Fblog%2F2018%2Ftcp-vs-http-differences-explained%2F">Login</a>
+    </div>
+    <div class="hidden" data-login-logout-logout="">
+        <a class="reset loginout" href="https://www.extrahop.com/logout/sso/">Logout</a>
+    </div>
+</div>
+
+
+                
+                
+
+                <div class="cta">
+                    <a class="btn btn-header" href="https://www.extrahop.com/demo/" data-sync-host="www" data-track-header-cta="">Start Demo</a>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</header>
+
+    
+<div class="brand-mobile hidden-med-large">
+    <a href="https://www.extrahop.com/" data-sync-host="www" title="ExtraHop Home">
+        <div class="header-logo-icon" alt="ExtraHop Logo Icon"></div>
+    </a>
+</div>
+
+
+<div class="mobile-nav-toggle hidden-large">
+    <div class="line-1"></div>
+    <div class="line-2"></div>
+    <div class="line-3"></div>
+    <div class="line-4"></div>
+</div>
+
+
+<div class="tap-away-close-nav hidden-med-small hidden-small hidden-large"></div>
+
+
+<div data-nav-www-backing="" class="nav-www-backing black-backgrounded hide-nav hidden-large">
+    <div class="nav-www on-dark" data-nav-www="">
+
+        
+
+        <div class="level-1 black-backgrounded p-sides-med">
+        
+            
+                <h2 class="text-uppercase m-vert-none p-vert-small" data-level-opener="products" data-track-nav="www-products" data-sync-host="www"><strong>Products</strong></h2>
+            
+        
+            
+                <h2 class="text-uppercase m-vert-none p-vert-small" data-level-opener="solutions" data-track-nav="www-solutions" data-sync-host="www"><strong>Solutions</strong></h2>
+            
+        
+            
+                <h2 class="text-uppercase m-vert-none p-vert-small" data-level-opener="customers" data-track-nav="www-customers" data-sync-host="www"><strong>Customers</strong></h2>
+            
+        
+            
+                <h2 class="text-uppercase m-vert-none p-vert-small" data-level-opener="resources" data-track-nav="www-resources" data-sync-host="www"><strong>Resources</strong></h2>
+            
+        
+            
+                <h2 class="text-uppercase m-vert-none p-vert-small" data-level-opener="company" data-track-nav="www-company" data-sync-host="www"><strong>Company</strong></h2>
+            
+        
+            <a href="https://www.extrahop.com/company/blog/" data-track-nav="www-blog" data-sync-host="www">
+                <h2 class="text-uppercase m-vert-none p-vert-small" data-track-nav="www-blog" data-sync-host="www"><strong>Blog</strong></h2>
+            </a>
+        
+            <a href="https://www.extrahop.com/demo/" data-track-header-cta="" data-sync-host="www">
+                <h4 class="m-vert-none teal-text p-top-med p-bottom-small">Start the Demo<img src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/caret_main_nav.svg" alt="caret-right"></h4>
+            </a>
+            <a href="https://www.extrahop.com/company/contact/" data-sync-host="www">
+                <h4 class="m-vert-none p-bottom-med teal-text">Contact Us<img src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/caret_main_nav.svg" alt="caret-right"></h4>
+            </a>
+        </div>
+
+        
+
+        
+        
+        
+        <div data-level-open="products" class="level-2 hide-section fade-in black-backgrounded">
+
+            <div class="primary-items flood-near-black p-sides-med p-vert-med">
+                <div class="back-btn p-bottom-med-large">
+                    <img src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/caret-white.svg" alt="caret-left">
+                    <span class="embiggened">Back</span>
+                </div>
+                <div class="h2-container p-bottom-small">
+                    <h2 class="m-vert-none text-uppercase teal-text p-bottom-small"><strong>Products</strong></h2>
+                    <hr class="divide thin m-vert-none p-bottom-small">
+                </div>
+                
+                
+                <a href="https://www.extrahop.com/products/security/" data-track-nav="www-products" data-sync-host="www">
+                    <h3 class="m-vert-none p-bottom-small">Security</h3>
+                </a>
+                
+                
+                
+                <a href="https://www.extrahop.com/products/cloud/" data-track-nav="www-products" data-sync-host="www">
+                    <h3 class="m-vert-none p-bottom-small">Cloud</h3>
+                </a>
+                
+                
+                
+                <a href="https://www.extrahop.com/products/performance/" data-track-nav="www-products" data-sync-host="www">
+                    <h3 class="m-vert-none p-bottom-small">Performance</h3>
+                </a>
+                
+                
+                
+                
+            </div>
+
+            
+            
+            <div class="secondary-items black-backgrounded p-vert-med-large p-sides-med">
+                
+                
+                
+                <a href="https://www.extrahop.com/products/the-extrahop-difference/" data-track-nav="www-products" data-sync-host="www">
+                    <h4 class="m-vert-none p-bottom-small">The ExtraHop Difference<img src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/caret-white.svg" alt="caret-right"></h4>
+                </a>
+                
+                
+                
+                <a href="https://www.extrahop.com/products/machine-learning/" data-track-nav="www-products" data-sync-host="www">
+                    <h4 class="m-vert-none p-bottom-small">Machine Learning<img src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/caret-white.svg" alt="caret-right"></h4>
+                </a>
+                
+                
+                
+                <a href="https://www.extrahop.com/products/security/comparison/" data-track-nav="www-products" data-sync-host="www">
+                    <h4 class="m-vert-none p-bottom-small">Competitive Comparison<img src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/caret-white.svg" alt="caret-right"></h4>
+                </a>
+                
+                
+                
+                <a href="https://www.extrahop.com/products/services/" data-track-nav="www-products" data-sync-host="www">
+                    <h4 class="m-vert-none p-bottom-small">Professional Services<img src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/caret-white.svg" alt="caret-right"></h4>
+                </a>
+                
+                
+                
+                <a href="https://www.extrahop.com/products/integrations/" data-track-nav="www-products" data-sync-host="www">
+                    <h4 class="m-vert-none p-bottom-small">Integration and Automation<img src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/caret-white.svg" alt="caret-right"></h4>
+                </a>
+                
+                
+            </div>
+            
+            
+        </div>
+        
+        
+        
+        
+        <div data-level-open="solutions" class="level-2 hide-section fade-in flood-near-black">
+
+            <div class="primary-items flood-near-black p-sides-med p-vert-med">
+                <div class="back-btn p-bottom-med-large">
+                    <img src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/caret-white.svg" alt="caret-left">
+                    <span class="embiggened">Back</span>
+                </div>
+                <div class="h2-container p-bottom-small">
+                    <h2 class="m-vert-none text-uppercase teal-text p-bottom-small"><strong>Solutions</strong></h2>
+                    <hr class="divide thin m-vert-none p-bottom-small">
+                </div>
+                
+                
+                
+                    <h3 class="m-vert-none p-bottom-small" data-level-opener="security">Security
+ Operations</h3>
+                
+                
+                
+                
+                
+                    <h3 class="m-vert-none p-bottom-small" data-level-opener="cloud">Cloud-Native
+ Security</h3>
+                
+                
+                
+                
+                
+                    <h3 class="m-vert-none p-bottom-small" data-level-opener="app-analytics">Application
+ Analytics</h3>
+                
+                
+                
+                
+                
+                    <h3 class="m-vert-none p-bottom-small" data-level-opener="network">Network
+ Performance</h3>
+                
+                
+                
+            </div>
+
+            
+            
+            
+        </div>
+        
+        
+        
+        
+        <div data-level-open="customers" class="level-2 hide-section fade-in flood-near-black">
+
+            <div class="primary-items flood-near-black p-sides-med p-vert-med">
+                <div class="back-btn p-bottom-med-large">
+                    <img src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/caret-white.svg" alt="caret-left">
+                    <span class="embiggened">Back</span>
+                </div>
+                <div class="h2-container p-bottom-small">
+                    <h2 class="m-vert-none text-uppercase teal-text p-bottom-small"><strong>Customers</strong></h2>
+                    <hr class="divide thin m-vert-none p-bottom-small">
+                </div>
+                
+                
+                
+                    <h3 class="m-vert-none p-bottom-small" data-level-opener="community">Community</h3>
+                
+                
+                
+                
+                
+                    <h3 class="m-vert-none p-bottom-small" data-level-opener="partners">Partners</h3>
+                
+                
+                
+                
+                
+                    <h3 class="m-vert-none p-bottom-small" data-level-opener="support">Support</h3>
+                
+                
+                
+                
+                
+                    <h3 class="m-vert-none p-bottom-small" data-level-opener="training">Training</h3>
+                
+                
+                
+            </div>
+
+            
+            
+            
+        </div>
+        
+        
+        
+        
+        <div data-level-open="resources" class="level-2 hide-section fade-in black-backgrounded">
+
+            <div class="primary-items flood-near-black p-sides-med p-vert-med">
+                <div class="back-btn p-bottom-med-large">
+                    <img src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/caret-white.svg" alt="caret-left">
+                    <span class="embiggened">Back</span>
+                </div>
+                <div class="h2-container p-bottom-small">
+                    <h2 class="m-vert-none text-uppercase teal-text p-bottom-small"><strong>Resources</strong></h2>
+                    <hr class="divide thin m-vert-none p-bottom-small">
+                </div>
+                
+                
+                <a href="https://www.extrahop.com/customers/stories/" data-track-nav="www-resources" data-sync-host="www">
+                    <h3 class="m-vert-none p-bottom-small">Customer
+ Stories</h3>
+                </a>
+                
+                
+                
+                <a href="https://www.extrahop.com/resources/" data-track-nav="www-resources" data-sync-host="www">
+                    <h3 class="m-vert-none p-bottom-small">Resources</h3>
+                </a>
+                
+                
+                
+                <a href="https://www.extrahop.com/products/integrations/" data-track-nav="www-resources" data-sync-host="www">
+                    <h3 class="m-vert-none p-bottom-small">Integrations</h3>
+                </a>
+                
+                
+                
+                
+            </div>
+
+            
+            
+            <div class="secondary-items black-backgrounded p-vert-med-large p-sides-med">
+                
+                
+                
+                <a href="https://www.extrahop.com/partners/channel-partners/" data-track-nav="www-resources" data-sync-host="www">
+                    <h4 class="m-vert-none p-bottom-small">Partner Program<img src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/caret-white.svg" alt="caret-right"></h4>
+                </a>
+                
+                
+                
+                <a href="https://www.extrahop.com/resources/protocols/" data-track-nav="www-resources" data-sync-host="www">
+                    <h4 class="m-vert-none p-bottom-small">Protocol Library<img src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/caret-white.svg" alt="caret-right"></h4>
+                </a>
+                
+                
+                
+                <a href="https://docs.extrahop.com/" data-track-nav="www-resources">
+                    <h4 class="m-vert-none p-bottom-small">Documentation<img src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/caret-white.svg" alt="caret-right"></h4>
+                </a>
+                
+                
+                
+                <a href="https://customer.extrahop.com/downloads/firmware/" data-track-nav="www-resources">
+                    <h4 class="m-vert-none p-bottom-small">Firmware<img src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/caret-white.svg" alt="caret-right"></h4>
+                </a>
+                
+                
+                
+                <a href="https://www.extrahop.com/support/training/" data-track-nav="www-resources" data-sync-host="www">
+                    <h4 class="m-vert-none p-bottom-small">Training Videos<img src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/caret-white.svg" alt="caret-right"></h4>
+                </a>
+                
+                
+            </div>
+            
+            
+        </div>
+        
+        
+        
+        
+        <div data-level-open="company" class="level-2 hide-section fade-in black-backgrounded">
+
+            <div class="primary-items flood-near-black p-sides-med p-vert-med">
+                <div class="back-btn p-bottom-med-large">
+                    <img src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/caret-white.svg" alt="caret-left">
+                    <span class="embiggened">Back</span>
+                </div>
+                <div class="h2-container p-bottom-small">
+                    <h2 class="m-vert-none text-uppercase teal-text p-bottom-small"><strong>Company</strong></h2>
+                    <hr class="divide thin m-vert-none p-bottom-small">
+                </div>
+                
+                
+                <a href="https://www.extrahop.com/company/about-us/" data-track-nav="www-company" data-sync-host="www">
+                    <h3 class="m-vert-none p-bottom-small">About Us</h3>
+                </a>
+                
+                
+                
+                <a href="https://www.extrahop.com/company/careers/" data-track-nav="www-company" data-sync-host="www">
+                    <h3 class="m-vert-none p-bottom-small">Careers</h3>
+                </a>
+                
+                
+                
+                <a href="https://www.extrahop.com/company/newsroom/" data-track-nav="www-company" data-sync-host="www">
+                    <h3 class="m-vert-none p-bottom-small">Newsroom</h3>
+                </a>
+                
+                
+                
+                
+            </div>
+
+            
+            
+            <div class="secondary-items black-backgrounded p-vert-med-large p-sides-med">
+                
+                
+                
+                
+                
+                <a href="https://www.extrahop.com/company/events/" data-track-nav="www-company" data-sync-host="www">
+                    <h4 class="m-vert-none p-bottom-small">Events<img src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/caret-white.svg" alt="caret-right"></h4>
+                </a>
+                
+                
+                
+                <a href="https://www.extrahop.com/company/leadership/" data-track-nav="www-company" data-sync-host="www">
+                    <h4 class="m-vert-none p-bottom-small">Leadership<img src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/caret-white.svg" alt="caret-right"></h4>
+                </a>
+                
+                
+                
+                <a href="https://www.extrahop.com/company/board/" data-track-nav="www-company" data-sync-host="www">
+                    <h4 class="m-vert-none p-bottom-small">Board<img src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/caret-white.svg" alt="caret-right"></h4>
+                </a>
+                
+                
+                
+                <a href="https://www.extrahop.com/company/investors/" data-track-nav="www-company" data-sync-host="www">
+                    <h4 class="m-vert-none p-bottom-small">Investors<img src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/caret-white.svg" alt="caret-right"></h4>
+                </a>
+                
+                
+                
+                <a href="https://www.extrahop.com/partners/channel-partners/" data-track-nav="www-company" data-sync-host="www">
+                    <h4 class="m-vert-none p-bottom-small">Partners<img src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/caret-white.svg" alt="caret-right"></h4>
+                </a>
+                
+                
+            </div>
+            
+            
+        </div>
+        
+        
+        
+        
+
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <div data-level-open="security" class="level-3 flood-near-black p-sides-med p-top-med p-bottom-small hide-section fade-in">
+            <div>
+                <div class="back-btn p-bottom-med-large">
+                    <img src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/caret-white.svg" alt="caret-left">
+                    <span class="embiggened">Back</span>
+                </div>
+                <h2 class="text-uppercase teal-text m-vert-none">Security
+ Operations</h2>
+                <p class="m-bottom-none p-bottom-small">Secure your hybrid attack surface with complete visibility, real-time detection, and intelligent response.</p>
+                <div class="p-bottom-med-large"><a href="https://www.extrahop.com/solutions/security/" class="btn btn-basic m-top-none" data-track-nav="www-solutions" data-sync-host="www">Learn More</a></div>
+                
+                
+                <a href="https://www.extrahop.com/solutions/security/threat-detection-response/" data-track-nav="www-solutions" data-sync-host="www">
+                    <h4 class="m-vert-none p-bottom-small">Threat Detection and Response</h4>
+                </a>
+                
+                <a href="https://www.extrahop.com/solutions/security/secure-decryption/" data-track-nav="www-solutions" data-sync-host="www">
+                    <h4 class="m-vert-none p-bottom-small">Secure Decryption</h4>
+                </a>
+                
+                <a href="https://www.extrahop.com/solutions/security/iot/" data-track-nav="www-solutions" data-sync-host="www">
+                    <h4 class="m-vert-none p-bottom-small">Enterprise IoT Security</h4>
+                </a>
+                
+                <a href="https://www.extrahop.com/solutions/security/hygiene-compliance/" data-track-nav="www-solutions" data-sync-host="www">
+                    <h4 class="m-vert-none p-bottom-small">Hygiene and Compliance</h4>
+                </a>
+                
+            </div>
+        </div>
+        
+        
+        
+        <div data-level-open="cloud" class="level-3 flood-near-black p-sides-med p-top-med p-bottom-small hide-section fade-in">
+            <div>
+                <div class="back-btn p-bottom-med-large">
+                    <img src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/caret-white.svg" alt="caret-left">
+                    <span class="embiggened">Back</span>
+                </div>
+                <h2 class="text-uppercase teal-text m-vert-none">Cloud-Native
+ Security</h2>
+                <p class="m-bottom-none p-bottom-small">Manage risk and drive growth in AWS with an agile, cloud-native approach to cybersecurity.</p>
+                <div class="p-bottom-med-large"><a href="https://www.extrahop.com/solutions/cloud/" class="btn btn-basic m-top-none" data-track-nav="www-solutions" data-sync-host="www">Learn More</a></div>
+                
+                
+                <a href="https://www.extrahop.com/solutions/cloud/aws-security/" data-track-nav="www-solutions" data-sync-host="www">
+                    <h4 class="m-vert-none p-bottom-small">Security for AWS</h4>
+                </a>
+                
+                <a href="https://www.extrahop.com/solutions/cloud/azure-security/" data-track-nav="www-solutions" data-sync-host="www">
+                    <h4 class="m-vert-none p-bottom-small">Security for Azure</h4>
+                </a>
+                
+                <a href="https://www.extrahop.com/solutions/cloud/gcp-security/" data-track-nav="www-solutions" data-sync-host="www">
+                    <h4 class="m-vert-none p-bottom-small">Security for Google Cloud Platform</h4>
+                </a>
+                
+                <a href="https://www.extrahop.com/solutions/cloud/cloud-migration/" data-track-nav="www-solutions" data-sync-host="www">
+                    <h4 class="m-vert-none p-bottom-small">Cloud Migration</h4>
+                </a>
+                
+            </div>
+        </div>
+        
+        
+        
+        <div data-level-open="app-analytics" class="level-3 flood-near-black p-sides-med p-top-med p-bottom-small hide-section fade-in">
+            <div>
+                <div class="back-btn p-bottom-med-large">
+                    <img src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/caret-white.svg" alt="caret-left">
+                    <span class="embiggened">Back</span>
+                </div>
+                <h2 class="text-uppercase teal-text m-vert-none">Application
+ Analytics</h2>
+                <p class="m-bottom-none p-bottom-small">Ensure the availability and performance of your enterprise from the cloud, to the data center, to the customer.</p>
+                <div class="p-bottom-med-large"><a href="https://www.extrahop.com/solutions/app-analytics/" class="btn btn-basic m-top-none" data-track-nav="www-solutions" data-sync-host="www">Learn More</a></div>
+                
+                
+                <a href="https://www.extrahop.com/solutions/app-analytics/commercial-app-visibility/" data-track-nav="www-solutions" data-sync-host="www">
+                    <h4 class="m-vert-none p-bottom-small">Commercial Application Visibility</h4>
+                </a>
+                
+                <a href="https://www.extrahop.com/solutions/app-analytics/customer-experience-monitoring/" data-track-nav="www-solutions" data-sync-host="www">
+                    <h4 class="m-vert-none p-bottom-small">Customer Experience Monitoring</h4>
+                </a>
+                
+                <a href="https://www.extrahop.com/solutions/app-analytics/app-upgrade-cloud-migration/" data-track-nav="www-solutions" data-sync-host="www">
+                    <h4 class="m-vert-none p-bottom-small">Application Upgrade &amp; Cloud Migration</h4>
+                </a>
+                
+            </div>
+        </div>
+        
+        
+        
+        <div data-level-open="network" class="level-3 flood-near-black p-sides-med p-top-med p-bottom-small hide-section fade-in">
+            <div>
+                <div class="back-btn p-bottom-med-large">
+                    <img src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/caret-white.svg" alt="caret-left">
+                    <span class="embiggened">Back</span>
+                </div>
+                <h2 class="text-uppercase teal-text m-vert-none">Network
+ Performance</h2>
+                <p class="m-bottom-none p-bottom-small">Take control of SDN, the cloud, and more with complete visibility, real-time detection, and intelligent response.</p>
+                <div class="p-bottom-med-large"><a href="https://www.extrahop.com/solutions/network/" class="btn btn-basic m-top-none" data-track-nav="www-solutions" data-sync-host="www">Learn More</a></div>
+                
+                
+                <a href="https://www.extrahop.com/solutions/network/snoc-integration/" data-track-nav="www-solutions" data-sync-host="www">
+                    <h4 class="m-vert-none p-bottom-small">NOC/SOC Integration</h4>
+                </a>
+                
+                <a href="https://www.extrahop.com/solutions/network/remote-site-visibility/" data-track-nav="www-solutions" data-sync-host="www">
+                    <h4 class="m-vert-none p-bottom-small">Remote Site Visibility</h4>
+                </a>
+                
+                <a href="https://www.extrahop.com/solutions/network/triage-troubleshooting/" data-track-nav="www-solutions" data-sync-host="www">
+                    <h4 class="m-vert-none p-bottom-small">Triage &amp; Troubleshooting</h4>
+                </a>
+                
+                <a href="https://www.extrahop.com/solutions/network/virtualization/" data-track-nav="www-solutions" data-sync-host="www">
+                    <h4 class="m-vert-none p-bottom-small">SDN &amp; Virtualization</h4>
+                </a>
+                
+            </div>
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        <div data-level-open="community" class="level-3 flood-near-black p-sides-med p-top-med p-bottom-small hide-section fade-in">
+            <div>
+                <div class="back-btn p-bottom-med-large">
+                    <img src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/caret-white.svg" alt="caret-left">
+                    <span class="embiggened">Back</span>
+                </div>
+                <h2 class="text-uppercase teal-text m-vert-none">Community</h2>
+                <p class="m-bottom-none p-bottom-small">Learn about the innovative ways our customers are succeeding with ExtraHop, plus the latest news from R&amp;D.</p>
+                <div class="p-bottom-med-large"><a href="https://www.extrahop.com/customers/community/" class="btn btn-basic m-top-none" data-track-nav="www-customers" data-sync-host="www">Learn More</a></div>
+                
+                
+                <a href="https://www.extrahop.com/customers/stories/" data-track-nav="www-customers" data-sync-host="www">
+                    <h4 class="m-vert-none p-bottom-small">Customer Stories</h4>
+                </a>
+                
+                <a href="https://www.extrahop.com/customers/community/bundles/" data-track-nav="www-customers" data-sync-host="www">
+                    <h4 class="m-vert-none p-bottom-small">Solution Bundles Gallery</h4>
+                </a>
+                
+                <a href="https://forums.extrahop.com/" data-track-nav="www-customers">
+                    <h4 class="m-vert-none p-bottom-small">Community Forums</h4>
+                </a>
+                
+                <a href="https://customer.extrahop.com/" data-track-nav="www-customers">
+                    <h4 class="m-vert-none p-bottom-small">Customer Portal</h4>
+                </a>
+                
+            </div>
+        </div>
+        
+        
+        
+        <div data-level-open="partners" class="level-3 flood-near-black p-sides-med p-top-med p-bottom-small hide-section fade-in">
+            <div>
+                <div class="back-btn p-bottom-med-large">
+                    <img src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/caret-white.svg" alt="caret-left">
+                    <span class="embiggened">Back</span>
+                </div>
+                <h2 class="text-uppercase teal-text m-vert-none">Partners</h2>
+                <p class="m-bottom-none p-bottom-small">Explore the Panorama Partner Program, meet our channel partners, or search for a technology partner.</p>
+                <div class="p-bottom-med-large"><a href="https://www.extrahop.com/partners/" class="btn btn-basic m-top-none" data-track-nav="www-customers" data-sync-host="www">Learn More</a></div>
+                
+                
+                <a href="https://partner.extrahop.com/" data-track-nav="www-customers">
+                    <h4 class="m-vert-none p-bottom-small">Partner Portal</h4>
+                </a>
+                
+                <a href="https://www.extrahop.com/partners/channel-partners/" data-track-nav="www-customers" data-sync-host="www">
+                    <h4 class="m-vert-none p-bottom-small">Channel Partners</h4>
+                </a>
+                
+                <a href="https://www.extrahop.com/partners/tech-partners/" data-track-nav="www-customers" data-sync-host="www">
+                    <h4 class="m-vert-none p-bottom-small">Technology Partners</h4>
+                </a>
+                
+            </div>
+        </div>
+        
+        
+        
+        <div data-level-open="support" class="level-3 flood-near-black p-sides-med p-top-med p-bottom-small hide-section fade-in">
+            <div>
+                <div class="back-btn p-bottom-med-large">
+                    <img src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/caret-white.svg" alt="caret-left">
+                    <span class="embiggened">Back</span>
+                </div>
+                <h2 class="text-uppercase teal-text m-vert-none">Support</h2>
+                <p class="m-bottom-none p-bottom-small">Compare support packages, check out our Professional Services offerings, or log into the Customer Portal.</p>
+                <div class="p-bottom-med-large"><a href="https://www.extrahop.com/support/" class="btn btn-basic m-top-none" data-track-nav="www-customers" data-sync-host="www">Learn More</a></div>
+                
+                
+                <a href="https://www.extrahop.com/support/" data-track-nav="www-customers" data-sync-host="www">
+                    <h4 class="m-vert-none p-bottom-small">Support Overview</h4>
+                </a>
+                
+                <a href="https://www.extrahop.com/products/services/" data-track-nav="www-customers" data-sync-host="www">
+                    <h4 class="m-vert-none p-bottom-small">Professional Services</h4>
+                </a>
+                
+                <a href="https://docs.extrahop.com/" data-track-nav="www-customers">
+                    <h4 class="m-vert-none p-bottom-small">Documentation</h4>
+                </a>
+                
+                <a href="https://www.extrahop.com/support/policies" data-track-nav="www-customers" data-sync-host="www">
+                    <h4 class="m-vert-none p-bottom-small">Policies</h4>
+                </a>
+                
+            </div>
+        </div>
+        
+        
+        
+        <div data-level-open="training" class="level-3 flood-near-black p-sides-med p-top-med p-bottom-small hide-section fade-in">
+            <div>
+                <div class="back-btn p-bottom-med-large">
+                    <img src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/caret-white.svg" alt="caret-left">
+                    <span class="embiggened">Back</span>
+                </div>
+                <h2 class="text-uppercase teal-text m-vert-none">Training</h2>
+                <p class="m-bottom-none p-bottom-small">Watch free training videos and courses, or schedule a visit from an ExtraHop expert for specialized training.</p>
+                <div class="p-bottom-med-large"><a href="https://www.extrahop.com/support/training/" class="btn btn-basic m-top-none" data-track-nav="www-customers" data-sync-host="www">Learn More</a></div>
+                
+                
+                <a href="https://www.extrahop.com/support/training/" data-track-nav="www-customers" data-sync-host="www">
+                    <h4 class="m-vert-none p-bottom-small">Training Overview</h4>
+                </a>
+                
+                <a href="https://www.extrahop.com/support/training/options/" data-track-nav="www-customers" data-sync-host="www">
+                    <h4 class="m-vert-none p-bottom-small">Training Sessions</h4>
+                </a>
+                
+            </div>
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+    </div>
+</div>
+
+
+    
+        
+
+
+
+    
+        
+    
+
+
+
+
+    
+
+
+
+
+    
+    <section class="hero plain">
+    <div class="container-fluid">
+        <div class="row p-sides-fluid">
+            <div class="col-sm-8 p-sides-none">
+                <h3 class="embiggened bolded heavy-weight m-bottom-med"><a href="https://www.extrahop.com/company/blog/"><img src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/caret-left-teal.svg" alt="back caret" class="m-right-10 omnipresent">Blog</a></h3>
+                <h1 class="bolded m-bottom-small" itemprop="name">TCP vs. HTTP</h1>
+                <h2>What's the Difference, and What's the Big Deal?</h2>
+
+                <ul class="m-top-small">
+                    <li class="bolded">
+                        
+                        <a href="https://www.extrahop.com/company/blog/authors/zoltan-talaber/" rel="author">Zoltan Talaber</a>
+                        
+                    </li>
+                    <li itemprop="datePublished">
+                        <p>December 12, 2018</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+    
+
+    <div class="container-fluid post p-sides-none no-m-large">
+        <div class="row p-sides-fluid">
+
+            
+
+            <main class="col-sm-8 m-top-none markdown-content">
+
+                <div itemprop="articleBody">
+                    
+
+<p>You've probably heard of <a href="https://www.extrahop.com/resources/protocols/tcp/" target="_blank">TCP</a>, and might know it has something to do with sending and receiving information across the Internet. You've undoubtedly seen <a href="https://www.extrahop.com/resources/protocols/http/" target="_blank">HTTP</a> at the front of URLs nearly every time one shows up in your web browser.</p>
+
+<p>But when it comes to understanding how these two protocols interact, as well as the role they play in the overall data transmission puzzle, things can get confusing. Let's break down what TCP and HTTP really are, what sets them apart, and how they work together.</p>
+
+<h3 id="what-is-tcp">What Is TCP?</h3>
+
+<p>Data streaming from source to destination gets split up into chunks known as "packets" for more manageable transport. Whenever you send or receive a packet of data, a host of information about that data rides along. This includes information added by <a href="https://www.extrahop.com/resources/protocols/tcp/" target="_blank">the Transmission Control Protocol</a>, or TCP.</p>
+
+<p>TCP's job is to ensure that all data sent in a stream moves from Point A to Point B in correct order and intact. Protocols like TCP tell the destination computer which application should receive said data. TCP in particular sacrifices raw speed to ensure reliability in the data being transmitted. Note that some forms of data transmission such as video streaming, where perfect accuracy matters far less than speed, are better off using different protocols that optimize for speed over accuracy.</p>
+
+<p>Packet transfer, if left to its own devices, will not be completely reliable. That's why TCP uses a technique known as positive acknowledgement with retransmission, requiring the receiving end of a transmission to give a response as to what data has been received. Thanks to this, the sender knows what packets to send next, or perhaps resend, to maintain a flawless stream of data. The bytes sent, therefore, can exactly match the bytes received. No data is altered or lost along the way.</p>
+
+<p>If you want to read more about how this checking process works, <a href="https://www.extrahop.com/company/blog/2017/tcp-windowing/">click here</a>.</p>
+
+<h3 id="what-is-http">What Is HTTP?</h3>
+
+<p>While TCP contains information about what data has or has not yet been received, HTTP contains specific instructions on how to read and process this data once it arrives. Before data is sent from one node on the Internet to another, it gets wrapped in information detailing the nature of the request being sent, or the response to said request. This is done using HTTP, or <a href="https://www.extrahop.com/resources/protocols/http/" target="_blank">the Hypertext Transfer Protocol</a>.</p>
+
+<p>When you type a URL into your web browser, you are sending an HTTP request to a web server. That server will then respond, again using the formatting of HTTP. (If you're wondering about HTTPS, which you might've noticed in front of most popular sites these days, the "S" stands for "secure"—meaning that those packets are encrypted.)</p>
+
+<p>The two most common examples of HTTP requests are:
+1. "POST," denoting that this contains data to be pushed to the server
+2. "GET," asking that a resource from the server be fetched</p>
+
+<p>So: TCP manages the data stream, and HTTP describes what the data in this stream contains.</p>
+
+<h3 id="tcp-vs-http-the-seven-layer-onion">TCP vs. HTTP: The Seven-Layer Onion</h3>
+
+<p><img src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/shrek-onion.jpeg"></p>
+
+<p>Ogres are like onions; so are data packets.</p>
+
+<p>HTTP is located at Layer 7 of the Open Systems Interconnection model (OSI model), AKA the innermost eye-watering nugget of the onion. TCP is at L4. You can also think of this as layers of abstraction from the data itself contained within a packet. L1, the physical layer, is the tangible electrical signals (or perhaps radio signals or another physical medium) that the data is transformed into for transmission. L1 is therefore the farthest layer from the inner data.</p>
+
+<p>Why have these distinct layers? Let's say, for example, that data is incoming from a web server to our computer to load a website. Our computer captures physical electricity, which is in a sense "wrapping" the packet of non-tangible data for transport. As we progress to L4, without TCP the computer wouldn't know which application to point the packet toward. Here, TCP can tell the computer to direct the packet to our web browser.</p>
+
+<p>Once within an application like Firefox or Chrome, the HTTP instructions are read. The browser learns the nature of the incoming data, and can at last load the contents of the webpage correctly.</p>
+
+<p>And so, the unraveling layers act as an assembly line, working in sequence to take the raw materials in the data packet to a usable state.</p>
+
+<p>Improving your use of Internet protocols improves your users' experience, too. Check out our white paper on <a href="https://www.extrahop.com/resources/whitepapers/tcp-optimization-guide-nagle-delays-and-beyond-success/">how to optimize TCP performance</a> for a bunch of valuable tips!</p>
+
+                </div>
+
+                
+                
+                    <div class="post-meta">
+    <ul class="post-data smallified">
+        <li>Posted in <a href="https://www.extrahop.com/company/blog/tips/">Tips and Hacks</a></li>
+        <li>See other posts by <a href="https://www.extrahop.com/company/blog/authors/zoltan-talaber/">Zoltan Talaber</a></li>
+    </ul>
+</div>
+
+                
+
+            </main>
+
+            
+            <div class="sidebar col-sm-4 p-bottom-large m-top-none" data-pin-sidebar="" style="">
+                
+
+                
+                    
+                    <div data-scrollmagic-pin-spacer="" class="scrollmagic-pin-spacer" style="top: auto; left: auto; bottom: auto; right: auto; margin: 0px; display: block; position: relative; box-sizing: content-box; min-height: 531px; height: auto; padding-top: 0px; padding-bottom: 1212px;"><div class="demo-sidebar" style="position: relative; margin: auto; top: 0px; left: 0px; bottom: auto; right: auto; box-sizing: border-box; width: 100%;">
+    <a href="https://www.extrahop.com/demo/" data-track-sidebar-explore-demo=""><img src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/LAMPerformance.png" alt="ExtraHop UI graphic: HTTP and Database Health"></a>
+    <h3>See ExtraHop in Action</h3>
+    <p>Solve latency, improve app delivery, and more.</p>
+    <a class="btn btn-basic" href="https://www.extrahop.com/demo/" target="_blank" data-track-sidebar-explore-demo="">Start Demo</a>
+</div></div>
+
+                    
+                
+
+                
+            </div>
+            
+
+        </div>
+
+        
+            <div class="row p-sides-fluid p-vert-large flood-grayscale text-center">
+    <h2 class="m-bottom-large">Related Blogs</h2>
+
+    <div class="list-tiles-flex">
+
+        
+
+            
+        <div>
+            
+                <a href="https://www.extrahop.com/company/blog/2017/tcp-windowing/" itemprop="url">
+    <div class="grid-tile flood-near-black p-med on-dark tech-post tcp-post tips-post performance-post no-image" itemscope="" itemtype="http://schema.org/Article">
+        <p class="m-bottom-none p-bottom-small bolded">6.19.18</p>
+        <h3 class="on-dark m-vert-med">TCP Windowing: What Is It, Scaling and Tips for 2018</h3>
+        <div class="hoverlay">
+            <p itemprop="description">What is TCP windowing, and how can you scale effectively and solve congestion problems and other issues? Read the blog to find out, updated for 2018!</p>
+            <p class="m-bottom-none bolded smallified"><i class="fas fa-pen"></i>Christine Shaw</p>
+            <img src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/caret-circle-white.svg" alt="Read On">
+        </div>
+    </div>
+</a>
+
+            
+        </div>
+            
+        <div>
+            
+                <a href="https://www.extrahop.com/company/blog/2016/silly-window-syndrome/" itemprop="url">
+    <div class="grid-tile flood-near-black p-med on-dark community-post tips-post tech-post tcp-post no-image" itemscope="" itemtype="http://schema.org/Article">
+        <p class="m-bottom-none p-bottom-small bolded">3.12.19</p>
+        <h3 class="on-dark m-vert-med">What Is Silly Window Syndrome?</h3>
+        <div class="hoverlay">
+            <p itemprop="description">Explained in detail: Silly window syndrome, how it degrades network performance, and how to avoid it.</p>
+            <p class="m-bottom-none bolded smallified"><i class="fas fa-pen"></i>Christine Shaw</p>
+            <img src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/caret-circle-white.svg" alt="Read On">
+        </div>
+    </div>
+</a>
+
+            
+        </div>
+            
+        <div>
+            
+                <a href="https://www.extrahop.com/company/blog/2016/karns-algorithm/" itemprop="url">
+    <div class="grid-tile flood-near-black p-med on-dark tips-post tech-post tcp-post no-image" itemscope="" itemtype="http://schema.org/Article">
+        <p class="m-bottom-none p-bottom-small bolded">9.7.16</p>
+        <h3 class="on-dark m-vert-med">What Is Karn's Algorithm?</h3>
+        <div class="hoverlay">
+            <p itemprop="description">Learn about Karn's Algorithm, and how it affects TCP efficiency and network performance.</p>
+            <p class="m-bottom-none bolded smallified"><i class="fas fa-pen"></i>Chris Abella</p>
+            <img src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/caret-circle-white.svg" alt="Read On">
+        </div>
+    </div>
+</a>
+
+            
+        </div>
+            
+
+        
+    </div>
+</div>
+
+<div class="row newsletter-signup p-sides-fluid p-vert-large text-center gradient-background">
+    <h2 class="on-dark">Sign Up to Stay Informed</h2>
+    <div>
+        <div class="no-js-message bg-danger text-center"><noscript>Javascript is required to submit this form</noscript></div>
+
+<form method="POST" id="form107" name="untitledForm-1367515949663" role="form" action="https://s1701.t.eloqua.com/e/f2" class="reset-disabled" data-parsley-validate="" data-parsley-trigger="focusout" data-onload="extrahop.undisableForm" novalidate="">
+
+    <input type="hidden" name="elqFormName" value="untitledForm-1367515949663">
+    <input type="hidden" name="elqSiteId" value="1701">
+    <input type="hidden" name="elqCampaignId">
+    <input type="hidden" name="campaignId" value="70180000001EqjnAAC">
+    <input type="hidden" name="elqCustomerGUID">
+    <input type="hidden" name="elqCookieWrite" value="0">
+    <input type="hidden" name="GA_Medium" value="">
+    <input type="hidden" name="GA_Source" value="">
+    <input type="hidden" name="GA_Campaign" value="">
+    <input type="hidden" name="GA_Content" value="">
+    <input type="hidden" name="GA_Term" value="">
+    <input type="hidden" name="GA_Product" value="">
+    <input type="hidden" name="GA_Region" value="">
+    <input type="hidden" name="GA_Funnelstage" value="">
+    <input type="hidden" name="GA_Version" value="">
+    <input type="hidden" name="FormURL" value="">
+    <input type="hidden" name="uniqueid" value="">
+    <input type="hidden" name="adgroupname" value="">
+    <input type="hidden" name="redirectUrl" value="https://www.extrahop.com/company/newsletter-signup-success/" data-sync-host="www">
+    
+    
+    <div class="inline-input">
+        <div class="form-group email">
+            <input id="email" class="form-control garlic-auto-save" name="email" type="email" required="" placeholder="Email Address">
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-basic" value="Subscribe" data-track-newsletter-subscribe="">
+        </div>
+    </div>
+    
+    
+</form>
+
+    </div>
+</div>
+
+        
+
+    </div>
+
+    
+  <div id="cookie-warning" class="closeElement p-vert-small text-center flood-gray-dark on-dark" style="display: none;">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="close-button-container">
+                    <p class="m-bottom-none closeButton">+</p>
+                    <p class="m-bottom-none legalese p-sides-med">ExtraHop uses cookies to improve your online experience. By using this website, you consent to the use of cookies. <a href="https://www.extrahop.com/privacy/statement/">Learn More</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+  
+  
+
+
+
+    
+        
+    
+
+
+
+
+
+  <footer>
+    
+        <div class="container mega-footer">
+    <div class="col-sm-3">
+        <div class="company">
+            <a href="https://www.extrahop.com/" data-sync-host="www" title="ExtraHop Home"><div class="footer-logo"></div></a>
+
+            <div class="locations">
+                <strong>Global Headquarters</strong><br>
+                <a target="_blank" href="https://www.google.com/maps/place/520+Pike+St+%231600,+Seattle,+WA+98101/@47.6113021,-122.3372316,17z/data=!3m1!4b1!4m5!3m4!1s0x54906ab4ec99df2d:0x322f558246bf98f6!8m2!3d47.6113021!4d-122.3350376">
+520 Pike St<br>
+Suite 1600<br>
+Seattle, WA 98101<br>
+United States
+</a>
+<br><br>
+                <strong>EMEA Headquarters</strong><br>
+                <a target="_blank" href="https://www.google.com/maps/place/WeWork/@51.5169743,-0.0783554,15z/data=!4m5!3m4!1s0x0:0x68dda5e61d9fccab!8m2!3d51.5169743!4d-0.0783554">
+WeWork 8<br>
+Devonshire Square<br>
+London EC2M 4PL<br>
+United Kingdom<br>
+</a>
+<br>
+                <strong>APAC Headquarters</strong><br>
+                <a target="_blank" href="https://goo.gl/txQbGh">
+3 Temasek Avenue<br>
+Centennial Tower<br>
+Level 18<br>
+Singapore 039190
+</a>
+
+            </div>
+        </div>
+        
+    </div>
+
+    
+
+    <div class="col-sm-9">
+        
+        
+        <div class="grid row three">
+            
+
+            
+            <div class="item">
+            
+
+                <h4><a href="https://www.extrahop.com/products/" data-sync-host="www">Products</a></h4>
+                <ul>
+                    
+                    
+                    
+                    
+                    <li><a href="https://www.extrahop.com/products/security/" data-sync-host="www">Reveal(x)</a></li>
+                    
+                    
+                    
+                    
+                    
+                    <li><a href="https://www.extrahop.com/products/cloud/" data-sync-host="www">Reveal(x) Cloud</a></li>
+                    
+                    
+                    
+                    
+                    
+                    <li><a href="https://www.extrahop.com/products/performance/" data-sync-host="www">Reveal(x) for IT Ops</a></li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li><a href="https://www.extrahop.com/products/the-extrahop-difference/" data-sync-host="www">The ExtraHop Difference</a></li>
+                    
+                    <li><a href="https://www.extrahop.com/products/machine-learning/" data-sync-host="www">Machine Learning</a></li>
+                    
+                    <li><a href="https://www.extrahop.com/products/security/comparison/" data-sync-host="www">Competitive Comparison</a></li>
+                    
+                    <li><a href="https://www.extrahop.com/products/services/" data-sync-host="www">Professional Services</a></li>
+                    
+                    <li><a href="https://www.extrahop.com/products/integrations/" data-sync-host="www">Integration and Automation</a></li>
+                    
+                    
+                    
+                    
+                </ul>
+
+            
+
+            
+
+            
+
+                <h4><a href="https://www.extrahop.com/solutions/" data-sync-host="www">Solutions</a></h4>
+                <ul>
+                    
+                    
+                    
+                    
+                    <li><a href="https://www.extrahop.com/solutions/security/" data-sync-host="www">Security
+ Operations</a></li>
+                    
+                    
+                    
+                    
+                    
+                    <li><a href="https://www.extrahop.com/solutions/cloud/" data-sync-host="www">Cloud-Native
+ Security</a></li>
+                    
+                    
+                    
+                    
+                    
+                    <li><a href="https://www.extrahop.com/solutions/app-analytics/" data-sync-host="www">Application
+ Analytics</a></li>
+                    
+                    
+                    
+                    
+                    
+                    <li><a href="https://www.extrahop.com/solutions/network/" data-sync-host="www">Network
+ Performance</a></li>
+                    
+                    
+                    
+                </ul>
+
+            
+            </div>
+            
+
+            
+
+            
+            <div class="item">
+            
+
+                <h4><a href="https://www.extrahop.com/customers/" data-sync-host="www">Customers</a></h4>
+                <ul>
+                    
+                    
+                    
+                    
+                    <li><a href="https://www.extrahop.com/customers/community/" data-sync-host="www">Community</a></li>
+                    
+                    
+                    
+                    
+                    
+                    <li><a href="https://www.extrahop.com/partners/" data-sync-host="www">Partners</a></li>
+                    
+                    
+                    
+                    
+                    
+                    <li><a href="https://www.extrahop.com/support/" data-sync-host="www">Support</a></li>
+                    
+                    
+                    
+                    
+                    
+                    <li><a href="https://www.extrahop.com/support/training/" data-sync-host="www">Training</a></li>
+                    
+                    
+                    
+                </ul>
+
+            
+
+            
+
+            
+
+                <h4><a href="https://www.extrahop.com/resources/" data-sync-host="www">Resources</a></h4>
+                <ul>
+                    
+                    
+                    
+                    
+                    <li><a href="https://www.extrahop.com/customers/stories/" data-sync-host="www">Customer
+ Stories</a></li>
+                    
+                    
+                    
+                    
+                    
+                    <li><a href="https://www.extrahop.com/resources/" data-sync-host="www">Resources</a></li>
+                    
+                    
+                    
+                    
+                    
+                    <li><a href="https://www.extrahop.com/products/integrations/" data-sync-host="www">Integrations</a></li>
+                    
+                    
+                    
+                    
+                    
+                    <li><a href="https://www.extrahop.com/resources/" data-sync-host="www">More Resources</a></li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                </ul>
+
+            
+            </div>
+            
+
+            
+
+            
+            <div class="item">
+            
+
+                <h4><a href="https://www.extrahop.com/company/about-us/" data-sync-host="www">Company</a></h4>
+                <ul>
+                    
+                    
+                    
+                    
+                    <li><a href="https://www.extrahop.com/company/about-us/" data-sync-host="www">About Us</a></li>
+                    
+                    
+                    
+                    
+                    
+                    <li><a href="https://www.extrahop.com/company/careers/" data-sync-host="www">Careers</a></li>
+                    
+                    
+                    
+                    
+                    
+                    <li><a href="https://www.extrahop.com/company/newsroom/" data-sync-host="www">Newsroom</a></li>
+                    
+                    
+                    
+                    
+                    
+                    <li><a href="https://www.extrahop.com/company/events/" data-sync-host="www">Events and Information</a></li>
+                    
+                    
+                    <li><a href="https://www.extrahop.com/company/contact/" data-sync-host="www">Contact Us</a></li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                </ul>
+
+            
+
+            
+
+            
+
+                <h4><a href="https://www.extrahop.com/company/blog/" data-sync-host="www">Blog</a></h4>
+                <ul>
+                    
+                    
+                </ul>
+
+            
+            </div>
+            
+
+            
+            </div>
+        </div>
+    </div>
+
+
+    
+
+    <div class="container thin-footer">
+        <div class="row">
+            <div class="col-sm-6">
+                <ul class="list-inline legal-notice">
+                    <li>Copyright ExtraHop Networks 2020</li>
+                    <li><a href="https://www.extrahop.com/terms-of-use/" data-sync-host="www">Terms of Use</a></li>
+                    <li><a href="https://www.extrahop.com/privacy/statement/" data-sync-host="www">Privacy Policy</a></li>
+                    
+                </ul>
+            </div>
+            <div class="col-sm-6">
+                <ul class="list-inline social">
+                    <li><a href="https://www.facebook.com/extrahop/" rel="noopener noreferrer"><i class="fab fa-fw fa-lg fa-facebook"></i> Facebook</a></li>
+<li><a href="https://twitter.com/extrahop" rel="noopener noreferrer"><i class="fab fa-fw fa-lg fa-twitter"></i> Twitter</a></li>
+<li><a href="https://www.linkedin.com/company/206637" rel="noopener noreferrer"><i class="fab fa-fw fa-lg fa-linkedin"></i> LinkedIn</a></li>
+<li><a href="https://www.instagram.com/extrahop/" rel="noopener noreferrer"><i class="fab fa-fw fa-lg fa-instagram"></i> Instagram</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Organization",
+        "name": "ExtraHop",
+        "url": "https://www.extrahop.com",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Seattle, Washington, USA",
+            "postalCode": "98101",
+            "streetAddress": "520 Pike Street Suite 1600"
+        },
+        "telephone": "(1 877) 333 9872"
+    }
+    </script>
+</footer>
+
+
+
+<script defer="" integrity="sha384-fj9YEHKNa/e0CNquG4NcocjoyMATYo1k2Ff5wGB42C/9AwOlJjDoySPtNJalccfI" crossorigin="anonymous" src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/jquery.min.js"></script>
+<script>window.jQuery||document.write('<script defer src="/js/lib/jquery-2.1.1.min.js"><\/script>');</script><script defer="" src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/jquery-2.1.1.min.js"></script>
+
+
+
+<script src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/env.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
+        
+    
+
+       
+        
+    
+
+       
+        
+    
+
+       
+        
+    
+
+       
+        
+    
+
+       
+        
+    
+
+       
+        
+    
+
+       
+        
+    
+
+       
+        
+    
+
+       
+        
+    
+
+       
+        
+    
+
+       
+        
+    
+
+       
+        
+    
+
+       
+        
+    
+
+       
+        
+    
+
+       
+        
+    
+
+       
+        
+    
+
+       
+        
+    
+
+       
+        
+    
+
+       
+        
+    
+
+       
+        
+    
+
+       
+        
+    
+
+       
+        
+    
+
+       
+        
+    
+
+
+
+
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+    
+        
+    
+
+
+
+
+<script src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/vendor-bundle.min.js" defer=""></script>
+<script src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/extrahop-bundle.min.js" defer=""></script>
+
+
+
+<script src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/esw.min.js"></script>
+
+<script src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/live-chat.min.js"></script><script type="text/javascript" src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/common.min.js"></script>
+
+
+
+<script type="text/javascript">
+    (function (w, d, t, u, n, s, e) {
+        w['SwiftypeObject'] = n; w[n] = w[n] || function () {
+            (w[n].q = w[n].q || []).push(arguments);
+        }; s = d.createElement(t);
+        e = d.getElementsByTagName(t)[0]; s.async = 1; s.src = u; e.parentNode.insertBefore(s, e);
+    })(window, document, 'script', '//s.swiftypecdn.com/install/v2/st.js', '_st');
+
+    _st('install', 'uPfeFKkYC4RCAayMdsK7', '2.0.0');
+
+</script>
+
+
+
+
+    
+
+
+
+
+
+
+    
+
+<iframe src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/a11707441023.html" hidden="" aria-hidden="true" tabindex="-1" title="Optimizely Internal Frame" height="0" width="0" style="display: none;"></iframe><script type="text/javascript" src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/liveagent.esw.min.js"></script>
+<script type="text/javascript" id="">var _elqQ=_elqQ||[];_elqQ.push(["elqSetSiteId","1701"]);_elqQ.push(["elqTrackPageView"]);_elqQ.push(["elqOptIn"]);_elqQ.push(["elqGetCustomerGUID"]);(function(){var a=document.createElement("script");a.type="text/javascript";a.async=!0;a.src="https://img.en25.com/i/elqCfg.min.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})();</script>
+
+<script type="text/javascript" id="">var pkBaseURL="https://vlog.leadformix.com/";bf_action_name="";bf_idsite=8700;bf_url=pkBaseURL+"bf/bf.php";(function(){var a=document.createElement("script");a.type="text/javascript";a.async=!0;a.src=pkBaseURL+"bf/lfx.js";var b=document.getElementsByTagName("head")[0];b.appendChild(a)})();</script>
+<script type="text/javascript" id="" src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/oct.js"></script>
+
+<script type="text/javascript" id="">!function(b,e,f,g,a,c,d){b.fbq||(a=b.fbq=function(){a.callMethod?a.callMethod.apply(a,arguments):a.queue.push(arguments)},b._fbq||(b._fbq=a),a.push=a,a.loaded=!0,a.version="2.0",a.queue=[],c=e.createElement(f),c.async=!0,c.src=g,d=e.getElementsByTagName(f)[0],d.parentNode.insertBefore(c,d))}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");fbq("init","1049095138473035");fbq("track","PageView");</script>
+
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?
+
+id=1049095138473035&amp;ev=PageView&amp;noscript=1"></noscript>
+
+<script type="text/javascript" id="" charset="utf-8">var _eiq=_eiq||[],_engagio_settings={accountId:"9eee60eb901b1cb4bf110db31b6fc217113defb5"};(function(){var a=document.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"==document.location.protocol?"https://":"http://")+"web-analytics.engagio.com/js/ei.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})();</script><img id="kewVF8nz8F8iowQTomHn" style="display:none" src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/generic"><img id="RRbUJ62CVxF2mfvjKRcV" style="display:none" src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/t.gif"><script type="text/javascript" id="term-e7e5d07437489" src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/t.js"></script>
+
+<script type="text/javascript" id="">!function(d,e,f,a,b,c){d.qp||(a=d.qp=function(){a.qp?a.qp.apply(a,arguments):a.queue.push(arguments)},a.queue=[],b=document.createElement(e),b.async=!0,b.src=f,c=document.getElementsByTagName(e)[0],c.parentNode.insertBefore(b,c))}(window,"script","https://a.quora.com/qevents.js");qp("init","8d1188f176fc4d0f83a2473f575dee6f");qp("track","ViewContent");</script>
+<noscript><img height="1" width="1" style="display:none" src="https://q.quora.com/_/ad/8d1188f176fc4d0f83a2473f575dee6f/pixel?tag=ViewContent&amp;noscript=1"></noscript>
+
+
+<script type="text/javascript" id="">(function(){var a=new XMLHttpRequest;a.open("GET","https://p0.extrahopping.net/clear.gif");a.send()})();</script><script type="text/javascript" id="">var DATALAYER_OBJECT_NAME="dataLayer",referrerOverride=function(a){var d=window[DATALAYER_OBJECT_NAME]||[];d.push({event:"optimizely-referrer-override","optimizely-referrer":a})},sendCampaignData=function(a,d){var e=optimizely.get("data")&&optimizely.get("data").campaigns[a]&&optimizely.get("data").campaigns[a].integrationSettings&&optimizely.get("data").campaigns[a].integrationSettings.google_universal_analytics&&optimizely.get("data").campaigns[a].integrationSettings.google_universal_analytics.universal_analytics_slot;
+console.log("DIMENSION: "+e);if(e){console.log("DIMENSION FOUND!");var c=d;console.log("custom variable value: "+c);var g=window[DATALAYER_OBJECT_NAME]||[];g.push({event:"campaign-decided","optimizely-dimension-value":c,"optimizely-dimension-number":e})}},initNewOptimizelyIntegration=function(a,d){var e=!1,c=function(b){var f=window.optimizely.get&&window.optimizely.get("state"),c=f.getRedirectInfo()&&f.getRedirectInfo().referrer;!e&&c&&(a(c),e=!0);f=f.getDecisionString({campaignId:b});d(b,f);console.log("integration string from within the newActiveCampaign function: "+
+f)},g=function(){window.optimizely=window.optimizely||[];window.optimizely.push({type:"addListener",filter:{type:"lifecycle",name:"campaignDecided"},handler:function(b){b=b.data.campaign.id;c(b)}})},h=function(){var b=window.optimizely&&window.optimizely.get&&window.optimizely.get("state");if(b){b=b.getCampaignStates({isActive:!0});console.table(b);for(var a in b)c(a)}};h();g()},initOptimizelyIntegration=function(a,d){initNewOptimizelyIntegration(a,d)};initOptimizelyIntegration(referrerOverride,sendCampaignData);</script>
+<script type="text/javascript" id="">!function(d,e){var b="00fcb6bd0854d2468f886085dfe3e9bc92";if(d.obApi){var c=function(a){return"[object Array]"===Object.prototype.toString.call(a)?a:[a]};d.obApi.marketerId=c(d.obApi.marketerId).concat(c(b))}else{var a=d.obApi=function(){a.dispatch?a.dispatch.apply(a,arguments):a.queue.push(arguments)};a.version="1.1";a.loaded=!0;a.marketerId=b;a.queue=[];b=e.createElement("script");b.async=!0;b.src="//amplify.outbrain.com/cp/obtp.js";b.type="text/javascript";c=e.getElementsByTagName("script")[0];
+c.parentNode.insertBefore(b,c)}}(window,document);obApi("track","PAGE_VIEW");</script>
+<img height="0" width="0" alt="" src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/mintigo_pixel.png"> <div style="display: none; visibility: hidden;"><script src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/up_loader.1.1.0.js" type="text/javascript"></script></div>
+<script type="text/javascript" id="">!function(b,e,f,g,a,c,d){b.fbq||(a=b.fbq=function(){a.callMethod?a.callMethod.apply(a,arguments):a.queue.push(arguments)},b._fbq||(b._fbq=a),a.push=a,a.loaded=!0,a.version="2.0",a.queue=[],c=e.createElement(f),c.async=!0,c.src=g,d=e.getElementsByTagName(f)[0],d.parentNode.insertBefore(c,d))}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");fbq("init","511627396050190");fbq("track","PageView");</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=511627396050190&amp;ev=PageView&amp;noscript=1"></noscript>
+<div class="st-injected-content-generated st-install-uPfeFKkYC4RCAayMdsK7" data-st-install-key="uPfeFKkYC4RCAayMdsK7" id="st-injected-content">
+<div class="st-ui-embed st-search-chrome-overlay-output st-search-escape-hide-outputs st-search-zoom-on-mobile" style="display: none;">
+    <div class="st-ui-overlay st-search-hide-outputs"></div>
+  <!-- Swiftype input and results overlay -->
+  <div class="st-ui-container st-ui-container-overlay  st-ui-injected-overlay-container ">
+    <!-- HEADER -->
+    <div class="st-ui-container-header_bar st-position-container">
+        <section class="st-ui-header">
+          <form>
+            <input class="st-default-search-input st-search-set-focus garlic-auto-save" type="text" value="" placeholder="Search this site" aria-label="Search this site" id="st-overlay-search-input" autocomplete="off" autocorrect="off" autocapitalize="off">
+          </form>
+          <span class="st-ui-search-icon"></span>
+
+            <a class="st-ui-close-button st-search-hide-outputs">Close</a>
+
+        </section>
+    </div>
+
+    <!-- LEFT SIDEBAR -->
+    <div class="st-ui-container-left_sidebar st-position-container">
+      <div class="st-ui-injected-search-controls">
+      </div>
+    </div>
+
+    <!-- RIGHT SIDEBAR -->
+    <div class="st-ui-container-right_sidebar st-position-container">
+      <div class="st-ui-injected-container-right_sidebar">
+        <div class="st-ui-injected-search-controls">
+        </div>
+      </div>
+    </div>
+
+    <!-- PRIMARY CONTENT -->
+    <div class="st-ui-container-primary_content st-position-container">
+        <section class="st-ui-slide-autocomplete st-autocomplete-keyboard-navigable st-autocomplete-transient-on-select-and-results" data-st-target-element="#st-overlay-search-input" data-st-active-query-class="active" style="display: none;">
+          <span class="st-ui-type-heading-small">suggested results</span>
+          <div class="st-autocomplete-results"><div class="st-query-present" style="display: none;"></div></div>
+        </section>
+
+        <section class="st-ui-content st-search-results"><div class="st-query-not-present">
+          <span class="st-ui-fallback"></span>
+        </div><div class="st-query-present" style="display: none;"></div></section>
+
+      <section class="st-ui-no-results st-search-suggestions"><div class="st-query-not-present">
+      </div></section>
+    </div>
+
+
+
+    <!-- FOOTER -->
+    <div class="st-ui-container-footer_bar st-position-container">
+      <section class="st-ui-footer">
+          <span class="st-ui-search-summary st-search-summary" aria-live="polite"></span>
+        <span class="st-ui-pagination st-search-pagination"></span>
+      </section>
+    </div>
+  </div>
+</div>
+<div class="st-default-autocomplete" data-st-target-element=".st-default-search-input" style="display: none; position: absolute; top: 49px; left: 0px; z-index: 999999;">
+  <div class="st-autocomplete-results st-ui-autocomplete"><div class="st-query-present" style="display: none;"></div></div>
+</div>
+</div><form id="fileUploadForm" enctype="multipart/form-data" method="post" target="fileUploadIframe"><input type="file" id="fileSelector" name="file" style="display: none;"><input name="filename" type="hidden"></form><iframe id="fileUploadIframe" name="fileUploadIframe" title="FileUploadFrame" style="display: none;" src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/saved_resource.html"></iframe><style>@media (max-width: 470px), (max-height: 700px) { optly-preview__firstvisit { display: none; } optly-preview { top: 75px; right: 15px; max-width: calc(100vw - 30px); } optly-preview optly-wrap { border-width: 0; } optly-preview.is-collapsed { opacity: .25; } optly-preview .optly-tabs-nav__item:last-child { padding-left: 40px; } } .hide-optly-qa-modal optly-preview__firstvisit { display: none; }.hide-optly-qa-modal  optly-preview { top: 75px; right: 15px; max-width: calc(100vw - 30px); }.hide-optly-qa-modal  optly-preview optly-wrap { border-width: 0; }.hide-optly-qa-modal  optly-preview.is-collapsed { opacity: .25; }.hide-optly-qa-modal  optly-preview .optly-tabs-nav__item:last-child { padding-left: 40px; } @media (min-width:471px) and (min-height:701px) { .hide-optly-qa-modal optly-preview.is-collapsed:hover { opacity: 1; } }</style><iframe id="esw_storage_iframe" src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/esw.html" style="display: none;"></iframe><div style="width:0px; height:0px; display:none; visibility:hidden;" id="batBeacon0.1272953261685119"><img style="width:0px; height:0px; display:none; visibility:hidden;" id="batBeacon0.10946908497091412" width="0" height="0" alt="" src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/0"></div><iframe name="_hjRemoteVarsFrame" title="_hjRemoteVarsFrame" id="_hjRemoteVarsFrame" src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/box-469cf41adb11dc78be68c1ae7f9457a4.html" style="display: none !important; width: 1px !important; height: 1px !important; opacity: 0 !important; pointer-events: none !important;"></iframe><script type="text/javascript" src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/invite.esw.min.js"></script><div class="embeddedServiceHelpButton"><div class="helpButton"><button class="uiButton helpButtonDisabled" href="javascript:void(0)"><span class="embeddedServiceIcon" aria-hidden="true" data-icon="" style="display: inline-block;"></span><span class="helpButtonLabel" id="helpButtonSpan" aria-live="polite" aria-atomic="true"><span class="assistiveText">Live chat:</span><span class="message">Agent Offline</span></span></button></div></div><script type="text/javascript" src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/inert.min.js"></script><script type="text/javascript" src="./TCP vs. HTTP_ Definitions and Differences Explained _ ExtraHop_files/Availability.jsonp"></script></body></html>
