@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)https://stormpath.com/blog/beginners-guide-jwts-in-java -->
+<html class="js no-flash applicationcache geolocation history json notification postmessage svg websockets webaudio localstorage sessionstorage websqldatabase webworkers audio canvas canvastext emoji video webgl multiplebgs rgba inlinesvg hashchange fontface generatedcontent cssgradients opacity hsla supports svgclippaths smil textshadow fullscreen indexeddb indexeddb-deletedatabase cssanimations backgroundsize borderimage borderradius boxshadow csscolumns csscolumns-width csscolumns-span csscolumns-fill csscolumns-gap csscolumns-rule csscolumns-rulecolor csscolumns-rulestyle csscolumns-rulewidth csscolumns-breakbefore csscolumns-breakafter csscolumns-breakinside flexbox cssreflections csstransforms csstransforms3d csstransitions datauri" lang="en-US" prefix="og: http://ogp.me/ns#"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width">
+<link href="https://stormpath.com/wp-content/uploads/2016/03/favicon.png" type="image/png" rel="icon">
+<link rel="profile" href="https://gmpg.org/xfn/11">
+<link rel="pingback" href="https://stormpath.com/xmlrpc.php">
+
+<title>A Beginner's Guide to JWTs in Java - Stormpath User Identity API</title>
+
+<meta name="description" content="JWTs in Java allow you to digitally sign information (referred to as claims) with a signature and can be verified at a later time with a secret signing key.">
+<meta name="robots" content="noodp">
+<link rel="canonical" href="https://stormpath.com/blog/beginners-guide-jwts-in-java">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API">
+<meta property="og:description" content="JWTs in Java allow you to digitally sign information (referred to as claims) with a signature and can be verified at a later time with a secret signing key.">
+<meta property="og:url" content="https://stormpath.com/blog/beginners-guide-jwts-in-java">
+<meta property="og:site_name" content="Stormpath User Identity API">
+<meta property="article:tag" content="Authentication">
+<meta property="article:tag" content="JJWT">
+<meta property="article:tag" content="OAuth">
+<meta property="article:tag" content="Token Authentication">
+<meta property="article:section" content="Java">
+<meta property="article:published_time" content="2016-06-21T08:47:12-08:00">
+<meta property="article:modified_time" content="2016-10-31T12:57:03-08:00">
+<meta property="og:updated_time" content="2016-10-31T12:57:03-08:00">
+<meta property="og:image" content="http://stormpath.com/wp-content/uploads/2016/04/secure-UI-jwt.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="JWTs in Java allow you to digitally sign information (referred to as claims) with a signature and can be verified at a later time with a secret signing key.">
+<meta name="twitter:title" content="A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API">
+<meta name="twitter:image" content="http://stormpath.com/wp-content/uploads/2016/04/secure-UI-jwt.jpg">
+<meta property="DC.date.issued" content="2016-06-21T08:47:12-08:00">
+
+<link rel="dns-prefetch" href="https://s0.wp.com/">
+<link rel="dns-prefetch" href="https://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="Stormpath User Identity API » Feed" href="https://stormpath.com/feed">
+<link rel="alternate" type="application/rss+xml" title="Stormpath User Identity API » Comments Feed" href="https://stormpath.com/comments/feed">
+<link rel="alternate" type="application/rss+xml" title="Stormpath User Identity API » A Beginner’s Guide to JWTs in Java Comments Feed" href="https://stormpath.com/blog/beginners-guide-jwts-in-java/feed">
+<script type="text/javascript" async="" src="./A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API_files/684b854336bd3a6523260ebd991eec06b18b929a.2.js"></script><script type="text/javascript" async="" src="./A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API_files/i.js"></script><script async="" src="./A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API_files/analytics.js"></script><script id="hs-analytics" src="./A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API_files/475298.js"></script><script type="text/javascript" async="" src="./A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API_files/roundtrip.js"></script><script type="text/javascript" async="" src="./A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API_files/f.txt"></script><script type="text/javascript" async="" src="./A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API_files/1602.js"></script><script async="" src="./A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API_files/gtm.js"></script><script src="./A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API_files/986262161469311" async=""></script><script async="" src="./A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API_files/fbevents.js"></script><script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/stormpath.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.12"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="crayon-theme-stormpath-css" href="./A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API_files/stormpath.css" type="text/css" media="all">
+<link rel="stylesheet" id="crayon-font-monaco-css" href="./A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API_files/monaco.css" type="text/css" media="all">
+<link rel="stylesheet" id="contact-form-7-css" href="./A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API_files/styles.css" type="text/css" media="all">
+<link rel="stylesheet" id="stormpath-style-css" href="./A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="jetpack_css-css" href="./A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API_files/jetpack.css" type="text/css" media="all">
+<script type="text/javascript" src="./A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API_files/jquery.js"></script>
+<script type="text/javascript" src="./A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API_files/jquery-migrate.min.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var related_posts_js_options = {"post_heading":"h4"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API_files/related-posts.js"></script>
+<link rel="https://api.w.org/" href="https://stormpath.com/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://stormpath.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://stormpath.com/wp-includes/wlwmanifest.xml">
+<link rel="shortlink" href="https://stormpath.com/?p=5145">
+<link rel="alternate" type="application/json+oembed" href="https://stormpath.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fstormpath.com%2Fblog%2Fbeginners-guide-jwts-in-java">
+<link rel="alternate" type="text/xml+oembed" href="https://stormpath.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fstormpath.com%2Fblog%2Fbeginners-guide-jwts-in-java&amp;format=xml">
+
+
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', '986262161469311');
+fbq('track', "PageView");</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=986262161469311&ev=PageView&noscript=1"
+/></noscript>
+
+<script src="./A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API_files/225847041.js"></script>
+ <style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+<meta name="generator" content="Powered by Visual Composer - drag and drop page builder for WordPress.">
+<!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="https://stormpath.com/wp-content/plugins/js_composer/assets/css/vc_lte_ie9.min.css" media="screen"><![endif]--><!--[if IE  8]><link rel="stylesheet" type="text/css" href="https://stormpath.com/wp-content/plugins/js_composer/assets/css/vc-ie8.min.css" media="screen"><![endif]--><noscript><style type="text/css"> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript><script async="" type="text/javascript" src="./A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API_files/count.js"></script><script src="./A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API_files/f(1).txt"></script></head>
+<body id="blog" class="post-template-default single single-post postid-5145 single-format-standard stretched wpb-js-composer js-comp-ver-4.11.2.1 vc_responsive">
+<!--[if lt IE 8]>
+<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please "browsehappy.com" upgrade your browser or "www.google.com/chromeframe/?redirect=true" activate Google Chrome Frame to improve your experience.</p>
+<![endif]-->
+<div id="wrapper" class="clearfix">
+<header class="main-navbar">
+<nav class="navbar navbar-default navbar-fixed-top" id="main-nav-menu">
+<div class="container main-navbar-container">
+<div class="navbar-header-container">
+<div class="navbar-header">
+<a href="https://stormpath.com/" class="standard-logo main-nav-logo" data-dark-logo="http://stormpath.com/wp-content/uploads/2017/08/logos.png"><img src="./A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API_files/logos.png" alt="Stormpath Logo"></a>
+
+<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar-collapsable" aria-expanded="false">
+<span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+</div>
+</div>
+<style>
+              .global-msg {
+                  color: #bbb;
+                  text-align: right;
+                  margin-top: 18px;
+                  padding: 0px;
+              }
+          </style>
+<div class="collapse navbar-collapse" id="main-navbar-collapsable">
+<ul id="menu-menu-1" class="nav navbar-nav main-navbar__links"><li id="menu-item-5143" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-5143"><a class="main-navbar__link" href="https://stormpath.com/blog">Blog</a></li>
+</ul> <div class="global-msg visible-lg-block"><p>The Stormpath API shut down on August 17, 2017. Thank you to all the developers who have used Stormpath.</p>
+</div>
+</div>
+</div>
+</nav>
+</header>
+<div id="content" class="site-content">
+<section id="content">
+<div class="content-wrap nopadding">
+<div class="blog_header nopadding">
+<div class="container blog_header_rule nopadding">
+<h1 class="entry-title col-md-8 col-sm-12 col-xs-12 nopadding">A Beginner’s Guide to JWTs in Java</h1>
+</div> 
+</div> 
+<div class="container clearfix nopadding">
+<main id="blog-content" class="site-main" role="main">
+<div class="col-md-8 col-sm-12 col-xs-12 nobottommargin nopadding clearfix">
+<article id="post-5145" class="post-5145 post type-post status-publish format-standard hentry category-java tag-authentication tag-jjwt tag-oauth tag-token-authentication" role="article">
+<div class="post-meta">
+<div class="author_avatar">
+
+
+<img alt="" src="./A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API_files/9d55bc55902632fa28e44eb99bab4dac.jpeg" srcset="https://secure.gravatar.com/avatar/9d55bc55902632fa28e44eb99bab4dac?s=192&amp;d=mm&amp;r=g 2x" class="avatar avatar-96 photo" height="96" width="96"> </div> 
+<p class="author-and-date"> by Lindsay Brunner <span class="dividers">|</span>
+June 21, 2016 <span class="dividers">|</span>
+</p>
+<ul class="post-categories">
+<li><a href="https://stormpath.com/blog/category/java" rel="category tag">Java</a></li></ul> </div>
+<div class="entry-content">
+<p>New to token authentication, OAuth, or JSON Web Tokens? This is a great place to start!</p>
+<p>First, what is a JSON Web Token, or JWT (pronounced “jot”)? In a nutshell, a JWT is a secure and trustworthy standard for token authentication. JWTs allow you to digitally sign information (referred to as claims) with a signature and can be verified at a later time with a secret signing key.</p>
+<p><a href="https://stormpath.com/wp-content/uploads/2016/04/secure-UI-jwt.jpg"><img class="alignright wp-image-2341" src="./A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API_files/secure-UI-jwt-1024x538.jpg" alt="Using JWTS in Java" width="800" height="420"></a></p>
+<p><span id="more-5145"></span></p>
+<h2 id="what-is-token-authentication">What is Token Authentication?<a href="https://stormpath.com/blog/beginners-guide-jwts-in-java#what-is-token-authentication" class="heading-link"><i class="stp-icons stp-icon-link2"></i></a></h2>
+<p>The process by which an application confirms user identity is called <a href="https://docs.stormpath.com/rest/product-guide/latest/auth_n.html#">authentication</a>. Traditionally, applications have persisted identity through session cookies which rely on session IDs stored server-side. In this structure, developers are forced to create session storage that is either unique and server-specific, or implemented as a completely separate session storage layer.</p>
+<p>Token authentication is a more modern approach, designed solve problems server-side session IDs can’t. Using tokens in place of session IDs can lower your server load, streamline permission management, and provide better tools for supporting a distributed or cloud-based infrastructure. In this method, tokens are generated for your users after they present verifiable credentials. The initial authentication could be by &nbsp;username/password credentials, API keys or even tokens from another service. (Stormpath’s <a href="http://docs.stormpath.com/guides/api-key-management/">API Key Authentication Feature</a> is an example of this.)</p>
+<p>Interested in learning more? Check out this blog post on <a href="https://stormpath.com/blog/token-authentication-scalable-user-mgmt">scaling user management with tokens</a>, or our complete <a href="https://docs.stormpath.com/rest/product-guide/latest/auth_n.html#how-token-based-authentication-works">product documentation</a>.</p>
+<h2 id="anatomy-of-a-jwt">Anatomy of a JWT<a href="https://stormpath.com/blog/beginners-guide-jwts-in-java#anatomy-of-a-jwt" class="heading-link"><i class="stp-icons stp-icon-link2"></i></a></h2>
+<p>If you encounter a JWT in the wild, you’ll notice that it’s separated into three sections, the header, payload, and signature. (Follow along with <a href="https://github.com/jwtk/jjwt">Stormpath’s open-source Java JWT tool</a> as we dissect the anatomy of a JWT!) Here’s an example of a typical JWT:</p>
+<p></p>
+<div id="crayon-5e39c39a0b03c785916854" class="crayon-syntax crayon-theme-stormpath crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
+.
+eyJzdWIiOiJ1c2Vycy9Uek1Vb2NNRjRwIiwibmFtZSI6IlJvYmVydCBUb2tlbiBNYW4iLCJzY29wZSI6InNlbGYgZ3JvdXBzL2FkbWlucyIsImV4cCI6IjEzMDA4MTkzODAifQ
+.
+1pVOLQduFWW3muii1LExVBt2TK1-MdRI4QjhKryaDwc
+</textarea></div>
+<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+<table class="crayon-table" style="margin-left: -19px;">
+<tbody><tr class="crayon-row">
+<td class="crayon-nums " data-settings="hide">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5e39c39a0b03c785916854-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5e39c39a0b03c785916854-2">2</div><div class="crayon-num" data-line="crayon-5e39c39a0b03c785916854-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5e39c39a0b03c785916854-4">4</div><div class="crayon-num" data-line="crayon-5e39c39a0b03c785916854-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5e39c39a0b03c785916854-6">6</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5e39c39a0b03c785916854-1"><span class="crayon-i">eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9</span></div><div class="crayon-line crayon-striped-line" id="crayon-5e39c39a0b03c785916854-2"><span class="crayon-sy">.</span></div><div class="crayon-line" id="crayon-5e39c39a0b03c785916854-3"><span class="crayon-i">eyJzdWIiOiJ1c2Vycy9Uek1Vb2NNRjRwIiwibmFtZSI6IlJvYmVydCBUb2tlbiBNYW4iLCJzY29wZSI6InNlbGYgZ3JvdXBzL2FkbWlucyIsImV4cCI6IjEzMDA4MTkzODAifQ</span></div><div class="crayon-line crayon-striped-line" id="crayon-5e39c39a0b03c785916854-4"><span class="crayon-sy">.</span></div><div class="crayon-line" id="crayon-5e39c39a0b03c785916854-5"><span class="crayon-cn">1pVOLQduFWW3muii1LExVBt2TK1</span><span class="crayon-o">-</span><span class="crayon-i">MdRI4QjhKryaDwc</span></div></div></td>
+</tr>
+</tbody></table>
+</div>
+</div>
+
+<p></p>
+<p>In this example, Section 1 is a header which describes the token. Section 2 is the payload, which contains the JWT’s claims, and Section 3 is the signature hash that can be used to verify the integrity of the token (if you have the secret key that was used to sign it).</p>
+<p>When we decode the payload we get this nice, tidy JSON object containing the claims of the JWS:</p>
+<p></p>
+<div id="crayon-5e39c39a0b043840861136" class="crayon-syntax crayon-theme-stormpath crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">{
+  "sub": "users/TzMUocMF4p",
+  "name": "Robert Token Man",
+  "scope": "self groups/admins",
+  "exp": "1300819380"
+}
+</textarea></div>
+<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+<table class="crayon-table" style="margin-left: -19px;">
+<tbody><tr class="crayon-row">
+<td class="crayon-nums " data-settings="hide">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5e39c39a0b043840861136-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5e39c39a0b043840861136-2">2</div><div class="crayon-num" data-line="crayon-5e39c39a0b043840861136-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5e39c39a0b043840861136-4">4</div><div class="crayon-num" data-line="crayon-5e39c39a0b043840861136-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5e39c39a0b043840861136-6">6</div><div class="crayon-num" data-line="crayon-5e39c39a0b043840861136-7">7</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5e39c39a0b043840861136-1"><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-5e39c39a0b043840861136-2"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-s">"sub"</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-s">"users/TzMUocMF4p"</span><span class="crayon-sy">,</span></div><div class="crayon-line" id="crayon-5e39c39a0b043840861136-3"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-s">"name"</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-s">"Robert Token Man"</span><span class="crayon-sy">,</span></div><div class="crayon-line crayon-striped-line" id="crayon-5e39c39a0b043840861136-4"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-s">"scope"</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-s">"self groups/admins"</span><span class="crayon-sy">,</span></div><div class="crayon-line" id="crayon-5e39c39a0b043840861136-5"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-s">"exp"</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-s">"1300819380"</span></div><div class="crayon-line crayon-striped-line" id="crayon-5e39c39a0b043840861136-6"><span class="crayon-sy">}</span></div></div></td>
+</tr>
+</tbody></table>
+</div>
+</div>
+
+<p></p>
+<p>The claims tell you, at minimum:</p>
+<ul>
+<li>Who this person is and the URI to their user resource (the sub claim)</li>
+<li>What this person can access with this token (the scope claim)</li>
+<li>When the token expires. Your API should be using this when it verifies the token.</li>
+</ul>
+<p>Because the token is signed with a secret key you can verify its signature and implicitly trust what is being claimed.</p>
+<h3 id="jwe-jws-and-jwt">JWE, JWS, and JWT<a href="https://stormpath.com/blog/beginners-guide-jwts-in-java#jwe-jws-and-jwt" class="heading-link"><i class="stp-icons stp-icon-link2"></i></a></h3>
+<p>Per the <a href="https://tools.ietf.org/html/rfc7519">JWT Spec</a>, “JWTs represent a set of claims as a JSON object that is encoded in a JWS and/or JWE structure.” The term “JWT” technically only describes an unsigned token; what we refer to as a JWT is most often a JWS or JWS + JWE.</p>
+<h4 id="jws-json-web-signature">JWS — JSON Web Signature<a href="https://stormpath.com/blog/beginners-guide-jwts-in-java#jws-json-web-signature" class="heading-link"><i class="stp-icons stp-icon-link2"></i></a></h4>
+<p>In the <a href="https://tools.ietf.org/html/rfc7515">JWS</a> scheme, the server signs the JWT and transmits it to the client with the signature. The signature provides a guarantee that the JWT claims have not been forged or tampered with. However, the JWT is not encrypted (the contents are essentially plaintext).</p>
+<h4 id="jwe-json-web-encryption">JWE — JSON Web Encryption<a href="https://stormpath.com/blog/beginners-guide-jwts-in-java#jwe-json-web-encryption" class="heading-link"><i class="stp-icons stp-icon-link2"></i></a></h4>
+<p>The <a href="https://tools.ietf.org/html/rfc7516">JWE</a> scheme, on the other hand, encrypts the contents without signing it. This brings confidentiality to your JWT, but not the security of signing and enclosing the JWE inside a JWS.</p>
+<h2 id="what-the-heck-is-oauth">What the Heck is OAuth?<a href="https://stormpath.com/blog/beginners-guide-jwts-in-java#what-the-heck-is-oauth" class="heading-link"><i class="stp-icons stp-icon-link2"></i></a></h2>
+<p><a href="https://stormpath.com/wp-content/uploads/2016/06/oauth-retina-preview.jpg"><img class="alignright wp-image-5153" src="./A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API_files/oauth-retina-preview-300x300.jpg" alt="OAuth 2.0 and JWTs in Java" width="200" height="200" srcset="https://stormpath.com/wp-content/uploads/2016/06/oauth-retina-preview-300x300.jpg 300w, https://stormpath.com/wp-content/uploads/2016/06/oauth-retina-preview-150x150.jpg 150w, https://stormpath.com/wp-content/uploads/2016/06/oauth-retina-preview.jpg 400w" sizes="(max-width: 200px) 100vw, 200px"></a>OAuth 2.0 is a framework for interaction with a service that can delegate authentication or provide authorization. It is widely adopted across many mobile and web applications. <a href="https://oauth.net/2/">OAuth 2.0</a> does not specify a token format, but JWT is rapidly becoming a defacto standard in the industry.</p>
+<p>Within the OAuth paradigm, there are two token types: Access and Refresh Tokens. When you first authenticate, your application (and thus your user), is typically given both tokens, but the Access Token is set to expire after a short period (this duration is configurable in the application). Once the initial Access Token has expired, the Refresh Token will allow your application to obtain a new Access Token. Refresh Tokens have a set expiration, allowing for unlimited use up until that expiration point is reached. Both Access and Refresh Tokens have built-in security (when signed) to prevent tampering and are only valid for a specific duration.</p>
+<p>Stormpath uses OAuth because it is an industry standard that can be leveraged by any compliant library. Stormpath currently supports three of OAuth’s grant types:</p>
+<ul>
+<li>Password Grant Type: Provides the ability to get an Access Token based on a username and password</li>
+<li>Refresh Grant Type: Provides the ability to generate another Access Token based on a special Refresh Token</li>
+<li>Client Credentials Grant Type: Provides the ability to exchange an API Key Pair for an Access Token. This is supported through the <a href="http://docs.stormpath.com/guides/api-key-management/">API Key Management</a> feature</li>
+</ul>
+<h2 id="creating-and-validating-jwts-in-java">Creating and Validating JWTs in Java<a href="https://stormpath.com/blog/beginners-guide-jwts-in-java#creating-and-validating-jwts-in-java" class="heading-link"><i class="stp-icons stp-icon-link2"></i></a></h2>
+<p>So, you’re sold on tokens, now, how do you use them in your application?</p>
+<p>Well, if you’re a Java developer you should start with <a href="https://stormpath.com/blog/jjwt-how-it-works-why/">JJWT</a>. JJWT is a Java library providing end-to-end JSON Web Token creation and verification, developed by our very own Les Hazlewood and maintained by a community of developers. Forever free and open-source (Apache License, Version 2.0), it was designed with a builder-focused interface hiding most of its complexity.</p>
+<h3 id="creating">Creating<a href="https://stormpath.com/blog/beginners-guide-jwts-in-java#creating" class="heading-link"><i class="stp-icons stp-icon-link2"></i></a></h3>
+<p>Because of JJWT’s <a href="https://en.wikipedia.org/wiki/Fluent_interface">fluent interface</a>, the creation of the JWT is basically a three-step process:</p>
+<ol>
+<li>The definition of the internal claims of the token, like Issuer, Subject, Expiration, and ID.</li>
+<li>The cryptographic signing the JWT (making is a JWS)</li>
+<li>The compaction of the JWT to a URL-safe string, according to the <a href="https://tools.ietf.org/html/draft-ietf-jose-json-web-signature-41#section-3.1">JWT Compact Serialization</a> rules</li>
+</ol>
+<p>The final JWT will be a three-part Base64 encoded string signed with the specified signature algorithm using the provided key. After this point, the token is ready to be shared with the other party.</p>
+<p>Here’s an example of creating the JWT from above using the JJWT library:</p>
+<p></p>
+<div id="crayon-5e39c39a0b045075810647" class="crayon-syntax crayon-theme-stormpath crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">String jwt = Jwts.builder()
+  .setSubject("users/TzMUocMF4p")
+  .setExpiration(new Date(1300819380))
+  .claim("name", "Robert Token Man")
+  .claim("scope", "self groups/admins")
+  .signWith(
+    SignatureAlgorithm.HS256,
+    "secret".getBytes("UTF-8")
+  )
+  .compact();
+</textarea></div>
+<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+<table class="crayon-table" style="margin-left: -27px;">
+<tbody><tr class="crayon-row">
+<td class="crayon-nums " data-settings="hide">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5e39c39a0b045075810647-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5e39c39a0b045075810647-2">2</div><div class="crayon-num" data-line="crayon-5e39c39a0b045075810647-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5e39c39a0b045075810647-4">4</div><div class="crayon-num" data-line="crayon-5e39c39a0b045075810647-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5e39c39a0b045075810647-6">6</div><div class="crayon-num" data-line="crayon-5e39c39a0b045075810647-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-5e39c39a0b045075810647-8">8</div><div class="crayon-num" data-line="crayon-5e39c39a0b045075810647-9">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-5e39c39a0b045075810647-10">10</div><div class="crayon-num" data-line="crayon-5e39c39a0b045075810647-11">11</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5e39c39a0b045075810647-1"><span class="crayon-t">String</span><span class="crayon-h"> </span><span class="crayon-v">jwt</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">Jwts</span><span class="crayon-sy">.</span><span class="crayon-e">builder</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5e39c39a0b045075810647-2"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-sy">.</span><span class="crayon-e">setSubject</span><span class="crayon-sy">(</span><span class="crayon-s">"users/TzMUocMF4p"</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5e39c39a0b045075810647-3"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-sy">.</span><span class="crayon-e">setExpiration</span><span class="crayon-sy">(</span><span class="crayon-r">new</span><span class="crayon-h"> </span><span class="crayon-e">Date</span><span class="crayon-sy">(</span><span class="crayon-cn">1300819380</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5e39c39a0b045075810647-4"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-sy">.</span><span class="crayon-e">claim</span><span class="crayon-sy">(</span><span class="crayon-s">"name"</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">"Robert Token Man"</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5e39c39a0b045075810647-5"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-sy">.</span><span class="crayon-e">claim</span><span class="crayon-sy">(</span><span class="crayon-s">"scope"</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">"self groups/admins"</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5e39c39a0b045075810647-6"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-sy">.</span><span class="crayon-e">signWith</span><span class="crayon-sy">(</span></div><div class="crayon-line" id="crayon-5e39c39a0b045075810647-7"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">SignatureAlgorithm</span><span class="crayon-sy">.</span><span class="crayon-v">HS256</span><span class="crayon-sy">,</span></div><div class="crayon-line crayon-striped-line" id="crayon-5e39c39a0b045075810647-8"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-s">"secret"</span><span class="crayon-sy">.</span><span class="crayon-e">getBytes</span><span class="crayon-sy">(</span><span class="crayon-s">"UTF-8"</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5e39c39a0b045075810647-9"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5e39c39a0b045075810647-10"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-sy">.</span><span class="crayon-e">compact</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div></div></td>
+</tr>
+</tbody></table>
+</div>
+</div>
+
+<p></p>
+<h3 id="validating">Validating<a href="https://stormpath.com/blog/beginners-guide-jwts-in-java#validating" class="heading-link"><i class="stp-icons stp-icon-link2"></i></a></h3>
+<p>Once you have a JWT, you typically deliver it back to the client that requested it. The client then stores it and passes the Token in requests to your application. This is usually done with either a cookie value or an authorization header in HTTP. For example:</p>
+<p></p>
+<div id="crayon-5e39c39a0b047426725353" class="crayon-syntax crayon-theme-stormpath crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">HTTP/1.1
+
+GET /secure-resource
+
+Host: https://yourapplication.com
+
+Authorization: Bearer eyJraWQiOiIzMUUzRDZaM0xaMVdFSEJGWVRQRksxRzY4IiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiI2a3NjVFMyUjZuYlU3c1RhZ0h0aWFXIiwiaWF0IjoxNDQ1ODU0Njk0LCJpc3MiOiJodHRwczovL2FwaS5zdG9ybXBhdGguY29tL3YxL2FwcGxpY2F0aW9ucy8zUUlNbEpLS04yd2hHQ1l6WFh3MXQ4Iiwic3ViIjoiaHR0cHM6Ly9hcGkuc3Rvcm1wYXRoLmNvbS92MS9hY2NvdW50cy8xeG15U0dLMXB5VVc1c25qOENvcmU1IiwiZXhwIjoxNDQ1ODU4Mjk0LCJydGkiOiI2a3NjVE9pTUNESVZWM05qVTIyUnlTIn0.VJyMOicMOdcOCtytsx4hoPHy3Hl3AfGNfi2ydy8AmG4
+</textarea></div>
+<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+<table class="crayon-table" style="margin-left: -19px;">
+<tbody><tr class="crayon-row">
+<td class="crayon-nums " data-settings="hide">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5e39c39a0b047426725353-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5e39c39a0b047426725353-2">2</div><div class="crayon-num" data-line="crayon-5e39c39a0b047426725353-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5e39c39a0b047426725353-4">4</div><div class="crayon-num" data-line="crayon-5e39c39a0b047426725353-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5e39c39a0b047426725353-6">6</div><div class="crayon-num" data-line="crayon-5e39c39a0b047426725353-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-5e39c39a0b047426725353-8">8</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5e39c39a0b047426725353-1"><span class="crayon-v">HTTP</span><span class="crayon-o">/</span><span class="crayon-cn">1.1</span></div><div class="crayon-line crayon-striped-line" id="crayon-5e39c39a0b047426725353-2">&nbsp;</div><div class="crayon-line" id="crayon-5e39c39a0b047426725353-3"><span class="crayon-v">GET</span><span class="crayon-h"> </span><span class="crayon-o">/</span><span class="crayon-v">secure</span><span class="crayon-o">-</span><span class="crayon-e">resource</span></div><div class="crayon-line crayon-striped-line" id="crayon-5e39c39a0b047426725353-4">&nbsp;</div><div class="crayon-line" id="crayon-5e39c39a0b047426725353-5"><span class="crayon-v">Host</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-v">https</span><span class="crayon-o">:</span><span class="crayon-c">//yourapplication.com</span></div><div class="crayon-line crayon-striped-line" id="crayon-5e39c39a0b047426725353-6">&nbsp;</div><div class="crayon-line" id="crayon-5e39c39a0b047426725353-7"><span class="crayon-v">Authorization</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-e">Bearer </span><span class="crayon-v">eyJraWQiOiIzMUUzRDZaM0xaMVdFSEJGWVRQRksxRzY4IiwiYWxnIjoiSFMyNTYifQ</span><span class="crayon-sy">.</span><span class="crayon-v">eyJqdGkiOiI2a3NjVFMyUjZuYlU3c1RhZ0h0aWFXIiwiaWF0IjoxNDQ1ODU0Njk0LCJpc3MiOiJodHRwczovL2FwaS5zdG9ybXBhdGguY29tL3YxL2FwcGxpY2F0aW9ucy8zUUlNbEpLS04yd2hHQ1l6WFh3MXQ4Iiwic3ViIjoiaHR0cHM6Ly9hcGkuc3Rvcm1wYXRoLmNvbS92MS9hY2NvdW50cy8xeG15U0dLMXB5VVc1c25qOENvcmU1IiwiZXhwIjoxNDQ1ODU4Mjk0LCJydGkiOiI2a3NjVE9pTUNESVZWM05qVTIyUnlTIn0</span><span class="crayon-sy">.</span><span class="crayon-i">VJyMOicMOdcOCtytsx4hoPHy3Hl3AfGNfi2ydy8AmG4</span></div></div></td>
+</tr>
+</tbody></table>
+</div>
+</div>
+
+<p></p>
+<p>Validating the JWT allows you to verify its authenticity (by checking its digital signature you can check that it is not expired and verify that it hasn’t been tampered with) and get information about the user sending the token.</p>
+<p>Here’s an example of validating the JWT that we created above:</p>
+<p></p>
+<div id="crayon-5e39c39a0b049958814013" class="crayon-syntax crayon-theme-stormpath crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;">String jwt = &lt;jwt passed in from above&gt;
+Jws&lt;Claims&gt; claims = Jwts.parser()
+  .setSigningKey("secret".getBytes("UTF-8"))
+  .parseClaimsJws(jwt)
+String scope = claims.getBody().get("scope")
+assertEquals(scope, "self groups/admins");
+</textarea></div>
+<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+<table class="crayon-table" style="margin-left: -19px;">
+<tbody><tr class="crayon-row">
+<td class="crayon-nums " data-settings="hide">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5e39c39a0b049958814013-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5e39c39a0b049958814013-2">2</div><div class="crayon-num" data-line="crayon-5e39c39a0b049958814013-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5e39c39a0b049958814013-4">4</div><div class="crayon-num" data-line="crayon-5e39c39a0b049958814013-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5e39c39a0b049958814013-6">6</div><div class="crayon-num" data-line="crayon-5e39c39a0b049958814013-7">7</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5e39c39a0b049958814013-1"><span class="crayon-t">String</span><span class="crayon-h"> </span><span class="crayon-v">jwt</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-o">&lt;</span><span class="crayon-e">jwt </span><span class="crayon-e">passed </span><span class="crayon-st">in</span><span class="crayon-h"> </span><span class="crayon-e">from </span><span class="crayon-v">above</span><span class="crayon-o">&gt;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5e39c39a0b049958814013-2"><span class="crayon-v">Jws</span><span class="crayon-o">&lt;</span><span class="crayon-v">Claims</span><span class="crayon-o">&gt;</span><span class="crayon-h"> </span><span class="crayon-v">claims</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">Jwts</span><span class="crayon-sy">.</span><span class="crayon-e">parser</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5e39c39a0b049958814013-3"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-sy">.</span><span class="crayon-e">setSigningKey</span><span class="crayon-sy">(</span><span class="crayon-s">"secret"</span><span class="crayon-sy">.</span><span class="crayon-e">getBytes</span><span class="crayon-sy">(</span><span class="crayon-s">"UTF-8"</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5e39c39a0b049958814013-4"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-sy">.</span><span class="crayon-e">parseClaimsJws</span><span class="crayon-sy">(</span><span class="crayon-v">jwt</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5e39c39a0b049958814013-5"><span class="crayon-t">String</span><span class="crayon-h"> </span><span class="crayon-v">scope</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">claims</span><span class="crayon-sy">.</span><span class="crayon-e">getBody</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">.</span><span class="crayon-e">get</span><span class="crayon-sy">(</span><span class="crayon-s">"scope"</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5e39c39a0b049958814013-6"><span class="crayon-e">assertEquals</span><span class="crayon-sy">(</span><span class="crayon-v">scope</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">"self groups/admins"</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div></div></td>
+</tr>
+</tbody></table>
+</div>
+</div>
+
+<p></p>
+<p>If the signature is incorrect, the call to <code>parseClaimsJws</code> will throw a <code>SignatureException</code>. Once successfully parsed, individual claims can be obtained and checked as in: <code>String scope = claims.getBody().get("scope")</code>.</p>
+<h3 id="exceptions">Exceptions<a href="https://stormpath.com/blog/beginners-guide-jwts-in-java#exceptions" class="heading-link"><i class="stp-icons stp-icon-link2"></i></a></h3>
+<p>JJWT carries out a variety of validations while working with the JWT. All JJWT-related exceptions are <code>RuntimeExceptions</code>, with <code>JwtException</code> as the base class.</p>
+<p>These errors cause specific exceptions to be thrown:</p>
+<ul>
+<li><code></code><code>ClaimJwtException</code><code></code>: thrown after a validation of a JWT claim failed</li>
+<li><code></code><code>ExpiredJwtException</code><code></code>: indicating that a JWT was accepted after it expired and must be rejected</li>
+<li><code></code><code>MalformedJwtException</code><code></code>: thrown when a JWT was not correctly constructed and should be rejected</li>
+<li><code></code><code>PrematureJwtException</code><code></code>: indicates that a JWT was accepted before it is allowed to be accessed and must be rejected</li>
+<li><code></code><code>SignatureException</code><code></code>: indicates that either calculating a signature or verifying an existing signature of a JWT failed</li>
+<li><code></code><code>UnsupportedJwtException</code><code></code>: thrown when receiving a JWT in a particular format/configuration that does not match the format expected by the application. For example, this exception would be thrown if parsing an unsigned plaintext JWT when the application requires a cryptographically signed Claims JWS instead</li>
+</ul>
+<p>There are a number of other Exception classes that JJWT uses. They all can be found in the <code>io.jsonwebtoken</code> package in the JJWT source.</p>
+<h2 id="are-tokens-secure">Are Tokens Secure?<a href="https://stormpath.com/blog/beginners-guide-jwts-in-java#are-tokens-secure" class="heading-link"><i class="stp-icons stp-icon-link2"></i></a></h2>
+<p>The real question here is, are you using them securely? At Stormpath, we follow these best practices, and encourage our clients to do the same:</p>
+<ul>
+<li>Store your JWTs in <a href="https://stormpath.com/blog/jwt-the-right-way">secure, HttpOnly cookies</a>. This prevents <a href="https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)">Cross-Site Scripting (XSS)</a> attacks.</li>
+<li>If you’re using cookies to transmit your JWTs, CSRF protection is super duper important! Your cookies can be used maliciously by other domains that make requests to your website without your user’s consent. If your server blindly authenticates a user, simply because they have a cookie, then you’ve got more problems than your hard drive size. You’re also allowing CSRF attacks, where other websites trigger state-changing actions on your server without your users’ consent. This is possible because the browser will always send the user’s cookies automatically, regardless of how the request was triggered. Use one of the many <a href="https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)">CSRF Prevention</a> measures to reduce this risk.</li>
+<li>Sign your tokens with a strong key that is available ONLY to the authentication service. Every time you use a token to authenticate a user, your server MUST verify that the token was signed with your secret key.</li>
+<li>Do not store any sensitive data in a JWT. These tokens are usually signed to protect against manipulation (not encrypted) so the data in the claims can be easily decoded and read. Encrypt your tokens if you have to put sensitive, non-opaque information in them. The secret signing key should only be accessible by the issuer and the consumer; it should not be accessible outside of these two parties.</li>
+<li>If you are worried about replay attacks, include a nonce (jti claim), expiration time (exp claim), and creation time (iat claim) in the claims. These are well defined in the <a href="https://tools.ietf.org/html/rfc7519">JWT Spec</a>.</li>
+</ul>
+<h2 id="jjwt-jsonwebtoken-io-and-jwt-inspector">JJWT, JSONWebToken.io, and JWT Inspector<a href="https://stormpath.com/blog/beginners-guide-jwts-in-java#jjwt-jsonwebtoken-io-and-jwt-inspector" class="heading-link"><i class="stp-icons stp-icon-link2"></i></a></h2>
+<p>Stormpath supports the development of several JWT-related, open-source developer tools, including:</p>
+<h3 id="jjwt">JJWT<a href="https://stormpath.com/blog/beginners-guide-jwts-in-java#jjwt" class="heading-link"><i class="stp-icons stp-icon-link2"></i></a></h3>
+<p><a href="https://github.com/jwtk/jjwt">JJWT</a> is an easy to use&nbsp;<a href="https://stormpath.com/blog/jjwt-how-it-works-why">tool for developers to create and verify JWTs in Java</a>. ike many libraries Stormpath supports, JJWT is completely free and open source (Apache License, Version 2.0), so everyone can see what it does and how it does it. Do not hesitate to report any issues, suggest improvements, and even submit some code!</p>
+<h3 id="jsonwebtoken-io">JSONWebToken.io<a href="https://stormpath.com/blog/beginners-guide-jwts-in-java#jsonwebtoken-io" class="heading-link"><i class="stp-icons stp-icon-link2"></i></a></h3>
+<p><a href="https://www.jsonwebtoken.io/">JSONwebtoken.io</a> is a developer tool we created to make it easy to decode JWTs. Simple paste an existing JWT into the appropriate field to decode its header, payload, and signature. JSONWebToken.io is powered by <a href="https://github.com/jwtk/njwt">nJWT</a>, the cleanest free and open source (Apache License, Version 2.0) JWT library for Node.js developers.</p>
+<h3 id="jwt-inspector">JWT Inspector<a href="https://stormpath.com/blog/beginners-guide-jwts-in-java#jwt-inspector" class="heading-link"><i class="stp-icons stp-icon-link2"></i></a></h3>
+<p>The new kid on the block, <a href="https://www.jwtinspector.io/">JWT Inspector</a> is an open source Chrome extension that allows developers to inspect and debug JWTs directly in-browser. The JWT Inspector will discover JWTs on your site (in cookies, local/session storage, and headers) and make them easily accessible through your navigation bar and DevTools panel.</p>
+<p>Looking to learn more about JWTs, token authentication, or <a href="https://stormpath.com/product">user identity management</a>? Here are some further resources from our team:</p>
+<ul>
+<li><a href="https://stormpath.com/blog/token-auth-spa">Token Authentication for Single Page Apps</a></li>
+<li><a href="https://stormpath.com/blog/fun-with-java-spring-boot-token-management">OAuth Token Management with Spring Boot and Stormpath</a></li>
+<li><a href="https://stormpath.com/blog/token-auth-for-java">Token Authentication for Java Applications</a></li>
+<li><a href="https://stormpath.com/blog/build-secure-user-interfaces-using-jwts">Build Secure User Interfaces with JSON Web Tokens</a></li>
+<li><a href="https://stormpath.com/blog/oauth-is-not-sso">OAuth is Not Single Sign-On</a></li>
+</ul>
+<p>&nbsp;</p>
+<div class="clearfix"></div>
+</div>
+</article>
+</div>
+<div class="blog_sidebar col-md-3 col-md-offset-1 nopadding affix-top" data-spy="affix" data-offset-top="230" data-offset-bottom="600">
+<div id="search-5" class="widget widget_search"><form role="search" method="get" class="search-form form" action="https://stormpath.com/">
+<label for="form-search-input" class="sr-only">Search for</label>
+<div class="input-group">
+<input type="search" id="form-search-input" class="form-control" placeholder="Search …" value="" name="s" title="Search for:">
+<span class="input-group-btn">
+<button type="submit" class="button button-green button-small search-button"><i class="stp-icons stp-icon-search"></i></button>
+</span>
+</div>
+<input type="hidden" name="post_type" value="post">
+</form>
+</div><div id="categories-5" class="widget widget_categories"><h3 class="widget-title">Explore the Topic</h3> <ul>
+<li class="cat-item cat-item-10"><a href="https://stormpath.com/blog/category/net">.NET</a>
+</li>
+<li class="cat-item cat-item-13"><a href="https://stormpath.com/blog/category/general">General</a>
+</li>
+<li class="cat-item cat-item-8"><a href="https://stormpath.com/blog/category/java">Java</a>
+</li>
+<li class="cat-item cat-item-74"><a href="https://stormpath.com/blog/category/javascript">Javascript</a>
+</li>
+<li class="cat-item cat-item-9"><a href="https://stormpath.com/blog/category/mobile">Mobile</a>
+</li>
+<li class="cat-item cat-item-7"><a href="https://stormpath.com/blog/category/node">Node</a>
+</li>
+<li class="cat-item cat-item-5"><a href="https://stormpath.com/blog/category/php">PHP</a>
+</li>
+<li class="cat-item cat-item-11"><a href="https://stormpath.com/blog/category/python">Python</a>
+</li>
+<li class="cat-item cat-item-12"><a href="https://stormpath.com/blog/category/rest-api">REST API</a>
+</li>
+</ul>
+</div>
+<div class="social-bar widget stormpath-social-counter-widget" data-action="fetch_social_share_count" data-instance="2">
+<h3 class="widget-title">Share a Post</h3>
+<a class="social-icon si-small si-borderless si-twitter share-button" target="_blank" href="https://twitter.com/share?text=A+Beginner%26%238217%3Bs+Guide+to+JWTs+in+Java%20-%20&amp;url=https%3A%2F%2Fstormpath.com%2Fblog%2Fbeginners-guide-jwts-in-java&amp;via=gostormpath">
+<i class="stp-icons stp-icon-twitter"><div class="social-icon-counter">8</div></i>
+<i class="stp-icons stp-icon-twitter"><div class="social-icon-counter">8</div></i>
+</a>
+<a class="social-icon si-small si-borderless si-facebook share-button" target="_blank" href="https://www.facebook.com/share.php?u=https%3A%2F%2Fstormpath.com%2Fblog%2Fbeginners-guide-jwts-in-java&amp;title=A%20Beginner%26%238217%3Bs%20Guide%20to%20JWTs%20in%20Java">
+<i class="stp-icons stp-icon-facebook"><div class="social-icon-counter">0</div></i>
+<i class="stp-icons stp-icon-facebook"><div class="social-icon-counter">0</div></i>
+</a>
+<a class="social-icon si-small si-borderless si-gplus share-button" target="_blank" href="https://plus.google.com/share?url=https%3A%2F%2Fstormpath.com%2Fblog%2Fbeginners-guide-jwts-in-java">
+<i class="stp-icons stp-icon-gplus"><div class="social-icon-counter">0</div></i>
+<i class="stp-icons stp-icon-gplus"><div class="social-icon-counter">0</div></i>
+</a>
+<a class="social-icon si-small si-borderless si-linkedin share-button" target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fstormpath.com%2Fblog%2Fbeginners-guide-jwts-in-java&amp;title=A%20Beginner%26%238217%3Bs%20Guide%20to%20JWTs%20in%20Java&amp;source=https%3A%2F%2Fstormpath.com">
+<i class="stp-icons stp-icon-linkedin"><div class="social-icon-counter">0</div></i>
+<i class="stp-icons stp-icon-linkedin"><div class="social-icon-counter">0</div></i>
+</a>
+</div>
+</div>
+</main>
+ </div>
+</div>
+</section>
+<script async="" src="./A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API_files/widgets.js" charset="utf-8"></script>
+</div>
+<footer id="footer" class="dark">
+<div class="container">
+<div class="footer-widgets-wrap nopadding topmargin-sm bottommargin-sm clearfix">
+<div class="col-md-4">
+<div id="text-4" class="widget widget_text"> <div class="textwidget"><img src="./A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API_files/logos.png" class="footer-logo"></div>
+</div> </div>
+<div class="col-md-2 col-md-offset-1 col-sm-4 col-xs-5">
+<div id="nav_menu-2" class="widget widget_links widget_nav_menu"></div> </div>
+<div class="col-md-2 col-sm-4 col-xs-6">
+<div id="nav_menu-3" class="widget widget_links widget_nav_menu"></div> </div>
+<div class="col-md-3 col-sm-4 col-xs-12" id="info-social">
+<div id="text-3" class="widget widget_text"> <div class="textwidget"><div>
+<strong>Support:</strong>
+developers@okta.com
+</div>
+</div>
+</div> </div>
+</div>
+</div>
+<div id="copyrights">
+<div class="container clearfix">
+<div class="col-md-12">
+Copyright 2017 Stormpath </div>
+</div>
+</div>
+</footer>
+</div>
+
+
+
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-NQZZFW"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                })(window,document,'script','dataLayer','GTM-NQZZFW');</script>
+
+<link rel="stylesheet" id="crayon-css" href="./A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API_files/crayon.min.css" type="text/css" media="all">
+<script type="text/javascript" src="./A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API_files/jquery.form.min.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var _wpcf7 = {"recaptcha":{"messages":{"empty":"Please verify that you are not a robot."}},"cached":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API_files/scripts.js"></script>
+<script type="text/javascript" src="./A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API_files/devicepx-jetpack.js"></script>
+<script type="text/javascript" src="./A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API_files/script-global.min.js"></script>
+<script type="text/javascript" src="./A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API_files/wp-embed.min.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var CrayonSyntaxSettings = {"version":"_2.7.2_beta","is_admin":"0","ajaxurl":"https:\/\/stormpath.com\/wp-admin\/admin-ajax.php","prefix":"crayon-","setting":"crayon-setting","selected":"crayon-setting-selected","changed":"crayon-setting-changed","special":"crayon-setting-special","orig_value":"data-orig-value","debug":""};
+var CrayonSyntaxStrings = {"copy":"Press %s to Copy, %s to Paste","minimize":"Click To Expand Code"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API_files/crayon.min.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var stormpath_social_object = {"ajaxurl":"https:\/\/stormpath.com\/wp-admin\/admin-ajax.php","post_id":"5145"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API_files/social-media-counter.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var countVars = {"disqusShortname":"stormpath"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API_files/count(1).js"></script>
+
+
+<iframe scrolling="no" frameborder="0" allowtransparency="true" src="./A Beginner&#39;s Guide to JWTs in Java - Stormpath User Identity API_files/widget_iframe.7303c29a8108bca4ac5c9ef008ed8164.html" title="Twitter settings iframe" style="display: none;"></iframe><meta name="google-site-verification" content="QxxiVeyXAf2HvvTvolZfoc9XV2ap55oR-xZzDB4lDpw">
+  <script type="text/javascript" id="">(function(a,c,d,e){if(!a.getElementById(d)){var b=a.createElement(c);a=a.getElementsByTagName(c)[0];b.id=d;b.src="//js.hs-analytics.net/analytics/"+Math.ceil(new Date/e)*e+"/475298.js";a.parentNode.insertBefore(b,a)}})(document,"script","hs-analytics",3E5);</script>
+<script type="text/javascript" id="">var _kmq=_kmq||[],_kmk=_kmk||"684b854336bd3a6523260ebd991eec06b18b929a";function _kms(c){setTimeout(function(){var a=document,b=a.getElementsByTagName("script")[0],a=a.createElement("script");a.type="text/javascript";a.async=!0;a.src=c;b.parentNode.insertBefore(a,b)},1)}_kms("//i.kissmetrics.com/i.js");_kms("//scripts.kissmetrics.com/"+_kmk+".2.js");</script><script type="text/javascript" id="">(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b;a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)};a[b].l=1*new Date;c=e.createElement(f);d=e.getElementsByTagName(f)[0];c.async=1;c.src=g;d.parentNode.insertBefore(c,d)})(window,document,"script","https://www.google-analytics.com/analytics.js","ga");ga("create","UA-29159574-1","auto");window.optimizely=window.optimizely||[];window.optimizely.push("activateUniversalAnalytics");ga("send","pageview");</script></body></html>
