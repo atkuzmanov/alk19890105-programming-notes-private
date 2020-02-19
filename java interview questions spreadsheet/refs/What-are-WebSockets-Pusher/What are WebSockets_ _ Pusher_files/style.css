@@ -1,0 +1,44 @@
+@font-face {
+  font-family: 'italian-plate';
+  font-weight: 600;
+  src: local('Italian Plate Demi Bold'),
+       url('https://djmmlc8gcwtqv.cloudfront.net/fonts/italian_plate_demibold-webfont-subset.woff2') format('woff2'),
+       url('https://djmmlc8gcwtqv.cloudfront.net/fonts/italian_plate_demibold-webfont-subset.woff') format('woff');
+  unicode-range: U+20-7E;
+}
+
+@font-face {
+  font-family: 'italian-plate';
+  font-weight: 600;
+  src: local('Italian Plate Demi Bold'),
+       url('https://djmmlc8gcwtqv.cloudfront.net/fonts/italian_plate_demibold-webfont-subset.woff2') format('woff2'),
+       url('https://djmmlc8gcwtqv.cloudfront.net/fonts/italian_plate_demibold-webfont-subset.woff') format('woff');
+  unicode-range: U+20-7E;
+}
+
+@font-face {
+  font-family: 'maison-neue';
+  font-weight: 300;
+  src: local('Maison Neue'),
+       url('https://djmmlc8gcwtqv.cloudfront.net/fonts/maisonneue-book-webfont-subset.woff2') format('woff2'),
+       url('https://djmmlc8gcwtqv.cloudfront.net/fonts/maisonneue-book-webfont-subset.woff') format('woff');
+  unicode-range: U+20-7E;
+}
+
+@font-face {
+  font-family: 'maison-neue';
+  font-weight: 700;
+  src: local('Maison Neue Bold'),
+       url('https://djmmlc8gcwtqv.cloudfront.net/fonts/maisonneue-bold-webfont-subset.woff2') format('woff2'),
+       url('https://djmmlc8gcwtqv.cloudfront.net/fonts/maisonneue-bold-webfont-subset.woff') format('woff');
+  unicode-range: U+20-7E;
+}
+
+@font-face {
+  font-family: 'maison-neue-mono';
+  font-weight: 400;
+  src: local('Maison Neue Mono'),
+       url('https://djmmlc8gcwtqv.cloudfront.net/fonts/maisonneuemono-regular-webfont-subset.woff2') format('woff2'),
+       url('https://djmmlc8gcwtqv.cloudfront.net/fonts/maisonneuemono-regular-webfont-subset.woff') format('woff');
+  unicode-range: U+20-7E;
+}
