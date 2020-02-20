@@ -68,6 +68,7 @@ For learning and study
 - [Deep and Shallow cloning; Deep cloning - how to?](#deep-and-shallow-cloning-deep-cloning---how-to)
 - [POJO](#pojo)
 - [Java Bean](#java-bean)
+- [Enterprise JavaBeans (EJB)](#enterprise-javabeans-ejb)
 - [Inner/Nested/Local classes](#innernestedlocal-classes)
 - [Nested class as a normal outer class?](#nested-class-as-a-normal-outer-class)
 - [Nested vs Anonymous Inner classes?](#nested-vs-anonymous-inner-classes)
@@ -125,6 +126,7 @@ For learning and study
     - [Structural Design Patterns](#structural-design-patterns)
     - [Behavioural Design Patterns](#behavioural-design-patterns)
         - [Strategy Design Pattern](#strategy-design-pattern)
+        - [Command Design Pattern](#command-design-pattern)
 - [SQL (Structured Query Language)](#sql-structured-query-language)
 - [ER Diagram](#er-diagram)
 - [SQL select](#sql-select)
@@ -207,6 +209,8 @@ For learning and study
 - [Java Servlets](#java-servlets)
 - [JavaServer Faces; Java Server Faces; JSF;](#javaserver-faces-java-server-faces-jsf)
 - [JSP vs Servlet](#jsp-vs-servlet)
+- [Struts2/JSF MVC Components? What is MVC?](#struts2jsf-mvc-components-what-is-mvc)
+- [Microservices in Java](#microservices-in-java)
 - [Random](#random)
 - [SQL Normal Forms](#sql-normal-forms)
 - [HTTP](#http)
@@ -5284,6 +5288,58 @@ https://stackoverflow.com/questions/3295496/what-is-a-javabean-exactly
 
 ----
 
+# Enterprise JavaBeans (EJB)
+
+- [What-is-EJB-The-evolution-of-Enterprise-JavaBeans-JavaWorld](refs/What-is-EJB-The-evolution-of-Enterprise-JavaBeans-JavaWorld)
+
+`references:`
+https://www.javaworld.com/article/3432125/what-is-ejb-the-evolution-of-enterprise-javabeans.html
+
+- [jakartaee-Why-not-use-Session-Beans-instead-of-Message-Driven-Beans-StackOverflow](refs/jakartaee-Why-not-use-Session-Beans-instead-of-Message-Driven-Beans-StackOverflow)
+
+`references:`
+https://stackoverflow.com/questions/3837723/why-not-use-session-beans-instead-of-message-driven-beans
+
+- [5-Minutes-or-Less-Message-Driven-Beans-with-ActiveMQandTomEE-Tomitribe](refs/5-Minutes-or-Less-Message-Driven-Beans-with-ActiveMQandTomEE-Tomitribe)
+
+`references:`
+https://www.tomitribe.com/blog/5-minutes-or-less-message-driven-beans-with-activemq-and-tomee/
+
+- Please see:
+    - [microservices-guide-martinfowler](#microservices-guide-martinfowler)
+
+- [Jakarta-Contexts-and-Dependency-Injection-projectseclipseorg](refs/Jakarta-Contexts-and-Dependency-Injection-projectseclipseorg)
+
+`references:`
+https://projects.eclipse.org/projects/ee4j.cdi
+
+- [JakartaEE-Community-Voices-CDI-is-the-Future-TheEclipseFoundation](refs/JakartaEE-Community-Voices-CDI-is-the-Future-TheEclipseFoundation)
+
+`references:`
+https://www.eclipse.org/community/eclipse_newsletter/2018/november/jakartavoices.php
+
+- [A-Detailed-Guide-to-Enterprise-Java-Beans-EJB-with-Code-Examples](refs/A-Detailed-Guide-to-Enterprise-Java-Beans-EJB-with-Code-Examples)
+
+`references:`
+https://stackify.com/enterprise-java-beans/
+
+- [Enterprise-JavaBeans-Wikipedia](refs/Enterprise-JavaBeans-Wikipedia)
+
+`references:`
+https://en.wikipedia.org/wiki/Enterprise_JavaBeans
+
+- [What-is-EJB-javatpoint](refs/What-is-EJB-javatpoint)
+
+`references:`
+https://www.javatpoint.com/what-is-ejb
+
+- [jakartaee-Difference-between-Java-Bean-and-Enterprise-Java-Beans-StackOverflow](refs/jakartaee-Difference-between-Java-Bean-and-Enterprise-Java-Beans-StackOverflow)
+
+`references:`
+https://stackoverflow.com/questions/2460048/difference-between-java-bean-and-enterprise-java-beans
+
+----
+
 # Inner/Nested/Local classes
 
 |Junior |Mid  |Senior |
@@ -6882,6 +6938,13 @@ https://en.wikipedia.org/wiki/Design_Patterns
 
 `references:`
 https://stackoverflow.com/questions/31950362/factory-method-with-di-and-ioc
+
+### Command Design Pattern
+
+- [Java-Tip-68-Learn-how-to-implement-the-Command-pattern-in-Java-JavaWorld](refs/Java-Tip-68-Learn-how-to-implement-the-Command-pattern-in-Java-JavaWorld)
+
+`references:`
+https://www.javaworld.com/article/2077569/java-tip-68--learn-how-to-implement-the-command-pattern-in-java.html
 
 ----
 
@@ -8911,10 +8974,29 @@ https://www.baeldung.com/intro-to-servlets
 `references:`
 
 
-- [](refs/)
+----
+
+# Struts2/JSF MVC Components? What is MVC?
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
+
+
+
+----
+
+# Microservices in Java
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
+<a id="microservices-guide-martinfowler" name="microservices-guide-martinfowler">Microservices-Guide-martinfowlerM</a>
+- [Microservices-Guide-martinfowler](refs/Microservices-Guide-martinfowler)
 
 `references:`
-
+https://martinfowler.com/microservices/
 
 
 ----
