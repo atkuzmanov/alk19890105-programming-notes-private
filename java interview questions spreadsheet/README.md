@@ -240,6 +240,7 @@ For learning and study
 - [JAR vs WAR vs EAR](#jar-vs-war-vs-ear)
 - [Java Community Process vs Eclipse Foundation Specification Process](#java-community-process-vs-eclipse-foundation-specification-process)
 - [Spring Tutorials 1](#spring-tutorials-1)
+- [Java Message Service (JMS)](#java-message-service-jms)
 - [POSIX](#posix)
 
 <!-- /TOC -->
@@ -8984,6 +8985,17 @@ https://www.baeldung.com/intro-to-servlets
 |   x   |  x  |   x   |
 
 
+- [](refs/)
+
+`references:`
+
+
+
+- [](refs/)
+
+`references:`
+
+
 
 ----
 
@@ -9517,6 +9529,55 @@ https://www.javaworld.com/article/3444936/what-is-spring-component-based-develop
 
 `references:`
 https://www.javaworld.com/article/3444936/what-is-spring-component-based-development-for-java.html?page=2
+
+----
+
+# Java Message Service (JMS)
+
+- [JMS-Tutorial-Java-Message-Service-Tutorial-HowToDoInJava](refs/JMS-Tutorial-Java-Message-Service-Tutorial-HowToDoInJava)
+
+`references:`
+https://howtodoinjava.com/jms/jms-java-message-service-tutorial/
+
+- [Java-Message-Service-JMS-Explained-DZone](refs/Java-Message-Service-JMS-Explained-DZone)
+
+`references:`
+https://dzone.com/articles/java-message-service-jms
+
+- [JMS-Tutorial-javatpoint](refs/JMS-Tutorial-javatpoint)
+
+`references:`
+https://www.javatpoint.com/jms-tutorial
+
+- [JMS-Tutorial-What-is-JMS-JournalDev](refs/JMS-Tutorial-What-is-JMS-JournalDev)
+
+`references:`
+https://www.journaldev.com/9731/jms-tutorial
+
+- The Java EE 6 Tutorial - Chapter 47 Java Message Service Concepts
+
+`references:`
+https://docs.oracle.com/javaee/6/tutorial/doc/bncdq.html
+
+- JMS Tutorials
+
+`references:`
+https://www.javacodegeeks.com/jms-tutorials
+
+- Overview of the JMS API
+
+`references:`
+https://javaee.github.io/tutorial/jms-concepts001.html
+
+- JMS Tutorials
+
+`references:`
+https://codenotfound.com/jms-tutorials
+
+- Java Message Service
+
+`references:`
+https://en.wikipedia.org/wiki/Java_Message_Service
 
 ----
 
