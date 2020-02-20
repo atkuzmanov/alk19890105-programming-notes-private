@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0056)https://docs.oracle.com/javaee/6/tutorial/doc/gjddd.html -->
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- GenHTML revision 25226-->
+
+<title>Expression Language - The Java EE 6 Tutorial</title>
+<meta name="robots" content="index,follow">
+<meta name="robots" content="index,follow">
+<meta name="date" content="2013-01-01">
+<link rel="stylesheet" type="text/css" href="./Expression Language - The Java EE 6 Tutorial_files/default.css">
+<link rel="stylesheet" type="text/css" href="./Expression Language - The Java EE 6 Tutorial_files/ipg.css">
+<link rel="stylesheet" type="text/css" href="./Expression Language - The Java EE 6 Tutorial_files/javaeetutorial.css">
+<script>window.ohcglobal || document.write('<script src="/en/dcommon/js/global.js">\x3C/script>')</script><script src="./Expression Language - The Java EE 6 Tutorial_files/global.js"></script><style id="banner_footer_style" type="text/css">#footer-banner ul li:nth-child(2) {  margin-left: 0;}#footer-banner {  z-index: 9999;  position: fixed;  margin: 0 auto 0 auto;  bottom: 0; left: 0; right: 0;  background-color: #EBEBEB !important;  border-top: 1px solid #ACB7BF;  color: #1958AA;  padding: 0.0em 1em;  text-align: center;  font-size: 12px !important;  line-height: 15px;  font-weight: normal;  font-family: Arial;  clear: both;}#teconsent {  display: inline-block;}#footer-banner ul {  list-style: none;  font-size: 12px !important;  padding: 0;  margin: 0;  margin-right: 20px;}#footer-banner li {  display: inline-block;}#footer-banner li + li:before {  content: "|";  margin-right: 4px;  margin-left: 4px;  color: #aaa;}#footer-banner a {  color: #1958AA;  text-decoration: none;  font-size: 12px !important;}#footer-banner a:focus, #footer-banner a:hover {  color: #1958AA;  text-decoration: underline;}</style><script type="text/javascript" src="./Expression Language - The Java EE 6 Tutorial_files/ora_docs.js"></script></head>
+
+<body>
+
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<tbody>
+   <tr valign="top">
+      <td width="400px"><p class="toc level1"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/docinfo.html">Document Information</a></p>
+<p class="toc level1 tocsp"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/gexaf.html">Preface</a></p>
+<p class="toc level1 tocsp"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/gfirp.html">Part&nbsp;I&nbsp;Introduction</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnaaw.html">1.&nbsp;&nbsp;Overview</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/gfiud.html">2.&nbsp;&nbsp;Using the Tutorial Examples</a></p>
+<p class="toc level1 tocsp"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnadp.html">Part&nbsp;II&nbsp;The Web Tier</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnadr.html">3.&nbsp;&nbsp;Getting Started with Web Applications</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnaph.html">4.&nbsp;&nbsp;JavaServer Faces Technology</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/giepx.html">5.&nbsp;&nbsp;Introduction to Facelets</a></p>
+<div id="scrolltoc" class="onpage">
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/gjddd.html">6.&nbsp;&nbsp;Expression Language</a></p>
+</div>
+<p class="toc level3"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnahq.html">Overview of the EL</a></p>
+<p class="toc level3"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnahr.html">Immediate and Deferred Evaluation Syntax</a></p>
+<p class="toc level4"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnahr.html#bnahs">Immediate Evaluation</a></p>
+<p class="toc level4"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnahr.html#bnaht">Deferred Evaluation</a></p>
+<p class="toc level3 tocsp"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnahu.html">Value and Method Expressions</a></p>
+<p class="toc level4"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnahu.html#bnahv">Value Expressions</a></p>
+<p class="toc level5"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnahu.html#bnahw">Referencing Objects Using Value Expressions</a></p>
+<p class="toc level5"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnahu.html#bnahx">Referring to Object Properties Using Value Expressions</a></p>
+<p class="toc level5"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnahu.html#bnahy">Where Value Expressions Can Be Used</a></p>
+<p class="toc level4 tocsp"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnahu.html#bnahz">Method Expressions</a></p>
+<p class="toc level5"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnahu.html#gjhbz">Parameterized Method Calls</a></p>
+<p class="toc level3 tocsp"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnaia.html">Defining a Tag Attribute Type</a></p>
+<p class="toc level3"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnaid.html">Literal Expressions</a></p>
+<p class="toc level3"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnaik.html">Operators</a></p>
+<p class="toc level3"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnail.html">Reserved Words</a></p>
+<p class="toc level3"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnaim.html">Examples of EL Expressions</a></p>
+<p class="toc level2 tocsp"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnaqz.html">7.&nbsp;&nbsp;Using JavaServer Faces Technology in Web Pages</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/gjcut.html">8.&nbsp;&nbsp;Using Converters, Listeners, and Validators</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnatx.html">9.&nbsp;&nbsp;Developing with JavaServer Faces Technology</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/gkmaa.html">10.&nbsp;&nbsp;JavaServer Faces Technology: Advanced Concepts</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/gkiow.html">11.&nbsp;&nbsp;Using Ajax with JavaServer Faces Technology</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/gkhxa.html">12.&nbsp;&nbsp;Composite Components: Advanced Topics and Example</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnavg.html">13.&nbsp;&nbsp;Creating Custom UI Components and Other Custom Objects</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnawo.html">14.&nbsp;&nbsp;Configuring JavaServer Faces Applications</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnafd.html">15.&nbsp;&nbsp;Java Servlet Technology</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/glrbb.html">16.&nbsp;&nbsp;Uploading Files with Java Servlet Technology</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnaxu.html">17.&nbsp;&nbsp;Internationalizing and Localizing Web Applications</a></p>
+<p class="toc level1 tocsp"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnayk.html">Part&nbsp;III&nbsp;Web Services</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/gijti.html">18.&nbsp;&nbsp;Introduction to Web Services</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnayl.html">19.&nbsp;&nbsp;Building Web Services with JAX-WS</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/giepu.html">20.&nbsp;&nbsp;Building RESTful Web Services with JAX-RS</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/gjjxe.html">21.&nbsp;&nbsp;JAX-RS: Advanced Topics and Example</a></p>
+<p class="toc level1 tocsp"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnblr.html">Part&nbsp;IV&nbsp;Enterprise Beans</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/gijsz.html">22.&nbsp;&nbsp;Enterprise Beans</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/gijre.html">23.&nbsp;&nbsp;Getting Started with Enterprise Beans</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/gijrb.html">24.&nbsp;&nbsp;Running the Enterprise Bean Examples</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnbpk.html">25.&nbsp;&nbsp;A Message-Driven Bean Example</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/gkcqz.html">26.&nbsp;&nbsp;Using the Embedded Enterprise Bean Container</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/gkidz.html">27.&nbsp;&nbsp;Using Asynchronous Method Invocation in Session Beans</a></p>
+<p class="toc level1 tocsp"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/gjbnr.html">Part&nbsp;V&nbsp;Contexts and Dependency Injection for the Java EE Platform</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/giwhb.html">28.&nbsp;&nbsp;Introduction to Contexts and Dependency Injection for the Java EE Platform</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/gjbls.html">29.&nbsp;&nbsp;Running the Basic Contexts and Dependency Injection Examples</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/gjehi.html">30.&nbsp;&nbsp;Contexts and Dependency Injection for the Java EE Platform: Advanced Topics</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/gkhre.html">31.&nbsp;&nbsp;Running the Advanced Contexts and Dependency Injection Examples</a></p>
+<p class="toc level1 tocsp"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnbpy.html">Part&nbsp;VI&nbsp;Persistence</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnbpz.html">32.&nbsp;&nbsp;Introduction to the Java Persistence API</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/gijst.html">33.&nbsp;&nbsp;Running the Persistence Examples</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnbtg.html">34.&nbsp;&nbsp;The Java Persistence Query Language</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/gjitv.html">35.&nbsp;&nbsp;Using the Criteria API to Create Queries</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/gkjiq.html">36.&nbsp;&nbsp;Creating and Using String-Based Criteria Queries</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/gkjjf.html">37.&nbsp;&nbsp;Controlling Concurrent Access to Entity Data with Locking</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/gkjia.html">38.&nbsp;&nbsp;Using a Second-Level Cache with Java Persistence API Applications</a></p>
+<p class="toc level1 tocsp"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/gijrp.html">Part&nbsp;VII&nbsp;Security</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnbwj.html">39.&nbsp;&nbsp;Introduction to Security in the Java EE Platform</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bncas.html">40.&nbsp;&nbsp;Getting Started Securing Web Applications</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnbyk.html">41.&nbsp;&nbsp;Getting Started Securing Enterprise Applications</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/gjjwx.html">42.&nbsp;&nbsp;Java EE Security: Advanced Topics</a></p>
+<p class="toc level1 tocsp"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/gijue.html">Part&nbsp;VIII&nbsp;Java EE Supporting Technologies</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/gijto.html">43.&nbsp;&nbsp;Introduction to Java EE Supporting Technologies</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bncih.html">44.&nbsp;&nbsp;Transactions</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bncjh.html">45.&nbsp;&nbsp;Resources and Resource Adapters</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/glodb.html">46.&nbsp;&nbsp;The Resource Adapter Example</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bncdq.html">47.&nbsp;&nbsp;Java Message Service Concepts</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bncgv.html">48.&nbsp;&nbsp;Java Message Service Examples</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/gkahp.html">49.&nbsp;&nbsp;Bean Validation: Advanced Topics</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/gkeed.html">50.&nbsp;&nbsp;Using Java EE Interceptors</a></p>
+<p class="toc level1 tocsp"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/gkgjw.html">Part&nbsp;IX&nbsp;Case Studies</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/glnvi.html">51.&nbsp;&nbsp;Duke's Bookstore Case Study Example</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/gkaee.html">52.&nbsp;&nbsp;Duke's Tutoring Case Study Example</a></p>
+<p class="toc level2"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/glnpw.html">53.&nbsp;&nbsp;Duke's Forest Case Study Example</a></p>
+<p class="toc level1 tocsp"><a href="https://docs.oracle.com/javaee/6/tutorial/doc/idx-1.html">Index</a></p>
+</td>
+      <td width="10px">&nbsp;</td>
+      <td>
+         <div class="header">
+             <div class="banner">
+                <table width="100%" border="0" cellpadding="5" cellspacing="0">
+                   <tbody>
+                      <tr>
+                         <td valign="bottom"><p class="Banner">The Java EE 6 Tutorial
+</p></td>
+                         <td align="right" valign="bottom"><img src="./Expression Language - The Java EE 6 Tutorial_files/javalogo.png" alt="Java Coffee Cup logo"></td>
+                      </tr>
+                   </tbody>
+                </table>
+             </div>
+
+             <div class="header-links">
+	         <a href="https://docs.oracle.com/javaee/6/tutorial/doc/index.html">Home</a> | 
+<a href="https://docs.oracle.com/javaee/6/tutorial/information/download.html">Download</a> | 
+<a href="https://docs.oracle.com/javaee/6/tutorial/doc/javaeetutorial6.pdf">PDF</a> | 
+<a href="https://docs.oracle.com/javaee/6/tutorial/information/faq.html">FAQ</a> | 
+<a href="http://docs.oracle.com/javaee/support/feedback.htm">Feedback</a>
+
+             </div>
+             <div class="navigation">
+                 <a href="https://docs.oracle.com/javaee/6/tutorial/doc/girgm.html"><img src="./Expression Language - The Java EE 6 Tutorial_files/leftButton.gif" border="0" alt="Previous" title="Previous"></a>
+                 <a href="https://docs.oracle.com/javaee/6/tutorial/doc/p1.html"><img src="./Expression Language - The Java EE 6 Tutorial_files/upButton.gif" border="0" alt="Contents" title="Contents"></a>
+                 <a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnahq.html"><img src="./Expression Language - The Java EE 6 Tutorial_files/rightButton.gif" border="0" alt="Next" title="Next"></a>
+             </div>
+         </div>
+
+	 <div class="maincontent">      	 
+             <a name="gjddd"></a><h3>Chapter&nbsp;6<br>Expression Language</h3><a name="indexterm-237"></a><a name="indexterm-238"></a><a name="indexterm-239"></a><p>This chapter introduces the <b>Expression Language</b> (also referred to as the EL), which provides
+an important mechanism for enabling the presentation layer (web pages) to communicate with
+the application logic (managed beans). The EL is used by both JavaServer Faces
+technology and JavaServer Pages (JSP) technology. The EL represents a union of the
+expression languages offered by JavaServer Faces technology and JSP technology.</p>
+
+<p>The following topics are addressed here:</p>
+
+
+<ul><li><p><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnahq.html">Overview of the EL</a></p>
+
+</li>
+<li><p><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnahr.html">Immediate and Deferred Evaluation Syntax</a></p>
+
+</li>
+<li><p><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnahu.html">Value and Method Expressions</a></p>
+
+</li>
+<li><p><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnaia.html">Defining a Tag Attribute Type</a></p>
+
+</li>
+<li><p><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnaid.html">Literal Expressions</a></p>
+
+</li>
+<li><p><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnaik.html">Operators</a></p>
+
+</li>
+<li><p><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnail.html">Reserved Words</a></p>
+
+</li>
+<li><p><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnaim.html">Examples of EL Expressions</a></p>
+
+</li></ul>
+
+         </div>
+         <div class="navigation">
+             <a href="https://docs.oracle.com/javaee/6/tutorial/doc/girgm.html"><img src="./Expression Language - The Java EE 6 Tutorial_files/leftButton.gif" border="0" alt="Previous" title="Previous"></a>
+             <a href="https://docs.oracle.com/javaee/6/tutorial/doc/p1.html"><img src="./Expression Language - The Java EE 6 Tutorial_files/upButton.gif" border="0" alt="Contents" title="Contents"></a>
+             <a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnahq.html"><img src="./Expression Language - The Java EE 6 Tutorial_files/rightButton.gif" border="0" alt="Next" title="Next"></a>
+         </div>
+
+         <div class="copyright">
+      	    <p>Copyright © 2013, Oracle and/or its affiliates. All rights reserved. <a href="https://docs.oracle.com/javaee/6/tutorial/doc/docinfo.html">Legal Notices</a></p>
+      	 </div>
+
+      </td>
+   </tr>
+</tbody>
+</table>
+<!-- Start SiteCatalyst code   -->
+<script language="JavaScript" src="./Expression Language - The Java EE 6 Tutorial_files/s_code_download.js"></script>
+<script language="JavaScript" src="./Expression Language - The Java EE 6 Tutorial_files/s_code.js"></script>
+ 
+<!-- ********** DO NOT ALTER ANYTHING BELOW THIS LINE ! *********** -->
+<!--  Below code will send the info to Omniture server -->
+<script language="javascript">var s_code=s.t();if(s_code)document.write(s_code)</script>
+<noscript><p>Scripting on this page tracks web page traffic,
+but does not change the content in any way.</p></noscript>
+<!-- End SiteCatalyst code -->
+
+
+
+<div id="footer-banner" style="display: inline-block;"><ul><li><div id="teconsent" consent="0,1,2" style="display: inline-block;"><script async="async" type="text/javascript" crossorigin="" src="./Expression Language - The Java EE 6 Tutorial_files/v1.7-30"></script><a id="icon-id037128903329119667" tabindex="0" role="button" lang="en" style="cursor: pointer;">Cookie Preferences</a></div></li><li><a id="adchoices" class="new-window" target="_blank" href="https://www.oracle.com/legal/privacy/marketing-cloud-data-cloud-privacy-policy.html#12">Ad Choices</a></li></ul></div><script type="text/javascript" src="./Expression Language - The Java EE 6 Tutorial_files/notice" id="truste_0.589168989872662"></script><iframe name="trustarc_notice" id="trustarcNoticeFrame" src="./Expression Language - The Java EE 6 Tutorial_files/get.html" style="display: none;"></iframe><script src="./Expression Language - The Java EE 6 Tutorial_files/ora_code_docs.js"></script><script src="./Expression Language - The Java EE 6 Tutorial_files/ora_code.js"></script></body></html>

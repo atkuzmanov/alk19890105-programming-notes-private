@@ -8802,19 +8802,53 @@ https://struts.apache.org/
 `references:`
 https://www.infoq.com/news/2018/01/mvc-1.0-public-review
 
+- [Expression-Language-The-Java-EE-6-Tutorial-oraclecom](refs/Expression-Language-The-Java-EE-6-Tutorial-oraclecom)
+
+`references:`
+https://docs.oracle.com/javaee/6/tutorial/doc/gjddd.html
+
+- [JSP-Standard-Tag-Library-JSTL-Tutorial-Tutorialspoint](refs/JSP-Standard-Tag-Library-JSTL-Tutorial-Tutorialspoint)
+
+`references:`
+https://www.tutorialspoint.com/jsp/jsp_standard_tag_library.htm
+
+- [JSP-Overview-Tutorialspoint](refs/JSP-Overview-Tutorialspoint)
+
+`references:`
+https://www.tutorialspoint.com/jsp/jsp_overview.htm
+
+- [Introduction-to-JSP-GeeksforGeeks](refs/Introduction-to-JSP-GeeksforGeeks)
+
+`references:`
+https://www.geeksforgeeks.org/introduction-to-jsp/
+
+- [Learn-JSP-Tutorial-javatpoint](refs/Learn-JSP-Tutorial-javatpoint)
+
+`references:`
+https://www.javatpoint.com/jsp-tutorial
+
+- [JSP-Syntax-Tutorialspoint](refs/JSP-Syntax-Tutorialspoint)
+
+`references:`
+https://www.tutorialspoint.com/jsp/jsp_syntax.htm
+
+- JSP Tutorial for Beginners: Learn in 7 Days
+
+`references:`
+https://www.guru99.com/jsp-tutorial.html
+
+
+
+
 - [](refs/)
 
 `references:`
 
-- [](refs/)
-
-`references:`
 
 
 - [](refs/)
 
 `references:`
-
 
 - [](refs/)
 
