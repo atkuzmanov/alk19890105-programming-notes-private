@@ -227,11 +227,14 @@ For learning and study
         - [Transmission Control Protocol and Internet Protocol TCP/IP model](#transmission-control-protocol-and-internet-protocol-tcpip-model)
         - [OSI model vs TCP/IP model](#osi-model-vs-tcpip-model)
 - [Address Resolution Protocol (ARP)](#address-resolution-protocol-arp)
-- [What is the Java Programming Language](#what-is-the-java-programming-language)
 - [API Design Best Practices](#api-design-best-practices)
 - [Convention over Configuration](#convention-over-configuration)
 - [Cartesian product](#cartesian-product)
+- [What is the Java Programming Language](#what-is-the-java-programming-language)
+- [Java Runtime Environment (JRE) Java Virtual Machine, (JVM) and Java Development Kit (JDK)](#java-runtime-environment-jre-java-virtual-machine-jvm-and-java-development-kit-jdk)
+- [Java Community Process vs Eclipse Foundation Specification Process](#java-community-process-vs-eclipse-foundation-specification-process)
 - [Spring Tutorials 1](#spring-tutorials-1)
+- [POSIX](#posix)
 
 <!-- /TOC -->
 
@@ -8844,23 +8847,43 @@ https://www.guru99.com/jsp-tutorial.html
 
 # Java Servlets
 
-- [](refs/)
+- [What-are-Java-servlets-Request-handling-for-Java-web-applications-JavaWorld](refs/What-are-Java-servlets-Request-handling-for-Java-web-applications-JavaWorld)
 
 `references:`
+https://www.javaworld.com/article/3313114/what-is-a-java-servlet-request-handling-for-java-web-applications.html
 
-
-
-- [](refs/)
-
-`references:`
-
-- [](refs/)
+- [Introduction-to-Java-Servlets-GeeksforGeeks](refs/Introduction-to-Java-Servlets-GeeksforGeeks)
 
 `references:`
+https://www.geeksforgeeks.org/introduction-java-servlets/
+
+- [Learn-Servlet-Tutorial-javatpoint](refs/Learn-Servlet-Tutorial-javatpoint)
+
+`references:`
+https://www.javatpoint.com/servlet-tutorial
+
+- [Servlets-Tutorial-Tutorialspoint](refs/Servlets-Tutorial-Tutorialspoint)
+
+`references:`
+https://www.tutorialspoint.com/servlets/index.htm
+
+- [Introduction-to-Java-Servlets-Baeldung](refs/Introduction-to-Java-Servlets-Baeldung)
+
+`references:`
+https://www.baeldung.com/intro-to-servlets
 
 ----
 
 # JavaServer Faces; Java Server Faces; JSF;
+
+- [](refs/)
+
+`references:`
+
+- [](refs/)
+
+`references:`
+
 
 - [](refs/)
 
@@ -9170,15 +9193,6 @@ https://en.wikipedia.org/wiki/Address_Resolution_Protocol
 
 ----
 
-# What is the Java Programming Language
-
-- [What-is-Java-Programming-Language-Webopedia](refs/What-is-Java-Programming-Language-Webopedia)
-
-`references:`
-https://www.webopedia.com/TERM/J/Java.html
-
-----
-
 # API Design Best Practices
 
 - New Series: API Design Best Practices
@@ -9249,6 +9263,63 @@ https://www.mathstopia.net/sets/cartesian-product
 
 ----
 
+# What is the Java Programming Language
+
+- [Java-programming-language-Wikipedia](refs/Java-programming-language-Wikipedia)
+
+`references:`
+https://en.wikipedia.org/wiki/Java_(programming_language)
+
+- [What-is-Java-Programming-Language-Webopedia](refs/What-is-Java-Programming-Language-Webopedia)
+
+`references:`
+https://www.webopedia.com/TERM/J/Java.html
+
+----
+
+# Java Runtime Environment (JRE) Java Virtual Machine, (JVM) and Java Development Kit (JDK)
+
+- [What-is-the-JRE-Introduction-to-the-Java-Runtime-Environment-JavaWorld](refs/What-is-the-JRE-Introduction-to-the-Java-Runtime-Environment-JavaWorld)
+
+`references:`
+https://www.javaworld.com/article/3304858/what-is-the-jre-introduction-to-the-java-runtime-environment.html
+
+- [What-is-the-JVM-Introducing-the-Java-Virtual-Machine-JavaWorld](refs/What-is-the-JVM-Introducing-the-Java-Virtual-Machine-JavaWorld)
+
+`references:`
+https://www.javaworld.com/article/3272244/what-is-the-jvm-introducing-the-java-virtual-machine.html
+
+- [What-is-the-JDK-Introduction-to-the-Java-Development-Kit-JavaWorld](refs/What-is-the-JDK-Introduction-to-the-Java-Development-Kit-JavaWorld)
+
+`references:`
+https://www.javaworld.com/article/3296360/what-is-the-jdk-introduction-to-the-java-development-kit.html
+
+----
+
+# Java Community Process vs Eclipse Foundation Specification Process
+
+- [Java-Community-Process-Wikipedia](refs/Java-Community-Process-Wikipedia)
+
+`references:`
+https://en.wikipedia.org/wiki/Java_Community_Process
+
+- Java Community Process
+
+`references:`
+https://jcp.org/en/home/index
+
+- [So-long-JCP-Eclipse-has-a-new-Java-spec-process-in-mind-JavaWorld](refs/So-long-JCP-Eclipse-has-a-new-Java-spec-process-in-mind-JavaWorld)
+
+`references:`
+https://www.javaworld.com/article/3315120/so-long-jcp-eclipse-has-a-new-java-spec-process-in-mind.html
+
+- Eclipse Foundation Specification Process
+
+`references:`
+https://www.eclipse.org/projects/efsp/
+
+----
+
 # Spring Tutorials 1
 
 - [Mastering-Spring-framework-5-Part-1-Spring-MVC-JavaWorld](refs/Mastering-Spring-framework-5-Part-1-Spring-MVC-JavaWorld)
@@ -9290,6 +9361,15 @@ https://www.javaworld.com/article/3444936/what-is-spring-component-based-develop
 
 `references:`
 https://www.javaworld.com/article/3444936/what-is-spring-component-based-development-for-java.html?page=2
+
+----
+
+# POSIX
+
+- [POSIX-Wikipedia](refs/POSIX-Wikipedia)
+
+`references:`
+https://en.wikipedia.org/wiki/POSIX
 
 ----
 ----
