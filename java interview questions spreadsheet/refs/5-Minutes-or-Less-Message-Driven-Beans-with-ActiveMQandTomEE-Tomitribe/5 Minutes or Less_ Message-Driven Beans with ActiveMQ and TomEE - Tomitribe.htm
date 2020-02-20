@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<!-- saved from url=(0094)https://www.tomitribe.com/blog/5-minutes-or-less-message-driven-beans-with-activemq-and-tomee/ -->
+<html lang="en-US" class="js applicationcache geolocation history postmessage svg websockets localstorage sessionstorage websqldatabase webworkers hashchange audio canvas canvastext video webgl cssgradients multiplebgs opacity rgba inlinesvg csspositionsticky hsla supports svgclippaths smil fontface generatedcontent textshadow indexeddb indexeddb-deletedatabase cssanimations backgroundsize borderimage borderradius boxshadow csscolumns csscolumns-width csscolumns-span csscolumns-fill csscolumns-gap csscolumns-rule csscolumns-rulecolor csscolumns-rulestyle csscolumns-rulewidth csscolumns-breakbefore csscolumns-breakafter csscolumns-breakinside flexbox flexboxlegacy cssreflections csstransforms csstransforms3d csstransitions" style="transform: none;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"><link rel="shortcut icon" href="https://www.tomitribe.com/wp-content/uploads/2018/04/iii-new-fav.png"><title>5 Minutes or Less: Message-Driven Beans with ActiveMQ and TomEE - Tomitribe</title>
+
+<!-- This site is optimized with the Yoast SEO plugin v13.1 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<link rel="canonical" href="https://www.tomitribe.com/blog/5-minutes-or-less-message-driven-beans-with-activemq-and-tomee/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="5 Minutes or Less: Message-Driven Beans with ActiveMQ and TomEE">
+<meta property="og:description" content="Quick MDB tutorial by Richard">
+<meta property="og:url" content="/blog/5-minutes-or-less-message-driven-beans-with-activemq-and-tomee/">
+<meta property="og:site_name" content="Tomitribe">
+<meta property="article:publisher" content="https://www.facebook.com/Tomitribe">
+<meta property="article:section" content="ActiveMQ">
+<meta property="article:published_time" content="2019-05-23T12:20:59+00:00">
+<meta property="article:modified_time" content="2019-05-29T17:59:27+00:00">
+<meta property="og:updated_time" content="2019-05-29T17:59:27+00:00">
+<meta property="og:image" content="/wp-content/uploads/2019/05/Tomitribe-Blog-5min-ActiveMQ-TomEE-1.png">
+<meta property="og:image:secure_url" content="/wp-content/uploads/2019/05/Tomitribe-Blog-5min-ActiveMQ-TomEE-1.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="629">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="Quick MDB tutorial by Richard">
+<meta name="twitter:title" content="5 Minutes or Less: Message-Driven Beans with ActiveMQ and TomEE">
+<meta name="twitter:site" content="@Tomitribe">
+<meta name="twitter:image" content="https://www.tomitribe.com/wp-content/uploads/2019/05/Tomitribe-Blog-5min-ActiveMQ-TomEE-1.png">
+<meta name="twitter:creator" content="@rmonson">
+<script type="text/javascript" async="" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/analytics.js"></script><script type="application/ld+json" class="yoast-schema-graph yoast-schema-graph--main">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"/#organization","name":"Tomitribe","url":"/","sameAs":["https://www.facebook.com/Tomitribe","https://www.linkedin.com/company/tomitribe/","https://www.youtube.com/channel/UC2Q0ikaZBPP-1g7q9zGthVQ","https://twitter.com/Tomitribe"],"logo":{"@type":"ImageObject","@id":"/#logo","inLanguage":"en-US","url":"/wp-content/uploads/2020/02/Tomitribe-Meta-image.png","width":1200,"height":675,"caption":"Tomitribe"},"image":{"@id":"/#logo"}},{"@type":"WebSite","@id":"/#website","url":"/","name":"Tomitribe","inLanguage":"en-US","description":"Welcome to Tomitribe","publisher":{"@id":"/#organization"},"potentialAction":{"@type":"SearchAction","target":"/?s={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"ImageObject","@id":"/blog/5-minutes-or-less-message-driven-beans-with-activemq-and-tomee/#primaryimage","inLanguage":"en-US","url":"/wp-content/uploads/2019/05/image-2.png"},{"@type":"WebPage","@id":"/blog/5-minutes-or-less-message-driven-beans-with-activemq-and-tomee/#webpage","url":"/blog/5-minutes-or-less-message-driven-beans-with-activemq-and-tomee/","name":"5 Minutes or Less: Message-Driven Beans with ActiveMQ and TomEE - Tomitribe","isPartOf":{"@id":"/#website"},"inLanguage":"en-US","primaryImageOfPage":{"@id":"/blog/5-minutes-or-less-message-driven-beans-with-activemq-and-tomee/#primaryimage"},"datePublished":"2019-05-23T12:20:59+00:00","dateModified":"2019-05-29T17:59:27+00:00"},{"@type":"Article","@id":"/blog/5-minutes-or-less-message-driven-beans-with-activemq-and-tomee/#article","isPartOf":{"@id":"/blog/5-minutes-or-less-message-driven-beans-with-activemq-and-tomee/#webpage"},"author":{"@id":"/#/schema/person/14109a584e7f771eadda447b3c3551e4"},"headline":"5 Minutes or Less: Message-Driven Beans with ActiveMQ and TomEE","datePublished":"2019-05-23T12:20:59+00:00","dateModified":"2019-05-29T17:59:27+00:00","commentCount":0,"mainEntityOfPage":{"@id":"/blog/5-minutes-or-less-message-driven-beans-with-activemq-and-tomee/#webpage"},"publisher":{"@id":"/#organization"},"image":{"@id":"/blog/5-minutes-or-less-message-driven-beans-with-activemq-and-tomee/#primaryimage"},"articleSection":"ActiveMQ,Apache TomEE,Open Source,TomEE","inLanguage":"en-US"},{"@type":["Person"],"@id":"/#/schema/person/14109a584e7f771eadda447b3c3551e4","name":"Richard Monson-Haefel","image":{"@type":"ImageObject","@id":"/#authorlogo","inLanguage":"en-US","url":"https://secure.gravatar.com/avatar/dda7c8a7bb2784cbc54cb54ce5dc4ff6?s=96&d=mm&r=g","caption":"Richard Monson-Haefel"},"description":"Richard has more the 24 years of experience as a professional software developer and architect. He has written five books on enterprise Java including EJB, JMS, web services, and software architecture. He has served on the JCP executive committee and multiple expert groups, is the co-founder of OpenEJB and Apache Geronimo, was a Sr. Analyst for Burton Group (aka Gartner), and is a celebrated public speaker.","sameAs":["https://twitter.com/rmonson"]}]}</script>
+<!-- / Yoast SEO plugin. -->
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+<link rel="dns-prefetch" href="https://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="Tomitribe » Feed" href="https://www.tomitribe.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Tomitribe » Comments Feed" href="https://www.tomitribe.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Tomitribe » 5 Minutes or Less: Message-Driven Beans with ActiveMQ and TomEE Comments Feed" href="https://www.tomitribe.com/blog/5-minutes-or-less-message-driven-beans-with-activemq-and-tomee/feed/">
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.3.2"}};
+			!function(e,a,t){var r,n,o,i,p=a.createElement("canvas"),s=p.getContext&&p.getContext("2d");function c(e,t){var a=String.fromCharCode;s.clearRect(0,0,p.width,p.height),s.fillText(a.apply(this,e),0,0);var r=p.toDataURL();return s.clearRect(0,0,p.width,p.height),s.fillText(a.apply(this,t),0,0),r===p.toDataURL()}function l(e){if(!s||!s.fillText)return!1;switch(s.textBaseline="top",s.font="600 32px Arial",e){case"flag":return!c([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])&&(!c([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!c([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]));case"emoji":return!c([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340])}return!1}function d(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(i=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},o=0;o<i.length;o++)t.supports[i[o]]=l(i[o]),t.supports.everything=t.supports.everything&&t.supports[i[o]],"flag"!==i[o]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[i[o]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(r=t.source||{}).concatemoji?d(r.concatemoji):r.wpemoji&&r.twemoji&&(d(r.twemoji),d(r.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/wp-emoji-release.min.js" type="text/javascript" defer=""></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel="stylesheet" id="wp-block-library-css" href="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/style.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="contact-form-7-css" href="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/styles.css" type="text/css" media="all">
+<link rel="stylesheet" id="cookie-law-info-css" href="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/cookie-law-info-public.css" type="text/css" media="all">
+<link rel="stylesheet" id="cookie-law-info-gdpr-css" href="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/cookie-law-info-gdpr.css" type="text/css" media="all">
+<link rel="stylesheet" id="lana-downloads-manager-css" href="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/lana-downloads-manager.css" type="text/css" media="all">
+<link rel="stylesheet" id="salient-social-css" href="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/style.css" type="text/css" media="all">
+<style id="salient-social-inline-css" type="text/css">
+
+  .sharing-default-minimal .nectar-love.loved,
+  body .nectar-social[data-color-override="override"].fixed > a:before, 
+  body .nectar-social[data-color-override="override"].fixed .nectar-social-inner a,
+  .sharing-default-minimal .nectar-social[data-color-override="override"] .nectar-social-inner a:hover {
+    background-color: #e57125;
+  }
+  .nectar-social.hover .nectar-love.loved,
+  .nectar-social.hover > .nectar-love-button a:hover,
+  .nectar-social[data-color-override="override"].hover > div a:hover,
+  #single-below-header .nectar-social[data-color-override="override"].hover > div a:hover,
+  .nectar-social[data-color-override="override"].hover .share-btn:hover,
+  .sharing-default-minimal .nectar-social[data-color-override="override"] .nectar-social-inner a {
+    border-color: #e57125;
+  }
+  #single-below-header .nectar-social.hover .nectar-love.loved i,
+  #single-below-header .nectar-social.hover[data-color-override="override"] a:hover,
+  #single-below-header .nectar-social.hover[data-color-override="override"] a:hover i,
+  #single-below-header .nectar-social.hover .nectar-love-button a:hover i,
+  .nectar-love:hover i,
+  .hover .nectar-love:hover .total_loves,
+  .nectar-love.loved i,
+  .nectar-social.hover .nectar-love.loved .total_loves,
+  .nectar-social.hover .share-btn:hover, 
+  .nectar-social[data-color-override="override"].hover .nectar-social-inner a:hover,
+  .nectar-social[data-color-override="override"].hover > div:hover span,
+  .sharing-default-minimal .nectar-social[data-color-override="override"] .nectar-social-inner a:not(:hover) i,
+  .sharing-default-minimal .nectar-social[data-color-override="override"] .nectar-social-inner a:not(:hover) {
+    color: #e57125;
+  }
+</style>
+<link rel="stylesheet" id="font-awesome-css" href="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/font-awesome.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="parent-style-css" href="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/style(1).css" type="text/css" media="all">
+<link rel="stylesheet" id="salient-grid-system-css" href="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/grid-system.css" type="text/css" media="all">
+<link rel="stylesheet" id="nectar-header-perma-transparent-css" href="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/header-perma-transparent.css" type="text/css" media="all">
+<link rel="stylesheet" id="nectar-single-styles-css" href="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/single.css" type="text/css" media="all">
+<link rel="stylesheet" id="nectar-element-recent-posts-css" href="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/element-recent-posts.css" type="text/css" media="all">
+<link rel="stylesheet" id="magnific-css" href="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/magnific.css" type="text/css" media="all">
+<link rel="stylesheet" id="nectar_default_font_open_sans-css" href="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/css" type="text/css" media="all">
+<link rel="stylesheet" id="responsive-css" href="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/responsive.css" type="text/css" media="all">
+<link rel="stylesheet" id="select2-css" href="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/select2.css" type="text/css" media="all">
+<link rel="stylesheet" id="salient-child-style-css" href="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/style(2).css" type="text/css" media="all">
+<link rel="stylesheet" id="skin-material-css" href="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/skin-material.css" type="text/css" media="all">
+<link rel="stylesheet" id="nectar-widget-posts-css" href="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/widget-nectar-posts.css" type="text/css" media="all">
+<!--[if lt IE 9]>
+<link rel='stylesheet' id='vc_lte_ie9-css'  href='/wp-content/plugins/js_composer_salient/assets/css/vc_lte_ie9.min.css?ver=6.0.5' type='text/css' media='screen' />
+<![endif]-->
+<link rel="stylesheet" id="child-style-css" href="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/style(2).css" type="text/css" media="all">
+<link rel="stylesheet" id="dynamic-css-css" href="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/salient-dynamic-styles.css" type="text/css" media="all">
+<style id="dynamic-css-inline-css" type="text/css">
+.no-rgba #header-space{display:none;}@media only screen and (max-width:999px){body #header-space[data-header-mobile-fixed="1"]{display:none;}#header-outer[data-mobile-fixed="false"]{position:absolute;}}@media only screen and (max-width:999px){body:not(.nectar-no-flex-height) #header-space[data-secondary-header-display="full"]:not([data-header-mobile-fixed="false"]){display:block!important;margin-bottom:-66px;}#header-space[data-secondary-header-display="full"][data-header-mobile-fixed="false"]{display:none;}}@media only screen and (min-width:1000px){#header-space{display:none;}.nectar-slider-wrap.first-section,.parallax_slider_outer.first-section,.full-width-content.first-section,.parallax_slider_outer.first-section .swiper-slide .content,.nectar-slider-wrap.first-section .swiper-slide .content,#page-header-bg,.nder-page-header,#page-header-wrap,.full-width-section.first-section{margin-top:0!important;}body #page-header-bg,body #page-header-wrap{height:116px;}body #search-outer{z-index:100000;}}@media only screen and (min-width:1000px){#page-header-wrap.fullscreen-header,#page-header-wrap.fullscreen-header #page-header-bg,html:not(.nectar-box-roll-loaded) .nectar-box-roll > #page-header-bg.fullscreen-header,.nectar_fullscreen_zoom_recent_projects,#nectar_fullscreen_rows:not(.afterLoaded) > div{height:100vh;}.wpb_row.vc_row-o-full-height.top-level,.wpb_row.vc_row-o-full-height.top-level > .col.span_12{min-height:100vh;}#page-header-bg[data-alignment-v="middle"] .span_6 .inner-wrap,#page-header-bg[data-alignment-v="top"] .span_6 .inner-wrap{padding-top:88px;}.nectar-slider-wrap[data-fullscreen="true"]:not(.loaded),.nectar-slider-wrap[data-fullscreen="true"]:not(.loaded) .swiper-container{height:calc(100vh + 2px)!important;}.admin-bar .nectar-slider-wrap[data-fullscreen="true"]:not(.loaded),.admin-bar .nectar-slider-wrap[data-fullscreen="true"]:not(.loaded) .swiper-container{height:calc(100vh - 30px)!important;}}@media only screen and (max-width:999px){#page-header-bg[data-alignment-v="middle"]:not(.fullscreen-header) .span_6 .inner-wrap,#page-header-bg[data-alignment-v="top"] .span_6 .inner-wrap{padding-top:50px;}.vc_row.top-level.full-width-section:not(.full-width-ns) > .span_12,#page-header-bg[data-alignment-v="bottom"] .span_6 .inner-wrap{padding-top:40px;}}@media only screen and (max-width:690px){.vc_row.top-level.full-width-section:not(.full-width-ns) > .span_12{padding-top:50px;}.vc_row.top-level.full-width-content .nectar-recent-posts-single_featured .recent-post-container > .inner-wrap{padding-top:40px;}}@media only screen and (max-width:999px){.full-width-ns .nectar-slider-wrap .swiper-slide[data-y-pos="middle"] .content,.full-width-ns .nectar-slider-wrap .swiper-slide[data-y-pos="top"] .content{padding-top:30px;}}
+code {
+    display: inline;
+    clear: both;
+    overflow: auto;
+    padding: 3px 5px 3px 5px;
+    white-space: pre;
+    background-color: #f9fafb;
+    font: 15px Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,sans-serif,"Andale Mono",Courier,"Courier New",monospace;
+}
+pre::after { 
+    padding-bottom: 1.5em;
+}
+pre {
+    padding-bottom: 1.5em;
+}
+pre code {
+    border-left: 3px solid #E57125;
+}
+
+pre.console {
+    padding: 24px 8px 8px 8px;
+    background: radial-gradient(circle at 50%,#fe5952 50%,transparent 60%) 8px 3px no-repeat,radial-gradient(circle at 50%,#e6c02a 50%,transparent 60%) 26px 3px no-repeat,radial-gradient(circle at 50%,#53c22c 50%,transparent 60%) 44px 3px no-repeat,linear-gradient(to left,#444444,#747474,#444444) no-repeat #1e1e1e;
+    background-size: 15px 15px,15px 15px,15px 15px,100% 20px;
+    color: #fdfdfd;
+    border: 1px solid #747474;
+    border-radius: 7px;
+    box-shadow: 0 5px 20px -4px #000;
+    line-height: 1.3em;
+    margin-bottom: 2em;
+    font-family: Menlo, monospace;
+    white-space: pre-wrap;
+}
+</style>
+<link rel="stylesheet" id="redux-google-fonts-salient_redux-css" href="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/css(1)" type="text/css" media="all">
+<script type="text/javascript" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/jquery.js"></script>
+<script type="text/javascript" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/jquery-migrate.min.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var Cli_Data = {"nn_cookie_ids":[],"cookielist":[]};
+var log_object = {"ajax_url":"\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/cookie-law-info-public.js"></script>
+<link rel="https://api.w.org/" href="https://www.tomitribe.com/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.tomitribe.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.tomitribe.com/wp-includes/wlwmanifest.xml"> 
+<link rel="shortlink" href="https://www.tomitribe.com/?p=7914">
+<link rel="alternate" type="application/json+oembed" href="https://www.tomitribe.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Ftomitribe4.wpengine.com%2Fblog%2F5-minutes-or-less-message-driven-beans-with-activemq-and-tomee%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://www.tomitribe.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Ftomitribe4.wpengine.com%2Fblog%2F5-minutes-or-less-message-driven-beans-with-activemq-and-tomee%2F&amp;format=xml">
+<script type="text/javascript"> var root = document.getElementsByTagName( "html" )[0]; root.setAttribute( "class", "js" ); </script><script src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<link rel="stylesheet" href="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/default.min.css">
+
+<script type="text/javascript">
+jQuery( document ).ready(function() {
+  jQuery('#logo').attr('href','https://www.tomitribe.com');
+});
+</script>
+
+<style type="text/css">
+.hljs {
+    background-color: #f8f8f8;
+    background: #f8f8f8;
+    padding: 20px;
+}
+</style>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-38816470-1');
+</script>
+<meta name="zoom-domain-verification" content="ZOOM_verify_HxWlnEPYS5yiGvq0C5zdww">		<script type="text/javascript">
+			var cli_flush_cache=2;
+		</script>
+		<meta name="generator" content="Powered by WPBakery Page Builder - drag and drop page builder for WordPress.">
+<noscript><style> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript>	
+<style></style><style id="theia-sticky-sidebar-stylesheet-TSS">.theiaStickySidebar:after {content: ""; display: table; clear: both;}</style></head>
+
+
+<body class="post-template-default single single-post postid-7914 single-format-standard material wpb-js-composer js-comp-ver-6.0.5 vc_responsive nectar-no-flex-height" data-footer-reveal="false" data-footer-reveal-shadow="none" data-header-format="default" data-body-border="off" data-boxed-style="" data-header-breakpoint="1000" data-dropdown-style="minimal" data-cae="easeOutQuart" data-cad="700" data-megamenu-width="full-width" data-aie="zoom-out" data-ls="magnific" data-apte="standard" data-hhun="1" data-fancy-form-rcs="1" data-form-style="default" data-form-submit="regular" data-is="minimal" data-button-style="rounded_shadow" data-user-account-button="false" data-flex-cols="true" data-col-gap="default" data-header-inherit-rc="false" data-header-search="false" data-animated-anchors="true" data-ajax-transitions="false" data-full-width-header="true" data-slide-out-widget-area="true" data-slide-out-widget-area-style="slide-out-from-right" data-user-set-ocm="off" data-loading-animation="none" data-bg-header="true" data-responsive="1" data-ext-responsive="true" data-header-resize="0" data-header-color="custom" data-cart="false" data-remove-m-parallax="" data-remove-m-video-bgs="" data-force-header-trans-color="light" data-smooth-scrolling="0" data-permanent-transparent="1" style="transform: none;">
+	
+	<script type="text/javascript"> if(navigator.userAgent.match(/(Android|iPod|iPhone|iPad|BlackBerry|IEMobile|Opera Mini)/)) { document.body.className += " using-mobile-browser "; } </script><div class="ocm-effect-wrap" style="transform: none;"><div class="ocm-effect-wrap-inner" style="transform: none;">	
+	<div id="header-outer" data-has-menu="true" data-has-buttons="no" data-using-pr-menu="false" data-mobile-fixed="false" data-ptnm="false" data-lhe="animated_underline" data-user-set-bg="#e47024" data-format="default" data-permanent-transparent="1" data-megamenu-rt="0" data-remove-fixed="1" data-header-resize="0" data-cart="false" data-transparency-option="" data-box-shadow="none" data-shrink-num="25" data-using-secondary="0" data-using-logo="1" data-logo-height="60" data-m-logo-height="40" data-padding="28" data-full-width="true" data-condense="false" data-transparent-header="true" data-transparent-shadow-helper="false" data-remove-border="true" class="transparent">
+		
+		
+<div id="search-outer" class="nectar">
+	<div id="search">
+		<div class="container">
+			 <div id="search-box">
+				 <div class="inner-wrap">
+					 <div class="col span_12">
+						  <form role="search" action="https://www.tomitribe.com/" method="GET">
+														 <input type="text" name="s" value="" placeholder="Search"> 
+							 								
+						<span>Hit enter to search or ESC to close</span>						</form>
+					</div><!--/span_12-->
+				</div><!--/inner-wrap-->
+			 </div><!--/search-box-->
+			 <div id="close"><a href="https://www.tomitribe.com/blog/5-minutes-or-less-message-driven-beans-with-activemq-and-tomee/#">
+				<span class="close-wrap"> <span class="close-line close-line1"></span> <span class="close-line close-line2"></span> </span>				 </a></div>
+		 </div><!--/container-->
+	</div><!--/search-->
+</div><!--/search-outer-->
+
+<header id="top">
+	<div class="container">
+		<div class="row">
+			<div class="col span_3">
+				<a id="logo" href="https://www.tomitribe.com/" data-supplied-ml-starting-dark="false" data-supplied-ml-starting="false" data-supplied-ml="false">
+					<img class="stnd default-logo" alt="Tomitribe" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/Tomitribe-logo.png" srcset="/wp-content/uploads/2018/03/Tomitribe-logo.png 1x, /wp-content/uploads/2018/03/Tomitribe-logo@2x.png 2x"><img class="starting-logo default-logo" alt="Tomitribe" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/Tomitribe-logo-white.png" srcset="/wp-content/uploads/2018/03/Tomitribe-logo-white.png 1x, /wp-content/uploads/2018/03/Tomitribe-white-logo@2x.png 2x"><img class="starting-logo dark-version default-logo" alt="Tomitribe" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/Tomitribe-logo.png" srcset="/wp-content/uploads/2018/03/Tomitribe-logo.png 1x, /wp-content/uploads/2018/03/Tomitribe-logo@2x.png 2x"> 
+				</a>
+				
+							</div><!--/span_3-->
+			
+			<div class="col span_9 col_last">
+									<div class="slide-out-widget-area-toggle mobile-icon slide-out-from-right" data-icon-animation="simple-transform">
+						<div> <a href="https://www.tomitribe.com/blog/5-minutes-or-less-message-driven-beans-with-activemq-and-tomee/#sidewidgetarea" aria-label="Navigation Menu" aria-expanded="false" class="closed">
+							<span aria-hidden="true"> <i class="lines-button x2"> <i class="lines"></i> </i> <i class="lines-button x2 hover-effect"> <i class="lines"></i> </i></span>
+						</a></div> 
+					</div>
+								
+									
+					<nav>
+						
+						<ul class="sf-menu sf-js-enabled sf-arrows">	
+							<li id="menu-item-6590" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-6590"><a href="https://www.tomitribe.com/">Home</a></li>
+<li id="menu-item-6668" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children sf-with-ul menu-item-6668"><a href="https://www.tomitribe.com/services/" class="sf-with-ul">Services<span class="sf-sub-indicator"><i class="fa fa-angle-down icon-in-menu"></i></span></a>
+<ul class="sub-menu">
+	<li id="menu-item-6962" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6962"><a href="https://www.tomitribe.com/services/enterprise-support/">Enterprise Support</a></li>
+	<li id="menu-item-6963" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6963"><a href="https://www.tomitribe.com/services/partnership-program/">Tomitribe Community Partnership Program</a></li>
+</ul>
+</li>
+<li id="menu-item-6655" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6655"><a href="https://www.tomitribe.com/community/">Community</a></li>
+<li id="menu-item-6613" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children sf-with-ul menu-item-6613"><a href="https://www.tomitribe.com/resources/" class="sf-with-ul">Resources<span class="sf-sub-indicator"><i class="fa fa-angle-down icon-in-menu"></i></span></a>
+<ul class="sub-menu">
+	<li id="menu-item-8276" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8276"><a href="https://tomitribe.com/resources/#casestudies-reports">Case Studies &amp; Reports</a></li>
+	<li id="menu-item-8277" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8277"><a href="https://www.tomitribe.com/resources/videos/">Tribe’s Videos</a></li>
+	<li id="menu-item-8278" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8278"><a href="https://www.tomitribe.com/cve/">CVE Survival Guide</a></li>
+</ul>
+</li>
+<li id="menu-item-6591" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6591"><a href="https://www.tomitribe.com/company/">Company</a></li>
+<li id="menu-item-6593" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6593"><a href="https://www.tomitribe.com/blog/">Blog</a></li>
+<li id="menu-item-6595" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6595"><a href="https://www.tomitribe.com/contact/">Contact Us</a></li>
+<li id="menu-item-7847" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7847"><a href="https://support.tomitribe.com/">Login</a></li>
+<li id="menu-item-7457" class="menu-item menu-item-type-post_type menu-item-object-page button_bordered menu-item-7457"><a href="https://www.tomitribe.com/buy/">BUY</a></li>
+						</ul>
+						
+
+													<ul class="buttons sf-menu" data-user-set-ocm="off">
+								
+																
+							</ul>
+												
+					</nav>
+					
+										
+				</div><!--/span_9-->
+				
+								
+			</div><!--/row-->
+					</div><!--/container-->
+	</header>
+		
+	<div class="bg-color-stripe"></div></div>
+	
+		
+	<div id="ajax-content-wrap" style="transform: none;">
+		
+		
+<div id="page-header-wrap" data-animate-in-effect="zoom-out" data-midnight="light" class="" style="height: 550px;"><div id="page-header-bg" class="not-loaded  hentry loaded" data-post-hs="default_minimal" data-padding-amt="normal" data-animate-in-effect="zoom-out" data-midnight="light" data-text-effect="" data-bg-pos="top" data-alignment="left" data-alignment-v="middle" data-parallax="0" data-height="550" style="background-color: #000; height:550px;">					<div class="page-header-bg-image-wrap" id="nectar-page-header-p-wrap" data-parallax-speed="medium">
+						<div class="page-header-bg-image" style="background-image: url(/wp-content/uploads/2019/05/Tomitribe-Blog-Quick-MBD-tutorial.jpg);"></div>
+					</div> 				
+				<div class="container"><img class="hidden-social-img" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/Tomitribe-Blog-Quick-MBD-tutorial.jpg" alt="5 Minutes or Less: Message-Driven Beans with ActiveMQ and TomEE">					
+					<div class="row">
+						<div class="col span_6 section-title blog-title" data-remove-post-date="0" data-remove-post-author="0" data-remove-post-comment-number="0">
+							<div class="inner-wrap">
+								
+								<a class="activemq" href="https://www.tomitribe.com/blog/category/activemq/" style="transform: rotateX(0deg) translate(0px, 0px); opacity: 1;">ActiveMQ</a><a class="apache-tomee" href="https://www.tomitribe.com/blog/category/apache-tomee/" style="transform: rotateX(0deg) translate(0px, 0px); opacity: 1;">Apache TomEE</a><a class="open-source" href="https://www.tomitribe.com/blog/category/open-source/" style="transform: rotateX(0deg) translate(0px, 0px); opacity: 1;">Open Source</a><a class="tomee" href="https://www.tomitribe.com/blog/category/tomee/" style="transform: rotateX(0deg) translate(0px, 0px); opacity: 1;">TomEE</a>								
+								<h1 class="entry-title" style="transform: rotateX(0deg) translate(0px, 0px); opacity: 1;">5 Minutes or Less: Message-Driven Beans with ActiveMQ and TomEE</h1>
+								
+																
+								
+																		
+									<div id="single-below-header" data-hide-on-mobile="false" style="transform: rotateX(0deg) translate(0px, 0px); opacity: 1;">
+										<span class="meta-author vcard author"><span class="fn">By <a href="https://www.tomitribe.com/blog/author/rmonson/" title="Posts by Richard Monson-Haefel" rel="author">Richard Monson-Haefel</a></span></span><!--
+										-->											<span class="meta-date date published">May 23, 2019</span>
+											<span class="meta-date date updated rich-snippet-hidden">May 29th, 2019</span>
+										<!--
+										--><!--
+									--><span class="meta-comment-count"><a href="https://www.tomitribe.com/blog/5-minutes-or-less-message-driven-beans-with-activemq-and-tomee/#respond"> No Comments</a></span>
+															</div><!--/single-below-header-->
+												
+											</div>
+					
+				</div><!--/section-title-->
+			</div><!--/row-->
+
+						
+			
+			
+			</div>
+</div>
+
+</div>
+
+
+
+
+<div class="container-wrap  " style="transform: none; padding-bottom: 0px;">
+
+	<div class="container main-content" style="transform: none;">
+		
+					
+						
+					
+		<div class="row" style="transform: none;">
+			
+			<div class="post-area col  span_9">
+<article id="post-7914" class="post-7914 post type-post status-publish format-standard category-activemq category-apache-tomee category-open-source category-tomee">
+  
+  <div class="inner-wrap">
+
+		<div class="post-content" data-hide-featured-media="0">
+      
+        <div class="content-inner"><p>Tomitribe <a href="https://www.tomitribe.com/services/enterprise-support/">supports</a> many of organizations that use <a href="http://activemq.apache.org/">ActiveMQ</a>, <a href="https://projects.eclipse.org/proposals/eclipse-project-jms">JMS</a>, and <a href="https://projects.eclipse.org/projects/ee4j.ejb">Message-Driven Beans</a> in production with <a href="http://tomee.apache.org/">TomEE</a>. This post is derived from experience working with those organizations to improve their system performance and software architecture.</p>
+<p>When you have finished the tutorial you may be interested in a deeper discussion of what the tutorial is designed to teach you about MDBs. For that, proceed to “<a href="https://www.tomitribe.com/blog/mbd-to-mdb-messaging-harness-the-power-of-the-river-delta/">MBD-to-MDB Messaging: Harness the Power of the River Delta</a>” which explains how MDBs can be used to create a river delta-like architecture.</p>
+<p>The tutorial contains three MDBs and one stand-alone JMS client. The purpose of the system is to extract image URLs and hyperlinks from a web page and process them independently. Ok, let’s get started!</p>
+<h3>1. Download ActiveMQ 5 “Classic”</h3>
+<ul>
+<li>Go to the Apache ActiveMQ <a href="https://activemq.apache.org/components/classic/download/">web page</a> and download ActiveMQ 5 for your operating system.</li>
+</ul>
+<ul>
+<li>Copy the archive to your Desktop and Unzip it.</li>
+</ul>
+<p>You should now have a <code>Desktop/apache-activemq-5.a.b</code> directory (where a.b is minor and point version e.g. <code>Desktop/apache-activemq-5.15.9</code>)</p>
+<p><img class="alignnone size-medium wp-image-7890" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/image-2.png" alt="" width="900" height="438" srcset="/wp-content/uploads/2019/05/image-2.png 1000w, /wp-content/uploads/2019/05/image-2-300x146.png 300w, /wp-content/uploads/2019/05/image-2-768x374.png 768w" sizes="(max-width: 900px) 100vw, 900px"></p>
+<ul>
+<li>Open a console window and navigate ActiveMQ directory.</li>
+</ul>
+<pre class="console">$ cd Desktop/apache-activemq-5.a.b/
+
+</pre>
+<ul>
+<li>Start the ActiveMQ broker.</li>
+</ul>
+<pre class="console">$ bin/activemq console
+
+</pre>
+<h3>Step 2: Download the MDB Example file and Install</h3>
+<ul>
+<li><a href="https://github.com/tomitribe/MdbExample/archive/master.zip">Download</a> the example zip.</li>
+</ul>
+<ul>
+<li>Extract the TomEE Archive and copy it to your Desktop.</li>
+</ul>
+<p>After you’ve downloaded and expanded the MdbExample on your Desktop it should look something like this.</p>
+<p><img class="alignnone size-medium wp-image-7916" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/image-6-1.png" alt="" width="900" height="540" srcset="/wp-content/uploads/2019/05/image-6-1.png 1000w, /wp-content/uploads/2019/05/image-6-1-300x180.png 300w, /wp-content/uploads/2019/05/image-6-1-768x460.png 768w" sizes="(max-width: 900px) 100vw, 900px"></p>
+<h3>Step 3: Download, configure, and start TomEE Plume</h3>
+<ul>
+<li><a href="http://tomee.apache.org/download-ng.html">Download</a> the latest version of the TomEE plume application server.</li>
+</ul>
+<ul>
+<li>Extract the TomEE Archive and copy it to your Desktop.</li>
+</ul>
+<p>You should now have a directory with a name like <code>apache-tomee-plume-&lt;whatever version&gt;</code> on your desktop.</p>
+<p><img class="alignnone size-medium wp-image-7917" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/image-7.png" alt="" width="900" height="540" srcset="/wp-content/uploads/2019/05/image-7.png 1000w, /wp-content/uploads/2019/05/image-7-300x180.png 300w, /wp-content/uploads/2019/05/image-7-768x460.png 768w" sizes="(max-width: 900px) 100vw, 900px"></p>
+<ul>
+<li>Copy configuration files into TomEE Directory.</li>
+</ul>
+<p>In the <code>MdbExample</code> directory that you downloaded, you will find two configuration files: <code>tomee.xml</code> and <code>logging.properties</code>. These need to be copied over to the <code>apache-tomee-plume-&lt;whatever version&gt;/conf</code> directory. When you copy these files you will be overwriting the original files, which is what you want.</p>
+<ul>
+<li>Open a new console windows and navigate to the <code>MdbExample</code> directory</li>
+</ul>
+<pre class="console">$ cd Desktop/MdbExample
+
+</pre>
+<ul>
+<li>Copy the <code>tomee.xml</code> file to the <code>apache-tomee-plume-&lt;whatever version&gt;/conf</code> directory. Be sure to change the <code>&lt;whatever version&gt;</code> to the proper version as was done below.</li>
+</ul>
+<pre class="console">$ cp tomee.xml ../apache-tomee-plume-8.0.0-M2/conf
+
+</pre>
+<p>The <code>tomee.xml</code> file tells the TomEE application server how to connect to the ActiveMQ broker and the names of JMS topic and queue that will be used with the MDB container system.</p>
+<ul>
+<li>In the same console window enter in the following command</li>
+</ul>
+<pre class="console">$ cp logging.properties ../apache-tomee-plume-8.0.0-M2/conf
+
+</pre>
+<p>The <code>logging.properties</code> file includes changes that suppress most of the output form TomEE when running in the console window. This will make it easier to see the output from the MDBs you develop.</p>
+<ul>
+<li>Copy the <code>SpiderEAR.ear</code> file from the <code>MdbExample</code> directory.</li>
+</ul>
+<pre class="console">$ cp SpiderEAR.ear ../apache-tomee-plume-8.0.0-M2/webapps
+
+</pre>
+<p>The <code>SpiderEAR.ear</code> is a Java EE Enterprise Archive (JAR) that contains the three MDBs that you will be deploying into the TomEE application server. The source code for these MDBs can be found in the <code>MdbExample/src/main/java</code> directory on your Desktop or in the MdbExample GitHub <a href="https://github.com/tomitribe/MdbExample/tree/master/src/main/java/example">repository</a>.</p>
+<ul>
+<li>Open a third console windows and navigate to the TomEE directory.</li>
+</ul>
+<pre class="console">$ cd Desktop/apache-tomee-plume-8.0.0-M2
+
+</pre>
+<ul>
+<li>Start TomEE by executing the Catalina <code>run</code> command.</li>
+</ul>
+<pre class="console">$ bin/catalina.sh run
+
+</pre>
+<p>After the TomEE application server starts there will be a lot of output on the screen and then it will pause. After the pause TomEE will detect the <code>SpiderEAR.ear</code> archive and deploy it resulting in some more output (see example below) saying that the <code>SpiderMDB</code>, <code>ImageMDB</code>, and <code>LinkMDB</code> MDBs have been deployed.</p>
+<pre class="console">24-May-2019 08:37:42.369 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] sun.reflect.DelegatingMethodAccessorImpl.invoke Deploying web application directory [/Users/tomitribe/Desktop/apache-tomee-plume-8.0.0-M2/webapps/SpiderEAR]
+24-May-2019 08:37:42.408 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+24-May-2019 08:37:42.414 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] sun.reflect.DelegatingMethodAccessorImpl.invoke Deployment of web application directory [/Users/tomitribe/Desktop/apache-tomee-plume-8.0.0-M2/webapps/SpiderEAR] has finished in [45] ms
+
+</pre>
+<h3>Step 4: Start the Producer and send some Web URLs</h3>
+<p>The <code>Desktop/MdbExample</code> directory contains the JMS Client application that you will use to initiate the program. It will send a message to the MDBs in the TomEE container.</p>
+<ul>
+<li>Switch to the console windows in the <code>Desktop/MdbExample</code> directory and run the Maven <code>install</code> command</li>
+</ul>
+<pre class="console">$ mvn install
+
+</pre>
+<p>When the <code>mvn install</code> command is finished running you should be able to see a new target directory in the <code>MdbExample</code> directory like that shown below.</p>
+<p><img class="alignnone size-medium wp-image-7934" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/target-directory.png" alt="" width="900" height="450" srcset="/wp-content/uploads/2019/05/target-directory.png 1000w, /wp-content/uploads/2019/05/target-directory-300x150.png 300w, /wp-content/uploads/2019/05/target-directory-768x385.png 768w, /wp-content/uploads/2019/05/target-directory-670x335.png 670w" sizes="(max-width: 900px) 100vw, 900px"></p>
+<p>Assuming the target directory has been created you can now start the JMS client in the <code>MdbExample</code> directory.</p>
+<ul>
+<li>Start the JMS Client using the console window in the <code>MdbExample</code> directory.</li>
+</ul>
+<pre class="console">$ java -cp target/jms-example-SNAPSHOT.jar example.Producer Topic
+
+</pre>
+<p>At this point your Desktop should look something like the image below (without the orange labels). There are three open console windows: One is running the ActiveMQ, another is running TomEE Plume and the third is running the JMS Client.</p>
+<p><img class="alignnone size-medium wp-image-7936" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/desktop-with-all-console-windows.png" alt="" width="900" height="507" srcset="/wp-content/uploads/2019/05/desktop-with-all-console-windows.png 1000w, /wp-content/uploads/2019/05/desktop-with-all-console-windows-300x169.png 300w, /wp-content/uploads/2019/05/desktop-with-all-console-windows-768x433.png 768w" sizes="(max-width: 900px) 100vw, 900px"></p>
+<p>At the “<code>Enter message:</code>” prompt on the JMS client window enter any web site address and see the results. For this first run, let’s use the Tomitribe web site. Type <code>http://www.tomitribe.com</code> at the prompt as shown below and hit “Enter”</p>
+<ul>
+<li>Enter the <code>http://www.tomitribe.com</code> Web URL at the prompt.</li>
+</ul>
+<pre class="console">$ java -cp target/jms-example-SNAPSHOT.jar example.Producer Topic
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+
+Enter message: http://www.tomitribe.com
+
+</pre>
+<p>After you enter the Tomitribe web site address the program will run and you will see lots of colored output in the TomEE Plume console windows like that shown below.</p>
+<p><img class="alignnone size-medium wp-image-7937" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/desktop-with-all-console-windows-2.png" alt="" width="900" height="510" srcset="/wp-content/uploads/2019/05/desktop-with-all-console-windows-2.png 1000w, /wp-content/uploads/2019/05/desktop-with-all-console-windows-2-300x170.png 300w, /wp-content/uploads/2019/05/desktop-with-all-console-windows-2-768x434.png 768w" sizes="(max-width: 900px) 100vw, 900px"></p>
+<ul>
+<li>Review the output.</li>
+</ul>
+<p>Now take a closer look at the console windows in which TomEE is running. Scroll to start of the colored lines. It will look something like this:</p>
+<p><img class="alignnone size-medium wp-image-7922" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/image-4-1.png" alt="" width="900" height="507" srcset="/wp-content/uploads/2019/05/image-4-1.png 1000w, /wp-content/uploads/2019/05/image-4-1-300x169.png 300w, /wp-content/uploads/2019/05/image-4-1-768x432.png 768w" sizes="(max-width: 900px) 100vw, 900px"></p>
+<p>The <span style="color: blue;"><b>blue</b></span> text is the output from the <code>SpiderMDB</code>. It shows that one of its instances received the URL from the JMS Client and then parsed the web page to determine that there are 15 images. After the blue lines is the output from the <code>ImageMDB</code> which prints every message it received in <span style="color: orange;"><b>orange</b></span>. One line of orange output for each image. The next blue line is the count of links and each <span style="color: green;"><b>green</b></span> line represents a link that was sent in a text message from the <code>SpiderMDB</code> to the <code>LinkMDB</code>.</p>
+<p>Every JMS message is handled by a single MDB instance, which is identified by the “<code>@nn</code>” tag at the start of each line. This shows that the work is divided up among many instances and that instances can and are reused – this enables MDBs to scale handling many messages and operations in a short period of time. Finally, the demo illustrates how MDB-to-MDB communication works providing enormous flexibility in a system architecture.</p>
+<p>Congratulations you just ran the entire MdbExample and it should have taken you about five minutes.</p>
+<h3>Step 5: Review the Source Code</h3>
+<p>The source code for the JMS client and the three MDBs (<code>SpiderMDB</code>, <code>ImageMDB</code>, <code>LinkMDB</code>) are contained in the example file you downloaded and on <a href="https://github.com/tomitribe/MdbExample/tree/master/src/main/java/example">GitHub</a>. These source files contain a lot of comments which explain the code and how it works. Take the time to review that source code if want to see how MDBs process incoming JMS messages and send their own messages.</p>
+</div>        
+      </div><!--/post-content-->
+      
+    </div><!--/inner-wrap-->
+    
+</article>						
+							<div class="bottom-meta">	
+								<div class="sharing-default-minimal" data-bottom-space="true"></div>							</div>
+													
+							<div id="author-bio" class="" data-has-tags="false">
+								<div class="span_12">
+									<img alt="Richard Monson-Haefel" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/dda7c8a7bb2784cbc54cb54ce5dc4ff6.png" srcset="https://secure.gravatar.com/avatar/dda7c8a7bb2784cbc54cb54ce5dc4ff6?s=160&amp;d=mm&amp;r=g 2x" class="avatar avatar-80 photo" height="80" width="80">									<div id="author-info">
+										<h3><span></span> 
+											
+											<a href="https://www.tomitribe.com/blog/author/rmonson/">Richard Monson-Haefel</a></h3>
+										
+										<p>Richard has more the 24 years of experience as a professional software developer and architect. He has written five books on enterprise Java including EJB, JMS, web services, and software architecture. He has served on the JCP executive committee and multiple expert groups, is the co-founder of OpenEJB and Apache Geronimo, was a Sr. Analyst for Burton Group (aka Gartner), and is a celebrated public speaker.                          					<br>
+              									<a class="tw-link" href="https://twitter.com/rmonson" target="_blank"><i class="fa fa-twitter"></i>rmonson</a></p>
+              								                          				<p></p>
+									</div>
+																		<div class="clear"></div>
+								</div>
+							</div>
+							
+					
+			
+
+
+			</div><!--/span_9-->
+			
+							
+				<div id="sidebar" data-nectar-ss="1" class="col span_3 col_last" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+													<div class="theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: static; top: 0px; left: 1256.98px;"><div id="media_image-7" class="widget widget_media_image"><a href="https://www.tomitribe.com/buy/"><img width="300" height="300" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/Blog-Sidebar-ad-300x300.png" class="image wp-image-8330  attachment-medium size-medium" alt="" style="max-width: 100%; height: auto;" srcset="/wp-content/uploads/2019/12/Blog-Sidebar-ad-300x300.png 300w, /wp-content/uploads/2019/12/Blog-Sidebar-ad-150x150.png 150w, /wp-content/uploads/2019/12/Blog-Sidebar-ad-100x100.png 100w, /wp-content/uploads/2019/12/Blog-Sidebar-ad-140x140.png 140w, /wp-content/uploads/2019/12/Blog-Sidebar-ad.png 500w, /wp-content/uploads/2019/12/Blog-Sidebar-ad-350x350.png 350w" sizes="(max-width: 300px) 100vw, 300px"></a></div><div id="recent-posts-extra-2" class="widget recent_posts_extra_widget">			<h4>Recent Posts Extra</h4>				
+			<ul class="nectar_blog_posts_recent_extra nectar_widget" data-style="minimal-counter">
+				
+			<li><a href="https://www.tomitribe.com/blog/devnexus-2020/"> <div class="arrow-circle"> <svg width="38" height="38"> <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="19" cy="19" r="18"></circle> </svg>  </div><span class="meta-wrap"><span class="post-title">DevNexus 2020</span> <span class="post-date">February 5, 2020</span></span></a></li><li><a href="https://www.tomitribe.com/blog/servlets-and-tomcat-23-years-and-counting/"> <div class="arrow-circle"> <svg width="38" height="38"> <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="19" cy="19" r="18"></circle> </svg>  </div><span class="meta-wrap"><span class="post-title">Servlets and Tomcat: 23+ Years and Counting</span> <span class="post-date">January 16, 2020</span></span></a></li><li><a href="https://www.tomitribe.com/blog/tomee-webprofile-vs-tomee-microprofile-vs-tomee-vs-tomee-plume/"> <div class="arrow-circle"> <svg width="38" height="38"> <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="19" cy="19" r="18"></circle> </svg>  </div><span class="meta-wrap"><span class="post-title">TomEE WebProfile vs. TomEE MicroProfile vs. TomEE+ vs. TomEE PluME</span> <span class="post-date">December 19, 2019</span></span></a></li><li><a href="https://www.tomitribe.com/blog/tomee-for-the-holidays-2nd-annual-event/"> <div class="arrow-circle"> <svg width="38" height="38"> <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="19" cy="19" r="18"></circle> </svg>  </div><span class="meta-wrap"><span class="post-title">TomEE for the Holidays, 2nd Annual Event!</span> <span class="post-date">December 10, 2019</span></span></a></li><li><a href="https://www.tomitribe.com/blog/tomee-vs-tomcat/"> <div class="arrow-circle"> <svg width="38" height="38"> <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="19" cy="19" r="18"></circle> </svg>  </div><span class="meta-wrap"><span class="post-title">TomEE vs. Tomcat</span> <span class="post-date">December 5, 2019</span></span></a></li>			</ul>
+			</div><div id="categories-2" class="widget widget_categories"><h4>Categories</h4>		<ul>
+				<li class="cat-item cat-item-95"><a href="https://www.tomitribe.com/blog/category/activemq/">ActiveMQ</a>
+</li>
+	<li class="cat-item cat-item-83"><a href="https://www.tomitribe.com/blog/category/apache-tomee/">Apache TomEE</a>
+</li>
+	<li class="cat-item cat-item-84"><a href="https://www.tomitribe.com/blog/category/arquillian/">Arquillian</a>
+</li>
+	<li class="cat-item cat-item-34"><a href="https://www.tomitribe.com/blog/category/blog/">Blog</a>
+</li>
+	<li class="cat-item cat-item-91"><a href="https://www.tomitribe.com/blog/category/cloud/">Cloud</a>
+</li>
+	<li class="cat-item cat-item-81"><a href="https://www.tomitribe.com/blog/category/community/">Community</a>
+</li>
+	<li class="cat-item cat-item-85"><a href="https://www.tomitribe.com/blog/category/docker/">Docker</a>
+</li>
+	<li class="cat-item cat-item-87"><a href="https://www.tomitribe.com/blog/category/eclipse-foundation/">Eclipse Foundation</a>
+</li>
+	<li class="cat-item cat-item-94"><a href="https://www.tomitribe.com/blog/category/es/">ES</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="https://www.tomitribe.com/blog/category/food-for-thought/">Food for thought</a>
+</li>
+	<li class="cat-item cat-item-86"><a href="https://www.tomitribe.com/blog/category/hazelcast/">Hazelcast</a>
+</li>
+	<li class="cat-item cat-item-99"><a href="https://www.tomitribe.com/blog/category/interview/">Interview</a>
+</li>
+	<li class="cat-item cat-item-78"><a href="https://www.tomitribe.com/blog/category/jakarta-ee/">Jakarta EE</a>
+</li>
+	<li class="cat-item cat-item-82"><a href="https://www.tomitribe.com/blog/category/java-community-processes/">Java Community Processes</a>
+</li>
+	<li class="cat-item cat-item-96"><a href="https://www.tomitribe.com/blog/category/java-ee/">Java EE</a>
+</li>
+	<li class="cat-item cat-item-97"><a href="https://www.tomitribe.com/blog/category/jnation/">JNation</a>
+</li>
+	<li class="cat-item cat-item-101"><a href="https://www.tomitribe.com/blog/category/maven/">Maven</a>
+</li>
+	<li class="cat-item cat-item-77"><a href="https://www.tomitribe.com/blog/category/microprofile/">MicroProfile</a>
+</li>
+	<li class="cat-item cat-item-79"><a href="https://www.tomitribe.com/blog/category/open-source/">Open Source</a>
+</li>
+	<li class="cat-item cat-item-92"><a href="https://www.tomitribe.com/blog/category/tomee/">TomEE</a>
+</li>
+	<li class="cat-item cat-item-80"><a href="https://www.tomitribe.com/blog/category/tomitribe/">Tomitribe</a>
+</li>
+	<li class="cat-item cat-item-100"><a href="https://www.tomitribe.com/blog/category/apache-tomee/tutorials/">Tutorials</a>
+</li>
+		</ul>
+			</div></div></div><!--/sidebar-->
+				
+
+						
+			
+		</div><!--/row-->
+
+		
+
+		<!--ascend only author/comment positioning-->
+		<div class="row">
+
+						 
+			 <div data-post-header-style="default_minimal" class="blog_next_prev_buttons wpb_row vc_row-fluid full-width-content standard_section" data-style="fullwidth_next_prev" data-midnight="light" style="left: 0px; margin-left: -300px; width: 1920px; visibility: visible;">
+				 
+				 <ul class="controls"><li class="previous-post  mouse-leaving"><div class="post-bg-img" style="background-image: url(/wp-content/uploads/2019/05/Blog-MBD-MDB.jpg);"></div><a href="https://www.tomitribe.com/blog/mbd-to-mdb-messaging-harness-the-power-of-the-river-delta/"></a><h3><span>Previous Post</span><span class="text">MBD-to-MDB Messaging: Harness the Power of the River Delta
+						 <svg class="next-arrow" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 39 12"><line class="top" x1="23" y1="-0.5" x2="29.5" y2="6.5" stroke="#ffffff;"></line><line class="bottom" x1="23" y1="12.5" x2="29.5" y2="5.5" stroke="#ffffff;"></line></svg><span class="line"></span></span></h3></li><li class="next-post "><div class="post-bg-img" style="background-image: url(/wp-content/uploads/2019/04/Tomitribe-Blog-Docker-y-debug.jpg);"></div><a href="https://www.tomitribe.com/blog/debug-mode-in-docker-for-tomcat-and-tomee/"></a><h3><span>Next Post</span><span class="text">Debug mode in Docker for Tomcat and TomEE
+						 <svg class="next-arrow" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 39 12"><line class="top" x1="23" y1="-0.5" x2="29.5" y2="6.5" stroke="#ffffff;"></line><line class="bottom" x1="23" y1="12.5" x2="29.5" y2="5.5" stroke="#ffffff;"></line></svg><span class="line"></span></span></h3></li></ul>
+			 </div>
+			 
+			 <div class="row vc_row-fluid full-width-section related-post-wrap" data-using-post-pagination="true" data-midnight="dark"> <div class="row-bg-wrap"><div class="row-bg"></div></div> <h3 class="related-title ">Related Posts</h3><div class="row span_12 blog-recent related-posts columns-3" data-style="classic_enhanced" data-color-scheme="light">					 
+					 <div class="col span_4">
+						 <div class="inner-wrap post-8362 post type-post status-publish format-standard has-post-thumbnail category-apache-tomee category-community category-jakarta-ee category-open-source">
+							 
+							 <a href="https://www.tomitribe.com/blog/devnexus-2020/" class="img-link"><span class="post-featured-img"><img width="600" height="403" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/Tomitribe-Devnexus-2020-600x403.png" class="attachment-portfolio-thumb size-portfolio-thumb wp-post-image" alt="" title="" srcset="/wp-content/uploads/2020/02/Tomitribe-Devnexus-2020-600x403.png 600w, /wp-content/uploads/2020/02/Tomitribe-Devnexus-2020-900x604.png 900w, /wp-content/uploads/2020/02/Tomitribe-Devnexus-2020-400x269.png 400w" sizes="(max-width: 600px) 100vw, 600px"></span></a>							 
+							 <span class="meta-category"><a class="apache-tomee" href="https://www.tomitribe.com/blog/category/apache-tomee/">Apache TomEE</a><a class="community" href="https://www.tomitribe.com/blog/category/community/">Community</a><a class="jakarta-ee" href="https://www.tomitribe.com/blog/category/jakarta-ee/">Jakarta EE</a><a class="open-source" href="https://www.tomitribe.com/blog/category/open-source/">Open Source</a></span>							 
+							 <a class="entire-meta-link" href="https://www.tomitribe.com/blog/devnexus-2020/"></a>
+							 
+							 <div class="article-content-wrap">
+								 <div class="post-header">
+									 <span class="meta"> 
+										 February 5, 2020									 </span> 
+									 <h3 class="title">DevNexus 2020</h3>	
+								 </div><!--/post-header-->
+								 
+								 							 </div>
+							 
+							 								 
+								 <div class="post-meta">
+									 <span class="meta-author"> <a href="https://www.tomitribe.com/blog/author/chernandez/"> <i class="icon-default-style icon-salient-m-user"></i> Cesar Hernandez</a> </span> 
+									 
+									 										 <span class="meta-comment-count">  <a href="https://www.tomitribe.com/blog/devnexus-2020/#respond">
+											 <i class="icon-default-style steadysets-icon-chat-3"></i> 0</a>
+										 </span>
+									 									 
+								 </div>
+								 							 
+						 </div>
+					 </div>
+					 					 
+					 <div class="col span_4">
+						 <div class="inner-wrap post-8343 post type-post status-publish format-standard category-apache-tomee category-jakarta-ee category-open-source category-tomee">
+							 
+							 							 
+							 <span class="meta-category"><a class="apache-tomee" href="https://www.tomitribe.com/blog/category/apache-tomee/">Apache TomEE</a><a class="jakarta-ee" href="https://www.tomitribe.com/blog/category/jakarta-ee/">Jakarta EE</a><a class="open-source" href="https://www.tomitribe.com/blog/category/open-source/">Open Source</a><a class="tomee" href="https://www.tomitribe.com/blog/category/tomee/">TomEE</a></span>							 
+							 <a class="entire-meta-link" href="https://www.tomitribe.com/blog/servlets-and-tomcat-23-years-and-counting/"></a>
+							 
+							 <div class="article-content-wrap">
+								 <div class="post-header">
+									 <span class="meta"> 
+										 January 16, 2020									 </span> 
+									 <h3 class="title">Servlets and Tomcat: 23+ Years and Counting</h3>	
+								 </div><!--/post-header-->
+								 
+								 							 </div>
+							 
+							 								 
+								 <div class="post-meta">
+									 <span class="meta-author"> <a href="https://www.tomitribe.com/blog/author/rmonson/"> <i class="icon-default-style icon-salient-m-user"></i> Richard Monson-Haefel</a> </span> 
+									 
+									 										 <span class="meta-comment-count">  <a href="https://www.tomitribe.com/blog/servlets-and-tomcat-23-years-and-counting/#respond">
+											 <i class="icon-default-style steadysets-icon-chat-3"></i> 0</a>
+										 </span>
+									 									 
+								 </div>
+								 							 
+						 </div>
+					 </div>
+					 					 
+					 <div class="col span_4">
+						 <div class="inner-wrap post-8324 post type-post status-publish format-standard category-open-source category-tomee">
+							 
+							 							 
+							 <span class="meta-category"><a class="open-source" href="https://www.tomitribe.com/blog/category/open-source/">Open Source</a><a class="tomee" href="https://www.tomitribe.com/blog/category/tomee/">TomEE</a></span>							 
+							 <a class="entire-meta-link" href="https://www.tomitribe.com/blog/tomee-webprofile-vs-tomee-microprofile-vs-tomee-vs-tomee-plume/"></a>
+							 
+							 <div class="article-content-wrap">
+								 <div class="post-header">
+									 <span class="meta"> 
+										 December 19, 2019									 </span> 
+									 <h3 class="title">TomEE WebProfile vs. TomEE MicroProfile vs. TomEE+ vs. TomEE PluME</h3>	
+								 </div><!--/post-header-->
+								 
+								 							 </div>
+							 
+							 								 
+								 <div class="post-meta">
+									 <span class="meta-author"> <a href="https://www.tomitribe.com/blog/author/rmonson/"> <i class="icon-default-style icon-salient-m-user"></i> Richard Monson-Haefel</a> </span> 
+									 
+									 										 <span class="meta-comment-count">  <a href="https://www.tomitribe.com/blog/tomee-webprofile-vs-tomee-microprofile-vs-tomee-vs-tomee-plume/#comments">
+											 <i class="icon-default-style steadysets-icon-chat-3"></i> 1</a>
+										 </span>
+									 									 
+								 </div>
+								 							 
+						 </div>
+					 </div>
+					 </div></div>
+			
+
+			  
+			 	 <div class="comments-section" data-author-bio="true">
+					   
+<div class="comment-wrap " data-midnight="dark" data-comments-open="true">
+
+
+			<!-- If comments are open, but there are no comments. -->
+
+	 
+
+	<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="https://www.tomitribe.com/blog/5-minutes-or-less-message-driven-beans-with-activemq-and-tomee/#respond" style="display:none;">Cancel Reply</a></small></h3><form action="https://www.tomitribe.com/wp-comments-post.php?wpe-comment-post=tomitribe4" method="post" id="commentform" class="comment-form"><div class="row"><div class="col span_12"><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></div></div><div class="row"> <div class="col span_4"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30"></div>
+<div class="col span_4"><label for="email">Email <span class="required">*</span></label><input id="email" name="email" type="text" value="" size="30"></div>
+<div class="col span_4 col_last"><label for="url">Website</label><input id="url" name="url" type="text" value="" size="30"></div></div>
+<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"><label for="wp-comment-cookies-consent">Save my name, email, and website in this browser for the next time I comment.</label></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Submit Comment"> <input type="hidden" name="comment_post_ID" value="7914" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="068588a057"></p><p style="display: none;"></p><input type="hidden" id="ak_js" name="ak_js" value="1582208253063"></form>	</div><!-- #respond -->
+	
+</div>				 </div>   
+
+			 
+		</div>
+
+
+	   		
+	</div><!--/container-->
+
+</div><!--/container-wrap-->
+
+
+
+
+	<script>
+		/*
+					*/
+	</script>
+
+<div id="footer-outer" data-cols="5" data-custom-color="true" data-disable-copyright="false" data-matching-section-color="false" data-copyright-line="true" data-using-bg-img="false" data-bg-img-overlay="0.8" data-full-width="false" data-using-widget-area="true" data-link-hover="default">
+	
+		
+	<div id="footer-widgets" data-has-widgets="true" data-cols="5">
+		
+		<div class="container">
+			
+						
+			<div class="row">
+				
+								
+				<div class="col span_3 one-fourths clear-both">
+					<!-- Footer widget area 1 -->
+					<div id="media_image-3" class="widget widget_media_image"><a href="https://www.tomitribe.com/"><img width="220" height="70" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/Tomitribe-logo-220x70.png" class="image wp-image-6799  attachment-full size-full" alt="" style="max-width: 100%; height: auto;"></a></div>					</div><!--/span_3-->
+					
+											
+						<div class="col span_3 one-fourths right-edge">
+							<!-- Footer widget area 2 -->
+							<div id="nav_menu-6" class="widget widget_nav_menu"><h4>Tomitribe</h4><div class="menu-footer-tomitribe-container"><ul id="menu-footer-tomitribe" class="menu"><li id="menu-item-6795" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6795"><a href="https://www.tomitribe.com/services/">Services</a></li>
+<li id="menu-item-6793" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6793"><a href="https://www.tomitribe.com/community/">Community</a></li>
+<li id="menu-item-6794" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6794"><a href="https://www.tomitribe.com/resources/">Resources</a></li>
+<li id="menu-item-6798" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6798"><a href="https://www.tomitribe.com/company/">Company</a></li>
+<li id="menu-item-6797" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6797"><a href="https://www.tomitribe.com/blog/">Blog</a></li>
+<li id="menu-item-6796" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6796"><a href="https://www.tomitribe.com/contact/">Contact Us</a></li>
+</ul></div></div>								
+							</div><!--/span_3-->
+							
+												
+						
+													<div class="col span_3 one-fourths clear-both">
+								<!-- Footer widget area 3 -->
+								<div id="nav_menu-9" class="widget widget_nav_menu"><h4>Open Source Projects</h4><div class="menu-footer-os-projects-container"><ul id="menu-footer-os-projects" class="menu"><li id="menu-item-6451" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6451"><a href="http://tomee.apache.org/">Apache TomEE</a></li>
+<li id="menu-item-6514" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6514"><a href="http://tomcat.apache.org/">Apache Tomcat</a></li>
+<li id="menu-item-6450" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6450"><a href="https://tomitribe.io/">Tomitribe Open Source</a></li>
+<li id="menu-item-6449" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6449"><a href="https://microprofile.io/">Eclipse MicroProfile</a></li>
+<li id="menu-item-7001" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7001"><a href="https://jakarta.ee/">Jakarta EE</a></li>
+</ul></div></div>									
+								</div><!--/span_3-->
+														
+															<div class="col span_3 one-fourths right-edge">
+									<!-- Footer widget area 4 -->
+									<div id="nav_menu-8" class="widget widget_nav_menu"><h4>Tribestream</h4><div class="menu-footer-tribestream-container"><ul id="menu-footer-tribestream" class="menu"><li id="menu-item-6488" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6488"><a href="http://tribestream.io/">API Gateway</a></li>
+</ul></div></div>										
+									</div><!--/span_3-->
+																
+							</div><!--/row-->
+							
+														
+						</div><!--/container-->
+						
+					</div><!--/footer-widgets-->
+					
+					
+  <div class="row" id="copyright" data-layout="default">
+	
+	<div class="container">
+	   
+				<div class="col span_5">
+		   
+					   
+						<p>
+				All Rights Reserved. Copyright © 2019 Tomitribe. <br> <a href="https://www.tomitribe.com/legal/community-terms-of-use/">Community Terms of Service</a> | <a href="https://www.tomitribe.com/legal/website-terms-of-service/">Terms of Service</a> | <a href="https://www.tomitribe.com/legal/privacy-policy/">Privacy Policy</a>			 </p>	
+					   
+		</div><!--/span_5-->
+			   
+	  <div class="col span_7 col_last">
+		<ul class="social">
+						   <li><a target="_blank" href="https://twitter.com/tomitribe"><i class="fa fa-twitter"></i> </a></li> 		  			 <li><a target="_blank" href="https://www.facebook.com/Tomitribe/"><i class="fa fa-facebook"></i> </a></li> 		  		  		  			 <li><a target="_blank" href="https://www.linkedin.com/company/tomitribe"><i class="fa fa-linkedin"></i> </a></li> 		  			 <li><a target="_blank" href="https://www.youtube.com/channel/UC2Q0ikaZBPP-1g7q9zGthVQ"><i class="fa fa-youtube-play"></i> </a></li> 		  		  		  		  			 <li><a target="_blank" href="https://github.com/tomitribe"><i class="fa fa-github-alt"></i></a></li> 		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		                            		</ul>
+	  </div><!--/span_7-->
+
+	  	
+	</div><!--/container-->
+	
+  </div><!--/row-->
+  
+		
+</div><!--/footer-outer-->
+
+	
+	
+		
+		
+			
+</div> <!--/ajax-content-wrap-->
+
+	<a id="to-top" class="
+	mobile-enabled	" style="bottom: -30px;"><i class="fa fa-angle-up top-icon"></i><i class="fa fa-angle-up"></i></a>
+	</div></div><div id="slide-out-widget-area" class="slide-out-from-right" data-dropdown-func="separate-dropdown-parent-link" data-back-txt="Back" style="padding-top: 104px; padding-bottom: 104px;">
+			
+			<div class="inner-wrap">			
+			<div class="inner" data-prepend-menu-mobile="false">
+				
+				
+				
+				
+									<div class="off-canvas-menu-container mobile-only">
+						
+												
+						<ul class="menu">
+							<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-6590"><a href="https://www.tomitribe.com/">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-6668"><a href="https://www.tomitribe.com/services/">Services</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6962"><a href="https://www.tomitribe.com/services/enterprise-support/">Enterprise Support</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6963"><a href="https://www.tomitribe.com/services/partnership-program/">Tomitribe Community Partnership Program</a></li>
+</ul>
+<span class="ocm-dropdown-arrow" style="top: 0px;"><i class="fa fa-angle-down"></i></span></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6655"><a href="https://www.tomitribe.com/community/">Community</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-6613"><a href="https://www.tomitribe.com/resources/">Resources</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8276"><a href="https://tomitribe.com/resources/#casestudies-reports">Case Studies &amp; Reports</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8277"><a href="https://www.tomitribe.com/resources/videos/">Tribe’s Videos</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8278"><a href="https://www.tomitribe.com/cve/">CVE Survival Guide</a></li>
+</ul>
+<span class="ocm-dropdown-arrow" style="top: 0px;"><i class="fa fa-angle-down"></i></span></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6591"><a href="https://www.tomitribe.com/company/">Company</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6593"><a href="https://www.tomitribe.com/blog/">Blog</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6595"><a href="https://www.tomitribe.com/contact/">Contact Us</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7847"><a href="https://support.tomitribe.com/">Login</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7457"><a href="https://www.tomitribe.com/buy/">BUY</a></li>
+							
+						</ul>
+						
+						<ul class="menu secondary-header-items">
+													</ul>
+					</div>
+										
+				</div>
+				
+				<div class="bottom-meta-wrap"><ul class="off-canvas-social-links"><li><a target="_blank" href="https://twitter.com/tomitribe"><i class="fa fa-twitter"></i></a></li><li><a target="_blank" href="https://www.facebook.com/Tomitribe/"><i class="fa fa-facebook"></i></a></li><li><a target="_blank" href="https://www.linkedin.com/company/tomitribe"><i class="fa fa-linkedin"></i></a></li><li><a target="_blank" href="https://www.youtube.com/channel/UC2Q0ikaZBPP-1g7q9zGthVQ"><i class="fa fa-youtube-play"></i></a></li><li><a target="_blank" href="https://github.com/tomitribe"><i class="fa fa-github-alt"></i></a></li></ul></div><!--/bottom-meta-wrap--></div> <!--/inner-wrap-->					
+				</div><div id="slide-out-widget-area-bg" class="slide-out-from-right dark">
+				</div><a class="slide_out_area_close" href="https://www.tomitribe.com/blog/5-minutes-or-less-message-driven-beans-with-activemq-and-tomee/#">
+					<span class="close-wrap"> <span class="close-line close-line1"></span> <span class="close-line close-line2"></span> </span>				</a><!--/ocm-effect-wrap--><div id="cookie-law-info-bar" style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-family: inherit; bottom: 0px; position: fixed; display: none;"><span>This website uses cookies to improve your experience, enable us to analyze the traffic and usage of the website. By selecting "Accept," you agree that Tomitribe may collect data about you and use cookies or related technologies.<br>
+<a data-cli_action="accept" id="cookie_action_close_header" class="medium cli-plugin-button cli-plugin-main-button cookie_action_close_header cli_action_button" style="display: inline-block; margin: 5px; color: rgb(255, 255, 255); background-color: rgb(0, 0, 0);">Accept</a> <a href="https://www.tomitribe.com/legal/privacy-policy/" id="CONSTANT_OPEN_URL" target="_blank" class="cli-plugin-main-link" style="display: inline-block; margin: 5px; color: rgb(68, 68, 68);">Read More</a></span></div><div id="cookie-law-info-again" style="display: none; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); position: fixed; font-family: inherit; width: auto; bottom: 0px; right: 100px;"><span id="cookie_hdr_showagain">Privacy &amp; Cookies Policy</span></div><div class="cli-modal" id="cliSettingsPopup" tabindex="-1" role="dialog" aria-labelledby="cliSettingsPopup" aria-hidden="true">
+  <div class="cli-modal-dialog" role="document">
+    <div class="cli-modal-content cli-bar-popup">
+      <button type="button" class="cli-modal-close" id="cliModalClose">
+        <svg class="" viewBox="0 0 24 24"><path d="M19 6.41l-1.41-1.41-5.59 5.59-5.59-5.59-1.41 1.41 5.59 5.59-5.59 5.59 1.41 1.41 5.59-5.59 5.59 5.59 1.41-1.41-5.59-5.59z"></path><path d="M0 0h24v24h-24z" fill="none"></path></svg>
+      </button>
+      <div class="cli-modal-body">
+        <div class="cli-container-fluid cli-tab-container">
+    <div class="cli-row">
+        <div class="cli-col-12 cli-align-items-stretch cli-px-0">
+            <div class="cli-privacy-overview">
+                                                   
+                <div class="cli-privacy-content">
+                    <div class="cli-privacy-content-text"></div>
+                </div>
+                <a class="cli-privacy-readmore" data-readmore-text="Show more" data-readless-text="Show less" style="display: none;"></a>            </div>
+        </div>  
+        <div class="cli-col-12 cli-align-items-stretch cli-px-0 cli-tab-section-container">
+            <div class="cli-tab-section cli-privacy-tab">
+                <div class="cli-tab-header">
+                    <a class="cli-nav-link cli-settings-mobile">
+                                            </a>
+                </div>
+                <div class="cli-tab-content">
+                    <div class="cli-tab-pane cli-fade">
+                        <p></p>
+                    </div>
+                </div>
+
+            </div>
+              
+                            <div class="cli-tab-section">
+                    <div class="cli-tab-header">
+                        <a class="cli-nav-link cli-settings-mobile" data-target="necessary" data-toggle="cli-toggle-tab">
+                            Necessary 
+                        </a>
+                    
+                    <span class="cli-necessary-caption">Always Enabled</span>                     </div>
+                    <div class="cli-tab-content">
+                        <div class="cli-tab-pane cli-fade" data-id="necessary">
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+              
+                       
+        </div>
+    </div> 
+</div> 
+      </div>
+    </div>
+  </div>
+</div>
+<div class="cli-modal-backdrop cli-fade cli-settings-overlay"></div>
+<div class="cli-modal-backdrop cli-fade cli-popupbar-overlay"></div>
+<script type="text/javascript">
+  /* <![CDATA[ */
+  cli_cookiebar_settings='{"animate_speed_hide":"500","animate_speed_show":"500","background":"#FFF","border":"#b1a6a6c2","border_on":false,"button_1_button_colour":"#000","button_1_button_hover":"#000000","button_1_link_colour":"#fff","button_1_as_button":true,"button_1_new_win":false,"button_2_button_colour":"#333","button_2_button_hover":"#292929","button_2_link_colour":"#444","button_2_as_button":false,"button_2_hidebar":false,"button_3_button_colour":"#000","button_3_button_hover":"#000000","button_3_link_colour":"#fff","button_3_as_button":true,"button_3_new_win":false,"button_4_button_colour":"#000","button_4_button_hover":"#000000","button_4_link_colour":"#fff","button_4_as_button":true,"font_family":"inherit","header_fix":false,"notify_animate_hide":true,"notify_animate_show":false,"notify_div_id":"#cookie-law-info-bar","notify_position_horizontal":"right","notify_position_vertical":"bottom","scroll_close":false,"scroll_close_reload":false,"accept_close_reload":false,"reject_close_reload":false,"showagain_tab":false,"showagain_background":"#fff","showagain_border":"#000","showagain_div_id":"#cookie-law-info-again","showagain_x_position":"100px","text":"#000","show_once_yn":false,"show_once":"10000","logging_on":false,"as_popup":false,"popup_overlay":true,"bar_heading_text":"","cookie_bar_as":"banner","popup_showagain_position":"bottom-right","widget_position":"left"}';
+  /* ]]> */
+</script><script type="text/javascript">
+/* <![CDATA[ */
+var wpcf7 = {"apiSettings":{"root":"\/wp-json\/contact-form-7\/v1","namespace":"contact-form-7\/v1"},"cached":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/scripts.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var nectarLove = {"ajaxurl":"\/wp-admin\/admin-ajax.php","postID":"7914","rooturl":"https:\/\/tomitribe4.wpengine.com","loveNonce":"8f772a2baf"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/salient-social.js"></script>
+<script type="text/javascript" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/jquery.easing.js"></script>
+<script type="text/javascript" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/priority.js"></script>
+<script type="text/javascript" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/transit.js"></script>
+<script type="text/javascript" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/waypoints.js"></script>
+<script type="text/javascript" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/modernizr.js"></script>
+<script type="text/javascript" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/imagesLoaded.min.js"></script>
+<script type="text/javascript" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/hoverintent.js"></script>
+<script type="text/javascript" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/magnific.js"></script>
+<script type="text/javascript" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/superfish.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var nectarLove = {"ajaxurl":"\/wp-admin\/admin-ajax.php","postID":"7914","rooturl":"https:\/\/tomitribe4.wpengine.com","disqusComments":"false","loveNonce":"8f772a2baf","mapApiKey":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/init.js"></script>
+<script type="text/javascript" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/stickkit.js"></script>
+<script type="text/javascript" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/touchswipe.min.js"></script>
+<script type="text/javascript" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/select2.min.js"></script>
+<script type="text/javascript" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/comment-reply.min.js"></script>
+<script type="text/javascript" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/wp-embed.min.js"></script>
+<script async="async" type="text/javascript" src="./5 Minutes or Less_ Message-Driven Beans with ActiveMQ and TomEE - Tomitribe_files/form.js"></script>
+
+</body></html>
