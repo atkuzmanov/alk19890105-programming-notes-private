@@ -232,6 +232,7 @@ For learning and study
 - [Cartesian product](#cartesian-product)
 - [What is the Java Programming Language](#what-is-the-java-programming-language)
 - [Java Runtime Environment (JRE) Java Virtual Machine, (JVM) and Java Development Kit (JDK)](#java-runtime-environment-jre-java-virtual-machine-jvm-and-java-development-kit-jdk)
+- [JAR vs WAR vs EAR](#jar-vs-war-vs-ear)
 - [Java Community Process vs Eclipse Foundation Specification Process](#java-community-process-vs-eclipse-foundation-specification-process)
 - [Spring Tutorials 1](#spring-tutorials-1)
 - [POSIX](#posix)
@@ -9293,6 +9294,35 @@ https://www.javaworld.com/article/3272244/what-is-the-jvm-introducing-the-java-v
 
 `references:`
 https://www.javaworld.com/article/3296360/what-is-the-jdk-introduction-to-the-java-development-kit.html
+
+- [Difference-between-JDK-JRE-and-JVM-DeepJavaSea](refs/Difference-between-JDK-JRE-and-JVM-DeepJavaSea)
+
+`references:`
+https://deepjavasea.blogspot.com/2015/05/difference-between-jdkjre-and-jvm-jdk.html
+
+- [Difference-between-Java-Components-JRE-JDK-JVM-JIT-javac-StackOverflow](refs/Difference-between-Java-Components-JRE-JDK-JVM-JIT-javac-StackOverflow)
+
+`references:`
+https://stackoverflow.com/questions/42851098/difference-between-java-componentsjre-jdk-jvm-jit-javac
+
+- [JDK-vs-JRE-vs-JVM-in-Java-Whats-the-Difference-SimpleSnippets](refs/JDK-vs-JRE-vs-JVM-in-Java-Whats-the-Difference-SimpleSnippets)
+
+`references:`
+https://simplesnippets.tech/jdk-vs-jre-vs-jvm-in-java-whats-the-difference/
+
+----
+
+# JAR vs WAR vs EAR
+
+- [JAR-vs-WAR-vs-EAR-javaeeguide](refs/JAR-vs-WAR-vs-EAR-javaeeguide)
+
+`references:`
+http://javaeeguide.blogspot.com/2014/07/jar-vs-war-vs-ear.html
+
+- [JAR-vs-WAR-vs-EAR-CodeThatAint](refs/JAR-vs-WAR-vs-EAR-CodeThatAint)
+
+`references:`
+http://codethataint.com/blog/war-vs-ear-vs-jar/
 
 ----
 
