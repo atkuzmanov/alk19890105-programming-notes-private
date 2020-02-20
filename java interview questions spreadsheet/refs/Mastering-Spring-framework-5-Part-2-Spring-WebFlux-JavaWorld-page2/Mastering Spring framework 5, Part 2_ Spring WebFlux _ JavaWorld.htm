@@ -1,0 +1,6038 @@
+<!DOCTYPE html>
+<!-- saved from url=(0104)https://www.javaworld.com/article/3288219/mastering-spring-framework-5-part-2-spring-webflux.html?page=2 -->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="alternate" hreflang="en" href="https://www.javaworld.com/article/3288219/mastering-spring-framework-5-part-2-spring-webflux.html">
+	
+	
+	
+	<!-- metas -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+			
+	<title>Mastering Spring framework 5, Part 2: Spring WebFlux | JavaWorld</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	
+	<script type="text/javascript" async="" src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/linkid.js"></script><script type="text/javascript" async="" src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/analytics.js"></script><script async="" src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/beacon.js"></script><script type="text/javascript" async="" src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/gtm.js"></script><script async="" src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/gtm(1).js"></script><script>
+	function getQueryVariable(variable) {
+		var query = window.location.search.substring(1);
+		var vars = query.split("&");
+		for (var i=0;i<vars.length;i++) {
+			var pair = vars[i].split("=");
+			if(pair[0] == variable){return pair[1];}
+		}
+		return(false);
+	}
+	</script>
+	
+	<script>
+	// Include CSS file for insider modal - used in insider_reg_api.js
+	function addCSS(filename){
+		 var headerTag = document.querySelector("header#banner");
+		 var styleTag = document.createElement('link');
+		 styleTag.href = filename;
+		 styleTag.className = "oc-modal";
+		 styleTag.type = 'text/css';
+		 styleTag.rel = 'stylesheet';
+		 headerTag.parentNode.insertBefore(styleTag, headerTag);
+	}
+	</script>
+		
+	<!-- ad-related js -->
+	<script src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/jquery-1.10.2.min.js"></script>
+	
+	<script type="text/javascript" src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/jquery_cookie.js"></script>
+	
+	
+	
+	<script type="text/javascript" src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/apollo-locales.js"></script>
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+<script src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/cmp_shim.js"></script><iframe name="__cmpLocator" src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/saved_resource.html"></iframe>
+
+<script>
+var consent = consent || {};
+consent.isEU = consent.isEU || null;
+consent.personalization = consent.personalization || null;
+consent.ads = consent.ads || {};
+consent.ads.queue = consent.ads.queue || [];
+
+consent.infostorage = consent.infostorage || {};
+consent.infostorage.queue = consent.infostorage.queue || [];
+
+consent.adsel = consent.adsel || {};
+consent.adsel.queue = consent.adsel.queue || [];
+
+consent.contentsel = consent.contentsel || {};
+consent.contentsel.queue = consent.contentsel.queue || [];
+
+consent.socmedia = consent.socmedia || {};
+consent.socmedia.queue = consent.socmedia.queue || [];
+
+consent.blueconic = consent.blueconic || {};
+consent.blueconic.queue = consent.blueconic.queue || [];
+
+consent.digitalelement = consent.digitalelement || {};
+consent.digitalelement.queue = consent.digitalelement.queue || [];
+
+consent.purposes = consent.purposes || {};
+consent.purposes.standard = consent.purposes.standard || [];
+consent.purposes.custom = consent.purposes.custom || [];
+consent.vendors = consent.vendors || {};
+consent.vendors.standard = consent.vendors.standard || [];
+consent.vendors.custom = consent.vendors.custom || [];
+
+var dataLayer = window.dataLayer = window.dataLayer || [];
+</script>
+
+
+
+
+
+
+<style type="text/css">
+#sp_privacy_manager_container {
+	z-index: 10000000 !important;
+}
+</style>
+
+<script> 											
+window._sp_ = window._sp_ || {};
+window._sp_.config = window._sp_.config || {};
+
+//Replace YOUR_ACCOUNT_ID with the account ID provided
+//by Sourcepoint
+window._sp_.config.account_id = 146;
+
+// replace 'mms.sp-prod.net' with your CNAME'd messaging subdomain		
+window._sp_.config.mms_domain = 'cmp.javaworld.com' ; 
+//window._sp_.config.mms_domain = 'mms.sp-prod.net' ; 
+
+// messaging-specific configuration
+window._sp_.mms = window._sp_.mms || {};
+window._sp_.mms.cmd = window._sp_.mms.cmd || [];
+
+//CMP Flags
+window._sp_.config.cmp = _sp_.config.cmp || {};
+window._sp_.config.cmp.enabled = true;
+window._sp_.config.cmp.waitForConsentData = true;
+
+//Code to call the server and display a message
+window._sp_.mms.cmd.push( function () {
+    window._sp_.mms.startMsg();
+});
+</script>
+
+<script src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/messaging.js"></script>
+
+
+<script type="text/javascript">(function () { var e = false; var c = window; var t = document; function r() { if (!c.frames["__uspapiLocator"]) { if (t.body) { var a = t.body; var e = t.createElement("iframe"); e.style.cssText = "display:none"; e.name = "__uspapiLocator"; a.appendChild(e) } else { setTimeout(r, 5) } } } r(); function p() { var a = arguments; __uspapi.a = __uspapi.a || []; if (!a.length) { return __uspapi.a } else if (a[0] === "ping") { a[2]({ gdprAppliesGlobally: e, cmpLoaded: false }, true) } else { __uspapi.a.push([].slice.apply(a)) } } function l(t) { var r = typeof t.data === "string"; try { var a = r ? JSON.parse(t.data) : t.data; if (a.__cmpCall) { var n = a.__cmpCall; c.__uspapi(n.command, n.parameter, function (a, e) { var c = { __cmpReturn: { returnValue: a, success: e, callId: n.callId } }; t.source.postMessage(r ? JSON.stringify(c) : c, "*") }) } } catch (a) { } } if (typeof __uspapi !== "function") { c.__uspapi = p; __uspapi.msgHandler = l; c.addEventListener("message", l, false) } })();</script>
+<script>
+        window._sp_ccpa = {
+            config: {
+                mmsDomain: "https://cmp.javaworld.com",
+                ccpaOrigin: "https://ccpa-service.sp-prod.net",
+                accountId: "146",
+                getDnsMsgMms: true,
+                alwaysDisplayDns: false,
+            }
+        }
+</script>
+<script src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/ccpa.js"></script>
+
+<script>
+__cmp('getConsentData',null,function(e){
+	
+	consent.isEU = e.gdprApplies;
+	if (!consent.isEU) {
+		
+		
+		consent.personalization=false;
+		
+		__uspapi('getUSPData', 1, (uspData, success) => {
+			if(success) {
+				try {
+					console.log('uspapi success: ', uspData);
+					var uspDataString = uspData.uspString;
+					var uspDataArray = [];
+					uspDataArray = uspDataString.split("");
+					if (typeof uspDataArray[2] !== "undefined" && uspDataArray[2] !== "Y") {
+						console.log('User has not opted in to CCPA - run everything');
+						consent.personalization=true;
+						$(window).trigger("runConsent", [consent.socmedia.queue]);
+						$(window).trigger("runConsent", [consent.blueconic.queue]);
+					}
+		
+					$(window).trigger("runConsent", [consent.adsel.queue]);
+				}
+				catch(e) {
+					console.log('error with uspData retrieval: ', e);
+				}
+				
+			} else {
+				console.log('uspapi fail: ', uspData);
+			}
+			
+		});	
+		
+		$(window).trigger("runConsent", [consent.contentsel.queue]);
+		$(window).trigger("runConsent", [consent.digitalelement.queue]);
+		$(window).trigger("runConsent", [consent.ads.queue]);
+		$(window).trigger("runConsent", [consent.infostorage.queue]);
+		
+	
+		dataLayer.push({
+			'event': 'consentKnown' 
+		});
+		bindReshowCmp();
+	}
+	else if (e.consentData !== null && e.consentData !== "") { // else if.. visitor is from EU and consent is known...
+		getConsentInfo();
+		bindReshowCmp();
+	}
+	else { //else consent is not known
+	    bindReshowCmp();
+	}
+});
+
+function getConsentInfo() {
+	
+	__cmp('getVendorConsents',[],function (e) {
+		
+		consent.purposes.standard = Object.keys(e.purposeConsents);
+		consent.vendors.standard = Object.keys(e.vendorConsents);
+		
+		consent.personalization = consent.purposes.standard.includes("2");
+		
+		
+		
+		
+		
+		
+		
+		if (consent.purposes.standard.includes("1")) { // if information storage consent is TRUE run queue
+			
+			$(window).trigger("runConsent", [consent.infostorage.queue]);
+		}
+		if (consent.purposes.standard.includes("3")) { // if ad selection consent is TRUE run queue
+			
+			$(window).trigger("runConsent", [consent.adsel.queue]);
+		}
+		if (consent.purposes.standard.includes("4")) { // if content selection consent is TRUE run queue
+			
+			$(window).trigger("runConsent", [consent.contentsel.queue]);
+		}
+		//special case for blueconic
+		if (consent.purposes.standard.includes("1") && consent.purposes.standard.includes("2") && consent.purposes.standard.includes("3") && consent.purposes.standard.includes("4") && consent.purposes.standard.includes("5")) {
+			
+			$(window).trigger("runConsent", [consent.blueconic.queue]);
+		}
+		
+		//special case for Digital Element
+		if (consent.purposes.standard.includes("2") && consent.purposes.standard.includes("3") && consent.purposes.standard.includes("4") && consent.purposes.standard.includes("5")) {
+			
+			$(window).trigger("runConsent", [consent.digitalelement.queue]);
+		}
+	});
+
+	__cmp('getCustomVendorConsents',[],function (e) { 
+		
+		consent.purposes.custom = [];
+		e.consentedPurposes.forEach(function(item, index) {
+			consent.purposes.custom.push(item.name);
+		});
+		
+		consent.vendors.custom = [];
+		e.consentedVendors.forEach(function(item, index) {
+			consent.vendors.custom.push(item.name);
+		});
+		
+		
+		
+		if (consent.purposes.custom.includes("Social Media Consents")) { // if social media consent is TRUE run queue
+			
+			$(window).trigger("runConsent", [consent.socmedia.queue]);
+		}
+		
+		
+		if (consent.vendors.custom.includes("Google Ad Manager")) {
+			
+			$(window).trigger("runConsent", [consent.ads.queue]);
+		}
+		
+	});
+	
+	dataLayer.push({
+		'event': 'consentKnown' 
+	});
+}
+
+var idgCMPSourcepointCallback = function(){
+	if (consent.isEU) {		
+		getConsentInfo();
+	}
+}
+
+$(window).on("runConsent", function(event, queueToRun) {
+		watchConsentQueue(queueToRun)
+});
+
+function runQueue(queue){
+	for (var x=0;x<queue.length;x++) {
+		var nextFn = queue.shift();
+		nextFn();
+		
+	}	
+}
+
+function watchConsentQueue(queue){
+	setInterval(function() { runQueue(queue); },500);
+}
+function bindReshowCmp() {
+	var url = document.location.pathname;
+	if (url.indexOf("/about/member-preferences") > -1) {
+		$(document).ready(function() {
+			$(".cmpSettings").show();
+			$(".reshowLink").on("click", function(e) {
+				e.preventDefault();
+				window._sp_.privacyManager.loadPrivacyManagerModal(3921, '5cd195e5f9f3332a80a0e25f');
+			});
+		});
+	}
+}
+</script>
+
+
+
+
+	
+	
+	
+	
+		
+
+
+
+
+
+
+
+
+
+
+<script>
+// this javascript is for retrieving locale-specific ad units for DFP - see mapping in apollo-locales.js
+// getting locale and editions for the site the reader is viewing
+let brandAbbrev = "jvw";
+let brandConfigBrandId = "8";
+//let myLocale = getLocale(); // getting locale on page load from URL, IP, geolocation - this will always be something. If 0, it's the global/default/core view.
+let countryCode = "";
+let getSlugFromId = getApolloLocaleIdMap();
+let getIdFromSlug = getApolloLocaleSlugMap();
+
+// if selectedLocale cookie exists, get locale
+if (typeof getSelectedLocale() !== 'undefined'  && getSelectedLocale() === getLocale()) { // get locale from cookie if available otherwise, use another locale source (from geolocation, url slug, etc.)
+ 	countryCode = getSlugFromId[getSelectedLocale()];
+} else {
+	countryCode = getSlugFromId[getLocale()];
+}
+//console.log("+++ 1) in locales.editions.jsp - COUNTRY CODE IS DEFINED AS: "+countryCode+"+++");
+// if countryCode is empty string at this point, it means localeId = 0 which is global (default/core)...
+if (countryCode == "") {
+	countryCode = "us"; // country code for default global is currently US
+}
+//console.log("====INSIDE locales-editions.jsp - getSelectedLocale() = " + getSelectedLocale() + " and getLocale() = " + getLocale() + " and countryCode = " + countryCode);
+//US social media accounts are the default if locale cannot be determined
+var twitterUrl = "https://twitter.com/javaworldcom";
+var linkedInUrl = "http://www.linkedin.com/company/javaworld-com";
+var facebookUrl = "https://www.facebook.com/pages/JavaWorld/107993545895326";
+var youTubeUrl = "";
+var twitterHandle = "javaworldcom";
+
+if (countryCode === 'asean') {
+	twitterUrl = "";
+	linkedInUrl = "";
+	facebookUrl = "";
+	twitterHandle = "";
+}
+if (countryCode === 'middle-east') {
+	twitterUrl = "";
+	linkedInUrl = "";
+	facebookUrl = "";
+	twitterHandle = "";
+}
+if (countryCode === 'uk') {
+	twitterUrl = "";
+	linkedInUrl = "";
+	facebookUrl = "";
+	twitterHandle = "";
+}
+if (countryCode === 'in') {
+	twitterUrl = "";
+	linkedInUrl = "";
+	facebookUrl = "";
+	twitterHandle = "";
+	youTubeUrl = "";
+}
+if (countryCode === 'africa') {
+	twitterUrl = "";
+	linkedInUrl = "";
+	facebookUrl = "";
+	twitterHandle = "";
+	youTubeUrl = "";
+}
+if (countryCode === 'au') {
+	twitterUrl = "";
+	linkedInUrl = "";
+	facebookUrl = "";
+	twitterHandle = "";
+}
+if (countryCode === 'nz') {
+	twitterUrl = "";
+	linkedInUrl = "";
+	facebookUrl = "";
+	twitterHandle = "";
+}
+
+//US business unit is the default if locale cannot be determined
+var busUnit = "";
+//cookie policy page
+var localeEdition = "";
+var busUnitAddress = "";
+if (countryCode === 'asean') {
+	busUnit = "";
+	localeEdition = "";
+	busUnitAddress = "";
+}
+if (countryCode === 'middle-east') {
+	busUnit = "";
+	localeEdition = "";
+	busUnitAddress = "";
+}
+if (countryCode === 'uk') {
+	busUnit = "";
+	localeEdition = "";
+	busUnitAddress = "";
+}
+if (countryCode === 'in') {
+	busUnit = "";
+	localeEdition = "";
+	busUnitAddress = "";
+}
+if (countryCode === 'africa') {
+	busUnit = "";
+	localeEdition = "";
+	busUnitAddress = "";
+}
+if (countryCode === 'au') {
+	busUnit = "";
+	localeEdition = "";
+	busUnitAddress = "";
+}
+if (countryCode === 'nz') {
+	busUnit = "";
+	localeEdition = "";
+	busUnitAddress = "";
+}
+</script>
+
+	
+	
+	
+	<script src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/init_device.js"></script>
+	
+	
+
+	
+
+	
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<script async="async" src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/iasPET.1.js"></script>
+
+
+
+
+	<script async="" src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/183980-91708798337038.js"></script>
+
+	
+<script type="text/javascript" src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/gpt_includes.js"></script>
+
+
+
+<script type="text/javascript">
+	if (adLayer==null || adLayer=='undefined') {
+		var adLayer=[];
+	}
+	
+		
+			adLayer["itemType"]="article";
+		
+		
+	
+</script>
+	
+<script type="text/javascript">
+	// Set up ad related variables
+	try {
+		IDG.GPT.unitName = "/8456/IDG.US_E_JavaWorld.com";
+	}
+	catch (exception) {
+		console.log ("google_dfp can't use IDG.GPT "+ exception);
+	}
+
+	try {
+		IDG.GPT.unitName = IDG.GPT.unitName + "/" + "application-development_section";
+	}
+	catch (exception) {
+		console.log ("google_dfp can't use IDG.GPT "+ exception);
+	}
+	// global variables
+	var global_ShowSuper = true;
+	var global_ShowHero = false;
+	
+	//XFP global targeting, more targeting thm_pre
+	var url = window.location.href;
+	if(url.indexOf("?")>1){
+		url=url.split('?')[0];
+	}
+	
+
+	try {
+		IDG.GPT.addTarget("URL", encodeURIComponent(url));
+	}
+	catch (exception) {
+		console.log ("google_dfp can't use IDG.GPT "+ exception);
+	}
+	try {IDG.GPT.addTarget("zone", 'article-blog/spring-framework');}	catch (exception) {console.log ("google_dfp can't use IDG.GPT "+ exception);}
+	try{IDG.GPT.addTarget("channel", 'enterprise-java,learn-java');}	catch (exception) {console.log ("google_dfp can't use IDG.GPT "+ exception);}try{IDG.GPT.addTarget("blogId", '412');}	catch (exception) {console.log ("google_dfp can't use IDG.GPT "+ exception);}try{IDG.GPT.addTarget("articleId", '3288219');}	catch (exception) {console.log ("google_dfp can't use IDG.GPT "+ exception);}try{IDG.GPT.addTarget("type", 'howto');}	catch (exception) {console.log ("google_dfp can't use IDG.GPT "+ exception);}try{IDG.GPT.addTarget("typeId", '4');}	catch (exception) {console.log ("google_dfp can't use IDG.GPT "+ exception);}try{IDG.GPT.addTarget("manufacturer", 'intel');}	catch (exception) {console.log ("google_dfp can't use IDG.GPT "+ exception);}try{IDG.GPT.addTarget("templateType", 'article-default');}	catch (exception) {console.log ("google_dfp can't use IDG.GPT "+ exception);}
+	
+	try {IDG.GPT.addTarget("categoryIds", ['3231','3646','3471','3248','3465','3187']);}	catch (exception) {console.log ("google_dfp can't use IDG.GPT "+ exception);}
+	try{IDG.GPT.addTarget("categorySlugs", ['spring-framework','application-development','web-development','open-source-tools','development-tools','learn-java']);}	catch (exception) {console.log ("google_dfp can't use IDG.GPT "+ exception);}
+	try {IDG.GPT.addTarget("goldenIds", ['311','241','247','993','287']);}	catch (exception) {console.log ("google_dfp can't use IDG.GPT "+ exception);}
+	try {
+		if (null != IDG.GPT.getQsVal("env")) {		
+			IDG.GPT.addTarget("env", IDG.GPT.getQsVal("env").replace(/\W/g, "") );
+		}
+	}
+	catch (exception) {
+		console.log ("google_dfp can't use IDG.GPT "+ exception);
+	}	
+	
+		try {
+			IDG.GPT.addTarget("author", 'Steven Haines');
+		}
+		catch (exception) {
+			console.log ("google_dfp can't use IDG.GPT "+ exception);
+		}
+	
+	
+	
+		
+
+	try {
+		IDG.GPT.addTarget("page_type", '');
+	}
+	catch (exception) {
+		console.log ("google_dfp can't use IDG.GPT "+ exception);
+	}	
+
+	
+		try {
+			IDG.GPT.addTarget("blog_name", 'Open Source Java Tutorials');
+		}
+		catch (exception) {
+			console.log ("google_dfp can't use IDG.GPT "+ exception);
+		}
+	
+	
+	
+	
+		try {
+			IDG.GPT.addTarget("insiderContent", 'false');
+		}
+		catch (exception) {
+			console.log ("google_dfp can't use IDG.GPT "+ exception);
+		}
+	
+	
+	
+	
+	
+</script>
+
+
+
+<script type="text/javascript">
+	
+	
+	
+	
+		
+		
+		
+		
+		
+		
+		
+		
+	
+	
+	
+	
+</script>
+  
+<script src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/thm_pre.js"></script>
+
+
+	
+	
+		<script>
+		// IDGMPM-16419 - moved out of adsel queue for IDGMPM-16933
+		googletag.cmd.push(function() {
+		  if (googletag.pubads().getTargeting('permutive').length == 0) {
+			
+			//IDGMPM-18418 - capture paermutive key-values
+			window.headertag = window.headertag || {};
+			window.headertag.cmd = window.headertag.cmd || [];
+			window.headertag.cmd.push(function() {
+				try {
+					var segs = JSON.parse(localStorage._pdfps || '[]').slice(0,250);
+					window.headertag.setUserKeyValueData({ segments: {"permutive": segs} });                
+				} catch (e) {}
+			});
+			
+		    var kvs = localStorage.getItem('_pdfps');
+		    googletag.pubads().setTargeting('permutive', kvs ? JSON.parse(kvs) : []);
+		    console.log('ad targeting permutive kvs: ', kvs);
+		  }
+		});
+		</script>
+	
+
+<script type="text/javascript" src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/gpt_starter.js"></script>
+	<script>
+		loadGPT();
+	</script>
+
+	
+		<script type="text/javascript" src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/ias_gpt_launcher.js"></script>
+	
+
+	
+
+
+
+		
+		
+	
+	
+	
+		
+				
+		
+		
+		
+	
+
+	<link rel="canonical" href="https://www.javaworld.com/article/3288219/mastering-spring-framework-5-part-2-spring-webflux.html">
+	
+	
+		
+	
+
+	<meta itemprop="url" content="https://www.javaworld.com/article/3288219/mastering-spring-framework-5-part-2-spring-webflux.html">
+	<meta name="description" content=" Build reactive web applications using Spring WebFlux annotations and functional programming techniques">
+	
+		
+			<meta name="DC.date.issued" content="2018-08-30T11:52-05:00">
+			<meta name="date" content="2018-08-30">
+			
+		
+		
+		
+		
+	
+	
+	<link rel="amphtml" href="https://www.javaworld.com/article/3288219/mastering-spring-framework-5-part-2-spring-webflux.amp.html">
+	
+		
+		
+		
+			
+			
+				
+			
+			
+			
+		
+	
+	
+		
+		
+			<meta property="og:title" content="Mastering Spring framework 5, Part 2: Spring WebFlux">
+		
+	
+	<meta property="og:description" content=" Build reactive web applications using Spring WebFlux annotations and functional programming techniques">	
+	
+	
+		
+			<meta property="og:image" content="https://images.idgesg.net/images/article/2018/08/building_a_reactive_physical_structure_exploratory_art-tech_residency_photo_by_rodrigo_carvalho_cc_by_2-0_700x467-100770413-large.3x2.jpg">
+			<meta property="og:image:width" content="700">
+			<meta property="og:image:height" content="467">
+			<meta itemprop="image" content="https://images.idgesg.net/images/article/2018/08/building_a_reactive_physical_structure_exploratory_art-tech_residency_photo_by_rodrigo_carvalho_cc_by_2-0_700x467-100770413-large.3x2.jpg">
+			<meta itemprop="thumbnailURl" content="https://images.idgesg.net/images/article/2018/08/building_a_reactive_physical_structure_exploratory_art-tech_residency_photo_by_rodrigo_carvalho_cc_by_2-0_700x467-100770413-large.3x2.jpg">
+			<link rel="image_src" href="https://images.idgesg.net/images/article/2018/08/building_a_reactive_physical_structure_exploratory_art-tech_residency_photo_by_rodrigo_carvalho_cc_by_2-0_700x467-100770413-large.3x2.jpg">
+			<meta name="twitter:image" content="https://images.idgesg.net/images/article/2018/08/building_a_reactive_physical_structure_exploratory_art-tech_residency_photo_by_rodrigo_carvalho_cc_by_2-0_700x467-100770413-large.3x2.jpg">
+		
+		
+	
+	
+		
+			<meta property="og:type" content="article">
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<meta name="author" content="Steven Haines">
+			
+			
+			
+			
+			
+		
+		 
+		
+	<meta property="og:site_name" content="JavaWorld">
+	<meta property="fb:app_id" content="196366870381968">
+	
+		
+			<meta property="og:url" content="https://www.javaworld.com/article/3288219/mastering-spring-framework-5-part-2-spring-webflux.html">
+		
+		
+	
+	
+	<!-- Use Twitter Summary Card with Large Image for articles and videos -->
+	
+		
+				<meta name="twitter:card" content="summary_large_image">
+		
+		
+	
+
+	<meta name="twitter:site" content="@javaworldcom">
+	<meta name="twitter:description" content=" Build reactive web applications using Spring WebFlux annotations and functional programming techniques">
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<meta name="rating" content="General">
+	
+	<meta name="robots" content="NOODP,NOYDIR">
+	
+	
+	
+	
+		<meta name="msvalidate.01" content="04917178B598F0648B9BAD693FEC29A3">
+	
+		
+	<!-- pagination -->
+	
+	
+	
+	
+	
+	
+	<link rel="prev" href="https://www.javaworld.com/article/3288219/mastering-spring-framework-5-part-2-spring-webflux.html">
+	
+	
+	<link rel="next" href="https://www.javaworld.com/article/3288219/mastering-spring-framework-5-part-2-spring-webflux.html?page=3">
+	
+	
+	
+	
+	
+	
+	
+	
+		
+			<link id="mobile-size" rel="stylesheet" href="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/inline-header-mobile.css"><link id="desktop-size" rel="stylesheet" href="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/inline-header.css">
+					
+		
+		
+		<script>
+			if (window.matchMedia("(min-width: 768px)").matches) {
+				document.getElementById('mobile-size').insertAdjacentHTML('afterend', '<link id="desktop-size" rel="stylesheet" href="/www.idge/css/inline-header.css?v=20200219112420" />');
+			}
+		</script>
+		
+		
+			
+			
+				
+					<link rel="stylesheet" href="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/inline-header(1).css">
+				
+			
+		
+	
+	
+	<!-- css -->
+	
+		<link rel="stylesheet" href="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/normalize.css">
+	
+	
+		<link rel="stylesheet" href="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/prettify.css">
+	
+	
+		
+			
+			
+			
+			
+				
+					
+						
+						
+							<link rel="stylesheet" href="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/article.css">
+						
+					
+					
+					
+					
+			
+				
+		
+		
+		
+			<link rel="stylesheet" href="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/insider-promo-styles.css">
+		
+		<link rel="stylesheet" href="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/print.css" media="print">
+		
+	
+	
+		
+			
+			
+				
+				
+					<link rel="stylesheet" href="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/article(1).css">
+				
+			
+		
+	
+	
+	<link rel="stylesheet" href="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/ss-social.css">
+	<link rel="stylesheet" href="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/ss-standard.css">
+	<!--[if lte IE 8]>  
+		<link href="/www.idge/css/webfonts/ss-ie8.css" rel="stylesheet" />
+	<![endif]--> 
+	
+	
+
+	
+		<link href="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/css" rel="stylesheet" type="text/css">
+	
+		
+	
+	
+	
+	
+	
+	
+	<!--  fav and touch icons -->
+	<link rel="shortcut icon" type="image/x-icon" href="https://www.javaworld.com/www.idge.jvw/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://www.javaworld.com/www.idge.jvw/touchicon_144.gif">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://www.javaworld.com/www.idge.jvw/touchicon_114.gif">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://www.javaworld.com/www.idge.jvw/touchicon_72.gif">
+	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="https://www.javaworld.com/www.idge.jvw/touchicon_57.gif">
+	<link rel="apple-touch-icon" href="https://www.javaworld.com/www.idge.jvw/images/JVW_logo_300x300.png">
+	
+	
+	
+	
+	
+		
+   	    
+   	     
+
+
+
+
+
+
+
+
+
+
+
+<script>
+var isProd = 'true';
+
+var ocEnabledSite = "false";
+
+var brandCode = "jvw";
+var brandName="JavaWorld";
+var brandId = "9";
+var regDebugLog=false;
+
+// Marketing Channels Preference
+var brandIdDemandgen=false;
+var brandIdEvents=false;
+var brandIdResearch=false;
+var brandIdThirdparty=false;
+var isEu=false;
+
+// API URL and API key
+var regApiUrl='https://api-stage.idgcommunications.net/api/v1/'; // replaced below with property in .properties file
+var apiKey="HLyMXLISSW7HAYGgbx2Vb1Gf1OLcGmMG5BcwZ4Vb";
+
+var tokenPrefix='www';
+var tokenSuffix='.com/insider/token?';
+var brandDomain=".javaworld.com";
+var insiderContentType="article";
+var notEmptyArticle=false;
+var notEmptyMediaResource=false;
+var isInsiderPremium=false;
+var isResourceInsiderPremium=false;
+
+var ownerIds=["0c99a1d7-c4e7-42a5-910f-a22134d1f98d"];
+var campaignId="2a3b7224-f920-41a1-bea6-615aa59ea0f8";
+var assetId="697422d1-7acb-40f6-be13-0e67329bc9ec";
+var placementId="2d44d74a-e883-4d18-ada8-b2f0e61a1d90";
+var clientCompany="IDG Communications US";
+var businessUnit="IDG Communications US";
+
+if (countryCode == 'uk') {
+	brandId = "";
+	ownerIds=["f3efa90a-2330-4d42-bbc7-f7f96eb0f3db"];
+	campaignId="a465ea50-b639-4f98-ad1c-bc0b8c80e3c9";
+	assetId="5ab2586f-3bb6-4ad3-84e2-bdd230980e88";
+	placementId="77a1e657-f12c-4f7c-b685-6a9da2eb25d6";
+	clientCompany="IDG Communications";
+	businessUnit="IDG UK";
+}
+if (countryCode == 'africa') {
+	brandId = "";
+	ownerIds=["02b2821f-2118-442a-9f16-df416847133f"];
+	campaignId="89c3e1d5-f5c6-4934-b683-751414ffe5b7";
+	assetId="8848c7a9-7ed0-4119-ba20-e9f06869928c";
+	placementId="7d80c555-1916-4c7b-bd56-dd10767d83b8";
+	clientCompany="IDG Communications";
+	businessUnit="IDG Connect";
+}
+if (countryCode == "asean") {
+		brandId = "";
+		ownerIds=["02b2821f-2118-442a-9f16-df416847133f"];
+		campaignId="77f2f4c1-c3f3-4796-be52-d44c982bc824";
+		assetId="59fdb971-7da7-48a0-bd6d-e52db502b83f";
+		placementId="b1f22813-ff0d-42d8-90d9-c1fbd47b3424";
+		clientCompany="IDG Communications";
+		businessUnit="IDG Connect";
+}
+if (countryCode == 'mideast' || countryCode == 'middle-east' ) {
+		brandId = "";
+		ownerIds=["02b2821f-2118-442a-9f16-df416847133f"];
+		campaignId="2e8ce243-c3b2-417b-a893-ba4fb496776b";
+		assetId="511c10e5-69b7-4a0d-861f-99b048e129f8";
+		placementId="59a18947-cead-4faf-8d94-2fd9bba346a4";
+		clientCompany="IDG Communications";
+		businessUnit="IDG Connect";
+}
+if (countryCode == 'in') {
+		brandId = "";
+		ownerIds=["b6973a30-3c15-4667-9165-e206b8876adc"];
+		campaignId="cf43ee09-cb17-4704-aec9-3c3faefee27f";
+		assetId="f411310d-fa2f-4518-93c9-e08962d736b2";
+		placementId="6813ef80-eb35-4d48-94f0-4b64c406ca52";
+		clientCompany="IDG Communications";
+		businessUnit="IDG India";
+}
+if (countryCode == 'au') {
+	brandId = "";
+	ownerIds=["dfcefb71-7919-4a1b-9b77-6a1c05314109"];
+	campaignId="371454ac-79e0-4bef-9a02-6ba52dc58e51";
+	assetId="fe648fe7-937f-4f7d-8822-2125efbbde26";
+	placementId="d6d61fb9-333b-4721-ae7a-3b069224c628";
+	clientCompany="IDG Communications";
+	businessUnit="IDG Australia";
+}
+if (countryCode == 'nz') {
+	brandId = "";
+	ownerIds=["dfcefb71-7919-4a1b-9b77-6a1c05314109"];
+	campaignId="371454ac-79e0-4bef-9a02-6ba52dc58e51";
+	assetId="fe648fe7-937f-4f7d-8822-2125efbbde26";
+	placementId="d6d61fb9-333b-4721-ae7a-3b069224c628";
+	clientCompany="IDG Communications";
+	businessUnit="IDG New Zealand";
+}
+
+
+	regApiUrl="https://lqxgcyk808.execute-api.us-east-1.amazonaws.com/prod_h2/api/v1/";
+
+
+
+	regDebugLog=false;
+
+
+
+	tokenPrefix="http://www";
+
+
+
+	tokenSuffix="/insider/token";
+
+
+
+
+
+	notEmptyArticle=true;
+
+
+	
+
+
+
+ 
+
+</script>
+
+
+<script src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/alc_hashes.js"></script>
+<script src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/insider_reg_api.js"></script>
+<script src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/jquery.maskedinput-1.4.min.js"></script>
+
+<script>
+$(document).ready(function(){
+	if(typeof(IDG.insiderReg.readCookie('nsdr')) !== 'undefined'){
+		$('#welcome-message').show();			
+		IDG.insiderReg.personalize();
+	}else{
+		$('.signin-register').show();	
+	}
+});
+
+</script>
+
+
+	
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+	<script src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/ad.js"></script>
+	
+	<script>var oneRegPlacementID = "";</script>
+	
+	<script>
+		const articlePaidAccess = [];
+	</script>
+	
+	
+	
+		
+			
+				
+			
+			
+			
+			
+			
+			
+			
+			
+
+				
+			
+		
+		
+		
+	
+	
+		
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+	
+		
+	
+		
+	
+	
+
+
+
+
+
+		
+		  
+		
+		
+		
+		
+
+	
+	
+	
+	
+	
+
+	
+	  	 
+	    
+	    
+	 
+	 
+	
+	
+	
+	
+	
+	
+	
+	
+		
+	
+	
+
+	<script>
+	var supMontMods = false;
+	</script>
+	
+	
+	
+	
+		
+		
+		
+		
+			
+				
+				
+			
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		<!-- blx4 #2806 blox4.simple  -->
+			
+
+		
+			
+				
+					
+					
+					
+						
+							
+					
+						
+					
+					
+					
+					
+					
+					
+						
+					
+				
+				
+			
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+		
+	
+
+
+	
+
+
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+			
+				
+				
+				
+					
+				
+			
+			
+			
+			
+		
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+		<script>
+		window.ntvConfig = window.ntvConfig || {} ;
+		window.ntvConfig.keyValues = window.ntvConfig.keyValues || {};
+		var segs = localStorage.getItem('_pnativo');
+		if (segs) {
+		  window.ntvConfig.keyValues.permutive = JSON.parse(segs).join(",");
+		}
+		</script>
+	
+	
+	
+	
+		<script type="text/javascript" src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/load.js" async=""></script>
+	
+
+	
+	
+	
+	<script type="text/javascript">
+		var prodNames = '';
+		var prodManufacturers = '';
+		var prodCategories = '';
+		var prodVendors = '';
+	</script>
+	
+	
+	
+	<script>
+	var insiderSignedIn = document.cookie.indexOf("nsdr") > -1; //check if Insider cookie exists
+	var idg_uuid = $.cookie('idg_uuid') || '';
+	
+	var dlJobFunction = '';
+	var dlJobPosition = '';
+	var dlIndustry = '';
+	
+	if (insiderSignedIn) {
+		var insiderToken = IDG.insiderReg.readCookie("nsdr");
+		var tokens = IDG.insiderReg.readCookieProperty(insiderToken);
+		if (!(tokens['jobPosition']===undefined)) {
+			//dlJobPosition = tokens['jobPosition'];
+			//OC-1647 change to indicate this data was remove
+			dlJobPosition = "removed";
+		}
+		if (!(tokens['jobFunction']===undefined)) {
+			dlJobFunction = tokens['jobFunction'];
+		}
+		if (!(tokens['industry']===undefined)) {
+			dlIndustry = tokens['industry'];
+		}
+	}
+	
+	insiderSignedIn = insiderSignedIn.toString(); //per Infotrust this needs to be a string, not a boolean
+	
+	var sincePublished = '538 days';
+	sincePublished = sincePublished.split(" ")[0];
+	
+	//get edition from countryCode
+	var edition = '';
+	if (typeof countryCode !== 'undefined' && countryCode !== "") {//should be defined in locales-editions.jsp if brand has editions
+		edition = countryCode.toLowerCase();
+	}
+	
+	dataLayer.push({
+		'articleId': '3288219',
+		'articleDisplayId':'1',
+		'articleHasVideo':'false',
+		'articleLocale': 'global',
+		'articleTitle': 'Mastering Spring framework 5, Part 2: Spring WebFlux',
+		'articleType': 'How-To',
+		'audience':'enterprise',
+		'author':'Steven Haines',
+		'blogName':'Open Source Java Tutorials',
+		'brandpost': 'false',
+		'categoryIdAll': '3231, 3646, 3471, 3248, 3465, 3187',
+		'categoryIdList':'3231,3646,3471,3248,3465,3187',
+		'categoryIdPrimary': '3231',
+		'contentStrategy': '',
+		'contentType':'howto',
+		'datePublished':'2018-08-30',
+		'dateUpdated':'2018-08-30',
+		'daysSincePublished':"538",
+		'daysSinceUpdated':'538',
+		'de_normalized_company_name':$.cookie('de_normalized_company_name'),
+		'displayType':'article',
+		'edition':edition,
+		'environment':'production',
+		'ga_enabled':'true',
+		'gaTrackingId':'UA-300704-19',
+		'geolocEnabled':'true',
+		'goldenTaxonomyIdAll': '311, 241, 247, 993, 287',
+		'goldenTaxonomyIdPrimary': '311',
+		'goldenTaxonomyIdList': '241,247,993,287',
+		'industry': dlIndustry,
+		'insiderSignedIn':insiderSignedIn,
+		'ip_normalized_company_name':$.cookie('ip_normalized_company_name'),
+		'isBlog':'true',
+		'isInsiderContent':'false',
+		'isICN': 'false',
+		'jobFunction': dlJobFunction,
+		'jobPosition': dlJobPosition,
+		'oneRegPlacementID':oneRegPlacementID,
+		'pageNumber':'2',
+		'platform':'Web',
+		'podcastSponsored': 'false',
+		'primaryCategory': 'spring framework',
+		'ancestorGoldenCategories': 'software development,libraries and frameworks',
+		'primaryCategoryAll': 'spring framework, software development, web development, open source, development tools, learn java',
+		'primaryCategoryList': 'software development,web development,open source,development tools,learn java',
+		'primaryAncestorCategoryList': 'libraries and frameworks,careers,spring framework',
+		'prodCategories':prodCategories.slice('|', -1),
+		'prodManufacturers':prodManufacturers.slice('|', -1),
+		'prodNames':prodNames.slice('|', -1),
+		'prodVendors':prodVendors.slice('|', -1),
+		'property': 'javaworld',
+		'propertyCountry':'US',
+		'purchaseIntent':'evaluation',
+		'skimlinksId':'',
+		'source':'javaworld',
+		'sponsorName':'',
+		'suppressMonetization': supMontMods.toString(),
+		'tags': '',
+		'userId':idg_uuid,
+		'videoAutoplay':'false',
+		'youtubeId':''
+	});
+	</script>
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+<script>
+	var dataLayer = window.dataLayer = window.dataLayer || [];
+	var adBlockStatus = 'false';
+	
+	//look for variable set in ad.js
+	if (window.canRunAds === undefined) {
+		adBlockStatus = 'true';
+	} else {
+		adBlockStatus = 'false';
+	}
+	
+	dataLayer.push({
+		'adBlockStatus': adBlockStatus
+	});
+</script>
+
+
+
+
+
+	<!-- Google Tag Manager -->
+	<noscript><iframe src="//www.googletagmanager.com/ns.html?GTM-WR6LD2P"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-WR6LD2P');</script>
+	<!-- End Google Tag Manager -->
+
+	
+	
+	
+		<script>
+			var numberFromDataLayer = function(property) {
+			  if (window.dataLayer && dataLayer[0] && typeof dataLayer[0][property] == "number") {
+			    return dataLayer[0][property];
+			  }
+			  return null;
+			};
+			
+			var stringFromDataLayer = function(property) {
+			  if (window.dataLayer && dataLayer[0] && typeof dataLayer[0][property] == "string") {
+			    return dataLayer[0][property];
+			  }
+			  return "";
+			};
+		</script>
+	
+
+	
+
+	
+		
+
+
+
+
+
+
+
+
+
+
+<script>
+// IDGMPM-16419 - updated in IDGMPM-16933
+	!function(n,e,o,r,i){if(!e){e=e||{},window.permutive=e,e.q=[],e.config=i||{},e.config.projectId=o,e.config.apiKey=r,e.config.environment=e.config.environment||"production";for(var t=["addon","identify","track","trigger","query","segment","segments","ready","on","once","user","consent"],c=0;c<t.length;c++){var f=t[c];e[f]=function(n){return function(){var o=Array.prototype.slice.call(arguments,0);e.q.push({functionName:n,arguments:o})}}(f)}}}(document,window.permutive,"f5b3be27-f789-4ef1-8867-37c67da5b361","84c7e805-5ce9-41f4-b988-3529488bab1c",{});
+	  permutive.addon('web', {
+	    page: {
+	      type: stringFromDataLayer('displayType'),
+	      language: 'en',
+	      tags: stringFromDataLayer('tags').split(","),
+	      audience: stringFromDataLayer('audience'),
+	      description: ' Build reactive web applications using Spring WebFlux annotations and functional programming techniques',
+	      
+	      article: {
+	        authors: stringFromDataLayer('author').split(","),
+	        description: ' Build reactive web applications using Spring WebFlux annotations and functional programming techniques',
+	        id: stringFromDataLayer('articleId'),
+	        isInsiderContent: (stringFromDataLayer('isInsiderContent') == "true"),
+	        modifiedAt: "2018-08-30T11:52:08Z",
+	        publishedAt: "2018-08-30T11:52:08Z",
+	        source: stringFromDataLayer('source'),
+	        title: stringFromDataLayer('articleTitle'),
+	        type: stringFromDataLayer('articleType'),
+	        purchaseIntent: stringFromDataLayer('purchaseIntent')
+	      },
+	      
+ 		  	      
+	      gTax: {
+	        primaryIds: [311,300,241],
+	        secondaryIds: [241,247,993,287,585,300,311]
+	      },	      
+	      tax: {
+	    	  primaryCategories: stringFromDataLayer('ancestorGoldenCategories').length > 0 ? stringFromDataLayer('ancestorGoldenCategories').split(",").concat(stringFromDataLayer('primaryCategory')) : [stringFromDataLayer('primaryCategory')] ,
+	          secondaryCategories: stringFromDataLayer('primaryAncestorCategoryList').length > 0 ? stringFromDataLayer('primaryCategoryList').split(",").concat(stringFromDataLayer('primaryAncestorCategoryList').split(",")) : stringFromDataLayer('primaryCategoryList').split(",")
+	      },
+	      
+	      ads: {
+	        adblocker: (adBlockStatus == "true"), //detected further up the page
+	        enabled: true
+	      }	     
+	    }
+	  });
+
+	  dlJobPosition = dlJobPosition || null;
+	  dlIndustry = dlIndustry || null;
+
+	  if (dlJobPosition !== '' || dlIndustry !== '' || stringFromDataLayer('userId') !== '') {
+		  if (stringFromDataLayer('userId') !== '') {
+				var userData = {};
+
+				var hermesAttrs = {
+					"companySize" : "543ea0bd-604a-4011-99e7-806fc8979b5e",
+					"country" : "ea76d652-29bd-4a6c-ae50-a5d08ea28c5e",
+				};
+				var userKeys = Object.keys(hermesAttrs);
+
+				$.ajax({
+					type: "get",
+				    crossDomain: true,
+					url: "https://lqxgcyk808.execute-api.us-east-1.amazonaws.com/prod_h2/api/v1/profiles/" + idg_uuid,
+					dataType: "json",
+					data: {}, 
+					headers : {
+						"Content-Type": "application/x-www-form-urlencoded",
+						"x-api-key":"HLyMXLISSW7HAYGgbx2Vb1Gf1OLcGmMG5BcwZ4Vb"
+					}
+				}).done(function(responseData){ 
+					userKeys.forEach(function(key) {
+						if (typeof(responseData.attrs[hermesAttrs[key]].option_label) !== "undefined") { 
+							userData[key] = responseData.attrs[hermesAttrs[key]].option_label;
+						}
+						else { 
+							userData[key] = responseData.attrs[hermesAttrs[key]].value;
+						}
+					});
+
+					window.permutive.track('User', {
+					  companySize: userData['companySize'],
+					  country: userData['country'],
+					  id: (stringFromDataLayer('userId') !== "" ? stringFromDataLayer('userId') : null),
+					  jobIndustry: (dlIndustry !== "" ? dlIndustry : null),
+					  jobPosition: (dlJobPosition !== "" ? dlJobPosition : null),
+					  loggedIn: (stringFromDataLayer('insiderSignedIn') == 'true')
+					})
+					
+					
+				}).fail(function(data){
+					//console.log("Error retrieving data: " + data.responseJSON.error);
+				});  
+
+			}
+			else {
+				window.permutive.track('User', {
+				  companySize: null,
+				  country: null,
+				  id: (stringFromDataLayer('userId') !== "" ? stringFromDataLayer('userId') : null),
+				  jobIndustry: (dlIndustry !== "" ? dlIndustry : null),
+				  jobPosition: (dlJobPosition !== "" ? dlJobPosition : null),
+				  loggedIn: (stringFromDataLayer('insiderSignedIn') == 'true')
+				});
+			}
+	  }
+	
+	  //product js vars defined in document-head	  
+	  if (prodNames !== '' || prodManufacturers !== '' || prodCategories !== '' || prodVendors !== '') {
+		  window.permutive.track('Product', {
+			  names: stringFromDataLayer('prodNames').split("|"),
+			  categories: stringFromDataLayer('prodCategories').split("|"),
+			  manufacturers: stringFromDataLayer('prodManufacturers').split("|"),
+			  vendors: stringFromDataLayer('prodVendors').split("|")
+		});
+
+	  }
+		 
+
+</script>
+
+<script>
+	$.ajax({
+		url: "https://cdn.permutive.com/f5b3be27-f789-4ef1-8867-37c67da5b361-web.js",
+	  	dataType: "script",
+	  	cache: true, // default is false
+	  	async: true // default is true
+	});
+</script>
+	
+	
+	
+	
+	
+
+	
+
+	
+	
+	
+<script>(function () { var cookie='consentUUID=28ee5bc4-f461-4e6b-a0b2-2913675d72e3; Path=/; Max-Age=31536000; expires=Fri, 19 Feb 2021 09:22:08 GMT;';
+if (true) {
+  var h = window.location && window.location.hostname;
+  if (h) {
+    var rc = (/.co.uk$/.test(h) || /.com.br$/.test(h) || /.com.au$/.test(h) || /.co.nz$/.test(h) ) ? 3 : 2;
+    var ha = h.split('.');
+    var rda = ha.slice(ha.length - rc);
+    if (rda.length > 1) {
+      var rd = rda.join('.');
+      cookie += ' Domain=' + rd + ';';
+    }
+  }
+}
+document.cookie = cookie;
+ })();</script><script>(function () { var cookie='euconsent=BOsVqGZOsVqGZAGABBENC1-AAAAtF7_______9______9uz_Ov_v_f__33e8__9v_l_7_-___u_-33d4-_1vf99yfm1-7ftr3tp_87ues2_Xur__79__3z3_9pxP78k89r7337Mw_v-_v-b7JCON-A; Path=/; Max-Age=31536000; expires=Fri, 19 Feb 2021 09:22:08 GMT;';
+if (true) {
+  var h = window.location && window.location.hostname;
+  if (h) {
+    var rc = (/.co.uk$/.test(h) || /.com.br$/.test(h) || /.com.au$/.test(h) || /.co.nz$/.test(h) ) ? 3 : 2;
+    var ha = h.split('.');
+    var rda = ha.slice(ha.length - rc);
+    if (rda.length > 1) {
+      var rd = rda.join('.');
+      cookie += ' Domain=' + rd + ';';
+    }
+  }
+}
+document.cookie = cookie;
+ })();</script><script>(function () { window.__cmp && typeof window.__cmp.hasConsentData === "function" && window.__cmp.hasConsentData(); })();</script><script>(function () { var d = new Date(); d.setTime(d.getTime()+90*24*60*60*1000); var cookieVal = '_sp_enable_dfp_personalized_ads=true; Path=/; Max-Age=7776000; expires='+d.toGMTString()+';'; var h = window.location && window.location.hostname; if (h) { var rc = (/\.co\.uk$/.test(h) || /\.com\.br$/.test(h)) ? 3 : 2; var ha = h.split('.'); var rda = ha.slice(ha.length - rc); if (rda.length > 1) { var rd = rda.join('.'); cookieVal += ' Domain=' + rd + ';'; } } document.cookie = cookieVal; })();</script><script>(function () { if(typeof idgCMPSourcepointCallback !== 'undefined'){
+    idgCMPSourcepointCallback('google_ad_manager_vd',true)
+  } })();</script><script src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/abpRDQ1YzIwPyo-ND8wKjU-aEFmWk8sLi46QDk_KjQvZlpdX08sLTtmMSw3PjBPPTAxMD09MD1mMz8_Oz5OXGpOW29OW29CQkJXNSxBLEI6PTcvVy46OE5bbyw9PzQuNzBOW29cW2FhW1piTltvOCw-PzA9NDkyVj47PTQ5MlYxPSw4MEI6PTZWXlY7LD0_VltWPjs9NDkyVkIwLTE3QENXMz84N08-MD4-NDo5Kj0wMTA9PTA9ZjM_Pzs-Tlxq"></script></head>
+
+
+
+	<body id="article3288219" class="article blog412 javaworld insider-plus" style="">
+		
+			
+			
+					
+					
+						
+						
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+		
+			
+			
+				<!-- Begin welcome ad overlay - gpt-overlay position  -->
+				
+					<div id="superadunit" class="hidden">
+						<div class="ad">
+							<div class="ad-header">
+								<div class="brand-logo"></div>
+								<a href="javascript:unhide(&#39;superadunit&#39;);" id="superstitial-text" automate_uuid="e8ea3eee-75b2-490f-8dc9-00e8f03721c4">Close Ad</a>
+							</div>
+							<div id="gpt-overlay" class=" ad-container">
+								<script type="text/javascript">
+								consent.ads.queue.push(function(){
+									
+										IDG.GPT.addDisplayedAd("gpt-overlay", "true");
+										IDG.GPT.displayGoogleTagSlot('gpt-overlay');
+									
+								});
+								</script>
+							</div>
+						</div>
+					</div>
+				
+				
+				<!--  End welcome ad overlay - gpt-overlay position -->
+				
+			
+			
+			
+			
+			
+			
+		
+	
+ 	
+ 
+ 
+				
+			
+		
+		
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+		
+		<!-- BEGIN PAGE HEADER -->
+		<header id="banner">
+			
+			
+			
+			
+			
+			
+			
+		    
+		    
+		    
+		    	
+		    	<script>
+		    	if(!$thm.deviceWidthAtLeast($thm.deviceBreakpoints.tablet)){
+					$('.main-header').insertBefore($('#banner .ad'));
+		    	}
+				</script>
+				
+				
+				<div class="topics-wrap">
+				    <section class="topics">
+				        <nav id="scrollable">
+					        
+								
+									
+									
+										
+									
+								
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		<!-- blx4 #670 blox4.raw_link_list  -->
+			
+
+		
+			
+				
+					
+					
+					
+						
+							
+					
+						
+					
+					
+					
+					
+					
+					
+						
+					
+				
+				
+			
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+		
+			
+		
+	
+	
+	
+	<ul>
+		
+		<li class="header">Trending<span class="colon">:</span></li>
+		
+		
+			
+				<li><a class="edition-link-url" href="https://www.javaworld.com/category/java-app-dev/" automate_uuid="e36c8e62-2f3c-4c1e-a226-574f50da0d99"> Java News &amp; Reviews</a></li>
+			
+		
+			
+				<li><a class="edition-link-url" href="https://www.javaworld.com/blog/what-is-java/" automate_uuid="c725aa2a-2552-4252-9b10-d15bb2630397">What is: Java</a></li>
+			
+		
+			
+				<li><a class="edition-link-url" href="https://www.javaworld.com/blog/java-101/" automate_uuid="9fc5cccb-c5d2-4a99-9fe6-67ce7eb5ac1b">Java 101: Learn Java</a></li>
+			
+		
+			
+				<li><a class="edition-link-url" href="https://www.javaworld.com/blog/java-challengers/" automate_uuid="8efc81cf-3740-4bc0-85fa-2666fb3ced2c">Java Challengers</a></li>
+			
+		
+			
+				<li><a class="edition-link-url" href="https://www.javaworld.com/blog/open-source-java-projects/" automate_uuid="4f10ca46-fa97-4b77-b696-f8290c7b65a3">Open Source Java Tutorials</a></li>
+			
+		
+			
+				<li><a class="edition-link-url" href="https://www.javaworld.com/category/android/" automate_uuid="6b5e4e42-536c-41d4-95c5-64233f0117c8">Android</a></li>
+			
+		
+			
+				<li><a class="edition-link-url" href="https://www.javaworld.com/category/careers/" automate_uuid="ada6d48b-9ac0-4112-9178-86f8f6090ae2">Programming Careers</a></li>
+			
+		
+	</ul>
+
+	
+
+
+							
+						</nav>
+				        
+				        <div class="fading-gradient"></div>
+				        
+				        
+				           
+					        
+					        <nav class="tools">
+					        	<ul class="user">
+				                     
+				                     	<li class="search-icon"><a href="https://www.javaworld.com/article/3288219/mastering-spring-framework-5-part-2-spring-webflux.html?page=2#search" id="search-btn" automate_uuid="2a974728-5085-43c1-9c52-29b26055eb78"><i class="ss-icon">Search</i></a></li>
+				                     
+				                 </ul>
+				                 <ul class="social">
+									
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				                 </ul>
+				             </nav>
+				             
+			             
+				    </section>
+			    </div>
+			    
+			    
+		        	 <div id="sticky-anchor"></div>
+		        
+			    <section id="sticky-head" class="main no-stick-important">
+			        <div class="wrapper">
+			            <div class="masthead">
+			                
+			                <button><i class="ss-icon ss-rows"></i></button>
+			                
+			                <a href="https://www.javaworld.com/" automate_uuid="27e2c4b0-27e5-41cb-813b-d537bd90c31f"><span class="ir logo">javaworld</span></a>
+			            	<!--
+			            	<img class="print-only" src="/www.idge.jvw/images/javaworld-logo-print.png">
+			            	-->
+			            	
+			            	<img class="print-only" src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/javaworld-logo-print.png">
+			            	
+			            </div>
+			            <div id="reading-tools-wrapper">
+		
+			                
+			                <nav class="tools">
+			                    
+			                    <ul class="user">
+			                    	
+			                    	
+			                    	
+			                    	
+			                        
+			                    </ul>
+			                </nav>
+			            </div>
+			            
+			            
+			            	<div class="insider-signin">
+			            	
+			            		<span class="signin-register" style="display: inline;">
+			            			<a href="https://www.javaworld.com/about/learn-about-insider.html" automate_uuid="1e61e0aa-02aa-4791-9342-2405ab0dc4a2"><span class="insider"></span></a> <a href="javascript://" onclick="IDG.insiderReg.registerLinkEvent(&#39;insider-reg-signin&#39;)" class="js-open-modal signin" data-modal-id="insider-popup" automate_uuid="82506830-7594-4395-b5d1-309205d26915">Sign In</a> <span class="divider">|</span> <a href="javascript://" onclick="IDG.insiderReg.registerLinkEvent(&#39;insider-reg-form-short&#39;)" class="js-open-modal register" data-modal-id="insider-popup" automate_uuid="2dacbda8-f1ec-4efd-8739-24e62945735c">Register</a>
+			            		</span>
+			            	
+			            		<div id="welcome-message" class="insider-list" style="display: none;">
+				                    <div id="insider-selector">
+				                        <div id="insider-welcome" class="label"></div>
+				                        
+				                        <div class="stories">
+				                        	
+				                        	<div class="personalization">Hi<span id="person-first-name"></span>! Here are the latest Insider stories.</div>
+				                        	
+				                        	
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<ul>
+		
+			
+			
+				
+					
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+							
+						
+						
+						
+							
+						
+						
+						
+					
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="https://www.javaworld.com/article/3526447/typescript-vs-javascript-understand-the-differences.html" automate_uuid="e0aff230-e8c6-4a91-8bbc-ea00e2211435">TypeScript vs. JavaScript: Understand the differences</a></li>
+				
+				
+			
+		
+			
+			
+				
+					
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+							
+						
+						
+						
+							
+						
+						
+						
+					
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="https://www.javaworld.com/article/3527209/a-brief-history-of-artificial-intelligence.html" automate_uuid="a68de87b-c79f-40b1-98fd-aff111e6c829">A brief history of artificial intelligence</a></li>
+				
+				
+			
+		
+			
+			
+				
+					
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+							
+						
+						
+						
+							
+						
+						
+						
+					
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="https://www.javaworld.com/article/3520969/how-to-bring-security-into-agile-development-and-cicd.html" automate_uuid="9d1cd86d-abe5-4bd6-9c1a-9483bfac4be6">How to bring security into agile development and CI/CD</a></li>
+				
+				
+			
+		
+			
+			
+				
+					
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+							
+						
+						
+						
+							
+						
+						
+						
+					
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="https://www.javaworld.com/article/3519930/how-to-query-and-extract-data-from-saas-applications.html" automate_uuid="d2c714b7-e5c0-4312-a5e7-be63cf58b362">How to query and extract data from SaaS applications</a></li>
+				
+				
+			
+		
+	</ul>
+
+
+
+
+											
+											<div class="sign-out-link">
+												<a class="more-insider" href="https://www.javaworld.com/insider/" automate_uuid="e5c01212-772e-4db7-975c-e788cdb81feb">More Insider</a>
+												<a class="sign-out" href="javascript://" onclick="IDG.insiderReg.logout()" automate_uuid="cc0795b1-ffad-4fc3-91ad-293885c1c9a7">Sign Out</a>
+											</div>
+										</div>
+										
+				                    </div>
+				                </div>
+				         
+			            	</div>
+			            	<script>
+			            		$('.signin-register').hide();	
+			            		$('#welcome-message').hide();
+			            	</script>
+			            	
+			            
+			            
+			        </div>
+			    </section>
+			    <section class="tools-expand  ">
+			        
+			        
+			        
+			        
+			        	
+			        	
+			        		
+					        <form class="search" id="search-form" action="https://www.javaworld.com/search">
+					            <label for="search-box">Search for</label>
+								<input type="text" name="query" id="banner-search-term" value="" class="searchbox-input-class ui-autocomplete-input" autocomplete="off"><span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
+					            <input type="submit" id="banner-search-submit" value="Go">
+					            <input type="hidden" name="contentType" value="article,resource">
+					            <div class="search-suggest">Suggestions for you</div>
+					        </form>
+					    
+					
+			        <div class="user">
+			            <form>
+			                <label for="login-email">Insider email</label> <input id="login-email" type="text">
+			            </form>
+			        </div>
+			        
+			    <ul class="ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all" id="ui-id-1" tabindex="0" style="z-index: 1; display: none;"></ul></section>
+			    
+			    
+			    
+				
+				
+		    		<div id="sticky-anchor-nav"></div>
+		    	
+		    	
+			    <nav id="sticky-nav" class="main no-stick" style="height: 1000px; top: 109px;">
+			    	<ul class="topnav">
+						
+						
+							
+			        		<li>
+			        		
+			        			
+			        				<a href="https://www.javaworld.com/article/3288219/mastering-spring-framework-5-part-2-spring-webflux.html?page=2#" class="hasChildren notMobile" automate_uuid="47022755-4e13-46ea-86a8-7cbd3a3b7e4f">Core Java<span class="ss-icon ss-navigatedown"></span></a>
+			            		
+			            		
+			            	
+			            		
+			            		
+				            		<ul class="subnav">
+				                		<li><a href="https://www.javaworld.com/category/core-java/" automate_uuid="b07e1d3e-e30b-4731-9df1-2053b33fe126">All Core Java</a></li>
+				            			
+				            			
+				            				<li><a href="https://www.javaworld.com/category/agile-development/" automate_uuid="5e4bbc93-c44d-49b0-901d-4e077fb7a1cf">Agile Development</a></li>
+				            			
+				            			
+				            				<li><a href="https://www.javaworld.com/category/careers/" automate_uuid="6b1b4942-e043-4653-b864-e5b296b0f039">Careers</a></li>
+				            			
+				            			
+				            				<li><a href="https://www.javaworld.com/category/java-concurrency/" automate_uuid="abe58a07-3c00-4ebe-83c5-947d5eb21431">Concurrency</a></li>
+				            			
+				            			
+				            				<li><a href="https://www.javaworld.com/category/java/" automate_uuid="972166ec-5c4e-499a-a424-85bffc5db734">Java</a></li>
+				            			
+				            			
+				            				<li><a href="https://www.javaworld.com/category/java-platform/" automate_uuid="31d7a1a4-75b7-49e5-bdf8-44fe0fdf92fd">Java Platform</a></li>
+				            			
+				            			
+				            				<li><a href="https://www.javaworld.com/category/security/" automate_uuid="66707de0-7314-4e7c-af3f-0d85d2603208">Security</a></li>
+				            			
+				            			
+				            				<li><a href="https://www.javaworld.com/category/application-testing/" automate_uuid="1a28f506-3d47-4874-ba8d-84b5f4072ebc">Software Testing</a></li>
+				            			
+				            		</ul>
+				            	
+			        		</li>
+						
+						
+							
+			        		<li>
+			        		
+			        			
+			        				<a href="https://www.javaworld.com/article/3288219/mastering-spring-framework-5-part-2-spring-webflux.html?page=2#" class="hasChildren notMobile" automate_uuid="22fb8ace-c404-427a-8840-c282378ac0ab">Enterprise Java<span class="ss-icon ss-navigatedown"></span></a>
+			            		
+			            		
+			            	
+			            		
+			            		
+				            		<ul class="subnav">
+				                		<li><a href="https://www.javaworld.com/category/enterprise-java/" automate_uuid="3447d790-3aef-4a89-996f-79d62ae5f86d">All Enterprise Java</a></li>
+				            			
+				            			
+				            				<li><a href="https://www.javaworld.com/category/apis/" automate_uuid="37f6e0c5-e507-4ef8-b4df-47bf1c41ab35">APIs</a></li>
+				            			
+				            			
+				            				<li><a href="https://www.javaworld.com/category/analytics/" automate_uuid="9a5d2140-d069-4656-82b1-4bc32b8573f4">Analytics</a></li>
+				            			
+				            			
+				            				<li><a href="https://www.javaworld.com/category/big-data/" automate_uuid="43af2dab-9a56-432e-b950-e93231216db9">Big Data</a></li>
+				            			
+				            			
+				            				<li><a href="https://www.javaworld.com/category/cloud-computing/" automate_uuid="cc5765da-906c-427c-8142-88b9889fd040">Cloud Computing</a></li>
+				            			
+				            			
+				            				<li><a href="https://www.javaworld.com/category/development-tools/" automate_uuid="260bc985-311f-45cf-b748-75f0dc1dd11f">Development Tools</a></li>
+				            			
+				            			
+				            				<li><a href="https://www.javaworld.com/category/open-source-tools/" automate_uuid="4552fe22-5b6a-4188-9a2d-0340bed1c304">Open Source</a></li>
+				            			
+				            			
+				            				<li><a href="https://www.javaworld.com/category/scripting-jvm-languages/" automate_uuid="f862d074-583d-46c8-b31d-2e6372f3207b">Scripting and JVM Languages</a></li>
+				            			
+				            			
+				            				<li><a href="https://www.javaworld.com/category/application-development/" automate_uuid="a6758aaa-ad3b-451f-b488-67c34af089f2">Software Development</a></li>
+				            			
+				            			
+				            				<li><a href="https://www.javaworld.com/category/web-development/" automate_uuid="6bf1d367-c4da-4c44-aa6c-9b7b1b1b9a17">Web Development</a></li>
+				            			
+				            		</ul>
+				            	
+			        		</li>
+						
+						
+							
+			        		<li>
+			        		
+			        			
+			        				<a href="https://www.javaworld.com/article/3288219/mastering-spring-framework-5-part-2-spring-webflux.html?page=2#" class="hasChildren notMobile" automate_uuid="f88d7795-6d69-4dfe-8c26-4e231e1f8801">Learn Java<span class="ss-icon ss-navigatedown"></span></a>
+			            		
+			            		
+			            	
+			            		
+			            		
+				            		<ul class="subnav">
+				                		<li><a href="https://www.javaworld.com/category/learn-java/" automate_uuid="2f062b2c-5e82-4656-8ea6-16d9d65eb320">All Learn Java</a></li>
+				            			
+				            			
+				            				<li><a href="https://www.javaworld.com/category/design-patterns/" automate_uuid="3d2f6364-ff4f-4b1b-83bd-3c0298d4dcb5">Design Patterns</a></li>
+				            			
+				            		</ul>
+				            	
+			        		</li>
+						
+						
+							
+			        		<li>
+			        		
+			        			
+			        				<a href="https://www.javaworld.com/article/3288219/mastering-spring-framework-5-part-2-spring-webflux.html?page=2#" class="hasChildren notMobile" automate_uuid="a4ceb483-0268-41f4-ab4b-96caca4820d9">Mobile Java<span class="ss-icon ss-navigatedown"></span></a>
+			            		
+			            		
+			            	
+			            		
+			            		
+				            		<ul class="subnav">
+				                		<li><a href="https://www.javaworld.com/category/mobile-java/" automate_uuid="21bcdc37-16ec-401f-b67d-aa0ee070a10c">All Mobile Java</a></li>
+				            			
+				            			
+				            				<li><a href="https://www.javaworld.com/category/android/" automate_uuid="a5090279-9fd2-4eff-a066-b05502d75752">Android</a></li>
+				            			
+				            			
+				            				<li><a href="https://www.javaworld.com/category/ios/" automate_uuid="260b5788-0ed4-4b85-918e-aa9850b3800f">iOS</a></li>
+				            			
+				            		</ul>
+				            	
+			        		</li>
+						
+					</ul>
+					
+			    		<ul class="secondary topnav">
+		           			
+		           			
+
+
+
+
+
+
+
+
+
+
+<li><a href="https://www.javaworld.com/news/" automate_uuid="1469f3c8-95b6-4c5f-a64c-a41d5ddce901">News</a></li>
+<li><a href="https://www.javaworld.com/feature/" automate_uuid="fde892a1-eb14-48d6-9c28-463dafa76b43">Features</a></li>
+<li><a href="https://www.javaworld.com/howto/" automate_uuid="075672d1-e2ab-4cd1-8650-a9c3ba097177">How-Tos</a></li>
+<li><a href="https://www.javaworld.com/blogs/" automate_uuid="0ef313d3-5a55-47ca-98c9-78703f07b021">Blogs</a></li>
+<li><a href="https://www.javaworld.com/resources/" automate_uuid="11795b11-fa10-46ee-b3dd-3594fad446bc">Resources/White Papers</a></li>
+<li><a href="https://www.javaworld.com/newsletters/signup.html" automate_uuid="ec303c8c-87f0-404a-8f20-648f42fbdbc0">Newsletters</a></li>
+		           			
+			    		</ul>
+			    	
+				</nav>
+				
+			
+			
+			
+			
+			
+
+			
+			
+				<script>
+		    	if(!$thm.deviceWidthAtLeast($thm.deviceBreakpoints.tablet)){
+					$('div.insider-signin').prependTo('section.topics nav.tools');
+		    	}
+				</script>
+			
+		    
+				<script>
+				$(document).ready(function(){
+					if($thm.deviceWidthAtLeast($thm.deviceBreakpoints.tablet)){
+						$("nav ul li a.hasChildren").attr("href", "#").addClass('notMobile');
+						$('nav#sticky-nav ul.secondary').addClass('topnav');
+					}
+					if(!$thm.deviceWidthAtLeast($thm.deviceBreakpoints.tablet)){
+						$("nav#sticky-nav > ul").switchClass("topnav", "primary");
+					}
+				});
+				</script>
+			
+			
+				
+		    	<script>
+		    	if(!$thm.deviceWidthAtLeast($thm.deviceBreakpoints.tablet)){
+					$('#sticky-anchor, section.main, section.topics, section.tools-expand, #sticky-anchor-nav, nav.main').insertBefore($('#banner .ad'));
+					$(document).ready(function(){
+						$('#banner section.tools-expand').addClass('top-margin');
+					});
+		    	}
+				</script>
+				
+			
+			
+			
+		</header><iframe name="__uspapiLocator" style="display: none;" src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/saved_resource(1).html"></iframe>
+		
+		
+		
+		<script>
+		$(document).ready(function(){
+			$('body').addClass('insider-plus');
+			
+			var headerHeight = $('header#banner').height(); // height for desktop on load not fixed
+			$('header#banner nav#sticky-nav.main.no-stick').css("top", headerHeight);
+			
+			if(!$thm.deviceWidthAtLeast($thm.deviceBreakpoints.tablet)){	
+				var stickyHeaderHeight = $('section.topics').height() + $('#sticky-head.main').height();
+				stickyHeaderHeight = stickyHeaderHeight - 8;
+			}
+			
+			// Listen for orientation changes - mobile devices have a problem resizing fixed position elements on
+			// orientation change from portrait to landscape so scrolling to current position of header
+			var supportsOrientationChange = "onorientationchange" in window,
+		    orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
+			
+			if($thm.deviceWidthAtLeast($thm.deviceBreakpoints.tablet)){
+				window.addEventListener(orientationEvent, function() {
+					var top = $('section#sticky-head.main').offset().top;
+					if (top < 170) {
+						top = 0; // so we don't miss the top leaderboard or ticker on change
+					} else {
+						top = top - 50; //acknowledging "shorter" top on landscape than portrait
+					}
+					if (window.orientation == 90 || window.orientation == -90) {
+						window.scrollTo(0, top);
+					}
+				}, false);
+			}
+			
+			if($thm.deviceWidthAtLeast($thm.deviceBreakpoints.tablet) && $thm.deviceHeight() < 768 ) {
+				if($('html').hasClass('touch')) {
+					$('#insider-popup.modal-box .modal-body').addClass('short');
+				} else {
+					$('#insider-popup.modal-box .modal-body').addClass('short-desk');
+				}
+			}
+			
+			if(!$thm.deviceWidthAtLeast($thm.deviceBreakpoints.tablet)){
+				window.addEventListener(orientationEvent, function() {
+					var top = $('section#sticky-head.main').offset().top;
+					if (top < 50) {  // top is fixed on mobile so this is when user is at very top
+						top = 5; // scroll 5 pixels from 0 to resize fixed header from portrait
+					} else {
+						top = top - 40;
+					}
+					if (window.orientation == 90 || window.orientation == -90) {
+						window.scrollTo(0, top);
+					}
+				}, false);
+			}
+			
+			//nexus 7 is sized mobile in portrait and tablet in landscape
+			var ua = navigator.userAgent.toLowerCase();
+			var isAndroid = ua.indexOf("android") > -1;
+			window.addEventListener(orientationEvent, function() {
+			    if(isAndroid && (screen.width == 600 || screen.width == 960)) {
+			    	location.reload(true); // refreshing page for changes to header
+			    }
+			}, false);
+			
+			if ($thm.deviceWidthAtLeast($thm.deviceBreakpoints.desktop) && !$('html').hasClass('touch')){
+				$("ul.social li.more-social").mouseenter(function() {
+					$('ul.social > li').addClass('display-icon');
+				});
+				$("ul.social").mouseleave(function() {
+					$('ul.social > li').removeClass('display-icon');
+				});
+			};
+			
+			if($thm.deviceWidthAtLeast($thm.deviceBreakpoints.tablet) && $('html').hasClass('touch')){
+				$("ul.social li.more-social").click(function() {
+					$('ul.social > li').toggleClass('display-icon');
+				});
+			};
+			
+			$('.searchbox-input-class').each(function(){
+			    $(this).change(function(){
+			    	var qStr=$(this).val();
+			    	if($(this).val().indexOf('@')!=-1){
+			    		qStr=qStr.replace(/@/g,' ');
+			    		$(this).val(qStr);
+			    	}
+			    });
+			});
+			
+		});
+		
+		function sticky_relocate() {
+			var headerHeight = $('header#banner').height(); // height for desktop	
+			//$('header#banner nav#sticky-nav.main').css("top", headerHeight);
+			
+			var winHeight = $(window).height();
+			// desktop
+			if ( $thm.deviceWidthAtLeast($thm.deviceBreakpoints.wide ) ){
+				winHeight = winHeight - 40;
+				if (window.orientation == 90 || window.orientation == -90) {
+					winHeight = winHeight + 50; // landscape tablet 1024
+				}
+			}// tablet
+			else if ( $thm.deviceWidthAtLeast($thm.deviceBreakpoints.tablet) && !$thm.deviceWidthAtLeast($thm.deviceBreakpoints.wide) ) {
+				winHeight = winHeight + 40;
+			} else { // mobile
+				winHeight = winHeight + 10;
+			}
+			
+			$('#banner nav#sticky-nav.main').css("height", winHeight); // flyout nav height
+		
+			// tablet and desktop
+			if($thm.deviceWidthAtLeast($thm.deviceBreakpoints.tablet)){
+			    var window_top = $(window).scrollTop();
+			    var div_top = $('#sticky-anchor').offset().top;
+			    if (window_top > div_top) {
+			        $('#sticky-head').addClass('stick');
+			        $('#page-wrapper').addClass('top-pad');
+			        $('#banner .ad').addClass('top-margin');
+			    } else {
+			        $('#sticky-head').removeClass('stick');
+			        $('#page-wrapper').removeClass('top-pad');
+			        $('#banner .ad').removeClass('top-margin');
+			    }
+			}
+			// mobile
+			if(!$thm.deviceWidthAtLeast($thm.deviceBreakpoints.tablet)){
+				$('section.topics').addClass('stick-topics');
+				$('#sticky-head').addClass('stick-head');
+				$('#page-wrapper').addClass('top-pad');
+				$('#banner .ad').addClass('top-margin');
+				$('#banner section.tools-expand').addClass('search');
+				  
+				var window_top = $(window).scrollTop();
+				var div_top = $('#sticky-anchor').offset().top + 30;
+			    if (window_top > div_top) {
+			    	$('#sticky-head').addClass('stick');
+			    	$('.topics.stick-topics, #search-form').addClass('remove');
+			    	$('li.search-icon').fadeOut("fast");
+			    } else {
+			    	$('#sticky-head').removeClass('stick');
+			    	$('.topics.stick-topics, #search-form').removeClass('remove');
+			    	$('li.search-icon').fadeIn("fast");
+			    }
+			}// end mobile
+		    
+			// tablet and desktop flyout nav
+			if($thm.deviceWidthAtLeast($thm.deviceBreakpoints.tablet)){
+			    if ($('#sticky-head').hasClass('stick')) {
+			    	var stickyHeaderHeight = $('section.main').height(); // height of the fixed header for tablet and desktop
+			    	stickyHeaderHeight = 52; // setting fixed height - same across all sites
+					$('header#banner nav#sticky-nav.main').css("top", stickyHeaderHeight);
+			        $('#sticky-nav').addClass('stick');
+			        $('#sticky-nav').removeClass('no-stick');
+			    } else {
+			    	stickyHeaderHeight = $('header#banner').height();
+			    	$('header#banner nav#sticky-nav.main').css("top", stickyHeaderHeight);
+			        $('#sticky-nav').removeClass('stick');
+			        $('#sticky-nav').addClass('no-stick');
+			    }
+			    
+			}// end tablet/desktop
+			
+			
+			// mobile flyout nav
+			if(!$thm.deviceWidthAtLeast($thm.deviceBreakpoints.tablet)){
+			    	
+		    	var stickyHeaderHeight = $('section.topics').height() + $('#sticky-head.main.stick-head').height(); // height of the fixed header for mobile
+		    	stickyHeaderHeight = stickyHeaderHeight - 8;  // 8 seems appropriate
+		    	$('header#banner nav#sticky-nav.main').css("top", stickyHeaderHeight);
+		        $('#sticky-nav').addClass('stick');
+		
+		        if ($('#sticky-head').hasClass('stick')) {
+		        	$('#sticky-head.stick').siblings('#sticky-nav').addClass('nav-stick');
+		        	$('#sticky-head').siblings('#sticky-nav').removeClass('no-stick');
+		        } else {
+		        	$('#sticky-head').siblings('#sticky-nav').removeClass('nav-stick');
+		        	$('#sticky-head').siblings('#sticky-nav').addClass('no-stick');
+		        }
+		
+			}// end mobile
+			
+		    
+		} // end sticky_relocate
+		
+		
+		
+		
+		$(function () {
+		    $(window).scroll(sticky_relocate);
+		    sticky_relocate();
+		});
+		</script>
+		
+		
+
+
+
+
+	<div id="insider-popup" class="modal-box " style="top: 10px; left: 0px;">
+	
+		<div class="insider-modal-wrapper">
+	  
+			<div class="modal-header-title">
+				<div class="modal-banner-insider"><span class="insider"></span></div>
+		    	<div class="modal-close close">×</div>
+		  	</div>
+		  	
+		  	<div class="modal-body">
+		  		
+		  			
+						<script>
+$(document).ready(function(){
+	$('a[data-link]').click(function() {
+		
+		  //get this link's dataLink value
+		  var dataLink = $(this).attr('data-link');
+
+		  //select the div with the same value
+		  var toKeep = 'div[data-link="'+dataLink+'"]';
+	
+		  //select data-link divs that are not the above div
+		  $('div[data-link]').not(toKeep).hide();
+		  
+		  if($(this).hasClass('link-transition')){
+			  $(toKeep).fadeIn(800);
+		  } else {
+			  $(toKeep).show();
+		  }
+	
+		  //prevent location change
+		  return false;
+	});
+	
+
+});
+</script>
+
+					
+					
+				
+		  	</div>
+		  	
+		  	<div class="modal-footer">
+		    	<div class="modal-close close-btn">Close</div>
+		  	</div>
+		</div>
+	  	
+	</div>
+
+	<script>
+		$(document).ready(function(){
+
+			var appendthis =  ("<div class='modal-overlay modal-close'></div>");
+			if($thm.deviceWidthAtLeast($thm.deviceBreakpoints.tablet)){
+				$('.modal-box').css({
+					//top: ($(window).height() - $(".modal-box").outerHeight()) / 2,
+					top: 10,
+					left: 0
+				});
+			}
+			
+			
+			if(!$thm.deviceWidthAtLeast($thm.deviceBreakpoints.tablet)){
+				$('.modal-box').height($(document).height());
+				$('.modal-box').css('top','0');
+			}
+			
+			var userAg = navigator.userAgent;
+
+			$('a[data-modal-id]').click(function(e) {
+				e.preventDefault();
+				$('body').append(appendthis);
+				$('.modal-overlay').fadeTo(500, 0.9);
+				$('.modal-overlay').height($(document).height());
+				var modalBox = $(this).attr('data-modal-id');
+				
+				if ($(".modal-box").hasClass('triggered') || (userAg.indexOf("Firefox")!=-1)) {
+					$('#'+modalBox).fadeIn($(this).data()); // triggered by something other than onclick of link such as scroll to point in window
+				} else {
+					// IDGMPM-16177
+					//if(!$thm.deviceWidthAtLeast($thm.deviceBreakpoints.tablet)){
+						$('#'+modalBox).toggle('slide', {direction: 'up'}, 800);
+					//} else {
+				   // 	$('#'+modalBox).toggle('slide', {direction: 'left'}, 600);
+					//}
+				}
+
+				if(!$thm.deviceWidthAtLeast($thm.deviceBreakpoints.tablet)){
+					$("html, body").animate({
+			            scrollTop: 0
+			        }, 700);
+			        
+			        
+			        $('a.btn.continue-on').click(function() {
+			        	$('html, body').animate({
+			        		scrollTop: 0
+			        	}, 500);
+			        });
+			        
+			        return false;
+			        
+				}
+				if (navigator.userAgent.match(/(iPad)/)) {
+					$("html, body").animate({
+			            scrollTop: 0
+			        }, 500);
+				}
+			});
+		  
+		  
+			$(".modal-close, .modal-overlay").click(function() {
+				$('.select2-drop').css('display','none');
+				$(".modal-overlay").fadeOut(500, function() {
+					$(".modal-overlay").remove();
+				});
+				if ($(".modal-box").hasClass('triggered') || (userAg.indexOf("Firefox")!=-1)) {
+					$(".modal-box").fadeOut(500);
+				} else {
+					// IDGMPM-16177
+					//if(!$thm.deviceWidthAtLeast($thm.deviceBreakpoints.tablet)){
+						$('.modal-box').toggle('slide', {direction: 'up'}, 800);
+					//} else {
+					//	$('.modal-box').toggle('slide', {direction: 'left'}, 600);
+					//}
+				}
+				// remove the stylesheet added in header.jsp
+				setTimeout(function(){
+					$("link.oc-modal").remove();
+				}, 1000);
+			});
+		
+		});
+	</script>
+
+		
+		
+		
+		
+		
+		<!-- END PAGE HEADER -->
+
+
+
+
+		
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="page-wrapper" class="page-wrapper">
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="skinAdTarget"></div>
+
+
+			
+		
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+	
+	
+ 	
+
+
+	
+	<section role="main">
+	
+		
+		
+		
+
+		<article itemscope="" itemtype="http://schema.org/BlogPosting" class="blog">
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Events Header -->
+
+ 
+ 
+	
+		
+		
+		
+		
+		
+					    			
+		
+	
+	
+	
+	
+	
+
+ 
+ 
+ 
+ 
+  
+  
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+<!-- //end Events Header -->
+
+
+	
+	
+	
+	
+	
+	
+		
+	
+
+
+
+	
+		
+	
+	
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/date-time-moments.js"></script>
+
+
+	
+	
+		<script>
+		// non-edition sites
+		$(document).ready(function() {
+			var fullDate = "2018-08-30T11:52-0700";
+			var dateFormat = "MMM D, YYYY h:mm a z";
+			timeDate = moment(fullDate).tz('America/Los_Angeles').format(dateFormat); // 12 hour format
+			document.querySelector(".format-date").textContent = timeDate;
+		});
+		</script>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+	
+		
+			
+		
+	
+		
+	
+
+
+
+<header class="cat">
+
+	
+	
+	
+	
+	
+	
+	
+	
+	<nav class="breadcrumbs horiz">
+		<ul itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+			<li><a class="edition-link-url" href="https://www.javaworld.com/" itemprop="url" automate_uuid="3d207da7-6bb9-4db2-b1c1-c00eb4a291ad"><span itemprop="title">Home</span></a></li>
+			
+				
+				
+					<li><a class="edition-link-url primary-cat-url" href="https://www.javaworld.com/category/application-development/" itemprop="url" automate_uuid="91e4ef24-c021-4382-ba86-0a7458a3f28b"><span class="primary-cat-name" itemprop="title">Software Development</span></a></li>
+				
+				
+					<li><a class="edition-link-url" href="https://www.javaworld.com/category/spring-framework/" itemprop="url" automate_uuid="26a5bc89-d379-4369-833e-71882d399166"><span class="article-primary-cat" itemprop="title">Spring Framework</span></a></li>
+				
+			
+		</ul>
+	</nav>
+	
+	
+	
+	
+		<div class="blog-byline vcard author with-image" itemscope="" itemtype="http://schema.org/Person" itemprop="author">
+			<div class="brand ">
+				
+				
+					
+					
+						
+							
+							
+							
+							
+						
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a href="https://www.javaworld.com/author/Steven-Haines/" rel="author" title="Steven Haines" automate_uuid="8698f9d8-6263-4d70-aece-8024983bcfe1"><img class="bylineImage  imgId100250014 " src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/shaines-100250014-byline.jpg" width="34" alt="Steven Haines" itemprop="image"></a>
+
+					
+					
+				
+				
+				<div class="blog-branding-text">
+					
+					
+					
+					
+					
+					<div class="blog-title"><a href="https://www.javaworld.com/blog/open-source-java-projects/" automate_uuid="c6be2b15-86c6-4748-aeab-c126db3a9cb8">Open Source Java Tutorials</a></div>
+					
+					
+					
+						
+							<p class="name" itemscope="" itemtype="http://schema.org/Person" itemprop="author">
+								
+								
+								By <span class="fn" itemprop="name"><a rel="author" itemprop="url" href="https://www.javaworld.com/author/Steven-Haines/" automate_uuid="3bfe6f04-66ca-46b0-b640-9cabf29ebe2f"><span itemprop="name">Steven Haines</span></a></span>, 
+								
+								<span class="cn-container">
+									
+								</span>
+								
+							  	 Contributor, 
+								
+									
+								
+
+
+
+
+
+
+
+
+
+
+
+
+<span itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization"><span class="publisher" itemprop="name">JavaWorld</span><meta itemprop="logo" content="https://www.javaworld.com/www.idge.jvw/images/JVW_logo_300x300.png"></span> 
+								
+								<span class="divider break">|</span>
+								
+								<span class="pub-date" itemprop="datePublished" content="2018-08-30T11:52-0700"><span class="format-date">Aug 30, 2018 11:52 am PDT</span>
+									
+								</span>
+							</p>
+							
+							
+																				
+										
+					
+				</div>
+			</div>
+			
+				<div class="about">
+					<div class="about-title">About <span class="divider">|</span> <a href="https://www.javaworld.com/blog/open-source-java-projects/index.rss" automate_uuid="48ca6aca-a423-451e-94a4-ff8a64d5ff55"><i class="ss-icon ss-social ss-rss"></i></a></div>
+					<p>A working developer's guide to open source tools and frameworks for Java application development.</p>
+				</div>
+			
+		</div>
+	
+	
+	
+	
+	
+	
+	
+		
+			<div class="category">The Spring Series</div>
+		
+		
+	
+	
+
+	<h1 itemprop="headline">Mastering Spring framework 5, Part 2: Spring WebFlux</h1>
+	
+	
+	
+	
+		<section class="deck viewability">
+			<h3 itemprop="description"> Build reactive web applications using Spring WebFlux annotations and functional programming techniques</h3>
+		</section>
+	
+	
+	
+	
+	
+	
+	
+	
+			<div class="cat-social">
+				
+					
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+	
+
+				
+
+	
+	
+		
+		
+	
+
+
+
+	
+	
+
+
+	
+
+
+<div id="sharer" class="cat sidecar show blog">
+<ul id="share-tool" class="expand">
+
+	
+		<li class="sosh">
+			<a data-socialsite="Facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.javaworld.com%2Farticle%2F3288219%2Fmastering-spring-framework-5-part-2-spring-webflux.html" target="_blank" automate_uuid="5891b26a-fb0e-4e04-9f6c-66183445780b">
+				<img class="sidecar-icon" src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/facebook.svg">
+			</a>
+		</li>	
+	<li class="sosh">
+		<a data-socialsite="Twitter" class="twit-hand" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.javaworld.com%2Farticle%2F3288219%2Fmastering-spring-framework-5-part-2-spring-webflux.html&amp;via=javaworldcom&amp;text=Mastering+Spring+framework+5%2C+Part+2%3A+Spring+WebFlux" target="_blank" automate_uuid="9e6edb44-565d-4dde-8818-d630ba5b055b">
+			<img class="sidecar-icon" src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/twitter.svg">
+		</a>
+	</li>
+	<li class="sosh">
+		<a data-socialsite="Linkedin" href="http://www.linkedin.com/shareArticle?url=https%3A%2F%2Fwww.javaworld.com%2Farticle%2F3288219%2Fmastering-spring-framework-5-part-2-spring-webflux.html&amp;title=Mastering+Spring+framework+5%2C+Part+2%3A+Spring+WebFlux" target="_blank" automate_uuid="5cf19069-d063-4ee6-9ca4-32a24af7681c">
+			<img class="sidecar-icon" src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/linkedin.svg">
+		</a>
+	</li>	
+	<li class="sosh hide">
+			<a data-socialsite="Reddit" href="http://reddit.com/submit?url=https%3A%2F%2Fwww.javaworld.com%2Farticle%2F3288219%2Fmastering-spring-framework-5-part-2-spring-webflux.html&amp;title=Mastering+Spring+framework+5%2C+Part+2%3A+Spring+WebFlux" target="_blank" automate_uuid="78801bfe-be05-48a0-af4e-1392c98beb8e">
+				<img class="sidecar-icon" src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/reddit.svg">
+			</a>
+	</li>	
+	<li class="sosh hide">
+		<a href="mailto:?Subject=Mastering%20Spring%20framework%205,%20Part%202:%20Spring%20WebFlux&amp;Body=Check%20out%20this%20article%20from%20JavaWorld%3A%20https%3A%2F%2Fwww.javaworld.com%2Farticle%2F3288219%2Fmastering-spring-framework-5-part-2-spring-webflux.html" target="_blank" rel="nofollow" id="email-icon" automate_uuid="e3669627-14c2-49b0-b07d-208b3f933b2e">
+			<img class="sidecar-icon" src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/mail.svg">	
+		</a>
+	</li>
+	<li class="sosh hide print">
+		<a href="javascript:window.print();" automate_uuid="0d8bcb0c-3391-4ee8-b265-6d6db21ea083">
+			<img class="sidecar-icon" src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/print.svg">
+		</a>
+	</li>
+	<li class="more">
+		<div class="more-icon" onclick="document.getElementById(&#39;share-tool&#39;).className = &#39;expand&#39;;"></div>
+	</li>
+
+
+
+
+</ul>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	if (twitterHandle != "") {
+		$("a[href*=via]").attr("href", function(_, href) {
+			  return href.replace(/via=javaworldcom/, "via="+twitterHandle);
+		});
+	}
+	
+	//Add Social Share Event Tag in GTM - IDGMPM-17271
+	$("a[data-socialsite]").click(function() {
+		var dataLayer = window.dataLayer = window.dataLayer || [];
+		dataLayer.push({
+			'event': 'socialShare', 
+		  	'eventCategory': 'Social Share',
+		  	'eventAction': $(this).attr("data-socialsite"), 
+		  	'eventLabel': window.document.title
+		});
+		
+	});
+});
+</script>
+
+<script type="text/javascript">
+var isValidEmailAddress = isValidEmailAddress || function(emailAddress) {
+    var pattern = new RegExp(/^[+a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,5}$/i);
+    return pattern.test(emailAddress);
+};
+function encodeQueryData(params) {
+	var ret = [];
+	for (var paramKey in params) {
+		ret.push(encodeURIComponent(paramKey) + "=" + encodeURIComponent(params[paramKey]));
+	}
+	return ret.join("&");
+}
+</script>
+
+			</div>
+	
+	
+	
+
+	
+		
+			
+		
+	
+	
+		
+	
+	
+		
+			<div class="ad viewability" id="viewabilityAdContainer">
+				<div id="viewabilityAdUnit">
+					
+						
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+		
+			
+			
+			
+			
+			
+			
+				<div id="topleaderboard" class=" ad-container test">					
+				</div>				
+				<script type="text/javascript">
+				consent.ads.queue.push(function(){
+				
+					IDG.GPT.addDisplayedAd("topleaderboard", "true");
+					$('#topleaderboard').responsiveAd({screenSize:'971 1115', scriptTags: []});
+                    IDG.GPT.log("Creating ad: topleaderboard - [971 1115]");
+                    
+				
+				});
+				</script>
+			
+		
+	
+ 	
+ 
+ 
+				</div>
+			</div>
+			
+		
+	
+	
+	
+	
+	
+</header>
+
+
+
+
+	<div class="constrain-970">
+		
+
+
+
+<section class="epo cat-narrow" id="drr-top-ad">
+
+	
+	
+	
+	
+	
+	
+		<div class="ad top-ad">
+	
+		
+		
+			
+				
+					
+					
+						
+					
+				
+				
+				
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+		
+			
+			
+			
+			
+			
+			
+				<div id="topimu" class="adunit ad-container test" style="">					
+				</div>				
+				<script type="text/javascript">
+				consent.ads.queue.push(function(){
+				if($(window).width() >= 930) {
+					IDG.GPT.addDisplayedAd("topimu", "true");
+					$('#topimu').responsiveAd({screenSize:'971 1115', scriptTags: []});
+                    IDG.GPT.log("Creating ad: topimu - [971 1115]");
+                    
+				}
+				});
+				</script>
+			
+		
+	
+ 	
+ 
+ 
+		
+	
+</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</section>
+
+</div>
+
+
+
+
+
+
+
+<div class="constrain-970">
+	
+</div>
+
+
+
+
+<script src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/deal-modules.js"></script>
+
+		
+		
+
+
+
+		<section class="bodee">
+
+			
+				
+				
+					
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+	#drr-container figure.large.video {
+		border-bottom: 0 none;
+	}
+	figure#page-lede.thm-gallery #bcplayer-gallery #bcplayer-gallery_ad > div {
+		width: 100%;
+		height: 100%;
+		transition: all 0.5s ease;
+	}
+</style>
+<style>
+.jwplayer.jw-state-paused .jw-display {
+	display: table !important;
+	padding: 0;
+}
+.jwplayer .jw-display-icon-container {
+    float: none;
+    padding: 0;
+    margin: 0;
+}
+.jw-flag-small-player .jw-display {
+	padding-top: 0px;
+}
+.jwplayer .jw-display-icon-container .jw-icon-rewind {
+	visibility: hidden;
+}
+.jwplayer .jw-display-icon-container  .jw-icon-display .jw-svg-icon-play path,
+.jw-state-idle .jw-svg-icon-play path,
+.jwplayer .jw-display-icon-container  .jw-icon-display .jw-svg-icon-replay path,
+.jw-state-complete .jw-svg-icon-replay path {    
+    display: none;
+}
+.jwplayer .jw-display-icon-container  .jw-icon-display .jw-svg-icon-play,
+.jw-state-idle .jw-svg-icon-play,
+.jwplayer .jw-display-icon-container  .jw-icon-display .jw-svg-icon-replay,
+.jw-state-complete .jw-svg-icon-replay {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-image: url(//idge.staticworld.net/idgtv/btn-play-default.svg);
+    background-position: center center;
+    bottom: 0;
+    border-radius: 0;
+    box-shadow: none;
+    left: 0;
+    margin: auto;
+    right: 0;
+    top: 0;
+}
+.jwplayer .jw-display-icon-container .jw-icon,
+.jwplayer .jw-display-icon-container  .jw-icon-display .jw-svg-icon-play,
+.jw-state-idle .jw-svg-icon-play,
+.jwplayer .jw-display-icon-container  .jw-icon-display .jw-svg-icon-replay,
+.jw-state-complete .jw-svg-icon-replay {
+    height: 81px;
+    width: 78px;
+}
+</style>
+
+
+	
+
+
+
+	
+	
+	
+	
+		<div class="ad placement">
+			
+				
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+		
+			
+			
+			
+				<script>
+					var supLocaleEd = false;
+					if (typeof countryCode !== 'undefined' && countryCode !== "" && countryCode === 'in' || (brandAbbrev === 'cio' && countryCode === 'nz')) {
+						supLocaleEd = true;
+					}
+				</script>
+				<!--  Begin inread -->
+				<div id="inread" class=" ad-container">					
+				</div>
+				
+				<script>
+					if (supLocaleEd === true) {
+						$("div#inread").remove();
+					} else {
+						consent.ads.queue.push(function(){
+							IDG.GPT.addDisplayedAd("inread", "true");
+							IDG.GPT.displayGoogleTagSlot('inread');
+						});
+					}
+				</script>
+				
+				<!--  End inread -->	
+			
+			
+			
+			
+		
+	
+ 	
+ 
+ 
+		</div>
+	
+	
+	
+	
+	
+	
+	
+	
+		
+		
+			
+			
+				<div id="collection-module-top" class="some-toc" data-tracking-category="Collection Module - Top" style="left: -190px; top: 5px; width: 140px;">
+					
+					
+					<h3>The Spring Series</h3>
+					<ul>
+					
+						
+							<li class="0 3 collection-item">
+								
+								<a class="trackLink" href="https://www.javaworld.com/article/3444936/what-is-spring-component-based-development-for-java.html" automate_uuid="1d3176a9-2511-4efe-b8f2-cf42befe1c98">What is Spring? Component-based...</a>
+							</li>
+						
+					
+						
+							<li class="1 3 collection-item">
+								
+								<a class="trackLink" href="https://www.javaworld.com/article/2078034/spring-framework-mastering-spring-mvc.html" automate_uuid="d8237b8d-e0f2-4973-ad2d-b4edff866d59">Mastering Spring framework 5, Part 1:...</a>
+							</li>
+						
+					
+						
+							<li class="2 3 collection-item current">
+								
+								<a class="trackLink" href="https://www.javaworld.com/article/3288219/mastering-spring-framework-5-part-2-spring-webflux.html" automate_uuid="5d84dfdd-99c5-4a7d-b136-a4cbb0b16003">Mastering Spring framework 5, Part 2:...</a>
+							</li>
+						
+					
+					</ul>
+					
+				</div>
+				
+				
+			
+			<script>
+				var dataLayer = window.dataLayer = window.dataLayer || [];
+				dataLayer.push({
+					'event': 'loadTopCollectionModule'
+					});
+			</script>
+			
+		
+	
+	
+	
+	
+	
+	
+			
+	
+	
+	
+	
+	
+	
+		
+		
+			
+		
+	
+	
+	
+	
+	
+		
+			
+				
+				
+				
+					
+				
+				
+			
+		
+		
+	
+	
+		
+		
+			<div id="drr-container" class="cat " itemprop="articleBody">
+		
+		
+		
+		
+			
+				
+				
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	<section class="pagination">
+		
+			<a href="https://www.javaworld.com/article/3288219/mastering-spring-framework-5-part-2-spring-webflux.html" class="page-link prev" rel="prev" automate_uuid="d6d53903-fa04-42eb-a0d1-a7e0e1cd1bae"><i class="ss-icon ss-navigateleft"></i> Previous</a>
+		
+	    
+		    <span class="page-numbers">
+			    
+			    	<a href="https://www.javaworld.com/article/3288219/mastering-spring-framework-5-part-2-spring-webflux.html" class="page-link " automate_uuid="ce7d623b-5b7b-4e28-9a5a-e18bb5f25203">1</a>
+			    
+			    	<a href="https://www.javaworld.com/article/3288219/mastering-spring-framework-5-part-2-spring-webflux.html?page=2" class="page-link current" automate_uuid="8db2816c-8568-4c64-84cc-565197c3a580">2</a>
+			    
+			    	<a href="https://www.javaworld.com/article/3288219/mastering-spring-framework-5-part-2-spring-webflux.html?page=3" class="page-link " automate_uuid="bcec490d-285d-4bbf-a6d0-a8488a3eb9f3">3</a>
+			    
+		    </span>
+		    <span class="current-page">
+		    	Page 2
+		    </span>
+		
+		
+			<a href="https://www.javaworld.com/article/3288219/mastering-spring-framework-5-part-2-spring-webflux.html?page=3" class="page-link next" rel="next" automate_uuid="30a63161-a1fd-4aff-be3a-7a12ca99b986">Next <i class="ss-icon ss-navigateright"></i></a>
+		
+	</section>
+	
+	
+	<div class="mobile-page-nav">
+		
+			
+		
+			
+				
+					<a href="https://www.javaworld.com/article/3288219/mastering-spring-framework-5-part-2-spring-webflux.html" class="page-link prev" rel="prev" automate_uuid="3b0c00ad-49e3-4825-9861-594a6fca55ba"><i class="ss-icon ss-navigateleft"></i></a>
+				
+				<div id="article-top-page-number">Page 2 of 3</div>
+				
+					<a href="https://www.javaworld.com/article/3288219/mastering-spring-framework-5-part-2-spring-webflux.html?page=3" class="page-link next" rel="next" automate_uuid="9f167fd2-b98f-46d5-b4da-ccb4a843d08b"><i class="ss-icon ss-navigateright"></i></a>
+				
+			
+		
+			
+		
+	</div>
+
+
+		
+	
+		
+			
+			
+				<h4>Listing 1. Maven pom.xml for the Spring WebFlux example application</h4><pre class="prettyprint prettyprinted" style=""><code><span class="pln">
+</span><span class="pun">&lt;?</span><span class="pln">xml version</span><span class="pun">=</span><span class="str">"1.0"</span><span class="pln"> encoding</span><span class="pun">=</span><span class="str">"UTF-8"</span><span class="pun">?&gt;</span><span class="pln">
+</span><span class="tag">&lt;project</span><span class="pln"> </span><span class="atn">xmlns</span><span class="pun">=</span><span class="atv">"http://maven.apache.org/POM/4.0.0"</span><span class="pln"> </span><span class="atn">xmlns:xsi</span><span class="pun">=</span><span class="atv">"http://www.w3.org/2001/XMLSchema-instance"</span><span class="pln">
+    </span><span class="atn">xsi:schemaLocation</span><span class="pun">=</span><span class="atv">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="tag">&gt;</span><span class="pln">
+    </span><span class="tag">&lt;modelVersion&gt;</span><span class="pln">4.0.0</span><span class="tag">&lt;/modelVersion&gt;</span><span class="pln">
+    </span><span class="tag">&lt;groupId&gt;</span><span class="pln">com.javaworld.webflux</span><span class="tag">&lt;/groupId&gt;</span><span class="pln">
+    </span><span class="tag">&lt;artifactId&gt;</span><span class="pln">bookservice</span><span class="tag">&lt;/artifactId&gt;</span><span class="pln">
+    </span><span class="tag">&lt;version&gt;</span><span class="pln">0.0.1-SNAPSHOT</span><span class="tag">&lt;/version&gt;</span><span class="pln">
+    </span><span class="tag">&lt;packaging&gt;</span><span class="pln">jar</span><span class="tag">&lt;/packaging&gt;</span><span class="pln">
+    </span><span class="tag">&lt;name&gt;</span><span class="pln">bookservice</span><span class="tag">&lt;/name&gt;</span><span class="pln">
+    </span><span class="tag">&lt;description&gt;</span><span class="pln">Demo project for Spring Boot</span><span class="tag">&lt;/description&gt;</span><span class="pln">
+    </span><span class="tag">&lt;parent&gt;</span><span class="pln">
+        </span><span class="tag">&lt;groupId&gt;</span><span class="pln">org.springframework.boot</span><span class="tag">&lt;/groupId&gt;</span><span class="pln">
+        </span><span class="tag">&lt;artifactId&gt;</span><span class="pln">spring-boot-starter-parent</span><span class="tag">&lt;/artifactId&gt;</span><span class="pln">
+        </span><span class="tag">&lt;version&gt;</span><span class="pln">2.0.3.RELEASE</span><span class="tag">&lt;/version&gt;</span><span class="pln">
+        </span><span class="tag">&lt;relativePath/&gt;</span><span class="pln"> </span><span class="com">&lt;!-- lookup parent from repository --&gt;</span><span class="pln">
+    </span><span class="tag">&lt;/parent&gt;</span><span class="pln">
+    </span><span class="tag">&lt;properties&gt;</span><span class="pln">
+        </span><span class="tag">&lt;project.build.sourceEncoding&gt;</span><span class="pln">UTF-8</span><span class="tag">&lt;/project.build.sourceEncoding&gt;</span><span class="pln">
+        </span><span class="tag">&lt;project.reporting.outputEncoding&gt;</span><span class="pln">UTF-8</span><span class="tag">&lt;/project.reporting.outputEncoding&gt;</span><span class="pln">
+        </span><span class="tag">&lt;java.version&gt;</span><span class="pln">1.8</span><span class="tag">&lt;/java.version&gt;</span><span class="pln">
+    </span><span class="tag">&lt;/properties&gt;</span><span class="pln">
+    </span><span class="tag">&lt;dependencies&gt;</span><span class="pln">
+        </span><span class="tag">&lt;dependency&gt;</span><span class="pln">
+            </span><span class="tag">&lt;groupId&gt;</span><span class="pln">org.springframework.boot</span><span class="tag">&lt;/groupId&gt;</span><span class="pln">
+            </span><span class="tag">&lt;artifactId&gt;</span><span class="pln">spring-boot-starter-data-mongodb-reactive</span><span class="tag">&lt;/artifactId&gt;</span><span class="pln">
+        </span><span class="tag">&lt;/dependency&gt;</span><span class="pln">
+        </span><span class="tag">&lt;dependency&gt;</span><span class="pln">
+            </span><span class="tag">&lt;groupId&gt;</span><span class="pln">org.springframework.boot</span><span class="tag">&lt;/groupId&gt;</span><span class="pln">
+            </span><span class="tag">&lt;artifactId&gt;</span><span class="pln">spring-boot-starter-webflux</span><span class="tag">&lt;/artifactId&gt;</span><span class="pln">
+        </span><span class="tag">&lt;/dependency&gt;</span><span class="pln">
+        </span><span class="tag">&lt;dependency&gt;</span><span class="pln">
+            </span><span class="tag">&lt;groupId&gt;</span><span class="pln">org.projectlombok</span><span class="tag">&lt;/groupId&gt;</span><span class="pln">
+            </span><span class="tag">&lt;artifactId&gt;</span><span class="pln">lombok</span><span class="tag">&lt;/artifactId&gt;</span><span class="pln">
+            </span><span class="tag">&lt;optional&gt;</span><span class="pln">true</span><span class="tag">&lt;/optional&gt;</span><span class="pln">
+        </span><span class="tag">&lt;/dependency&gt;</span><span class="pln">
+        </span><span class="tag">&lt;dependency&gt;</span><span class="pln">
+            </span><span class="tag">&lt;groupId&gt;</span><span class="pln">org.springframework.boot</span><span class="tag">&lt;/groupId&gt;</span><span class="pln">
+            </span><span class="tag">&lt;artifactId&gt;</span><span class="pln">spring-boot-starter-test</span><span class="tag">&lt;/artifactId&gt;</span><span class="pln">
+            </span><span class="tag">&lt;scope&gt;</span><span class="pln">test</span><span class="tag">&lt;/scope&gt;</span><span class="pln">
+        </span><span class="tag">&lt;/dependency&gt;</span><span class="pln">
+        </span><span class="tag">&lt;dependency&gt;</span><span class="pln">
+            </span><span class="tag">&lt;groupId&gt;</span><span class="pln">de.flapdoodle.embed</span><span class="tag">&lt;/groupId&gt;</span><span class="pln">
+            </span><span class="tag">&lt;artifactId&gt;</span><span class="pln">de.flapdoodle.embed.mongo</span><span class="tag">&lt;/artifactId&gt;</span><span class="pln">
+        </span><span class="tag">&lt;/dependency&gt;</span><span class="pln">
+        </span><span class="tag">&lt;dependency&gt;</span><span class="pln">
+            </span><span class="tag">&lt;groupId&gt;</span><span class="pln">io.projectreactor</span><span class="tag">&lt;/groupId&gt;</span><span class="pln">
+            </span><span class="tag">&lt;artifactId&gt;</span><span class="pln">reactor-test</span><span class="tag">&lt;/artifactId&gt;</span><span class="pln">
+            </span><span class="tag">&lt;scope&gt;</span><span class="pln">test</span><span class="tag">&lt;/scope&gt;</span><span class="pln">
+        </span><span class="tag">&lt;/dependency&gt;</span><span class="pln">
+    </span><span class="tag">&lt;/dependencies&gt;</span><span class="pln">
+    </span><span class="tag">&lt;build&gt;</span><span class="pln">
+        </span><span class="tag">&lt;plugins&gt;</span><span class="pln">
+            </span><span class="tag">&lt;plugin&gt;</span><span class="pln">
+                </span><span class="tag">&lt;groupId&gt;</span><span class="pln">org.springframework.boot</span><span class="tag">&lt;/groupId&gt;</span><span class="pln">
+                </span><span class="tag">&lt;artifactId&gt;</span><span class="pln">spring-boot-maven-plugin</span><span class="tag">&lt;/artifactId&gt;</span><span class="pln">
+            </span><span class="tag">&lt;/plugin&gt;</span><span class="pln">
+        </span><span class="tag">&lt;/plugins&gt;</span><span class="pln">
+    </span><span class="tag">&lt;/build&gt;</span><span class="pln">
+</span><span class="tag">&lt;/project&gt;</span></code></pre><h3 class="body">Application dependencies</h3><p>The <code>&lt;parent&gt;</code> node references version <code>2.0.3.RELEASE</code> of the <code>spring-boot-starter-parent</code> POM file. The parent POM file ensures that all dependency versions are compatible with this version of Spring Boot. These dependencies include:</p><ul>
+<li><strong>spring-boot-starter-webflux</strong>: Packs everything you need to run a WebFlux application, including <code>spring-web</code> (which gives you all of the Spring MVC capabilities) and Netty, which will be our reactive web server, plus a lot more.</li>
+<li><strong>spring-boot-starter-data-mongodb-reactive</strong>: Includes the MongoDB drivers, reactive support for MongoDB, and <a href="https://www.javaworld.com/article/2078898/open-source-tools/open-source-tools-open-source-java-projects-spring-data.html" rel="noopener" target="_blank" automate_uuid="94c29f00-ba10-4632-970e-8c95f51bd380">Spring Data</a> to make writing persistence code easier.</li>
+<li><strong>de.flapdoodle.embed.mongo</strong>: Includes an embedded MongoDB instance. By default this dependency will be scoped to "test" so that you can write tests that run against an embedded MongoDB instance and then connect to a standalone MongoDB instance in production. For the purpose of this example I removed the <code>test</code> scoping so that we can run our book service against this embedded MongoDB instance.</li>
+<li><strong>lombok</strong>: Adds annotation niceties for generating getters and setters, constructors, and so forth to the application's model classes.</li>
+<li><strong>spring-boot-starter-test</strong>: Includes Spring testing utilities as well as JUnit and Mockito.</li>
+<li><strong>reactor-test</strong>: Includes testing utilities for testing the Reactor engine, which is used by Spring WebFlux for reactive functionality.</li>
+</ul><h3 class="body">The Spring Boot starter class</h3><p>Listing 2 shows the <code>BookserviceApplication.java</code> file.</p><h4>Listing 2. BookserviceApplication.java</h4><pre class="prettyprint prettyprinted" style=""><code><span class="pln">
+</span><span class="kwd">package</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">javaworld</span><span class="pun">.</span><span class="pln">webflux</span><span class="pun">.</span><span class="pln">bookservice</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> org</span><span class="pun">.</span><span class="pln">springframework</span><span class="pun">.</span><span class="pln">boot</span><span class="pun">.</span><span class="typ">SpringApplication</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> org</span><span class="pun">.</span><span class="pln">springframework</span><span class="pun">.</span><span class="pln">boot</span><span class="pun">.</span><span class="pln">autoconfigure</span><span class="pun">.</span><span class="typ">SpringBootApplication</span><span class="pun">;</span><span class="pln">
+</span><span class="lit">@SpringBootApplication</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">BookserviceApplication</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pun">[]</span><span class="pln"> args</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="typ">SpringApplication</span><span class="pun">.</span><span class="pln">run</span><span class="pun">(</span><span class="typ">BookserviceApplication</span><span class="pun">.</span><span class="kwd">class</span><span class="pun">,</span><span class="pln"> args</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre><p>The <code>BookserviceApplication</code> is annotated with the <code>@SpringBootApplication</code> annotation. <code>@SpringBootApplication</code> is a <em>convenience annotation</em> that encompasses the following annotations:</p><ul>
+<li><strong>@EnabledAutoConfiguration</strong> enables auto-configuration of the Spring application context, attempting to guess and configure beans that you are likely to need. Auto-configuration classes are usually applied based on your CLASSPATH and the beans you have defined. For example, when you include the embedded MongoDB dependency in your CLASSPATH, Spring will automatically create an instance in memory and wire it into the application context.</li>
+<li><strong>@SpringBootConfiguration</strong> identifies this class as containing the Spring Boot configuration.</li>
+<li><strong>@ComponentScan</strong> directs Spring to scan the CLASSPATH, in the current package and all sub-packages, for Spring components. In short, this allows you to create a web package and add a <code>@Controller</code>, which Spring will find and make available to the application.</li>
+</ul><p>The <code>BookserviceApplication</code> itself defines a <code>main()</code> method that delegates to the <code>SpringApplication.run()</code> method, which starts the application.</p><h2>Using Spring WebFlux with annotations</h2><p>In order to build our book service we need to define the following classes and interfaces:</p><ul>
+<li><strong>Book</strong>: A model class representing a book in our service.</li>
+<li><strong>BookRepository</strong>: A Spring Data MongoDB interface telling Spring Data to generate persistence code for books to and from MongoDB.</li>
+<li><strong>BookService</strong> and <code>BookServiceImpl</code>: The "business" service used to interact with the <code>BookRepository</code> to persist books to and from MongoDB. In this example, a service is not necessary and we could place calls to the <code>BookRepository</code> directly in our controller. When building Spring applications it is recommended to create this layer as a business interface between your controllers and persistence repository, however. The business interface enables you to change your repository--such as moving to an SQL-based database or calling another web service--without impacting your controllers.</li>
+<li><strong>BookController</strong>: The web controller that will receive web requests and return reactive responses (Monos and Fluxes).</li>
+</ul><h3 class="body">Example application source code</h3><p>Listing 3 shows the source code for our model class, <code>Book.java</code>.</p><h4>Listing 3. Book.java</h4><pre class="prettyprint prettyprinted" style=""><code><span class="pln">
+</span><span class="kwd">package</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">javaworld</span><span class="pun">.</span><span class="pln">webflux</span><span class="pun">.</span><span class="pln">bookservice</span><span class="pun">.</span><span class="pln">model</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> lombok</span><span class="pun">.</span><span class="typ">AllArgsConstructor</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> lombok</span><span class="pun">.</span><span class="typ">Data</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> lombok</span><span class="pun">.</span><span class="typ">NoArgsConstructor</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> org</span><span class="pun">.</span><span class="pln">springframework</span><span class="pun">.</span><span class="pln">data</span><span class="pun">.</span><span class="pln">mongodb</span><span class="pun">.</span><span class="pln">core</span><span class="pun">.</span><span class="pln">mapping</span><span class="pun">.</span><span class="typ">Document</span><span class="pun">;</span><span class="pln">
+</span><span class="lit">@Document</span><span class="pln">
+</span><span class="lit">@Data</span><span class="pln">
+</span><span class="lit">@NoArgsConstructor</span><span class="pln">
+</span><span class="lit">@AllArgsConstructor</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">Book</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> id</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> title</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> author</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span></code></pre><p>The <code>Book</code> class is a simple POJO that contains an ID, title, and author. It is annotated with the <code>@Document</code> annotation, which identifies it as a MongoDB document. Spring Data will map documents to collections in MongoDB. The next three annotations-- <code>@Data</code>, <code>@NoArgsConstructor</code>, and <code>@AllArgsConstructor</code>--are Lombok annotations. <code>@Data</code> includes the following capabilities:</p><ul>
+<li>Generates getters and setters for all fields; setters are only generated for non-final properties.</li>
+<li>Generates a required arguments constructor.</li>
+<li>Generates a <code>toString()</code> method.</li>
+<li>Generates <code>equals()</code> and <code>hashCode()</code> methods that uses all non-transient fields.</li>
+</ul><p>In order to work with Spring Data, we need a no-argument constructor so I added <code>@NoArgsConstructor</code>. For testing purposes I aso added an all-argument constructor, <code>@AllArgsConstructor</code>.</p><p>As mentioned above, Lombok is not required and you can simply implement getters, setters, and constructors to the class as you normally would do.</p><p>Listing 4 shows the source code for the <code>BookRepository</code> interface.</p><h4>Listing 4. BookRepository.java</h4><pre class="prettyprint prettyprinted" style=""><code><span class="pln">
+</span><span class="kwd">package</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">javaworld</span><span class="pun">.</span><span class="pln">webflux</span><span class="pun">.</span><span class="pln">bookservice</span><span class="pun">.</span><span class="pln">repository</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">javaworld</span><span class="pun">.</span><span class="pln">webflux</span><span class="pun">.</span><span class="pln">bookservice</span><span class="pun">.</span><span class="pln">model</span><span class="pun">.</span><span class="typ">Book</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> org</span><span class="pun">.</span><span class="pln">springframework</span><span class="pun">.</span><span class="pln">data</span><span class="pun">.</span><span class="pln">mongodb</span><span class="pun">.</span><span class="pln">repository</span><span class="pun">.</span><span class="typ">ReactiveMongoRepository</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">interface</span><span class="pln"> </span><span class="typ">BookRepository</span><span class="pln"> </span><span class="kwd">extends</span><span class="pln"> </span><span class="typ">ReactiveMongoRepository</span><span class="pun">&lt;</span><span class="typ">Book</span><span class="pun">,</span><span class="pln"> </span><span class="typ">String</span><span class="pun">&gt;</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+</span><span class="pun">}</span></code></pre><p>The <code>BookRepository</code> is a Spring Data interface, meaning that you define the interface and Spring Data will generate the code that implements that interface. Specifically, <code>BookRepository</code> extends the <code>ReactiveMongoRepository</code>, which defines the following reactive methods (remember that these are methods that return either monos or fluxes):</p><ul>
+<li>Mono&lt;Book&gt; save()</li>
+<li>Flux&lt;Book&gt; saveAll()</li>
+<li>Flux&lt;Book&gt; findById()</li>
+<li>Mono&lt;Boolean&gt; existsById()</li>
+<li>Flux&lt;Book&gt; findAll()</li>
+<li>Flux&lt;Book&gt; findAllById()</li>
+<li>Mono&lt;Long&gt; count()</li>
+<li>Mono&lt;Void&gt; delete()</li>
+<li>Mono&lt;Void&gt; deleteById()</li>
+<li>Mono&lt;Void&gt; deleteAll()</li>
+<li>Flux&lt;Book&gt; insert()</li>
+</ul><p>The query methods that return one element (such as <code>findById()</code>) return <code>Mono&lt;Book&gt;</code>. The methods that return more than one element (such as <code>findAll()</code>) return <code>Flux&lt;Book&gt;</code>. It is interesting to note that the <code>delete</code> methods return a <code>Mono&lt;Void&gt;</code>. <code>Mono&lt;Void&gt;</code> means that there is no return type, but when the operation finishes it will publish a completion notification. Recall that these are publishers, so your code, or Spring WebFlux itself, will ultimately define functionality to execute when a message is published to its subscribers.</p><p>The <code>BookRepository</code> is defined with two generic parameters: <code>Book</code>, which is the type of document that the repository manages, and <code>String</code>, which is the type of the primary key (the Book's <code>id</code> field). Your code can use the <code>BookRepository</code> methods to execute asynchronous queries against MongoDB.</p><p>Listings 5 and 6 show the source code for the <code>BookService</code> and <code>BookServiceImpl</code>, respectively.</p><h4>Listing 5. BookService.java</h4><pre class="prettyprint prettyprinted" style=""><code><span class="pln">
+</span><span class="kwd">package</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">javaworld</span><span class="pun">.</span><span class="pln">webflux</span><span class="pun">.</span><span class="pln">bookservice</span><span class="pun">.</span><span class="pln">service</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">javaworld</span><span class="pun">.</span><span class="pln">webflux</span><span class="pun">.</span><span class="pln">bookservice</span><span class="pun">.</span><span class="pln">model</span><span class="pun">.</span><span class="typ">Book</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> reactor</span><span class="pun">.</span><span class="pln">core</span><span class="pun">.</span><span class="pln">publisher</span><span class="pun">.</span><span class="typ">Flux</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> reactor</span><span class="pun">.</span><span class="pln">core</span><span class="pun">.</span><span class="pln">publisher</span><span class="pun">.</span><span class="typ">Mono</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">interface</span><span class="pln"> </span><span class="typ">BookService</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="typ">Mono</span><span class="pun">&lt;</span><span class="typ">Book</span><span class="pun">&gt;</span><span class="pln"> findById</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> id</span><span class="pun">);</span><span class="pln">
+    </span><span class="typ">Flux</span><span class="pun">&lt;</span><span class="typ">Book</span><span class="pun">&gt;</span><span class="pln"> findAll</span><span class="pun">();</span><span class="pln">
+    </span><span class="typ">Mono</span><span class="pun">&lt;</span><span class="typ">Book</span><span class="pun">&gt;</span><span class="pln"> save</span><span class="pun">(</span><span class="typ">Book</span><span class="pln"> book</span><span class="pun">);</span><span class="pln">
+    </span><span class="typ">Mono</span><span class="pun">&lt;</span><span class="typ">Void</span><span class="pun">&gt;</span><span class="pln"> deleteById</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> id</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span></code></pre><h4>Listing 6. BookServiceImpl.java</h4><pre class="prettyprint prettyprinted" style=""><code><span class="pln">
+</span><span class="kwd">package</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">javaworld</span><span class="pun">.</span><span class="pln">webflux</span><span class="pun">.</span><span class="pln">bookservice</span><span class="pun">.</span><span class="pln">service</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">javaworld</span><span class="pun">.</span><span class="pln">webflux</span><span class="pun">.</span><span class="pln">bookservice</span><span class="pun">.</span><span class="pln">model</span><span class="pun">.</span><span class="typ">Book</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">javaworld</span><span class="pun">.</span><span class="pln">webflux</span><span class="pun">.</span><span class="pln">bookservice</span><span class="pun">.</span><span class="pln">repository</span><span class="pun">.</span><span class="typ">BookRepository</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> org</span><span class="pun">.</span><span class="pln">springframework</span><span class="pun">.</span><span class="pln">stereotype</span><span class="pun">.</span><span class="typ">Service</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> reactor</span><span class="pun">.</span><span class="pln">core</span><span class="pun">.</span><span class="pln">publisher</span><span class="pun">.</span><span class="typ">Flux</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> reactor</span><span class="pun">.</span><span class="pln">core</span><span class="pun">.</span><span class="pln">publisher</span><span class="pun">.</span><span class="typ">Mono</span><span class="pun">;</span><span class="pln">
+</span><span class="lit">@Service</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">BookServiceImpl</span><span class="pln"> </span><span class="kwd">implements</span><span class="pln"> </span><span class="typ">BookService</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">BookRepository</span><span class="pln"> bookRepository</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">BookServiceImpl</span><span class="pun">(</span><span class="typ">BookRepository</span><span class="pln"> bookRepository</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">bookRepository </span><span class="pun">=</span><span class="pln"> bookRepository</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+    </span><span class="lit">@Override</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">Mono</span><span class="pun">&lt;</span><span class="typ">Book</span><span class="pun">&gt;</span><span class="pln"> findById</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> id</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> bookRepository</span><span class="pun">.</span><span class="pln">findById</span><span class="pun">(</span><span class="pln">id</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+    </span><span class="lit">@Override</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">Flux</span><span class="pun">&lt;</span><span class="typ">Book</span><span class="pun">&gt;</span><span class="pln"> findAll</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> bookRepository</span><span class="pun">.</span><span class="pln">findAll</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+    </span><span class="lit">@Override</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">Mono</span><span class="pun">&lt;</span><span class="typ">Book</span><span class="pun">&gt;</span><span class="pln"> save</span><span class="pun">(</span><span class="typ">Book</span><span class="pln"> book</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> bookRepository</span><span class="pun">.</span><span class="pln">save</span><span class="pun">(</span><span class="pln">book</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+    </span><span class="lit">@Override</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">Mono</span><span class="pun">&lt;</span><span class="typ">Void</span><span class="pun">&gt;</span><span class="pln"> deleteById</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> id</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> bookRepository</span><span class="pun">.</span><span class="pln">deleteById</span><span class="pun">(</span><span class="pln">id</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre><p><em>Services</em> represent business functionality and are identified in Spring using the <code>@Service</code> annotation. In this example, business functionality simply delegates to the underlying repository. If you needed to perform more complex logic on the queries or on the objects being persisted, this is where you would do it.</p><p>Listing 7 shows the source code for the <code>BookController</code> class.</p><h4>Listing 7. BookController.java</h4><pre class="prettyprint prettyprinted" style=""><code><span class="pln">
+</span><span class="kwd">package</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">javaworld</span><span class="pun">.</span><span class="pln">webflux</span><span class="pun">.</span><span class="pln">bookservice</span><span class="pun">.</span><span class="pln">web</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">javaworld</span><span class="pun">.</span><span class="pln">webflux</span><span class="pun">.</span><span class="pln">bookservice</span><span class="pun">.</span><span class="pln">model</span><span class="pun">.</span><span class="typ">Book</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">javaworld</span><span class="pun">.</span><span class="pln">webflux</span><span class="pun">.</span><span class="pln">bookservice</span><span class="pun">.</span><span class="pln">service</span><span class="pun">.</span><span class="typ">BookService</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> org</span><span class="pun">.</span><span class="pln">springframework</span><span class="pun">.</span><span class="pln">web</span><span class="pun">.</span><span class="pln">bind</span><span class="pun">.</span><span class="pln">annotation</span><span class="pun">.*;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> reactor</span><span class="pun">.</span><span class="pln">core</span><span class="pun">.</span><span class="pln">publisher</span><span class="pun">.</span><span class="typ">Flux</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> reactor</span><span class="pun">.</span><span class="pln">core</span><span class="pun">.</span><span class="pln">publisher</span><span class="pun">.</span><span class="typ">Mono</span><span class="pun">;</span><span class="pln">
+</span><span class="lit">@RestController</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">BookController</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">BookService</span><span class="pln"> bookService</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">BookController</span><span class="pun">(</span><span class="typ">BookService</span><span class="pln"> bookService</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">bookService </span><span class="pun">=</span><span class="pln"> bookService</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+    </span><span class="lit">@GetMapping</span><span class="pun">(</span><span class="pln">value </span><span class="pun">=</span><span class="pln"> </span><span class="str">"/book/{id}"</span><span class="pun">)</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">Mono</span><span class="pun">&lt;</span><span class="typ">Book</span><span class="pun">&gt;</span><span class="pln"> getBookById</span><span class="pun">(</span><span class="lit">@PathVariable</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> id</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> bookService</span><span class="pun">.</span><span class="pln">findById</span><span class="pun">(</span><span class="pln">id</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+    </span><span class="lit">@GetMapping</span><span class="pun">(</span><span class="pln">value </span><span class="pun">=</span><span class="pln"> </span><span class="str">"/books"</span><span class="pun">)</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">Flux</span><span class="pun">&lt;</span><span class="typ">Book</span><span class="pun">&gt;</span><span class="pln"> getAllBooks</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> bookService</span><span class="pun">.</span><span class="pln">findAll</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+    </span><span class="lit">@PostMapping</span><span class="pun">(</span><span class="pln">value </span><span class="pun">=</span><span class="pln"> </span><span class="str">"/book"</span><span class="pun">)</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">Mono</span><span class="pun">&lt;</span><span class="typ">Book</span><span class="pun">&gt;</span><span class="pln"> createBook</span><span class="pun">(</span><span class="lit">@RequestBody</span><span class="pln"> </span><span class="typ">Book</span><span class="pln"> book</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> bookService</span><span class="pun">.</span><span class="pln">save</span><span class="pun">(</span><span class="pln">book</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre><h3 class="body">About the code</h3><p>If you're already familiar with Spring MVC, you’ll notice that the Spring WebFlux application code looks remarkably familiar. The only difference is that all controllers and services return reactive types, namely monos and fluxes. We've also employed a reactive MongoDB driver instead of a nonreactive driver. While the code is familiar, the implementation is quite different. Under the hood, Spring WebFlux will invoke your handler method, capture the reactive response, and then leverage Reactor to wait for the response to be published, all asynchronously.</p><p>Here are some points to note about the example application:</p><ul>
+<li><code>BookController</code> is annotated with the <code>@RestController</code> annotation, which is a convenience annotation. This annotation includes the <code>@Controller</code> annotation, which is used to identify a class that handles web requests, and <code>@ResponseBody</code>, which indicates that method return values should be bound to the web response body.</li>
+<li><code>getBookById()</code> method, which is annotated with the <code>@GetMapping</code> annotation. <code>@GetMapping</code> is a convenience annotation for <code>@RequestMapping(method = RequestMethod.GET)</code>. It handles the URI path: <code>/book/{id}</code>, where the <code>id</code> is the value retrieved from the path and passed as the <code>@PathVariable</code> in the method call. The implementation simply delegates to the <code>BookService</code>’s <code>findById()</code> method. Note that this method returns a <code>Mono&lt;Book&gt;</code>, which again is a publisher that will provide WebFlux with a <code>Book</code> instance when it becomes available, ultimately from the reactive MongoDB call to <code>findById()</code>.</li>
+<li>The <code>getAllBooks()</code> method handles the <code>/books</code> URI path and delegates to the <code>BookService</code>’s <code>findAll()</code> method. In this case it returns a <code>Flux&lt;Book&gt;</code>, which is a publisher that sends a stream of <code>Book</code>s to Spring WebFlux. When all books have been retrieved from MongoDB, the reactive MongoDB <code>findAll()</code> method will publish a completion notification telling WebFlux that it is finished. WebFlux can then send the response back to the caller.</li>
+<li>Finally, the <code>createBook()</code> method is annotated with the <code>@PostMapping</code> annotation, which is a convenience annotation for <code>@RequestMapping(method = RequestMethod.POST)</code>. <code>@PostMapping</code> handles the <code>/book</code> URI path. The <code>@RequestBody</code> annotation, included when we added <code>@RestContoller</code> tells WebFlux to convert the object received from the caller into a <code>Book</code> instance. The <code>createBook()</code> method delegates to the <code>BookService</code>’s <code>save()</code> method and then returns a <code>Mono&lt;Book&gt;</code> that publishes the newly created <code>Book</code>.</li>
+</ul><aside class="sidebar">
+<h3 class="body">Three styles of dependency injection</h3>
+<p>The <code>BookController</code> uses <em>constructor injection</em> to autowire a <code>BookService</code> into itself. Recall that Spring supports three types of dependency injection:</p>
+<ul>
+<li><strong>Constructor injection</strong>: When a Spring-managed bean defines a constructor that accepts another Spring-managed bean, Spring will automatically retrieve an instance of that bean from the application context and pass it to the constructor.</li>
+<li><strong>Setter injection</strong>: when a Spring-managed bean defines a setter method that accepts another Spring-managed bean, Spring will likewise find it in the application context and invoke the setter method.</li>
+<li><strong>@Autowired</strong>: when a Spring-managed bean defines a field annotated with the <code>@Autowired</code> annotation, Spring will automatically set the value of that field.</li>
+</ul>
+<p><code>@Autowired</code> is probably the cleanest implementation but it makes testing more difficult. I usually opt for using constructor injection.</p>
+</aside><h3 class="body">Run the application</h3>
+			
+		
+		
+	
+		
+		
+		
+		
+		
+		
+	</div>
+	
+	
+	
+		
+		
+		
+	
+	
+
+
+	
+	
+	<script>
+$("body").on('click', 'a[data-product-id]', function() {
+	var e = e || window.event;
+	var dataLayer = window.dataLayer = window.dataLayer || [];
+	var prodName = $(this).attr("data-product-name");
+	prodName = prodName.replace("\\'","'"); // to counter the effects of over-escaping
+	
+	if ( $(this).parents('.slideshow').length > 0 ) {
+		var productLinkPosition = "Slideshow";
+	} else if ( $(this).parents('.emo-sb').length > 0 ) {
+		var productLinkPosition = "Product Sidebar";
+	} else if ( $(this).parents('.at-a-glance.top').length > 0 ) {
+		var productLinkPosition = "AAG Top";
+	} else if ( $(this).parents('.at-a-glance').length > 0 ) {
+		var productLinkPosition = "AAG Bottom";
+	} else if ( $(this).parents('.quick-hits.medium').length > 0 ) {
+		var productLinkPosition = "Quick Hit Medium";
+	} else if ( $(this).parents('.quick-hits').length > 0 ) {
+		var productLinkPosition = "Quick Hit Full";
+	} else if ( $(this).parents('.product-chart').length > 0 ) {
+		var productLinkPosition = "Product Chart";
+	} else if ( $(this).parents('.emo-list').length > 0 ) {
+		var productLinkPosition = "Product List";
+	} else {
+		var productLinkPosition = "Body Text";
+	}
+	
+	dataLayer.push({
+		'event': 'affiliateLink', 
+	  	'eventCategory': 'Affiliate Link', // Hardcoded, not dynamic
+	  	'eventAction': 'Click', // Hardcoded, not dynamic
+	  	'eventLabel': ''+e.target+'', // The URL the affiliate link leads to
+	  	'productVendor': $(this).attr("data-bkvndr"), // The vendor of the product
+	  	'productManufacturer': $(this).attr("data-bkmfr"), // The manufacturer of the product
+	  	'productName': prodName, // The name of the product
+	  	'productId': $(this).attr("data-product-id"), // The ID of the product
+	  	'productLinkPosition': productLinkPosition // location of product link (Product Sidebar, Product Chart, etc.)
+	});
+	
+	window.permutive.track('AffiliateLinkClick', {
+	    category: $(this).attr("data-bkc"),
+	    name: prodName,
+	    manufacturer: $(this).attr("data-bkmfr"),
+	    vendor: $(this).attr("data-bkvndr")
+	});
+	
+});
+</script>
+	
+	
+		<script>
+$("#drr-container a:not('[data-product-id]')").on('click',function(e){
+	var dataLayer = window.dataLayer = window.dataLayer || [];
+	
+	var $clickEl = $(this);
+	var clickUrl = $clickEl.attr("href");
+	var clickParentsUntilDrr = $clickEl.parentsUntil("#drr-container");
+	var clickText = $clickEl.text().trim();
+	var linkLocation;
+	var linkType;
+	var regex = new RegExp("cio.com/|csoonline.com/|computerworld.com/|itnews.com/|itworld.com/|infoworld.com/|networkworld.com/|javaworld.com/|techconnect.com/|techhive.com/|macworld.com/|pcworld.com/|greenbot.com/|gamestar.com/|idginsiderpro.com/|idgesg.net/", "i");
+	
+	if (clickParentsUntilDrr.hasClass("fakesidebar")) {
+		linkLocation = "FSB";
+	}
+	else if (clickParentsUntilDrr.hasClass("end-note")) {
+     	 linkLocation = "End Note";
+   }
+	else {
+		linkLocation = "Body";
+	}
+	
+	if (regex.test(clickUrl)) {
+	      linkType = "Internal";
+	    }
+	else {
+		linkType = "External";
+	}
+		
+	
+	dataLayer.push({
+		'event': 'editBodyLink', 
+	  	'eventCategory': 'Editorial Body Links',
+	  	'eventAction': linkType,
+	  	'eventLabel': linkLocation+" | "+clickText+" | "+clickUrl
+	});
+});
+</script>
+	
+	
+	<script>
+$("#drr-top-ad .related-promo-wrapper .title > a").on('click',function(e){
+	var dataLayer = window.dataLayer = window.dataLayer || [];
+	
+	var $clickEl = $(this);
+	var clickUrl = $clickEl.attr("href");
+	var clickText = $clickEl.text().trim();
+	var linkLocation = "Promo";		
+	
+	dataLayer.push({
+		'event': 'promoModuleLink', 
+	  	'eventCategory': 'Promotion module',
+	  	'eventAction': 'Click',
+	  	'eventLabel': linkLocation+" | "+clickText+" | "+clickUrl
+	});
+});
+</script>
+	
+	
+	
+	
+	
+	
+	    <div class="apart-alt tags">
+	    <span class="related">Related: </span>
+	    <ul>
+			
+				<li><a class="edition-link-url primary-cat-url2" href="https://www.javaworld.com/category/spring-framework" automate_uuid="d3b2cd32-8cb2-4eb9-a39a-72c510436bfb"><span class="primary-cat-name2">Spring Framework</span></a></li>
+			
+				<li><a class="edition-link-url primary-cat-url2" href="https://www.javaworld.com/category/application-development" automate_uuid="fcd5a801-5b69-4e30-b472-3461b7d007a7"><span class="primary-cat-name2">Software Development</span></a></li>
+			
+				<li><a class="edition-link-url primary-cat-url2" href="https://www.javaworld.com/category/web-development" automate_uuid="dcb2ce68-d3ec-4618-837a-fb350cb3e7d7"><span class="primary-cat-name2">Web Development</span></a></li>
+			
+				<li><a class="edition-link-url primary-cat-url2" href="https://www.javaworld.com/category/open-source-tools" automate_uuid="888506b2-8d61-4391-bb26-354a8818bec1"><span class="primary-cat-name2">Open Source</span></a></li>
+			
+				<li><a class="edition-link-url primary-cat-url2" href="https://www.javaworld.com/category/development-tools" automate_uuid="59b8dad0-f5cf-4fcc-bec8-14829e9ac1cd"><span class="primary-cat-name2">Development Tools</span></a></li>
+			
+				<li><a class="edition-link-url primary-cat-url2" href="https://www.javaworld.com/category/learn-java" automate_uuid="0ea50777-e1b1-42b2-a73a-f53bf85776a4"><span class="primary-cat-name2">Learn Java</span></a></li>
+			 
+			
+				
+				
+					 
+						 
+				    				
+					
+				
+					
+			
+	    </ul>
+	   
+		</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	<section class="pagination">
+		
+			<a href="https://www.javaworld.com/article/3288219/mastering-spring-framework-5-part-2-spring-webflux.html" class="page-link prev" rel="prev" automate_uuid="4452bfbb-2f19-4dbb-af89-c77bf7c536fa"><i class="ss-icon ss-navigateleft"></i> Previous</a>
+		
+	    
+		    <span class="page-numbers">
+			    
+			    	<a href="https://www.javaworld.com/article/3288219/mastering-spring-framework-5-part-2-spring-webflux.html" class="page-link " automate_uuid="76377a01-926a-48af-9723-63f5a2da119d">1</a>
+			    
+			    	<a href="https://www.javaworld.com/article/3288219/mastering-spring-framework-5-part-2-spring-webflux.html?page=2" class="page-link current" automate_uuid="08439097-b632-49c1-9a25-2ba69284f91c">2</a>
+			    
+			    	<a href="https://www.javaworld.com/article/3288219/mastering-spring-framework-5-part-2-spring-webflux.html?page=3" class="page-link " automate_uuid="00dcabd9-9786-4acc-a6b9-111319b17afe">3</a>
+			    
+		    </span>
+		    <span class="current-page">
+		    	Page 2
+		    </span>
+		
+		
+			<a href="https://www.javaworld.com/article/3288219/mastering-spring-framework-5-part-2-spring-webflux.html?page=3" class="page-link next" rel="next" automate_uuid="e1d53b54-ee68-420f-b8a3-1b0fe3b7bb3c">Next <i class="ss-icon ss-navigateright"></i></a>
+		
+	</section>
+	
+	
+	<div class="mobile-page-nav">
+		
+			
+		
+			
+				
+					<a href="https://www.javaworld.com/article/3288219/mastering-spring-framework-5-part-2-spring-webflux.html" class="page-link prev" rel="prev" automate_uuid="78ae6cf7-e8f2-4498-9e39-8ff3d6028178"><i class="ss-icon ss-navigateleft"></i></a>
+				
+				<div id="article-top-page-number">Page 2 of 3</div>
+				
+					<a href="https://www.javaworld.com/article/3288219/mastering-spring-framework-5-part-2-spring-webflux.html?page=3" class="page-link next" rel="next" automate_uuid="dda5193c-6c4b-4637-ac6b-0e06dfe15442"><i class="ss-icon ss-navigateright"></i></a>
+				
+			
+		
+			
+		
+	</div>
+
+
+	 
+	
+
+
+
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="collection-module-bottom" class="six-column item-carousel clearfix" data-tracking-category="Content Collection - Bottom">
+	<div class="collection-header">
+		
+		<h3>The Spring Series</h3>
+		<div class="carousel-nav">	
+			
+			<div class="carousel-nav-nums"></div>
+			
+		</div>
+	</div>
+		<div class="items carousel-items clearfix slick-initialized slick-slider">
+		
+			
+			
+			<div aria-live="polite" class="slick-list draggable"><div class="slick-track" style="opacity: 1; width: 486px; transform: translate3d(0px, 0px, 0px);" role="listbox"><div class="collection-item excerpt with-img slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" style="width: 162px;" tabindex="-1" role="option" aria-describedby="slick-slide00">									
+					
+					<div class="figure-wrapper">
+						<figure class="well-img">
+							<a class="trackLink" href="https://www.javaworld.com/article/3444936/what-is-spring-component-based-development-for-java.html" tabindex="0" automate_uuid="4ab43e0f-7d56-441d-9ca0-bae0e829a6d6">
+							    <img class="small.3x2Image  imgId100813551" alt="Spring coil with abstract Java code overlay." src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/jw_spring_coil_by_tolga_dogan_gettyimages-1167333956_abstract_java_code_by_monsitj_gettyimages-1167484258-100813551-small.3x2.jpg" style="opacity: 1;">
+							</a>
+						</figure>
+						
+					</div>
+				<div class="post-cont">
+					<div class="title">
+					
+					
+						<a class="trackLink" href="https://www.javaworld.com/article/3444936/what-is-spring-component-based-development-for-java.html" tabindex="0" automate_uuid="85c90481-7c7c-44f5-9cf4-cba75dd51051">What is Spring? Component-based development for Java</a>
+					
+					</div>
+					
+				</div>
+			</div><div class="collection-item excerpt with-img slick-slide slick-active" data-slick-index="1" aria-hidden="false" style="width: 162px;" tabindex="-1" role="option" aria-describedby="slick-slide01">									
+					
+					<div class="figure-wrapper">
+						<figure class="well-img">
+							<a class="trackLink" href="https://www.javaworld.com/article/2078034/spring-framework-mastering-spring-mvc.html" tabindex="0" automate_uuid="f1dc28e2-3654-4aa4-928e-27457fbbfef5">
+							    <img class="small.3x2Image  imgId100765587" alt="metal spring" src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/spring_by_jonas_bengtsson_cc_by_2-0_via_flickr-100765587-small.3x2.jpg" style="opacity: 1;">
+							</a>
+						</figure>
+						
+					</div>
+				<div class="post-cont">
+					<div class="title">
+					
+					
+						<a class="trackLink" href="https://www.javaworld.com/article/2078034/spring-framework-mastering-spring-mvc.html" tabindex="0" automate_uuid="a1c532ef-a129-4984-b53e-b8819bc12eaa">Mastering Spring framework 5, Part 1: Spring MVC</a>
+					
+					</div>
+					
+				</div>
+			</div><div class="collection-item excerpt with-img slick-slide slick-active" data-slick-index="2" aria-hidden="false" style="width: 162px;" tabindex="-1" role="option" aria-describedby="slick-slide02">									
+					
+					<div class="figure-wrapper">
+						<figure class="well-img">
+							<a class="trackLink" href="https://www.javaworld.com/article/3288219/mastering-spring-framework-5-part-2-spring-webflux.html" tabindex="0" automate_uuid="7aeeae0c-138f-40df-996e-4c9cce9b474e">
+							    <img class="small.3x2Image  imgId100770413" alt="Exploratory Art/Tech Residency. Building a reactive physical structure for an AV live performance." src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/building_a_reactive_physical_structure_exploratory_art-tech_residency_photo_by_rodrigo_carvalho_cc_by_2-0_700x467-100770413-small.3x2.jpg" style="opacity: 1;">
+							</a>
+						</figure>
+						<div class="item-current">Currently reading</div>
+					</div>
+				<div class="post-cont">
+					<div class="title">
+					
+					
+						<a class="trackLink" href="https://www.javaworld.com/article/3288219/mastering-spring-framework-5-part-2-spring-webflux.html" tabindex="0" automate_uuid="f4674f91-8bd1-4d4a-b756-490d33e059b7">Mastering Spring framework 5, Part 2: Spring WebFlux</a>
+					
+					</div>
+					
+				</div>
+			</div></div></div>
+			
+		
+			
+			
+			
+			
+		
+			
+			
+			
+			
+		
+		</div>
+</div>
+
+
+
+<script>
+	var dataLayer = window.dataLayer = window.dataLayer || [];
+	dataLayer.push({
+		'event': 'loadBottomCollectionModule'
+		});
+</script>
+
+
+<script src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/embedder-jwp.js"></script>
+
+<script type="text/javascript" src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/jquery.lazyload-ad.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+	$('.articleBloxAd').filter( ":visible" ).each(function(index, item) {
+		var id = $(item).attr('id');
+		var divClass = $(item).attr('class');
+		var adString = IDG.GPT.getLazyAdCode();
+		$(item).replaceWith("<div id=\"" + id + "\" class=\"lazyload_blox_ad " + divClass + "\">" + adString + "</div>");
+	});
+	try {
+		$("div.lazyload_blox_ad").lazyLoadAd({
+	        threshold    : 0,         // You can set threshold on how close to the edge ad should come before it is loaded. Default is 0 (when it is visible).
+	        forceLoad    : false,       // Ad is loaded even if not visible. Default is false.
+	        onLoad       : false,       // Callback function on call ad loading
+	        onComplete   : false,       // Callback function when load is loaded
+	        timeout      : 1500,        // Timeout ad load
+	        debug        : false,       // For debug use : draw colors border depends on load status
+	        xray         : false        // For debug use : display a complete page view with ad placements
+		}) ;
+	}
+	catch (exception){
+		console.log("error loading lazyload_ad " + exception);
+	}
+});
+
+</script>
+		
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+@media only screen and (min-width: 60.625em) {
+	article .apart.ad.not-lazy {
+		margin-left: 0;
+		float: right;
+	}
+}
+/* this spaces the ads in the right rail */
+@media only screen and ( min-width: 48em ) {
+	article #drr-top-ad.epo.cat-narrow #imu2 {
+		margin-top: 390px; /*originally 354px*/
+	}
+	.topDeals.topper {
+		margin-top: 390px;
+	}
+}
+@media only screen and ( min-width: 48em ) and ( max-width: 58.063em ) {
+	article #drr-top-ad.epo.cat-narrow #imu2 {
+		margin-top: 0;
+	}
+}
+@media only screen and ( min-width: 60.625em ) {
+	article #drr-top-ad.epo.cat-narrow #imu2 {
+		margin-top: 390px; /*originally 354px*/
+	}
+	.topDeals.topper {
+		margin-top: 390px;
+	}
+}
+@media only screen and ( min-width: 48em ) {
+	article #drr-top-ad.epo.cat-narrow div[id^=imu] {
+		margin-top: 390px;
+	}
+}
+@media only screen and ( min-width: 48em ) and ( max-width: 58.063em ) {
+	article #drr-top-ad.epo.cat-narrow div[id^=imu] {
+		margin-top: 0;
+	}
+}
+@media only screen and ( min-width: 60.625em ) {
+	article #drr-top-ad.epo.cat-narrow div[id^=imu] {
+		margin-top: 390px;
+	}
+}
+</style>
+
+<script type="text/javascript">
+$(function() {
+	var MOBILE_BREAK = 929;
+	
+	
+	if (typeof $.fn.lazyload === 'undefined' ) {
+		$.getScript('/www/js/jquery/jquery.lazyload.min.js',function(){
+			 $("img.lazy").each(function (){
+				if ($(this).parents('.hero-img').length > 0) {
+					var tempHeight = $("#drr-container").width()*.667;
+				}
+				else {
+					var tempHeight = $(this).width()*.667;
+				}
+				$(this).height(tempHeight);
+			 });
+			
+			 $("img.lazy").lazyload({ 
+			    	effect : "fadeIn", 
+			    	threshold: 200,
+			    	failure_limit:25
+			 });
+			if ($(window).width() <= MOBILE_BREAK) {
+				exeImuMobile();
+			} else {
+				exeImuDesktop();
+			}
+			$("img.lazy").each(function (){
+				$(this).height("");
+			 });
+		});	
+	}
+	else {
+			
+		if ($(window).width() <= MOBILE_BREAK) {
+			exeImuMobile();
+		} else {
+			exeImuDesktop();
+		}
+	}
+});
+	
+function exeImuMobile() {
+	//NOTE: don't include the conditionals for if a site has lazyloaded ads or not - they all do at this point.
+
+	//define necessary variables
+	var TOP_IMU_HEIGHT = 250,
+	GRAF_HEIGHT = 25,
+	AD_HEIGHT_BUFFER = 350,
+	RIGHT_PIXEL_WINDOW = 300, // this is for not near end of page element
+	DEBUG = false;
+
+var placementIndex = [],
+	adPositions = new Array(0,1,2,3); // IMU, IMU, IMU, IMU++ 
+	cumulativeHeight = 0,
+	loopCounter = 0,
+	placementTarget = TOP_IMU_HEIGHT + GRAF_HEIGHT; // IMU, IMU, IMU 
+
+
+if ($("figure.hero-img").height()) {
+	placementTarget += $("figure.hero-img").height();
+}
+
+//Right Rail modules in mobile view
+$( ".techDealsModule ul li:nth-child(2)" ).nextAll( "li" ).addClass( "after" );
+$( ".topDealsModule ul li:nth-child(2)").nextAll( "li" ).addClass( "after" );
+
+if ($("#drr-container p").length >= 8) {
+	$(".techDeals,.topDeals").insertAfter( "#drr-container > p:eq(7)");
+} else {
+	$("div.techDeals, div.topDeals").hide();
+}
+
+// Add heights of all elements up through read these next (no longer existws) (which is placed after fourth p tag) 
+var firstModIndex = $("#drr-container > p:eq(3)").index();
+$("#drr-container").children().slice(0, firstModIndex).each(function() {
+	placementTarget += $(this).height();
+});
+// Define first mobile ad here so imu counter shows imu1 first imu2 second, etc.
+var firstMobileAdHtml = getLazyLoadAdHtml();
+
+// Place Right-rail div containers 
+$("#drr-container").children().each(function(index,value) {
+	//ignore any hidden elements in the body, like the mobile-only "read this next" module
+	if ($(this).is(':visible')) {
+		if (DEBUG) {
+			console.log($(this));
+		}
+		if (cumulativeHeight >= placementTarget) {
+			if (DEBUG) {
+				console.log("cumulativeHeight >= placementTarget and cumulativeHeight is " + cumulativeHeight + " and placementTarget is " + placementTarget);
+			}
+			var placementDiff = 0;
+			//if ($.inArray(loopCounter, adPositions) != -1 || loopCounter >= 5) {
+			if ($.inArray(loopCounter, adPositions) != -1 || (loopCounter >= 5 && loopCounter < 20) ) { //limiting number of imu placements
+				
+				try {
+                    IDG.GPT.addExtIMU();
+                    var adDivString;
+                    if (true) {
+                        adDivString = getLazyLoadAdHtml();
+                    } else {
+                        IDG.GPT.IMUCounter = IDG.GPT.IMUCounter + 1;
+                        var slotName = IDG.GPT.getIMUSlotName(),
+                            adString = "<div id='" + slotName + "'></div><script>$('#" + slotName + "').responsiveAd({screenSize:'971 1115', scriptTags: []}, false);if (Object.keys(IDG.GPT.companions).length > 0) {IDG.GPT.refreshAd('" + slotName + "');}<\/script>";
+                        adDivString = "<div class='apart ad'>" + adString + "</div>";
+                        consent.ads.queue.push(function(){IDG.GPT.defineGoogleTagSlot(slotName ,[[320,50],[300,250],[300,50]],false,true);});
+                    }
+                    placementDiff = applyInsert($(this), adDivString);
+                    if (DEBUG) {
+                        console.log("Just placed an ad and the placementDiff is: " + placementDiff);
+                    }
+                    placementTarget = cumulativeHeight + placementDiff + AD_HEIGHT_BUFFER;
+				}
+				catch (e){
+				    console.log("Error: "+e);
+                }
+				
+			}// end inArray() 
+			loopCounter++;
+		}
+		// Avoid placing elements too soon due to non-large figures inflating the cumulative height
+		if ($(this).is("figure") && !$(this).is("figure.large")) {
+			cumulativeHeight += GRAF_HEIGHT;
+		}
+		else {
+			cumulativeHeight += $(this).height() + GRAF_HEIGHT;
+		}
+	}
+});	// end $("#drr-container").children().each()
+	
+// For mobile only, place ad after second paragraph. (This is imu2.)
+if (firstMobileAdHtml) {
+	$(firstMobileAdHtml).insertAfter("#drr-container > p:eq(1)");
+}
+
+
+$("div.lazyload_ad_article").lazyLoadAd({
+	threshold    : 0,
+	forceLoad    : false,       // Ad is loaded even if not visible. Default is false.
+	onLoad       : false,       // Callback function on call ad loading
+	onComplete   : false,       // Callback function when load is loaded
+	timeout      : 1500,        // Timeout ad load
+	debug        : false,       // For debug use : draw colors border depends on load status
+	xray         : false      // For debug use : display a complete page view with ad placements
+});
+	
+/*
+* Increments imu counter and generates a 'name' based on count like imu2, imu3, etc.
+* Returns the html and code script needed for the lazy load ad js.
+*/
+function getLazyLoadAdHtml() {
+	try {
+        var adString = IDG.GPT.getLazyAdCode(true);
+        return "<div class=\"apart ad lazyload_ad_article\">" + adString + "</div>";
+    }
+    catch(e) {
+	    console.log("Error: "+e);
+    }
+}
+
+/** 
+ * @param jqo Original jquery object target
+ * @param divString The div to be inserted.
+ * @return Difference in height between original placement target and final target.
+ * Checks first 4 elements for an allowable placement (600 pixel window).
+ * If none, place element in first location that does not follow a reject element.
+ */
+function applyInsert(jqo, divString) { 
+	if (DEBUG) {
+		console.log("applyInsert at top and jqo index is: " + jqo.index());
+	}
+	
+	for (var i=0; i<=4; i++) {
+		$thisElement = jqo.nextAll().andSelf().slice(i, i+1);
+		if (DEBUG) {
+			console.log("Checking first four and i is: " + i + " and this element index is " + $thisElement.index() );
+		}
+		if ($thisElement.index() < 0) {
+			break;
+		}
+		if (allowPlacement($thisElement)) {
+			return addElement(jqo, $thisElement, divString);
+		}  
+	}
+	if (DEBUG) {
+		console.log("No nearby allows so just place in first spot that is not after reject.");
+	}
+	var numElements = jqo.nextAll().length;
+	var startIndex = jqo.index();
+	for (var i=startIndex; i<=numElements; i++) {
+		var $element = $("#drr-container").children().eq(i);
+		// This element is eligible when not null, not in placement index, and previous element is not reject
+		if ($element != null && (placementIndex == null || placementIndex.indexOf(i) == -1) && !isReject($element.prev())) {
+			return addElement(jqo, $element, divString);
+		}
+	}
+	if (DEBUG) {
+		console.log("Not going to place element: return 0.");
+	}
+	return 0; 
+}
+	
+/**
+ * @param jqo Original jquery object
+ * @param allowElement Element that is good placement for module/ad
+ * @param divString The div to be inserted before the good element
+ * @return placementHeightDiff Diff in height between original placement target and current target.
+ *
+ * If element is not too close to the end the insert the div before allowable element. 
+ * Add element index to placementIndex to keep track of which elements already have placements
+ */
+function addElement(jqo, allowElement, divString) {
+	var offset = allowElement.index() - jqo.index();
+	if (DEBUG) {
+		console.log("addElement: jqo index is " + jqo.index() + " allowElement index is " + allowElement.index());
+	}
+	
+	if (elementNotNearEnd(allowElement, RIGHT_PIXEL_WINDOW)) {
+		allowElement.before(divString);
+		if (DEBUG) {
+			console.log("addElement: Adding " + allowElement.index() + " to placementIndex.");
+		}
+		placementIndex.push(allowElement.index());
+		if (offset == 0) {
+			return 0;
+		}
+		else {
+			return getHeightDifference(jqo,allowElement);
+		}
+
+	}
+	else {
+		if (DEBUG) {
+			console.log("addElement: Near the end so do NOT add.");
+		}
+		return 0;
+	} 
+}
+
+function getHeightDifference(jqo,allowElement) {
+	var offset = allowElement.index() - jqo.index(),
+		height = 0,
+		children = null;
+	if (offset > 0) {
+		children = $("#drr-container").children().slice(jqo.index(), allowElement.index());
+	}
+	else {
+		children = $("#drr-container").children().slice(allowElement.index(), jqo.index());
+	
+	}
+	if (children != null) {
+		children.each(function(i) {
+			if (DEBUG) {
+				console.log("About to add this element's height to heigh diff offset");
+				console.log($(this));
+			}
+   			height += $(this).height() + GRAF_HEIGHT;
+		});
+	}
+	if (offset < 0) {
+		height *= -1;
+	}
+	if (DEBUG) {
+		console.log("getHeightDifference: offset was " + offset + " and height diff is : " + height);
+	}		
+	return height;
+}
+
+function allowPlacement(jqo) {
+	if (jqo.prev() != null && isReject(jqo.prev())) {
+		return false;
+	}
+	return true;
+}
+
+function isReject(jqo) {
+	if (jqo != null) {
+		if (jqo.is('h2') || jqo.is('h3') || jqo.is('h4') || jqo.is('h5')) {
+			if (DEBUG) {
+				console.log("isReject: found header");
+			}
+			return true;
+		}
+	}
+	return false;
+}
+	 
+// Returns true if height of all elements after this one is more than 500; false otherwise 
+function elementNotNearEnd(element, pixelWindow) {
+	if (pixelWindow === null) {
+		pixelWindow = 500;
+	}
+	if (element === null) {
+		return false;
+	}
+	var remainingHeight = 0,
+		children = $("#drr-container").children().slice(element.index());
+	if (children === null) {
+		return false;
+	}
+	children.each(function(i){
+	   remainingHeight += $(this).height();
+	});
+	if ( remainingHeight > pixelWindow) {
+		return true;
+	}
+	else {
+		if (DEBUG) {
+			console.log("Element too close to end. Remaining height is: " + remainingHeight + " and window is " + pixelWindow);	 
+		}
+		return false;
+	}
+}
+
+
+} // end function exeImuRMobile()
+
+	
+function exeImuDesktop() {
+	var DEBUG = false;
+	
+	// use this to get artBodyHeight
+	var heroImgHeight = $('figure.hero-img').outerHeight(true);
+	if (heroImgHeight === null) {
+		heroImgHeight = 0;
+	}
+	// use this to get artBodyHeight
+	var galleryItemHeight = $('figure.thm-gallery').outerHeight(true);
+	if (galleryItemHeight === null) {
+		galleryItemHeight = 0;
+	}
+	// use this to get artBodyHeight
+	var atAglanceTop = $('.at-a-glance.top').height();
+	if (atAglanceTop === null) {
+		atAglanceTop = 0;
+	}
+	// use this to get artBodyHeight
+	var drrContainerHeight = $('div#drr-container').outerHeight(true);
+	
+	// subtract this from availRRheight
+	var teadsInreadHeight = $('div.teads-inread').height();
+	if (teadsInreadHeight === null) {
+		teadsInreadHeight = 0;
+	}
+	// subtract this from availRRheight
+	var unrulyAdHeight = $('.unruly_in_article_placement').height();
+	if (unrulyAdHeight === null) {
+		unrulyAdHeight = 0;
+	}
+	//just in case the in-article ads are picked up... subtract from availRRheight
+	var collapsibleAdHeight = unrulyAdHeight + teadsInreadHeight;
+	
+	// new Deals modules that need to be subtracted from availRRheight
+	var techDealsHeight=0;
+	if ($("#drr-top-ad").children(".techDeals").length>0) {
+		techDealsHeight = 500;
+	}
+	
+	var prodDealsHeight=0;
+	if ($("#drr-top-ad").children(".topDeals").length>0) {
+		prodDealsHeight = 500;
+	}
+	
+	var modulesRRHeight = techDealsHeight + prodDealsHeight;
+	
+	// new available RR height: availRRheight
+	var availRRheight = ( heroImgHeight + galleryItemHeight + atAglanceTop + drrContainerHeight);
+	
+	availRRheight = availRRheight - (collapsibleAdHeight + modulesRRHeight);
+	
+	// if there is a gallery video, remove the amount of space used to push the right rail down to accommodate the video in the RR (CAT-102)
+	if (galleryItemHeight > 0) {
+		if (DEBUG) {
+			console.log("if galleryItemHeight greater than zero subtract 476 from workingRRheight / availRRheight: " + galleryItemHeight);
+		}
+		availRRheight = availRRheight - 476;
+	}
+	
+	var topIMUheight = 0;
+    var topIMUonPageload = false; // this is used when topimu height is acquired on pageload so height is not subtracted from availRRheight twice
+	if ( $("#topimu").length !== 0 ) {
+		topIMUheight = $('#topimu').height();
+	}
+	if ( $("#gpt-showcase").length !== 0 ) {
+		topIMUheight = $('#gpt-showcase').height();
+	}
+	if (topIMUheight === 0) {
+		topIMUonPageload = false;
+	} else {
+		topIMUonPageload = true;
+	}
+	
+	availRRheight = availRRheight - topIMUheight;
+
+	if (DEBUG) {
+		console.log("-----on pageload: topIMUheight = " + topIMUheight + " and topIMUonPageload = " + topIMUonPageload + " typeof: " + typeof topIMUonPageload);
+	}
+	
+	if (DEBUG) {
+		console.log('-----initial available RR height = ' + availRRheight);
+	}
+	
+	// removing topper class that adds space on top of top deals module on short RR heights
+	// topper class is only on PCW, MW, TH top deals module
+	if (availRRheight < 1900) {
+		$("div.topDeals").removeClass("topper");
+	}
+
+	
+    var adDivString;
+    var adSlotsSizes = [[300,250]]; // default - heights are updated below
+    var dynamicAd = true; // needed for imu's above imu4
+	var imuHeight = 0; // for all the IMUs - used in slotRenderEnded event
+    var slotIdTop = ""; // slotRenderEnded for topimu / gpt-showcase
+	var slotId = ""; // used in slotRenderEnded event for IMUs (not topimu)
+    var buffspace = 390; // See above. The default is 390. This comes from the rrSpace property in brands' properties.
+	var heightLimit = 250 + buffspace; // chose this because smallest ad (250) plus buffspace = 640 pixels which is greater than 639 :)
+	// this is used to trigger that particular action (placed ad) only once
+	var triggered_no_times = 0;
+    var counter = 0; // keeps track of number of ads placed
+    var imuArray = [];
+
+// Beginning of new code... IDGMPM-17422
+googletag.cmd.push(function() {
+    // using slotRenderEnded to get height of newly-placed ad
+    googletag.pubads().addEventListener('slotRenderEnded', function(e) { 
+		if (DEBUG) {
+			console.log("-----e.slot.getSlotElementId() = " + e.slot.getSlotElementId());
+        }
+    	// ...For topimu on page load...
+    	if ( (e.slot.getSlotElementId() === "topimu" || e.slot.getSlotElementId() === "gpt-showcase") && !e.isEmpty ) { //also ensure it's not an empty ad response
+    		slotIdTop = e.slot.getSlotElementId();
+			imuHeight = e.size[1];
+			
+			if (imuArray.indexOf(slotIdTop) == -1) {
+				imuArray.push(""+slotIdTop+"");
+				// subtract just-placed topimu height from availRRheight
+				if (topIMUonPageload === false) {
+					availRRheight = availRRheight - imuHeight;	
+		    		if (DEBUG) {
+		    			console.log("-----topimu: e.slot.getSlotElementId() = " + e.slot.getSlotElementId() + " and availRRheight = " + availRRheight);
+		            }
+				}
+			}
+			
+		}
+    	
+    	// ...For all other IMUs...
+    	if ( e.slot.getSlotElementId().indexOf("imu") === 0 && !e.isEmpty ) {
+			slotId = e.slot.getSlotElementId();
+			imuHeight = e.size[1];
+			// if array does not contain this slotId, add it to array and subtract height
+			if (imuArray.indexOf(slotId) == -1) {
+				imuArray.push(""+slotId+"");
+				// subtract just-placed ad's height plus 390 buffspace pixels from availRRheight
+		        availRRheight = availRRheight - (imuHeight + buffspace);
+		        if (DEBUG) {
+					console.log("----inside slotRenderEnded event for IMUs: slotId = --" + slotId + "----calculating availRRheight: " + availRRheight + " subtracting imuHeight = " + imuHeight + " plus " + buffspace + " buffer (buffspace)");
+		        }
+			}
+
+			counter = triggered_no_times;
+    	}
+    	
+    	
+    	// this is for detecting direction of scrolling
+    	var lastScrollTop = 0;
+		// do the following while scrolling
+		// debounce listen to the scroll ( >ie9 only )
+        if (window.addEventListener) {
+        	window.addEventListener('scroll', rrdebounce(function(event) {
+            	
+	            var st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
+	         	if (st > lastScrollTop) {
+				
+					var y_scroll_pos = window.pageYOffset; // get offset from scrolling
+					//var imuDivOffset = $("#"+slotIdTop).offset().top; // get offset of topimu on scroll
+					var imuDivOffset = 0;
+					
+					// getting top offset for topimu... using this to trigger placement of imu2 - only happens once
+					if ( (slotIdTop === 'topimu' || slotIdTop === 'gpt-showcase') && triggered_no_times == 0) {
+						imuDivOffset = $("#"+slotIdTop).offset().top;
+					} else {
+						// need to get this top offset after each ad is placed - occurs for each ad placed after the topimu
+						if (slotId.indexOf("imu") === 0 && triggered_no_times > 0) {
+							imuDivOffset = $("#"+slotId).offset().top;
+						}
+					}
+		
+					// if scroll position is greater than the just-placed imu's top offset means we've hit/passed the top of the imu, display next imu do this only once per ad
+					if (y_scroll_pos > imuDivOffset && availRRheight > heightLimit) {
+
+						// this block creates ad string and appends ad to #drr-top-ad div
+						try {			        
+					        // THIS DETERMINES AD SLOT SIZES BASED ON AVAIL RR HEIGHT
+					        if (availRRheight > 999) { // if availRRheight is equal to or greater than 1000 pixels, place ad either 250 or 600 pixels tall
+					        	adSlotsSizes = [[300,250],[300,600],[120,600],[160,600]];
+					        } else { // if availRRheight is less than 1000 pixels and greater than or equal to 650 pixels tall...
+					        	if (availRRheight < 1000 && availRRheight > 649) {
+					        		adSlotsSizes = [[300,250]];
+					        	}
+					        }
+					        // this needs to be equal. if triggered is more than counter, it will place all the ads on the page
+					        if (triggered_no_times === counter) {
+				
+						        // THIS CREATES AD CODE STRING
+					        	IDG.GPT.IMUCounter = IDG.GPT.IMUCounter + 1;
+						        // push to consent queue if consent given
+					        	consent.ads.queue.push(function() {
+						            var slotName = IDG.GPT.getIMUSlotName(),
+						                 adString = "<div id='" + slotName + "'></div><script>$('#" + slotName + "').responsiveAd({screenSize:'971 1115', scriptTags: []}, "+dynamicAd+");if (Object.keys(IDG.GPT.companions).length > 0 || IDG.GPT.disableInitialLoad) {IDG.GPT.refreshAd('" + slotName + "');}<\/script>";
+						            adDivString = "<div class='apart ad not-lazy'>" + adString + "</div>";
+						            IDG.GPT.defineGoogleTagSlot(slotName,adSlotsSizes,false,true); 	
+					            
+						            // PLACE AD CODE STRING
+							        $(adDivString).appendTo('#drr-top-ad');
+							        if (DEBUG) {
+							        	console.log("********PLACED AD CODE: "+ slotName+" ********");
+							        }
+					        	});
+							}
+							// this is so ads are placed one at a time, after ad height and buffer space is subtracted from availRRheight in slotRenderEnded event listener
+				            triggered_no_times = counter + 1;
+				
+						} catch (e) {
+						    console.log("Error: "+ e);	
+						}
+		
+		
+					} // end if y_scroll_pos > imuDivOffset
+					//console.log(".............scrolling down.......");	
+	         	} // end if st > lastScrollTop for detection scroll direction
+	         	else { 
+	         		//console.log("...........scrolling up..............");
+	         	}
+         	
+		    lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+        	}, 5));   // end scroll / rrdebounce... run maximum of one time every 5ms
+		} // end window.addeventlistener test
+
+	// end of code for figuring out how many ads to place
+	});// end eventListener slotRenderEnded
+});	
+
+	
+	
+	// rate-limits certain functions, handy for attaching to scroll events, for instance
+    function rrdebounce(func, wait, immediate){
+        var timeout;
+        return function(){
+            var context = this, args = arguments;
+            var later = function(){
+                timeout = null;
+                if (!immediate) func.apply(context, args);
+            };
+            var callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) func.apply(context, args);
+        };
+    }
+
+} // end function executeDRRDesktop()
+	
+</script>		
+
+
+
+<script>
+// this debouce() function is used here and with related-content ribbon-ribbon.jsp
+function debounce(func, wait, immediate){
+    var timeout;
+    return function(){
+        var context = this, args = arguments;
+        var later = function(){
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
+}
+
+let galleryNode; // undefined if element is not found
+let mobileDeviceWidth = 0;
+let eventDeviceOrientation = "portrait";
+
+if (window.innerWidth > 0) {
+	mobileDeviceWidth = window.innerWidth;
+} else {
+	mobileDeviceWidth = document.documentElement.clientWidth;
+}
+
+if ($("figure").hasClass("thm-gallery")) {
+	galleryNode = document.querySelector('.thm-gallery .embed-wrapper');
+}
+
+var supportsOrientationChange = "onorientationchange" in window,
+orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
+
+window.addEventListener(orientationEvent, function() {
+	  // if device is rotated to landscape orientation
+	  if (window.orientation === 90 || window.orientation === -90) {
+		  eventDeviceOrientation = "landscape";
+	  } else {
+		  eventDeviceOrientation = "portrait";
+	  }
+}, false);
+
+if (typeof galleryNode !== 'undefined') {	
+	if (mobileDeviceWidth <= 480) {
+		window.addEventListener('scroll', debounce(function(e) {
+			// if device is rotated to landscape after page load, do not pause and play video!
+			if (eventDeviceOrientation !== "landscape") {
+				if (isVisible(galleryNode)) {
+					jwplayer('bcplayer-gallery').play();
+				} else {
+			    	jwplayer('bcplayer-gallery').pause();
+			  	}
+			}			
+		}, 5));
+	}
+}
+</script>
+
+
+	
+	
+	
+	
+
+
+
+
+					
+
+
+
+
+
+
+
+
+
+
+				
+			
+		
+		</section><!-- /.bodee -->
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+			
+				
+				
+					
+
+				
+			
+			
+		
+
+		
+			
+			
+		
+			
+				
+					<div class="lazyload_ad">
+						<code type="text/javascript">
+						<!--
+						var slotName = 'bottomleaderboard';
+						var slotSize = [];
+						if ($thm.deviceClass == 'mobile') {
+							slotSize = [[300,50],[320,50],[300,250]];
+						}
+						else if ($thm.deviceClass == 'tablet') {
+							slotSize = [[728,90],[468,60]];
+						}
+						else {
+							slotSize = [[728,90],[970,90],[970,250]];
+						}
+						IDG.GPT.addDisplayedAd(slotName, "true");
+						document.write('<div id="' + slotName + '" class="ad-container">');
+						consent.ads.queue.push(function(){
+							IDG.GPT.defineGoogleTagSlot(slotName, slotSize, false, true);});
+						document.write('</div>');
+						consent.ads.queue.push(function(){
+							$('#' + slotName).responsiveAd({screenSize:'971 1115', scriptTags: []}, true);});
+						//-->
+						</code>
+					</div>
+							
+	
+	
+
+
+	
+		
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/tso-links.css">
+
+	<div id="tso-wrapper"><div id="tso" style="display:none"></div></div>
+	<script type="text/javascript">
+	function renderTSO(ads, requireHttps) {
+		$thm.debug("renderTSO:"+ads.length);
+		if (ads && ads.length > 0) {
+			var selectedAds = selectTSOAds(ads,10);
+			if (null != selectedAds && selectedAds.length > 0) {
+				var html = "<h3>Sponsored Links</h3>";
+				html += "<ul>";
+				for (var i=0; i<selectedAds.length;i++) {
+					html += "<li>";
+					html += "<a href='"+selectedAds[i].url+"'> "+selectedAds[i].title+"</a>";
+					if (null != selectedAds[i].pixel && selectedAds[i].pixel.length > 0) {
+						html += selectedAds[i].pixel;
+					}
+					html += "</li>";
+				}
+				html += "</ul>";
+				$("#tso").html(html).show();
+			}
+		}
+	}
+	function selectTSOAds(ads,max) {
+		if (ads.length <= max) {
+			return ads;
+		} else {
+			var uniq = {};
+			var found = 0;
+			var selectedAds = [];
+			while (found < max) {
+				var ad = ads[Math.floor(Math.random()*ads.length)];
+				if (uniq[ad.id] != null) {
+					continue;
+				} else {
+					uniq[ad.id] = true;
+					found++;
+					selectedAds.push(ad);
+				}
+			}
+			return selectedAds;
+		}
+		return null;
+	}
+	</script>
+	
+
+	
+	
+
+
+		</article>
+
+	</section><!-- /role=main -->
+
+	
+	
+	
+
+</div><script type="text/javascript" id="">var firstSessionDate=google_tag_manager["GTM-WR6LD2P"].macro(1),lastSessionDate=google_tag_manager["GTM-WR6LD2P"].macro(2),currentSessionDate=google_tag_manager["GTM-WR6LD2P"].macro(3),sessionNumber=google_tag_manager["GTM-WR6LD2P"].macro(4)||1,inSession=google_tag_manager["GTM-WR6LD2P"].macro(5),daysSinceLastSession=0,currentTime=new Date,longExpiry=15768E8;
+if("undefined"===typeof firstSessionDate)google_tag_manager["GTM-WR6LD2P"].macro(6)("inSession",!0,18E5,"/"),lastSessionDate=firstSessionDate=currentSessionDate=currentTime.toUTCString(),google_tag_manager["GTM-WR6LD2P"].macro(7)("firstSessionDate",firstSessionDate,longExpiry,"/"),google_tag_manager["GTM-WR6LD2P"].macro(8)("currentSessionDate",currentSessionDate,longExpiry,"/"),google_tag_manager["GTM-WR6LD2P"].macro(9)("sessionNumber",sessionNumber,longExpiry,"/"),google_tag_manager["GTM-WR6LD2P"].macro(10)("lastSessionDate",lastSessionDate,longExpiry,"/");else if("undefined"===typeof inSession&&(google_tag_manager["GTM-WR6LD2P"].macro(11)("inSession",
+!0,18E5,"/"),sessionNumber=+sessionNumber+1,google_tag_manager["GTM-WR6LD2P"].macro(12)("sessionNumber",sessionNumber,longExpiry,"/"),lastSessionDate=currentSessionDate,google_tag_manager["GTM-WR6LD2P"].macro(13)("lastSessionDate",lastSessionDate,longExpiry,"/"),currentSessionDate=currentTime.toUTCString(),google_tag_manager["GTM-WR6LD2P"].macro(14)("currentSessionDate",currentSessionDate,longExpiry,"/")),"undefined"!=typeof lastSessionDate){var lastSessionMS=(new Date(lastSessionDate)).getTime();daysSinceLastSession=Math.round((currentTime.getTime()-lastSessionMS)/
+864E5)}dataLayer.push({event:"Session Vars Set",daysSinceLastSession:daysSinceLastSession,firstSessionDate:firstSessionDate,lastSessionDate:lastSessionDate,sessionNumber:sessionNumber});</script>
+<script type="text/javascript" id="" src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/api.js"></script><!-- /#page-wrapper -->
+		
+		
+
+
+
+
+
+
+
+
+
+
+
+
+	<link rel="stylesheet" href="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/foot.css">
+	<link rel="stylesheet" href="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/foot(1).css">
+
+
+
+
+
+<footer>
+
+    <section class="brand" itemscope="" itemtype="http://schema.org/Organization">
+   	
+   		<link itemprop="url" href="http://www.javaworld.com/"> 
+        <a href="https://www.javaworld.com/" automate_uuid="03d703d9-00d5-48b1-b1d7-8142edb4a26a"><span class="logo">JavaWorld</span></a>
+		<span class="tagline"> JavaWorld is the original independent resource for Java developers, architects, and managers.</span>
+        
+        
+        
+    </section>
+    	
+    <section class="topics">
+        
+			
+		
+    </section>
+    
+    
+    <section class="about">
+		<div class="wrapper"> 
+        	<nav class="tertiary" id="ft3">
+            	<ul>
+            		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a class="edition-link-url" href="https://www.javaworld.com/about/about.html" automate_uuid="dd055af7-658e-4c63-af88-7ff81013289f">About Us</a>
+
+</li><li><a class="edition-link-url" href="https://www.javaworld.com/about/contactus.html" automate_uuid="171e381b-992c-45fe-9fca-0605e9c1a54f">Contact</a>
+
+</li><li><a class="edition-link-url" href="https://www.javaworld.com/about/privacy.html" automate_uuid="2017e1a9-8bd6-4619-b6fa-b9ecfd463a1b">Privacy Policy</a>
+
+</li><li><a class="edition-link-url" href="https://www.javaworld.com/about/cookie-policy.html" automate_uuid="c9d9fa20-9557-4681-9221-26da4e2a4879">Cookie Policy</a>
+
+</li><li><a class="edition-link-url" href="https://www.javaworld.com/about/member-preferences.html" automate_uuid="60d80b93-a871-41d1-a153-56e0435eebd7">Member Preferences</a>
+
+</li><li><a class="edition-link-url" href="https://www.idg.com/advertise-with-us/infoworld/" target="_blank" rel="nofollow" automate_uuid="b555f5a5-02a3-4b91-bf37-e2356a9213e7">Advertising</a>
+
+</li><li><a class="edition-link-url" href="https://www.idg.com/work-here/" target="_blank" rel="nofollow" automate_uuid="85b7e18a-47c9-4a41-b648-fd5d1c56f98f">IDG Careers</a>
+
+</li><li><a class="edition-link-url" href="https://www.javaworld.com/about/adchoices.html" automate_uuid="db37df73-f903-460f-a1a8-2b05658b687a">Ad Choices</a>
+
+</li><li><a class="edition-link-url" href="https://www.javaworld.com/about/affiliates.html" automate_uuid="116140e8-7d6e-476e-bf82-7d02131ab705">E-commerce Links</a>
+
+</li><li><a class="edition-link-url" href="https://www.javaworld.com/about/ccpa.html" automate_uuid="5836a9b5-e131-4f0b-8489-b42ea4bd9460">California: Do Not Sell My Personal Info</a>
+
+
+
+
+            	</li></ul>
+        	</nav>
+		</div>
+	</section>
+	
+    <section class="copyright">
+        <div class="wrapper">
+			
+        		<img src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/logo-footer-black.png" alt="IDG Communications">
+        	
+        	
+        
+        	
+        	<p><a href="https://www.javaworld.com/about/copyright.html" automate_uuid="f173b673-8135-44dd-866b-37457f443ad3">Copyright</a> © 2020 IDG Communications, Inc.</p>
+			<div class="network">
+				<div id="network-selector">
+                <div class="label">Explore the IDG Network <i class="ss-icon tick">descend</i></div>
+                <ul>
+                	
+                		
+                		
+                	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		<li><a href="https://www.cio.com/" target="_blank" rel="nofollow" automate_uuid="2021c711-8054-40e8-a359-8b667edfb0a0">CIO</a></li>
+	
+		<li><a href="https://www.computerworld.com/" target="_blank" rel="nofollow" automate_uuid="b0d1d5cc-adc1-40ef-a28f-c2e7b06e8a58">Computerworld</a></li>
+	
+		<li><a href="https://www.csoonline.com/" target="_blank" rel="nofollow" automate_uuid="eb51ded5-791a-4acf-85cd-bbbfaefb8ab0">CSO</a></li>
+	
+		<li><a href="https://www.idc.com/" target="_blank" rel="nofollow" automate_uuid="ea7f8a0c-e82e-43d8-a677-eecb031ea275">IDC</a></li>
+	
+		<li><a href="https://www.idg.com/" target="_blank" rel="nofollow" automate_uuid="cc8ec73e-d7cf-45ed-902d-6d7289ad4a47">IDG</a></li>
+	
+		<li><a href="https://www.idgconnect.com/" target="_blank" rel="nofollow" automate_uuid="756f87af-c96b-4e0c-9f04-09cd07b8c689">IDG Connect</a></li>
+	
+		<li><a href="https://www.infoworld.com/" target="_blank" rel="nofollow" automate_uuid="d9201e0e-5dd9-48f2-bef5-9d40f441c97e">InfoWorld</a></li>
+	
+		<li><a href="https://www.idginsiderpro.com/" target="_blank" rel="nofollow" automate_uuid="fc94c116-0eb2-45f7-9305-3af3333fe569">Insider Pro</a></li>
+	
+		<li><a href="https://www.javaworld.com/" target="_blank" rel="nofollow" automate_uuid="0909643b-b065-45eb-b7e4-d0d6ea3cf2ef">JavaWorld</a></li>
+	
+		<li><a href="https://www.networkworld.com/" target="_blank" rel="nofollow" automate_uuid="d0da9861-0875-43c2-a95b-03170857e6d8">Network World</a></li>
+	
+
+                </ul>
+				</div><!-- /#network-selector -->
+			</div><!-- /.network -->
+		</div><!-- /.wrapper -->
+    </section>
+</footer>
+
+
+<script src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/jquery-ui.js"></script>
+<script src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/jquery.dfp.min.js"></script>
+<script src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/shortstack_nav.js"></script>
+
+
+
+
+	
+		
+			
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+		
+			
+			
+			
+			
+			
+			
+				<div id="mobilewelcomead" class=" ad-container test">					
+				</div>				
+				<script type="text/javascript">
+				consent.ads.queue.push(function(){
+				
+					IDG.GPT.addDisplayedAd("mobilewelcomead", "true");
+					$('#mobilewelcomead').responsiveAd({screenSize:'971 1115', scriptTags: []});
+                    IDG.GPT.log("Creating ad: mobilewelcomead - [971 1115]");
+                    
+				
+				});
+				</script>
+			
+		
+	
+ 	
+ 
+ 
+	
+
+
+
+		
+	<script src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/stickyLb.js"></script>
+	<script>
+	var stickHead = "sticky-head";
+	if ( document.querySelector("#non-stick") ) {
+		stickHead = "non-stick";
+	}
+		
+		(function(){
+			var parallaxArgs = {
+				topNavEl: stickHead,
+				topNavIsSticky: true,
+				leaderboadrdId: 'topleaderboard', 
+				adContainer: 'viewabilityAdContainer',
+				adUnit: 'viewabilityAdUnit',
+				viewabilityTime: 10000
+			}
+			parallaxLb(parallaxArgs);
+		})();
+		
+	</script>
+
+
+<script src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/tracking.js"></script>
+<script src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/autocomplete.js"></script>
+
+
+	<script src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/jquery.colorbox-min.js"></script>
+	<script src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/article.js"></script>
+	
+	<script src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/responsive-tables.js"></script>
+	<script src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/jquery.tablesorter.min.js"></script>
+	<script>
+	$(document).ready(function() {
+		$("table.tablesorter").tablesorter({
+			widgets: ['zebra']
+		});
+		
+		$("table.tablesorter tbody tr").hover(function() {
+			$(this).toggleClass("selected");
+		});
+		
+		$("table.tablesorter thead tr th").each(function(){			
+			if ($(this).find('.ss-icon').length < 1) {
+				$(this).append('<i class="ss-icon"></i>');
+			}
+		});
+		
+	});
+	</script>
+	
+		<script src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/prettify.js"></script>
+		<script>prettyPrint();</script>
+	
+
+
+
+
+<script src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/global.js"></script>
+<script src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/ss-social.js"></script>
+<script src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/ss-standard.js"></script>
+<script src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/brandAnalytics.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+		
+			
+				
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+		
+			
+			
+			
+			
+			
+			
+				<div id="catfish" class=" ad-container test">					
+				</div>				
+				<script type="text/javascript">
+				consent.ads.queue.push(function(){
+				
+					IDG.GPT.addDisplayedAd("catfish", "true");
+					$('#catfish').responsiveAd({screenSize:'971 1115', scriptTags: []});
+                    IDG.GPT.log("Creating ad: catfish - [971 1115]");
+                    
+				
+				});
+				</script>
+			
+		
+	
+ 	
+ 
+ 
+			
+				
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+		
+			
+			
+				<!--  Begin gpt-skin -->
+				<div id="gpt-skin" class=" ad-container">					
+				</div>
+				<script type="text/javascript">
+				consent.ads.queue.push(function(){
+					IDG.GPT.addDisplayedAd("gpt-skin", "true");
+					IDG.GPT.displayGoogleTagSlot('gpt-skin');
+				});
+				</script>
+				<!--  End gpt-skin -->	
+			
+			
+			
+			
+			
+		
+	
+ 	
+ 
+ 
+		
+	
+
+
+<!-- Include here when empty article and when not empty and article is slideshow as this script is included with DRR code in body-base.jsp. -->
+<!-- Also do not include on search page with new right rail. OC-1778 -->
+
+
+
+<script type="text/javascript">
+// -- Load Lazy Advertisement placement as deferred
+$("div.lazyload_ad").lazyLoadAd({
+        threshold    : 0,         // You can set threshold on how close to the edge ad should come before it is loaded. Default is 0 (when it is visible).
+        forceLoad    : false,       // Ad is loaded even if not visible. Default is false.
+        onLoad       : false,       // Callback function on call ad loading
+        onComplete   : false,       // Callback function when load is loaded
+        timeout      : 1500,        // Timeout ad load
+        debug        : false,       // For debug use : draw colors border depends on load status
+        xray         : false        // For debug use : display a complete page view with ad placements
+}) ;
+</script>
+
+
+
+
+
+
+
+<script type="text/javascript" src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/story-nav.js"></script><script type="text/javascript" src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/slick.min.js"></script><script type="text/javascript">
+
+					$(document).ready(function() {
+						var topper = 20;
+						if ( $('body').hasClass('macworld') || $('body').hasClass('pcworld') || $('body').hasClass('techhive')) {
+								topper = 0;
+						}
+						$(window).resize(function() { 			
+							var modTocFixBegin = $("#drr-container.cat").offset().top - topper;
+							var modTocFixEnd = $(".six-column").offset().top;
+							var modTocStartOffsetTop = 5;
+							doProductToc(true,false,modTocFixBegin,modTocFixEnd,modTocStartOffsetTop);
+			
+						}).resize();
+					});
+				
+
+$(document).ready(function(){
+		$("#collection-module-bottom .carousel-items").slick({
+		lazyLoad:'ondemand',
+		slidesToShow: 6,
+  		slidesToScroll: 6,
+		prevArrow:'<a class="prev browse left"><i class="ss-icon ss-navigateleft"></i> Previous</a>',
+		nextArrow:'<a class="next browse right">Next <i class="ss-icon ss-navigateright"></i></a>',
+		appendArrows: $(".carousel-nav"),
+		dots: true,
+		appendDots: $(".carousel-nav-nums"),
+		responsive: [
+		 			{
+		 				breakpoint:769,
+		 				settings:{
+		 					slidesToShow: 4,
+  							slidesToScroll: 4
+		 				}
+		 			},
+		 			{
+		 				breakpoint:512,
+		 				settings: {
+		 					vertical:true,
+		 					slidesToShow: 6,
+  							slidesToScroll: 6
+		 				}
+		 			}
+		 		]
+	});
+});
+
+
+	g_bRequireHttps = true;
+	 	var localeId = getLocale();
+		$.ajax('/ads/tso?localeId=' + localeId,{
+			dataType: 'json',
+			success: function(data){
+				renderTSO(data.tsoLinks, g_bRequireHttps);
+			},
+			error: function(jqXHR,error,thrown){
+				$thm.debug("TSO AJAX Status: "+error+": "+thrown,true);
+			}
+		});
+	
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+	
+	
+		
+	
+	
+
+<!-- Begin comScore Tag -->
+<script>
+var _comscore = _comscore || [];
+_comscore.push(
+{ c1: "2", c2: "6035308", c3: "", c5: "Spring Framework", c6: "Article: How-To", c15: "3288219" });
+(function()
+{
+	var s = document.createElement("script"), el = document.getElementsByTagName("script")[0];
+	s.async = true; s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+	el.parentNode.insertBefore(s, el);
+})();
+</script>
+<noscript>
+<img src="https://sb.scorecardresearch.com/p?c1=2&c2=6035308&cv=2.0&cj=1" />
+</noscript>
+<!-- End comScore Tag -->
+
+
+	<!-- LiveRamp Sources -->
+	<script src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/liveRamp.js"></script>
+	<!-- End of LiveRamp -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+consent.digitalelement.queue.push(function(){
+	$thm.logPlEvent({"b":"jvw","e":"view","t":"article","id":"3288219"});
+});
+</script>
+
+		<div id="loginModal"></div>
+		<div id="logoffModal"></div>
+
+		
+		
+		
+		<script type="text/javascript">
+			a=top;f=self;
+			var acceptedDomains = ["lookbookhq.com"];
+			var cleanedHost = a.location.hostname.split(".").slice(-2).join(".");
+			if(a!=f && acceptedDomains.indexOf(cleanedHost) < 0) {
+				a.location=f.location;
+			}
+		</script>			
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+<div id="cboxOverlay" style="display: none;"></div><div id="colorbox" class="" role="dialog" tabindex="-1" style="display: none;"><div id="cboxWrapper"><div><div id="cboxTopLeft" style="float: left;"></div><div id="cboxTopCenter" style="float: left;"></div><div id="cboxTopRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxMiddleLeft" style="float: left;"></div><div id="cboxContent" style="float: left;"><div id="cboxTitle" style="float: left;"></div><div id="cboxCurrent" style="float: left;"></div><button type="button" id="cboxPrevious"></button><button type="button" id="cboxNext"></button><button id="cboxSlideshow"></button><div id="cboxLoadingOverlay" style="float: left;"></div><div id="cboxLoadingGraphic" style="float: left;"></div></div><div id="cboxMiddleRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxBottomLeft" style="float: left;"></div><div id="cboxBottomCenter" style="float: left;"></div><div id="cboxBottomRight" style="float: left;"></div></div></div><div style="position: absolute; width: 9999px; visibility: hidden; display: none;"></div></div><div style="display: none; visibility: hidden;"><script>(function(){var a="https://apple.sjv.io/c/321564/435031/7613",b='[href^\x3d"https://apple.com"],[href*\x3d"store"],[href*\x3d"www"],[href^\x3d"http://apple.com"]',c="(http(s)?://((www|store)(.))?apple.com)(/(uk|au|ca|ie|nl|se|de))?",g=new RegExp(c+"(/.*)","i"),h=/(\/newsroom)|(aos.prf.hn)|(\/swift\/playgrounds)|(apple.sjv.)/i;$('a[href*\x3d"apple.com"]').filter(b).each(function(b,c){var d=$(this).attr("href");if(g.test(d)&&!h.test(d)){var e=d.replace(g,"$8"),f=a+"?subid1\x3d"+generateSubtag(this)+
+"\x26u\x3dhttps://www.apple.com";0<=d.indexOf("store.")&&(f+="/shop");0<=e.indexOf("us-hed")&&(e=e.replace("/us-hed",""));f+=e;$(this).attr("href",f)}})})();function generateSubtag(a){var b="US-"+google_tag_manager["GTM-WR6LD2P"].macro(21)+"-"+google_tag_manager["GTM-WR6LD2P"].macro(22)+"-",c=$(a).attr("data-vars-link-position-id");a=$(a).attr("data-product-id");b+=c?c+"-":"000-";b+=a?a+"-":"000000-";return b+="web"};</script></div><script type="text/javascript" id="">/*
+ @preserve
+ jquery.scrolldepth.js | v1.0
+ Copyright (c) 2016 Rob Flaherty (@robflaherty)
+ Licensed under the MIT and GPL licenses.
+*/
+(function(a){"function"===typeof define&&define.amd?define(["jquery"],a):"object"===typeof module&&module.exports?module.exports=a(require("jquery")):a(jQuery)})(function(a){var p={minHeight:0,percentage:!0,pixelDepth:!0,nonInteraction:!0,gtmOverride:!1,trackerName:!1,dataLayer:"dataLayer"},f=a(window),g=[],h=0,m;a.scrollDepth=function(b){function q(c,a,e,v){if(m&&b.pixelDepth&&2<arguments.length&&e>h){h=e;var d=!0;"undefined"!==typeof a&&"25%"!==a&&(d=!1);m({event:"ScrollDistance",scrollEventCategory:"Scroll Depth",
+scrollEventAction:a,scrollEventLabel:(250*Math.floor(e/250)).toString()+"px",eventValue:1,eventNonInteraction:d})}}function r(c,d,e){a.each(c,function(c,b){-1===a.inArray(c,g)&&d>=b&&(q("Percentage",c,d,e),g.push(c))})}function t(c,a){var b,d,f,k=null,l=0,g=function(){l=new Date;k=null;f=c.apply(b,d)};return function(){var e=new Date;l||(l=e);var h=a-(e-l);b=this;d=arguments;0>=h?(clearTimeout(k),k=null,l=e,f=c.apply(b,d)):k||(k=setTimeout(g,h));return f}}function n(){f.on("scroll.scrollDepth",t(function(){var c=
+a(document).height(),d=window.innerHeight?window.innerHeight:f.height();d=f.scrollTop()+d;c={"25%":parseInt(.25*c,10),"50%":parseInt(.5*c,10),"75%":parseInt(.75*c,10),"100%":c-5};var e=+new Date-u;g.length>=(b.percentage?4:0)?f.off("scroll.scrollDepth"):b.percentage&&r(c,d,e)},500))}var u=+new Date;b=a.extend({},p,b);a(document).height()<b.minHeight||(a.scrollDepth.reset=function(){g=[];h=0;f.off("scroll.scrollDepth");n()},n(),"undefined"===typeof window[b.dataLayer]||"function"!==typeof window[b.dataLayer].push||
+b.gtmOverride||(m=function(a){window[b.dataLayer].push(a)}))};return a.scrollDepth});</script>
+<script type="text/javascript" id="">jQuery(function(){jQuery.scrollDepth()});window.addEventListener("beforeunload",function(a){dataLayer.push({event:"pushOnUnload"})});</script><div style="display: none; visibility: hidden;">
+<script type="text/javascript">var _auto={accountKey:"0cf738c9d2c2033aaa3bb88f6ae0a9f57c18d1b822b19058d46be2fd29de4f58",u1:"jw",apiURL:"https://www.popshops.com",snippetURL:"https://automate-prod.s3.amazonaws.com/minified_logic.js",automateURL:"https://automate.linksynergy.com",widgetKey:"xp35fk24bu8fvo1ajpk3qdt2izxuffjj",aelJS:null,useDefaultAEL:!1,loaded:!1,events:[]},ael=window.addEventListener;
+window.addEventListener=function(a,b,c,d){"click"!==a&&_auto.useDefaultAEL?ael(a,b,c):_auto.events.push({type:a,handler:b,capture:c,rakuten:d})};_auto.links={};var httpRequest=new XMLHttpRequest;httpRequest.open("GET",_auto.snippetURL,!0);httpRequest.timeout=5E3;httpRequest.ontimeout=function(){if(!_auto.loaded){for(i=0;i<_auto.events.length;i++){var a=_auto.events[i];ael(a.type,a.handler,a.capture)}_auto.useDefaultAEL=!0}};
+httpRequest.onreadystatechange=function(){httpRequest.readyState===XMLHttpRequest.DONE&&200===httpRequest.status&&(eval(httpRequest.responseText),_auto.run(ael))};httpRequest.send(null);</script>
+</div><div style="display: none; visibility: hidden;">
+<script src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/oct.js" type="text/javascript"></script></div><div style="display: none; visibility: hidden;"></div><div style="display: none; visibility: hidden;"></div><div style="display: none; visibility: hidden;"></div><div style="display: none; visibility: hidden;"></div><div style="display: none; visibility: hidden;"></div><script type="text/javascript" id="" src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/pub.531979.min.js"></script>
+
+<script type="text/javascript" id="">(function(){try{var q=function(l){var a,c,b,m,n,e,f,h="SoundCloud",d=SC.Widget(l),g=0;d.bind(SC.Widget.Events.READY,function(){d.bind(SC.Widget.Events.PLAY,function(){1E3<Date.now()-g&&d.getCurrentSound(function(c){f=c.title;a="Play";k(h,a,f);g=Date.now()})});d.bind(SC.Widget.Events.PAUSE,function(b){c=Math.round(100*b.relativePosition);100!==c&&(a="Pause",k(h,a,f))});d.bind(SC.Widget.Events.PLAY_PROGRESS,function(d){e=!1;c=Math.round(100*d.relativePosition);25!==c||b||(a="25%",e=b=!0);50!==c||m||
+(a="50%",e=m=!0);75!==c||n||(a="75%",e=n=!0);e&&k(h,a,f)});d.bind(SC.Widget.Events.FINISH,function(){a="100%";b=m=n=!1;k(h,a,f)})})},k=function(b,a,c){window.dataLayer.push({event:"scEvent",eventCategory:b,eventAction:a,eventLabel:c})},g,p=document.querySelectorAll('iframe[src*\x3d"soundcloud.com"]');var b=0;for(g=p.length;b<g;b+=1)q(p[b])}catch(l){console.log("Error with SoundCloud API: "+l.message)}})();</script><script src="./Mastering Spring framework 5, Part 2_ Spring WebFlux _ JavaWorld_files/init.js"></script></body></html>

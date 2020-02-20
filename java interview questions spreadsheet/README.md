@@ -228,6 +228,7 @@ For learning and study
 - [API Design Best Practices](#api-design-best-practices)
 - [Convention over Configuration](#convention-over-configuration)
 - [Cartesian product](#cartesian-product)
+- [Spring Tutorials 1](#spring-tutorials-1)
 
 <!-- /TOC -->
 
@@ -8776,12 +8777,71 @@ https://medium.com/from-the-scratch/http-server-what-do-you-need-to-know-to-buil
 |-------|-----|-------|
 |   x   |  x  |   x   |
 
+- [What-is-JSP-Introduction-to-JavaServer-Pages-JavaWorld](refs/What-is-JSP-Introduction-to-JavaServer-Pages-JavaWorld)
+
+`references:`
+https://www.javaworld.com/article/3336161/what-is-jsp-introduction-to-javaserver-pages.html
+
+- [What-is-JSP-Introduction-to-JavaServer-Pages-JavaWorld-part2](refs/What-is-JSP-Introduction-to-JavaServer-Pages-JavaWorld-part2)
+
+`references:`
+https://www.javaworld.com/article/3336161/what-is-jsp-introduction-to-javaserver-pages.html?page=2
+
+- Apache Struts
+
+```text
+Apache Struts
+Apache Struts is a free, open-source, MVC framework for creating elegant, modern Java web applications. It favors convention over configuration, is extensible using a plugin architecture, and ships with plugins to support REST, AJAX and JSON.
+```
+
+`references:`
+https://struts.apache.org/
+
+- [Public-Review-of-Java-MVC-1-0-Specification-is-Now-Open-infoq](refs/Public-Review-of-Java-MVC-1-0-Specification-is-Now-Open-infoq)
+
+`references:`
+https://www.infoq.com/news/2018/01/mvc-1.0-public-review
+
+- [](refs/)
+
+`references:`
+
 - [](refs/)
 
 `references:`
 
 
+- [](refs/)
+
+`references:`
+
+
+- [](refs/)
+
+`references:`
+
+
+- [](refs/)
+
+`references:`
+
+
+
+
 ----
+
+
+- [](refs/)
+
+`references:`
+
+
+- [](refs/)
+
+`references:`
+
+
+
 ----
 ----
 
@@ -9135,6 +9195,50 @@ https://en.wikipedia.org/wiki/Cartesian_product
 
 `references:`
 https://www.mathstopia.net/sets/cartesian-product
+
+----
+
+# Spring Tutorials 1
+
+- [Mastering-Spring-framework-5-Part-1-Spring-MVC-JavaWorld](refs/Mastering-Spring-framework-5-Part-1-Spring-MVC-JavaWorld)
+
+`references:`
+https://www.javaworld.com/article/2078034/spring-framework-mastering-spring-mvc.html
+
+- [Mastering-Spring-framework-5-Part-1-Spring-MVC-JavaWorld-page2](refs/Mastering-Spring-framework-5-Part-1-Spring-MVC-JavaWorld-page2)
+
+`references:`
+https://www.javaworld.com/article/2078034/spring-framework-mastering-spring-mvc.html?page=2
+
+- [Mastering-Spring-framework-5-Part-1-Spring-MVC-JavaWorld-page3](refs/Mastering-Spring-framework-5-Part-1-Spring-MVC-JavaWorld-page3)
+
+`references:`
+https://www.javaworld.com/article/2078034/spring-framework-mastering-spring-mvc.html?page=3
+
+- [Mastering-Spring-framework-5-Part-2-Spring-WebFlux-JavaWorld-page1](refs/Mastering-Spring-framework-5-Part-2-Spring-WebFlux-JavaWorld-page1)
+
+`references:`
+https://www.javaworld.com/article/3288219/mastering-spring-framework-5-part-2-spring-webflux.html
+
+- [Mastering-Spring-framework-5-Part-2-Spring-WebFlux-JavaWorld-page2](refs/Mastering-Spring-framework-5-Part-2-Spring-WebFlux-JavaWorld-page2)
+
+`references:`
+https://www.javaworld.com/article/3288219/mastering-spring-framework-5-part-2-spring-webflux.html?page=2
+
+- [Mastering-Spring-framework-5-Part-2-Spring-WebFlux-JavaWorld-page3](refs/Mastering-Spring-framework-5-Part-2-Spring-WebFlux-JavaWorld-page3)
+
+`references:`
+https://www.javaworld.com/article/3288219/mastering-spring-framework-5-part-2-spring-webflux.html?page=3
+
+- [What-is-Spring-Component-based-development-for-Java-JavaWorld-page1](refs/What-is-Spring-Component-based-development-for-Java-JavaWorld-page1)
+
+`references:`
+https://www.javaworld.com/article/3444936/what-is-spring-component-based-development-for-java.html
+
+- [What-is-Spring-Component-based-development-for-Java-JavaWorld-page2](refs/What-is-Spring-Component-based-development-for-Java-JavaWorld-page2)
+
+`references:`
+https://www.javaworld.com/article/3444936/what-is-spring-component-based-development-for-java.html?page=2
 
 ----
 ----
