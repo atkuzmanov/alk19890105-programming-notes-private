@@ -232,6 +232,7 @@ For learning and study
         - [OSI model vs TCP/IP model](#osi-model-vs-tcpip-model)
 - [Address Resolution Protocol (ARP)](#address-resolution-protocol-arp)
 - [API Design Best Practices](#api-design-best-practices)
+- [Application Server vs Web Server](#application-server-vs-web-server)
 - [Convention over Configuration](#convention-over-configuration)
 - [Cartesian product](#cartesian-product)
 - [What is the Java Programming Language](#what-is-the-java-programming-language)
@@ -9305,6 +9306,49 @@ https://medium.com/@mwaysolutions/10-best-practices-for-better-restful-api-cbe81
 
 - Please see:
     - [HATEOAS](#hateoas)
+
+----
+
+# Application Server vs Web Server
+
+- [webserver-What-is-the-difference-between-application-server-and-web-server-StackOverflow](refs/webserver-What-is-the-difference-between-application-server-and-web-server-StackOverflow)
+
+`references:`
+https://stackoverflow.com/questions/936197/what-is-the-difference-between-application-server-and-web-server
+
+- [5-Difference-between-Application-Server-and-Web-Server-in-Java-javarevisited](refs/5-Difference-between-Application-Server-and-Web-Server-in-Java-javarevisited)
+
+`references:`
+https://javarevisited.blogspot.com/2012/05/5-difference-between-application-server.html
+
+- [Difference-between-the-Apache-HTTP-Server-and-Apache-Tomcat-StackOverflow](refs/Difference-between-the-Apache-HTTP-Server-and-Apache-Tomcat-StackOverflow)
+
+```text
+Tomcat = (Web Server + Servlet container + JSP environment)
+```
+
+`references:`
+https://stackoverflow.com/questions/30632/difference-between-the-apache-http-server-and-apache-tomcat
+
+- [Difference-Between-Web-server-and-Application-server-GeeksforGeeks](refs/Difference-Between-Web-server-and-Application-server-GeeksforGeeks)
+
+`references:`
+https://www.geeksforgeeks.org/difference-between-web-server-and-application-server/
+
+- [What-Is-a-Web-Server-vs-an-Application-Server-NGINX](refs/What-Is-a-Web-Server-vs-an-Application-Server-NGINX)
+
+`references:`
+https://www.nginx.com/resources/glossary/application-server-vs-web-server/
+
+- [Server-Web-vs-Application-javatpoint](refs/Server-Web-vs-Application-javatpoint)
+
+`references:`
+https://www.javatpoint.com/server-web-vs-application
+
+- [App-server-Web-server-Whats-the-difference_-JavaWorld](refs/App-server-Web-server-Whats-the-difference_-JavaWorld)
+
+`references:`
+https://www.javaworld.com/article/2077354/app-server-web-server-what-s-the-difference.html
 
 ----
 
