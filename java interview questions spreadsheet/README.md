@@ -204,6 +204,9 @@ For learning and study
 - [Web socket](#web-socket)
 - [HTTP constructed over TCP](#http-constructed-over-tcp)
 - [What is JSP](#what-is-jsp)
+- [Java Servlets](#java-servlets)
+- [JavaServer Faces; Java Server Faces; JSF;](#javaserver-faces-java-server-faces-jsf)
+- [JSP vs Servlet](#jsp-vs-servlet)
 - [Random](#random)
 - [SQL Normal Forms](#sql-normal-forms)
 - [HTTP](#http)
@@ -8837,6 +8840,13 @@ https://www.tutorialspoint.com/jsp/jsp_syntax.htm
 `references:`
 https://www.guru99.com/jsp-tutorial.html
 
+----
+
+# Java Servlets
+
+- [](refs/)
+
+`references:`
 
 
 
@@ -8844,16 +8854,13 @@ https://www.guru99.com/jsp-tutorial.html
 
 `references:`
 
-
-
 - [](refs/)
 
 `references:`
 
-- [](refs/)
+----
 
-`references:`
-
+# JavaServer Faces; Java Server Faces; JSF;
 
 - [](refs/)
 
@@ -8864,6 +8871,16 @@ https://www.guru99.com/jsp-tutorial.html
 
 ----
 
+# JSP vs Servlet
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
+
+- Please see:
+    - [What is JSP](#what-is-jsp)
+    - [Java Servlets](#java-servlets)
+    - [JavaServer Faces; Java Server Faces; JSF;](#javaserver-faces-java-server-faces-jsf)
 
 - [](refs/)
 
