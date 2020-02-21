@@ -212,6 +212,8 @@ For learning and study
 - [Struts2/JSF MVC Components? What is MVC?](#struts2jsf-mvc-components-what-is-mvc)
     - [JSF MVC Components](#jsf-mvc-components)
     - [Struts2](#struts2)
+        - [Struts2 vs Spring](#struts2-vs-spring)
+        - [Struts2 vs JSF](#struts2-vs-jsf)
     - [What is MVC?](#what-is-mvc)
 - [Microservices in Java](#microservices-in-java)
 - [Random](#random)
@@ -9076,6 +9078,38 @@ https://www.baeldung.com/struts-2-intro
 
 `references:`
 https://mkyong.com/tutorials/struts-2-tutorials/
+
+### Struts2 vs Spring
+
+- [The-Difference-between-STRUTS2-and-SPRING-MVC-cygnet](refs/The-Difference-between-STRUTS2-and-SPRING-MVC-cygnet)
+
+`references:`
+https://www.cygnet-infotech.com/blog/struts-2-vs-springmvc
+
+- [Spring-vs-Struts-Find-Out-The-6-Important-Differences-educba](refs/Spring-vs-Struts-Find-Out-The-6-Important-Differences-educba)
+
+`references:`
+https://www.educba.com/spring-vs-struts/
+
+- [Spring-and-Struts2-strutsapacheorg](refs/Spring-and-Struts2-strutsapacheorg)
+
+`references:`
+https://struts.apache.org/getting-started/spring.html
+
+### Struts2 vs JSF
+
+- [](refs/)
+
+`references:`
+
+
+- [](refs/)
+
+`references:`
+
+- [](refs/)
+
+`references:`
 
 ## What is MVC?
 
