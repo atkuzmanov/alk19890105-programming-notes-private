@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<!-- saved from url=(0056)https://www.stechies.com/difference-between-jsp-servlet/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Difference between Servlet and JSP with Comparison Chart</title>
+<meta name="description" content="Servlets and JSP are two important Java server-side technologies that form the building blocks of all types of Java web frameworks. A servlet is needed for huge request processing logic that contains lesser response generation logic. On the other hand, JSP is needed for less request processing logic containing greater response generation logic.">
+<meta name="keywords" content="Articles Difference between JSP and Servlet  Difference between JSP and Servlet ">
+<link rel="canonical" href="https://www.stechies.com/difference-between-jsp-servlet/">
+<link rel="amphtml" href="https://www.stechies.com/amp/difference-between-jsp-servlet/">
+ 
+<meta property="og:site_name" content="STechies">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://www.stechies.com/difference-between-jsp-servlet/"> 
+<meta property="og:title" content="Difference between JSP and Servlet "> 
+<meta property="og:description" content="Servlets and JSP are two important Java server-side technologies that form the building blocks of all types of Java web frameworks. A servlet is needed for huge request processing logic that contains lesser response generation logic. On the other hand, JSP is needed for less request processing logic containing greater response generation logic.">
+<meta property="og:image" content="https://www.stechies.com/userfiles/images/JSPServletjpg1549631368.jpg">
+<meta itemprop="image" content="https://www.stechies.com/userfiles/images/JSPServletjpg1549631368.jpg"> 
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@stechies">
+<meta name="twitter:title" content="Difference between JSP and Servlet ">
+<meta name="twitter:description" content="Servlets and JSP are two important Java server-side technologies that form the building blocks of all types of Java web frameworks. A servlet is needed for huge request processing logic that contains lesser response generation logic. On the other hand, JSP is needed for less request processing logic containing greater response generation logic.">
+<meta name="twitter:image:src" content="https://www.stechies.com/userfiles/images/JSPServletjpg1549631368.jpg">
+<meta name="twitter:domain" content="STechies.com">
+<link href="https://scdn.stechies.com/" rel="dns-prefetch">
+<script async="" src="./Difference between Servlet and JSP with Comparison Chart_files/async-ads.js"></script><script type="text/javascript" async="" src="./Difference between Servlet and JSP with Comparison Chart_files/analytics.js"></script><script type="text/javascript" async="" src="./Difference between Servlet and JSP with Comparison Chart_files/f.txt"></script><script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+   "publisher": {
+    "@type": "Organization",
+    "name": "Stechies",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.stechies.com/site-img/logo-st.jpg"
+    }
+  },
+    "headline": "Difference between Servlet and JSP with Comparison Chart",
+  "image": [
+    "https://www.stechies.com/userfiles/images/JSPServletjpg1549631368.jpg"
+    ],
+  "url": "https://www.stechies.com/difference-between-jsp-servlet/",
+    "dateModified": "09 Jan 2020 4:08 pm",
+  "keywords": "Articles Difference between JSP and Servlet  Difference between JSP and Servlet ",
+  "description": "Servlets and JSP are two important Java server-side technologies that form the building blocks of all types of Java web frameworks. A servlet is needed for huge request processing logic that contains lesser response generation logic. On the other hand, JSP is needed for less request processing logic containing greater response generation logic.",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.stechies.com/"
+  }
+ }
+</script>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script async="" src="./Difference between Servlet and JSP with Comparison Chart_files/js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-2137903-1');
+</script>
+<style type="text/css">
+progress,sub,sup{vertical-align:baseline}[type=checkbox],[type=radio],legend{padding:0}a,legend{color:inherit}h2,h3,h4,h5,h6{color:#0F9D58}button,hr,input{overflow:visible}.w3-display-container,.w3-tooltip,sub,sup{position:relative}html{box-sizing:border-box;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;overflow-x:hidden}*,:after,:before{box-sizing:inherit}body{margin:0}article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block}audio:not([controls]){display:none;height:0}[hidden],template{display:none}a{background-color:transparent;-webkit-text-decoration-skip:objects}a:active,a:hover{outline-width:0}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}dfn{font-style:italic}mark{background:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0}sub{bottom:-.25em}sup{top:-.5em}figure{margin:1em 40px}img{border-style:none;vertical-align:middle}svg:not(:root){overflow:hidden}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}button,input,select,textarea{font:inherit;margin:0}optgroup{font-weight:700}button,select{text-transform:none}[type=reset],[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:ButtonText dotted 1px}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{display:table;max-width:100%;white-space:normal}textarea{overflow:auto}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-input-placeholder{color:inherit;opacity:.54}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}h1,h2,h3,h4,h5,h6{font-weight:bolder}body,html{font-family:Verdana,sans-serif;font-size:16px;line-height:2}h1{font-size:28px}h2{font-size:24px}h3{font-size:22px}h4{font-size:20px}h5{font-size:18px}h6{font-size:16px}.w3-serif{font-family:serif}.w3-wide{letter-spacing:4px}hr{box-sizing:content-box;height:0;border:0;border-top:1px solid #eee;margin:20px 0}.w3-image{max-width:100%;height:auto}.w3-table,.w3-table-all{border-collapse:collapse;border-spacing:0;width:100%;display:table}.w3-table-all{border:1px solid #ccc}.w3-bordered tr,.w3-table-all tr{border-bottom:1px solid #ddd}.w3-striped tbody tr:nth-child(even){background-color:#f1f1f1}.w3-table-all tr:nth-child(odd){background-color:#fff}.w3-table-all tr:nth-child(even){background-color:#f1f1f1}.w3-hoverable tbody tr:hover,.w3-ul.w3-hoverable li:hover{background-color:#ccc}.w3-centered tr td,.w3-centered tr th{text-align:center}.w3-table td,.w3-table th,.w3-table-all td,.w3-table-all th{padding:8px;display:table-cell;text-align:left;vertical-align:top}.w3-badge,.w3-btn,.w3-button,.w3-tag{display:inline-block;text-align:center}.w3-table td:first-child,.w3-table th:first-child,.w3-table-all td:first-child,.w3-table-all th:first-child{padding-left:16px}.w3-btn,.w3-button{border:none;padding:8px 16px;vertical-align:middle;overflow:hidden;text-decoration:none;color:inherit;background-color:inherit;cursor:pointer;white-space:nowrap;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.w3-modal,.w3-sidebar{overflow:auto;height:100%}.w3-btn:hover{box-shadow:0 8px 16px 0 rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.19)}.w3-btn:disabled,.w3-button:disabled,.w3-disabled{cursor:not-allowed;opacity:.3}.w3-disabled *,:disabled *{pointer-events:none}.w3-btn.w3-disabled:hover,.w3-btn:disabled:hover{box-shadow:none}.w3-badge,.w3-tag{background-color:#000;color:#fff;padding-left:8px;padding-right:8px}.w3-badge{border-radius:50%}.w3-ul{list-style-type:none;padding:0;margin:0}.w3-ul li{padding:8px 16px;border-bottom:1px solid #ddd}.w3-input,.w3-select{width:100%;border:none}.w3-ul li:last-child{border-bottom:none}.w3-tooltip .w3-text{display:none}.w3-tooltip:hover .w3-text{display:inline-block}.w3-ripple:active{opacity:.5}.w3-ripple{transition:opacity 0s}.w3-input{padding:8px;display:block;border-bottom:1px solid #ccc}.w3-select{padding:9px 0;border-bottom:1px solid #ccc}.w3-dropdown-click,.w3-dropdown-hover{position:relative;display:inline-block;cursor:pointer}.w3-dropdown-hover:hover .w3-dropdown-content{display:block}.w3-dropdown-click:hover,.w3-dropdown-click:hover>.w3-button:first-child,.w3-dropdown-hover:first-child,.w3-dropdown-hover:hover>.w3-button:first-child{background-color:#ccc;color:#000}.w3-dropdown-content{cursor:auto;color:#000;background-color:#fff;display:none;position:absolute;min-width:160px;margin:0;padding:0;z-index:1}.w3-check,.w3-radio{width:24px;height:24px;position:relative;top:6px}.w3-sidebar{width:200px;background-color:#fff;position:fixed!important;z-index:1}.w3-bar-block .w3-dropdown-click,.w3-bar-block .w3-dropdown-hover,.w3-modal{width:100%}.w3-bar-block .w3-dropdown-click .w3-dropdown-content,.w3-bar-block .w3-dropdown-hover .w3-dropdown-content{min-width:100%}.w3-bar-block .w3-dropdown-click .w3-button,.w3-bar-block .w3-dropdown-hover .w3-button{width:100%;text-align:left;padding:8px 16px}#main,.w3-main{transition:margin-left .4s}.w3-modal{z-index:3;display:none;padding-top:100px;position:fixed;left:0;top:0;background-color:#000;background-color:rgba(0,0,0,.4)}.w3-modal-content{margin:auto;background-color:#fff;position:relative;padding:0;outline:0;width:600px}.w3-bar{width:100%;overflow:hidden}.w3-center .w3-bar{display:inline-block;width:auto}.w3-bar .w3-bar-item{padding:8px 16px;float:left;width:auto;border:none;display:block;outline:0}.w3-bar .w3-dropdown-click,.w3-bar .w3-dropdown-hover{position:static;float:left}.w3-bar .w3-button{white-space:normal}.w3-bar-block .w3-bar-item{width:100%;display:block;padding:8px 16px;text-align:left;border:none;white-space:normal;float:none;outline:0}.w3-bar-block.w3-center .w3-bar-item{text-align:center}.w3-block{display:block;width:100%}.w3-responsive{display:block;overflow-x:auto}.w3-bar:after,.w3-bar:before,.w3-cell-row:after,.w3-cell-row:before,.w3-clear:after,.w3-clear:before,.w3-container:after,.w3-container:before,.w3-panel:after,.w3-panel:before,.w3-row-padding:after,.w3-row-padding:before,.w3-row:after,.w3-row:before{content:"";display:table;clear:both}.w3-col,.w3-half,.w3-quarter,.w3-third,.w3-threequarter,.w3-twothird{float:left;width:100%}.w3-col.s1{width:8.33333%}.w3-col.s2{width:16.66666%}.w3-col.s3{width:24.99999%}.w3-col.s4{width:33.33333%}.w3-col.s5{width:41.66666%}.w3-col.s6{width:49.99999%}.w3-col.s7{width:58.33333%}.w3-col.s8{width:66.66666%}.w3-col.s9{width:74.99999%}.w3-col.s10{width:83.33333%}.w3-col.s11{width:91.66666%}.w3-col.s12{width:99.99999%}@media (min-width:601px){.w3-col.m1{width:8.33333%}.w3-col.m2{width:16.66666%}.w3-col.m3,.w3-quarter{width:24.99999%}.w3-col.m4,.w3-third{width:33.33333%}.w3-col.m5{width:41.66666%}.w3-col.m6,.w3-half{width:49.99999%}.w3-col.m7{width:58.33333%}.w3-col.m8,.w3-twothird{width:66.66666%}.w3-col.m9,.w3-threequarter{width:74.99999%}.w3-col.m10{width:83.33333%}.w3-col.m11{width:91.66666%}.w3-col.m12{width:99.99999%}}@media (min-width:993px){.w3-col.l1{width:8.33333%}.w3-col.l2{width:16.66666%}.w3-col.l3{width:24.99999%}.w3-col.l4{width:33.33333%}.w3-col.l5{width:41.66666%}.w3-col.l6{width:49.99999%}.w3-col.l7{width:58.33333%}.w3-col.l8{width:66.66666%}.w3-col.l9{width:74.99999%}.w3-col.l10{width:83.33333%}.w3-col.l11{width:91.66666%}.w3-col.l12{width:99.99999%}}.w3-content{max-width:980px;margin:auto}.w3-rest{overflow:hidden}.w3-cell-row{display:table;width:100%}.w3-cell{display:table-cell}.w3-cell-top{vertical-align:top}.w3-cell-middle{vertical-align:middle}.w3-cell-bottom{vertical-align:bottom}.w3-hide{display:none!important}.w3-show,.w3-show-block{display:block!important}.w3-show-inline-block{display:inline-block!important}@media (max-width:600px){.w3-modal-content{margin:0 10px;width:auto!important}.w3-modal{padding-top:30px}.w3-dropdown-click.w3-mobile .w3-dropdown-content,.w3-dropdown-hover.w3-mobile .w3-dropdown-content{position:relative}.w3-hide-small{display:none!important}.w3-mobile{display:block;width:100%!important}.w3-bar-item.w3-mobile,.w3-dropdown-click.w3-mobile,.w3-dropdown-hover.w3-mobile{text-align:center}.w3-dropdown-click.w3-mobile,.w3-dropdown-click.w3-mobile .w3-btn,.w3-dropdown-click.w3-mobile .w3-button,.w3-dropdown-hover.w3-mobile,.w3-dropdown-hover.w3-mobile .w3-btn,.w3-dropdown-hover.w3-mobile .w3-button{width:100%}}@media (max-width:768px){.w3-modal-content{width:500px}.w3-modal{padding-top:50px}}@media (min-width:993px){.w3-modal-content{width:900px}.w3-hide-large{display:none!important}.w3-sidebar.w3-collapse{display:block!important}}@media (max-width:992px) and (min-width:601px){.w3-hide-medium{display:none!important}}@media (max-width:992px){.w3-sidebar.w3-collapse{display:none}.w3-main{margin-left:0!important;margin-right:0!important}}.w3-bottom,.w3-top{position:fixed;width:100%;z-index:1}.w3-top{top:0}.w3-bottom{bottom:0}.w3-overlay{position:fixed;display:none;width:100%;height:100%;top:0;left:0;right:0;bottom:0;background-color:rgba(0,0,0,.5);z-index:2}.w3-display-topleft{position:absolute;left:0;top:0}.w3-display-topright{position:absolute;right:0;top:0}.w3-display-bottomleft{position:absolute;left:0;bottom:0}.w3-display-bottomright{position:absolute;right:0;bottom:0}.w3-display-middle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%)}.w3-display-left{position:absolute;top:50%;left:0;transform:translate(0,-50%);-ms-transform:translate(0,-50%)}.w3-display-right{position:absolute;top:50%;right:0;transform:translate(0,-50%);-ms-transform:translate(0,-50%)}.w3-display-topmiddle{position:absolute;left:50%;top:0;transform:translate(-50%,0);-ms-transform:translate(-50%,0)}.w3-display-bottommiddle{position:absolute;left:50%;bottom:0;transform:translate(-50%,0);-ms-transform:translate(-50%,0)}.w3-display-container:hover .w3-display-hover{display:block}.w3-display-container:hover span.w3-display-hover{display:inline-block}.w3-display-hover{display:none}.w3-display-position{position:absolute}.w3-circle{border-radius:50%}.w3-round-small{border-radius:2px}.w3-round,.w3-round-medium{border-radius:4px}.w3-round-large{border-radius:8px}.w3-round-xlarge{border-radius:16px}.w3-round-xxlarge{border-radius:32px}.w3-row-padding,.w3-row-padding>.w3-col,.w3-row-padding>.w3-half,.w3-row-padding>.w3-quarter,.w3-row-padding>.w3-third,.w3-row-padding>.w3-threequarter,.w3-row-padding>.w3-twothird{padding:0 8px}.w3-container,.w3-panel{padding:.01em 16px}.w3-panel{margin-top:16px;margin-bottom:16px}.w3-code,.w3-margin-top,.w3-section{margin-top:16px!important}.w3-code,.w3-margin-bottom,.w3-section{margin-bottom:16px!important}.w3-code,.w3-codespan{font-family:Consolas,"courier new";font-size:16px}.w3-code{width:auto;background-color:#fff;padding:8px 12px;border-left:4px solid #4CAF50;word-wrap:break-word}.w3-codespan{color:#dc143c;background-color:#f1f1f1;padding-left:4px;padding-right:4px;font-size:110%}.w3-card,.w3-card-2{box-shadow:0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12)}.w3-card-4,.w3-hover-shadow:hover{box-shadow:0 4px 10px 0 rgba(0,0,0,.2),0 4px 20px 0 rgba(0,0,0,.19)}.w3-spin{animation:w3-spin 2s infinite linear}@keyframes w3-spin{0%{transform:rotate(0)}100%{transform:rotate(359deg)}}.w3-animate-fading{animation:fading 10s infinite}@keyframes fading{0%,100%{opacity:0}50%{opacity:1}}.w3-animate-opacity{animation:opac .8s}@keyframes opac{from{opacity:0}to{opacity:1}}.w3-animate-top{position:relative;animation:animatetop .4s}@keyframes animatetop{from{top:-300px;opacity:0}to{top:0;opacity:1}}.w3-animate-left{position:relative;animation:animateleft .4s}@keyframes animateleft{from{left:-300px;opacity:0}to{left:0;opacity:1}}.w3-animate-right{position:relative;animation:animateright .4s}@keyframes animateright{from{right:-300px;opacity:0}to{right:0;opacity:1}}.w3-animate-bottom{position:relative;animation:animatebottom .4s}@keyframes animatebottom{from{bottom:-300px;opacity:0}to{bottom:0;opacity:1}}.w3-animate-zoom{animation:animatezoom .6s}@keyframes animatezoom{from{transform:scale(0)}to{transform:scale(1)}}.w3-animate-input{transition:width .4s ease-in-out}.w3-animate-input:focus{width:100%!important}.w3-hover-opacity:hover,.w3-opacity{opacity:.6}.w3-hover-opacity-off:hover,.w3-opacity-off{opacity:1}.w3-opacity-max{opacity:.25}.w3-opacity-min{opacity:.75}.w3-grayscale-max,.w3-greyscale-max,.w3-hover-grayscale:hover,.w3-hover-greyscale:hover{filter:grayscale(100%)}.w3-grayscale,.w3-greyscale{filter:grayscale(75%)}.w3-grayscale-min,.w3-greyscale-min{filter:grayscale(50%)}.w3-sepia{filter:sepia(75%)}.w3-hover-sepia:hover,.w3-sepia-max{filter:sepia(100%)}.w3-sepia-min{filter:sepia(50%)}.w3-tiny{font-size:10px!important}.w3-small{font-size:14px!important}.w3-medium{font-size:16px!important}.w3-large{font-size:20px!important}.w3-xlarge{font-size:24px!important}.w3-xxlarge{font-size:36px!important}.w3-xxxlarge{font-size:48px!important}.w3-jumbo{font-size:64px!important}.w3-left-align{text-align:left!important}.w3-right-align{text-align:right!important}.w3-justify{text-align:justify!important}.w3-center{text-align:center!important}.w3-border-0{border:0!important}.w3-border{border:1px solid #ccc!important}.w3-border-top{border-top:1px solid #ccc!important}.w3-border-bottom{border-bottom:1px solid #ccc!important}.w3-border-left{border-left:1px solid #ccc!important}.w3-border-right{border-right:1px solid #ccc!important}.w3-topbar{border-top:6px solid #ccc!important}.w3-bottombar{border-bottom:6px solid #ccc!important}.w3-leftbar{border-left:6px solid #ccc!important}.w3-rightbar{border-right:6px solid #ccc!important}.w3-margin{margin:16px!important}.w3-margin-left{margin-left:16px!important}.w3-margin-right{margin-right:16px!important}.w3-padding-small{padding:4px 8px!important}.w3-padding{padding:8px 16px!important}.w3-padding-large{padding:12px 24px!important}.w3-padding-16{padding-top:16px!important;padding-bottom:16px!important}.w3-padding-24{padding-top:24px!important;padding-bottom:24px!important}.w3-padding-32{padding-top:32px!important;padding-bottom:32px!important}.w3-padding-48{padding-top:48px!important;padding-bottom:48px!important}.w3-padding-64{padding-top:64px!important;padding-bottom:64px!important}.w3-left{float:left!important}.w3-right{float:right!important}.w3-button:hover{color:#000!important;background-color:#ccc!important}.w3-hover-none:hover,.w3-transparent{background-color:transparent!important}.w3-hover-none:hover{box-shadow:none!important}.w3-amber,.w3-hover-amber:hover{color:#000!important;background-color:#ffc107!important}.w3-aqua,.w3-hover-aqua:hover{color:#000!important;background-color:#0ff!important}.w3-blue,.w3-hover-blue:hover{color:#fff!important;background-color:#2196F3!important}.w3-hover-light-blue:hover,.w3-light-blue{color:#000!important;background-color:#87CEEB!important}.w3-brown,.w3-hover-brown:hover{color:#fff!important;background-color:#795548!important}.w3-cyan,.w3-hover-cyan:hover{color:#000!important;background-color:#00bcd4!important}.w3-blue-gray,.w3-blue-grey,.w3-hover-blue-gray:hover,.w3-hover-blue-grey:hover{color:#fff!important;background-color:#607d8b!important}.w3-green,.w3-hover-green:hover{color:#fff!important;background-color:#4CAF50!important}.w3-hover-light-green:hover,.w3-light-green{color:#000!important;background-color:#8bc34a!important}.w3-hover-indigo:hover,.w3-indigo{color:#fff!important;background-color:#3f51b5!important}.w3-hover-khaki:hover,.w3-khaki{color:#000!important;background-color:khaki!important}.w3-hover-lime:hover,.w3-lime{color:#000!important;background-color:#cddc39!important}.w3-hover-orange:hover,.w3-orange{color:#000!important;background-color:#ff9800!important}.w3-deep-orange,.w3-hover-deep-orange:hover{color:#fff!important;background-color:#ff5722!important}.w3-hover-pink:hover,.w3-pink{color:#fff!important;background-color:#e91e63!important}.w3-hover-purple:hover,.w3-purple{color:#fff!important;background-color:#9c27b0!important}.w3-deep-purple,.w3-hover-deep-purple:hover{color:#fff!important;background-color:#673ab7!important}.w3-hover-red:hover,.w3-red{color:#fff!important;background-color:#0F9D58!important}.w3-hover-sand:hover,.w3-sand{color:#000!important;background-color:#fdf5e6!important}.w3-hover-teal:hover,.w3-teal{color:#fff!important;background-color:#009688!important}.w3-hover-yellow:hover,.w3-yellow{color:#000!important;background-color:#ffeb3b!important}.w3-hover-white:hover,.w3-white{color:#000!important;background-color:#fff!important}.w3-black,.w3-hover-black:hover{color:#fff!important;background-color:#000!important}.w3-gray,.w3-grey,.w3-hover-gray:hover,.w3-hover-grey:hover{color:#000!important;background-color:#9e9e9e!important}.w3-hover-light-gray:hover,.w3-hover-light-grey:hover,.w3-light-gray,.w3-light-grey{color:#000!important;background-color:#f1f1f1!important}.w3-dark-gray,.w3-dark-grey,.w3-hover-dark-gray:hover,.w3-hover-dark-grey:hover{color:#fff!important;background-color:#616161!important}.w3-hover-pale-red:hover,.w3-pale-red{color:#000!important;background-color:#fdd!important}.w3-hover-pale-green:hover,.w3-pale-green{color:#000!important;background-color:#dfd!important}.w3-hover-pale-yellow:hover,.w3-pale-yellow{color:#000!important;background-color:#ffc!important}.w3-hover-pale-blue:hover,.w3-pale-blue{color:#000!important;background-color:#dff!important}.w3-hover-text-amber:hover,.w3-text-amber{color:#ffc107!important}.w3-hover-text-aqua:hover,.w3-text-aqua{color:#0ff!important}.w3-hover-text-blue:hover,.w3-text-blue{color:#2196F3!important}.w3-hover-text-light-blue:hover,.w3-text-light-blue{color:#87CEEB!important}.w3-hover-text-brown:hover,.w3-text-brown{color:#795548!important}.w3-hover-text-cyan:hover,.w3-text-cyan{color:#00bcd4!important}.w3-hover-text-blue-gray:hover,.w3-hover-text-blue-grey:hover,.w3-text-blue-gray,.w3-text-blue-grey{color:#607d8b!important}.w3-hover-text-green:hover,.w3-text-green{color:#4CAF50!important}.w3-hover-text-light-green:hover,.w3-text-light-green{color:#8bc34a!important}.w3-hover-text-indigo:hover,.w3-text-indigo{color:#3f51b5!important}.w3-hover-text-khaki:hover,.w3-text-khaki{color:#b4aa50!important}.w3-hover-text-lime:hover,.w3-text-lime{color:#cddc39!important}.w3-hover-text-orange:hover,.w3-text-orange{color:#ff9800!important}.w3-hover-text-deep-orange:hover,.w3-text-deep-orange{color:#ff5722!important}.w3-hover-text-pink:hover,.w3-text-pink{color:#e91e63!important}.w3-hover-text-purple:hover,.w3-text-purple{color:#9c27b0!important}.w3-hover-text-deep-purple:hover,.w3-text-deep-purple{color:#673ab7!important}.w3-hover-text-red:hover,.w3-text-red{color:#F37324!important}.w3-text-youtube{color:red !important;}.w3-hover-text-sand:hover,.w3-text-sand{color:#fdf5e6!important}.w3-hover-text-teal:hover,.w3-text-teal{color:#009688!important}.w3-hover-text-yellow:hover,.w3-text-yellow{color:#d2be0e!important}.w3-hover-text-white:hover,.w3-text-white{color:#fff!important}.w3-hover-text-black:hover,.w3-text-black{color:#000!important}.w3-hover-text-gray:hover,.w3-hover-text-grey:hover,.w3-text-gray,.w3-text-grey{color:#757575!important}.w3-hover-text-light-gray:hover,.w3-hover-text-light-grey:hover,.w3-text-light-gray,.w3-text-light-grey{color:#f1f1f1!important}.w3-hover-text-dark-gray:hover,.w3-hover-text-dark-grey:hover,.w3-text-dark-gray,.w3-text-dark-grey{color:#3a3a3a!important}.w3-border-amber,.w3-hover-border-amber:hover{border-color:#ffc107!important}.w3-border-aqua,.w3-hover-border-aqua:hover{border-color:#0ff!important}.w3-border-blue,.w3-hover-border-blue:hover{border-color:#2196F3!important}.w3-border-light-blue,.w3-hover-border-light-blue:hover{border-color:#87CEEB!important}.w3-border-brown,.w3-hover-border-brown:hover{border-color:#795548!important}.w3-border-cyan,.w3-hover-border-cyan:hover{border-color:#00bcd4!important}.w3-border-blue-gray,.w3-border-blue-grey,.w3-hover-border-blue-gray:hover,.w3-hover-border-blue-grey:hover{border-color:#607d8b!important}.w3-border-green,.w3-hover-border-green:hover{border-color:#4CAF50!important}.w3-border-light-green,.w3-hover-border-light-green:hover{border-color:#8bc34a!important}.w3-border-indigo,.w3-hover-border-indigo:hover{border-color:#3f51b5!important}.w3-border-khaki,.w3-hover-border-khaki:hover{border-color:khaki!important}.w3-border-lime,.w3-hover-border-lime:hover{border-color:#cddc39!important}.w3-border-orange,.w3-hover-border-orange:hover{border-color:#ff9800!important}.w3-border-deep-orange,.w3-hover-border-deep-orange:hover{border-color:#ff5722!important}.w3-border-pink,.w3-hover-border-pink:hover{border-color:#e91e63!important}.w3-border-purple,.w3-hover-border-purple:hover{border-color:#9c27b0!important}.w3-border-deep-purple,.w3-hover-border-deep-purple:hover{border-color:#673ab7!important}.w3-border-red,.w3-hover-border-red:hover{border-color:#f44336!important}.w3-border-sand,.w3-hover-border-sand:hover{border-color:#fdf5e6!important}.w3-border-teal,.w3-hover-border-teal:hover{border-color:#009688!important}.w3-border-yellow,.w3-hover-border-yellow:hover{border-color:#ffeb3b!important}.w3-border-white,.w3-hover-border-white:hover{border-color:#fff!important}.w3-border-black,.w3-hover-border-black:hover{border-color:#000!important}.w3-border-gray,.w3-border-grey,.w3-hover-border-gray:hover,.w3-hover-border-grey:hover{border-color:#9e9e9e!important}.w3-border-light-gray,.w3-border-light-grey,.w3-hover-border-light-gray:hover,.w3-hover-border-light-grey:hover{border-color:#f1f1f1!important}.w3-border-dark-gray,.w3-border-dark-grey,.w3-hover-border-dark-gray:hover,.w3-hover-border-dark-grey:hover{border-color:#616161!important}.w3-border-pale-red,.w3-hover-border-pale-red:hover{border-color:#ffe7e7!important}.w3-border-pale-green,.w3-hover-border-pale-green:hover{border-color:#e7ffe7!important}.w3-border-pale-yellow,.w3-hover-border-pale-yellow:hover{border-color:#ffc!important}.w3-border-pale-blue,.w3-hover-border-pale-blue:hover{border-color:#e7ffff!important}
+#navCenter,.Tutorials_list li,.list_art{list-style-type:none}.link_href,.social_div:hover,.view_m{cursor:pointer}.cours-head,.duration,.inst_add{overflow:hidden}#fotterCont>p,.inst-det-page,.list-title,.view_m{text-align:center}.site_function_div{margin-top:15px!important}.gn-button,.gn-button1{height:40px;font-size:16px;line-height:40px;margin-right:7px;margin-top:-5px!important;position:relative;float:right;margin-bottom:15px;color:#fff;display:inline-block;font-weight:bolder;text-decoration:none}.gn-button{padding:0 40px;-webkit-transition:all .3s ease-in-out;-moz-transition:all .3s ease-in-out;-ms-transition:all .3s ease-in-out;-o-transition:all .3s ease-in-out;transition:all .3s ease-in-out}.gn-button1{padding:0 15px;-webkit-transition:all .3s ease-in-out;-moz-transition:all .3s ease-in-out;-ms-transition:all .3s ease-in-out;-o-transition:all .3s ease-in-out;transition:all .3s ease-in-out}.search1,.search2{font-size:16px;padding:10px;background-color:#fff;height:40px;outline:0}.gn-button:hover{text-decoration:none;color:#fff}.search1{margin-top:10px;width:130px;box-sizing:border-box;-webkit-transition:width .4s ease-in-out;transition:width .4s ease-in-out}.search1:focus{width:50%}.search2{display:inline-block;max-width:88%}.menu{font-size:15px;font-weight:bolder}ul.breadcrumb{padding:8px 14px;list-style:none;background-color:#fff}.breadcrumb li{display:inline;font-size:12px}.view-bread{margin-left:-40px}.breadcrumb li+li:before{color:#000;content:"/\00a0"}.breadcrumb li a{color:#0275d8;text-decoration:none}.breadcrumb li a:hover{color:#01447e;text-decoration:underline}.Tut-div a,.Tutorials_list a,.content a{text-decoration:none;}.Tut-div{padding:15px}.Tut-div li{border-bottom:1px solid #cfcfcf}.Tutorials_list a:hover{text-decoration:none;color:#fff!important}.Tutorials_list li{border-bottom:1px solid #cfcfcf}.list-title{font-weight:700;font-size:16px;text-transform:uppercase}.inst-det-page,.relate,.social_div i,.topic-title{font-weight:bolder}.social_div{padding:10px;height:40px;width:40px;color:#fff;border:1px solid;display:inline-block;margin-top:3px;border-radius:4px;background-color:#343434}.hide,.none{display:none}.social_div i{color:#b0b1b4;font-size:18px}.reviewe_name{color:#E8280B}.content a{color:red}.content a:hover{text-decoration:underline}.comments{margin:25px;padding-left:15px!important;padding-right:15px}.cmt_dtail{border-bottom:1px solid #f2f3f4;padding:5px}.inst-details,.inst-logo{border-bottom:1px solid #ccc}#comment1,.article{padding-left:15px!important;padding-right:15px}#comment1{margin-left:10px!important;min-height:200px}.relate{margin-top:10px;margin-left:15px}.article{margin:25px}.relate-img{width:120px;height:80px}#demo{top:0;padding:0;margin:0;background:0 0;background-color:#303030!important;color:#fff}.mob-logo{height:65px;width:150px}.menu-line{font-size:30px}#sort{width:20%}.arti-img{width:85px;margin:7px}.main-div{padding-left:15px!important;padding-right:15px}.main-footer{margin-top:30px;padding:50px}.filters{padding-left:10px;padding-right:10px;margin-top:5px;width:100%}.filters input[type=checkbox]{margin-top:10px!important}.caustion{font-size:10px;color:silver}.line-class{margin-top:20px}.card-class{margin:5px}.card-class a{text-decoration:none}.card-class a:hover{text-decoration:underline}.link_href,.list_a,.threequarter a,a{text-decoration:none}.inst-logo{width:100%;height:150px!important}.inst-info{padding:15px!important;width:100%}.inst-details{padding-bottom:15px;padding-left:15px;margin-top:15px}.inst-logo-big{width:230px;height:230px;border:1px solid #ccc;margin-right:5px}.inst-det-page{background-color:#cfcfcf;padding:12px;width:auto}.topic-title{float:left}.g_text,.radious5{float:right;font-weight:bolder}.contact_details,.course_syllabus{padding-left:20px;padding-right:20px}.course-data{padding:10px}.statement{border-bottom:1px solid #f2f3f4;padding:5px}#navCenter,.content table,.list_art{border:none}.w3-card{margin:10px}#fotterCont>p,.pg_fill,.view_m{margin-top:15px}.link_href{color:#2e92f7;margin-right:3px}.foot_link{color:#fff;margin-left:5px!important}.foot_link:hover{color:red}.searchSubmit:hover{cursor:pointer;color:#000}.searchSubmit i:hover{color:#000}.threequarter a{color:red}.list_art{width:auto}.list_art li a{color:red;font-weight:bolder}.content table thead>tr{background-color:#0F9D58;color:#fff;text-align:center}.content table tbody>tr:nth-child(even){background-color:#f1f1f1}.cours-head{min-height:65px;max-height:66px!important}.fill_slec{width:150px;margin-right:3px}.radious5{color:green;padding:5px}#loadmorelink{color:#fff;font-weight:bolder}#navCenter{width:auto}.list_a{font-size:16px;color:red;font-weight:bolder}.g_text{color:green}.hide{width:0;height:0}.pdf_link{font-size:32px;color:red}.pdf_name{font-size:14px;color:red}.view_m{width:100%;padding:20px;margin-left:10px;margin-bottom:15px}.page_title{margin-left:15px;margin-bottom:15px}.card_div{height:320px;margin-bottom:10%}/*.card-footer{height:250px!important;max-height:250px!important}*//*.inst_add{height:140px!important;max-height:141px!important}*/.duration{height:60px;max-height:60px!important}#fotterCont>p{color:#b0b1b4;font-size:10px}.sample-resume-listing,.share-screen{float:right;width:740px;color:#3c3c3c}.font_bold,.smp_res_name{font-weight:bolder}.res-footer{padding:5px;margin:5px;outline:0}.share-screen{margin:5px 4px 0 10px;font-size:12px}.sample-resume-listing{padding:10px;margin:10px 4px 0 10px;font-size:14px;font-weight:700}.sample-resume-listing h2{font-size:16px}.job_listing_new h3 a{color:#fe6001;text-decoration:none}.job_listing_new h3 a:hover{text-decoration:underline}.fa-user{font-size:80px!important}.list_data{width:80%!important;border-bottom:1px solid silver!important}
+.w3-bar-item a{text-decoration:none;}
+.w3-bar-item a{color:red}.w3-bar-item a:hover{text-decoration:underline}
+.w3-bar-item table,.list_art{border:none}
+.w3-bar-item table thead>tr{background-color:red;color:#fff;text-align:center}.w3-bar-item table tbody>tr:nth-child(even){background-color:#f1f1f1}@media all{
+/*! @import //use.fontawesome.com/releases/v4.7.0/css/font-awesome-css.min.css */
+.fa{display:inline-block;font:normal normal normal 14px/1 FontAwesome;font-size:inherit;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+.fa-spin{-webkit-animation:fa-spin 2s infinite linear;animation:fa-spin 2s infinite linear;}
+.fa-search:before{content:"\f002";}
+.fa-pencil:before{content:"\f040";}
+.fa-calendar:before{content:"\f073";}
+.fa-comment:before{content:"\f075";}
+.fa-user:before{content:"\f007";}
+.fa-twitter:before{content:"\f099";}
+.fa-facebook:before{content:"\f09a";}
+.fa-linkedin:before{content:"\f0e1";}
+.fa-spinner:before{content:"\f110";}
+.fa-youtube-play:before{content:"\f16a";}
+/*! end @import */
+}@-webkit-keyframes fa-spin{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg);}100%{-webkit-transform:rotate(359deg);transform:rotate(359deg);}}
+@keyframes fa-spin{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg);}100%{-webkit-transform:rotate(359deg);transform:rotate(359deg);}}
+/*! CSS Used fontfaces */
+@font-face{font-family:'FontAwesome';src:url('//use.fontawesome.com/releases/v4.7.0/fonts/fontawesome-webfont.eot');src:url('//use.fontawesome.com/releases/v4.7.0/fonts/fontawesome-webfont.woff2') format('woff2'),url('//use.fontawesome.com/releases/v4.7.0/fonts/fontawesome-webfont.woff') format('woff'),url('//use.fontawesome.com/releases/v4.7.0/fonts/fontawesome-webfont.ttf') format('truetype'),url('//use.fontawesome.com/releases/v4.7.0/fonts/fontawesome-webfont.svg#fontawesomeregular') format('svg');font-weight:normal;font-style:normal;}.ad_mark > span{background: #f9f9f9;font-size: 12px;padding-left: 5px;padding-right:5px;padding-top: 3px;padding-bottom: 3px;}.best_ans{float:right;border:1px solid green;color:green;padding-left:5px;padding-right:5px;padding-top:2px;padding-bottom:2px;font-weight:bolder;border-radius: 4px;}.help_ans{float:right;border:1px solid orange;color:orange;padding-left:5px;padding-right:5px;padding-top:2px;padding-bottom:2px;font-weight:bolder;border-radius: 4px;}.gsc-search-button-v2{height: 43px !important;width: 80px !important;background: #F5AF01 !important;}#scroller{height: 450px;z-index: -999999}.content table{border: 0.5px solid darkseagreen;}::-webkit-scrollbar{width:10px}::-webkit-scrollbar-track{box-shadow:inset 0 0 2px grey;border-radius:10px}::-webkit-scrollbar-thumb{background:#d3d3d3;border-radius:4px}::-webkit-scrollbar-thumb:hover{background:green}.copy-button{margin: 10px;background: padding-box;border: 1px solid gray;border-radius: 5px;font-size: 13px;font-weight: 800;color: tomato;cursor: pointer;}pre{background-color:#f8f8f8;overflow-x:auto}.recommended-link a{color:#0F9D58 !important;font-size: 18px;font-weight: 600;    text-decoration: underline;}</style>
+<script data-ad-client="ca-pub-7080808620760591" async="" src="./Difference between Servlet and JSP with Comparison Chart_files/f(1).txt"></script>
+<link rel="manifest" href="https://www.stechies.com/stpush/firefox/manifest.json">
+<meta property="fb:page_id" content="231657264275">
+<script src="./Difference between Servlet and JSP with Comparison Chart_files/cse_element__en.js" type="text/javascript"></script><link type="text/css" rel="stylesheet" href="./Difference between Servlet and JSP with Comparison Chart_files/default+en.css"><link type="text/css" rel="stylesheet" href="./Difference between Servlet and JSP with Comparison Chart_files/default.css"><style type="text/css">.gsc-control-cse{font-family:arial, sans-serif}.gsc-control-cse .gsc-table-result{font-family:arial, sans-serif}.gsc-refinementsGradient{background:linear-gradient(to left,rgba(255,255,255,1),rgba(255,255,255,0))}</style><style type="text/css">.gscb_a{display:inline-block;font:27px/13px arial,sans-serif}.gsst_a .gscb_a{color:#a1b9ed;cursor:pointer}.gsst_a:hover .gscb_a,.gsst_a:focus .gscb_a{color:#36c}.gsst_a{display:inline-block}.gsst_a{cursor:pointer;padding:0 4px}.gsst_a:hover{text-decoration:none!important}.gsst_b{font-size:16px;padding:0 2px;position:relative;user-select:none;-webkit-user-select:none;white-space:nowrap}.gsst_e{vertical-align:middle;opacity:0.55;}.gsst_a:hover .gsst_e,.gsst_a:focus .gsst_e{opacity:0.72;}.gsst_a:active .gsst_e{opacity:1;}.gsst_f{background:white;text-align:left}.gsst_g{background-color:white;border:1px solid #ccc;border-top-color:#d9d9d9;box-shadow:0 2px 4px rgba(0,0,0,0.2);-webkit-box-shadow:0 2px 4px rgba(0,0,0,0.2);margin:-1px -3px;padding:0 6px}.gsst_h{background-color:white;height:1px;margin-bottom:-1px;position:relative;top:-1px}.gsib_a{width:100%;padding:4px 6px 0}.gsib_a,.gsib_b{vertical-align:top}.gssb_c{border:0;position:absolute;z-index:989}.gssb_e{border:1px solid #ccc;border-top-color:#d9d9d9;box-shadow:0 2px 4px rgba(0,0,0,0.2);-webkit-box-shadow:0 2px 4px rgba(0,0,0,0.2);cursor:default}.gssb_f{visibility:hidden;white-space:nowrap}.gssb_k{border:0;display:block;position:absolute;top:0;z-index:988}.gsdd_a{border:none!important}.gsq_a{padding:0}.gssb_a{padding:0 7px}.gssb_a,.gssb_a td{white-space:nowrap;overflow:hidden;line-height:22px}#gssb_b{font-size:11px;color:#36c;text-decoration:none}#gssb_b:hover{font-size:11px;color:#36c;text-decoration:underline}.gssb_g{text-align:center;padding:8px 0 7px;position:relative}.gssb_h{font-size:15px;height:28px;margin:0.2em;-webkit-appearance:button}.gssb_i{background:#eee}.gss_ifl{visibility:hidden;padding-left:5px}.gssb_i .gss_ifl{visibility:visible}a.gssb_j{font-size:13px;color:#36c;text-decoration:none;line-height:100%}a.gssb_j:hover{text-decoration:underline}.gssb_l{height:1px;background-color:#e5e5e5}.gssb_m{color:#000;background:#fff}.gssb_a{padding:0 9px}.gsib_a{padding:5px 9px 4px 9px}.gscb_a{line-height:27px}.gssb_e{border:0}.gssb_l{margin:5px 0}input.gsc-input::-webkit-input-placeholder{font-size:14px}input.gsc-input:-moz-placeholder{font-size:14px}input.gsc-input::-moz-placeholder{font-size:14px}input.gsc-input:-ms-input-placeholder{font-size:14px}input.gsc-input:focus::-webkit-input-placeholder{color:transparent}input.gsc-input:focus:-moz-placeholder{color:transparent}input.gsc-input:focus::-moz-placeholder{color:transparent}input.gsc-input:focus:-ms-input-placeholder{color:transparent}.gssb_c .gsc-completion-container{position:static}.gssb_c{z-index:5000}.gsc-completion-container table{background:transparent;font-size:inherit;font-family:inherit}.gssb_c > tbody > tr,.gssb_c > tbody > tr > td,.gssb_d,.gssb_d > tbody > tr,.gssb_d > tbody > tr > td,.gssb_e,.gssb_e > tbody > tr,.gssb_e > tbody > tr > td{padding:0;margin:0;border:0}.gssb_a table,.gssb_a table tr,.gssb_a table tr td{padding:0;margin:0;border:0}</style></head>
+<body>
+<div class="w3-container w3-col w3-hide-small">
+	<div class="w3-third">
+		<a href="https://www.stechies.com/"> <img class="w3-hide-small" src="./Difference between Servlet and JSP with Comparison Chart_files/logo-st.jpg" alt="Online Tutorials &amp; Training Materials | STechies.com" title="Online Tutorials &amp; Training Materials | STechies.com"></a>
+	</div>
+	<div class="w3-mobile w3-hide-small w3-quarter" style="margin-top: 10px !important;">
+    <script>
+  (function() {
+    var cx = 'partner-pub-7080808620760591:5444513559';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<div id="___gcse_0"><div class="gsc-control-searchbox-only gsc-control-searchbox-only-en" dir="ltr"><form class="gsc-search-box gsc-search-box-tools" accept-charset="utf-8"><table cellspacing="0" cellpadding="0" class="gsc-search-box"><tbody><tr><td class="gsc-input"><div class="gsc-input-box" id="gsc-iw-id1"><table cellspacing="0" cellpadding="0" id="gs_id50" class="gstl_50 gsc-input" style="width: 100%; padding: 0px;"><tbody><tr><td id="gs_tti50" class="gsib_a"><input autocomplete="off" type="text" size="10" class="gsc-input" name="search" title="search" id="gsc-i-id1" placeholder="Custom Search" style="width: 100%; padding: 0px; border: none; margin: -0.0625em 0px 0px; height: 1.25em; background: url(&quot;https://www.google.com/cse/static/images/1x/googlelogo_lightgrey_46x16dp.png&quot;) left center no-repeat rgb(255, 255, 255); text-indent: 48px; outline: none;" dir="ltr" spellcheck="false"></td><td class="gsib_b"><div class="gsst_b" id="gs_st50" dir="ltr"><a class="gsst_a" href="javascript:void(0)" style="display: none;" title="Clear search box" role="button"><span class="gscb_a" id="gs_cb50" aria-hidden="true">×</span></a></div></td></tr></tbody></table></div></td><td class="gsc-search-button"><button class="gsc-search-button gsc-search-button-v2"><svg width="13" height="13" viewBox="0 0 13 13"><title>search</title><path d="m4.8495 7.8226c0.82666 0 1.5262-0.29146 2.0985-0.87438 0.57232-0.58292 0.86378-1.2877 0.87438-2.1144 0.010599-0.82666-0.28086-1.5262-0.87438-2.0985-0.59352-0.57232-1.293-0.86378-2.0985-0.87438-0.8055-0.010599-1.5103 0.28086-2.1144 0.87438-0.60414 0.59352-0.8956 1.293-0.87438 2.0985 0.021197 0.8055 0.31266 1.5103 0.87438 2.1144 0.56172 0.60414 1.2665 0.8956 2.1144 0.87438zm4.4695 0.2115 3.681 3.6819-1.259 1.284-3.6817-3.7 0.0019784-0.69479-0.090043-0.098846c-0.87973 0.76087-1.92 1.1413-3.1207 1.1413-1.3553 0-2.5025-0.46363-3.4417-1.3909s-1.4088-2.0686-1.4088-3.4239c0-1.3553 0.4696-2.4966 1.4088-3.4239 0.9392-0.92727 2.0864-1.3969 3.4417-1.4088 1.3553-0.011889 2.4906 0.45771 3.406 1.4088 0.9154 0.95107 1.379 2.0924 1.3909 3.4239 0 1.2126-0.38043 2.2588-1.1413 3.1385l0.098834 0.090049z"></path></svg></button></td><td class="gsc-clear-button"><div class="gsc-clear-button" title="clear results">&nbsp;</div></td></tr></tbody></table></form></div></div>
+			</div>
+		<div class="w3-third site_function_div w3-hide-small" style="float: right;">
+                                <span link-href-url="/new/sign_up.php?refUrl=difference-between-jsp-servlet" class="link_href gn-button w3-mobile w3-red w3-border w3-round w3-hide-small">Register</span>
+                 <span link-href-url="/new/sign_up.php?refUrl=difference-between-jsp-servlet" class="link_href gn-button w3-mobile w3-red w3-border w3-round w3-hide-small">Login</span>
+             	     </div>
+</div>
+
+<div class="w3-bar w3-red w3-padding-14 menu">
+  <a href="https://www.stechies.com/python/" class="w3-bar-item w3-button w3-hover-light-gray w3-hide-small ">Python</a>
+  <a href="https://www.stechies.com/photoshop/" class="w3-bar-item w3-button w3-hover-light-gray w3-hide-small ">Photoshop</a>
+  <a href="https://www.stechies.com/tutorials/" class="w3-bar-item w3-button w3-hover-light-gray w3-hide-small ">SAP</a>
+  <a href="https://www.stechies.com/java/" class="w3-bar-item w3-button w3-hover-light-gray w3-hide-small ">Java</a>
+  <a href="https://www.stechies.com/php/" class="w3-bar-item w3-button w3-hover-light-gray w3-hide-small ">PHP</a>
+ 
+  
+  <a href="https://www.stechies.com/android/" class="w3-bar-item w3-button w3-hover-light-gray w3-hide-small">Android</a>
+<a href="https://www.stechies.com/cpp/" class="w3-bar-item w3-button w3-hover-light-gray w3-hide-small">C++</a>
+	<a href="https://www.stechies.com/hadoop/" class="w3-bar-item w3-button w3-hover-light-gray w3-hide-small">Hadoop</a>
+	<a href="https://www.stechies.com/oracle/" class="w3-bar-item w3-button w3-hover-light-gray w3-hide-small">Oracle</a>
+	<a href="https://www.stechies.com/interview-questions-library/" class="w3-bar-item w3-button w3-hover-light-gray w3-hide-small ">Interview Questions</a>
+	  <a href="https://www.stechies.com/articles/" class="w3-bar-item w3-button w3-hover-light-gray w3-hide-small ">Articles</a>
+	  <a href="https://www.stechies.com/" class="w3-bar-item w3-button w3-hover-light-gray w3-hide-small ">Other</a>
+  <div class="w3-mobile">	   
+  	<img class="w3-bar-item w3-left w3-hide-large w3-hide-medium mob-logo" src="./Difference between Servlet and JSP with Comparison Chart_files/logo-st.jpg" alt="Logo">
+  	<a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hover-red w3-hide-large w3-hide-medium menu-line" onclick="myFunction()">☰</a>
+  </div>
+</div>
+
+<div id="demo" class="w3-bar-block w3-hide w3-hide-large w3-hide-medium sm-logo">
+  <div class="w3-mobile ">
+  	<div class="w3-threequarter">
+			<input name="q" type="text" class=" w3-round w3-border" id="searchText" placeholder="Search e.g. SAP ABAP" style="height: 40px;width:89% !important;box-sizing: border-box;font-size: 16px;padding: 10px;outline: none;">
+		</div>
+		<div class="w3-quarter">
+			<input type="hidden" name="cx" value="partner-pub-7080808620760591:5444513559">
+		    <input type="hidden" name="cof" value="FORID:10">
+		    <input type="hidden" name="ie" value="UTF-8">
+		    <button type="submit" class="searchSubmit w3-round w3-border w3-right" title="Search" name="sa" style="width: 50px;height: 40px;margin-top: -40px !important">
+		    	<i class="fa fa-search"></i></button>
+		</div>
+  </div>
+  <a href="https://www.stechies.com/tutorial-library/" class="w3-bar-item w3-button w3-hover-red ">Tutorials</a>
+  <a href="https://www.stechies.com/forum-library/" class="w3-bar-item w3-button w3-hover-red ">Forum</a>
+  <a href="https://www.stechies.com/pdf-books/" class="w3-bar-item w3-button w3-hover-red ">PDF Books</a>
+  <a href="https://www.stechies.com/interview-questions-library/" class="w3-bar-item w3-button w3-hover-red ">Interview Question</a>
+  <a href="https://www.stechies.com/courses/" class="w3-bar-item w3-button w3-hover-red ">Courses &amp; Institutes</a>
+  <a href="https://www.stechies.com/sample-resumes/" class="w3-bar-item w3-button w3-hover-red ">Sample Resume</a>
+  <a href="https://www.stechies.com/articles/" class="w3-bar-item w3-button w3-hover-red ">Articles</a>
+  <a href="https://www.stechies.com/career-guidance/" class="w3-bar-item w3-button w3-hover-red">SAP Career Guidence Tool</a>
+      	   	</div>
+	<div class="w3-col">
+	<div class="w3-threequarter w3-mobile main-div">
+<ul class="breadcrumb w3-small" itemscope="" itemtype="http://schema.org/BreadcrumbList"><span itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"><a href="https://www.stechies.com/articles/" itemprop="item"><span itemprop="name">Articles</span></a><span itemprop="position" content="1"></span></span></ul>		<!-- <div class="w3-row w3-mobile"> -->
+			<h1>Difference between JSP and Servlet </h1>
+			<p class="small">
+				<i class="fa fa-calendar"> 14 Jan 2019 12:38 pm</i> || <i class="fa fa-comment"> 0</i>			</p>
+				<div class="w3-center"><style type="text/css">
+.CM_Stechies_ATF_BH { display:inline-block; width: 300px; height: 250px; }
+@media (max-width:749px) { .CM_Stechies_ATF_BH { width: 300px; height:
+250px; } }
+@media (min-width:750px) { .CM_Stechies_ATF_BH { width: 970px; height:
+90px; } }
+</style>
+<script async="" src="./Difference between Servlet and JSP with Comparison Chart_files/f(1).txt"></script>
+<!-- CM_Stechies_ATF_BH -->
+<ins class="adsbygoogle CM_Stechies_ATF_BH" data-ad-client="ca-pub-7080808620760591" data-ad-slot="5498879701"></ins>
+<script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+				<!-- </div> -->
+
+
+		<p class="content">
+	    </p><div class="content">
+<p>The fundamental concepts related to servlets and JSP is quite confusing for a beginner as well as Java web developers. This article aims to highlight the main points about JSP vs servlet along with taking care of the definitions of servlet and JSP, the features of JSP servlets, the need for JSP and servlets, etc.</p>
+
+<h2>JSP vs Servlet</h2>
+
+<p>Servlets and JSP are two necessary Java server-side technologies that form the building blocks of all types of Java web frameworks. A servlet is needed for huge request processing logic that contains lesser response generation logic. On the other hand, JSP is required for less request processing logic containing higher response generation logic.</p>
+
+<h3>Head to Head Comparison Chart</h3>
+
+<table align="center" border="1" cellpadding="3" cellspacing="0" style="width:100%">
+	<thead>
+		<tr>
+			<th style="vertical-align:top"><strong>Basis of Differentiation</strong></th>
+			<th style="vertical-align:top"><strong>Servlet</strong></th>
+			<th style="vertical-align:top"><strong>JSP</strong></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td style="vertical-align:top"><strong>Java/ HTML code</strong></td>
+			<td style="vertical-align:top">It is a Java-based code and uses the java approach for functioning.</td>
+			<td style="vertical-align:top">It is an HTML based code and comprises of a tag-based approach. JSP is an interface that rests on top of Servlets. JSPs are extensions of servlets for minimizing the efforts of developers with regards to writing user interfaces with the help of Java programming.</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top"><strong>Levels of difficulty</strong></td>
+			<td style="vertical-align:bottom">Writing servlet codes is more complicated than coding JSP as it comprises of HTML in java.</td>
+			<td style="vertical-align:bottom">JSP is comparatively less difficult to code as it comprises of java in HTML.</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top"><strong>Controller in MVC</strong></td>
+			<td style="vertical-align:bottom">Servlets play the role of a controller in the MVC approach.</td>
+			<td style="vertical-align:bottom">JSP is typically a view in the MVC approach to show output.</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top"><strong>Speed</strong></td>
+			<td style="vertical-align:bottom">Servlets are faster than JSP.</td>
+			<td style="vertical-align:bottom">JSP takes longer than servlet as the first step in JSP’s lifecycle comprises of the translation of JSP to easy-to-decipher java code, and then the compilation takes place.</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top"><strong>Requests accepted</strong></td>
+			<td style="vertical-align:bottom">Servlets accept all types of protocol requests.</td>
+			<td style="vertical-align:bottom">JSP accepts only http requests.</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top"><strong>Overriding of service() method</strong></td>
+			<td style="vertical-align:bottom">In Servlets, it is possible to replace the service() method.</td>
+			<td style="vertical-align:bottom">In JSP, it is not possible to override the service() method.</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top"><strong>Enabling of session management</strong></td>
+			<td style="vertical-align:bottom">In the servlet, session management is not enabled by default. JS users are responsible for allowing the same explicitly.</td>
+			<td style="vertical-align:bottom">Session management is enabled automatically in case of JSP.</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top"><strong>Business and presentation logic</strong></td>
+			<td style="vertical-align:bottom">In Servlet, everything, including business logic as well as presentation logic, has to be implemented by developers in just one servlet file.</td>
+			<td style="vertical-align:bottom">In JSP, business logic can be separated from the presentation logic with the usage of JavaBeans.</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top"><strong>Modification</strong></td>
+			<td style="vertical-align:bottom">Modification in case of servlets is time consuming as it incorporates the reloading, recompiling, restarting, etc. of the server.</td>
+			<td style="vertical-align:bottom">JSP modification is quick and easy to implement; only the refresh button has to be clicked.</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top"><strong>Javascript on the client-side</strong></td>
+			<td style="vertical-align:bottom">In Servlet, no methods exist for running JavaScript on the client-side.</td>
+			<td style="vertical-align:bottom">Client-side validations can be used in JSP for running JavaScript on the client-side server.</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top"><strong>Package importing</strong></td>
+			<td style="vertical-align:bottom">In Servlet, the packages must be imported atop the servlet.</td>
+			<td style="vertical-align:bottom">In JSP, the package may be imported anywhere- either at the top, middle or bottom.</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top"><strong>Running</strong></td>
+			<td style="vertical-align:bottom">To run a Servlet, the entry of Servlet mapping has to be made into deployment descriptor file, which is the web.xml file, externally.</td>
+			<td style="vertical-align:bottom">To run JSP, there is no requirement of making an entry of Servlet mapping into web.xml files externally. Also, it is not obligatory to make an entry for the JSP file as a welcome file list.</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top"><strong>Execution</strong></td>
+			<td style="vertical-align:bottom">Servlet executes within a web server of the likes of Tomcat.</td>
+			<td style="vertical-align:bottom">JSP programs are compiled into Java servlets before their execution. Once compiled into servlets, the life cycle of JSP becomes the same as that of a servlet. However, JSP contains an API of its own for the lifecycle.</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top"><strong>Similarity to HTML</strong></td>
+			<td style="vertical-align:bottom">Receives HTTP requests directly from users and offers HTTP responses.</td>
+			<td style="vertical-align:bottom">More comfortable to develop JSP (in comparison to servlets) as it is similar to HTML.</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top"><strong>Custom tags</strong></td>
+			<td style="vertical-align:bottom">Custom tags cannot be built in servlets.</td>
+			<td style="vertical-align:bottom">A key advantage of JSP is that it can be used for building custom tags with the use of JSP API. There exists a separate package for writing custom tags that can be available in the form of reusable components that have a lot of flexibility.</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top"><strong>Life cycle methods</strong></td>
+			<td style="vertical-align:bottom">Servlet has life cycle methods of the likes of init(), service() and destroy().</td>
+			<td style="vertical-align:bottom">JSP presents life cycle methods like jspInit(), _jspService() and jspDestroy().</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top"><strong>Javabeans and APIs</strong></td>
+			<td style="vertical-align:bottom">Servlet is written in Java and has additional APIs that are specific to its kind of processing. Servlets follow all the techniques of Object-Oriented programming.</td>
+			<td style="vertical-align:bottom">JSPs make use of Javabeans within web pages.</td>
+		</tr>
+	</tbody>
+</table>
+
+<h2>JSP (JavaServer Pages)</h2>
+
+<p><strong>JSP (JavaServer Pages) </strong>refers to an essential Java view technology that is designed for running on server machines. JSP allows developers to write codes and template text using client-side languages of the likes of HTML, JavaScript, CSS, and so forth. It is beneficial in the development of JSP supports tag libs, which are adequately supported by Java code snippets that allow and control page flows or output in a dynamic fashion. JSTL is a popular taglib that is supported by JSP.</p><div class="w3-center"><script async="" src="./Difference between Servlet and JSP with Comparison Chart_files/f(1).txt"></script>
+<!-- CM_Stechies_BTF_WC1 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7080808620760591" data-ad-slot="5128997009" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+
+<ul>
+	<li>JSP is also supportive of Expression Language that comes in handy for accessing backend data that can be utilized with the help of attributes available in the request, page, session, application scopes, etc. when combined with taglibs.</li>
+	<li>At the very first instance of the JSP being initiated, or whenever the web application starts, the servlet container compiles the JSP into a class that extends HttpServlet. This is used across the lifetime of the web app. The generated source code for the same can be traced back in the server's work directory; for instance, the /work directory in Tomcat.</li>
+	<li>When the JSP is requested, the servlet container executes the JSP class so compiled and sends the output that is generated via the web server and across the network to reach the client-side. The output generated in <strong>HTML/CSS/JS </strong>is, in turn, displayed in the web browser.</li>
+	<li>JSP technology is utilized for the creation of dynamic web application like Servlet technology. This technology is in the form of another web technology provided by Sun MicroSystem to assist the development of dynamic web pages shown on the client browser.</li>
+	<li>JSP offers a tag-based approach for the development of java web components as well.</li>
+	<li>JSP has .jsp extension. The JSP pages can be directly accessed from client system browser windows as they are contained outside the <strong>WEB-INF</strong> folder.</li>
+	<li>JSP page comprises of HTML and JSP tags. In comparison to servlets, it is easier to maintain the JSP pages.</li>
+	<li>JSP technology offers some additional features of the likes of Custom Tags, Expression Language, etc.</li>
+	<li>JSP pages are not referred to as programs as they contain tags only. The JSP pages are internally converted into servlets with the help of server containers.</li>
+	<li><strong>JavaServer Pages (JSP)</strong> are responsible for producing web pages supportive of dynamic content that helps developers include java code within HTML pages with the help of unique JSP tags. These tags mostly start with <strong>&lt;% and terminate with %&gt;</strong>. Html tags in JSP produce static output while the JSP tags come in handy for developing dynamic output. The presence of JSP tags in JSP technology makes JSP create dynamic web pages.</li>
+	<li>JSP are web pages that are similar to aspx/php pages that run on the server-side. Html or Javascript code in JSP pages are found running on the client-side.</li>
+	<li>CGI was the technology that was put into use for web application development. However, as CGI had some severe drawbacks, the servlet technology was developed by Sun MicroSystem. In due course, gaps and disadvantages started coming forth in the Servlet Sun MicroSystem technology; they required complicated java codes and thus failed to attract programmers. JS technology was developed to overcome the problems related to Servlet technology.</li>
+</ul>
+
+<h3>Advantages of JSP</h3>
+
+<p><strong>JSP advantages include the provision of an extensive infrastructure for:</strong></p>
+
+<ol>
+	<li>Tracking sessions.</li>
+	<li>Reading/sending HTML headers.</li>
+	<li>Managing cookies.</li>
+	<li>Parsing/decoding HTML form-based data.</li>
+	<li>Simple Java threads handle all requests for JSP.</li>
+	<li>JSP is scalable and presents easy integration with most other backend services.</li>
+	<li>It can help developers, content authors, graphic designers and webmasters.</li>
+</ol>
+
+<h2>Servlets in JAVA</h2>
+
+<p>A servlet refers to a <strong>Java class</strong> that is very useful for extending the capabilities of servers responsible for hosting applications. They use the request-response model for going about the act with high efficiency.</p><div class="w3-center"><script async="" src="./Difference between Servlet and JSP with Comparison Chart_files/f(1).txt"></script>
+<!-- CM_Stechies_BTF_WC2 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7080808620760591" data-ad-slot="7550327971" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+
+<ul>
+	<li>Mostly, servlets are used for extending the applications that are hosted by webs servers.</li>
+	<li>Servlets in java are known to respond to different types of other requests with the help of HTTP-specific servlet classes that are also defined by Java Servlet technology.</li>
+	<li>Typically, java servlets are like programs running on the web or with application servers. They act as a distinct middle layer that links requests dedicated to any specific web browsers or HTTP clients, databases, applications found on HTTP servers, etc.</li>
+	<li>Servlets help in the collection of inputs from users via web page forms, the current records present in databases or other sources for developing web pages dynamically.</li>
+	<li>A Java <strong>application programming interface (API)</strong>, a servlet runs on server machines. It intercepts the requests made by clients and is responsible for generating/sending quick responses.</li>
+	<li>HttpServlet is a servlet that provides methods for hooking on HTTP requests with the aid of popular HTTP methods of the likes of GET and POST. HttpServlets can be configured to listen to specific HTTP URL patterns. These patterns are configurable in web.xml as well as Java EE 6 equipped with<strong> @WebServlet</strong> annotations.</li>
+	<li>During web app startup or when servlets are first requested, the servlet container creates an instance of the same and retains it in its memory across the web app's lifetime. This instance is reused for all incoming requests that have a URL matching with the servlet's URL pattern. The request data can be accessed via HttpServletRequest, and the response can be handled via HttpServletResponse. Both these objects are available in the form of method arguments with the overridden methods belonging to HttpServlet – for instance, doPost(). Problem and doGet() with the servlet.</li>
+	<li>In case of any servlet HTML code changes, the servlet will have to be recompiled, redeployed and go through a server restart. The recompilation is needed as response generation logic, and request processing logic are coupled tightly.</li>
+</ul>
+
+<h3>Servlet Advantages</h3>
+
+<ol>
+	<li><strong>Performance: </strong>Servlets get loaded as soon as the first request is made, it remains in the memory indefinitely.</li>
+	<li><strong>Simplicity: </strong>Runs within a controlled server environment. There is no specific client software that is needed; the presence of a web browser is enough.</li>
+	<li><strong>Session Management: </strong>Servlet overcomes the stateless nature of HTTP.</li>
+	<li><strong>Java Technology:</strong> Servlets provide network access, j2ee integration and database connectivity.</li>
+</ol>
+
+<h2>What is JSF (JavaServer Faces)?</h2>
+
+<p><strong>JSF is a component-based method </strong>built atop the Servlet API as an MVC framework. JSF provides the components via taglibs that are capable of being used in JSP as well as other Java-based technology (view) of the likes of Facelets. JSF offers components through Facelets; these components are more suited to JSF rather than JSP.</p><div class="w3-center"><script async="" src="./Difference between Servlet and JSP with Comparison Chart_files/f(1).txt"></script>
+<!-- CM_Stechies_BTF_WC2 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7080808620760591" data-ad-slot="7550327971" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+
+<ul>
+	<li>JSF offers impactful templating capabilities of the likes of composite components. This is in contrast to JSP that offers only &lt;jsp:include&gt; for the sake of templating.</li>
+	<li>Being an MVC based framework, JSF offers FacesServlet as the only request-response Controller.</li>
+	<li>Ever since JSF 2.0 was launched, JSP has deprecated as view technology, leaving behind Facelets.</li>
+	<li>JSF helps developers by taking away all standard, cumbersome and tedious HTTP request and response tasks from their hands. This includes the gathering of user inputs, validating and converting them, putting data in model objects, invoking different actions, rendering responses, etc.</li>
+	<li>JSF helps in creating JSP or Facelets (XHTML) pages for a JavaBean class and View to serve as models. The components belonging to JSF are used for binding the view with models like what ASP.NET web controls do. Additionally, FacesServlet utilizes JSF component trees for performing all tasks.</li>
+	<li>It offers client-independent, component-centric development approach for developing Web user interfaces; in turn, it encourages developer productivity as well as ease of use.</li>
+	<li>JSF simplifies the management and access of application data of web user interfaces.</li>
+	<li>JSF manages the state of user interface automatically in between multiple requests as well as various clients; it goes about all tasks in a simple, unobtrusive and timely manner.</li>
+	<li>JSF provides a development framework that is user-friendly for varying developer audience comprising of different skill sets.</li>
+	<li>JSF describes benchmarked, standard architectural patterns for different types of web applications.</li>
+</ul>
+
+<div class="keypoints">
+<h2>Key differences between Servlet and JSP</h2>
+
+<ol>
+	<li>Servlet is HTML in java; on the other hand, JSP comprises of java in HTML.</li>
+	<li>Servlets run much faster in comparison to JSP.</li>
+	<li>JSP is capable of being compiled into Java Servlets.</li>
+	<li>In comparison to java servlets, it is easier to code in JSP.</li>
+	<li>JSP serves as a webpage scripting language that is useful for generating dynamic content. In contrast, servlets serve as Java programs that have been compiled previously and are responsible for producing dynamic web content.</li>
+	<li>In the MVC framework, a servlet acts as a controller while JSP acts as a view.</li>
+	<li>JSP is generally preferred in low case processing of data is required. On the other hand, servlets are best used in case more processing or manipulation is involved.</li>
+	<li>An essential advantage of JSP programming over servlets is that it is capable of building custom tags that can be used for calling Java beans directly. No such facility exists in case of servlets.</li>
+	<li>JSP functionality can be achieved at client-side upon running JavaScript. No such methods are available for servlets.</li>
+	<li>Servlets are similar to other Java classes. HTML can be applied to print statements just as System.out is used or how JavaScript would use document.write.</li>
+	<li>JSP gets converted into a servlet and continues to look like PHP files wherein java can be embedded into HTML.</li>
+</ol>
+</div>
+
+<h3>Conclusion</h3>
+
+<p>Once you have gone through JSP servlet example and use cases, it will become easier for you to decipher the JSP and servlet difference points. Now that you know what servlet and JSP is, and figured out the difference between JSP and JSF and servlet, go ahead and start using these methods with confidence. The questions related to servlet JSP are quite common in interviews and have to be handled with care. In case you have any further inputs with regards to what is JSP and servlet or the differences between them, do write back to us in the Comments section below. We shall wait to hear from you.</p>
+<p></p></div>
+<p></p>
+<div class="w3-clear"><div id="div-gpt-ad-ATD-ST-D1"></div>	</div>
+	
+<hr style="margin-top:40px;margin-bottom:40px; border-top: 1.7px solid #a2a2a2;">	  
+ 
+
+	
+<div class="w3-col w3-mobile" id="comm">
+</div>
+
+	
+<div class="w3-col w3-mobile">
+	<div class="w3-threequarter w3-mobile w3-row relate">
+		<p>Recommended Posts:</p>
+	</div>
+	<div class="row">
+	<ul class="w3-row">
+                                                        <li class="recommended-link"><a href="https://www.stechies.com/difference-between-process-thread/">Difference between Process and Thread</a></li>
+                                                           <li class="recommended-link"><a href="https://www.stechies.com/software-engineer-vs-software-developer/">Software Developer vs Software Engineer</a></li>
+                                                           <li class="recommended-link"><a href="https://www.stechies.com/difference-between-jsp-servlet/">Difference between JSP and Servlet</a></li>
+                                                           <li class="recommended-link"><a href="https://www.stechies.com/introduction-deadlock-operating-system/">Deadlock in OS</a></li>
+                                                           <li class="recommended-link"><a href="https://www.stechies.com/difference-between-typescript-javascript/">Typescript vs JavaScript</a></li>
+                                                           <li class="recommended-link"><a href="https://www.stechies.com/difference-between-nfa-dfa/">Difference between NFA and DFA</a></li>
+                                                           <li class="recommended-link"><a href="https://www.stechies.com/difference-between-ddr3-ddr4-ram/">DDR3 vs DDR4</a></li>
+                                                           <li class="recommended-link"><a href="https://www.stechies.com/difference-between-html-html5/">HTML vs HTML5</a></li>
+                                                           <li class="recommended-link"><a href="https://www.stechies.com/difference-between-junit-testng/">Difference between JUnit and TestNG</a></li>
+                                                           <li class="recommended-link"><a href="https://www.stechies.com/difference-between-correlation-regression/">Difference between Correlation and Regression</a></li>
+                                                           <li class="recommended-link"><a href="https://www.stechies.com/difference-between-css-css3/">Difference Between CSS and CSS3</a></li>
+                                                           <li class="recommended-link"><a href="https://www.stechies.com/jenkins-interview-questions/">Jenkins Interview Questions</a></li>
+                                                           <li class="recommended-link"><a href="https://www.stechies.com/etl-testing-interview-questions/">ETL Testing Interview Questions</a></li>
+                                                           <li class="recommended-link"><a href="https://www.stechies.com/hive-interview-questions-answers/">Hive Interview Questions</a></li>
+                                                           <li class="recommended-link"><a href="https://www.stechies.com/microstrategy-interview-questions-answers/">Microstrategy Interview Questions</a></li>
+                                                           <li class="recommended-link"><a href="https://www.stechies.com/embedded-systems-interview-questions/">Embedded Systems Interview Questions</a></li>
+                                                           <li class="recommended-link"><a href="https://www.stechies.com/xamarin-interview-questions/">Xamarin Interview Questions</a></li>
+                                                           <li class="recommended-link"><a href="https://www.stechies.com/tableau-interview-questions/">Tableau Interview Questions</a></li>
+                                                           <li class="recommended-link"><a href="https://www.stechies.com/data-modelling-interview-questions/">Data Modelling Interview Questions</a></li>
+                                                           <li class="recommended-link"><a href="https://www.stechies.com/excel-interview-questions/">Excel Interview Questions </a></li>
+                                                   </ul>
+                    </div>
+
+</div>
+
+
+<div class="w3-mobile w3-row relate">
+<div id="Relatd">
+<ul class="w3-ul" id="viewRelated" style="width: auto;">
+        <div class="imgtxtcont" id="0"></div>
+	
+</ul>
+<div class="w3-threequarter w3-row" id="loadMoreComments" style="display:none;margin: 20px;">
+				<center><i class="fa fa-spinner fa-spin" style="font-size: 30px;"></i></center>
+	</div>
+</div>
+    
+<!------------------------------------------------------------------------------->
+</div>
+</div>
+ 
+	<div class="w3-quarter w3-hide-small tut-div" style="margin-top: 10px;">
+<div class="w3-margin-bottom w3-center"><script async="" src="./Difference between Servlet and JSP with Comparison Chart_files/f(1).txt"></script>
+<!-- STechies-Square-Responsive -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7080808620760591" data-ad-slot="4055294968" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+	</script></div>		
+		        <ul class="w3-ul w3-border w3-round Tutorials_list">
+            <li class="w3-light-gray" style="height: 50px !important;"><p class="list-title" style="margin-top: 0px;">Tutorials</p></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-marketing-selling/">Difference between Marketing and Selling</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/gmail-server-error-007/">Gmail server error #007</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-router-switch/">Difference between Router and Switch</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/convert-save-webp-image-into-jpeg-png-format/">WebP to JPG</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/take-screenshot-windows-10-pc/">How to Take a Screenshot on Windows 10</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-padding-margin/">Padding vs Margin</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-tableau-power-bi/">Tableau vs Power BI</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-ruby-python-programming-languages/">Python vs Ruby</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/differences-between-malloc-calloc-functions/">Differences between Malloc and Calloc Functions in C Language</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-visa-mastercard/">Visa vs Mastercard</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-gdp-gnp/">GDP vs GNP</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-mutex-semaphore/">Mutex vs Semaphore</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-variance-standard-deviation/">Variance vs Standard Deviation</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-process-thread/">Difference between Process and Thread</a></li>
+            <div class="w3-center"><div id="div-gpt-ad-ATD-ST-RES1"></div></div>
+                    <li class="w3-hover-red "><a href="https://www.stechies.com/software-engineer-vs-software-developer/">Software Developer vs Software Engineer</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-sram-dram/">Difference between SRAM and DRAM</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-microprocessor-microcontroller/">Difference between Microprocessor and Microcontroller</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-ienumerable-iqueryable/">Difference between Ienumerable and Iqueryable</a></li>
+                        <li class="w3-hover-red  btact"><a href="https://www.stechies.com/difference-between-jsp-servlet/">Difference between JSP and Servlet</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/oltp-vs-olap/">OLTP vs OLAP</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-hub-switch/">Difference between Hub and Switch</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/program-print-ascii-value-character/">ASCII Values in C</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-mbr-gpt/">MBR vs GPT</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/bitdefender-vs-avast-comparison-chart/">Bitdefender vs Avast</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/xero-vs-quickbooks-online-which-one-better/">Xero vs QuickBooks</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-ac-dc/">Difference between AC and DC</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-database-data-warehouse/">Difference between Database and Data Warehouse</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/fibonacci-series-programming/">Fibonacci Series Program</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-bse-bombay-stock-exchange-nse-national-s/">Difference between NSE and BSE</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/create-html-button-which-work-like-link/">HTML Button Link</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/gpu-scaling/">What is GPU Scaling</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-hmo-ppo-healthcare-plans/">HMO vs. PPO</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/key-difference-between-diploma-degree-certificate/">Diploma vs. Degree</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-while-loop/">Difference between FOR and WHILE Loop</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-seagate-firecuda-barracuda/">FireCuda vs BarraCuda</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/iaas-vs-paas-vs-saas-differences-examples/">IaaS vs PaaS vs SaaS</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/woocommerce-vs-shopify-which-one-best/">Woocommerce vs Shopify</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/introduction-deadlock-operating-system/">Deadlock in OS</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-kubernetes-docker/">Kubernetes vs Docker</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-system-software-application-software/">Difference between System Software and Application Software</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-structure-union/">Difference between Structure and Union in C</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-stringbuffer-string/">Difference between StringBuffer and String</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-money-market-savings/">Difference between Money Market and Savings</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-agile-waterfall-methodology/">Agile vs Waterfall</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-aws-vs-azure-vs-google-cloud/">AWS vs Azure</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-typescript-javascript/">Typescript vs JavaScript</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-scrum-kanban/">Scrum vs Kanban</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-data-information/">Difference between Data and Information</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-sensor-transducer/">Difference between Sensor and Transducer</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/servers-types-servers/">Types of Servers</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-ddl-dml/">DDL vs DML</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-gsm-cdma/">Difference between GSM and CDMA</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-nfa-dfa/">Difference between NFA and DFA</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-sql-plsql/">Difference between SQL and PLSQL</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-kotlin-java/">Kotlin vs Java</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-raspberry-pi-arduino/">Arduino vs Raspberry Pi</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-bittorrent-utorrent/">BitTorrent vs Utorrent</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-analog-singnal-digital-signal/">Difference between Analog and Digital Signal</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/iaas-vs-paas-vs-saas-differences-examples/">IaaS vs PaaS vs SaaS</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/stack-in-c/">Stack in C</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-ipv4-ipv6/">Difference between IPV4 and IPV6</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-stack-heap/">Stack vs Heap</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-combinational-sequential-circuits/">Difference between Combinational and Sequential Circuits</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/explain-the-difference-between-invoice-and-billing-in-sap/">Difference between Invoice and Bill</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-neft-rtgs/">Difference between NEFT and RTGS</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-view-materialized-view/">Difference between View and Materialized View</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/microservices-architecture-vs-soa-architecture/">SOA vs Microservices</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-alpha-beta-testing/">Difference between Alpha and beta Testing</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-delete-truncate-sql-server/">Difference between DELETE and TRUNCATE</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-internet-intranet/">Difference between Internet and Intranet</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-abstraction-encapsulation/">Difference between Abstraction and Encapsulation</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-spring-mvc-spring-boot/">Difference between Spring MVC and Spring boot</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-ram-rom/">Difference between RAM and ROM</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/background-colour-html/">HTML Background Color</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/round-robin-scheduling/">Round Robin Scheduling</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-circuit-switching-packet-switching/">Difference between Circuit Switching and Packet Switching</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-adobe-photoshop-illustrator/">Illustrator vs Photoshop</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-micro-macro-economics/">Difference between Micro and Macro Economics</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-risc-cisc/">Difference between RISC and CISC</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/woocommerce-vs-shopify-which-one-best/">Woocommerce vs Shopify</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-web-server-application-server/">Difference between Web Server and Application Server</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-windows-linux/">Difference between Windows and Linux</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-ddr3-ddr4-ram/">DDR3 vs DDR4</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/virtualbox-vs-vmware-which-better-virtualization/">VirtualBox vs VMware</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/xero-vs-quickbooks-online-which-one-better/">Xero vs QuickBooks</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/differences-between-git-svn/">SVN vs Git</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-soap-rest/">SOAP vs REST</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-postgresql-vs-mysql/">Postgresql vs Mysql</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/record-your-screen-using-vlc/">How to Record Your Computer Screen Using VLC </a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/web-companion-software-disable-uninstall/">What is Web Companion</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-statistic-vs-parameter/">Statistic vs Parameter</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-bpo-kpo/">Difference between BPO and KPO</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-aws-vs-azure-vs-google-cloud/">AWS vs Azure</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-nordvpn-pia/">Nordvpn vs Pia</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-hardware-software/">Difference between Hardware and Software</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/differences-between-c-language-c-pp/">Difference between C and C++</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/managed-vs-unmanaged-switch/">Managed vs Unmanaged Switch</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-verification-validation/">Difference between Verification and Validation</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-rows-columns-microsoft-excel/">Row vs Column</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-reactjs-react-native/">Difference between React.js and React Native</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-primary-secondary-data/">Difference between Primary and Secondary Data</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-pa-np/">Nurse Practitioner vs. Physician Assistant</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-primary-key-unique-key/">Difference between Primary key and Unique key</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-machine-language-assembly-language/">Difference between Machine Language and Assembly Language</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-hrm-hrd/">Difference between HRM and HRD</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-paging-segmentation/">Difference between Paging and Segmentation</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-recruitment-selection/">Difference between Recruitment and Selection</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-compiler-interpreter/">Difference between Compiler and Interpreter</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-xml-html/">Difference between XML and HTML</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/differences-between-dbms-rdbms/">Differences between DBMS and RDBMS</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-put-post-method/">Difference between PUT and POST Method</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/errsslprotocolerror/">Fix ERR_SSL_PROTOCOL_ERROR</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-pert-cpm/">Difference between PERT and CPM</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/google-chrome-helper/">What is Google Chrome Helper?</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-synchronous-asynchronous/">Difference between Synchronous and Asynchronous</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-html-html5/">HTML vs HTML5</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-national-park-wildlife-sanctuary/">Difference between National Park and Wildlife Sanctuary</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-public-private-ip-address/">Public vs Private IP Address</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-authentication-authorization/">Difference between Authentication and Authorization</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-save-persist-hibernate/">Difference between Save and Persist</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-junit-testng/">Difference between JUnit and TestNG</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-angular-2-angular-4/">Angular 2 vs Angular 4</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-tcp-udp/">Difference between TCP and UDP</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-correlation-regression/">Difference between Correlation and Regression</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-css-css3/">Difference Between CSS and CSS3</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/difference-between-sap-sas/">Difference between SAP and SAS</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/devops-interview-question/">Devops Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/sql-server-interview-questions-answer/">SQL Server Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/docker-interview-questions/">Docker Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/jenkins-interview-questions/">Jenkins Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/sdlc-interview-questions/">SDLC Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/cucumber-interview-questions/">Cucumber Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/spark-interview-questions/">Apache Spark Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/rest-api-interview-questions/">Rest Api Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/qtp-uft-interview-questions/">UFT Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/laravel-interview-questions/">Laravel Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/etl-testing-interview-questions/">ETL Testing Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/ssrs-interview-questions/">SSRS Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/web-services-interview-question/">Web Services Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/dbms-interview-questions/">DBMS Interview Questions </a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/servlet-interview-questions/">Servlet Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/jsp-interview-questions/">JSP Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/accounting-interview-questions/">Accounting Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/wordpress-interview-questions/">WordPress Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/operating-system-interview-questions/">Operating System Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/ejb-interview-questions/">EJB Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/agile-interview-questions/">Agile Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/hive-interview-questions-answers/">Hive Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/paint-3d-transparent-background/">Paint 3D Transparent Background</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/testng-interview-questions/">TestNG Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/microstrategy-interview-questions-answers/">Microstrategy Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/splunk-interview-questions-answers/">Splunk Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/mongodb-interview-questions/">MongoDB Interview Questions </a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/teradata-interview-questions/">Teradata Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/servicenow-interview-questions/">ServiceNow Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/ooabap-interview-questions_1/">OOPs Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/embedded-systems-interview-questions/">Embedded Systems Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/xamarin-interview-questions/">Xamarin Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/golang-interview-questions/">Golang Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/r-programming-interview-questions/">R Programming Interview Questions </a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/tableau-interview-questions/">Tableau Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/qa-interview-questions/">Quality Assurance (QA) Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/digital-marketing-interview-questions-answers/">Digital Marketing Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/vmware-interview-questions/">VMware Interview Questions </a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/data-modelling-interview-questions/">Data Modelling Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/lvm-interview-questions/">LVM Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/data-structure-interview-questions/">Data Structure Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/plsql-interview-questions/">PL/SQL Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/html-interview-questions/">HTML Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/css-interview-questions/">CSS Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/excel-interview-questions/">Excel Interview Questions </a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/spring-boot-interview-questions/">Spring boot Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/mysql-interview-questions/">MySQL Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/wcf-interview-questions/">WCF Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/soa-interview-questions/">SOA Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/postgresql-interview-questions/">PostgreSQL Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/interview-questions-asked-sas-developer/">SAS Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/jira-interview-questions/">JIRA Interview Questions and Answers</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/microservices-interview-questions/">Microservices Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/entity-framework-interview-questions/">Entity Framework Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/ssis-interview-questions/">SSIS Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/unix-interview-questions/">Unix Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/azure-interview-questions/">Azure Interview Questions</a></li>
+                        <li class="w3-hover-red "><a href="https://www.stechies.com/mvc-interview-questions/">MVC Interview Questions</a></li>
+                        </ul>
+           
+    
+  </div>
+</div>
+<div class="w3-col">
+<style>
+  #cookie-law-info-bar {
+    /* border: 0; */
+    font-size: 12pt;
+    margin: 0 auto;
+    padding: 13px 10px;
+    position: absolute;
+    text-align: center;
+    box-sizing: border-box;
+    width: 100%;
+    z-index: 9999;
+    box-shadow: rgba(0,0,0,5) 0px 5px 10px;
+    display: none;
+    left: 0px;
+    font-weight: 300;
+}
+#cookie-law-info-bar span {
+    vertical-align: middle;
+}
+.medium{
+    font-size: 18px;
+    font-weight: 500;
+    padding: 5px;
+    border-radius: 5px;
+}
+.medium:hover{
+  cursor: pointer;
+}
+.hov:hover{
+  cursor: pointer;
+}
+</style>
+<div class="w3-clear"></div>
+<footer class="w3-container w3-black main-footer">	
+  <div id="stop-flot"></div>
+<div class="w3-col" id="cookie_div"><div id="cookie-law-info-bar" style="background-color: rgb(81, 90, 90); color: rgb(255, 255, 255); font-family: inherit; bottom: 0px; position: fixed; display: none;"><span>This website uses cookies to improve your experience. We hope that you are ok with this, but you can opt-out if you wish.<a id="cookie_action_close_header" class="medium" style="display: inline-block; color: rgb(255, 255, 255); background-color: rgb(0, 0, 0);margin-left:2px;margin-right:2px;">Accept</a>  Read <a href="https://www.stechies.com/cookies-policy.php" id="" target="_blank" class="cli-plugin-main-link" style="display: inline-block; color: rgb(255, 255, 255);text-decoration:underline">Cookies Policy</a></span></div></div>
+
+
+  <div class="w3-col w3-mobile">
+    <div class="w3-quarter">
+      <p style="font-size: 20px;">Follow Us</p>
+      <div class="social_div w3-white w3-display-container">
+        <span link-href-url="https://www.facebook.com/stechies" oa="new"><i class="w3-text-blue fa fa-facebook w3-display-middle"></i></span>
+      </div>
+      <div class="social_div w3-white w3-display-container">
+          <span link-href-url="https://www.youtube.com/c/saptechies" oa="new"><i class="w3-text-youtube fa fa-youtube-play w3-display-middle"></i></span>
+      </div>
+      
+      <div class="social_div w3-white w3-display-container">
+          <span link-href-url="https://www.linkedin.com/company/saptechies/" oa="new"><i class="w3-text-blue fa fa-linkedin w3-display-middle"></i></span>
+      </div>
+      <div class="social_div w3-white w3-display-container">
+          <span link-href-url="https://twitter.com/stechiesportal" oa="new"><i class="w3-text-cyan fa fa-twitter w3-display-middle"></i></span>
+      </div>
+      
+      <div>
+        <p class="w3-text-red w3-text-bold"><b>Contact Information</b></p>
+        <p>#3940 Sector 23,<br>Gurgaon, Haryana (India)<br>Pin :- 122015</p>
+        <p><b><span class="hov" link-href-url="mailto:contact@stechies.com">contact@stechies.com</span></b></p>
+      </div>
+
+    </div>
+    <div class="w3-half">
+      <div class="w3-col">
+        <div class="w3-half" style="color: #fff;padding-right: 10px;">
+          <p style="font-size: 20px;">Top Tutorials</p>
+          <ul class="w3-ul" itemscope="" itemtype="http://www.schema.org/SiteNavigationElement">
+            <li itemprop="name"><a itemprop="url" href="https://www.stechies.com/sap-blogs/">SAP Tutorial</a></li>
+            <li><a href="https://www.stechies.com/hana-tutorials/">SAP HANA Tutorial</a></li>
+            
+            <li><a href="https://www.stechies.com/basis-tutorials/">SAP BASIS Tutorial</a></li>
+            <li><a href="https://www.stechies.com/android-tutorials/">Android Tutorial</a></li>
+            <li itemprop="name"><a itemprop="url" href="https://www.stechies.com/python-tutorials/">Python Tutorial</a></li>
+            <li itemprop="name"><a itemprop="url" href="https://www.stechies.com/java-tutorials/">Java Tutorial</a></li>
+            <li><a href="https://www.stechies.com/hadoop-tutorials/">Hadoop Tutorial</a></li>
+            <li itemprop="name"><a itemprop="url" href="https://www.stechies.com/photoshop-tutorials/">Photoshop Tutorial</a></li>
+			  <li itemprop="name"><a itemprop="url" href="https://www.stechies.com/articles/">Difference Between Article</a></li>
+			  <li itemprop="name"><a itemprop="url" href="https://www.stechies.com/interview-questions-library/">Interview Questions</a></li>
+          </ul>
+        </div>
+        <div class="w3-half" style="color: #fff;padding-right: 10px;">
+         <p style="font-size: 20px;">Top Interview Questions</p>
+         <ul class="w3-ul">
+           <li><a href="https://www.stechies.com/1000-sap-abap-interview-questions-answers/">ABAP Interview Questions</a></li>
+           <li><a href="https://www.stechies.com/basis-interview-questions/">BASIS Interview Questions</a></li>
+           <li><a href="https://www.stechies.com/hana-interview-questions/">HANA Interview Questions</a></li>
+           <li><a href="https://www.stechies.com/sd-sales-distribution-interview-questions/">SD Interview Questions</a></li>
+           <li><a href="https://www.stechies.com/fico-financial-accounting-controling-interview-questions/">FICO Interview Questions</a></li>
+           <li><a href="https://www.stechies.com/hibernate-interview-questions/">Hibernate Interview Questions</a></li>
+           <li><a href="https://www.stechies.com/qtp-uft-interview-questions/">QTP/UFT Interview Questions</a></li>
+           <li><a href="https://www.stechies.com/tableau-interview-questions/">Tableau Interview Questions</a></li>
+           <li><a href="https://www.stechies.com/testng-interview-questions/">TestNG Interview Questions</a></li>
+           <li><a href="https://www.stechies.com/hive-interview-questions-answers/">Hive Interview Questions</a></li>
+         </ul>
+        </div>
+      </div>
+    </div>
+    <div class="w3-quarter">
+      <p style="font-size: 20px;">Quick Links</p>
+      <ul class="Tutorials_list w3-padding-large">
+        <li><a href="https://www.stechies.com/career-guidance/" style="margin-left: 5px!important;">Career Guidence Tool</a></li>
+        <li><a href="https://www.stechies.com/transaction-codes/" style="margin-left: 5px!important;">SAP Transaction Codes</a></li>
+        <li><span link-href-url="/classifieds/" class="link_href foot_link">Classifieds</span></li>
+		  <li><a href="https://www.stechies.com/articles/" style="margin-left: 5px!important;">Recent Articles</a></li>
+        <li><span link-href-url="/contactus.php" class="link_href foot_link">Contact Us</span></li>
+        <li><span link-href-url="/about.php" class="link_href foot_link">About Us</span></li>
+        <li><span link-href-url="/terms-of-use.php" class="link_href foot_link">Terms of Use</span></li>
+        <li><span link-href-url="/privacy-policy.php" class="link_href foot_link">Privacy Policy</span></li>
+        <li><span link-href-url="/cookies-policy.php" class="link_href foot_link">Cookies Policy</span></li>
+        
+    </ul>
+    </div>
+  </div>
+  
+  <div class="w3-col" id="fotterCont"><p>All the site contents are Copyright © www.stechies.com and the content authors. All rights reserved. All product names are trademarks of their respective companies. The site www.stechies.com is in no way affiliated with SAP AG. Every effort is made to ensure the content integrity. Information used on this site is at your own risk. The content on this site may not be reproduced or redistributed without the express written permission of www.stechies.com or the content authors.</p></div>
+<script src="./Difference between Servlet and JSP with Comparison Chart_files/jquery-3.4.1.min.js"></script>
+<script>
+function myFunction() {
+    var x = document.getElementById("demo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+
+$(document).mouseup(function (e){
+  var x = document.getElementById("Demo");
+  if(x.className.indexOf("w3-show") == 59){
+    x.className = x.className.replace(" w3-show","");
+  }
+  });
+
+</script>
+<script>
+$(function() {
+ $(document).on("click", "span", function() {
+  var n = $(this).attr("link-href-url");
+  var o = $(this).attr("oa");
+  if(o == 'new'){
+	   window.open(n,'_blank');
+  }else{
+   n && (location.href = n)
+  }
+ })
+});
+</script>
+
+<script>
+  function moveScroller() {
+    var $anchor = $("#scroller-anchor");
+    var $scroller = $('#scroller');
+    var $foot = $('#stop-flot');
+    var move = function() {
+        var st = $(window).scrollTop();
+        var ot = $anchor.offset().top;
+        var ft = $foot.offset().top;
+        // alert(ft);
+        if(st > ot && st <= ft) {
+            $scroller.css({
+                position: "fixed",
+                top: "0px",
+                width: "335px",
+            });
+        } else {
+            $scroller.css({
+                position: "relative",
+                top: ""
+            });
+        }  
+    };
+    $(window).scroll(move);
+    move();
+}
+</script>
+
+<script type="text/javascript"> 
+  $(function() {
+    moveScroller();
+  });
+</script>
+
+</footer>
+<script>
+  function accept(){
+    var cookieName = "showPopup";
+    var cookieValue = "1";
+    var daysToExpire = 360;
+    var date = new Date();
+    date.setTime(date.getTime()+(daysToExpire*24*60*60*1000));
+    document.cookie = cookieName + "=" + cookieValue + "; expires=" + date.toGMTString();
+  }
+</script>
+<script type="text/javascript" src="./Difference between Servlet and JSP with Comparison Chart_files/afihbs.js" async=""></script>
+<script src="./Difference between Servlet and JSP with Comparison Chart_files/firebase.js"></script>  
+<script src="./Difference between Servlet and JSP with Comparison Chart_files/fcm-sw.js"></script>
+<script src="./Difference between Servlet and JSP with Comparison Chart_files/shaajax2.1.js"></script>
+<script type="text/javascript" src="./Difference between Servlet and JSP with Comparison Chart_files/sapdisclamer.js"></script></div>
+
+
+<script>
+  var count = 1;
+  $('code').each(function() {
+    var x = count+"-code";
+    $(this).attr("id",x);
+    $(this).before("<button class='"+x+" copy-button' onclick='copy_cntnt(this.id)' id='"+x+"-button' data-clipboard-target = #"+x+">Copy Code</button>");
+    count++;
+  });
+
+
+  function copy_cntnt(clicked_id){
+    //alert(clicked_id);
+    var xx = clicked_id.split("-button");
+    var yy = xx[0];
+    // alert();
+    const copyText = document.getElementById(yy).textContent;
+    const textArea = document.createElement('textarea');
+    textArea.textContent = copyText;
+    document.body.append(textArea);
+    textArea.setAttribute("style","width:0px;height:0px;");
+    textArea.select();
+    document.execCommand("copy");
+    // alert(document.getElementById(clicked_id).value);
+    document.getElementById(clicked_id).innerHTML = "Copied";
+
+    setTimeout(function() {
+      document.getElementById(clicked_id).innerHTML = "Copy Code";
+    },5000);
+
+    //alert("Content Copied!");
+  }
+
+</script>
+
+<script type="text/javascript">
+var count = 0;$(document).ready(function(){$("div#loadmoreclick").hide(),$(window).data("ajaxready",!0).scroll(function(){if($(document).height()-$(window).height()-$(window).scrollTop()<$("#fotterCont").height()){if(count<1){if(20==count)return $("div#loadmoreclick").show(),!1;$("div#loadMoreComments").show(),$(window).data("ajaxready",!1),$.ajax({dataType:"html",contentType:"application/x-www-form-urlencoded",url:"/new/view-load-more.php?qt=Difference between JSP and Servlet &ga_page=/difference-between-jsp-servlet/&ga_title=Difference between JSP and Servlet &ID=103691&showRecord="+$(".imgtxtcont:last").attr("id"),success:function(o){if(count<1){o?($("#viewRelated").append(o),$("div#loadMoreComments").hide(),count+=1):$("div#loadMoreComments").replaceWith("<h3 style='color:red'>End !!!</h3>"),$(window).data("ajaxready",!0)}}})}}})});
+</script>
+<style>
+.hljs{display:block;padding:.5em;color:#333;background:#f8f8f8}.hljs-comment,.hljs-quote{color:#998;font-style:italic}.hljs-keyword,.hljs-selector-tag,.hljs-subst{color:#333;font-weight:700}.hljs-literal,.hljs-number,.hljs-tag .hljs-attr,.hljs-template-variable,.hljs-variable{color:teal}.hljs-doctag,.hljs-string{color:#d14}.hljs-section,.hljs-selector-id,.hljs-title{color:#900;font-weight:700}.hljs-subst{font-weight:400}.hljs-class .hljs-title,.hljs-type{color:#458;font-weight:700}.hljs-attribute,.hljs-name,.hljs-tag{color:navy;font-weight:400}.hljs-link,.hljs-regexp{color:#009926}.hljs-bullet,.hljs-symbol{color:#990073}.hljs-built_in,.hljs-builtin-name{color:#0086b3}.hljs-meta{color:#999;font-weight:700}.hljs-deletion{background:#fdd}.hljs-addition{background:#dfd}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}
+
+.card_div{margin: 3px;width: 30%;height: 280px;}.card_img{width:300px;max-height:170px;height: 170px;padding: 20px;}.card_paragraph1{font-size: 16px;color: red;font-weight: 700;}.card-paragraph2{font-size: 24px;color: red;font-weight: 700;}
+.video-container {position: relative;padding-bottom: 56.25%;padding-top: 30px; height: 0; overflow: hidden;}
+.video-container iframe,.video-container object,.video-container embed {position: absolute;top: 0;left: 0;width: 100%;height: 100%;} .content img{display: block;margin-left: auto;margin-right: auto;}
+.keypoints{border: 1px solid #CACFD2;background: #E5E7E9;padding: 5px;border-radius: 5px;line-height: 2.5rem;}
+</style>
+<script src="./Difference between Servlet and JSP with Comparison Chart_files/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<table cellspacing="0" cellpadding="0" class="gstl_50 gssb_c" style="width: 375px; display: none; top: 52px; position: absolute; left: 642px;"><tbody><tr><td class="gssb_f"></td><td class="gssb_e" style="width: 100%;"></td></tr></tbody></table></body></html>

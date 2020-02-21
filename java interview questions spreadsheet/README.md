@@ -210,6 +210,9 @@ For learning and study
 - [JavaServer Faces; Java Server Faces; JSF;](#javaserver-faces-java-server-faces-jsf)
 - [JSP vs Servlet](#jsp-vs-servlet)
 - [Struts2/JSF MVC Components? What is MVC?](#struts2jsf-mvc-components-what-is-mvc)
+    - [JSF MVC Components](#jsf-mvc-components)
+    - [Struts2](#struts2)
+    - [What is MVC?](#what-is-mvc)
 - [Microservices in Java](#microservices-in-java)
 - [Random](#random)
 - [SQL Normal Forms](#sql-normal-forms)
@@ -9003,15 +9006,10 @@ https://www.javatpoint.com/jsf-tutorial
     - [Java Servlets](#java-servlets)
     - [JavaServer Faces; Java Server Faces; JSF;](#javaserver-faces-java-server-faces-jsf)
 
-- [](refs/)
+- [Difference-between-Servlet-and-JSP-with-Comparison-Chart-stechies](refs/Difference-between-Servlet-and-JSP-with-Comparison-Chart-stechies)
 
 `references:`
-
-- 
-
-`references:`
-
-
+https://www.stechies.com/difference-between-jsp-servlet/
 
 ----
 
@@ -9021,18 +9019,68 @@ https://www.javatpoint.com/jsf-tutorial
 |-------|-----|-------|
 |   x   |  x  |   x   |
 
+## JSF MVC Components
 
-- [](refs/)
+- Please see:
+    - [JavaServer Faces; Java Server Faces; JSF;](#javaserver-faces-java-server-faces-jsf)
 
-`references:`
-
-
-
-- [](refs/)
+- [What-components-are-MVC-in-JSF-MVC-framework-StackOverflow](refs/What-components-are-MVC-in-JSF-MVC-framework-StackOverflow)
 
 `references:`
+https://stackoverflow.com/questions/5104094/what-components-are-mvc-in-jsf-mvc-framework
+
+- [JSF-Architecture-Tutorialspoint](refs/JSF-Architecture-Tutorialspoint)
+
+`references:`
+https://www.tutorialspoint.com/jsf/jsf_architecture.htm
+
+## Struts2
+
+- [Struts2-Interview-Questions-and-Answers-bullraider](refs/Struts2-Interview-Questions-and-Answers-bullraider)
+
+`references:`
+http://www.bullraider.com/java/struts2/interview-questions
 
 
+- [How-to-create-a-Struts-2-web-application-strutsapache](refs/How-to-create-a-Struts-2-web-application-strutsapache)
+
+`references:`
+https://struts.apache.org/getting-started/how-to-create-a-struts2-web-application.html
+
+- [Struts-Tutorial-for-Beginners-JournalDev](refs/Struts-Tutorial-for-Beginners-JournalDev)
+
+`references:`
+https://www.journaldev.com/2134/struts-tutorial-for-beginners
+
+- [Struts-JSP-Example-JavaCodeGeeks](refs/Struts-JSP-Example-JavaCodeGeeks)
+
+`references:`
+https://examples.javacodegeeks.com/enterprise-java/struts-2/struts-jsp-example/
+
+- Struts 2 Tutorial
+
+`references:`
+https://www.journaldev.com/2310/struts-2-tutorial
+
+- Struts 2 Tutorial
+
+`references:`
+https://www.tutorialspoint.com/struts_2/index.htm
+
+- A Quick Struts 2 Intro
+
+`references:`
+https://www.baeldung.com/struts-2-intro
+
+- Struts 2 Tutorial
+
+`references:`
+https://mkyong.com/tutorials/struts-2-tutorials/
+
+## What is MVC?
+
+- Please see:
+    - 
 
 ----
 
