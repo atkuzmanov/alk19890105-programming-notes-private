@@ -9069,6 +9069,11 @@ https://www.journaldev.com/2310/struts-2-tutorial
 `references:`
 https://www.tutorialspoint.com/struts_2/index.htm
 
+[Struts2-Actions-Tutorialspoint](refs/Struts2-Actions-Tutorialspoint)
+    
+`references:`
+https://www.tutorialspoint.com/struts_2/struts_actions.htm
+
 - A Quick Struts 2 Intro
 
 `references:`
