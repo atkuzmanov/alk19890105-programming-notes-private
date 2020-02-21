@@ -9098,23 +9098,35 @@ https://struts.apache.org/getting-started/spring.html
 
 ### Struts2 vs JSF
 
-- [](refs/)
+- [Struts2-vs-JSF-Coderanch](refs/Struts2-vs-JSF-Coderanch)
 
 `references:`
+https://coderanch.com/t/625642/java/Struts-JSF
 
-
-- [](refs/)
-
-`references:`
-
-- [](refs/)
+- [What-are-the-fundamental-differences-between-Struts-and-JSF-ApacheStruts2Wiki-ApacheSoftwareFoundation](refs/What-are-the-fundamental-differences-between-Struts-and-JSF-ApacheStruts2Wiki-ApacheSoftwareFoundation)
 
 `references:`
+https://cwiki.apache.org/confluence/display/WW/What+are+the+fundamental+differences+between+Struts+and+JSF
+
+- [JSF-Controller-vs-Struts-Controller-StackOverflow](refs/JSF-Controller-vs-Struts-Controller-StackOverflow)
+
+`references:`
+https://stackoverflow.com/questions/13348096/jsf-controller-vs-struts-controller
+
+- [JAVA-Web-Frameworks–SpringMVC-JSF-Grails-Struts2-GWT-Pros-and-Cons-findnerd](refs/JAVA-Web-Frameworks–SpringMVC-JSF-Grails-Struts2-GWT-Pros-and-Cons-findnerd)
+
+`references:`
+http://findnerd.com/list/view/JAVA-Web-Frameworks--Spring-MVC-JSF-Grails-Struts-2-GWT---Pros-and-Cons/34334/
 
 ## What is MVC?
 
 - Please see:
     - 
+
+- [](refs/)
+
+`references:`
+
 
 ----
 

@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<!-- saved from url=(0106)https://cwiki.apache.org/confluence/display/WW/What+are+the+fundamental+differences+between+Struts+and+JSF -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+                            <title>What are the fundamental differences between Struts and JSF - Apache Struts 2 Wiki - Apache Software Foundation</title>
+    
+        
+
+                        
+    
+                        
+    
+
+                
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE,chrome=IE7">
+
+<meta id="confluence-context-path" name="confluence-context-path" content="/confluence">
+<meta id="confluence-base-url" name="confluence-base-url" content="https://cwiki.apache.org/confluence">
+
+    <meta id="atlassian-token" name="atlassian-token" content="c7df4d220127adec4d22e2c607cbd047fcbbaf8b">
+
+
+<meta id="confluence-space-key" name="confluence-space-key" content="WW">
+<script type="text/javascript">
+        var contextPath = '/confluence';
+</script>
+
+    
+
+    <meta name="confluence-request-time" content="1582298682210">
+        
+    
+        
+            <meta name="ajs-use-keyboard-shortcuts" content="true">
+            <meta name="ajs-is-confluence-admin" content="false">
+            <meta name="ajs-connection-timeout" content="10000">
+            <script type="text/x-template" title="gliffy-webpanel-footer">
+        <div class="gliffy-webpanel-footer"><span>This Confluence installation runs a Free Gliffy License - Evaluate the <a href="http://www.gliffy.com/products/confluence-plugin/">Gliffy Confluence Plugin</a> for your Wiki!</span></div>
+</script>
+
+
+            <style>.ia-fixed-sidebar, .ia-splitter-left {width: 285px;}.theme-default .ia-splitter #main {margin-left: 285px;}.ia-fixed-sidebar {visibility: hidden;}</style>
+            <meta name="ajs-discovered-plugin-features" content="$discoveredList">
+            <meta name="ajs-keyboardshortcut-hash" content="18b21e04f6d5c3b40ef373d462571156">
+            
+    
+    
+            <meta name="ajs-page-title" content="What are the fundamental differences between Struts and JSF">
+            <meta name="ajs-latest-published-page-title" content="What are the fundamental differences between Struts and JSF">
+            <meta name="ajs-space-name" content="Apache Struts 2 Wiki">
+            <meta name="ajs-page-id" content="69542">
+            <meta name="ajs-latest-page-id" content="69542">
+            <meta name="ajs-content-type" content="page">
+            <meta name="ajs-parent-page-title" content="FAQs">
+            <meta name="ajs-parent-page-id" content="14182">
+            <meta name="ajs-space-key" content="WW">
+            <meta name="ajs-max-number-editors" content="12">
+            <meta name="ajs-macro-placeholder-timeout" content="5000">
+            <meta name="ajs-jira-metadata-count" content="-1">
+            <meta name="ajs-from-page-title" content="">
+            <meta name="ajs-can-remove-page" content="false">
+            <meta name="ajs-can-remove-page-hierarchy" content="false">
+            <meta name="ajs-browse-page-tree-mode" content="view">
+            <meta name="ajs-shared-drafts" content="true">
+            <meta name="ajs-context-path" content="/confluence">
+            <meta name="ajs-base-url" content="https://cwiki.apache.org/confluence">
+            <meta name="ajs-version-number" content="7.1.2">
+            <meta name="ajs-build-number" content="8301">
+            <meta name="ajs-remote-user" content="">
+            <meta name="ajs-remote-user-key" content="">
+            <meta name="ajs-remote-user-has-licensed-access" content="false">
+            <meta name="ajs-remote-user-has-browse-users-permission" content="false">
+            <meta name="ajs-current-user-fullname" content="">
+            <meta name="ajs-current-user-avatar-url" content="">
+            <meta name="ajs-current-user-avatar-uri-reference" content="/confluence/images/icons/profilepics/anonymous.svg">
+            <meta name="ajs-static-resource-url-prefix" content="/confluence/s/-7iq2vk/8301/13280cd41a592ca5883bbc1ae415b58671505365/_">
+            <meta name="ajs-global-settings-attachment-max-size" content="20971520">
+            <meta name="ajs-global-settings-quick-search-enabled" content="true">
+            <meta name="ajs-user-locale" content="en_GB">
+            <meta name="ajs-enabled-dark-features" content="site-wide.shared-drafts,site-wide.synchrony,confluence.view.edit.transition,confluence-inline-comments-resolved,notification.plugin.api.enabled.com.atlassian.confluence.plugins.sharepage.api.ShareContentEvent,notification.plugin.api.enabled.com.atlassian.confluence.plugins.mentions.api.ConfluenceMentionEvent,frontend.editor.v4.compatibility,atlassian.cdn.static.assets,notification.plugin.api.enabled.com.atlassian.confluence.event.events.security.ForgotPasswordEvent,notification.plugin.api.enabled.com.atlassian.confluence.plugins.tasklist.event.SendTaskEmailEvent,file-annotations,confluence.efi.onboarding.rich.space.content,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.comment.CommentCreateEvent,notification.plugin.api.enabled.com.atlassian.confluence.plugins.requestaccess.events.AccessGrantedEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.page.PageMoveEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.follow.FollowEvent,notification.plugin.api.enabled.com.atlassian.confluence.plugins.inlinecomments.events.InlineCommentReplyEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.blogpost.BlogPostCreateEvent,lucene.caching.filter,confluence.table.resizable,notification.batch,confluence-inline-comments-rich-editor,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.blogpost.BlogPostUpdateEvent,site-wide.synchrony.opt-in,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.page.async.PageCreatedEvent,mobile.supported.version,notification.plugin.api.enabled.com.atlassian.confluence.plugins.files.notifications.event.FileContentMentionUpdateEvent,notification.plugin.api.enabled.com.atlassian.confluence.plugins.hipchat.api.events.HipChatUserMapped,quick-reload-inline-comments-flags,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.blogpost.BlogPostMovedEvent,clc.quick.create,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.page.PageUpdateEvent,cql.search.screen,frontend.editor.v4,nps.survey.inline.dialog,confluence.efi.onboarding.new.templates,pdf-preview,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.page.async.PageMovedEvent,notification.plugin.api.enabled.com.atlassian.confluence.plugins.sharepage.api.ShareCustomEvent,previews.sharing,previews.versions,notification.plugin.api.enabled.com.atlassian.confluence.plugins.files.notifications.event.FileContentUpdateEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.attachment.AttachmentBatchUploadCompletedEvent,collaborative-audit-log,notification.plugin.api.enabled.com.atlassian.confluence.efi.emails.events.OnboardingLessUsersEvent,notification.plugin.api.enabled.com.atlassian.confluence.plugins.files.notifications.event.FileContentRemoveEvent,previews.conversion-service,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.comment.CommentUpdateEvent,editor.ajax.save,graphql,read.only.mode,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.page.async.PageEditedEvent,previews.trigger-all-file-types,notification.plugin.api.enabled.com.atlassian.confluence.plugins.inlinecomments.events.InlineCommentResolveEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.like.LikeCreatedEvent,notification.plugin.api.enabled.com.atlassian.confluence.plugins.inlinecomments.events.InlineCommentCreateEvent,attachment.extracted.text.extractor,notification.plugin.api.enabled.com.atlassian.confluence.plugins.requestaccess.events.AccessRequestedEvent,previews.sharing.pushstate,file-annotations.likes,v2.content.name.searcher,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.page.PageCreateEvent,notification.plugin.api.enabled.com.atlassian.confluence.efi.emails.events.OnboardingNoSpaceCreatedEvent,pulp,notification.plugin.api.enabled.com.atlassian.confluence.plugins.sharepage.api.ShareDraftEvent,notification.plugin.api.enabled.com.atlassian.confluence.plugins.sharepage.api.ShareAttachmentEvent,confluence-inline-comments,confluence-inline-comments-dangling-comment">
+            <meta name="ajs-atl-token" content="c7df4d220127adec4d22e2c607cbd047fcbbaf8b">
+            <meta name="ajs-confluence-flavour" content="VANILLA">
+            <meta name="ajs-user-date-pattern" content="dd MMM yyyy">
+            <meta name="ajs-access-mode" content="READ_WRITE">
+            <meta name="ajs-render-mode" content="READ_WRITE">
+            <meta name="ajs-date.format" content="MMM dd, yyyy">
+    
+    <link rel="shortcut icon" href="https://cwiki.apache.org/confluence/s/-7iq2vk/8301/13280cd41a592ca5883bbc1ae415b58671505365/1/_/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://cwiki.apache.org/confluence/s/-7iq2vk/8301/13280cd41a592ca5883bbc1ae415b58671505365/1/_/favicon.ico">
+
+<link rel="search" type="application/opensearchdescription+xml" href="https://cwiki.apache.org/confluence/opensearch/osd.action" title="Apache Software Foundation">
+    
+                    
+            <meta name="ajs-create-issue-metadata-show-discovery" content="false">
+            
+
+    <script>
+window.WRM=window.WRM||{};window.WRM._unparsedData=window.WRM._unparsedData||{};window.WRM._unparsedErrors=window.WRM._unparsedErrors||{};
+WRM._unparsedData["com.atlassian.plugins.atlassian-plugins-webresource-plugin:context-path.context-path"]="\u0022\u005C/confluence\u0022";
+WRM._unparsedData["com.atlassian.confluence.plugins.confluence-feature-discovery-plugin:confluence-feature-discovery-plugin-resources.test-mode"]="false";
+WRM._unparsedData["com.atlassian.confluence.plugins.synchrony-interop:synchrony-status-banner-loader.synchrony-status"]="false";
+WRM._unparsedData["com.atlassian.analytics.analytics-client:policy-update-init.policy-update-data-provider"]="false";
+WRM._unparsedData["com.atlassian.analytics.analytics-client:programmatic-analytics-init.programmatic-analytics-data-provider"]="false";
+WRM._unparsedData["com.atlassian.applinks.applinks-plugin:applinks-common-exported.applinks-help-paths"]="{\u0022entries\u0022:{\u0022applinks.docs.root\u0022:\u0022https://confluence.atlassian.com/display/APPLINKS-060/\u0022,\u0022applinks.docs.diagnostics.troubleshoot.sslunmatched\u0022:\u0022SSL+and+application+link+troubleshooting+guide\u0022,\u0022applinks.docs.diagnostics.troubleshoot.oauthsignatureinvalid\u0022:\u0022OAuth+troubleshooting+guide\u0022,\u0022applinks.docs.diagnostics.troubleshoot.oauthtimestamprefused\u0022:\u0022OAuth+troubleshooting+guide\u0022,\u0022applinks.docs.delete.entity.link\u0022:\u0022Create+links+between+projects\u0022,\u0022applinks.docs.adding.application.link\u0022:\u0022Link+Atlassian+applications+to+work+together\u0022,\u0022applinks.docs.administration.guide\u0022:\u0022Application+Links+Documentation\u0022,\u0022applinks.docs.oauth.security\u0022:\u0022OAuth+security+for+application+links\u0022,\u0022applinks.docs.troubleshoot.application.links\u0022:\u0022Troubleshoot+application+links\u0022,\u0022applinks.docs.diagnostics.troubleshoot.unknownerror\u0022:\u0022Network+and+connectivity+troubleshooting+guide\u0022,\u0022applinks.docs.configuring.auth.trusted.apps\u0022:\u0022Configuring+Trusted+Applications+authentication+for+an+application+link\u0022,\u0022applinks.docs.diagnostics.troubleshoot.authlevelunsupported\u0022:\u0022OAuth+troubleshooting+guide\u0022,\u0022applinks.docs.diagnostics.troubleshoot.ssluntrusted\u0022:\u0022SSL+and+application+link+troubleshooting+guide\u0022,\u0022applinks.docs.diagnostics.troubleshoot.unknownhost\u0022:\u0022Network+and+connectivity+troubleshooting+guide\u0022,\u0022applinks.docs.delete.application.link\u0022:\u0022Link+Atlassian+applications+to+work+together\u0022,\u0022applinks.docs.link.applications\u0022:\u0022Link+Atlassian+applications+to+work+together\u0022,\u0022applinks.docs.diagnostics.troubleshoot.oauthproblem\u0022:\u0022OAuth+troubleshooting+guide\u0022,\u0022applinks.docs.diagnostics.troubleshoot.migration\u0022:\u0022Update+application+links+to+use+OAuth\u0022,\u0022applinks.docs.relocate.application.link\u0022:\u0022Link+Atlassian+applications+to+work+together\u0022,\u0022applinks.docs.administering.entity.links\u0022:\u0022Create+links+between+projects\u0022,\u0022applinks.docs.upgrade.application.link\u0022:\u0022OAuth+security+for+application+links\u0022,\u0022applinks.docs.diagnostics.troubleshoot.connectionrefused\u0022:\u0022Network+and+connectivity+troubleshooting+guide\u0022,\u0022applinks.docs.configuring.auth.oauth\u0022:\u0022OAuth+security+for+application+links\u0022,\u0022applinks.docs.insufficient.remote.permission\u0022:\u0022OAuth+security+for+application+links\u0022,\u0022applinks.docs.configuring.application.link.auth\u0022:\u0022OAuth+security+for+application+links\u0022,\u0022applinks.docs.diagnostics\u0022:\u0022Application+links+diagnostics\u0022,\u0022applinks.docs.configured.authentication.types\u0022:\u0022OAuth+security+for+application+links\u0022,\u0022applinks.docs.adding.entity.link\u0022:\u0022Create+links+between+projects\u0022,\u0022applinks.docs.diagnostics.troubleshoot.unexpectedresponse\u0022:\u0022Network+and+connectivity+troubleshooting+guide\u0022,\u0022applinks.docs.configuring.auth.basic\u0022:\u0022Configuring+Basic+HTTP+Authentication+for+an+Application+Link\u0022,\u0022applinks.docs.diagnostics.troubleshoot.authlevelmismatch\u0022:\u0022OAuth+troubleshooting+guide\u0022}}";
+WRM._unparsedData["com.atlassian.applinks.applinks-plugin:applinks-common-exported.applinks-types"]="{\u0022crowd\u0022:\u0022Crowd\u0022,\u0022confluence\u0022:\u0022Confluence\u0022,\u0022fecru\u0022:\u0022FishEye / Crucible\u0022,\u0022stash\u0022:\u0022Stash\u0022,\u0022jira\u0022:\u0022Jira\u0022,\u0022refapp\u0022:\u0022Reference Application\u0022,\u0022bamboo\u0022:\u0022Bamboo\u0022,\u0022generic\u0022:\u0022Generic Application\u0022}";
+WRM._unparsedData["com.atlassian.applinks.applinks-plugin:applinks-common-exported.entity-types"]="{\u0022singular\u0022:{\u0022refapp.charlie\u0022:\u0022Charlie\u0022,\u0022fecru.project\u0022:\u0022Crucible Project\u0022,\u0022fecru.repository\u0022:\u0022FishEye Repository\u0022,\u0022stash.project\u0022:\u0022Stash Project\u0022,\u0022generic.entity\u0022:\u0022Generic Project\u0022,\u0022confluence.space\u0022:\u0022Confluence Space\u0022,\u0022bamboo.project\u0022:\u0022Bamboo Project\u0022,\u0022jira.project\u0022:\u0022Jira Project\u0022},\u0022plural\u0022:{\u0022refapp.charlie\u0022:\u0022Charlies\u0022,\u0022fecru.project\u0022:\u0022Crucible Projects\u0022,\u0022fecru.repository\u0022:\u0022FishEye Repositories\u0022,\u0022stash.project\u0022:\u0022Stash Projects\u0022,\u0022generic.entity\u0022:\u0022Generic Projects\u0022,\u0022confluence.space\u0022:\u0022Confluence Spaces\u0022,\u0022bamboo.project\u0022:\u0022Bamboo Projects\u0022,\u0022jira.project\u0022:\u0022Jira Projects\u0022}}";
+WRM._unparsedData["com.atlassian.applinks.applinks-plugin:applinks-common-exported.authentication-types"]="{\u0022com.atlassian.applinks.api.auth.types.BasicAuthenticationProvider\u0022:\u0022Basic Access\u0022,\u0022com.atlassian.applinks.api.auth.types.TrustedAppsAuthenticationProvider\u0022:\u0022Trusted Applications\u0022,\u0022com.atlassian.applinks.api.auth.types.CorsAuthenticationProvider\u0022:\u0022CORS\u0022,\u0022com.atlassian.applinks.api.auth.types.OAuthAuthenticationProvider\u0022:\u0022OAuth\u0022,\u0022com.atlassian.applinks.api.auth.types.TwoLeggedOAuthAuthenticationProvider\u0022:\u0022OAuth\u0022,\u0022com.atlassian.applinks.api.auth.types.TwoLeggedOAuthWithImpersonationAuthenticationProvider\u0022:\u0022OAuth\u0022}";
+WRM._unparsedData["com.atlassian.confluence.plugins.confluence-license-banner:confluence-license-banner-resources.license-details"]="{\u0022daysBeforeLicenseExpiry\u0022:0,\u0022daysBeforeMaintenanceExpiry\u0022:0,\u0022showLicenseExpiryBanner\u0022:false,\u0022showMaintenanceExpiryBanner\u0022:false,\u0022renewUrl\u0022:null,\u0022salesUrl\u0022:null}";
+WRM._unparsedData["com.atlassian.confluence.plugins.confluence-search-ui-plugin:confluence-search-ui-plugin-resources.i18n-data"]="{\u0022search.ui.recent.link.text\u0022:\u0022View more recently visited\u0022,\u0022search.ui.filter.space.category.input.label\u0022:\u0022Find space categories...\u0022,\u0022search.ui.filter.clear.selected\u0022:\u0022Clear selected items\u0022,\u0022search.ui.search.results.empty\u0022:\u0022We couldn\u005Cu0027\u005Cu0027t find anything matching \u005C\u0022{0}\u005C\u0022.\u0022,\u0022search.ui.content.name.search.items.panel.load.all.top.items.button.text\u0022:\u0022Show more app results...\u0022,\u0022search.ui.filter.space.archive.label\u0022:\u0022Search archived spaces\u0022,\u0022search.ui.filter.label\u0022:\u0022filter\u0022,\u0022search.ui.filter.contributor.button.text\u0022:\u0022Contributor\u0022,\u0022search.ui.filter.date.all.text\u0022:\u0022Any time\u0022,\u0022search.ui.filter.space.current.label\u0022:\u0022CURRENT\u0022,\u0022search.ui.clear.input.button.text\u0022:\u0022Clear text\u0022,\u0022help.search.ui.link.title\u0022:\u0022Search tips\u0022,\u0022search.ui.search.results.clear.button\u0022:\u0022clear your filters.\u0022,\u0022search.ui.filter.date.hour.text\u0022:\u0022The past day\u0022,\u0022search.ui.filters.heading\u0022:\u0022Filter by\u0022,\u0022search.ui.filter.label.input.label\u0022:\u0022Find labels...\u0022,\u0022search.ui.filter.date.month.text\u0022:\u0022The past month\u0022,\u0022search.ui.recent.items.anonymous\u0022:\u0022Start exploring. Your search results will appear here.\u0022,\u0022search.ui.input.label\u0022:\u0022Search\u0022,\u0022search.ui.search.result\u0022:\u0022{0,choice,1#{0} search result|1\u005Cu003c{0} search results}\u0022,\u0022search.ui.infinite.scroll.button.text\u0022:\u0022More results\u0022,\u0022search.ui.filter.date.button.text\u0022:\u0022Date\u0022,\u0022search.ui.filter.date.week.text\u0022:\u0022The past week\u0022,\u0022search.ui.filter.label.button.text\u0022:\u0022Label\u0022,\u0022search.ui.input.alert\u0022:\u0022Hit enter to search\u0022,\u0022search.ui.filter.no.result.text\u0022:\u0022We can\u005Cu0027\u005Cu0027t find anything matching your search\u0022,\u0022search.ui.result.subtitle.calendar\u0022:\u0022Team calendar\u0022,\u0022search.ui.filter.date.heading\u0022:\u0022Last modified within\u0022,\u0022search.ui.result.subtitle.user\u0022:\u0022User profile\u0022,\u0022search.ui.filter.contributor.input.label\u0022:\u0022Find people...\u0022,\u0022search.ui.filter.content.type.button.text\u0022:\u0022Type\u0022,\u0022search.ui.filter.space.input.label\u0022:\u0022Find spaces...\u0022,\u0022search.ui.filter.date.year.text\u0022:\u0022The past year\u0022,\u0022search.ui.filter.space.button.text\u0022:\u0022Space\u0022,\u0022search.ui.advanced.search.link.text\u0022:\u0022Advanced search\u0022,\u0022search.ui.generic.error\u0022:\u0022Something went wrong. Refresh the page, or contact your admin if this keeps happening.\u0022,\u0022search.ui.recent.spaces\u0022:\u0022Recent Spaces\u0022,\u0022search.ui.search.results.clear.line2\u0022:\u0022Try a different search term or\u0022,\u0022search.ui.filter.space.category.button.text\u0022:\u0022Space category\u0022,\u0022search.ui.search.results.clear.line1\u0022:\u0022We couldn\u005Cu0027\u005Cu0027t find anything matching your search.\u0022,\u0022search.ui.content.name.search.items.panel.load.all.top.items.admin.button.text\u0022:\u0022Show more settings and app results...\u0022,\u0022search.ui.recent.pages\u0022:\u0022Recently visited\u0022,\u0022search.ui.search.result.anonymous\u0022:\u0022{0,choice,1#{0} search result|1\u005Cu003c{0} search results}. Have an account? {1}Log in{2} to expand your search.\u0022,\u0022search.ui.recent.items.empty\u0022:\u0022Start exploring. Pages and spaces you\u005Cu0027\u005Cu0027ve visited recently will appear here.\u0022,\u0022search.ui.result.subtitle.space\u0022:\u0022Space\u0022,\u0022search.ui.filter.space.init.heading\u0022:\u0022recent spaces\u0022}";
+if(window.WRM._dataArrived)window.WRM._dataArrived();</script>
+<link type="text/css" rel="stylesheet" href="./What are the fundamental differences between Struts and JSF - Apache Struts 2 Wiki - Apache Software Foundation_files/batch.css" data-wrm-key="_super" data-wrm-batch-type="context" media="all">
+<link type="text/css" rel="stylesheet" href="./What are the fundamental differences between Struts and JSF - Apache Struts 2 Wiki - Apache Software Foundation_files/batch(1).css" data-wrm-key="atl.confluence.plugins.pagetree-desktop,main,viewcontent,atl.general,page,atl.comments,-_super" data-wrm-batch-type="context" media="all">
+<script type="text/javascript" src="./What are the fundamental differences between Struts and JSF - Apache Struts 2 Wiki - Apache Software Foundation_files/batch.js" data-wrm-key="_super" data-wrm-batch-type="context" data-initially-rendered=""></script>
+<script type="text/javascript" src="./What are the fundamental differences between Struts and JSF - Apache Struts 2 Wiki - Apache Software Foundation_files/batch(2).js" data-wrm-key="atl.confluence.plugins.pagetree-desktop,main,viewcontent,atl.general,page,atl.comments,-_super" data-wrm-batch-type="context" data-initially-rendered=""></script><style type="text/css">/* Applied to body so that the parent document does not scroll while the full screen IFrame dialog is open. */
+.spark-no-scroll {
+  overflow: hidden; }
+
+.YvpxiV5x7vy1i-QG5gfAe {
+  /*
+     * Styles for iframe (full screen) dialog emulating Atlassian Connect
+     */
+  /*
+     * Styling to imitate dialog chrome styling from Atlassian Connect (at least
+     * one specific version).
+     * If an add-on would like to override these styles, it could be done by
+     * prefixing with the predictable 'app-id' that will be added as an id
+     * to the main dialog wrapper div.
+     */ }
+  .YvpxiV5x7vy1i-QG5gfAe.spark-app-iframe {
+    border: none; }
+  .YvpxiV5x7vy1i-QG5gfAe.spark-iframe {
+    width: 100%;
+    min-height: 100%;
+    border: none;
+    padding: 0;
+    margin: 0;
+    overflow: hidden; }
+  .YvpxiV5x7vy1i-QG5gfAe.spark-fullscreen-wrapper {
+    position: fixed;
+    z-index: 9000;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /*
+         * Change background on fullscreen dialogs to grey.
+         * There are two types of fullscreen dialogs in Atlassian Connect:
+         * Dialogs with width/height set to 100% have a half-transparent black background,
+         * dialogs with size set to "fullscreen" have a grey background.
+         */ }
+    .YvpxiV5x7vy1i-QG5gfAe.spark-fullscreen-wrapper.spark-fullscreen-dialog {
+      background-color: #f5f5f5; }
+  .YvpxiV5x7vy1i-QG5gfAe .spark-fullscreen-scroll-wrapper {
+    position: static;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+    font-size: 0; }
+  .YvpxiV5x7vy1i-QG5gfAe .spark-fullscreen-iframe {
+    width: 100%;
+    min-height: 100%;
+    border: none;
+    padding: 0;
+    margin: 0;
+    overflow: hidden; }
+  .YvpxiV5x7vy1i-QG5gfAe .spark-fullscreen-scroll-wrapper.spark-fullscreen-haschrome {
+    height: calc(100% - 51px); }
+  .YvpxiV5x7vy1i-QG5gfAe .spark-fullscreen-chrome {
+    width: 100%;
+    background: black;
+    height: 50px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-bottom: 1px solid #cccccc; }
+  .YvpxiV5x7vy1i-QG5gfAe .spark-fullscreen-chrome-btnwrap {
+    float: right;
+    margin: 0;
+    padding: 0;
+    height: 50px; }
+  .YvpxiV5x7vy1i-QG5gfAe .spark-fullscreen-chrome-btnwrap .aui-icon-small::before {
+    margin-left: 16px; }
+  .YvpxiV5x7vy1i-QG5gfAe .spark-fullscreen-chrome-btnwrap .aui-button {
+    height: 50px;
+    width: 50px;
+    border: none;
+    border-left: 1px solid #333;
+    border-radius: 0;
+    float: left;
+    margin-left: 0;
+    background: black;
+    color: white; }
+</style>
+
+    
+
+        
+    
+
+        
+        <meta name="ajs-site-title" content="Apache Software Foundation">
+            
+    
+
+    
+                <link rel="canonical" href="https://cwiki.apache.org/confluence/display/WW/What+are+the+fundamental+differences+between+Struts+and+JSF">
+        <link rel="shortlink" href="https://cwiki.apache.org/confluence/x/pg8B">
+    <meta name="wikilink" content="[WW:What are the fundamental differences between Struts and JSF]">
+    <meta name="page-version" content="3">
+    <meta name="ajs-page-version" content="3">
+
+<script type="text/javascript" charset="utf-8" src="./What are the fundamental differences between Struts and JSF - Apache Struts 2 Wiki - Apache Software Foundation_files/batch(3).js"></script><link rel="stylesheet" type="text/css" href="./What are the fundamental differences between Struts and JSF - Apache Struts 2 Wiki - Apache Software Foundation_files/batch(4).css"><script type="text/javascript" charset="utf-8" src="./What are the fundamental differences between Struts and JSF - Apache Struts 2 Wiki - Apache Software Foundation_files/batch(5).js"></script></head>
+
+    
+<body id="com-atlassian-confluence" class="theme-default  aui-layout aui-theme-default" data-aui-version="8.3.5">
+
+        
+            <div id="stp-licenseStatus-banner"></div>
+    <ul id="assistive-skip-links" class="assistive">
+    <li><a href="https://cwiki.apache.org/confluence/display/WW/What+are+the+fundamental+differences+between+Struts+and+JSF#title-heading">Skip to content</a></li>
+    <li><a href="https://cwiki.apache.org/confluence/display/WW/What+are+the+fundamental+differences+between+Struts+and+JSF#breadcrumbs">Skip to breadcrumbs</a></li>
+    <li><a href="https://cwiki.apache.org/confluence/display/WW/What+are+the+fundamental+differences+between+Struts+and+JSF#header-menu-bar">Skip to header menu</a></li>
+    <li><a href="https://cwiki.apache.org/confluence/display/WW/What+are+the+fundamental+differences+between+Struts+and+JSF#navigation">Skip to action menu</a></li>
+    <li><a href="https://cwiki.apache.org/confluence/display/WW/What+are+the+fundamental+differences+between+Struts+and+JSF#quick-search-query">Skip to quick search</a></li>
+</ul>
+<div id="page">
+<div id="full-height-container">
+    <div id="header-precursor">
+        <div class="cell">
+            
+                            </div>
+    </div>
+        
+
+
+
+
+
+<header id="header" role="banner" class="">
+    <nav class="aui-header aui-dropdown2-trigger-group" role="navigation" resolved="" data-aui-responsive="true"><div class="aui-header-inner"><div class="aui-header-before"><a class=" aui-dropdown2-trigger app-switcher-trigger" aria-controls="app-switcher" aria-haspopup="true" role="button" tabindex="0" data-aui-trigger="" href="https://cwiki.apache.org/confluence/display/WW/What+are+the+fundamental+differences+between+Struts+and+JSF#app-switcher" resolved="" aria-expanded="false"><span class="aui-icon aui-icon-small aui-iconfont-appswitcher">Linked Applications</span></a><div id="app-switcher" class="aui-dropdown2 aui-style-default aui-layer" role="menu" aria-hidden="true" data-is-switcher="true" data-environment="{&quot;isUserAdmin&quot;:false,&quot;isAppSuggestionAvailable&quot;:false,&quot;isSiteAdminUser&quot;:false}" resolved=""><div class="aui-dropdown2-section"><ul class="nav-links"><li class="nav-link nav-link-local"><a href="https://cwiki.apache.org/confluence/" class="aui-dropdown2-radio aui-dropdown2-checked checked" title="https://cwiki.apache.org/confluence/" resolved="" aria-checked="true" tabindex="0" role="radio"><span class="nav-link-label">Apache Software Foundation</span></a></li><li class="nav-link"><a href="https://issues.apache.org/jira/secure/MyJiraHome.jspa" class="aui-dropdown2-radio " title="https://issues.apache.org/jira/secure/MyJiraHome.jspa" resolved="" aria-checked="false" tabindex="0" role="radio"><span class="nav-link-label">ASF JIRA</span></a></li></ul></div></div></div><div class="aui-header-primary"><h1 id="logo" class="aui-header-logo aui-header-logo-confluence"><a href="https://cwiki.apache.org/confluence/"><span class="aui-header-logo-device">Apache Software Foundation</span></a></h1><ul class="aui-nav" style="width: auto;">
+                            <li>
+            
+        
+        
+<a id="space-menu-link" class=" aui-dropdown2-trigger aui-nav-link" aria-controls="space-menu-link-content" aria-haspopup="true" role="button" title="Spaces" tabindex="0" data-aui-trigger="" resolved="" aria-expanded="false" href="https://cwiki.apache.org/confluence/display/WW/What+are+the+fundamental+differences+between+Struts+and+JSF#space-menu-link-content">Spaces</a><div id="space-menu-link-content" class="aui-dropdown2 aui-style-default aui-dropdown2-in-header aui-layer" role="menu" aria-hidden="true" resolved=""><div role="presentation"></div></div>
+        </li>
+                                <li class="aui-buttons">
+            </li>
+</ul>
+</div><div class="aui-header-secondary"><ul class="aui-nav">
+                        <li>
+        <div id="search-ui" class="aui-quicksearch dont-default-focus header-quicksearch"><input id="quick-search-query" aria-label="Search" placeholder="Search" type="text" title=" (Type &#39;g&#39; then &#39;g&#39;OR &#39;/&#39;)"><div id="quick-search-alert" role="alert">Hit enter to search</div><aui-spinner size="small" resolved=""><div class="aui-spinner spinner"><svg focusable="false" size="20" height="20" width="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="9"></circle></svg></div></aui-spinner></div>
+    </li>
+        <li>
+            
+        <a id="help-menu-link" class="aui-nav-link aui-dropdown2-trigger aui-dropdown2-trigger-arrowless" href="https://cwiki.apache.org/confluence/display/WW/What+are+the+fundamental+differences+between+Struts+and+JSF#" aria-haspopup="true" title="Help" resolved="" aria-controls="help-menu-link-content" aria-expanded="false">
+        <span class="aui-icon aui-icon-small aui-iconfont-question-filled">Help</span>
+    </a>
+    <nav id="help-menu-link-content" class="aui-dropdown2 aui-style-default aui-layer" aria-hidden="true" resolved="">
+                    <div class="aui-dropdown2-section">
+                                <ul id="help-menu-link-leading" class="aui-list-truncate section-leading first">
+                                            <li>
+        
+            
+<a id="confluence-help-link" href="https://docs.atlassian.com/confluence/docs-71/" class="    " title="Visit the Confluence documentation home" target="_blank">
+        Online Help
+</a>
+</li>
+                                            <li>
+    
+            
+<a id="keyboard-shortcuts-link" href="https://cwiki.apache.org/confluence" class="    " title="View available keyboard shortcuts (Type &#39;?&#39;)">
+        Keyboard Shortcuts
+</a>
+</li>
+                                            <li>
+    
+            
+<a id="feed-builder-link" href="https://cwiki.apache.org/confluence/dashboard/configurerssfeed.action" class="    " title="Create your custom RSS feed.">
+        Feed Builder
+</a>
+</li>
+                                            <li>
+    
+            
+<a id="whats-new-menu-link" href="https://confluence.atlassian.com/display/DOC/Confluence+7.1+Release+Notes" class="    " title="">
+        What’s new
+</a>
+</li>
+                                            <li>
+    
+            
+<a id="gadget-directory-link" href="https://cwiki.apache.org/confluence" class="   user-item administration-link " title="Browse gadgets provided by Confluence">
+        Available Gadgets
+</a>
+</li>
+                                            <li>
+    
+            
+<a id="confluence-about-link" href="https://cwiki.apache.org/confluence/aboutconfluencepage.action" class="    " title="Get more information about Confluence">
+        About Confluence
+</a>
+</li>
+                                    </ul>
+            </div>
+            </nav>
+    
+    </li>
+        <li>
+                
+    
+    </li>
+        <li>
+            
+    </li>
+        <li>
+                                            </li><li>
+        
+            
+<a id="login-link" href="https://cwiki.apache.org/confluence/login.action?os_destination=%2Fdisplay%2FWW%2FWhat%2Bare%2Bthe%2Bfundamental%2Bdifferences%2Bbetween%2BStruts%2Band%2BJSF" class="   user-item login-link " title="">
+        Log in
+</a>
+</li>
+                        <li>
+    
+            
+<a id="signup-link" href="https://cwiki.apache.org/confluence/signup.action" class="   user-item signup-link " title="">
+        Sign up
+</a>
+</li>
+                        
+    
+    </ul>
+</div></div><!-- .aui-header-inner--></nav><!-- .aui-header -->
+    <br class="clear">
+</header>
+    
+
+    
+    	<div class="ia-splitter">
+    		<div class="ia-splitter-left">
+    			<div class="ia-fixed-sidebar" style="top: 40px; left: 0px; width: 285px; visibility: visible;">
+                                            
+                            <div class="acs-side-bar ia-scrollable-section"><div class="acs-side-bar-space-info tipsy-enabled" data-configure-tooltip="Edit space details"><div class="avatar"><div class="space-logo" data-key="WW" data-name="Apache Struts 2 Wiki" data-entity-type="confluence.space"><div class="avatar-img-container"><div class="avatar-img-wrapper"><a href="https://cwiki.apache.org/confluence/display/WW/Home?src=sidebar" title="Apache Struts 2 Wiki"><img class="avatar-img" src="./What are the fundamental differences between Struts and JSF - Apache Struts 2 Wiki - Apache Software Foundation_files/default-space-logo.svg" alt="Apache Struts 2 Wiki"></a></div></div></div></div><div class="space-information-container"><div class="name"><a href="https://cwiki.apache.org/confluence/display/WW/Home?src=sidebar" title="Apache Struts 2 Wiki">Apache Struts 2 Wiki</a></div><div class="flyout-handle icon aui-icon aui-icon-small aui-iconfont-edit"></div></div></div><div class="acs-side-bar-content"><div class="acs-nav-wrapper"><div class="acs-nav" data-has-create-permission="false" data-quick-links-state="null" data-page-tree-state="null" data-nav-type="pages"><div class="acs-nav-sections"><div class="quick-links-wrapper"></div></div></div></div><div class="ia-secondary-container tipsy-enabled" data-tree-type="pages" data-collapsed-tooltip="Child pages"><div class="ia-secondary-header"><h5 class="ia-secondary-header-title pages"><span class="label">Child pages</span></h5></div><div class="ia-secondary-parent-content"><ul class="parent ia-secondary-header-title wiki"><li class="parent-item"><a class="parent-item-link" href="https://cwiki.apache.org/confluence/display/WW/FAQs?src=contextnavchildmode" title="FAQs"><span class="icon"></span><span class="label">FAQs</span></a></li></ul></div><div class="ia-secondary-current-content"><ul class="ia-secondary-currentPage-title wiki current-item"><li><span class="icon"></span><span class="label">What are the fundamental differences between Struts and JSF</span></li></ul></div><div class="ia-secondary-content"><div class="contextual-nav-child-pages"></div></div></div></div><div class="hidden"><a href="https://cwiki.apache.org/confluence/collector/pages.action?key=WW&amp;src=sidebar" id="space-pages-link" title=" (Type &#39;g&#39; then &#39;s&#39;)"></a><script type="text/x-template" title="logo-config-content"><h2>Space Details</h2><div class="personal-space-logo-hint">Your profile picture is used as the logo for your personal space. <a href="/confluence/users/profile/editmyprofilepicture.action" target="_blank">Change your profile picture</a>.</div></script></div></div><div class="space-tools-section"><div id="space-tools-menu-additional-items" class="hidden"><div data-label="Browse pages" data-class="" data-href="/confluence/pages/reorderpages.action?key=WW">Browse pages</div></div><button id="space-tools-menu-trigger" class=" aui-dropdown2-trigger aui-button aui-button-subtle tipsy-enabled aui-dropdown2-trigger-arrowless " aria-controls="space-tools-menu" aria-haspopup="true" role="button" data-aui-trigger="" resolved="" aria-expanded="false" data-collapsed-tooltip="Space tools"><span class="aui-icon aui-icon-small aui-iconfont-configure">Configure</span><span class="aui-button-label">Space tools</span><span class="aui-icon "></span></button><div id="space-tools-menu" class="aui-dropdown2 aui-style-default space-tools-dropdown aui-layer" role="menu" aria-hidden="true" data-aui-alignment="top left" resolved=""><div role="presentation" class="aui-dropdown2-section space-tools-navigation"><div role="group"><ul class="aui-list-truncate" role="presentation"><li role="presentation"><a role="menuitem" tabindex="-1" class="" href="https://cwiki.apache.org/confluence/spaces/viewspacesummary.action?key=WW&amp;src=spacetools">Overview</a></li><li role="presentation"><a role="menuitem" tabindex="-1" class="" href="https://cwiki.apache.org/confluence/pages/reorderpages.action?key=WW&amp;src=spacetools">Content Tools</a></li><li role="presentation"><a role="menuitem" tabindex="-1" class="" href="https://cwiki.apache.org/confluence/spaces/snippeterrors.action?key=WW&amp;src=spacetools">Apps</a></li></ul></div></div><div role="presentation" class="aui-dropdown2-section space-operations"><div role="group"><ul class="aui-list-truncate" role="presentation"><li role="presentation"><a role="menuitem" tabindex="-1" class="" href="https://cwiki.apache.org/confluence/pages/reorderpages.action?key=WW&amp;src=spacetools">Browse pages</a></li></ul></div></div></div><a class="expand-collapse-trigger aui-icon aui-icon-small aui-iconfont-chevron-double-left" data-tooltip="Collapse sidebar ( [ )"></a></div>
+                    
+                        			<div class="ia-splitter-handle tipsy-enabled" data-tooltip="Collapse sidebar ( [ )" title=" (Type &#39;[&#39;)"><div class="ia-splitter-handle-highlight confluence-icon-grab-handle"></div></div></div>
+    		</div>
+        <!-- \#header -->
+
+            
+    
+        <div id="main" class=" aui-page-panel" style="margin-left: 285px;">
+                        <div id="main-header" style="top: 40px; width: 1555px;">
+                        
+    <div id="navigation" class="content-navigation view">
+                    <ul class="ajs-menu-bar">
+                                            
+        <li class="normal ajs-menu-item">
+        <a id="action-menu-link" class="action aui-dropdown2-trigger-arrowless aui-button aui-button-subtle ajs-menu-title aui-dropdown2-trigger" href="https://cwiki.apache.org/confluence/display/WW/What+are+the+fundamental+differences+between+Struts+and+JSF#" aria-haspopup="true" data-container="#navigation" resolved="" aria-controls="action-menu" aria-expanded="false">
+            <span>
+                                    <span class="aui-icon aui-icon-small aui-iconfont-more"></span>
+                                
+            </span>
+        </a>         <div id="action-menu" class="aui-dropdown2 aui-style-default aui-layer most-right-menu-item" aria-hidden="true" resolved="">
+                            <div class="aui-dropdown2-section">
+                    <ul id="action-menu-primary" class="section-primary first">
+                                                    <li>
+
+    
+        
+    
+                                                        
+    
+    
+            <a id="view-attachments-link" href="https://cwiki.apache.org/confluence/pages/viewpageattachments.action?pageId=69542" rel="nofollow" class="action-view-attachments" accesskey="t" title="View Attachments (Type &#39;t&#39;)">
+                        <span>
+                                A<u>t</u>tachments (0)
+            </span>        </a>
+    </li>
+                                                <li>
+
+    
+        
+    
+                                                        
+    
+    
+            <a id="action-view-history-link" href="https://cwiki.apache.org/confluence/pages/viewpreviousversions.action?pageId=69542" rel="nofollow" class="action-view-history" title="">
+                        <span>
+                                Page History
+            </span>        </a>
+    </li>
+                                        </ul>
+                </div>
+                            <div class="aui-dropdown2-section">
+                    <ul id="action-menu-secondary" class="section-secondary">
+                                                    <li>
+
+    
+        
+    
+                                                        
+    
+    
+            <a id="view-resolved-comments" href="https://cwiki.apache.org/confluence" rel="nofollow" class="" title="">
+                        <span>Resolved comments (0)</span>        </a>
+    </li>
+                                                <li>
+
+    
+        
+    
+                                                        
+    
+    
+            <a id="view-page-info-link" href="https://cwiki.apache.org/confluence/pages/viewinfo.action?pageId=69542" rel="nofollow" class="action-view-info" title="">
+                        <span>
+                                Page Information
+            </span>        </a>
+    </li>
+                                                <li>
+
+    
+        
+    
+                                                        
+    
+    
+            <a id="view-in-hierarchy-link" href="https://cwiki.apache.org/confluence/pages/reorderpages.action?key=WW&amp;openId=69542#selectedPageInHierarchy" rel="nofollow" class="" title="">
+                        <span>
+                                View in Hierarchy
+            </span>        </a>
+    </li>
+                                                <li>
+
+    
+        
+    
+                                                        
+    
+    
+            <a id="action-view-source-link" href="https://cwiki.apache.org/confluence/plugins/viewsource/viewpagesrc.action?pageId=69542" rel="nofollow" class="action-view-source popup-link" title="">
+                        <span>
+                                View Source
+            </span>        </a>
+    </li>
+                                                <li>
+
+    
+        
+    
+                                                        
+    
+    
+            <a id="delete-all-comments-link-link" href="https://cwiki.apache.org/confluence/plugins/aptis/deleteAllComments/ask-user.action?pageId=69542" rel="nofollow" class="" title="">
+                        <span>
+                                Delete comments
+            </span>        </a>
+    </li>
+                                                <li>
+
+    
+        
+    
+                                                        
+    
+    
+            <a id="action-export-pdf-link" href="https://cwiki.apache.org/confluence/spaces/flyingpdf/pdfpageexport.action?pageId=69542" rel="nofollow" class="" title="">
+                        <span>
+                                Export to PDF
+            </span>        </a>
+    </li>
+                                                <li>
+
+    
+        
+    
+                                                        
+    
+    
+            <a id="com-k15t-confluence-scroll-epub-launcher" href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=69542" rel="nofollow" class="" title="">
+                        <span>
+                                Export to EPUB
+            </span>        <section role="dialog" id="k15t-exp-epub-no-export-dialog" class="aui-layer aui-dialog2 aui-dialog2-small aui-dialog2-warning" aria-hidden="true">    <header class="aui-dialog2-header">        <h2 class="aui-dialog2-header-main">Page Not Available</h2>        <a class="aui-dialog2-header-close">            <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">Close</span>        </a>    </header>    <div class="aui-dialog2-content">        <p>You cannot export this page, because it is not available in the current version, variant, or language.</p>    </div>    <footer class="aui-dialog2-footer">        <div class="aui-dialog2-footer-actions">            <button id="k15t-exp-epub-no-export-dialog-close-button" class="aui-button aui-button-link">Close</button>        </div>        <div class="aui-dialog2-footer-hint">           <span style="  background: linear-gradient(to right, #1062fb 0, #1062fb 33.3%, #2eb785 33.3%, #2eb785 66.6%, #ffc420 66.6%);  height: .5em;  width: 2.625em;  display: inline-block;  position: relative;           "></span>         </div>    </footer></section></a>
+    </li>
+                                                <li>
+
+    
+        
+    
+                                                        
+    
+    
+            <a id="action-export-word-link" href="https://cwiki.apache.org/confluence/exportword?pageId=69542" rel="nofollow" class="action-export-word" title="">
+                        <span>
+                                Export to Word
+            </span>        </a>
+    </li>
+                                        </ul>
+                </div>
+                    </div>
+    </li>
+            </ul>
+    </div>
+
+            
+            <div id="title-heading" class="pagetitle with-breadcrumbs">
+                
+                                    <div id="breadcrumb-section">
+                        
+    
+    
+    <ol id="breadcrumbs">
+                                        
+                        
+        <li class="first">
+                        
+                            <span class=""><a href="https://cwiki.apache.org/confluence/collector/pages.action?key=WW&amp;src=breadcrumbs-collector">Pages</a></span>
+                                                                                    
+                        
+        </li><li>
+                        
+                            <span class=""><a href="https://cwiki.apache.org/confluence/display/WW/Home?src=breadcrumbs">Home</a></span>
+                                                                                    
+                        
+        </li><li>
+                        
+                            <span class=""><a href="https://cwiki.apache.org/confluence/display/WW/FAQs?src=breadcrumbs-parent">FAQs</a></span>
+                                                                    </li></ol>
+
+
+                    </div>
+                
+                
+        <a href="https://cwiki.apache.org/confluence/display/WW/What+are+the+fundamental+differences+between+Struts+and+JSF#page-banner-end" class="assistive">Skip to end of banner</a>
+<div id="page-banner-start" class="assistive"></div>
+
+                    
+            <div id="page-metadata-banner"><ul class="banner"><li id="system-content-items" class="noprint"><a href="https://cwiki.apache.org/confluence/display/WW/What+are+the+fundamental+differences+between+Struts+and+JSF" title="Unrestricted" id="content-metadata-page-restrictions-hidden" class="hidden"></a></li><li class="page-metadata-item noprinthas-button" id="content-metadata-jira-wrapper"><a href="https://cwiki.apache.org/confluence/display/WW/What+are+the+fundamental+differences+between+Struts+and+JSF" title="" id="content-metadata-jira" class="aui-button aui-button-subtle content-metadata-jira tipsy-disabled hidden"><span>Jira links</span></a></li></ul></div>
+            
+
+<a href="https://cwiki.apache.org/confluence/display/WW/What+are+the+fundamental+differences+between+Struts+and+JSF#page-banner-start" class="assistive">Go to start of banner</a>
+<div id="page-banner-end" class="assistive"></div>
+    
+
+                <h1 id="title-text" class="with-breadcrumbs" style="display: block;">
+                                                <a href="https://cwiki.apache.org/confluence/display/WW/What+are+the+fundamental+differences+between+Struts+and+JSF">What are the fundamental differences between Struts and JSF</a>
+                                    </h1>
+            </div>
+        </div><!-- \#main-header -->
+        
+        
+
+        <div id="sidebar-container">
+                                                </div><!-- \#sidebar-container -->
+
+        
+    
+
+        
+
+
+
+
+            
+    
+
+                                
+    
+
+    
+    
+        
+    
+    
+                    
+    
+
+    
+
+    
+            
+        
+
+    
+    
+
+    
+            
+        
+
+
+
+    
+<div id="content" class="page view">
+    
+
+
+<div id="action-messages">
+                        </div>
+
+
+
+            <script type="text/x-template" title="searchResultsGrid">
+    <table class="aui">
+        <thead>
+            <tr class="header">
+                <th class="search-result-title">Page Title</th>
+                <th class="search-result-space">Space</th>
+                <th class="search-result-date">Updated</th>
+            </tr>
+        </thead>
+    </table>
+</script>
+<script type="text/x-template" title="searchResultsGridCount">
+    <p class="search-result-count">{0}</p>
+</script>
+<script type="text/x-template" title="searchResultsGridRow">
+    <tr class="search-result">
+        <td class="search-result-title"><a href="{1}" class="content-type-{2}"><span>{0}</span></a></td>
+        <td class="search-result-space"><a class="space" href="/confluence/display/{4}/" title="{3}">{3}</a></td>
+        <td class="search-result-date"><span class="date" title="{6}">{5}</span></td>
+    </tr>
+</script>
+        
+    
+            
+
+        
+                            
+    
+
+                    
+
+        
+        <a href="https://cwiki.apache.org/confluence/display/WW/What+are+the+fundamental+differences+between+Struts+and+JSF#page-metadata-end" class="assistive">Skip to end of metadata</a>
+<div id="page-metadata-start" class="assistive"></div>
+
+    <div class="page-metadata">
+        <ul>
+            <li class="page-metadata-modification-info">
+                
+        
+    
+        
+    
+        
+            
+            Created by <span class="author">     <a href="https://cwiki.apache.org/confluence/display/~mrdon" class="url fn">Donald J. Brown</a></span>, last modified on <a class="last-modified" title="Show changes" href="https://cwiki.apache.org/confluence/pages/diffpagesbyversion.action?pageId=69542&amp;selectedPageVersions=2&amp;selectedPageVersions=3">Oct 26, 2007</a>
+                </li>
+        </ul>
+    </div>
+
+
+<a href="https://cwiki.apache.org/confluence/display/WW/What+are+the+fundamental+differences+between+Struts+and+JSF#page-metadata-start" class="assistive">Go to start of metadata</a>
+<div id="page-metadata-end" class="assistive"></div>
+
+        
+                                            
+        <div id="main-content" class="wiki-content">
+                           
+        <p>Will Hartung's <a class="external-link" href="http://www.theserverside.com/news/thread.tss?thread_id=47344#241709" rel="nofollow">thoughts</a> from a similar <a class="external-link" href="http://www.theserverside.com/news/thread.tss?thread_id=47344" rel="nofollow">question</a> posted on <a class="external-link" href="http://www.theserverside.com/" rel="nofollow">TheServerSide</a> (<em>posted here in its entirety with permission</em>):</p>
+
+<blockquote>
+<p>Routing around the hyperbole and actually trying to answer the question...</p>
+
+<p>The key differences between the two are the base paradigms that underly each platform.</p>
+
+<p>Specifically, JSF is a "component" framework whereas Struts is an "action" framework.</p>
+
+<p>What does that mean?</p>
+
+<p>In a component framework, artifacts that are rendered on the page are initially developed as individual components, much like in modern GUI "fat client" libraries. You have components, they have events, and your code is written to work with those events against the components.</p>
+
+<p>Most of the time, in mainstream development, your code is pretty much ignorant of the HTTP request cycle and processing.</p>
+
+<p>Struts (both 1 and 2) are action frameworks. In essence they give you the ability to map URLs to activities and code on the back end. Here, the layout and workflow tends to be more page oriented. As a developer you tend to interact with the HTTP request cycle directly, though Struts 2 helps isolate at least the binding of the request data to the action implementation classes.</p>
+
+<p>Action frameworks tend to be much "thinner" in how they stand between your code and the raw HTTP request compared to component frameworks.</p>
+
+<p>For those people just cutting their teeth on web development, the component frameworks (especially with good tooling) can be much more approachable, as the tools tend to hide the heavy weight nature of the component frameworks. But, on the downside, their size and their "square peg in to round hole" nature of turning HTTP requests in to the rough equivalent of mouse clicks mean there's more complexity to try to understand if and when the framework starts misbehaving or getting in the way.</p>
+
+<p>But, to be fair, frameworks like ASP.NET and JSF are popular because novices can get quick success with them with the modern tools.</p>
+
+<p>Old School HTTP wranglers may simply be more comfortable with action frameworks, simply because they've been through the crucible of understanding how HTTP requests are structured. Action frameworks tend to work better with "pretty" urls (though component frameworks are getting better at his). Action framework coders can have more control of the structure and presentation of URLs, since their systems are more intimately tied to them compared to a component framework.</p>
+
+<p>As a basic guideline, I find the action frameworks are better for "web sites", site like this one, sites that focus on delivering content to the user. Where it's mostly a "read only" experience for the end user who is likely to want to bookmark things, come back to arbitrarily deep pages, etc.</p>
+
+<p>But the component frameworks are better for "web apps". CRUD screens, back office applications, lots of forms and controls, etc. Here, the workflow is more controlled. You tend to not get to a "detail" screen with going through the "list" screen or "header" screen first, for example.</p>
+
+<p>It's nice to be able to just drag and drop a grid component on to a form, add a couple of buttons and point it as a DB table to get "instant" results. But these apps don't bookmark well, HATE the "refresh button", may behave poorly with the back button, etc. Overall, they can not be very good citizens when working with the web browser.</p>
+
+<p>So, if it were me, I'd write a blog in a action framework like Struts 2 (or even better, Stripes), but I'd write an accounting package in JSF.</p></blockquote>
+
+                
+        
+    
+        </div>
+
+                        
+    
+
+
+
+<div id="likes-and-labels-container"><div id="likes-section" class="no-print" style="display: none;"><span class="like-summary"></span></div><div id="labels-section" class="pageSection group">
+    <div class="labels-section-content content-column" entityid="69542" entitytype="page">
+	<div class="labels-content">
+		
+    <ul class="label-list label-list-right ">
+            <li class="no-labels-message">
+            No labels
+        </li>
+            </ul>
+
+    </div>
+</div>
+</div></div>
+        
+		
+            
+
+
+
+
+            
+        
+
+
+
+
+
+
+
+
+                        
+    
+<div id="comments-section" class="pageSection group">
+        
+    
+
+
+
+</div>
+        
+
+
+                
+    
+            
+</div>
+
+    
+
+    
+
+
+
+
+    
+    
+
+    
+    
+    
+
+
+    
+<div id="space-tools-web-items" class="hidden">
+                <div data-label="Overview" data-href="/confluence/spaces/viewspacesummary.action?key=WW">Overview</div>
+            <div data-label="Content Tools" data-href="/confluence/pages/reorderpages.action?key=WW">Content Tools</div>
+            <div data-label="Apps" data-href="/confluence/spaces/snippeterrors.action?key=WW">Apps</div>
+    </div>
+        
+
+
+
+            </div><!-- \#main -->
+            
+    
+    
+        
+            
+            
+
+<div id="footer" role="contentinfo" style="margin-left: 285px;">
+    <section class="footer-body">
+
+                                                            <p class="license license-opensource">
+                    Powered by a free <b>Atlassian Confluence Open Source Project License</b> granted to Apache Software Foundation. <a href="https://www.atlassian.com/software/views/opensource-community-additional-license-offer">Evaluate Confluence today</a>.<br>
+                </p>
+                    
+        
+
+        
+        <div class="gliffy-webpanel-footer"><span>This Confluence installation runs a Free Gliffy License - Evaluate the <a href="http://www.gliffy.com/products/confluence-plugin/">Gliffy Confluence Plugin</a> for your Wiki!</span></div>
+<ul id="poweredby">
+            <li class="noprint">Powered by <a href="http://www.atlassian.com/software/confluence" class="hover-footer-link" rel="nofollow">Atlassian Confluence</a> <span id="footer-build-information">7.1.2</span></li>
+            <li class="print-only">Printed by Atlassian Confluence 7.1.2</li>
+            <li class="noprint"><a href="https://support.atlassian.com/help/confluence" class="hover-footer-link" rel="nofollow">Report a bug</a></li>
+            <li class="noprint"><a href="https://www.atlassian.com/company" class="hover-footer-link" rel="nofollow">Atlassian News</a></li>
+        </ul>
+
+        
+
+        <div id="footer-logo"><a href="http://www.atlassian.com/" rel="nofollow">Atlassian</a></div>
+
+                    
+        
+    </section>
+</div>
+
+    
+</div>
+
+</div><!-- \#full-height-container -->
+</div><!-- \#page -->
+
+    <span style="display:none;" id="confluence-server-performance">{"serverDuration": 53, "requestCorrelationId": "58ea2e11130db432"}</span>
+
+
+    
+<div id="editor-preload-container" style="display: none;"></div></body></html>
