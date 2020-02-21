@@ -8943,21 +8943,50 @@ https://www.baeldung.com/intro-to-servlets
 
 # JavaServer Faces; Java Server Faces; JSF;
 
-- [](refs/)
+- [What-is-JSF-Introducing-JavaServer-Faces-JavaWorld-page1](refs/What-is-JSF-Introducing-JavaServer-Faces-JavaWorld-page1)
 
 `references:`
+https://www.javaworld.com/article/3322533/what-is-jsf-introducing-javaserver-faces.html
 
-- [](refs/)
-
-`references:`
-
-
-- [](refs/)
+- [What-is-JSF-Introducing-JavaServer-Faces-JavaWorld-page2](refs/What-is-JSF-Introducing-JavaServer-Faces-JavaWorld-page2)
 
 `references:`
+https://www.javaworld.com/article/3322533/what-is-jsf-introducing-javaserver-faces.html?page=2
 
+- Introduction to Facelets
 
+`references:`
+https://javaee.github.io/tutorial/jsf-facelets.html
 
+- [JSF-JavaServer-Faces-Tutorial-vogella](refs/JSF-JavaServer-Faces-Tutorial-vogella)
+
+`references:`
+https://www.vogella.com/tutorials/JavaServerFaces/article.html
+
+- [JSF-2-0-Tutorial-for-Beginners-JavaCodeGeeks](refs/JSF-2-0-Tutorial-for-Beginners-JavaCodeGeeks)
+
+`references:`
+https://www.javacodegeeks.com/2018/03/jsf-2-0-tutorial-for-beginners.html
+
+- [Introduction-to-JavaServer-Faces-2-x-NetBeans-IDE-Tutorial-netbeans](refs/Introduction-to-JavaServer-Faces-2-x-NetBeans-IDE-Tutorial-netbeans)
+
+`references:`
+https://netbeans.org/kb/docs/web/jsf20-intro.html
+
+- JavaServer Faces (JSF) Tutorial
+
+`references:`
+https://www.tutorialspoint.com/jsf/index.htm
+
+- The Java EE 6 Tutorial
+
+`references:`
+https://docs.oracle.com/javaee/6/tutorial/doc/bnaph.html
+
+- JSF Tutorial
+
+`references:`
+https://www.javatpoint.com/jsf-tutorial
 
 ----
 
@@ -8975,6 +9004,11 @@ https://www.baeldung.com/intro-to-servlets
 - [](refs/)
 
 `references:`
+
+- 
+
+`references:`
+
 
 
 ----
