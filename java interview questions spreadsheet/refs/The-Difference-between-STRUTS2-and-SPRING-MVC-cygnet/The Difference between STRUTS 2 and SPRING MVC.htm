@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<!-- saved from url=(0058)https://www.cygnet-infotech.com/blog/struts-2-vs-springmvc -->
+<html lang="en-GB" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-GB" dir="ltr" class="htmlimports no-flash no-proximity applicationcache cookies cors dataview websockets no-xdomainrequest webaudio cssescape supports target picture filereader xhrresponsetype xhr2 localstorage sessionstorage websqldatabase eventlistener geolocation history no-ie8compat json notification postmessage queryselector svg templatestrings no-contextmenu cssall willchange hashchange inputsearchevent audio canvas canvastext video webanimations webgl adownload audioloop canvasblending todataurljpeg todataurlpng todataurlwebp csscalc cssgradients multiplebgs csspointerevents csspositionsticky cssremunit rgba preserve3d hidden template formattribute sandbox no-seamless imgcrossorigin emoji inlinesvg textareamaxlength olreversed datalistelem fileinputdirectory cssexunit hsla bdi mediaqueries fontface generatedcontent cssinvalid no-siblinggeneral subpixelfont cssvalid cssvhunit cssvmaxunit cssvminunit cssvwunit details formvalidation no-localizednumber no-mathml no-touchevents no-unicoderange no-unicode xhrresponsetypearraybuffer xhrresponsetypeblob xhrresponsetypedocument xhrresponsetypejson xhrresponsetypetext smil svgasimg textshadow crypto backgroundblendmode objectfit object-fit no-regions no-wrapflow filesystem fullscreen intl quotamanagement vibrate cssanimations csspseudoanimations appearance backdropfilter backgroundcliptext backgroundsize bgsizecover borderimage borderradius boxshadow boxsizing csscolumns csscolumns-width csscolumns-span csscolumns-fill csscolumns-gap csscolumns-rule csscolumns-rulecolor csscolumns-rulestyle csscolumns-rulewidth csscolumns-breakbefore csscolumns-breakafter csscolumns-breakinside ellipsis cssfilters flexbox flexboxlegacy no-flexboxtweener flexwrap cssmask cssreflections cssresize shapes textalignlast csstransforms csstransforms3d csstransitions csspseudotransitions mac mozilla 5 apng webpalpha webpanimation webp no-exiforientation wf-proximanova-n7-active wf-proximanova-n4-active wf-proximanova-i4-active wf-proximanova-n5-active wf-proximanova-i5-active webp-alpha webp-animation webp-lossless datauri csshyphens softhyphens softhyphensfind audiopreload wf-proximanova-n6-active wf-proximanova-n9-active wf-proximanova-i9-active wf-proximanova-i7-active wf-proximanova-n8-active wf-proximanova-i8-active wf-proximanova-n1-active wf-proximanova-i1-active wf-proximanova-i6-active wf-proximanova-n3-active wf-proximanova-i3-active wf-active indexeddb indexeddb-deletedatabase"><!--<![endif]--><body class="blog-main-body">
+        <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5SMZBN"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+<!-- Bing code start -->
+<script src="./The Difference between STRUTS 2 and SPRING MVC_files/rules-p-1uJ-nA1ztj9RL.js" async=""></script><script type="text/javascript" async="" src="./The Difference between STRUTS 2 and SPRING MVC_files/insight.min.js"></script><script type="text/javascript" async="" src="./The Difference between STRUTS 2 and SPRING MVC_files/quant.js"></script><script type="text/javascript" async="" src="./The Difference between STRUTS 2 and SPRING MVC_files/analytics.js"></script><script type="text/javascript" id="zsiqscript" defer="" src="./The Difference between STRUTS 2 and SPRING MVC_files/widget"></script><script>(function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"17159986"};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");</script>
+<!-- Bing code end -->
+
+<!--  ====================================== corporate contact  -->
+  <script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "url": "http://www.cygnet-infotech.com/",
+  "email": "inquiry@cygnetinfotech.com",
+  "contactPoint": [{
+  "@type": "ContactPoint",
+  "telephone": "+1-609-245-0971",
+  "contactType": "Software Development Company"
+  }]
+  }
+  </script>
+  <!-- ====================================== Sitelink Search  -->
+  <script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "WebSite",
+  "url": "http://www.cygnet-infotech.com/",
+  "potentialAction": {
+  "@type": "SearchAction",
+  "target": "http://www.cygnet-infotech.com/search/{search_term_string}",
+  "query-input": "required name=search_term_string"
+  }
+  }
+  </script>
+<!-- =============================== Social Links  -->
+  <script type="application/ld+json">
+  { "@context" : "http://schema.org", "@type" : "Organization", "name" : "Cygnet Infotech", "url" : "http://www.cygnet-infotech.com/", "sameAs" : [ "https://www.facebook.com/IT.is.about.you/", "https://twitter.com/cygnetinfotech", "https://www.linkedin.com/company/cygnet-infotech-pvt--ltd-/"] }
+  </script>
+            <div id="divIdTopNotification" class="alert-ie-msg">
+                <div class="topYellowNotification">Having trouble viewing Cygnet-Infotech Site<sup>®</sup> ? It's because the browser you are using is not supported. Please upgrade to one of the latest versions.<a id="lnkCloseNotification" class="alert-ie-close"></a></div>
+<div class="topWhiteNotification">
+<ul>
+<li><a href="https://www.microsoft.com/en-in/WindowsForBusiness/End-of-IE-support" class="link link-divider">Internet Explorer</a></li>
+</ul>
+</div>
+            </div>
+
+
+        <div class="wrapper">
+            <!-- ! Header Begin --><header class="header">
+    <div class="logo change-logo">
+    <a href="https://www.cygnet-infotech.com/" title="Cygnet Infotech"> <img src="./The Difference between STRUTS 2 and SPRING MVC_files/logo-white.png" alt="Cygnet Infotech" title="Cygnet Infotech" class="logo-white"> 
+        <img src="./The Difference between STRUTS 2 and SPRING MVC_files/logo.png" alt="Cygnet Infotech" title="Cygnet Infotech" class="logo-black"> </a></div>
+    <div class="mobile-button mobile-button-open"><span class="line"></span> <span class="line"></span> <span class="line"></span></div>
+    <div class="inner-header">
+        <div class="header-container">
+            <!-- ! Site navigation Begin -->
+            <nav class="main-menu">
+                <div class="menu-container" style="">
+<ul id="main-navigation" class="main-nav">
+<li class="menu-item-has-children has-child-menu"><a href="https://www.cygnet-infotech.com/solutions" title="Solutions"><span class="mouseout">Accelerate</span><span class="mousein">Solutions</span></a>
+<ul class="submenu" style="display: none;">
+<li class="menu-block">
+<div class="menu-article">
+<div class="article-media">
+<div class="menu-item-image cover-bg" style="background-image: url(&#39;/media/582765/blockchain_thumbnail.png&#39;);"></div>
+</div>
+<div class="article-text">
+<h3>Blockchain</h3>
+<p>Discovering newer possibilities with blockchain for your business</p>
+<a href="https://www.cygnet-infotech.com/blockchain-solutions" title="Read More" class="read-more">Read More<i class="icon icon-right"></i></a></div>
+</div>
+<div class="menu-article">
+<div class="article-media">
+<div class="menu-item-image cover-bg" style="background-image: url(&#39;/media/583429/tax-tech_home_banner.jpg&#39;);"></div>
+</div>
+<div class="article-text">
+<h3>GST and VAT Solutions</h3>
+<p>Helping companies achieve tax compliance with technology</p>
+<a href="https://www.cygnet-infotech.com/tax-technology-solutions" title="Read More" class="read-more">Read More<i class="icon icon-right"></i></a></div>
+</div>
+</li>
+<li><a href="https://www.cygnet-infotech.com/blockchain-solutions" title="Blockchain"><span>Blockchain</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/artificial-intelligence-solutions" title="Artificial Intelligence"><span>Artificial Intelligence</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/robotic-process-automation-solutions" title="Robotic Process Automation"><span>Robotic Process Automation</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/cloud-solutions" title="Cloud"><span>Cloud</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/iot-solutions" title="Internet of Things"><span>Internet of Things</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/tax-technology-solutions" title="GST and VAT Solutions"><span>GST and VAT Solutions</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/ar-vr-solutions" title="AR/VR"><span>AR/VR</span></a></li>
+</ul>
+</li>
+<li class="menu-item-has-children menu-services has-child-menu"><a title="Services"><span class="mouseout">Optimize</span><span class="mousein">Services</span></a>
+<ul class="submenu">
+<li class="menu-block">
+<div class="menu-article">
+<div class="article-media">
+<div class="menu-item-image cover-bg" style="background-image: url(&#39;/media/582767/productengineering_thumbnail.png&#39;);"></div>
+</div>
+<div class="article-text">
+<h3>Product Engineering</h3>
+<p>Accelerate innovation, time to market and deliver improved customer experience</p>
+<a href="https://www.cygnet-infotech.com/product-engineering-services" title="Read More" class="read-more">Read More<i class="icon icon-right"></i></a></div>
+</div>
+<div class="menu-article">
+<div class="article-media">
+<div class="menu-item-image cover-bg" style="background-image: url(&#39;/media/582454/microsoft.jpg&#39;);"></div>
+</div>
+<div class="article-text">
+<h3>Microsoft</h3>
+<p>Design, develop &amp; integrate customized solutions using Microsoft technologies</p>
+<a href="https://www.cygnet-infotech.com/microsoft-application-development-services" title="Read More" class="read-more">Read More<i class="icon icon-right"></i></a></div>
+</div>
+</li>
+<li class="menu-item-has-children"><a href="https://www.cygnet-infotech.com/engineering-services" title="Engineering Services"><span>Engineering Services</span></a>
+<ul class="child">
+<li><a href="https://www.cygnet-infotech.com/it-consulting-services" title="Consulting Services"><span>Consulting Services</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/product-engineering-services" title="Product Engineering"><span>Product Engineering</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/devops-services" title="DevOps Services"><span>DevOps</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/application-development-services" title="Application Development"><span>Application Development</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/application-testing-services" title="Application Testing"><span>Application Testing</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/content-management-services" title="Content Management"><span>Content Management Services</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/implementation-services" title="Implementation Services"><span>Implementation Services</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/managed-services" title="Managed Services"><span>Managed Services</span></a></li>
+</ul>
+</li>
+<li class="menu-item-has-children"><a href="https://www.cygnet-infotech.com/technology-services" title="Technology Services"><span>Technology Services</span></a>
+<ul class="child">
+<li><a href="https://www.cygnet-infotech.com/microsoft-application-development-services" title="Microsoft"><span>Microsoft</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/java-application-development-services" title="Java"><span>Java</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/sap-services" title="SAP"><span>SAP</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/mobile-application-development-services" title="Mobile"><span>Mobile</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/php-application-development-services" title="PHP"><span>PHP</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="menu-item-has-children has-child-menu"><a href="https://www.cygnet-infotech.com/products" title="Products"><span class="mouseout">Modernize</span><span class="mousein">Products</span></a>
+<ul class="submenu">
+<li class="menu-block">
+<div class="menu-article">
+<div class="article-media">
+<div class="menu-item-image cover-bg" style="background-image: url(&#39;/media/582465/testing_whiz.jpg&#39;);"></div>
+</div>
+<div class="article-text">
+<h3>TestingWhiz</h3>
+<p>Enhance your test automation capabilities with our codeless test automation tool</p>
+<a href="https://www.cygnet-infotech.com/testing-whiz" title="Read More" class="read-more">Read More<i class="icon icon-right"></i></a></div>
+</div>
+<div class="menu-article">
+<div class="article-media">
+<div class="menu-item-image cover-bg" style="background-image: url(&#39;/media/582976/cygnature_banner_cygnet.jpg&#39;);"></div>
+</div>
+<div class="article-text">
+<h3>Cygnature</h3>
+<p>One solution for all signatures: Electronic. Digital. Biometric.</p>
+<a href="https://www.cygnet-infotech.com/cygnature" title="Read More" class="read-more">Read More<i class="icon icon-right"></i></a></div>
+</div>
+</li>
+<li><a href="https://www.cygnet-infotech.com/r7-vat" title="R7VAT Solution for GCC"><span>R7VAT Solution for GCC</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/testing-whiz" title="TestingWhiz"><span>TestingWhiz</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/cygnature" title="Cygnature"><span>Cygnature</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/epub-hub" title="ePUBHub"><span>ePUBHub</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/e-shabda" title="eShabda"><span>eShabda</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/cygneto-apps" title="CYGNETO"><span>CYGNETO</span></a></li>
+</ul>
+</li>
+<li class="menu-item-has-children has-child-menu"><a title="Resources"><span>Resources</span></a>
+<ul class="submenu">
+<li class="menu-block">
+<div class="menu-article">
+<div class="article-media">
+<div class="menu-item-image cover-bg" style="background-image: url(&#39;/media/583366/rpa-ebook-thumb.jpg&#39;);"></div>
+</div>
+<div class="article-text">
+<h3>RPA eBook</h3>
+<p>A handbook to expand your automation footprint with RPA.</p>
+<a href="https://www.cygnet-infotech.com/ebooks/handbook-to-expand-your-automation-footprint-with-rpa" title="Read More" class="read-more">Read More<i class="icon icon-right"></i></a></div>
+</div>
+<div class="menu-article">
+<div class="article-media">
+<div class="menu-item-image cover-bg" style="background-image: url(&#39;/media/579583/values-speed.jpg&#39;);"></div>
+</div>
+<div class="article-text">
+<h3>Success Stories</h3>
+<p>Explore what we've delivered in the domain of your interest</p>
+<a href="https://www.cygnet-infotech.com/success-stories" title="Read More" class="read-more">Read More<i class="icon icon-right"></i></a></div>
+</div>
+</li>
+<li><a title="News" href="https://www.cygnet-infotech.com/news-and-events"><span>News</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/success-stories" title="Success Stories"><span>Success Stories</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/ebooks" title="eBooks"><span>eBooks</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/blog" title="Blog"><span>Blog</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/whitepapers" title="White Papers"><span>White Papers</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/webinars" title="Webinar"><span>Webinar</span></a></li>
+</ul>
+</li>
+<li class="menu-item-has-children has-child-menu"><a title="About Us"><span>About Us</span></a>
+<ul class="submenu">
+<li class="menu-block">
+<div class="menu-article">
+<div class="article-media">
+<div class="menu-item-image cover-bg" style="background-image: url(&#39;/media/579585/values-team-work.jpg&#39;);"></div>
+</div>
+<div class="article-text">
+<h3>Leadership Team</h3>
+<p>Our leadership team comprises of thought leaders with dynamic business acumen and global exposure.</p>
+<a href="https://www.cygnet-infotech.com/leadership-team" title="Read More" class="read-more">Read More<i class="icon icon-right"></i></a></div>
+</div>
+<div class="menu-article">
+<div class="article-media">
+<div class="menu-item-image cover-bg" style="background-image: url(&#39;/media/581175/stewardship.jpg&#39;);"></div>
+</div>
+<div class="article-text">
+<h3>Company Overview</h3>
+<p>Cygnet Infotech is a global technology solution provider</p>
+<a href="https://www.cygnet-infotech.com/company-overview" title="Read More" class="read-more">Read More<i class="icon icon-right"></i></a></div>
+</div>
+</li>
+<li><a href="https://www.cygnet-infotech.com/company-overview" title="Company overview"><span>Company Overview</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/leadership-team" title="Leadership Team"><span>Leadership Team</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/technology-partners" title="Technology Partners"><span>Technology Partners</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/accreditations" title="Accreditations"><span>Accreditations</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/gdpr-compliance" title="GDPR Compliance"><span>GDPR Compliance</span></a></li>
+<!--            <li><a href="/clients" title="Clients"><span>Clients</span></a></li>-->
+<li><a href="https://www.cygnet-infotech.com/testimonials" title="Testimonials"><span>Testimonials</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/engagement-models" title="Engagement models"><span>Engagement Models</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/sustainability" title="Sustainability"><span>Sustainability</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/contact-us" title="Contact Us"><span>Contact Us</span></a></li>
+<li><a href="https://cygnet.hrinnova.com/" title="My Cygnet" target="_blank"><span>My Cygnet</span></a></li>
+</ul>
+</li>
+<li><a title="Careers" href="https://www.cygnet-infotech.com/job-opportunities"><span>Careers</span></a></li>
+</ul>                </div>
+                <div class="header-right">
+                    <div class="top-btn-block"><a href="https://www.cygnet-infotech.com/contact-us" title="Contact Us" class="button button-red">Contact Us</a></div>
+                    <div class="top-btn-block">
+                        <div class="search-button"><a title="Search" href="javascript:void(0)"> <i class="icon-search-icon"></i> </a></div>
+                    </div>
+                    <!-- ! Navigation Overlay End -->
+                    <div class="clear"></div>
+                </div>
+            </nav>
+            <div class="search-box">
+                <div class="search-button"> <a href="javascript:void(0)" title="Search"> <i class="icon icon-close white-text"></i> </a> </div>
+                <div class="search-bar">
+                    <div class="logo"> <a href="https://www.cygnet-infotech.com/" title="Cygnet Infotech"><img src="./The Difference between STRUTS 2 and SPRING MVC_files/logo.png" alt="Cygnet Infotech" title="Cygnet Infotech"> </a> </div>
+                    <div class="search-field">
+                        <div class="search-wrap-main">
+                            <div class="search-input-box">
+                                <i class="icon-search-icon blue-text"></i>
+                                <form id="search-input-form" method="post" novalidate="novalidate" siq_id="autopick_6320">
+
+                                    <!--<button type="submit" class="search-now-button"><i class=" icon-search-icon blue-text"></i></button>-->
+                                    <input id="search-input" value="" placeholder="Search" size="26" maxlength="50" class="" type="text">
+                                    <div class="search-now-button-box" style="display:none">
+                                        <button type="submit" class="search-now-button"><span class="mobile-text">GO!</span><span class="desktop-text">Search Now!</span><i class="icon-right-arrow-big"></i></button>
+                                    </div>
+                                    <span class="search-wrap"><span class="spacer"></span></span>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="search-close-mobile d-xl-none d-block">
+                            <span><i class="icon icon-close"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="search-result" style="display: none;">
+                    <div class="search-result-wrapper">
+                        <div class="select-search-tab"><a href="javascript:void(0)">ALL</a></div>
+                        <ul class="search-tab-list clearfix">
+                            <li class="search-tab-link search-current-link" data-tab="all">
+                                <a href="javascript:void(0)" title="All">All</a>
+                            </li>
+                            <li class="search-tab-link" data-tab="service">
+                                <a href="javascript:void(0)" title="Services">Services</a>
+                            </li>
+                            <li class="search-tab-link" data-tab="solution">
+                                <a href="javascript:void(0)" title="Solutions">Solutions</a>
+                            </li>
+                            <li class="search-tab-link" data-tab="casestudies">
+                                <a href="javascript:void(0)" title="Case Studies">Case Studies</a>
+                            </li>
+									
+                            <li class="search-tab-link" data-tab="ebooks">
+                                <a href="javascript:void(0)" title="eBooks">ebooks</a>
+                            </li>
+
+                            <li class="search-tab-link" data-tab="whitepaper">
+                                <a href="javascript:void(0)" title="White Papers">White papers</a>
+                            </li>
+                            <li class="search-tab-link" data-tab="webinar">
+                                <a href="javascript:void(0)" title="Webinars">webinars</a>
+                            </li>
+                            <li class="search-tab-link" data-tab="blog">
+                                <a href="javascript:void(0)" title="Blogs">blogs</a>
+                            </li>
+                        </ul>
+                        <div class="search-tab-content"></div>
+
+                    </div>
+                    <div class="menu-overlay-border">
+                        <div class="one"></div>
+                        <div class="two"></div>
+                        <div class="three"></div>
+                        <div class="four"></div>
+                        <div class="five"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ! Navigation Overlay Begin -->
+        <div class="menu-overlay" style="height: 0px;">
+            <div class="menu-overlay-bg"></div>
+            <div class="menu-overlay-border">
+                <div class="one"></div>
+                <div class="two"></div>
+                <div class="three"></div>
+                <div class="four"></div>
+                <div class="five"></div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- ! Header end -->
+
+<!-- this image path copy using JS -->
+
+
+
+
+<!--Internal page banner section starts-->
+
+<!--Internal page banner section ends-->            
+            <div class="main-container">
+                <main class="main">
+                    <div class="blog-wrapper">
+                        
+
+		<section class="blog-section blog-wrapper blog-section-innerpage">
+            
+    <div class="blog-detail-internal">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-9 col-lg-8">
+                    <div class="blog-inner-left-section clearfix">
+                        <div class="blog-main-wrapper-box blog-main-wrapper-box-social">
+                            <div class="blog-detail-inner-wrapper">
+                                <div class="blog-tags">
+                                    
+                                    
+									
+
+                    <a href="https://www.cygnet-infotech.com/blog/tag/Application-Development" title="Application Development">Application Development</a>
+
+
+
+
+
+
+
+                                </div>
+                                <div class="blog-title">
+                                    <h2>STRUTS 2 vs SPRINGMVC: Know the Difference &amp; Choose the Best One Based On Your Requirements</h2>
+                                </div>
+                                <div class="author-share-block d-sm-block mt-4">
+                                    <div class="author-block  d-sm-flex align-items-center">
+                                        <a href="https://www.cygnet-infotech.com/blog/author/Cygnet-Infotech" class="mr-3 d-flex align-items-center mb-2 mb-sm-0">
+                                            <span class="author-img cover-bg mr-2" style="background-image: url(&#39;/media/582932/getbigthumbnail.jpg&#39;);">
+                                            </span>
+                                            <span>Cygnet Infotech</span>
+                                        </a>
+                                        <div class="blog-post-info d-inline-block mr-3">
+                                            <i class="icon icon-calendar-icon"></i> <span>24 April 2014</span>
+                                        </div>
+                                        <div class="blog-post-info d-inline-block">
+                                            <i class="icon icon-clock-with-white-face"></i> <span class="reading-time">4 min</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="blog-share-social">
+                                        <div class="sidebar-social is-affixed" id="sidebar-social" style="height: 230px; position: relative;">
+        
+        <ul class="social clearfix" style="position: fixed; top: 120px; left: 355px; width: 85px;">
+			<li class="linkedin active">
+                <a class="icon-linkedin st_linkedin_custom blog-social-icon blog-ld" href="https://www.cygnet-infotech.com/blog/struts-2-vs-springmvc" title="LinkedIn" st_processed="yes"></a>
+            </li>
+			<li class="twitter active">
+                <a class="icon-twitter st_twitter_custom blog-social-icon blog-tw" href="https://www.cygnet-infotech.com/blog/struts-2-vs-springmvc" title="Tweet" st_processed="yes"></a>
+            </li>
+            <li class="facebook active">
+                <a class="icon-facebook st_facebook_custom blog-social-icon blog-fb" href="https://www.cygnet-infotech.com/blog/struts-2-vs-springmvc" title="Facebook" st_processed="yes"></a>
+            </li>
+            <li class="google active">
+                <a class="icon-email-2 blog-social-icon blog-gp" href="mailto:?subject=Hi,%20Check%20out%20this:&amp;body=STRUTS%202%20vs%20SPRINGMVC:%20Know%20the%20Difference%20&amp;%20Choose%20the%20Best%20One%20Based%20On%20Your%20Requirements%20https://www.cygnet-infotech.com/blog/struts-2-vs-springmvc" rel="nofollow noopener" title="Mail"><i class="fa fa-envelope-o"></i></a>
+            </li>
+            
+            
+        <div class="resize-sensor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; z-index: -1; visibility: hidden;"><div class="resize-sensor-expand" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;"><div style="position: absolute; left: 0px; top: 0px; transition: all 0s ease 0s; width: 100000px; height: 100000px;"></div></div><div class="resize-sensor-shrink" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;"><div style="position: absolute; left: 0; top: 0; transition: 0s; width: 200%; height: 200%"></div></div></div></ul>
+    </div>
+
+                                </div>
+                            </div>
+                            <div class="blog-discriptions">
+                                <div class="blog-discriptions-img cover-bg" style="background-image: url(&#39;/media/580312/struts-2-vs-springmvc.jpg&#39;);">
+                                    <!-- <img src="assets/images/blog-detail-img.jpg"> -->
+                                </div>
+                                <div class="blog-detail-inner-wrapper detail-content">
+                                    
+    <script id="dsq-count-scr" src="./The Difference between STRUTS 2 and SPRING MVC_files/count.js" async=""></script>
+<p>Apache Struts 2 and SpringMVC, these two are the most popular and much talked about Java web frameworks today. Many of you might have worked with both of these frameworks, but which is one is better to use? What are the basic differences between both of these frameworks?<o:p></o:p></p>
+<p>Well, Apache Struts 2 is an elegant and extensible framework that is used for <span class="bold-text">creating enterprise-level</span><span class="apple-converted-space bold-text">&nbsp;</span><span class="bold-text">Java web applications</span>. It is designed to streamline the development cycle, starting from building to deployment and maintenance of the application. In Struts, the object that is taking care of a request and routes it for further processing is known as “Action”.</p>
+<p>On the other hand, Spring MVC is a part of a huge<span class="apple-converted-space">&nbsp;</span>Spring framework<span class="apple-converted-space">&nbsp;</span>stack containing other Spring modules. This means that it doesn’t allow developers to run it without Spring, but the developers can run the Spring Core without Spring MVC. The Spring MVC (Model View Controller) is designed around a DispatcherServlet, which dispatches the requests to handler with configurable handler mappings, view resolution and theme resolution.<o:p></o:p></p>
+<p>While the objects responsible for handling requests and routing for processing in Struts called an Action, the same object is referred as Controller in Spring Web MVC framework. This is one of the very first differences between Spring MVC and Struts2. Struts 2 Actions are initiated every time when a request is made, whereas in Spring MVC the Controllers are created only once, stored in memory and shared among all the requests. So, Spring Web MVC framework is far efficient to handle the requests than Struts 2.</p>
+<p class="content-h4-head image_center">GRAILS Accelerating J2EE Application Development Whitepaper:</p>
+<p class="image_center"><a class="btn common-blue-border-btn common-transition" title="GRAILS Accelerating J2EE Application Development" href="https://www.cygnet-infotech.com/whitepaper-grails">Download Whitepaper</a></p>
+<p>If we talk about the features, Struts 2 and Spring MVC framework caters different level of business requirements. Let’s take a look at features offered by both of these frameworks.</p>
+<p></p>
+<h3 class="content-h2-head">Struts 2 features</h3>
+<ul class="content-image-list">
+<li>Configurable MVC components, which are stored in struts.xml file. If you want to change anything, you can easily do it in the xml file.</li>
+<li>POJO based actions. Struts 2 action class is Plain Old Java Object, which prevents developers to implement any interface or inherit any class.</li>
+<li>Support for Ajax, which is used to make asynchronous request. It only sends needed field data rather than providing unnecessary information, which at the end improves the performance.</li>
+<li>Support for integration with Hibernate, Spring, Tiles and so on.</li>
+<li>Whether you want to use JSP, freemarker, velocity or anything else, you can use different kinds of result types in Struts 2.</li>
+<li>You can also leverage from various tags like UI tags, Data tags, control tags and more.</li>
+<li>Brings ample support for theme and template. Struts 2 supports three different kinds of themes including xhtml, simple and css_xhtml.</li>
+</ul>
+<p>On the other hand, Spring MVC framework brings totally different set of features.</p>
+<p></p>
+<h3 class="content-h2-head">Spring MVC features</h3>
+<ul class="content-image-list">
+<li>Neat and clear separation of roles. Whether it is controller, command object, form object or anything else, it can be easily fulfilled with the help of a specialized object.</li>
+<li>Leverage from the adaptability, non-intrusiveness and flexibility with the help of controller method signature.</li>
+<li>Now use existing business objects as command or form object rather than duplicating them to extend the specific framework base class.</li>
+<li>Customizable binding and validation will enable manual parsing and conversion to business objects rather than using conventional string.</li>
+<li>Flexible mode transfer enables easy integration with the latest technology.</li>
+<li>Customizable locale and theme resolution, support for JSPs with or without Spring tag library for JSTL and so on.</li>
+<li>Leverage from the simple, but powerful JSP tag library known as Spring tag library. It provides support for various features like data binding and themes.</li>
+</ul>
+<p>Of course, Struts is one of the most powerful Java application frameworks that can be used in a variety of Java applications. It brings a gamut of services that includes enterprise level services to the POJO. On the other hand, Spring utilizes the dependency injection to achieve the simplification and enhance the testability.</p>
+<p>Both of these frameworks have their own set of pros and cons associated with it.</p>
+<p class="content-h2-head">Struts framework brings a whole host of benefits including:</p>
+<ul class="content-image-list">
+<li>Simplified design</li>
+<li>Ease of using plug-in</li>
+<li>Simplified ActionForm &amp; annotations</li>
+<li>Far better tag features</li>
+<li>OGNL integration</li>
+<li>AJAX Support</li>
+</ul>
+<ul class="content-image-list=">
+<li>Multiple view options and more</li>
+</ul>
+<p>However, the only drawback with Struts 2 framework is that it has compatibility issues and poor documentation.</p>
+<p class="content-h2-head">On the other hand, Spring MVC provides benefits like:</p>
+<ul class="content-image-list">
+<li>Clear separation between controllers, JavaBeans models and views that is not possible in Struts.</li>
+<li>Spring MVC is more flexible as compared to the Struts.</li>
+<li>Spring can be used with different platforms like Velocity, XLST or various other view technologies.</li>
+<li>There is nothing like ActionForm in Spring, but binds directly to the domain objects.</li>
+<li>Code is also more testable as compared to the Struts.</li>
+<li>It is a complete J2EE framework comprising of seven independent layers, which simplifies integration with other frameworks.</li>
+<li>It doesn’t provide a framework for implementing the business domain and logic, which helps developers create a controller and a view for the application.</li>
+</ul>
+<p>However, like any other technologies or platforms, Spring MVC too suffers from several criticisms related to the complexity of the Spring framework.</p>
+<p></p>
+<h3 class="content-h2-head">Final Verdict</h3>
+<p>Either framework is a great choice. However, if you’re looking for the stable framework, Struts 2 is the right choice for you. On the other hand, if you’re looking for something robust, SpringMVC is perfect. Ensure that you review your exact requirements before choosing the framework!&nbsp;</p>
+
+
+
+                                </div>
+                            </div>
+                            <div class="blog-author-info-main-block">
+                                <div class="blog-detail-inner-wrapper">
+                                    <div class="author-info-block d-md-flex">
+                                        <div class="author-img cover-bg mb-2 mb-md-0" style="background-image: url(&#39;/media/582932/getbigthumbnail.jpg&#39;);"></div>
+                                        <div class="author-info ml-sm-3">
+                                            <h3>Cygnet Infotech</h3>
+                                            <p>Cygnet Infotech is a CMMi level 3 and is ISO 27001:2013 and ISO 9001:2008 certified, 18 year old global technology provider enabling ISVs &amp; enterprises through emerging technology, software engineering, technology consulting, SAP Implementation, advisory &amp; maintenance services. It’s proven 18-year track record boasts of successfully delivered 1400+ valuable software solutions to its diverse clientele across the globe using a global delivery model.</p>
+                                            <a href="https://www.cygnet-infotech.com/blog/author/Cygnet-Infotech" title="View all posts" class="button"> View All Posts</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+									<div class="blog-detail-inner-wrapper">			
+							               <div class="blog-comment">
+                        <!-- start writing XSLT-->
+                        <div id="disqus_thread"><iframe id="dsq-app6726" name="dsq-app6726" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./The Difference between STRUTS 2 and SPRING MVC_files/saved_resource.html" style="width: 1px !important; min-width: 100% !important; border: none !important; overflow: hidden !important; height: 857px !important;" horizontalscrolling="no" verticalscrolling="no"></iframe></div>
+                        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+
+        var disqus_shortname = 'cygnet-infotech'; // required: replace example with your forum shortname
+
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+                        </script>
+
+                        
+                    </div>	
+							</div>
+                        </div>
+                    </div>
+                <div class="resize-sensor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; z-index: -1; visibility: hidden;"><div class="resize-sensor-expand" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;"><div style="position: absolute; left: 0px; top: 0px; transition: all 0s ease 0s; width: 100000px; height: 100000px;"></div></div><div class="resize-sensor-shrink" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;"><div style="position: absolute; left: 0; top: 0; transition: 0s; width: 200%; height: 200%"></div></div></div></div>
+                <div class="col-xl-3 col-lg-4">
+                    <div class="sidebar-wrapper-inner">
+                        
+                        <div id="sidebar-inner" class="sidebar-inner" style=""><div class="inner-wrapper-sticky"><div class="inner-wrapper-sticky" style="position: relative;"><div class="inner-wrapper-sticky" style="position: relative;">
+                            <div class="categorise-detail">
+
+
+
+<div class="sidebar-title">
+    <h5>All Categories</h5>
+</div>
+
+<ul class="categories-list">
+   
+                    <li>
+                        <a href="https://www.cygnet-infotech.com/blog/tag/Artificial-Intelligence" title="Artificial Intelligence">
+                          
+                            Artificial Intelligence
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cygnet-infotech.com/blog/tag/AR-and-VR" title="AR and VR">
+                          
+                            AR and VR
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cygnet-infotech.com/blog/tag/Application-Development" title="Application Development">
+                          
+                            Application Development
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cygnet-infotech.com/blog/tag/Big-Data-and-Analytics" title="Big Data and Analytics">
+                          
+                            Big Data and Analytics
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cygnet-infotech.com/blog/tag/Blockchain" title="Blockchain">
+                          
+                            Blockchain
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cygnet-infotech.com/blog/tag/Cloud" title="Cloud">
+                          
+                            Cloud
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cygnet-infotech.com/blog/tag/CMS" title="CMS">
+                          
+                            CMS
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cygnet-infotech.com/blog/tag/Consulting" title="Consulting">
+                          
+                            Consulting
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cygnet-infotech.com/blog/tag/Internet-of-Things" title="Internet of Things">
+                          
+                            Internet of Things
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cygnet-infotech.com/blog/tag/Product-Engineering" title="Product Engineering">
+                          
+                            Product Engineering
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cygnet-infotech.com/blog/tag/Tax-Technology" title="Tax Technology">
+                          
+                            Tax Technology
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cygnet-infotech.com/blog/tag/Testing" title="Testing">
+                          
+                            Testing
+                        </a>
+                    </li>
+
+</ul><div class="sidebar-form">
+    <div class="sidebar-title">
+        <h5>Stay tuned</h5>
+    </div>
+<form action="https://www.cygnet-infotech.com/blog/struts-2-vs-springmvc" enctype="multipart/form-data" id="frmSubscribe" method="post" novalidate="novalidate" siq_id="autopick_6276">        <div class="form-group">
+            <label class="form-label">Name*</label>
+            <input class="form-input" data-val="true" data-val-regex="Enter valid Name" data-val-regex-pattern="^[a-zA-Z ]*$" data-val-required="Enter Name" id="subscriberName" maxlength="50" name="Name" type="text" value="">
+            <span class="field-validation-valid" data-valmsg-for="Name" data-valmsg-replace="true"></span>
+        </div>
+        <input type="hidden" class="hdn-page-cpt" data-cptcontent="">
+        <div class="form-group">
+            <label class="form-label">Company Email*</label>
+            <input class="form-input" data-val="true" data-val-email="Enter Valid Email Address" data-val-required="Enter Email" id="subscriberEmail" maxlength="50" name="Email" type="text" value="">
+            <span class="field-validation-valid" data-valmsg-for="Email" data-valmsg-replace="true"></span>
+        </div>
+        <div class="form-group approve-box">
+            <div class="redio-inline">
+                <label class="radio-container">
+                    <input class="subscribeConsent" id="Consent" name="Consent" type="checkbox" value="true"><input name="Consent" type="hidden" value="false">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <span id="lblPurpose" class="gdpr-purpose">
+                Cygnet may keep me informed via email or phone about its Products and Services.
+            </span>
+            <label>
+                Read our <a href="https://www.cygnet-infotech.com/privacy-policy" target="_blank">privacy policy</a> for details on how your information may be used.
+            </label>
+            <input type="hidden" id="Purpose" name="Purpose" value="Cygnet may keep me informed via email or phone about its Products and Services.">
+        </div>
+<input data-val="true" data-val-number="The field SubscribeFlag must be a number." data-val-required="The SubscribeFlag field is required." id="SubscribeFlag" name="SubscribeFlag" type="hidden" value="2">        <button id="btnSubscribeSubmit" type="submit" value="Submit" class="button">Subscribe <i class="icon icon-right"></i></button>
+<input name="ufprt" type="hidden" value="91E790F34E2E1DB2270FEB26D5D6E39B2C239FA0BF29CDF6C8BACD6B4CC5EE27D9DB14772B4F4DB7114DCCE13F86D8ACA2147253D0FEB7D6E5313CDC5AB70A0A2E01DC793CCDBC1BF2A5AA380026FF4455A2A4BC69A4CA067A2474E26A295794095366FCA14C4E458A3311CB8542E7F0C9DA4417162346DE292CCE5AAD7B022EA6860348933C539663736E1A1CC2F61E"></form></div>                                </div>
+                            <div class="resize-sensor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; z-index: -1; visibility: hidden;"><div class="resize-sensor-expand" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;"><div style="position: absolute; left: 0px; top: 0px; transition: all 0s ease 0s; width: 100000px; height: 100000px;"></div></div><div class="resize-sensor-shrink" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;"><div style="position: absolute; left: 0; top: 0; transition: 0s; width: 200%; height: 200%"></div></div></div></div><div class="resize-sensor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; z-index: -1; visibility: hidden;"><div class="resize-sensor-expand" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;"><div style="position: absolute; left: 0px; top: 0px; transition: all 0s ease 0s; width: 100000px; height: 100000px;"></div></div><div class="resize-sensor-shrink" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;"><div style="position: absolute; left: 0; top: 0; transition: 0s; width: 200%; height: 200%"></div></div></div></div><div class="resize-sensor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; z-index: -1; visibility: hidden;"><div class="resize-sensor-expand" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;"><div style="position: absolute; left: 0px; top: 0px; transition: all 0s ease 0s; width: 100000px; height: 100000px;"></div></div><div class="resize-sensor-shrink" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;"><div style="position: absolute; left: 0; top: 0; transition: 0s; width: 200%; height: 200%"></div></div></div></div></div>
+                    </div>
+
+                <div class="resize-sensor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; z-index: -1; visibility: hidden;"><div class="resize-sensor-expand" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;"><div style="position: absolute; left: 0px; top: 0px; transition: all 0s ease 0s; width: 100000px; height: 100000px;"></div></div><div class="resize-sensor-shrink" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;"><div style="position: absolute; left: 0; top: 0; transition: 0s; width: 200%; height: 200%"></div></div></div></div>
+            </div>
+        </div>
+    </div>
+
+	<!-- Modal end -->
+
+    <div class="thankyou-popup modal fade" id="modal-Subscribe" style="padding-right: 17px;">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-body">
+                <div class="modal-content model-content-detail">
+                    <div class="close" data-dismiss="modal"><i class="icon icon-close"></i></div>
+                    <div class="thankyou-box">
+                        <h1>Thank You!!</h1>
+<h2>We appreciate your interest.</h2>
+<p>Keep watching your email for the latest technology research and updates.</p>
+<p><a title="Home" href="https://www.cygnet-infotech.com/" class="home-link"><i class="icon icon-home"></i></a><a title="GDPR Compliance" href="https://www.cygnet-infotech.com/gdpr-compliance" class="button error-btn">GDPR Compliance <i class="icon icon-right"></i></a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+    	</section>
+
+                    </div>
+                    <section class="related-blocks-sections internal-container-content">
+                        <div class="container">
+                            <div class="releted-blogs-title text-md-left text-center">
+                                <h3>Related Blogs</h3>
+                            </div>
+                            <div class="row text-center">
+                                            <div class="col-md-4">
+                                                <div class="related-block-box cover-bg" style="background-image: url(&quot;/media/583499/drive-incremental-value-faster-from-your-sap-erp-solutions-cover.jpg&quot;); height: 300px;">
+                                                    <div class="event-card-block overlay-blue">
+                                                        <div class="card-block-wrap wow fadeIn" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeIn;">
+                                                            <div class="card-title white-text">
+                                                                <h4>How to drive incremental value from your SAP ERP solutions?</h4>
+                                                            </div>
+                                                            <a title="Read More" href="https://www.cygnet-infotech.com/blog/how-to-drive-incremental-value-from-your-sap-erp-solutions" class="read-more">Read More<i class="icon icon-right"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>																				
+                                            <div class="col-md-4">
+                                                <div class="related-block-box cover-bg" style="background-image: url(&quot;/media/583437/harness-the-power-of-dynamics-365-crm-suite-for-superior-customer-relations-cover.jpg&quot;); height: 300px;">
+                                                    <div class="event-card-block overlay-blue">
+                                                        <div class="card-block-wrap wow fadeIn" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeIn;">
+                                                            <div class="card-title white-text">
+                                                                <h4>Unshackling Superior Customer Relationship Management with Dynamics 365</h4>
+                                                            </div>
+                                                            <a title="Read More" href="https://www.cygnet-infotech.com/blog/superior-customer-relationship-management-with-dynamics-365" class="read-more">Read More<i class="icon icon-right"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>																				
+                                            <div class="col-md-4">
+                                                <div class="related-block-box cover-bg" style="background-image: url(&quot;/media/583420/sharepoint-understanding-the-top-choice-cover.jpg&quot;); height: 300px;">
+                                                    <div class="event-card-block overlay-blue">
+                                                        <div class="card-block-wrap wow fadeIn" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeIn;">
+                                                            <div class="card-title white-text">
+                                                                <h4>SharePoint: Understanding the Top-choice for ECM in Scalable Enterprises</h4>
+                                                            </div>
+                                                            <a title="Read More" href="https://www.cygnet-infotech.com/blog/sharepoint-understanding-top-choice-for-ecm-scalable-enterprises" class="read-more">Read More<i class="icon icon-right"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>																				
+                               
+                            </div>
+                        </div>
+                    </section>
+                 
+
+                </main>
+                <section class="get-started-section wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
+        <div class="section-form-bg"></div>
+        <div class="chat-icon"><i class="icon icon-forum"></i></div>
+        <div class="section-title">
+            <h2>Get started with Cygnet</h2>
+        </div>
+        <div class="form-panel get-started-form">
+<form action="https://www.cygnet-infotech.com/blog/struts-2-vs-springmvc" enctype="multipart/form-data" id="frmGetInTouch" method="post" novalidate="novalidate" siq_id="autopick_7098">        <div class="form-group clearfix">
+			<div class="two-column">
+				<label class="form-label">Name*</label>
+				<input autocomplete="off" class="form-input" data-val="true" data-val-regex="Enter valid Name" data-val-regex-pattern="^[a-zA-Z ]*$" data-val-required="Enter Name" id="get-name" maxlength="50" name="Name" type="text" value="">
+				<span class="field-validation-valid" data-valmsg-for="Name" data-valmsg-replace="true"></span>
+			</div>
+			<input type="hidden" class="hdn-page-cpt" data-cptcontent="gi9KwkbaVNdT4HFyPhm1W">
+			<div class="two-column">
+				<label class="form-label">Company Email*</label>
+				<input autocomplete="off" class="form-input" data-val="true" data-val-email="Enter Valid Email Address" data-val-required="Enter Email" id="get-mail" maxlength="50" name="Email" type="text" value="">
+				<span class="field-validation-valid" data-valmsg-for="Email" data-valmsg-replace="true"></span>
+			</div>
+		</div>
+        <div class="form-group clearfix">
+            <div class="two-column">
+				<label class="form-label">Phone*</label>
+                <input autocomplete="off" class="form-input clsphoneNo" data-val="true" data-val-regex="Enter valid phone number" data-val-regex-pattern="^\+?[0-9-]{10,20}$" data-val-required="Enter Phone No" id="get-phone" maxlength="20" name="Phone" type="tel" value="">
+				<span class="field-validation-valid" data-valmsg-for="Phone" data-valmsg-replace="true"></span>
+            </div>
+            <div class="two-column">
+                <div class="form-input country-select-box">
+                    <select id="Country" name="Country" class="country-select select2-hidden-accessible" data-select2-id="Country" tabindex="-1" aria-hidden="true">
+                        <option value="" data-select2-id="2"> Country </option>
+                        <option>Afghanistan</option>
+                        <option>Albania</option>
+                        <option>Algeria</option>
+                        <option>American Samoa</option>
+                        <option>Andorra</option>
+                        <option>Angola</option>
+                        <option>Anguilla</option>
+                        <option>Antarctica</option>
+                        <option>Antigua And Barbuda</option>
+                        <option>Argentina</option>
+                        <option>Armenia</option>
+                        <option>Aruba</option>
+                        <option>Australia</option>
+                        <option>Austria</option>
+                        <option>Azerbaijan</option>
+                        <option>Bahamas</option>
+                        <option>Bahrain</option>
+                        <option>Bangladesh</option>
+                        <option>Barbados</option>
+                        <option>Belarus</option>
+                        <option>Belgium</option>
+                        <option>Belize</option>
+                        <option>Benin</option>
+                        <option>Bermuda</option>
+                        <option>Bhutan</option>
+                        <option>Bolivia</option>
+                        <option>Bosnia And Herzegowina</option>
+                        <option>Botswana</option>
+                        <option>Bouvet Island</option>
+                        <option>Brazil</option>
+                        <option>British Indian Ocean Territory</option>
+                        <option>Brunei Darussalam</option>
+                        <option>Bulgaria</option>
+                        <option>Burkina Faso</option>
+                        <option>Burundi</option>
+                        <option>Cambodia</option>
+                        <option>Cameroon</option>
+                        <option>Canada</option>
+                        <option>Cape Verde</option>
+                        <option>Cayman Islands</option>
+                        <option>Central African Republic</option>
+                        <option>Chad</option>
+                        <option>Chile</option>
+                        <option>China</option>
+                        <option>Christmas Island</option>
+                        <option>Cocos (Keeling) Islands</option>
+                        <option>Colombia</option>
+                        <option>Comoros</option>
+                        <option>Congo</option>
+                        <option>Cook Islands</option>
+                        <option>Costa Rica</option>
+                        <option>Cote D'Ivoire</option>
+                        <option>Croatia (Local Name: Hrvatska)</option>
+                        <option>Cuba</option>
+                        <option>Cyprus</option>
+                        <option>Czech Republic</option>
+                        <option>Denmark</option>
+                        <option>Djibouti</option>
+                        <option>Dominica</option>
+                        <option>Dominican Republic</option>
+                        <option>East Timor</option>
+                        <option>Ecuador</option>
+                        <option>Egypt</option>
+                        <option>El Salvador</option>
+                        <option>Equatorial Guinea</option>
+                        <option>Eritrea</option>
+                        <option>Estonia</option>
+                        <option>Ethiopia</option>
+                        <option>Falkland Islands (Malvinas)</option>
+                        <option>Faroe Islands</option>
+                        <option>Fiji</option>
+                        <option>Finland</option>
+                        <option>France</option>
+                        <option>French Guiana</option>
+                        <option>French Polynesia</option>
+                        <option>French Southern Territories</option>
+                        <option>Gabon</option>
+                        <option>Gambia</option>
+                        <option>Georgia</option>
+                        <option>Germany</option>
+                        <option>Ghana</option>
+                        <option>Gibraltar</option>
+                        <option>Greece</option>
+                        <option>Greenland</option>
+                        <option>Grenada</option>
+                        <option>Guadeloupe</option>
+                        <option>Guam</option>
+                        <option>Guatemala</option>
+                        <option>Guinea</option>
+                        <option>Guinea-Bissau</option>
+                        <option>Guyana</option>
+                        <option>Haiti</option>
+                        <option>Heard And Mc Donald Islands</option>
+                        <option>Holy See (Vatican City State)</option>
+                        <option>Honduras</option>
+                        <option>Hong Kong</option>
+                        <option>Hungary</option>
+                        <option>Iceland</option>
+                        <option>India</option>
+                        <option>Indonesia</option>
+                        <option>Iran (Islamic Republic Of)</option>
+                        <option>Iraq</option>
+                        <option>Ireland</option>
+                        <option>Israel</option>
+                        <option>Italy</option>
+                        <option>Jamaica</option>
+                        <option>Japan</option>
+                        <option>Jordan</option>
+                        <option>Kazakhstan</option>
+                        <option>Kenya</option>
+                        <option>Kiribati</option>
+                        <option>Korea, Dem People'S Republic</option>
+                        <option>Korea, Republic Of</option>
+                        <option>Kuwait</option>
+                        <option>Kyrgyzstan</option>
+                        <option>Lao People'S Dem Republic</option>
+                        <option>Latvia</option>
+                        <option>Lebanon</option>
+                        <option>Lesotho</option>
+                        <option>Liberia</option>
+                        <option>Libyan Arab Jamahiriya</option>
+                        <option>Liechtenstein</option>
+                        <option>Lithuania</option>
+                        <option>Luxembourg</option>
+                        <option>Macau</option>
+                        <option>Macedonia</option>
+                        <option>Madagascar</option>
+                        <option>Malawi</option>
+                        <option>Malaysia</option>
+                        <option>Maldives</option>
+                        <option>Mali</option>
+                        <option>Malta</option>
+                        <option>Marshall Islands</option>
+                        <option>Martinique</option>
+                        <option>Mauritania</option>
+                        <option>Mauritius</option>
+                        <option>Mayotte</option>
+                        <option>Mexico</option>
+                        <option>Micronesia, Federated States</option>
+                        <option>Moldova, Republic Of</option>
+                        <option>Monaco</option>
+                        <option>Mongolia</option>
+                        <option>Montserrat</option>
+                        <option>Morocco</option>
+                        <option>Mozambique</option>
+                        <option>Myanmar</option>
+                        <option>Namibia</option>
+                        <option>Nauru</option>
+                        <option>Nepal</option>
+                        <option>Netherlands</option>
+                        <option>Netherlands Ant Illes</option>
+                        <option>New Caledonia</option>
+                        <option>New Zealand</option>
+                        <option>Nicaragua</option>
+                        <option>Niger</option>
+                        <option>Nigeria</option>
+                        <option>Niue</option>
+                        <option>Norfolk Island</option>
+                        <option>Northern Mariana Islands</option>
+                        <option>Norway</option>
+                        <option>Oman</option>
+                        <option>Pakistan</option>
+                        <option>Palau</option>
+                        <option>Panama</option>
+                        <option>Papua New Guinea</option>
+                        <option>Paraguay</option>
+                        <option>Peru</option>
+                        <option>Philippines</option>
+                        <option>Pitcairn</option>
+                        <option>Poland</option>
+                        <option>Portugal</option>
+                        <option>Puerto Rico</option>
+                        <option>Qatar</option>
+                        <option>Reunion</option>
+                        <option>Romania</option>
+                        <option>Russian Federation</option>
+                        <option>Rwanda</option>
+                        <option>Saint K Itts And Nevis</option>
+                        <option>Saint Lucia</option>
+                        <option>Saint Vincent, The Grenadines</option>
+                        <option>Samoa</option>
+                        <option>San Marino</option>
+                        <option>Sao Tome And Principe</option>
+                        <option>Saudi Arabia</option>
+                        <option>Senegal</option>
+                        <option>Seychelles</option>
+                        <option>Sierra Leone</option>
+                        <option>Singapore</option>
+                        <option>Slovakia (Slovak Republic)</option>
+                        <option>Slovenia</option>
+                        <option>Solomon Islands</option>
+                        <option>Somalia</option>
+                        <option>South Africa</option>
+                        <option>South Georgia , S Sandwich Is.</option>
+                        <option>Spain</option>
+                        <option>Sri Lanka</option>
+                        <option>St. Helena</option>
+                        <option>St. Pierre And Miquelon</option>
+                        <option>Sudan</option>
+                        <option>Suriname</option>
+                        <option>Svalbard, Jan Mayen Islands</option>
+                        <option>Sw Aziland</option>
+                        <option>Sweden</option>
+                        <option>Switzerland</option>
+                        <option>Syrian Arab Republic</option>
+                        <option>Taiwan</option>
+                        <option>Tajikistan</option>
+                        <option>Tanzania, United Republic Of</option>
+                        <option>Thailand</option>
+                        <option>Togo</option>
+                        <option>Tokelau</option>
+                        <option>Tonga</option>
+                        <option>Trinidad And Tobago</option>
+                        <option>Tunisia</option>
+                        <option>Turkey</option>
+                        <option>Turkmenistan</option>
+                        <option>Turks And Caicos Islands</option>
+                        <option>Tuvalu</option>
+                        <option>Uganda</option>
+                        <option>Ukraine</option>
+                        <option>United Arab Emirates</option>
+                        <option>United Kingdom</option>
+                        <option>United States</option>
+                        <option>United States Minor Is.</option>
+                        <option>Uruguay</option>
+                        <option>Uzbekistan</option>
+                        <option>Vanuatu</option>
+                        <option>Venezuela</option>
+                        <option>Viet Nam</option>
+                        <option>Virgin Islands (British)</option>
+                        <option>Virgin Islands (U.S.)</option>
+                        <option>Wallis And Futuna Islands</option>
+                        <option>Western Sahara</option>
+                        <option>Yemen</option>
+                        <option>Yugoslavia</option>
+                        <option>Zaire</option>
+                        <option>Zambia</option>
+                        <option>Zimbabwe</option>
+                    </select><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="1" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-Country-container"><span class="select2-selection__rendered" id="select2-Country-container" role="textbox" aria-readonly="true" title=" Country "> Country </span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Company</label>
+            <input autocomplete="off" class="form-input" id="get-company" maxlength="100" name="Company" type="text" value="">
+            <span class="field-validation-valid" data-valmsg-for="Company" data-valmsg-replace="true"></span>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Message* (Max 800 characters)</label>
+<textarea autocomplete="off" class="form-input" cols="20" data-val="true" data-val-required="Enter Message" id="get-message" maxlength="800" name="Message" rows="2"></textarea>            <span class="field-validation-valid" data-valmsg-for="Message" data-valmsg-replace="true"></span>
+        </div>
+        <div class="form-group approve-box">
+            <div class="redio-inline">
+                <label class="radio-container">
+                    <input class="GITConsent" id="Consent" name="Consent" type="checkbox" value="true"><input name="Consent" type="hidden" value="false">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <span id="lblPurpose" class="gdpr-purpose">
+                Cygnet may keep me informed via email or phone about its Products and Services.
+            </span>
+
+            <label>
+                Read our <a href="https://www.cygnet-infotech.com/privacy-policy" target="_blank">privacy policy</a> for details on how your information may be used.
+            </label>
+            <input type="hidden" id="Purpose" name="Purpose" value="Cygnet may keep me informed via email or phone about its Products and Services.">
+        </div>
+<input id="DownloadLink" name="DownloadLink" type="hidden" value="/media/583029/cygnet_infotech_corporate_profile.pdf">        <div class="form-group clearfix">
+            <div class="two-column">
+                <div class="captcha-block clearfix">
+                    <div class="captcha-no-block" id="mainCaptcha"><img class="canvas-element" src="data:image/png;base64,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"></div>
+                    <input type="button" value="Refresh" title="" class="captcha-refresh-btn btnRefreshCaptcha">
+                </div>
+            </div>
+            <div class="two-column">
+				<label class="form-label cptlabel">Captcha Code*</label>
+                <input autocomplete="off" class="form-input" id="GITCaptchaCode" name="CaptchaCode" type="text" value="">
+				
+                <span class="cpt-error-msg field-validation-error"></span>
+            </div>
+        </div>
+        <div class="form-button-box text-center">
+            <button id="btnGetInTouchSubmit" type="submit" value="Submit" class="button" title="Submit">Submit <i class="icon icon-right"></i></button>
+        </div>
+<input name="ufprt" type="hidden" value="13313D90B71C73490ED2E8B77224A726012702B4E69C8A30C2364E18EB00909F82CB4ACDE2CC3BDE8114C65A6F7325510DC5DBA5EDDF37397A827D68F4437DC7F731083C4FEBDEA06247864A90E7522421FE27B875A8DCDF506D70DCE5FA9711479C2E68304C765AE03179F6CBACAF7FE556CEAE35FCAA378BD3095094D262B78DEF522C2CB60872EA95EF4A40034C07"></form>
+</div>
+<!-- Get in touch ends -->
+        <div class="form-panel-toggle"> <a href="javascript:void(0)" title="Click for Inquiry" class=""><i class="icon icon-down panel-btn"></i></a> </div>
+    </section>
+<div class="clearfix"></div>
+<!-- ! footer Begin -->
+<footer class="footer-section internal-container-content wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
+  
+            <div class="container-fluid">
+<div class="footer-section-image">
+<div class="footer-section-inner">
+<div class="cygnet-footer-logo d-block d-md-none"><a href="https://www.cygnet-infotech.com/" title="Cygnet Infotech"><img src="./The Difference between STRUTS 2 and SPRING MVC_files/footer-logo.png" alt="Cygnetinfotech"></a></div>
+<div class="footer-content">
+<div class="row no-gutters">
+<div class="col-lg-5 col-md-6 d-sm-none d-md-block d-none">
+<div class="footer-links-wrapper">
+<div class="row no-gutters">
+<div class="col-lg-8">
+<div class="footer-links" style="height: 202px;">
+<div class="footer-title">
+<p>Solutions</p>
+</div>
+<div class="links">
+<ul>
+<li><a href="https://www.cygnet-infotech.com/blockchain-solutions" title="Blockchain">Blockchain</a></li>
+<li><a href="https://www.cygnet-infotech.com/artificial-intelligence-solutions" title="Artificial Intelligence">Artificial Intelligence</a></li>
+<li><a href="https://www.cygnet-infotech.com/robotic-process-automation-solutions" title="Robotic Process Automation"><span>RPA</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/cloud-solutions" title="Cloud">Cloud</a></li>
+<li><a href="https://www.cygnet-infotech.com/iot-solutions" title="Internet of Things">Internet of Things</a></li>
+<li><a href="https://www.cygnet-infotech.com/tax-technology-solutions" title="GST and VAT Solutions">GST and VAT Solutions</a></li>
+<li><a href="https://www.cygnet-infotech.com/ar-vr-solutions" title="AR / VR">AR / VR</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-links" style="height: 202px;">
+<div class="footer-title">
+<p>Products</p>
+</div>
+<div class="links">
+<ul>
+<li><a href="https://www.cygnet-infotech.com/r7-vat" title="R7VAT Solution for GCC"><span>R7VAT Solution for GCC</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/testing-whiz" title="TestingWhiz"><span>TestingWhiz</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/cygnature" title="Cygnature"><span>Cygnature</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/epub-hub" title="ePUBHub"><span>ePUBHub</span></a></li>
+<li><a href="https://www.cygnet-infotech.com/e-shabda" title="eShabda">eShabda</a></li>
+<li><a href="https://www.cygnet-infotech.com/cygneto-apps" title="CYGNETO">CYGNETO</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-links" style="height: 178px;">
+<div class="footer-title">
+<p>Services</p>
+</div>
+<div class="links">
+<ul>
+<li><a href="https://www.cygnet-infotech.com/engineering-services" title="Engineering Services">Engineering Services</a></li>
+<li><a href="https://www.cygnet-infotech.com/technology-services" title="Technology Services">Technology Services</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-links" style="height: 178px;">
+<div class="footer-title">
+<p>Resources</p>
+</div>
+<div class="links">
+<ul>
+<li><a href="https://www.cygnet-infotech.com/news-and-events" title="News">News</a></li>
+<li><a href="https://www.cygnet-infotech.com/success-stories" title="Success Stories">Success Stories</a></li>
+<li><a href="https://www.cygnet-infotech.com/ebooks" title="eBooks">eBooks</a></li>
+<li><a href="https://www.cygnet-infotech.com/blog" title="Blog">Blog</a></li>
+<li><a href="https://www.cygnet-infotech.com/whitepapers" title="White Papers">White Papers</a></li>
+<li><a href="https://www.cygnet-infotech.com/webinars" title="Webinar">Webinar</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-lg-4">
+<div class="footer-links about-footer-links" style="height: 298px;">
+<div class="footer-title">
+<p>About Us</p>
+</div>
+<div class="links about-links">
+<ul>
+<li><a href="https://www.cygnet-infotech.com/company-overview" title="Company Overview">Company Overview</a></li>
+<li><a href="https://www.cygnet-infotech.com/leadership-team" title="Leadership Team">Leadership Team</a></li>
+<li><a href="https://www.cygnet-infotech.com/technology-partners" title="Technology Partners">Technology Partners</a></li>
+<li><a href="https://www.cygnet-infotech.com/accreditations" title="Accreditations">Accreditations</a></li>
+<li><a href="https://www.cygnet-infotech.com/gdpr-compliance" title="GDPR Compliance">GDPR Compliance</a></li>
+<li><a href="https://www.cygnet-infotech.com/testimonials" title="Testimonials">Testimonials</a></li>
+</ul>
+<ul>
+<li><a href="https://www.cygnet-infotech.com/engagement-models" title="Engagement Models">Engagement Models</a></li>
+<li><a href="https://www.cygnet-infotech.com/sustainability" title="Sustainability">Sustainability</a></li>
+<li><a href="https://www.cygnet-infotech.com/job-opportunities" title="Careers">Careers</a></li>
+<li><a href="https://www.cygnet-infotech.com/contact-us" title="Contact Us">Contact Us</a></li>
+<li><a href="https://cygnet.hrinnova.com/" title="My Cygnet" target="_blank">My Cygnet</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-lg-7 col-md-6">
+<div class="office-address">
+<div class="row no-gutters">
+<div class="col-12 d-block d-sm-block d-md-none">
+<div class="footer-links" style="height: 0px;">
+<div class="links">
+<ul>
+<li><a href="https://www.cygnet-infotech.com/company-overview" title="Company Overview">Company Overview</a></li>
+<li class="p-0">|</li>
+<li><a href="https://www.cygnet-infotech.com/contact-us" title="Contact Us">Contact Us</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-lg-4">
+<div class="footer-title">USA <span class="d-sm-none d-md-inline-block d-none">Office</span></div>
+<div class="office-address-info" style="height: 124px;">
+<div class="office-info-box address d-sm-none d-md-block d-none"><i class="icon icon-location_2 "></i>
+<div class="office-info-content">Cygnet Infotech LLC.<br>125 Village Boulevard,<br>Suite 315, Princeton,<br>NJ 08540</div>
+</div>
+<div class="office-info-box contact"><i class="icon icon-phone_1"></i>
+<div class="office-info-content"><a href="tel:+1-609-245-0971" title="Call Us">+1-609-245-0971</a></div>
+<!-- <div class="office-info-content  d-sm-none d-md-block d-none"><a href="tel:+1-609-533-8393" title="Call Us">+1-609-533-8393</a></div> --></div>
+</div>
+</div>
+<div class="col-lg-4">
+<div class="footer-title">India <span class="d-sm-none d-md-inline-block d-none">Office</span></div>
+<div class="office-address-info" style="height: 124px;">
+<div class="office-info-box address  d-sm-none d-md-block d-none"><i class="icon icon-location_2 "></i>
+<div class="office-info-content">Cygnet Infotech Pvt. Ltd.<br>16-Swastik Society,<br>Nr. AMCO Bank, Stadium Circle,<br>Navrangpura, Ahmedabad 380009</div>
+</div>
+<div class="office-info-box contact"><i class="icon icon-phone_1"></i>
+<div class="office-info-content"><a href="tel:+91-79-67124000" title="Call Us">+91-79-67124000</a></div>
+</div>
+</div>
+</div>
+<div class="col-lg-4">
+<div class="footer-title">DUBAI <span class="d-sm-none d-md-inline-block d-none">Office</span></div>
+<div class="office-address-info" style="height: 124px;">
+<div class="office-info-box address d-sm-none d-md-block d-none"><i class="icon icon-location_2 "></i>
+<div class="office-info-content">Cygnet Fintech Software<br>Unit 807, Ubora Tower 2,<br>Business Bay, Dubai,<br>UAE, PO Box No.: 118147</div>
+</div>
+<div class="office-info-box contact"><i class="icon icon-phone_1"></i>
+<div class="office-info-content"><a href="tel:+971 528305127" title="Call Us">+971 52 830 5127</a></div>
+</div>
+</div>
+</div>
+</div>
+<div class="socail-footer">
+<div class="enquiry-mail-box"><i class="icon icon-email-1"></i>&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:inquiry@cygnetinfotech.com" title="Mail">inquiry@cygnetinfotech.com</a></div>
+<div class="footer-social-links"><span class="social-title">Follow Us</span>
+<div class="social"><a href="https://www.linkedin.com/company/cygnet-infotech/" title="linkedin" target="_blank"> <span class="icon icon-linkedin"></span></a> <a href="https://twitter.com/cygnetinfotech" title="twitter" target="_blank"> <span class="icon icon-twitter"></span> </a> <a href="https://www.facebook.com/IT.is.about.you/" title="facebook" target="_blank"> <span class="icon icon-facebook"></span> </a> <a href="https://www.youtube.com/user/Cygnetinfotech/" title="youtube" target="_blank"> <span class="icon icon-youtube"></span></a> <a href="https://in.pinterest.com/cygnetinfotech/" title="Pinterest" target="_blank"> <span class="icon icon-pinterest"></span> </a></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="other-country-section d-lg-block d-none">
+<div class="container-fluid">
+<div class="country-info-wrapper">
+<div class="country-office-info-block">
+<div class="country-flag"><img src="./The Difference between STRUTS 2 and SPRING MVC_files/india-flag.png" alt="India"></div>
+<p class="country-name">INDIA (PUNE)</p>
+<p><a href="tel:+91-6359650113" title="Call Us">+91-6359650113</a></p>
+</div>
+<div class="country-office-info-block">
+<div class="country-flag"><img src="./The Difference between STRUTS 2 and SPRING MVC_files/india-flag.png" alt="India"></div>
+<p class="country-name">INDIA (MUMBAI)</p>
+<p><a href="tel:+91-9870123179" title="Call Us">+91-9870123179</a></p>
+</div>
+<div class="country-office-info-block">
+<div class="country-flag"><img src="./The Difference between STRUTS 2 and SPRING MVC_files/india-flag.png" alt="India"></div>
+<p class="country-name">INDIA (NOIDA)</p>
+<p><a href="tel:+91-12-04164954" title="Call Us">+91-12-04164954</a></p>
+</div>
+<div class="country-office-info-block">
+<div class="country-flag"><img src="./The Difference between STRUTS 2 and SPRING MVC_files/india-flag.png" alt="India"></div>
+<p class="country-name">INDIA (Bengaluru)</p>
+<p><a href="tel:+91-9986216516" title="Call Us">+91-9986216516</a></p>
+</div>
+<div class="country-office-info-block">
+<div class="country-flag"><img src="./The Difference between STRUTS 2 and SPRING MVC_files/south-africa-flag.png" alt="South Africa"></div>
+<p class="country-name">South Africa</p>
+<p><a href="tel:+27-0-21-3002981" title="Call Us">+27 (0) 21 3002981</a></p>
+</div>
+<div class="country-office-info-block">
+<div class="country-flag"><img src="./The Difference between STRUTS 2 and SPRING MVC_files/australia-flag.png" alt="Australia"></div>
+<p class="country-name">AUSTRALIA</p>
+<p><a href="tel:+61-280-147-206" title="Call Us">+61-280-147-206</a></p>
+</div>
+<div class="country-office-info-block">
+<div class="country-flag"><img src="./The Difference between STRUTS 2 and SPRING MVC_files/uk-flag.png" alt="UK"></div>
+<p class="country-name">UK</p>
+<p><a href="tel:+44-20-8099-1653" title="Call Us">+44-20-8099-1653</a></p>
+</div>
+<div class="country-office-info-block">
+<div class="country-flag"><img src="./The Difference between STRUTS 2 and SPRING MVC_files/germany-flag.png" alt="Germany"></div>
+<p class="country-name">GERMANY</p>
+<p><a href="tel:+49-3222-1090-129" title="Call Us">+49-3222-1090-129</a></p>
+</div>
+</div>
+</div>
+</div>
+         
+			<div class="sub-footer">
+                <div class="container-fluid">
+				<div class="row">
+                    <div class="col-md-4 col-sm-6">
+                        <p class="copy-right">Copyright © 2020 Cygnet Infotech</p>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-lg-3 col-xl-4">
+                        <p class="protected-by"><a href="http://www.copyscape.com/plagiarism-detector/" target="_blank" title="PROTECTED BY copyscape">© PROTECTED BY copyscape</a></p>
+                    </div>
+                    <div class="col-md-5 col-lg-5 col-xl-4">
+                        <p class="sub-footer-links"><a href="https://www.cygnet-infotech.com/gdpr-compliance" title="GDPR">GDPR</a>  <span> | </span>   <a href="https://www.cygnet-infotech.com/privacy-policy" title="Privacy Policy">Privacy Policy</a>   <span> | </span>   <a href="https://www.cygnet-infotech.com/terms-conditions" title="Terms and Conditions">Terms &amp; Conditions</a></p>
+                    </div>
+                </div>
+				</div>
+            </div>
+</footer>
+<!-- ! footer End -->
+<!--Go to Top  Starts-->
+<a class="go-top" href="javascript:void(0)" title="Go to Top"><i class="icon icon-top"></i></a>
+<!--Go to Top  Ends-->
+            </div>
+        </div><iframe src="./The Difference between STRUTS 2 and SPRING MVC_files/portal.html" id="st_gdpr_iframe" title="GDPR Consent Management" style="width: 0px; height: 0px; position: absolute; left: -5000px;"></iframe>
+        <div class="thankyou-popup modal fade" id="modalQuickConnect" style="padding-right: 17px;">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-body">
+                    <div class="modal-content model-content-detail">
+                        <div class="close" data-dismiss="modal"><i class="icon icon-close"></i></div>
+                        <div class="thankyou-box">
+                            <h1>Thank You!!</h1>
+<h2>We have received your message.</h2>
+<p>We appreciate you for writing to us. One of our solution experts will get in touch with you shortly.</p>
+<p><a title="Cygnet Infotech" href="https://www.cygnet-infotech.com/" class="home-link"><i class="icon icon-home"></i></a><a title="GDPR Compliance" href="https://www.cygnet-infotech.com/gdpr-compliance" class="button error-btn">GDPR Compliance <i class="icon icon-right"></i></a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-popup" style="display: none;">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-xl-9 col-lg-8 col-md-7">
+                    <p>This website uses Cookies to improve the website’s functionality &amp; provide you with a better browsing experience. Detailed information on the use of cookies on this website, and how you can decline them, is provided in our <a href="https://www.cygnet-infotech.com/cygnet-cookie-policy" class="privacy-policy" target="_blank">Cookie Policy</a>. If you don't agree, kindly disable cookies from your browser settings.</p>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-5">
+                    <button class="button button-white btn-accept">I Accept</button>
+                    <i class="close-cookies icon icon-close white-text"></i>
+                </div>
+            </div>
+        </div>
+        <script src="./The Difference between STRUTS 2 and SPRING MVC_files/baseScripts"></script>
+
+        <script src="./The Difference between STRUTS 2 and SPRING MVC_files/CommonScripts"></script>
+
+        <script src="./The Difference between STRUTS 2 and SPRING MVC_files/BrowserScripts"></script>
+
+        <script src="./The Difference between STRUTS 2 and SPRING MVC_files/blogScripts"></script>
+
+        <script src="./The Difference between STRUTS 2 and SPRING MVC_files/cookieScripts"></script>
+
+        <!-- Start of Statcounter Code for Default Guide --> <script type="text/javascript"> var sc_invisible=1; var sc_project=11725266; var sc_security="ec1235e5"; </script> <script type="text/javascript" async="" src="./The Difference between STRUTS 2 and SPRING MVC_files/counter.js"></script>
+<noscript><div class="Statcounter"><a title="Web Analytics Made Easy - Statcounter"
+href="https://statcounter.com/"
+target="_blank"><img class="Statcounter"
+src="https://c.statcounter.com/11725266/0/ec1235e5/1/"
+alt="Web Analytics"></a></div></noscript>
+<!-- End of Statcounter Code for Default Guide -->
+
+<!-- Start of Zoho sales IQ -->
+<script type="text/javascript">
+var $zoho=$zoho || {};$zoho.salesiq = $zoho.salesiq || {widgetcode:"1b717e2381676dc393198ff4cc30843c79124aece9c0d33c018c03df00bc0420fd06c71ed649cf90a8aa7eac3c82f084", values:{},ready:function(){}};var d=document;s=d.createElement("script");s.type="text/javascript";s.id="zsiqscript";s.defer=true;s.src="https://salesiq.zoho.com/widget";t=d.getElementsByTagName("script")[0];t.parentNode.insertBefore(s,t);d.write("<div id='zsiqwidget'></div>");
+</script><div id="zsiqwidget"></div>
+<!-- End of Zoho sales IQ -->
+    
+
+
+	<div style="width:0px; height:0px; display:none; visibility:hidden;" id="batBeacon0.12153798743620237"><img style="width:0px; height:0px; display:none; visibility:hidden;" id="batBeacon0.4956115179871885" width="0" height="0" alt="" src="./The Difference between STRUTS 2 and SPRING MVC_files/0"></div><iframe style="display: none;" src="./The Difference between STRUTS 2 and SPRING MVC_files/saved_resource(1).html"></iframe><div class="zsiq_floatmain zsiq_theme1 siq_bR" style="visibility: hidden; display: block;"><div id="zsiq_float" class="zsiq_float " style="font-family:inherit"><div class="zsiq_flt_rel"><em id="zsiq_agtpic" class="zsiq_user siqico-chat"></em><div id="titlediv" class="zsiq_cnt"><div id="zsiq_maintitle" class="zsiq_ellips" title="We&#39;re Online!">We're Online!</div><p id="zsiq_byline" class="zsiq_ellips" title="How may I help you today?">How may I help you today?</p></div><em id="zsiq_unreadcnt" class="zsiq_unrdcnt" style="display: none;"></em><em id="zsiq_avcall" class="zsiqmin_unrdcnt zsiq_unrdcnt siqico-mincall" style="display: none;"></em></div></div></div><style id="zsiqcustomcss">.zsiq_flt_rel{ background-color:#25b5e7 !important;} .zsiq_seasonal .st2 { fill: #25b5e7 !important;}</style><div id="stcpDiv" style="position: absolute; top: -1999px; left: -1988px;">ShareThis Copy and Paste</div><div id="stwrapper" class="stwrapper stwrapper4x stwrapper4x" style="display: none;"><iframe allowtransparency="true" id="stLframe" class="stLframe" name="stLframe" frameborder="0" scrolling="no" src="./The Difference between STRUTS 2 and SPRING MVC_files/index.html"></iframe></div><div id="stOverlay" onclick="javascript:stWidget.closeWidget();"></div><div class="zls-sptwndw  siqembed siqtrans siqhide zsiq-mobhgt zsiq-newtheme siq_rht zsiq_size2" embedtheme="8" style="visibility: hidden; top: -10000px; display: block;"><div id="siqcht" class="zls-prelative"><iframe id="siqiframe" seamless="seamless" height="460" width="100%" scrolling="no" src="./The Difference between STRUTS 2 and SPRING MVC_files/saved_resource(2).html"></iframe></div></div></body><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title> The Difference between STRUTS 2 and SPRING MVC </title>
+        <meta name="keywords" content="Apache Struts, Spring MVC, Java, Web Frameworks">
+    <link rel="canonical" href="https://www.cygnet-infotech.com/blog/struts-2-vs-springmvc">
+    <meta name="description" content="Apache Struts 2 &amp; Spring MVC is the most trending Java web frameworks. But which is one is better? Know the difference &amp; make the right choice
+">
+
+
+
+<!-- Twitter Card data -->
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@cygnetinfotech">
+    <meta name="twitter:title" content="Apache Struts, Spring MVC, Java, Web Frameworks">
+    <meta name="twitter:description" content="Apache Struts 2 &amp; Spring MVC is the most trending Java web frameworks. But which is one is better? Know the difference &amp; make the right choice
+">
+<!-- Twitter summary card with large image must be at least 280x150px -->
+    <meta name="twitter:image:src" content="https://www.cygnet-infotech.com/media/580312/struts-2-vs-springmvc.jpg">
+
+
+<!-- Open Graph data -->
+    <meta property="og:title" content="The Difference between STRUTS 2 and SPRING MVC">
+<meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.cygnet-infotech.com/blog/struts-2-vs-springmvc">
+    <meta property="og:image" content="https://www.cygnet-infotech.com/media/580312/struts-2-vs-springmvc.jpg">
+
+    <meta property="og:description" content="Apache Struts 2 &amp; Spring MVC is the most trending Java web frameworks. But which is one is better? Know the difference &amp; make the right choice
+">
+<meta property="og:site_name" content="Cygnet Infotech">
+
+
+<meta property="fb:admins" content="261019992887">
+        <link rel="shortcut icon" href="https://www.cygnet-infotech.com/images/favicon-1.ico" type="image/x-icon">
+        <link href="./The Difference between STRUTS 2 and SPRING MVC_files/commonCss" rel="stylesheet">
+
+        <link href="./The Difference between STRUTS 2 and SPRING MVC_files/fontCss" rel="stylesheet">
+
+        <link href="./The Difference between STRUTS 2 and SPRING MVC_files/screen.min.css" rel="stylesheet" type="text/css">
+        <script src="./The Difference between STRUTS 2 and SPRING MVC_files/bat.js" async=""></script><script async="" src="./The Difference between STRUTS 2 and SPRING MVC_files/gtm.js"></script><script type="text/javascript" id="async-buttons" src="./The Difference between STRUTS 2 and SPRING MVC_files/async-buttons.js"></script><script type="text/javascript" src="./The Difference between STRUTS 2 and SPRING MVC_files/Constants"></script>
+        
+    
+
+
+    <title>Home : STRUTS 2 vs SPRINGMVC: Know the Difference &amp; Choose the Best One Based On Your Requirements</title>
+
+    
+    
+
+    <meta name="keywords" content="Apache Struts, Spring MVC, Java, Web Frameworks">
+
+
+    <script type="text/javascript">var switchTo5x = false;</script>
+    <script type="text/javascript" src="./The Difference between STRUTS 2 and SPRING MVC_files/buttons.js"></script>
+    <script type="text/javascript">stLight.options({ publisher: "edcfd32c-8616-4e4c-9540-1750b4013286", popup: true, servicePopup: true, version: "4x", onhover: "false", offsetLeft: "-800" });</script>
+    <script id="dsq-count-scr" src="./The Difference between STRUTS 2 and SPRING MVC_files/count.js" async=""></script>
+    
+
+        <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5SMZBN');</script>
+<!-- End Google Tag Manager -->
+        <script src="./The Difference between STRUTS 2 and SPRING MVC_files/atr7now.js"></script>
+        <style type="text/css">@font-face{font-family:proxima-nova;src:url(https://use.typekit.net/af/55bd39/00000000000000003b9b093f/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3) format("woff2"),url(https://use.typekit.net/af/55bd39/00000000000000003b9b093f/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3) format("woff"),url(https://use.typekit.net/af/55bd39/00000000000000003b9b093f/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3) format("opentype");font-weight:900;font-style:normal;}@font-face{font-family:proxima-nova;src:url(https://use.typekit.net/af/8b7167/00000000000000003b9b093e/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i9&v=3) format("woff2"),url(https://use.typekit.net/af/8b7167/00000000000000003b9b093e/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i9&v=3) format("woff"),url(https://use.typekit.net/af/8b7167/00000000000000003b9b093e/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i9&v=3) format("opentype");font-weight:900;font-style:italic;}@font-face{font-family:proxima-nova;src:url(https://use.typekit.net/af/71f83c/00000000000000003b9b093b/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3) format("woff2"),url(https://use.typekit.net/af/71f83c/00000000000000003b9b093b/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3) format("woff"),url(https://use.typekit.net/af/71f83c/00000000000000003b9b093b/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3) format("opentype");font-weight:700;font-style:normal;}@font-face{font-family:proxima-nova;src:url(https://use.typekit.net/af/86b539/00000000000000003b9b093a/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3) format("woff2"),url(https://use.typekit.net/af/86b539/00000000000000003b9b093a/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3) format("woff"),url(https://use.typekit.net/af/86b539/00000000000000003b9b093a/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3) format("opentype");font-weight:700;font-style:italic;}@font-face{font-family:proxima-nova;src:url(https://use.typekit.net/af/a3eee8/00000000000000003b9b093c/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n8&v=3) format("woff2"),url(https://use.typekit.net/af/a3eee8/00000000000000003b9b093c/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n8&v=3) format("woff"),url(https://use.typekit.net/af/a3eee8/00000000000000003b9b093c/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n8&v=3) format("opentype");font-weight:800;font-style:normal;}@font-face{font-family:proxima-nova;src:url(https://use.typekit.net/af/e85210/00000000000000003b9b093d/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i8&v=3) format("woff2"),url(https://use.typekit.net/af/e85210/00000000000000003b9b093d/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i8&v=3) format("woff"),url(https://use.typekit.net/af/e85210/00000000000000003b9b093d/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i8&v=3) format("opentype");font-weight:800;font-style:italic;}@font-face{font-family:proxima-nova;src:url(https://use.typekit.net/af/ed0e78/00000000000000003b9b0931/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n1&v=3) format("woff2"),url(https://use.typekit.net/af/ed0e78/00000000000000003b9b0931/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n1&v=3) format("woff"),url(https://use.typekit.net/af/ed0e78/00000000000000003b9b0931/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n1&v=3) format("opentype");font-weight:100;font-style:normal;}@font-face{font-family:proxima-nova;src:url(https://use.typekit.net/af/942fe1/00000000000000003b9b0930/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i1&v=3) format("woff2"),url(https://use.typekit.net/af/942fe1/00000000000000003b9b0930/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i1&v=3) format("woff"),url(https://use.typekit.net/af/942fe1/00000000000000003b9b0930/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i1&v=3) format("opentype");font-weight:100;font-style:italic;}@font-face{font-family:proxima-nova;src:url(https://use.typekit.net/af/27776b/00000000000000003b9b0939/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3) format("woff2"),url(https://use.typekit.net/af/27776b/00000000000000003b9b0939/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3) format("woff"),url(https://use.typekit.net/af/27776b/00000000000000003b9b0939/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3) format("opentype");font-weight:600;font-style:normal;}@font-face{font-family:proxima-nova;src:url(https://use.typekit.net/af/256534/00000000000000003b9b0938/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i6&v=3) format("woff2"),url(https://use.typekit.net/af/256534/00000000000000003b9b0938/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i6&v=3) format("woff"),url(https://use.typekit.net/af/256534/00000000000000003b9b0938/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i6&v=3) format("opentype");font-weight:600;font-style:italic;}@font-face{font-family:proxima-nova;src:url(https://use.typekit.net/af/4838bd/00000000000000003b9b0934/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3) format("woff2"),url(https://use.typekit.net/af/4838bd/00000000000000003b9b0934/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3) format("woff"),url(https://use.typekit.net/af/4838bd/00000000000000003b9b0934/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3) format("opentype");font-weight:400;font-style:normal;}@font-face{font-family:proxima-nova;src:url(https://use.typekit.net/af/6aec08/00000000000000003b9b0935/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3) format("woff2"),url(https://use.typekit.net/af/6aec08/00000000000000003b9b0935/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3) format("woff"),url(https://use.typekit.net/af/6aec08/00000000000000003b9b0935/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3) format("opentype");font-weight:400;font-style:italic;}@font-face{font-family:proxima-nova;src:url(https://use.typekit.net/af/437c3d/00000000000000003b9b0932/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3) format("woff2"),url(https://use.typekit.net/af/437c3d/00000000000000003b9b0932/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3) format("woff"),url(https://use.typekit.net/af/437c3d/00000000000000003b9b0932/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3) format("opentype");font-weight:300;font-style:normal;}@font-face{font-family:proxima-nova;src:url(https://use.typekit.net/af/f02b29/00000000000000003b9b0933/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i3&v=3) format("woff2"),url(https://use.typekit.net/af/f02b29/00000000000000003b9b0933/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i3&v=3) format("woff"),url(https://use.typekit.net/af/f02b29/00000000000000003b9b0933/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i3&v=3) format("opentype");font-weight:300;font-style:italic;}@font-face{font-family:proxima-nova;src:url(https://use.typekit.net/af/3331e6/00000000000000003b9b0936/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3) format("woff2"),url(https://use.typekit.net/af/3331e6/00000000000000003b9b0936/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3) format("woff"),url(https://use.typekit.net/af/3331e6/00000000000000003b9b0936/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3) format("opentype");font-weight:500;font-style:normal;}@font-face{font-family:proxima-nova;src:url(https://use.typekit.net/af/1cd3b2/00000000000000003b9b0937/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i5&v=3) format("woff2"),url(https://use.typekit.net/af/1cd3b2/00000000000000003b9b0937/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i5&v=3) format("woff"),url(https://use.typekit.net/af/1cd3b2/00000000000000003b9b0937/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i5&v=3) format("opentype");font-weight:500;font-style:italic;}</style><script>try { Typekit.load() } catch (e) { };</script>
+    <script type="text/javascript" async="" src="./The Difference between STRUTS 2 and SPRING MVC_files/embed.js"></script><link rel="stylesheet" type="text/css" href="./The Difference between STRUTS 2 and SPRING MVC_files/buttons-secure.css"><link rel="prefetch" as="style" href="https://c.disquscdn.com/next/embed/styles/lounge.15d8f2a22cfa6b9f96345c682b01a08f.css"><link rel="prefetch" as="script" href="https://c.disquscdn.com/next/embed/common.bundle.b9167d06dc7bd01b59d6d6332d6aafa1.js"><link rel="prefetch" as="script" href="https://c.disquscdn.com/next/embed/lounge.bundle.3c28b73070ee14be97ecb734e8aca3b4.js"><link rel="prefetch" as="script" href="https://disqus.com/next/config.js"><script src="./The Difference between STRUTS 2 and SPRING MVC_files/alfie.f51946af45e0b561c60f768335c9eb79.js" async="" charset="UTF-8"></script><link rel="stylesheet" href="./The Difference between STRUTS 2 and SPRING MVC_files/floatbutton_b92fd_.css"><script src="./The Difference between STRUTS 2 and SPRING MVC_files/floatbutton_2d28a_.js"></script></head>
+
+    </html>
