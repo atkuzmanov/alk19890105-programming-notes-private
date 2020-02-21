@@ -224,6 +224,8 @@ For learning and study
 - [JavaScript](#javascript)
 - [TLS](#tls)
 - [SSL](#ssl)
+- [XHTML](#xhtml)
+    - [HTML vs XHTML vs HTML5](#html-vs-xhtml-vs-html5)
 - [Cookie - Web Cookies](#cookie---web-cookies)
 - [OSI Network Model vs TCP/IP Network Model](#osi-network-model-vs-tcpip-network-model)
     - [Open Systems Interconnection (OSI) model vs Transmission Control Protocol and Internet Protocol (TCP/IP) model](#open-systems-interconnection-osi-model-vs-transmission-control-protocol-and-internet-protocol-tcpip-model)
@@ -9046,6 +9048,15 @@ https://www.javatpoint.com/jsf-tutorial
 `references:`
 https://martinfowler.com/microservices/
 
+- [](refs/)
+
+`references:`
+
+- [](refs/)
+
+`references:`
+
+
 
 ----
 ----
@@ -9212,6 +9223,52 @@ https://www.webopedia.com/TERM/T/TLS.html
 
 `references:`
 https://www.webopedia.com/TERM/S/SSL.html
+
+----
+
+# XHTML
+
+- [XHTML-Introduction-GeeksforGeeks](refs/XHTML-Introduction-GeeksforGeeks)
+
+`references:`
+https://www.geeksforgeeks.org/xhtml-introduction/
+
+- [HTML-and-XHTML-w3schools](refs/HTML-and-XHTML-w3schools)
+
+`references:`
+https://www.w3schools.com/html/html_xhtml.asp
+
+- [XHTML-Explained-XHTML-tutorial-with-code-examples-yourhtmlsource](refs/XHTML-Explained-XHTML-tutorial-with-code-examples-yourhtmlsource)
+
+`references:`
+https://www.yourhtmlsource.com/accessibility/xhtmlexplained.html
+
+- [XHTML-MDN-Web-Docs-Glossary-Definitions-of-Web-related-terms-MDN](refs/XHTML-MDN-Web-Docs-Glossary-Definitions-of-Web-related-terms-MDN)
+
+`references:`
+https://developer.mozilla.org/en-US/docs/Glossary/XHTML
+
+- XHTML Tutorial
+
+`references:`
+https://www.tutorialspoint.com/xhtml/what_is_xhtml.htm
+
+## HTML vs XHTML vs HTML5
+
+- [HTML5-vs-XHTML-8-Most-Valuable-Differences-You-Should-Know-educba](refs/HTML5-vs-XHTML-8-Most-Valuable-Differences-You-Should-Know-educba)
+
+`references:`
+https://www.educba.com/html5-vs-xhtml/
+
+- [HTML-vs-HTML5-vs-XHTML-Understanding-the-Difference-hackrio](refs/HTML-vs-HTML5-vs-XHTML-Understanding-the-Difference-hackrio)
+
+`references:`
+https://hackr.io/blog/difference-between-html-html5-xhtml
+
+- [HTML-vs-XHTML-vs-HTML5-upwork](refs/HTML-vs-XHTML-vs-HTML5-upwork)
+
+`references:`
+https://www.upwork.com/hiring/development/html-vs-xhtml-vs-html5/
 
 ----
 
