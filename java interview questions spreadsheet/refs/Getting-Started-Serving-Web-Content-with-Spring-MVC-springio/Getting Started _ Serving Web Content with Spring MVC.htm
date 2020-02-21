@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)https://spring.io/guides/gs/serving-web-content/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Getting Started | Serving Web Content with Spring MVC</title>
+<meta content="width=device-width,initial-scale=1,shrink-to-fit=no" id="Viewport" name="viewport">
+<link media="all" rel="stylesheet" type="text/css" href="./Getting Started _ Serving Web Content with Spring MVC_files/main-02a2f5a1988954290775c4a3e5620587.css">
+<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="https://spring.io/images/favicon.ico">
+<meta content="Level up your Java code and explore what Spring can do for you." name="description">
+<link rel="manifest" href="https://spring.io/manifest-0e3065c2bbd1ef7a320e80861393f1a6.json">
+<meta content="Spring" property="og:site_name">
+<meta content="website" property="og:type">
+<meta content="Spring" property="og:title">
+<meta content="Level up your Java code and explore what Spring can do for you." property="og:description">
+<meta content="https://www.spring.io" property="og:url">
+<meta content="/images/OG-Spring.png" property="og:image">
+<meta content="1200" property="og:image:width">
+<meta content="600" property="og:image:height">
+<meta content="Spring" name="twitter:title">
+<meta content="Level up your Java code and explore what Spring can do for you." name="twitter:description">
+<meta content="https://www.spring.io" name="twitter:url">
+<meta content="@springcentral" name="twitter:site">
+<meta content="@springcentral" name="twitter:creator">
+<meta content="summary_large_image" name="twitter:card">
+<meta content="https://spring.io/images/OG-Spring.png" name="twitter:image">
+<meta content="#6db33f" name="theme-color">
+<meta content="spring" name="apple-mobile-web-app-title">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="default" name="apple-mobile-web-app-status-bar-style">
+
+<script async="" src="./Getting Started _ Serving Web Content with Spring MVC_files/gtm.js"></script><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KZM7GF6');</script>
+
+<script src="./Getting Started _ Serving Web Content with Spring MVC_files/run_prettify-bdb6c0e9428310779b92eabb94d723c6.js"></script><link rel="stylesheet" type="text/css" href="./Getting Started _ Serving Web Content with Spring MVC_files/prettify.css">
+<link rel="stylesheet" type="text/css" href="./Getting Started _ Serving Web Content with Spring MVC_files/guide-662230173db904811c53d095e46aad05.css">
+
+<meta property="og:title" content="Serving Web Content with Spring MVC">
+<meta property="og:description" content="this guide is designed to get you productive as quickly as possible and using the latest Spring project releases and techniques as recommended by the Spring team">
+<link id="mktoForms2BaseStyle" rel="stylesheet" type="text/css" href="./Getting Started _ Serving Web Content with Spring MVC_files/forms2.css"><link id="mktoForms2ThemeStyle" rel="stylesheet" type="text/css" href="./Getting Started _ Serving Web Content with Spring MVC_files/forms2-theme-simple.css"></head>
+<body class="guide">
+<header>
+<nav id="nav">
+<div class="container flex jc-between ai-center" id="nav-inner">
+<a href="https://spring.io/" id="logo-focus" tabindex="1">
+<img alt="Spring" class="block" id="springlogo" src="./Getting Started _ Serving Web Content with Spring MVC_files/spring-logo-fc4350c59999bb62c468361537212419.svg">
+</a>
+<ul class="flex jc-between" id="nav-items">
+<li><div class="has-menu" id="why-hov"><span tabindex="2">Why Spring</span><div class="nav-arrow"></div></div></li>
+<li><div class="has-menu" id="learn-hov"><span tabindex="11">Learn</span><div class="nav-arrow"></div></div></li>
+<li><div class="has-menu" id="projects-hov"><span tabindex="17">Projects</span><div class="nav-arrow"></div></div></li>
+<li><a class="z-5 rel" href="https://spring.io/training" tabindex="30">Training</a></li>
+<li><a class="z-5 rel" href="https://spring.io/support" tabindex="31">Support</a></li>
+<li><a class="has-menu" id="community-hov"><span tabindex="32">Community</span><div class="nav-arrow"></div></a></li>
+
+</ul>
+</div>
+<div class="container rel" id="dropdown-menus">
+<div class="abs rad-5" id="scope"></div>
+<div class="drop-menu" id="why-items">
+<div class="drop-target" id="why-target"></div>
+<ul>
+<li><a href="https://spring.io/why-spring" tabindex="3">Overview</a></li>
+<li><a href="https://spring.io/microservices" tabindex="4">Microservices</a></li>
+<li><a href="https://spring.io/reactive" tabindex="5">Reactive</a></li>
+<li><a href="https://spring.io/event-driven" tabindex="6">Event Driven</a></li>
+<li><a href="https://spring.io/cloud" tabindex="7">Cloud</a></li>
+<li><a href="https://spring.io/web-applications" tabindex="8">Web Applications</a></li>
+<li><a href="https://spring.io/serverless" tabindex="9">Serverless</a></li>
+<li><a href="https://spring.io/batch" tabindex="10">Batch</a></li>
+</ul>
+</div>
+<div class="drop-menu" id="learn-items">
+<div class="drop-target" id="learn-target"></div>
+<ul>
+<li><a href="https://spring.io/learn" tabindex="12">Overview</a></li>
+<li><a href="https://spring.io/quickstart" tabindex="13">Quickstart</a></li>
+<li><a href="https://spring.io/guides" tabindex="14">Guides</a></li>
+
+<li><a href="https://spring.io/blog" tabindex="16">Blog</a></li>
+</ul>
+</div>
+<div class="drop-menu" id="project-items">
+<div class="drop-target" id="project-target"></div>
+<ul>
+<li><a href="https://spring.io/projects" tabindex="18">Overview</a></li>
+<li><a href="https://spring.io/projects/spring-boot" tabindex="19">Spring Boot</a></li>
+<li><a href="https://spring.io/projects/spring-framework" tabindex="20">Spring Framework</a></li>
+<li><a href="https://spring.io/projects/spring-cloud" tabindex="21">Spring Cloud</a></li>
+<li><a href="https://spring.io/projects/spring-cloud-dataflow" tabindex="22">Spring Cloud Data Flow</a></li>
+<li><a href="https://spring.io/projects/spring-data" tabindex="23">Spring Data</a></li>
+<li><a href="https://spring.io/projects/spring-integration" tabindex="24">Spring Integration</a></li>
+<li><a href="https://spring.io/projects/spring-batch" tabindex="25">Spring Batch</a></li>
+<li><a href="https://spring.io/projects/spring-security" tabindex="26">Spring Security</a></li>
+<li><a class="blue mb-2 inline-block" href="https://spring.io/projects" tabindex="27">View all projects</a></li>
+<li class="uppercase smallest">Development Tools</li>
+<li><a href="https://spring.io/tools" tabindex="28">Spring Tools 4</a></li>
+<li><a href="https://start.spring.io/" tabindex="29">Spring Initialzr <svg class="external-link-icon" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><polyline fill="none" points="15 10.94 15 15 1 15 1 1 5.06 1" stroke="#333" stroke-miterlimit="10" stroke-width="2"></polyline><polyline fill="none" points="8.93 1 15 1 15 7.07" stroke="#333" stroke-miterlimit="10" stroke-width="2"></polyline><line fill="none" stroke="#333" stroke-miterlimit="10" stroke-width="2" x1="15" x2="8" y1="1" y2="8"></line></svg></a></li>
+</ul>
+</div>
+<div class="drop-menu" id="community-items">
+<div class="drop-target" id="community-target"></div>
+<ul>
+<li><a href="https://spring.io/community" tabindex="33">Overview</a></li>
+<li><a href="https://spring.io/events" tabindex="34">Events</a></li>
+<li><a href="https://spring.io/team" tabindex="35">Team</a></li>
+<li><a href="http://store.pivotal.io/" tabindex="36">Store <svg class="external-link-icon" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><polyline fill="none" points="15 10.94 15 15 1 15 1 1 5.06 1" stroke="#333" stroke-miterlimit="10" stroke-width="2"></polyline><polyline fill="none" points="8.93 1 15 1 15 7.07" stroke="#333" stroke-miterlimit="10" stroke-width="2"></polyline><line fill="none" stroke="#333" stroke-miterlimit="10" stroke-width="2" x1="15" x2="8" y1="1" y2="8"></line></svg></a></li>
+</ul>
+</div>
+</div>
+</nav>
+<div class="pointer" id="mobile-nav-open">
+<div id="hamburger">
+<div class="burger-bar"></div>
+<div class="burger-bar"></div>
+<div class="burger-bar"></div>
+</div>
+<svg class="mobile-close pointer" id="Layer_1" style="enable-background:new 0 0 14.6 14.6;" version="1.1" viewBox="0 0 14.6 14.6" x="0px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" y="0px"><style type="text/css">.st0{fill:none;stroke:#000000;stroke-width:3;stroke-miterlimit:10;}</style><title>close</title><line class="st0" x1="1.5" x2="13.1" y1="1.5" y2="13.1"></line><line class="st0" x1="13.1" x2="1.5" y1="1.5" y2="13.1"></line></svg>
+</div>
+<nav class="border-box rel" id="mobile-nav">
+<div class="rel">
+<div class="mobile-category flex jc-between ai-center" id="mobile-why">
+<div class="mobile-title antialiased cursor-d">Why Spring</div>
+<div class="mobile-nav-arrow"></div>
+</div>
+<div class="mobile-expanded-category" id="mobile-why-items">
+<ul>
+<li><a href="https://spring.io/why-spring">Overview</a></li>
+<li><a href="https://spring.io/microservices">Microservices</a></li>
+<li><a href="https://spring.io/reactive">Reactive</a></li>
+<li><a href="https://spring.io/event-driven">Event Driven</a></li>
+<li><a href="https://spring.io/cloud">Cloud</a></li>
+<li><a href="https://spring.io/web-applications">Web Applications</a></li>
+<li><a href="https://spring.io/serverless">Serverless</a></li>
+<li><a href="https://spring.io/batch">Batch</a></li>
+</ul>
+</div>
+<div class="mobile-category flex jc-between ai-center" id="mobile-learn">
+<div class="mobile-title antialiased cursor-d">Learn</div>
+<div class="mobile-nav-arrow"></div>
+</div>
+<div class="mobile-expanded-category" id="mobile-learn-items">
+<ul>
+<li><a href="https://spring.io/learn">Overview</a></li>
+<li><a href="https://spring.io/quickstart">Quickstart</a></li>
+<li><a href="https://spring.io/guides">Guides</a></li>
+
+<li><a href="https://spring.io/blog">Blog</a></li>
+</ul>
+</div>
+<div class="mobile-category flex jc-between ai-center" id="mobile-projects">
+<div class="mobile-title antialiased cursor-d">Projects</div>
+<div class="mobile-nav-arrow"></div>
+</div>
+<div class="mobile-expanded-category" id="mobile-project-items">
+<ul>
+<li><a href="https://spring.io/projects">Overview</a></li>
+<li><a href="https://spring.io/projects/spring-boot">Spring Boot</a></li>
+<li><a href="https://spring.io/projects/spring-framework">Spring Framework</a></li>
+<li><a href="https://spring.io/projects/spring-cloud">Spring Cloud</a></li>
+<li><a href="https://spring.io/projects/spring-cloud-dataflow">Spring Cloud Data Flow</a></li>
+<li><a href="https://spring.io/projects/spring-data">Spring Data</a></li>
+<li><a href="https://spring.io/projects/spring-integration">Spring Integration</a></li>
+<li><a href="https://spring.io/projects/spring-batch">Spring Batch</a></li>
+<li><a href="https://spring.io/projects/spring-security">Spring Security</a></li>
+<li><a class="blue mb-2 inline-block" href="https://spring.io/projects">View all projects</a></li>
+<p class="uppercase smallest white">Development Tools</p>
+<li><a href="https://spring.io/tools">Spring Tools 4</a></li>
+<li><a href="https://start.spring.io/">Spring Initialzr <svg class="external-link-icon" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><polyline fill="none" points="15 10.94 15 15 1 15 1 1 5.06 1" stroke="#333" stroke-miterlimit="10" stroke-width="2"></polyline><polyline fill="none" points="8.93 1 15 1 15 7.07" stroke="#333" stroke-miterlimit="10" stroke-width="2"></polyline><line fill="none" stroke="#333" stroke-miterlimit="10" stroke-width="2" x1="15" x2="8" y1="1" y2="8"></line></svg></a></li>
+</ul>
+</div>
+<a class="mobile-link block" href="https://spring.io/training"><div class="mobile-title antialiased">Training</div></a>
+<a class="mobile-link block" href="https://spring.io/support"><div class="mobile-title antialiased">Support</div></a>
+<div class="mobile-category flex jc-between ai-center" id="mobile-community">
+<div class="mobile-title antialiased cursor-d">Community</div>
+<div class="mobile-nav-arrow"></div>
+</div>
+<div class="mobile-expanded-category" id="mobile-community-items">
+<ul>
+<li><a href="https://spring.io/community">Overview</a></li>
+<li><a href="https://spring.io/events">Events</a></li>
+<li><a href="https://spring.io/team">Team</a></li>
+<li><a href="http://store.pivotal.io/">Store <svg class="external-link-icon" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><polyline fill="none" points="15 10.94 15 15 1 15 1 1 5.06 1" stroke="#333" stroke-miterlimit="10" stroke-width="2"></polyline><polyline fill="none" points="8.93 1 15 1 15 7.07" stroke="#333" stroke-miterlimit="10" stroke-width="2"></polyline><line fill="none" stroke="#333" stroke-miterlimit="10" stroke-width="2" x1="15" x2="8" y1="1" y2="8"></line></svg></a></li>
+</ul>
+</div>
+
+</div>
+</nav>
+<div id="search-nav" role="search">
+<div class="container relative">
+<form accept-charset="UTF-8" action="https://spring.io/search" id="searchheaderform" method="get"><input name="utf8" type="hidden" value="✓">
+<input autocomplete="off" id="searchheaderinput" name="q" placeholder="Search for documentation, guides, and posts..." type="text">
+<input data-disable-with="" id="searchheadersubmit" type="submit" value="">
+</form>
+
+</div>
+</div>
+</header>
+<div id="main">
+<div></div>
+<div class="container-fluid">
+<main class="main-body--wrapper">
+<div class="row-fluid">
+<div class="span8 mobile-left-pane">
+<div class="content--title desktop-only">Getting Started</div>
+<a class="uppercase smallest bold backlink blue link-darken block" href="https://spring.io/guides"><div class="arrow"></div>All Guides</a>
+<article class="content--container">
+<h1 class="title">Serving Web Content with Spring MVC</h1>
+<div class="article-body"><div class="paragraph">
+<p>This guide walks you through the process of creating a “Hello, World” web site with Spring.</p>
+</div>
+<div class="sect1">
+<h2 id="_what_you_will_build">What You Will Build</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You will build an application that has a static home page and that will also accept HTTP GET requests at: <code><a href="http://localhost:8080/greeting" class="bare">http://localhost:8080/greeting</a></code>.</p>
+</div>
+<div class="paragraph">
+<p>It will respond with a web page that displays HTML. The body of the HTML will contain a greeting: “Hello, World!”</p>
+</div>
+<div class="paragraph">
+<p>You can customize the greeting with an optional <code>name</code> parameter in the query string. The URL might then be <code><a href="http://localhost:8080/greeting?name=User" class="bare">http://localhost:8080/greeting?name=User</a></code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>name</code> parameter value overrides the default value of <code>World</code> and is reflected in the response by the content changing to “Hello, User!”</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_you_need">What You Need</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li> <p>About 15 minutes</p> </li>
+<li> <p>A favorite text editor or IDE</p> </li>
+<li> <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">JDK 1.8</a> or later</p> </li>
+<li> <p><a href="http://www.gradle.org/downloads">Gradle 4+</a> or <a href="https://maven.apache.org/download.cgi">Maven 3.2+</a></p> </li>
+<li> <p>You can also import the code straight into your IDE:</p>
+<div class="ulist">
+<ul>
+<li> <p><a href="https://spring.io/guides/gs/sts">Spring Tool Suite (STS)</a></p> </li>
+<li> <p><a href="https://spring.io/guides/gs/intellij-idea/">IntelliJ IDEA</a></p> </li>
+</ul>
+</div> </li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_to_complete_this_guide">How to complete this guide</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Like most Spring <a href="https://spring.io/guides">Getting Started guides</a>, you can start from scratch and complete each step or you can bypass basic setup steps that are already familiar to you. Either way, you end up with working code.</p>
+</div>
+<div class="paragraph">
+<p>To <strong>start from scratch</strong>, move on to <a href="https://spring.io/guides/gs/serving-web-content/#scratch">Starting with Spring Initializr</a>.</p>
+</div>
+<div class="paragraph">
+<p>To <strong>skip the basics</strong>, do the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li> <p><a href="https://github.com/spring-guides/gs-serving-web-content/archive/master.zip">Download</a> and unzip the source repository for this guide, or clone it using <a href="https://spring.io/understanding/Git">Git</a>: <code>git clone <a href="https://github.com/spring-guides/gs-serving-web-content.git" class="bare">https://github.com/spring-guides/gs-serving-web-content.git</a></code></p> </li>
+<li> <p>cd into <code>gs-serving-web-content/initial</code></p> </li>
+<li> <p>Jump ahead to <a href="https://spring.io/guides/gs/serving-web-content/#initial">Create a Web Controller</a>.</p> </li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>When you finish</strong>, you can check your results against the code in <code>gs-serving-web-content/complete</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="scratch">Starting with Spring Initializr</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For all Spring applications, you should start with the <a href="https://start.spring.io/">Spring Initializr</a>. The Initializr offers a fast way to pull in all the dependencies you need for an application and does a lot of the setup for you. This example needs the Spring Web, Thymeleaf, and Spring Boot DevTools dependencies. The following image shows the Initializr set up for this sample project:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./Getting Started _ Serving Web Content with Spring MVC_files/initializr.png" alt="initializr">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody>
+<tr>
+<td class="icon"> <i class="fa icon-note" title="Note"></i> </td>
+<td class="content"> The preceding image shows the Initializr with Maven chosen as the build tool. You can also use Gradle. It also shows values of <code>com.example</code> and <code>serving-web-content</code> as the Group and Artifact, respectively. You will use those values throughout the rest of this sample. </td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph">
+<p>The following listing shows the <code>pom.xml</code> file that is created when you choose Maven:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight prettyprinted" style=""><code class="language-xml" data-lang="xml"><span class="pun">&lt;?</span><span class="pln">xml version</span><span class="pun">=</span><span class="str">"1.0"</span><span class="pln"> encoding</span><span class="pun">=</span><span class="str">"UTF-8"</span><span class="pun">?&gt;</span><span class="pln">
+</span><span class="tag">&lt;project</span><span class="pln"> </span><span class="atn">xmlns</span><span class="pun">=</span><span class="atv">"http://maven.apache.org/POM/4.0.0"</span><span class="pln"> </span><span class="atn">xmlns:xsi</span><span class="pun">=</span><span class="atv">"http://www.w3.org/2001/XMLSchema-instance"</span><span class="pln">
+	</span><span class="atn">xsi:schemaLocation</span><span class="pun">=</span><span class="atv">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="tag">&gt;</span><span class="pln">
+	</span><span class="tag">&lt;modelVersion&gt;</span><span class="pln">4.0.0</span><span class="tag">&lt;/modelVersion&gt;</span><span class="pln">
+	</span><span class="tag">&lt;parent&gt;</span><span class="pln">
+		</span><span class="tag">&lt;groupId&gt;</span><span class="pln">org.springframework.boot</span><span class="tag">&lt;/groupId&gt;</span><span class="pln">
+		</span><span class="tag">&lt;artifactId&gt;</span><span class="pln">spring-boot-starter-parent</span><span class="tag">&lt;/artifactId&gt;</span><span class="pln">
+		</span><span class="tag">&lt;version&gt;</span><span class="pln">2.2.2.RELEASE</span><span class="tag">&lt;/version&gt;</span><span class="pln">
+		</span><span class="tag">&lt;relativePath/&gt;</span><span class="pln"> </span><span class="com">&lt;!-- lookup parent from repository --&gt;</span><span class="pln">
+	</span><span class="tag">&lt;/parent&gt;</span><span class="pln">
+	</span><span class="tag">&lt;groupId&gt;</span><span class="pln">com.example</span><span class="tag">&lt;/groupId&gt;</span><span class="pln">
+	</span><span class="tag">&lt;artifactId&gt;</span><span class="pln">serving-web-content</span><span class="tag">&lt;/artifactId&gt;</span><span class="pln">
+	</span><span class="tag">&lt;version&gt;</span><span class="pln">0.0.1-SNAPSHOT</span><span class="tag">&lt;/version&gt;</span><span class="pln">
+	</span><span class="tag">&lt;name&gt;</span><span class="pln">serving-web-content</span><span class="tag">&lt;/name&gt;</span><span class="pln">
+	</span><span class="tag">&lt;description&gt;</span><span class="pln">Demo project for Spring Boot</span><span class="tag">&lt;/description&gt;</span><span class="pln">
+
+	</span><span class="tag">&lt;properties&gt;</span><span class="pln">
+		</span><span class="tag">&lt;java.version&gt;</span><span class="pln">1.8</span><span class="tag">&lt;/java.version&gt;</span><span class="pln">
+	</span><span class="tag">&lt;/properties&gt;</span><span class="pln">
+
+	</span><span class="tag">&lt;dependencies&gt;</span><span class="pln">
+		</span><span class="tag">&lt;dependency&gt;</span><span class="pln">
+			</span><span class="tag">&lt;groupId&gt;</span><span class="pln">org.springframework.boot</span><span class="tag">&lt;/groupId&gt;</span><span class="pln">
+			</span><span class="tag">&lt;artifactId&gt;</span><span class="pln">spring-boot-starter-thymeleaf</span><span class="tag">&lt;/artifactId&gt;</span><span class="pln">
+		</span><span class="tag">&lt;/dependency&gt;</span><span class="pln">
+		</span><span class="tag">&lt;dependency&gt;</span><span class="pln">
+			</span><span class="tag">&lt;groupId&gt;</span><span class="pln">org.springframework.boot</span><span class="tag">&lt;/groupId&gt;</span><span class="pln">
+			</span><span class="tag">&lt;artifactId&gt;</span><span class="pln">spring-boot-starter-web</span><span class="tag">&lt;/artifactId&gt;</span><span class="pln">
+		</span><span class="tag">&lt;/dependency&gt;</span><span class="pln">
+
+		</span><span class="tag">&lt;dependency&gt;</span><span class="pln">
+			</span><span class="tag">&lt;groupId&gt;</span><span class="pln">org.springframework.boot</span><span class="tag">&lt;/groupId&gt;</span><span class="pln">
+			</span><span class="tag">&lt;artifactId&gt;</span><span class="pln">spring-boot-devtools</span><span class="tag">&lt;/artifactId&gt;</span><span class="pln">
+			</span><span class="tag">&lt;scope&gt;</span><span class="pln">runtime</span><span class="tag">&lt;/scope&gt;</span><span class="pln">
+			</span><span class="tag">&lt;optional&gt;</span><span class="pln">true</span><span class="tag">&lt;/optional&gt;</span><span class="pln">
+		</span><span class="tag">&lt;/dependency&gt;</span><span class="pln">
+		</span><span class="tag">&lt;dependency&gt;</span><span class="pln">
+			</span><span class="tag">&lt;groupId&gt;</span><span class="pln">org.springframework.boot</span><span class="tag">&lt;/groupId&gt;</span><span class="pln">
+			</span><span class="tag">&lt;artifactId&gt;</span><span class="pln">spring-boot-starter-test</span><span class="tag">&lt;/artifactId&gt;</span><span class="pln">
+			</span><span class="tag">&lt;scope&gt;</span><span class="pln">test</span><span class="tag">&lt;/scope&gt;</span><span class="pln">
+			</span><span class="tag">&lt;exclusions&gt;</span><span class="pln">
+				</span><span class="tag">&lt;exclusion&gt;</span><span class="pln">
+					</span><span class="tag">&lt;groupId&gt;</span><span class="pln">org.junit.vintage</span><span class="tag">&lt;/groupId&gt;</span><span class="pln">
+					</span><span class="tag">&lt;artifactId&gt;</span><span class="pln">junit-vintage-engine</span><span class="tag">&lt;/artifactId&gt;</span><span class="pln">
+				</span><span class="tag">&lt;/exclusion&gt;</span><span class="pln">
+			</span><span class="tag">&lt;/exclusions&gt;</span><span class="pln">
+		</span><span class="tag">&lt;/dependency&gt;</span><span class="pln">
+	</span><span class="tag">&lt;/dependencies&gt;</span><span class="pln">
+
+	</span><span class="tag">&lt;build&gt;</span><span class="pln">
+		</span><span class="tag">&lt;plugins&gt;</span><span class="pln">
+			</span><span class="tag">&lt;plugin&gt;</span><span class="pln">
+				</span><span class="tag">&lt;groupId&gt;</span><span class="pln">org.springframework.boot</span><span class="tag">&lt;/groupId&gt;</span><span class="pln">
+				</span><span class="tag">&lt;artifactId&gt;</span><span class="pln">spring-boot-maven-plugin</span><span class="tag">&lt;/artifactId&gt;</span><span class="pln">
+			</span><span class="tag">&lt;/plugin&gt;</span><span class="pln">
+		</span><span class="tag">&lt;/plugins&gt;</span><span class="pln">
+	</span><span class="tag">&lt;/build&gt;</span><span class="pln">
+
+</span><span class="tag">&lt;/project&gt;</span></code><button class="copy-button button button-small animate" data-clipboard-text="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+	xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+	&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+	&lt;parent&gt;
+		&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+		&lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+		&lt;version&gt;2.2.2.RELEASE&lt;/version&gt;
+		&lt;relativePath/&gt; &lt;!-- lookup parent from repository --&gt;
+	&lt;/parent&gt;
+	&lt;groupId&gt;com.example&lt;/groupId&gt;
+	&lt;artifactId&gt;serving-web-content&lt;/artifactId&gt;
+	&lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
+	&lt;name&gt;serving-web-content&lt;/name&gt;
+	&lt;description&gt;Demo project for Spring Boot&lt;/description&gt;
+
+	&lt;properties&gt;
+		&lt;java.version&gt;1.8&lt;/java.version&gt;
+	&lt;/properties&gt;
+
+	&lt;dependencies&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+			&lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt;
+		&lt;/dependency&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+			&lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+		&lt;/dependency&gt;
+
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+			&lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;
+			&lt;scope&gt;runtime&lt;/scope&gt;
+			&lt;optional&gt;true&lt;/optional&gt;
+		&lt;/dependency&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+			&lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+			&lt;scope&gt;test&lt;/scope&gt;
+			&lt;exclusions&gt;
+				&lt;exclusion&gt;
+					&lt;groupId&gt;org.junit.vintage&lt;/groupId&gt;
+					&lt;artifactId&gt;junit-vintage-engine&lt;/artifactId&gt;
+				&lt;/exclusion&gt;
+			&lt;/exclusions&gt;
+		&lt;/dependency&gt;
+	&lt;/dependencies&gt;
+
+	&lt;build&gt;
+		&lt;plugins&gt;
+			&lt;plugin&gt;
+				&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+				&lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+			&lt;/plugin&gt;
+		&lt;/plugins&gt;
+	&lt;/build&gt;
+
+&lt;/project&gt;">Copy</button></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The following listing shows the <code>build.gradle</code> file that is created when you choose Gradle:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight prettyprinted" style=""><code class="language-text" data-lang="text"><span class="pln">plugins </span><span class="pun">{</span><span class="pln">
+	id </span><span class="str">'org.springframework.boot'</span><span class="pln"> version </span><span class="str">'2.2.2.RELEASE'</span><span class="pln">
+	id </span><span class="str">'io.spring.dependency-management'</span><span class="pln"> version </span><span class="str">'1.0.8.RELEASE'</span><span class="pln">
+	id </span><span class="str">'java'</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="kwd">group</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="str">'com.example'</span><span class="pln">
+version </span><span class="pun">=</span><span class="pln"> </span><span class="str">'0.0.1-SNAPSHOT'</span><span class="pln">
+sourceCompatibility </span><span class="pun">=</span><span class="pln"> </span><span class="str">'1.8'</span><span class="pln">
+
+configurations </span><span class="pun">{</span><span class="pln">
+	developmentOnly
+	runtimeClasspath </span><span class="pun">{</span><span class="pln">
+		extendsFrom developmentOnly
+	</span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+repositories </span><span class="pun">{</span><span class="pln">
+	mavenCentral</span><span class="pun">()</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+dependencies </span><span class="pun">{</span><span class="pln">
+	implementation </span><span class="str">'org.springframework.boot:spring-boot-starter-thymeleaf'</span><span class="pln">
+	implementation </span><span class="str">'org.springframework.boot:spring-boot-starter-web'</span><span class="pln">
+	developmentOnly </span><span class="str">'org.springframework.boot:spring-boot-devtools'</span><span class="pln">
+	testImplementation</span><span class="pun">(</span><span class="str">'org.springframework.boot:spring-boot-starter-test'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+		exclude </span><span class="kwd">group</span><span class="pun">:</span><span class="pln"> </span><span class="str">'org.junit.vintage'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">module</span><span class="pun">:</span><span class="pln"> </span><span class="str">'junit-vintage-engine'</span><span class="pln">
+	</span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+test </span><span class="pun">{</span><span class="pln">
+	useJUnitPlatform</span><span class="pun">()</span><span class="pln">
+</span><span class="pun">}</span></code><button class="copy-button button button-small animate" data-clipboard-text="plugins {
+	id &#39;org.springframework.boot&#39; version &#39;2.2.2.RELEASE&#39;
+	id &#39;io.spring.dependency-management&#39; version &#39;1.0.8.RELEASE&#39;
+	id &#39;java&#39;
+}
+
+group = &#39;com.example&#39;
+version = &#39;0.0.1-SNAPSHOT&#39;
+sourceCompatibility = &#39;1.8&#39;
+
+configurations {
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation &#39;org.springframework.boot:spring-boot-starter-thymeleaf&#39;
+	implementation &#39;org.springframework.boot:spring-boot-starter-web&#39;
+	developmentOnly &#39;org.springframework.boot:spring-boot-devtools&#39;
+	testImplementation(&#39;org.springframework.boot:spring-boot-starter-test&#39;) {
+		exclude group: &#39;org.junit.vintage&#39;, module: &#39;junit-vintage-engine&#39;
+	}
+}
+
+test {
+	useJUnitPlatform()
+}">Copy</button></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="initial">Create a Web Controller</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In Spring’s approach to building web sites, HTTP requests are handled by a controller. You can easily identify the controller by the <a href="https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/stereotype/Controller.html"><code>@Controller</code></a> annotation. In the following example, <code>GreetingController</code> handles GET requests for <code>/greeting</code> by returning the name of a <a href="https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/servlet/View.html"><code>View</code></a> (in this case, <code>greeting</code>). A <code>View</code> is responsible for rendering the HTML content. The following listing (from <code>src/main/java/com/example/servingwebcontent/GreetingController.java</code>) shows the controller:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight prettyprinted" style=""><code class="language-java" data-lang="java"><span class="kwd">package</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">example</span><span class="pun">.</span><span class="pln">servingwebcontent</span><span class="pun">;</span><span class="pln">
+
+</span><span class="kwd">import</span><span class="pln"> org</span><span class="pun">.</span><span class="pln">springframework</span><span class="pun">.</span><span class="pln">stereotype</span><span class="pun">.</span><span class="typ">Controller</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> org</span><span class="pun">.</span><span class="pln">springframework</span><span class="pun">.</span><span class="pln">ui</span><span class="pun">.</span><span class="typ">Model</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> org</span><span class="pun">.</span><span class="pln">springframework</span><span class="pun">.</span><span class="pln">web</span><span class="pun">.</span><span class="pln">bind</span><span class="pun">.</span><span class="pln">annotation</span><span class="pun">.</span><span class="typ">GetMapping</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> org</span><span class="pun">.</span><span class="pln">springframework</span><span class="pun">.</span><span class="pln">web</span><span class="pun">.</span><span class="pln">bind</span><span class="pun">.</span><span class="pln">annotation</span><span class="pun">.</span><span class="typ">RequestParam</span><span class="pun">;</span><span class="pln">
+
+</span><span class="lit">@Controller</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">GreetingController</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+	</span><span class="lit">@GetMapping</span><span class="pun">(</span><span class="str">"/greeting"</span><span class="pun">)</span><span class="pln">
+	</span><span class="kwd">public</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> greeting</span><span class="pun">(</span><span class="lit">@RequestParam</span><span class="pun">(</span><span class="pln">name</span><span class="pun">=</span><span class="str">"name"</span><span class="pun">,</span><span class="pln"> required</span><span class="pun">=</span><span class="kwd">false</span><span class="pun">,</span><span class="pln"> defaultValue</span><span class="pun">=</span><span class="str">"World"</span><span class="pun">)</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> name</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Model</span><span class="pln"> model</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+		model</span><span class="pun">.</span><span class="pln">addAttribute</span><span class="pun">(</span><span class="str">"name"</span><span class="pun">,</span><span class="pln"> name</span><span class="pun">);</span><span class="pln">
+		</span><span class="kwd">return</span><span class="pln"> </span><span class="str">"greeting"</span><span class="pun">;</span><span class="pln">
+	</span><span class="pun">}</span><span class="pln">
+
+</span><span class="pun">}</span></code><button class="copy-button button button-small animate" data-clipboard-text="package com.example.servingwebcontent;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@Controller
+public class GreetingController {
+
+	@GetMapping(&quot;/greeting&quot;)
+	public String greeting(@RequestParam(name=&quot;name&quot;, required=false, defaultValue=&quot;World&quot;) String name, Model model) {
+		model.addAttribute(&quot;name&quot;, name);
+		return &quot;greeting&quot;;
+	}
+
+}">Copy</button></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>This controller is concise and simple, but there is plenty going on. We break it down step by step.</p>
+</div>
+<div class="paragraph">
+<p>The <code>@GetMapping</code> annotation ensures that HTTP GET requests to <code>/greeting</code> are mapped to the <code>greeting()</code> method.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/bind/annotation/RequestParam.html"><code>@RequestParam</code></a> binds the value of the query string parameter <code>name</code> into the <code>name</code> parameter of the <code>greeting()</code> method. This query string parameter is not <code>required</code>. If it is absent in the request, the <code>defaultValue</code> of <code>World</code> is used. The value of the <code>name</code> parameter is added to a <a href="https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/ui/Model.html"><code>Model</code></a> object, ultimately making it accessible to the view template.</p>
+</div>
+<div class="paragraph">
+<p>The implementation of the method body relies on a view technology (in this case, <a href="http://www.thymeleaf.org/doc/tutorials/2.1/thymeleafspring.html">Thymeleaf</a>) to perform server-side rendering of the HTML. Thymeleaf parses the <code>greeting.html</code> template and evaluates the <code>th:text</code> expression to render the value of the <code>${name}</code> parameter that was set in the controller.The following listing (from <code>src/main/resources/templates/greeting.html</code>) shows the <code>greeting.html</code> template:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight prettyprinted" style=""><code class="language-html" data-lang="html"><span class="dec">&lt;!DOCTYPE HTML&gt;</span><span class="pln">
+</span><span class="tag">&lt;html</span><span class="pln"> </span><span class="atn">xmlns:th</span><span class="pun">=</span><span class="atv">"http://www.thymeleaf.org"</span><span class="tag">&gt;</span><span class="pln">
+</span><span class="tag">&lt;head&gt;</span><span class="pln">
+    </span><span class="tag">&lt;title&gt;</span><span class="pln">Getting Started: Serving Web Content</span><span class="tag">&lt;/title&gt;</span><span class="pln">
+    </span><span class="tag">&lt;meta</span><span class="pln"> </span><span class="atn">http-equiv</span><span class="pun">=</span><span class="atv">"Content-Type"</span><span class="pln"> </span><span class="atn">content</span><span class="pun">=</span><span class="atv">"text/html; charset=UTF-8"</span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln">
+</span><span class="tag">&lt;/head&gt;</span><span class="pln">
+</span><span class="tag">&lt;body&gt;</span><span class="pln">
+    </span><span class="tag">&lt;p</span><span class="pln"> </span><span class="atn">th:text</span><span class="pun">=</span><span class="atv">"'Hello, ' + ${name} + '!'"</span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln">
+</span><span class="tag">&lt;/body&gt;</span><span class="pln">
+</span><span class="tag">&lt;/html&gt;</span></code><button class="copy-button button button-small animate" data-clipboard-text="&lt;!DOCTYPE HTML&gt;
+&lt;html xmlns:th=&quot;http://www.thymeleaf.org&quot;&gt;
+&lt;head&gt;
+    &lt;title&gt;Getting Started: Serving Web Content&lt;/title&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p th:text=&quot;&#39;Hello, &#39; + ${name} + &#39;!&#39;&quot; /&gt;
+&lt;/body&gt;
+&lt;/html&gt;">Copy</button></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tbody>
+<tr>
+<td class="icon"> <i class="fa icon-tip" title="Tip"></i> </td>
+<td class="content"> Make sure you have Thymeleaf on your classpath (artifact co-ordinates: <code>org.springframework.boot:spring-boot-starter-thymeleaf</code>). It is already there in the "initial" and "complete" samples in Github. </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_spring_boot_devtools">Spring Boot Devtools</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A common feature of developing web applications is coding a change, restarting your application, and refreshing the browser to view the change. This entire process can eat up a lot of time. To speed up this refresh cycle, Spring Boot offers with a handy module known as <a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#using-boot-devtools">spring-boot-devtools</a>. Spring Boot Devtools:</p>
+</div>
+<div class="ulist">
+<ul>
+<li> <p>Enables <a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#howto-hotswapping">hot swapping</a>.</p> </li>
+<li> <p>Switches template engines to disable caching.</p> </li>
+<li> <p>Enables LiveReload to automatically refresh the browser.</p> </li>
+<li> <p>Other reasonable defaults based on development instead of production.</p> </li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_run_the_application">Run the Application</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Spring Initializr creates an application class for you. In this case, you need not further modify the class provided by the Spring Initializr. The following listing (from <code>src/main/java/com/example/servingwebcontent/ServingWebContentApplication.java</code>) shows the application class:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight prettyprinted" style=""><code class="language-java" data-lang="java"><span class="kwd">package</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">example</span><span class="pun">.</span><span class="pln">servingwebcontent</span><span class="pun">;</span><span class="pln">
+
+</span><span class="kwd">import</span><span class="pln"> org</span><span class="pun">.</span><span class="pln">springframework</span><span class="pun">.</span><span class="pln">boot</span><span class="pun">.</span><span class="typ">SpringApplication</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> org</span><span class="pun">.</span><span class="pln">springframework</span><span class="pun">.</span><span class="pln">boot</span><span class="pun">.</span><span class="pln">autoconfigure</span><span class="pun">.</span><span class="typ">SpringBootApplication</span><span class="pun">;</span><span class="pln">
+
+</span><span class="lit">@SpringBootApplication</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">ServingWebContentApplication</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pun">[]</span><span class="pln"> args</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="typ">SpringApplication</span><span class="pun">.</span><span class="pln">run</span><span class="pun">(</span><span class="typ">ServingWebContentApplication</span><span class="pun">.</span><span class="kwd">class</span><span class="pun">,</span><span class="pln"> args</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+</span><span class="pun">}</span></code><button class="copy-button button button-small animate" data-clipboard-text="package com.example.servingwebcontent;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class ServingWebContentApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(ServingWebContentApplication.class, args);
+    }
+
+}">Copy</button></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p><code>@SpringBootApplication</code> is a convenience annotation that adds all of the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li> <p><code>@Configuration</code>: Tags the class as a source of bean definitions for the application context.</p> </li>
+<li> <p><code>@EnableAutoConfiguration</code>: Tells Spring Boot to start adding beans based on classpath settings, other beans, and various property settings. For example, if <code>spring-webmvc</code> is on the classpath, this annotation flags the application as a web application and activates key behaviors, such as setting up a <code>DispatcherServlet</code>.</p> </li>
+<li> <p><code>@ComponentScan</code>: Tells Spring to look for other components, configurations, and services in the <code>com/example</code> package, letting it find the controllers.</p> </li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <code>main()</code> method uses Spring Boot’s <code>SpringApplication.run()</code> method to launch an application. Did you notice that there was not a single line of XML? There is no <code>web.xml</code> file, either. This web application is 100% pure Java and you did not have to deal with configuring any plumbing or infrastructure.</p>
+</div>
+<div class="sect2">
+<h3 id="_build_an_executable_jar">Build an executable JAR</h3>
+<div class="paragraph">
+<p>You can run the application from the command line with Gradle or Maven. You can also build a single executable JAR file that contains all the necessary dependencies, classes, and resources and run that. Building an executable jar so makes it easy to ship, version, and deploy the service as an application throughout the development lifecycle, across different environments, and so forth.</p>
+</div>
+<div class="paragraph">
+<p>If you use Gradle, you can run the application by using <code>./gradlew bootRun</code>. Alternatively, you can build the JAR file by using <code>./gradlew build</code> and then run the JAR file, as follows:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock has-copy-button">
+<div class="content">
+<pre>java -jar build/libs/gs-serving-web-content-0.1.0.jar</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>If you use Maven, you can run the application by using <code>./mvnw spring-boot:run</code>. Alternatively, you can build the JAR file with <code>./mvnw clean package</code> and then run the JAR file, as follows:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock has-copy-button">
+<div class="content">
+<pre>java -jar target/gs-serving-web-content-0.1.0.jar</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody>
+<tr>
+<td class="icon"> <i class="fa icon-note" title="Note"></i> </td>
+<td class="content"> The steps described here create a runnable JAR. You can also <a href="https://spring.io/guides/gs/convert-jar-to-war/">build a classic WAR file</a>. </td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph">
+<p>Logging output is displayed. The application should be up and running within a few seconds.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_test_the_application">Test the Application</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now that the web site is running, visit <code><a href="http://localhost:8080/greeting" class="bare">http://localhost:8080/greeting</a></code>, where you should see “Hello, World!”</p>
+</div>
+<div class="paragraph">
+<p>Provide a <code>name</code> query string parameter by visiting <code><a href="http://localhost:8080/greeting?name=User" class="bare">http://localhost:8080/greeting?name=User</a></code>. Notice how the message changes from “Hello, World!” to “Hello, User!”:</p>
+</div>
+<div class="paragraph">
+<p>This change demonstrates that the <a href="https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/bind/annotation/RequestParam.html"><code>@RequestParam</code></a> arrangement in <code>GreetingController</code> is working as expected. The <code>name</code> parameter has been given a default value of <code>World</code>, but it can be explicitly overridden through the query string.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_add_a_home_page">Add a Home Page</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Static resources, including HTML and JavaScript and CSS, can be served from your Spring Boot application by dropping them into the right place in the source code. By default, Spring Boot serves static content from resources in the classpath at <code>/static</code> (or <code>/public</code>). The <code>index.html</code> resource is special because, if it exists, it is used as a "`welcome page,<code>"serving-web-content/ which means it is served up as the root resource (that is, at `http://localhost:8080/</code>). As a result, you need to create the following file (which you can find in <code>src/main/resources/static/index.html</code>):</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight prettyprinted" style=""><code class="language-html" data-lang="html"><span class="dec">&lt;!DOCTYPE HTML&gt;</span><span class="pln">
+</span><span class="tag">&lt;html&gt;</span><span class="pln">
+</span><span class="tag">&lt;head&gt;</span><span class="pln">
+    </span><span class="tag">&lt;title&gt;</span><span class="pln">Getting Started: Serving Web Content</span><span class="tag">&lt;/title&gt;</span><span class="pln">
+    </span><span class="tag">&lt;meta</span><span class="pln"> </span><span class="atn">http-equiv</span><span class="pun">=</span><span class="atv">"Content-Type"</span><span class="pln"> </span><span class="atn">content</span><span class="pun">=</span><span class="atv">"text/html; charset=UTF-8"</span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln">
+</span><span class="tag">&lt;/head&gt;</span><span class="pln">
+</span><span class="tag">&lt;body&gt;</span><span class="pln">
+    </span><span class="tag">&lt;p&gt;</span><span class="pln">Get your greeting </span><span class="tag">&lt;a</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"/greeting"</span><span class="tag">&gt;</span><span class="pln">here</span><span class="tag">&lt;/a&gt;&lt;/p&gt;</span><span class="pln">
+</span><span class="tag">&lt;/body&gt;</span><span class="pln">
+</span><span class="tag">&lt;/html&gt;</span></code><button class="copy-button button button-small animate" data-clipboard-text="&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Getting Started: Serving Web Content&lt;/title&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p&gt;Get your greeting &lt;a href=&quot;/greeting&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;">Copy</button></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>When you restart the application, you will see the HTML at <code><a href="http://localhost:8080/" class="bare">http://localhost:8080/</a></code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_summary">Summary</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Congratulations! You have just developed a web page by using Spring.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_see_also">See Also</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following guides may also be helpful:</p>
+</div>
+<div class="ulist">
+<ul>
+<li> <p><a href="https://spring.io/guides/gs/spring-boot/">Building an Application with Spring Boot</a></p> </li>
+<li> <p><a href="https://spring.io/guides/gs/accessing-data-gemfire/">Accessing Data with GemFire</a></p> </li>
+<li> <p><a href="https://spring.io/guides/gs/accessing-data-jpa/">Accessing Data with JPA</a></p> </li>
+<li> <p><a href="https://spring.io/guides/gs/accessing-data-mongodb/">Accessing Data with MongoDB</a></p> </li>
+<li> <p><a href="https://spring.io/guides/gs/accessing-data-mysql/">Accessing data with MySQL</a></p> </li>
+<li> <p><a href="https://spring.io/guides/gs/testing-web/">Testing the Web Layer</a></p> </li>
+<li> <p><a href="https://spring.io/guides/gs/rest-service/">Building a RESTful Web Service</a></p> </li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Want to write a new guide or contribute to an existing one? Check out our <a href="https://github.com/spring-guides/getting-started-guides/wiki">contribution guidelines</a>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tbody>
+<tr>
+<td class="icon"> <i class="fa icon-important" title="Important"></i> </td>
+<td class="content"> All guides are released with an ASLv2 license for the code, and an <a href="https://creativecommons.org/licenses/by-nd/3.0/">Attribution, NoDerivatives creative commons license</a> for the writing. </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</article>
+</div>
+<aside class="span4 content-right-pane--container mobile-left-pane" id="sidebar">
+<a class="ci-status desktop-only" href="https://travis-ci.org/spring-guides/gs-serving-web-content">
+<img src="./Getting Started _ Serving Web Content with Spring MVC_files/passing.svg">
+</a>
+<div class="right-pane-widget--container desktop-only">
+<div class="github-actions https">
+<h2>Get the Code</h2>
+<div class="btn-group">
+<button class="btn" data-protocol="https">HTTPS</button>
+<button class="btn" data-protocol="ssh">SSH</button>
+</div>
+<div class="clone-url https">
+<input id="clone-url-https" readonly="readonly" type="text" value="https://github.com/spring-guides/gs-serving-web-content.git">
+<button class="copy-button github" data-toggle="tooltip" data-clipboard-text="https://github.com/spring-guides/gs-serving-web-content.git"></button>
+</div>
+<div class="clone-url ssh">
+<input id="clone-url-ssh" readonly="readonly" type="text" value="git@github.com:spring-guides/gs-serving-web-content.git">
+<button class="copy-button github" data-toggle="tooltip" data-clipboard-text="git@github.com:spring-guides/gs-serving-web-content.git"></button>
+</div>
+<a class="github_download btn btn-black uppercase" href="https://github.com/spring-guides/gs-serving-web-content/archive/master.zip">Download ZIP</a>
+<a class="gs-guide-import" href="https://github.com/spring-guides/gs-serving-web-content.git">Import into STS</a>
+<div class="go-to-repo--container">
+<a href="https://github.com/spring-guides/gs-serving-web-content"><i class="fab fa-github"></i>Go To Repo</a>
+</div>
+<div class="go-to-repo--container">
+</div>
+</div>
+</div>
+<div class="right-pane-widget--container">
+<div>
+<h3><a class="anchor" href="https://spring.io/guides/gs/serving-web-content/#table-of-contents" name="table-of-contents"></a>Table of contents</h3>
+<div><ul class="sectlevel1">
+<li><a href="https://spring.io/guides/gs/serving-web-content/#_what_you_will_build">What You Will Build</a></li>
+<li><a href="https://spring.io/guides/gs/serving-web-content/#_what_you_need">What You Need</a></li>
+<li><a href="https://spring.io/guides/gs/serving-web-content/#_how_to_complete_this_guide">How to complete this guide</a></li>
+<li><a href="https://spring.io/guides/gs/serving-web-content/#scratch">Starting with Spring Initializr</a></li>
+<li><a href="https://spring.io/guides/gs/serving-web-content/#initial">Create a Web Controller</a></li>
+<li><a href="https://spring.io/guides/gs/serving-web-content/#_spring_boot_devtools">Spring Boot Devtools</a></li>
+<li><a href="https://spring.io/guides/gs/serving-web-content/#_run_the_application">Run the Application</a> </li>
+<li><a href="https://spring.io/guides/gs/serving-web-content/#_test_the_application">Test the Application</a></li>
+<li><a href="https://spring.io/guides/gs/serving-web-content/#_add_a_home_page">Add a Home Page</a></li>
+<li><a href="https://spring.io/guides/gs/serving-web-content/#_summary">Summary</a></li>
+<li><a href="https://spring.io/guides/gs/serving-web-content/#_see_also">See Also</a></li>
+</ul></div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+</div>
+</div>
+<footer>
+<div id="top">
+<div class="container flex jc-between mx-auto">
+<div id="green-circle-sm"></div>
+
+<img alt="" id="circle-grid" src="./Getting Started _ Serving Web Content with Spring MVC_files/footer-circles-dc4b03d4edc1f3b7b42a45bdcce411c8.svg">
+<div class="third">
+<h2 class="bold h3 antialiased">Get ahead</h2>
+<p>Pivotal offers training and certification to turbo-charge your progress.</p>
+<a class="blue link-animate" href="https://spring.io/training">Learn more</a>
+</div>
+<div class="third">
+<h2 class="bold h3 antialiased">Get support</h2>
+<p>Spring Runtime offers support and binaries for OpenJDK™, Spring, and Apache Tomcat® in one simple subscription.</p>
+<a class="blue link-animate" href="https://spring.io/support">Learn more</a>
+</div>
+<div class="third">
+<h2 class="bold h3 antialiased">Upcoming events</h2>
+<div class="footer-event">
+<a class="blue link-animate" href="https://springoneplatform.io/">SpringOne Platform</a>
+<p>Sep 21–24, Seattle</p>
+</div>
+<br>
+<div class="footer-event">
+<a class="blue link-animate" href="https://springonetour.io/">SpringOne Tour</a>
+<p>The best Cloud-Native Java content brought directly to you.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="bottom">
+<div id="bottom-top">
+<div class="mx-auto" id="footer-over">
+<div class="container flex jc-between mx-auto">
+<div class="left">
+<div class="flex jc-between">
+<div class="footer-column">
+<p><strong><a href="https://spring.io/why-spring">Why Spring</a></strong></p>
+<ul>
+<li><a href="https://spring.io/microservices">Microservices</a></li>
+<li><a href="https://spring.io/reactive">Reactive</a></li>
+<li><a href="https://spring.io/event-driven">Event Driven</a></li>
+<li><a href="https://spring.io/cloud">Cloud</a></li>
+<li><a href="https://spring.io/web-applications">Web Applications</a></li>
+<li><a href="https://spring.io/serverless">Serverless</a></li>
+<li><a href="https://spring.io/batch">Batch</a></li>
+</ul>
+</div>
+<div class="footer-column">
+<p><strong><a href="https://spring.io/learn">Learn</a></strong></p>
+<ul>
+<li><a href="https://spring.io/quickstart">Quickstart</a></li>
+<li><a href="https://spring.io/guides">Guides</a></li>
+<li><a href="https://spring.io/blog">Blog</a></li>
+</ul>
+</div>
+<div class="footer-column">
+<p><strong><a href="https://spring.io/community">Community</a></strong></p>
+<ul>
+<li><a href="https://spring.io/events">Events</a></li>
+<li><a href="https://spring.io/team">Team</a></li>
+<li><a href="https://store.pivotal.io/">Store <svg class="external-link-icon" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><polyline fill="none" points="15 10.94 15 15 1 15 1 1 5.06 1" stroke="#333" stroke-miterlimit="10" stroke-width="2"></polyline><polyline fill="none" points="8.93 1 15 1 15 7.07" stroke="#333" stroke-miterlimit="10" stroke-width="2"></polyline><line fill="none" stroke="#333" stroke-miterlimit="10" stroke-width="2" x1="15" x2="8" y1="1" y2="8"></line></svg></a></li>
+</ul>
+</div>
+<div class="footer-column">
+<p><strong><a href="https://spring.io/projects">Projects</a></strong></p>
+<p><strong><a href="https://spring.io/training">Training</a></strong></p>
+<p><strong><a href="https://spring.io/support">Support</a></strong></p>
+<p><strong><a href="https://spring.io/thank-you">Thank You</a></strong></p>
+</div>
+</div>
+</div>
+<div class="right">
+<h2 class="h3 mb-2 antialiased hide">Get the Spring newsletter</h2>
+<h2 class="h3 mb-2 antialiased confirmation">Thank you!</h2>
+<script src="./Getting Started _ Serving Web Content with Spring MVC_files/forms2.min.js"></script>
+<form id="mktoForm_4723" novalidate="novalidate" class="mktoForm mktoHasWidth mktoLayoutLeft" style="font-family: Helvetica, Arial, sans-serif; font-size: 13px; color: rgb(51, 51, 51); width: 419px;"><style type="text/css">.mktoForm .mktoButtonWrap.mktoSimple .mktoButton {
+color:#fff;
+border:1px solid #75ae4c;
+padding:0.4em 1em;
+font-size:1em;
+background-color:#99c47c;
+background-image: -webkit-gradient(linear, left top, left bottom, from(#99c47c), to(#75ae4c));
+background-image: -webkit-linear-gradient(top, #99c47c, #75ae4c);
+background-image: -moz-linear-gradient(top, #99c47c, #75ae4c);
+background-image: linear-gradient(to bottom, #99c47c, #75ae4c);
+}
+.mktoForm .mktoButtonWrap.mktoSimple .mktoButton:hover {
+border:1px solid #447f19;
+}
+.mktoForm .mktoButtonWrap.mktoSimple .mktoButton:focus {
+outline:none;
+border:1px solid #447f19;
+}
+.mktoForm .mktoButtonWrap.mktoSimple .mktoButton:active{
+background-color:#75ae4c;
+background-image: -webkit-gradient(linear, left top, left bottom, from(#75ae4c), to(#99c47c));
+background-image: -webkit-linear-gradient(top, #75ae4c, #99c47c);
+background-image: -moz-linear-gradient(top, #75ae4c, #99c47c);
+background-image: linear-gradient(to bottom, #75ae4c, #99c47c);
+}
+</style><div class="mktoFormRow"><div class="mktoFieldDescriptor mktoFormCol" style="margin-bottom: 10px;"><div class="mktoOffset" style="width: 10px;"></div><div class="mktoFieldWrap mktoRequiredField"><label for="Email" class="mktoLabel mktoHasWidth" style="width: 0px;"><div class="mktoAsterix">*</div></label><div class="mktoGutter mktoHasWidth" style="width: 10px;"></div><input id="Email" name="Email" placeholder="Email Address" maxlength="255" type="email" class="mktoField mktoEmailField mktoHasWidth mktoRequired" style="width: 150px;"><div class="mktoClear"></div></div><div class="mktoClear"></div></div><div class="mktoClear"></div></div><div class="mktoFormRow"><div class="mktoFieldDescriptor mktoFormCol" style="margin-bottom: 10px;"><div class="mktoOffset" style="width: 10px;"></div><div class="mktoFieldWrap mktoRequiredField"><label for="gdprconsent" class="mktoLabel mktoHasWidth" style="width: 0px;"><div class="mktoAsterix">*</div></label><div class="mktoGutter mktoHasWidth" style="width: 10px;"></div><div class="mktoLogicalField mktoCheckboxList mktoHasWidth mktoRequired" style="width: 280px;"><input name="gdprconsent" id="mktoCheckbox_73768_0" type="checkbox" value="yes" class="mktoField"><label for="mktoCheckbox_73768_0">Yes, I would like to be contacted by The Spring Team and Pivotal for newsletters, promotions and events per the terms of Pivotal’s <a href="https://pivotal.io/privacy-policy" target="_blank">Privacy Policy</a> </label></div><div class="mktoClear"></div></div><div class="mktoClear"></div></div><div class="mktoClear"></div></div><div class="mktoButtonRow"><span class="mktoButtonWrap mktoSimple" style="margin-left: 120px;"><button type="submit" class="mktoButton">Subscribe</button></span></div><input type="hidden" name="formid" class="mktoField mktoFieldDescriptor" value="4723"><input type="hidden" name="munchkinId" class="mktoField mktoFieldDescriptor" value="625-IUJ-009"></form>
+<script>
+                            MktoForms2.loadForm("https://app-sj05.marketo.com", "625-IUJ-009", 4723 , function(form){
+                                form.onSuccess(function(values, followUpUrl){
+                                    form.getFormElem().hide();
+                                    $('.hide').hide();
+                                    $('.confirmation').show();
+                                    return false;
+                                });
+                            });
+                        </script>
+</div>
+</div>
+</div>
+</div>
+<div id="bottom-bottom">
+<div class="flex container jc-between">
+<div id="spring-links">
+<img alt="Spring" id="springlogo-foot" src="./Getting Started _ Serving Web Content with Spring MVC_files/spring-logo-fc4350c59999bb62c468361537212419.svg">
+<p class="smallest antialiased">© <script>var d = new Date();
+                    document.write(d.getFullYear());</script>2020 <a href="https://pivotal.io/">Pivotal Software</a>, Inc. All Rights Reserved. <a href="https://pivotal.io/legal">Terms of Use</a> • <a href="https://pivotal.io/privacy-policy" rel="noopener noreferrer">Privacy</a> • <a href="https://spring.io/trademarks">Trademark Guidelines</a> <span id="thank-you-mobile">• <a href="https://spring.io/thank-you">Thank you</a></span> <span id="teconsent" consent="0,1,2" style="display: inline;"><script src="./Getting Started _ Serving Web Content with Spring MVC_files/v1.7-30" async="async" crossorigin=""></script><a id="icon-id01754952363304052" tabindex="0" role="button" lang="en" style="cursor: pointer;">Cookie Preferences</a></span></p>
+<p class="smallest antialiased">Apache®, Apache Tomcat®, Apache Kafka®, Apache Cassandra™, and Apache Geode™ are trademarks or registered trademarks of the Apache Software Foundation in the United States and/or other countries. Java™, Java™ SE, Java™ EE, and OpenJDK™ are trademarks of Oracle and/or its affiliates. Kubernetes® is a registered trademark of the Linux Foundation in the United States and other countries. Linux® is the registered trademark of Linus Torvalds in the United States and other countries. Windows® and Microsoft® Azure are registered trademarks of Microsoft Corporation. “AWS” and “Amazon Web Services” are trademarks or registered trademarks of Amazon.com Inc. or its affiliates. All other trademarks and copyrights are property of their respective owners and are only mentioned for informative purposes. Other names may be trademarks of their respective owners.</p>
+</div>
+<div class="flex jc-between" id="social-icons">
+<a href="https://www.youtube.com/user/SpringSourceDev" title="Youtube"><svg id="youtube-icon" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><defs><style>#youtube-icon .cls-1{fill:#191E1E;}#youtube-icon .cls-2{fill:#fff;}</style></defs><circle class="cls-1" cx="20" cy="20" r="20"></circle><path class="cls-2" d="M30.91,14.53a2.89,2.89,0,0,0-2-2C27.12,12,20,12,20,12s-7.12,0-8.9.47a2.9,2.9,0,0,0-2,2A30.56,30.56,0,0,0,8.63,20a30.44,30.44,0,0,0,.46,5.47,2.89,2.89,0,0,0,2,2C12.9,28,20,28,20,28s7.12,0,8.9-.47a2.87,2.87,0,0,0,2-2A30.56,30.56,0,0,0,31.37,20,28.88,28.88,0,0,0,30.91,14.53ZM17.73,23.41V16.59L23.65,20Z"></path></svg></a>
+<a href="https://github.com/spring-projects" title="Github"><svg id="github-icon" viewBox="0 0 75.93 75.93" xmlns="http://www.w3.org/2000/svg"><defs><style>#github-icon .cls-1{fill:#191E1E;}#github-icon .cls-2{fill:#fff;fill-rule:evenodd;}</style></defs><path class="cls-1" d="M38,0a38,38,0,1,0,38,38A38,38,0,0,0,38,0Z"></path><path class="cls-2" d="M38,15.59A22.95,22.95,0,0,0,30.71,60.3c1.15.21,1.57-.5,1.57-1.11s0-2,0-3.9c-6.38,1.39-7.73-3.07-7.73-3.07A6.09,6.09,0,0,0,22,48.86c-2.09-1.42.15-1.39.15-1.39a4.81,4.81,0,0,1,3.52,2.36c2,3.5,5.37,2.49,6.67,1.91a4.87,4.87,0,0,1,1.46-3.07c-5.09-.58-10.45-2.55-10.45-11.34a8.84,8.84,0,0,1,2.36-6.15,8.29,8.29,0,0,1,.23-6.07s1.92-.62,6.3,2.35a21.82,21.82,0,0,1,11.49,0c4.38-3,6.3-2.35,6.3-2.35a8.29,8.29,0,0,1,.23,6.07,8.84,8.84,0,0,1,2.36,6.15c0,8.81-5.37,10.75-10.48,11.32a5.46,5.46,0,0,1,1.56,4.25c0,3.07,0,5.54,0,6.29s.42,1.33,1.58,1.1A22.94,22.94,0,0,0,38,15.59Z"></path></svg></a>
+<a href="https://twitter.com/springcentral" title="Twitter"><svg id="twitter-icon" viewBox="0 0 75.93 75.93" xmlns="http://www.w3.org/2000/svg"><defs><style>#twitter-icon .cls-1{fill:#191E1E;}#twitter-icon .cls-2{fill:#fff;}</style></defs><circle class="cls-1" cx="37.97" cy="37.97" r="37.97"></circle><path class="cls-2" d="M55.2,22.73a15.43,15.43,0,0,1-4.88,1.91,7.56,7.56,0,0,0-5.61-2.49A7.78,7.78,0,0,0,37,30a7.56,7.56,0,0,0,.2,1.79,21.63,21.63,0,0,1-15.84-8.23,8,8,0,0,0,2.37,10.52,7.66,7.66,0,0,1-3.48-1v.09A7.84,7.84,0,0,0,26.45,41a7.54,7.54,0,0,1-2,.28A7.64,7.64,0,0,1,23,41.09a7.71,7.71,0,0,0,7.18,5.47,15.21,15.21,0,0,1-9.55,3.37,15.78,15.78,0,0,1-1.83-.11,21.41,21.41,0,0,0,11.78,3.54c14.13,0,21.86-12,21.86-22.42,0-.34,0-.68,0-1a15.67,15.67,0,0,0,3.83-4.08,14.9,14.9,0,0,1-4.41,1.24A7.8,7.8,0,0,0,55.2,22.73Z" data-name="Twitter" id="Twitter-2"></path></svg></a>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script src="./Getting Started _ Serving Web Content with Spring MVC_files/main-96ff27c0e58e8198e728d760d3bf350b.js"></script>
+<script type="text/javascript" id="truste_0.2787052731973816" src="./Getting Started _ Serving Web Content with Spring MVC_files/notice"></script><div id="mktoStyleLoaded" style="display: none; border-top-color: rgb(18, 52, 86);"></div><form novalidate="novalidate" class="mktoForm mktoHasWidth mktoLayoutLeft" style="font-family: Helvetica, Arial, sans-serif; font-size: 13px; color: rgb(51, 51, 51); visibility: hidden; position: absolute; top: -500px; left: -1000px; width: 1920px;"></form><iframe name="mktoFormsXDIframe0.15488010611767722" id="MktoForms2XDIframe" src="./Getting Started _ Serving Web Content with Spring MVC_files/XDFrame.html" style="display: none;"></iframe><script type="text/javascript" id="">var imgur=document.querySelectorAll(".gravatar-wrapper-32 img");console.log(imgur);for(var i=0;i<imgur.length;++i){var src=imgur[i].src;src&&-1<src.indexOf("imgur")?imgur[i].parentNode.removeChild(imgur[i]):src&&-1<src.indexOf("gravatar")&&imgur[i].parentNode.removeChild(imgur[i])};</script></body></html>

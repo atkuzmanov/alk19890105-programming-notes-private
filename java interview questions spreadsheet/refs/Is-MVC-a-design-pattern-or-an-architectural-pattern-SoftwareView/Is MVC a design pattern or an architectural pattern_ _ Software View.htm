@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<!-- saved from url=(0070)http://www.swview.org/blog/mvc-design-pattern-or-architectural-pattern -->
+<html lang="en" dir="ltr" prefix="content: http://purl.org/rss/1.0/modules/content/  dc: http://purl.org/dc/terms/  foaf: http://xmlns.com/foaf/0.1/  og: http://ogp.me/ns#  rdfs: http://www.w3.org/2000/01/rdf-schema#  schema: http://schema.org/  sioc: http://rdfs.org/sioc/ns#  sioct: http://rdfs.org/sioc/types#  skos: http://www.w3.org/2004/02/skos/core#  xsd: http://www.w3.org/2001/XMLSchema# "><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+<meta name="Generator" content="Drupal 8 (https://www.drupal.org)">
+<meta name="MobileOptimized" content="width">
+<meta name="HandheldFriendly" content="true">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="http://www.swview.org/sites/default/files/favicon.ico" type="image/vnd.microsoft.icon">
+<link rel="canonical" href="http://www.swview.org/blog/mvc-design-pattern-or-architectural-pattern">
+<link rel="shortlink" href="http://www.swview.org/node/544">
+<link rel="revision" href="http://www.swview.org/blog/mvc-design-pattern-or-architectural-pattern">
+
+    <title>Is MVC a design pattern or an architectural pattern? | Software View</title>
+    <link rel="stylesheet" media="all" href="./Is MVC a design pattern or an architectural pattern_ _ Software View_files/css_pN_aNY_1eLt0WlUbmimNvK8eF4lkcIrV3SSIjBt5NlA.css">
+<link rel="stylesheet" media="all" href="./Is MVC a design pattern or an architectural pattern_ _ Software View_files/css_1lBL-yxPvsPM-Zxhmoyhtqc7pSteJrMnxGIxlyLKSkg.css">
+<link rel="stylesheet" media="print" href="./Is MVC a design pattern or an architectural pattern_ _ Software View_files/css_Z5jMg7P_bjcW9iUzujI7oaechMyxQTUqZhHJ_aYSq04.css">
+<link rel="stylesheet" media="all" href="./Is MVC a design pattern or an architectural pattern_ _ Software View_files/css_WhouxLcngA7zgQInxsJkA0HcMMjolkeqeYF8cw9Txs0.css">
+
+    
+<!--[if lte IE 8]>
+<script src="/sites/default/files/js/js_VtafjXmRvoUgAzqzYTA3Wrjkx9wcWhjP0G4ZnnqRamA.js"></script>
+<![endif]-->
+
+  </head>
+  <body class="layout-two-sidebars path-node page-node-type-blog">
+        <a href="http://www.swview.org/blog/mvc-design-pattern-or-architectural-pattern#main-content" class="visually-hidden focusable skip-link">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas="">
+    <div id="page-wrapper">
+  <div id="page">
+    <header id="header" class="header" role="banner">
+      <div class="section layout-container clearfix">
+        
+          <div class="clearfix region region-header">
+    <div id="block-bartik-branding" class="clearfix site-branding block block-system block-system-branding-block">
+  
+    
+          <div class="site-branding__text">
+              <div class="site-branding__name">
+          <a href="http://www.swview.org/" title="Home" rel="home">Software View</a>
+        </div>
+                    <div class="site-branding__slogan">Growth partner of IT professionals</div>
+          </div>
+  </div>
+
+  </div>
+
+          <div class="region region-primary-menu">
+    <nav role="navigation" aria-labelledby="block-bartik-main-menu-menu" id="block-bartik-main-menu" class="block block-menu navigation menu--main">
+            
+  <h2 class="visually-hidden" id="block-bartik-main-menu-menu">Main navigation</h2>
+  
+
+      <div class="content">
+        <div class="menu-toggle-target menu-toggle-target-show" id="show-block-bartik-main-menu"></div>
+    <div class="menu-toggle-target" id="hide-block-bartik-main-menu"></div>
+    <a class="menu-toggle" href="http://www.swview.org/blog/mvc-design-pattern-or-architectural-pattern#show-block-bartik-main-menu">Show — Main navigation</a>
+    <a class="menu-toggle menu-toggle--hide" href="http://www.swview.org/blog/mvc-design-pattern-or-architectural-pattern#hide-block-bartik-main-menu">Hide — Main navigation</a>
+    
+              <ul class="clearfix menu">
+                    <li class="menu-item">
+        <a href="http://www.swview.org/" data-drupal-link-system-path="&lt;front&gt;">Home</a>
+              </li>
+                <li class="menu-item">
+        <a href="http://www.software.lk/people/kamal">Trainer Profile</a>
+              </li>
+                <li class="menu-item">
+        <a href="http://www.swview.org/blog" data-drupal-link-system-path="blog">Blog</a>
+              </li>
+                <li class="menu-item">
+        <a href="http://www.swview.org/contact" data-drupal-link-system-path="node/1038">Contact</a>
+              </li>
+        </ul>
+  
+
+
+  </div>
+</nav>
+
+  </div>
+
+      </div>
+    </header>
+          <div class="highlighted">
+        <aside class="layout-container section clearfix" role="complementary">
+            <div class="region region-highlighted">
+    <div data-drupal-messages-fallback="" class="hidden"></div>
+
+  </div>
+
+        </aside>
+      </div>
+            <div id="main-wrapper" class="layout-main-wrapper layout-container clearfix">
+      <div id="main" class="layout-main clearfix">
+          <div class="region region-breadcrumb">
+    <div id="block-bartik-breadcrumbs" class="block block-system block-system-breadcrumb-block">
+  
+    
+      <div class="content">
+        <nav class="breadcrumb" role="navigation" aria-labelledby="system-breadcrumb">
+    <h2 id="system-breadcrumb" class="visually-hidden">Breadcrumb</h2>
+    <ol>
+          <li>
+                  <a href="http://www.swview.org/">Home</a>
+              </li>
+          <li>
+                  <a href="http://www.swview.org/blog">Blog</a>
+              </li>
+        </ol>
+  </nav>
+
+    </div>
+  </div>
+
+  </div>
+
+        <main id="content" class="column main-content" role="main">
+          <section class="section">
+            <a id="main-content" tabindex="-1"></a>
+              <div class="region region-content">
+    <div id="block-bartik-page-title" class="block block-core block-page-title-block">
+  
+    
+      <div class="content">
+      
+  <h1 class="title page-title"><span class="field field--name-title field--type-string field--label-hidden">Is MVC a design pattern or an architectural pattern?</span>
+</h1>
+
+
+    </div>
+  </div>
+<div id="block-bartik-content" class="block block-system block-system-main-block">
+  
+    
+      <div class="content">
+      
+<article data-history-node-id="544" role="article" about="/blog/mvc-design-pattern-or-architectural-pattern" class="node node--type-blog node--promoted node--view-mode-full clearfix">
+  <header>
+    
+          
+          <div class="node__meta">
+        <article typeof="schema:Person" about="/user/1" class="profile">
+  </article>
+
+        <span>
+          Submitted by <span class="field field--name-uid field--type-entity-reference field--label-hidden"><span lang="" about="/user/1" typeof="schema:Person" property="schema:name" datatype="">Kamal Wickramanayake</span></span>
+ on <span class="field field--name-created field--type-created field--label-hidden">July 17, 2010 - 13:12</span>
+        </span>
+        
+      </div>
+      </header>
+  <div class="node__content clearfix">
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>MVC which stands for Model-View-Controller describes a software pattern that you can use in interactive computer systems. To understand if it is a design pattern or an architectural pattern, let's look at what these two are:</p>
+
+<p><strong>Architectural pattern:</strong> Concerned with the subsystems of an application with their relationships and collaborations with each other.</p>
+
+<p><strong>Design pattern:</strong> Concerned with the (further small) components of a subsystem with their relationships and collaborations with each other.</p>
+
+<p>MVC is a pattern that you can use in both ways (as architectural or design) and ample amounts of real world cases where the pattern is used in both these worlds can be found.</p>
+
+<h3>MVC as an architectural pattern</h3>
+
+<p>Here the core functionality and data of an application are abstracted as the model. You have one or more views and one or more controllers collectively representing the user interface. A view is responsible for displaying information to the user. A controller is responsible for accepting user inputs, interpret them to understand what should be done and act accordingly (for example update data or invoke a functionality of the model).</p>
+
+<p>A real world example is the implementation of a web application that follows the MVC architectural pattern. Many such web application frameworks exists. The key is that an application is broken down into components (call them subsystems) by the MVC pattern.</p>
+
+<p class="rtecenter"><img alt="MVC architecture of a web application" src="./Is MVC a design pattern or an architectural pattern_ _ Software View_files/mvc-architecture-web-app.gif" style="width: 500px; height: 365px;"></p>
+
+<h3>MVC as a design pattern</h3>
+
+<p>Consider the many UI widget libraries available out there where MVC is used as a design pattern to implement widgets. Take for example the JSlider class (in Java Swing library). A JSlider instance represents a slider widget where a user can move the knob of the slider to change its position. JSlider is implemented as follows:</p>
+
+<p class="rtecenter"><img alt="JSlider implementation" src="./Is MVC a design pattern or an architectural pattern_ _ Software View_files/mvc-pattern-widget.gif" style="width: 500px; height: 365px;"></p>
+
+<p>Note that in Java Swing library the xxxUI classes capture both the view and controller aspects of a widget. It's slightly different from MVC and Swing creators call this “separable model architecture”. For the purpose of this discussion, just don't care about this difference.</p>
+
+<p>Here the model (BoundedRangeModel) doesn't represent the core functionality or data of the application. It's limited to represent the data (state) of the slider widget (Models of complex widgets may implement some amount of model specific functionality.). SliderUI's view related code is responsible for painting the slider (the background, knob,...). SliderUI's controller is responsible for interpreting a mouse click-and-drag as a semantic event that represents a slider position change. Accordingly the controller related code goes about updating the model. And then the view goes about painting the knob at a different position.</p>
+
+<p>The scope of the MVC pattern here is just limited to implementing a slider widget. Would you call it architectural? I would not since I cannot consider the slider a collection of subsystems of an application. With the frame or reference set to a typical application, you wouldn't even recognize it as a top level subsystem. It's more appropriate to consider it a low level subsystem or a component and hence the MVC manifests as a design pattern in this context (Read initial paragraphs - What is considered a design pattern?).</p>
+
+<h3>Confusion:</h3>
+
+<p>Why is that the Swing creators gave the name “separable model architecture” to their widget design pattern? Probably because what is considered architectural itself is a question that leads to multiple explanations.</p>
+
+<p>One such explanation is that if something (a quality, design aspect,.. ) is found spread throughout a system, it's considered architectural. That's a different way to think about architecture which is not the same as what I mentioned at the beginning of this article (See the description of a architectural pattern). Probably that's one reason why Swing creators used “architecture” in their pattern since it's found throughout the Swing library.</p>
+
+<p>Yet another reason that I can think of is that they just focused on the UI “system”.</p>
+
+<p>Fair&nbsp; enough. Let's not argue. We understand what is what. Based on the first given description, this widget design pattern cannot be considered an architectural pattern.</p>
+
+<h3>Conclusion:</h3>
+
+<p>MVC can either be used as an architectural pattern or a design pattern.</p>
+</div>
+      
+      <div class="field field--name-blog-categories field--type-entity-reference field--label-hidden field__items">
+              <div class="field__item"><a href="http://www.swview.org/taxonomy/term/1" hreflang="en">Software Architecture</a></div>
+              <div class="field__item"><a href="http://www.swview.org/category/blog-categories/software-design" hreflang="en">Software Design</a></div>
+          </div>
+  <section class="field field--name-comment field--type-comment field--label-hidden comment-wrapper">
+  
+  
+
+  
+</section>
+
+  </div>
+</article>
+
+    </div>
+  </div>
+
+  </div>
+
+          </section>
+        </main>
+                  <div id="sidebar-first" class="column sidebar">
+            <aside class="section" role="complementary">
+                <div class="region region-sidebar-first">
+    <div id="block-newslettersubscription" class="block block-block-content block-block-contenteba7ad98-86dd-417c-b150-6435ff27353d">
+  
+      <h2>Newsletter subscription</h2>
+    
+      <div class="content">
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>Visit <a href="http://www.training.lk/subscribe">http://www.training.lk/subscribe</a> to subscribe to training announcements.</p></div>
+      
+    </div>
+  </div>
+<div class="search-block-form block block-search container-inline" data-drupal-selector="search-block-form" id="block-bartik-search" role="search">
+  
+      <h2>Search</h2>
+    
+    <div class="content container-inline">
+        <form action="http://www.swview.org/search/node" method="get" id="search-block-form" accept-charset="UTF-8" class="search-form search-block-form">
+  <div class="js-form-item form-item js-form-type-search form-type-search js-form-item-keys form-item-keys form-no-label">
+      <label for="edit-keys" class="visually-hidden">Search</label>
+        <input title="Enter the terms you wish to search for." data-drupal-selector="edit-keys" type="search" id="edit-keys" name="keys" value="" size="15" maxlength="128" class="form-search">
+
+        </div>
+<div data-drupal-selector="edit-actions" class="form-actions js-form-wrapper form-wrapper" id="edit-actions"><input class="search-form__submit button js-form-submit form-submit" data-drupal-selector="edit-submit" type="submit" id="edit-submit" value="Search">
+</div>
+
+</form>
+
+  
+  </div>
+</div>
+<div class="views-element-container block block-views block-views-blockblog-entries-block-1" id="block-views-block-blog-entries-block-1">
+  
+      <h2>Blog</h2>
+    
+      <div class="content">
+      <div><div class="view view-blog-entries view-id-blog_entries view-display-id-block_1 js-view-dom-id-0e83a510d5f82edaeaaafc2175ee10a439044869294245845258efabbb5bdd07">
+  
+    
+      
+      <div class="view-content">
+      <div class="item-list">
+  
+  <ul>
+
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/accessing-local-variables-even-after-methods-finish-java" hreflang="und">Accessing local variables even after methods finish (in Java)</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/java-programmatic-browser" hreflang="und">Java Programmatic Browser</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/apache-axis2-ws-security-message-signing-vulnerability-version-151" hreflang="und">Apache Axis2 WS-Security message signing vulnerability (Version 1.5.1)</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/mvc-design-pattern-or-architectural-pattern" hreflang="und">Is MVC a design pattern or an architectural pattern?</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/configuring-genius-g-note-7100-linux" hreflang="und">Configuring Genius G-Note 7100 in Linux</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/sample-x509-certificate-collection-publicprivate-keys-java" hreflang="und">Sample X.509 certificate collection with public/private keys (for Java)</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/java-client-connecting-https-resource-proxy-server-needs-authentication" hreflang="und">Java client connecting to an https resource via a proxy server that needs authentication</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/validating-xml-document-against-given-xml-schema-java" hreflang="und">Validating an XML document against a given XML Schema in Java</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/poor-mans-telnet-program" hreflang="und">Poor man's telnet program</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/using-spring-security-your-java-web-application" hreflang="und">Using Spring Security in your Java web application</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/best-way-use-jpa-web-tier" hreflang="und">Best way to use JPA in web-tier</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/understanding-meaning-delivery-valuable-software-agile-software-development" hreflang="und">Understanding the meaning of "delivery of valuable software" in Agile software development</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/offline-installation-propel-orm-tool-php" hreflang="und">Offline installation of Propel ORM tool (for PHP)</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/spring-jpa-web-applications-jta-transactions-jboss-5" hreflang="und">Spring JPA web applications (JTA transactions, JBoss 5)</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/jax-ws-web-services-jboss-5-do-not-work-jdk-16-eclipse-ide" hreflang="und">JAX-WS Web services in JBoss 5 do not work (JDK 1.6, Eclipse IDE)?</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/convert-mysql-tables-and-data-latin1-utf8" hreflang="und">Convert MySQL tables and data from latin1 to utf8</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/what-good-software-project-estimate" hreflang="und">What is a good software project estimate?</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/configuring-jboss-spring-jpa-hibernate-jta-web-application" hreflang="und">Configuring a JBoss + Spring + JPA (Hibernate) + JTA web application</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/how-redirect-alsa-output-file" hreflang="und">How to redirect the ALSA output to a file?</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/knowledge-management-agile-way" hreflang="und">Knowledge Management - The agile way</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/jkscertgen" hreflang="und">jkscertgen : Generate a full set of CA, service and client keys and certificates in Java keystores</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/exporting-private-key-jks-file-java-keystore" hreflang="und">Exporting the private key from a jks file (Java keystore)</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/flying-helicopter-without-turning-rotor-blades" hreflang="und">Flying a helicopter without turning rotor blades!</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/enabling-apache-axis2-clustering" hreflang="und">Enabling Apache Axis2 Clustering</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/rgb565-pngjpeg" hreflang="und">RGB565 To PNG/JPEG</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/kandyan-dancer-flowers" hreflang="und">Kandyan Dancer Flowers</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/architecture-principles-system-down-we-cannot-work" hreflang="und">Architecture Principles: The system is down. We cannot work!</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/how-get-loan-and-buy-car-strategically" hreflang="und">How to get a loan and buy a car strategically?</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/how-empower-employees" hreflang="und">How To Empower Employees?</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/toyotas-lean-manufacturing-issues" hreflang="und">Toyota's Lean Manufacturing Issues</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/slides-it-governance-and-why-foss-matters" hreflang="und">Slides of "IT Governance And Why FOSS Matters"</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/abstraction-communication-and-great-software-developers" hreflang="und">Abstraction, Communication and Great Software Developers</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/talk-it-governance-and-why-foss-matters" hreflang="und">Talk on "IT Governance And Why FOSS Matters"</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/mission-vision-and-core-values" hreflang="und">Mission, Vision And Core Values</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/seven-characteristics-corporate-governance" hreflang="und">Seven Characteristics of Corporate Governance</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/lie-detector" hreflang="und">Lie Detector</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/egoless-work-cultures" hreflang="und">Egoless Work Cultures</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/turning-qwerty-music" hreflang="und">Turning QWERTY Into Music</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/humor-software-project-estimation-techniques-different-cmmi-levels" hreflang="und">Humor: Software Project Estimation Techniques For Different CMMI Levels</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/blog/balancing-between-transparency-and-abstraction" hreflang="und">Balancing Between Transparency And Abstraction</a></span></div></li>
+    
+  </ul>
+
+</div>
+
+    </div>
+  
+      
+          </div>
+</div>
+
+    </div>
+  </div>
+
+  </div>
+
+            </aside>
+          </div>
+                          <div id="sidebar-second" class="column sidebar">
+            <aside class="section" role="complementary">
+                <div class="region region-sidebar-second">
+    <div class="views-element-container block block-views block-views-blockupcoming-training-block-1" id="block-views-block-upcoming-training-block-1">
+  
+    
+      <div class="content">
+      <div><div class="view view-upcoming-training view-id-upcoming_training view-display-id-block_1 js-view-dom-id-732acb74afd30a4168e621a5463d7e495a2ca2f72846d9bdd3b3c1e8cb7e0eac">
+  
+    
+      
+  
+          </div>
+</div>
+
+    </div>
+  </div>
+<div class="views-element-container block block-views block-views-blockhighlights-block-1" id="block-views-block-highlights-block-1">
+  
+      <h2>Highlights</h2>
+    
+      <div class="content">
+      <div><div class="view view-highlights view-id-highlights view-display-id-block_1 js-view-dom-id-434cfaca5faae057b44a80b0becdb78807d75c78bebf999a9a1c9078e1c564bd">
+  
+    
+      
+      <div class="view-content">
+      <div class="item-list">
+  
+  <ul>
+
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/content/97-things-every-software-architect-should-know" hreflang="en"> O'Reilly Book "97 Things Every Software Architect Should Know" Accepts A Write Up From Kamal</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/content/service-oriented-architecture-making-it-infrastructure-speaks-business-presentation-isaca-4t" hreflang="und">"Service Oriented Architecture - Making IT Infrastructure Speaks Business" - Presentation At The ISACA 4th Annual Conference </a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/content/second-bacth-icta-nanasala-e-society-members-receives-trainings-htmlcss-and-gimp" hreflang="und">The Second Bacth Of ICTA Nanasala e-Society Members Receives Trainings On HTML/CSS and GIMP</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/content/gimp-training-icta-nanasala-project" hreflang="und">GIMP Training For ICTA Nanasala Project</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/content/agile-processes-training-ppsl-pvt-ltd" hreflang="und">Agile Processes Training For PPSL (Pvt) Ltd</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/node/189" hreflang="und">Computer Society of Sri Lanka (CSSL) - Talk on "Introduction to IT Governance and Enterprise Architecture"</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/node/187" hreflang="und">Motorola Sends A Second Batch Through Software Patterns Training</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/node/188" hreflang="und">Kamal To Act As The Marketing Director - ISACA Sri Lanka Chapter</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/node/186" hreflang="und">ISACA Sri Lanka Chapter Invites Kamal To Join As A Board Member</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/node/185" hreflang="und">Epic Lanka Technologies (Pvt) Ltd Receives Java SE And Java EE Trainings From Software View</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/content/patterns-training-ppsl-pvt-ltd" hreflang="und">Patterns Training For PPSL (Pvt) Ltd</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/content/isaca-members-day-presentation-introduction-it-governance-and-enterprise-architecture" hreflang="und">ISACA Members Day Presentation On "Introduction To IT Governance And Enterprise Architecture"</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/content/opening-lecture-information-technology-slida-master-public-management-course-delivered-kamal" hreflang="und">Opening Lecture On Information Technology For SLIDA Master Of Public Management Course Delivered By Kamal</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/content/customized-java-enterprise-edition-training-slida" hreflang="und">Customized Java Enterprise Edition Training For SLIDA</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/content/no-one-beat-software-view-epic-lanka-technologies-pvt-ltd" hreflang="und">No One To Beat Software View - Epic Lanka Technologies (Pvt) Ltd</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/content/motorola-receives-software-patterns-training-software-view" hreflang="und">Motorola Receives Software Patterns Training From Software View</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/content/custom-java-enterprise-edition-training-ictaslida-only-software-view" hreflang="und">Custom Java Enterprise Edition Training for ICTA/SLIDA - Only from Software View!</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/content/java-ee-5-javaserver-faces-hibernate-and-spring-ppsl-pvt-ltd" hreflang="und">Java EE 5, JavaServer Faces, Hibernate And Spring For PPSL (Pvt) Ltd</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/content/brain-trust-linux-journal-weekly-newsletter-kamal" hreflang="und">"Brain Trust" For Linux Journal Weekly Newsletter From Kamal</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/content/java-platform-enterprise-edition-5-training-ceit-university-peradeniya" hreflang="und">Java Platform, Enterprise Edition 5 Training At The CEIT, University Of Peradeniya</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/content/another-group-around-100-sri-lanka-telecom-engineers-and-managers-were-service-oriented" hreflang="und">Another Group Of Around 100 Sri Lanka Telecom Engineers And Managers Were Service Oriented!</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/content/java-platform-enterprise-edition-5-training-will-be-held-ceit-university-peradeniya" hreflang="und">Java Platform, Enterprise Edition 5 Training Will Be Held At The CEIT, University Of Peradeniya</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/content/service-oriented-architecture-another-two-sessions-conducted-slt" hreflang="und">Service Oriented Architecture: Another Two Sessions Conducted at SLT</a></span></div></li>
+          <li><div class="views-field views-field-title"><span class="field-content"><a href="http://www.swview.org/content/photos-iet-monthly-forum-peradeniya-university" hreflang="und">Photos of IET Monthly Forum at the Peradeniya University</a></span></div></li>
+    
+  </ul>
+
+</div>
+
+    </div>
+  
+      
+          </div>
+</div>
+
+    </div>
+  </div>
+
+  </div>
+
+            </aside>
+          </div>
+              </div>
+    </div>
+        <footer class="site-footer">
+      <div class="layout-container">
+                          <div class="site-footer__bottom">
+              <div class="region region-footer-fifth">
+    <nav role="navigation" aria-labelledby="block-bartik-footer-menu" id="block-bartik-footer" class="block block-menu navigation menu--footer">
+            
+  <h2 class="visually-hidden" id="block-bartik-footer-menu">Footer menu</h2>
+  
+
+      <div class="content">
+        <div class="menu-toggle-target menu-toggle-target-show" id="show-block-bartik-footer"></div>
+    <div class="menu-toggle-target" id="hide-block-bartik-footer"></div>
+    <a class="menu-toggle" href="http://www.swview.org/blog/mvc-design-pattern-or-architectural-pattern#show-block-bartik-footer">Show — Footer menu</a>
+    <a class="menu-toggle menu-toggle--hide" href="http://www.swview.org/blog/mvc-design-pattern-or-architectural-pattern#hide-block-bartik-footer">Hide — Footer menu</a>
+    
+              <ul class="clearfix menu">
+                    <li class="menu-item">
+        <a href="http://www.swview.org/contact" data-drupal-link-system-path="contact">Contact</a>
+              </li>
+        </ul>
+  
+
+
+  </div>
+</nav>
+
+  </div>
+
+          </div>
+              </div>
+    </footer>
+  </div>
+</div>
+
+  </div>
+
+    
+    
+  
+
+</body></html>
