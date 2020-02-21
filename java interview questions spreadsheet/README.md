@@ -241,6 +241,7 @@ For learning and study
 - [Java Community Process vs Eclipse Foundation Specification Process](#java-community-process-vs-eclipse-foundation-specification-process)
 - [Spring Tutorials 1](#spring-tutorials-1)
 - [Java Message Service (JMS)](#java-message-service-jms)
+- [Java Naming and Directory Interface (JNDI)](#java-naming-and-directory-interface-jndi)
 - [POSIX](#posix)
 
 <!-- /TOC -->
@@ -9578,6 +9579,45 @@ https://codenotfound.com/jms-tutorials
 
 `references:`
 https://en.wikipedia.org/wiki/Java_Message_Service
+
+----
+
+# Java Naming and Directory Interface (JNDI)
+
+- [Java-Naming-and-Directory-Interface-Wikipedia](refs/Java-Naming-and-Directory-Interface-Wikipedia)
+
+`references:`
+https://en.wikipedia.org/wiki/Java_Naming_and_Directory_Interface
+
+- [Lesson-Overview-of-JNDI-oraclecom](refs/Lesson-Overview-of-JNDI-oraclecom)
+
+`references:`
+https://docs.oracle.com/javase/tutorial/jndi/overview/index.html
+
+- [What-is-JNDI-When-is-it-used-StackOverflow](refs/What-is-JNDI-When-is-it-used-StackOverflow)
+
+`references:`
+https://stackoverflow.com/questions/4365621/what-is-jndi-what-is-its-basic-use-when-is-it-used/4365766
+
+- [JNDI-as-a-component-registry-EJB3-whatwhenhow](refs/JNDI-as-a-component-registry-EJB3-whatwhenhow)
+
+`references:`
+http://what-when-how.com/enterprise-javabeans-3/jndi-as-a-component-registry-ejb-3/
+
+- [Tomcat-DataSource-JNDI-Example-in-Java-JournalDev](refs/Tomcat-DataSource-JNDI-Example-in-Java-JournalDev)
+
+`references:`
+https://www.journaldev.com/2513/tomcat-datasource-jndi-example-java
+
+- [Registering-DataSource-with-JNDI-roseindia](refs/Registering-DataSource-with-JNDI-roseindia)
+
+`references:`
+https://www.roseindia.net/tutorial/java/jdbc/registeringthedatasourcewithjndi.html
+
+- [How-to-configure-JNDI-DataSource-for-Connection-Pooling-in-Tomcat-codejava](refs/How-to-configure-JNDI-DataSource-for-Connection-Pooling-in-Tomcat-codejava)
+
+`references:`
+https://www.codejava.net/servers/tomcat/configuring-jndi-datasource-for-database-connection-pooling-in-tomcat
 
 ----
 
