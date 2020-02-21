@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<!-- saved from url=(0082)https://www.roseindia.net/tutorial/java/jdbc/registeringthedatasourcewithjndi.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Registering DataSource with JNDI</title>
+<meta content="jdbc datasource, jdbc jndi lookup, jdbc jndi datasource, jdbc jndi example, jdbc jndi, java jdbc jndi, Registering DataSource with JNDI, In this tutorial you will learn how register a JDBC DataSource with JNDI" name="description">
+<meta content="jdbc datasource, jdbc jndi lookup, jdbc jndi datasource, jdbc jndi example, jdbc jndi, java jdbc jndi, Registering DataSource with JNDI" name="keywords">
+
+
+    <!-- Bootstrap Core CSS -->
+    <link href="./Registering DataSource with JNDI_files/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="./Registering DataSource with JNDI_files/main.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<style>
+ul.share-buttons{
+  list-style: none;
+  padding: 0;
+}
+
+ul.share-buttons li{
+  display: inline;
+}
+
+ul.share-buttons .sr-only {
+  position: absolute;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0;
+  border: 0;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+}
+
+
+@media (max-width: 740px) {
+    #leftadsdiv {
+        display:none !important;
+    }
+}
+
+
+@media (min-width: 740px max-width: 850px) {
+    #contentdiv {
+         width: 40%;
+    }
+}
+
+@media (min-width: 851px max-width: 900px) {
+    #contentdiv {
+         width: 60%;
+    }
+}
+
+
+</style>
+
+
+<style type="text/css">
+    #myNav.affix{
+        top: 20px; /* Set the top position of pinned element */
+    }
+</style>
+<style>
+@media (max-width: 767px) {
+    #myNav.affix {
+        position: static;
+    }
+}
+</style>
+
+
+
+
+<script async="" src="./Registering DataSource with JNDI_files/analytics.js"></script><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-6980313-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<script async="" src="./Registering DataSource with JNDI_files/f.txt"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-0714075272818912",
+    enable_page_level_ads: true
+  });
+</script>
+
+
+
+
+<script async="" src="./Registering DataSource with JNDI_files/f.txt"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0714075272818912",
+          enable_page_level_ads: true
+     });
+</script>
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">RoseIndia.Net</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="https://www.roseindia.net/">RoseIndia.Net</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="https://www.roseindia.net/services/about-us.shtml">About</a>
+                    </li>
+                    <li>
+                        <a href="https://www.roseindia.net/sitemap/privacypolicy.shtml">Privacy Policy</a>
+                    </li>
+                    <li>
+                        <a href="https://www.roseindia.net/sitemap/contactus.shtml">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Full Width Image Header -->
+    <header>
+        <div>
+            <div class="container">
+                <h1>Registering DataSource with JNDI</h1>
+
+				
+				
+
+			
+
+<br>&nbsp;
+            </div>
+        </div>
+    </header>
+
+<div id="breadcrumdiv" class="container" style="padding-top:4px;">
+	<div class="row">
+		<div class="col-md-7">
+			<ul class="breadcrumb">
+				<li><a href="https://www.roseindia.net/index.shtml">Home</a></li>
+
+
+				
+							<li><a href="https://www.roseindia.net/tutorial/index.html">Tutorial</a></li>
+				
+							<li><a href="https://www.roseindia.net/tutorial/java/index.html">Java</a></li>
+				
+							<li><a href="https://www.roseindia.net/tutorial/java/jdbc/index.html">Jdbc</a></li>
+				
+				<li class="active">Registering DataSource with JNDI</li>
+			</ul>
+		</div>
+		<div class="col-md-5">
+			<ul class="breadcrumb">
+				<li>Questions: <a href="https://www.roseindia.net/answers/askquestions/askquestion.html">Ask</a></li>
+				<li><a href="https://www.roseindia.net/answers/questions/">Latest</a></li>
+				<li>Tutorials:<a href="https://www.roseindia.net/latest.shtml">Latest</a></li>
+				<li><a href="https://www.roseindia.net/programming-tutorial/">Topics</a></li>
+			</ul>
+		</div>
+     </div>
+</div>
+
+    <!-- Page Content -->
+    <div class="container">
+
+
+<style>
+#contentdiv > img {
+	display:block;height:auto;max-width:100%;
+}
+
+#contentdiv > p > img {
+	display:block;height:auto;max-width:100%;
+}
+</style>
+
+			<div class="row">
+
+ 
+			<div class="col-md-8" id="contentdiv">
+		
+				
+
+<h1>Registering DataSource with JNDI</h1>
+
+
+
+ <p>In this tutorial you will learn how register a JDBC DataSource with JNDI</p>
+
+
+
+
+
+
+					<b>In this tutorial you will learn how register a JDBC DataSource with JNDI</b><br>
+						
+
+					<style type="text/css">
+.style1 {
+	text-align: center;
+}
+.style2 {
+	background-color: #FFFFCC;
+}
+</style>
+<h2 class="style1">Registering The DataSource With JNDI</h2>
+<p><strong>Java Naming Directory Interface (JNDI)</strong></p>
+<p>Java Naming Directory Interface (JNDI) is an API of java technology which 
+provides naming and directory functionality to java applications. It is designed 
+using Java Object Model for java applications. With the name of JNDI java 
+application can store and retrieve named java object of any type. It provides 
+methods for performing standard directory operation, for example searching for 
+objects for their associating attributes etc.</p>
+<p>An Example of DataSource registration with JNDI is given below</p>
+<p><strong>JNDIWithDataSourceExample.java</strong></p>
+<pre class="prettyprint lang-java">import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.util.Properties;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.ConnectionPoolDataSource;
+
+import com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource;
+import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+
+public class RegisteringJNDIWithDataSource {
+	private static void startRegistry() throws RemoteException {
+		System.out.println(LocateRegistry.getRegistry());
+		LocateRegistry.createRegistry(1059);
+		System.out.println("RMI registry Stared.");
+	}
+
+	private static InitialContext createInitialContextContext()
+			throws NamingException {
+		Properties properties = new Properties();
+		properties.put(Context.INITIAL_CONTEXT_FACTORY,
+				"com.sun.jndi.rmi.registry.RegistryContextFactory");
+		properties.put(Context.PROVIDER_URL, "rmi://localhost:1059");
+		InitialContext initialContextcontext = new InitialContext(properties);
+		return initialContextcontext;
+	}
+
+	public static void main(String args[]) {
+		try {
+			startRegistry();
+			ConnectionPoolDataSource dataSource = new MysqlConnectionPoolDataSource();
+			((MysqlDataSource) dataSource).setUser("root");
+			((MysqlDataSource) dataSource).setPassword("root");
+			((MysqlDataSource) dataSource).setServerName("192.168.10.13");
+			((MysqlDataSource) dataSource).setPort(3306);
+			((MysqlDataSource) dataSource).setDatabaseName("student");
+
+			InitialContext context = createInitialContextContext();
+			context.rebind("Source", dataSource);
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+}
+</pre>
+<strong>When you run this application it will display message as shown below:</strong><br>
+<br>
+<table>
+	<tbody><tr>
+		<td bgcolor="#FFFFCC">RegistryImpl_Stub[UnicastRef [liveRef: 
+		[endpoint:[192.168.10.97:1099](remote),objID:[0:0:0, 0]]]]<span class="style2"><br>
+		</span>RMI registry Stared.</td>
+	</tr>
+</tbody></table>
+<p><a href="https://www.roseindia.net/tutorialfiles/JNDIWithDataSourceExample.zip"> Download this example code</a></p>
+	
+
+
+          
+
+
+
+
+
+
+
+
+					
+
+
+
+
+<ul class="share-buttons">
+  <li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.roseindia.net&amp;t=" title="Share on Facebook" target="_blank" onclick="window.open(&#39;https://www.facebook.com/sharer/sharer.php?u=&#39; + encodeURIComponent(document.URL) + &#39;&amp;t=&#39; + encodeURIComponent(document.URL)); return false;"><img alt="Share on Facebook" src="./Registering DataSource with JNDI_files/Facebook.png"></a></li>
+  <li><a href="https://twitter.com/intent/tweet?source=https%3A%2F%2Fwww.roseindia.net&amp;text=:%20https%3A%2F%2Fwww.roseindia.net" target="_blank" title="Tweet" onclick="window.open(&#39;https://twitter.com/intent/tweet?text=&#39; + encodeURIComponent(document.title) + &#39;:%20&#39;  + encodeURIComponent(document.URL)); return false;"><img alt="Tweet" src="./Registering DataSource with JNDI_files/Twitter.png"></a></li>
+  <li><a href="https://plus.google.com/share?url=https%3A%2F%2Fwww.roseindia.net" target="_blank" title="Share on Google+" onclick="window.open(&#39;https://plus.google.com/share?url=&#39; + encodeURIComponent(document.URL)); return false;"><img alt="Share on Google+" src="./Registering DataSource with JNDI_files/Google+.png"></a></li>
+  <li><a href="https://www.tumblr.com/share?v=3&amp;u=https%3A%2F%2Fwww.roseindia.net&amp;t=&amp;s=" target="_blank" title="Post to Tumblr" onclick="window.open(&#39;https://www.tumblr.com/share?v=3&amp;u=&#39; + encodeURIComponent(document.URL) + &#39;&amp;t=&#39; +  encodeURIComponent(document.title)); return false;"><img alt="Post to Tumblr" src="./Registering DataSource with JNDI_files/Tumblr.png"></a></li>
+  <li><a href="https://pinterest.com/pin/create/button/?url=https%3A%2F%2Fwww.roseindia.net&amp;description=" target="_blank" title="Pin it" onclick="window.open(&#39;https://pinterest.com/pin/create/button/?url=&#39; + encodeURIComponent(document.URL) + &#39;&amp;description=&#39; +  encodeURIComponent(document.title)); return false;"><img alt="Pin it" src="./Registering DataSource with JNDI_files/Pinterest.png"></a></li>
+  <li><a href="https://getpocket.com/save?url=https%3A%2F%2Fwww.roseindia.net&amp;title=" target="_blank" title="Add to Pocket" onclick="window.open(&#39;https://getpocket.com/save?url=&#39; + encodeURIComponent(document.URL) + &#39;&amp;title=&#39; +  encodeURIComponent(document.title)); return false;"><img alt="Add to Pocket" src="./Registering DataSource with JNDI_files/Pocket.png"></a></li>
+  <li><a href="https://www.reddit.com/submit?url=https%3A%2F%2Fwww.roseindia.net&amp;title=" target="_blank" title="Submit to Reddit" onclick="window.open(&#39;https://www.reddit.com/submit?url=&#39; + encodeURIComponent(document.URL) + &#39;&amp;title=&#39; +  encodeURIComponent(document.title)); return false;"><img alt="Submit to Reddit" src="./Registering DataSource with JNDI_files/Reddit.png"></a></li>
+  <li><a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fwww.roseindia.net&amp;title=&amp;summary=&amp;source=https%3A%2F%2Fwww.roseindia.net" target="_blank" title="Share on LinkedIn" onclick="window.open(&#39;https://www.linkedin.com/shareArticle?mini=true&amp;url=&#39; + encodeURIComponent(document.URL) + &#39;&amp;title=&#39; +  encodeURIComponent(document.title)); return false;"><img alt="Share on LinkedIn" src="./Registering DataSource with JNDI_files/LinkedIn.png"></a></li>
+  <li><a href="https://wordpress.com/press-this.php?u=https%3A%2F%2Fwww.roseindia.net&amp;t=&amp;s=" target="_blank" title="Publish on WordPress" onclick="window.open(&#39;https://wordpress.com/press-this.php?u=&#39; + encodeURIComponent(document.URL) + &#39;&amp;t=&#39; +  encodeURIComponent(document.title)); return false;"><img alt="Publish on WordPress" src="./Registering DataSource with JNDI_files/Wordpress.png"></a></li>
+  <li><a href="https://pinboard.in/popup_login/?url=https%3A%2F%2Fwww.roseindia.net&amp;title=&amp;description=" target="_blank" title="Save to Pinboard" onclick="window.open(&#39;https://pinboard.in/popup_login/?url=&#39; + encodeURIComponent(document.URL) + &#39;&amp;title=&#39; +  encodeURIComponent(document.title)); return false;"><img alt="Save to Pinboard" src="./Registering DataSource with JNDI_files/Pinboard.png"></a></li>
+</ul>
+
+       
+
+
+<script async="" src="./Registering DataSource with JNDI_files/f.txt"></script>
+<!-- MatchedContent -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-0714075272818912" data-ad-slot="5585138928" data-ad-format="autorelaxed"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+
+
+
+		</div>
+
+
+		<div class="col-md-4" id="leftadsdiv1">
+			<div class="row">
+				<div id="myNav" data-spy="affix" data-offset-top="300" style="width:305px;height:650px;content-align:center;padding:3px;" class="affix-top">
+
+				<p style="font-size:11px;color:#D1D0CE;">Ads</p>
+
+					<script async="" src="./Registering DataSource with JNDI_files/f.txt"></script>
+<!-- skyscraper-2017-2 -->
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:600px" data-ad-client="ca-pub-0714075272818912" data-ad-slot="9115325326"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+				</div>
+			</div>
+		</div>
+
+
+ 
+		</div> 
+
+
+        
+
+  
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright © RoseIndia.Net 2018</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+<script src="./Registering DataSource with JNDI_files/jquery.js"></script>
+
+
+
+
+     <script src="./Registering DataSource with JNDI_files/bootstrap.min.js"></script>
+
+
+		
+
+
+
+
+</body></html>
