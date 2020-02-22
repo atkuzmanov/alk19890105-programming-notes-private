@@ -217,6 +217,8 @@ For learning and study
         - [Struts2 vs JSF](#struts2-vs-jsf)
     - [What is MVC?](#what-is-mvc)
 - [Microservices in Java](#microservices-in-java)
+    - [Microservices](#microservices)
+    - [Java Microservices](#java-microservices)
 - [Random](#random)
 - [SQL Normal Forms](#sql-normal-forms)
 - [HTTP](#http)
@@ -9257,6 +9259,8 @@ http://findnerd.com/list/view/JAVA-Web-Frameworks--Spring-MVC-JSF-Grails-Struts-
 |-------|-----|-------|
 |       |  x  |   x   |
 
+## Microservices
+
 <a id="microservices-guide-martinfowler" name="microservices-guide-martinfowler">Microservices-Guide-martinfowlerM</a>
 
 - [Microservices-Guide-martinfowler](refs/Microservices-Guide-martinfowler)
@@ -9270,6 +9274,17 @@ http://findnerd.com/list/view/JAVA-Web-Frameworks--Spring-MVC-JSF-Grails-Struts-
     `references:`
 
     https://martinfowler.com/articles/microservices.html
+
+    - [PublishedInterface-martinfowler](refs/PublishedInterface-martinfowler)
+
+        `references:`
+
+        https://martinfowler.com/bliki/PublishedInterface.html
+
+    - [Fault-Tolerance-in-a-High-Volume-Distributed-System-netflixtechblog](refs/Fault-Tolerance-in-a-High-Volume-Distributed-System-netflixtechblog)
+
+        `references:`
+        https://netflixtechblog.com/fault-tolerance-in-a-high-volume-distributed-system-91ab4faae74a
 
 - [MicroservicePremium-martinfowler](refs/MicroservicePremium-martinfowler)
 
@@ -9288,6 +9303,12 @@ http://findnerd.com/list/view/JAVA-Web-Frameworks--Spring-MVC-JSF-Grails-Struts-
     `references:`
     
     https://martinfowler.com/articles/dont-start-monolith.html
+
+    - [On-Monoliths-and-Microservices-ottode](refs/On-Monoliths-and-Microservices-ottode)
+
+        `references:`
+
+        https://www.otto.de/jobs/technology/techblog/artikel/on-monoliths-and-microservices_2015-09-30.php
 
 - [MicroservicePrerequisites-martinfowler](refs/MicroservicePrerequisites-martinfowler)
 
@@ -9337,9 +9358,35 @@ http://findnerd.com/list/view/JAVA-Web-Frameworks--Spring-MVC-JSF-Grails-Struts-
 
     https://martinfowler.com/bliki/CircuitBreaker.html
 
+## Java Microservices
+
+- [Java-Microservices-A-Practical-Guide-marcobehler](refs/Java-Microservices-A-Practical-Guide-marcobehler)
+
+    `references:`
+
+    https://www.marcobehler.com/guides/java-microservices-a-practical-guide#_fin
+
+    - [containers-How-is-Docker-different-from-a-virtual-machine-StackOverflow](refs/containers-How-is-Docker-different-from-a-virtual-machine-StackOverflow)
+
+        `references:`
+
+        https://stackoverflow.com/questions/16047306/how-is-docker-different-from-a-virtual-machine/16048358#16048358
+
+    - [A-guide-to-logging-in-Java-marcobehler](refs/A-guide-to-logging-in-Java-marcobehler)
+
+        `references:`
+        
+        https://www.marcobehler.com/guides/a-guide-to-logging-in-java
+
+- [](refs/)
+
+    `references:`
 
 
-    
+- [](refs/)
+
+    `references:`
+
 
 - [](refs/)
 
@@ -9352,8 +9399,12 @@ http://findnerd.com/list/view/JAVA-Web-Frameworks--Spring-MVC-JSF-Grails-Struts-
 
 - [](refs/)
 
-`references:`
+    `references:`
 
+
+- [](refs/)
+
+    `references:`
 
 - [](refs/)
 
