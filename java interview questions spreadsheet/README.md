@@ -9378,19 +9378,23 @@ http://findnerd.com/list/view/JAVA-Web-Frameworks--Spring-MVC-JSF-Grails-Struts-
         
         https://www.marcobehler.com/guides/a-guide-to-logging-in-java
 
+- [Java-Microservices-Code-Examples-Tutorials-and-More-DZone](refs/Java-Microservices-Code-Examples-Tutorials-and-More-DZone)
+
+    `references:`
+
+    https://dzone.com/articles/java-microservices-code-examples-tutorials-and-more
+
+- [Microservices-Introduction-GeeksforGeeks](refs/Microservices-Introduction-GeeksforGeeks)
+
+    `references:`
+
+    https://www.geeksforgeeks.org/microservices-introduction/
+
 - [](refs/)
 
     `references:`
 
-
-- [](refs/)
-
-    `references:`
-
-
-- [](refs/)
-
-    `references:`
+    
 
 - [](refs/)
 
