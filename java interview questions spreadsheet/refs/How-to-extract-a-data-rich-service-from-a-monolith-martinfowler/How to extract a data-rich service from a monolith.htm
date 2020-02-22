@@ -1,0 +1,1221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0064)https://martinfowler.com/articles/extract-data-rich-service.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="uft-8" name="charset">
+
+<title>How to extract a data-rich service from a monolith</title>
+
+<meta content="summary_large_image" name="twitter:card">
+
+<meta content="16665197" name="twitter:site:id">
+
+<meta content="How to extract a data-rich service from a monolith" property="og:title">
+
+<meta content="https://martinfowler.com/articles/extract-data-rich-service.html" property="og:url">
+
+<meta content="A series of steps for separating part of a monolithic application, with its data store, to an independent service" property="og:description">
+
+<meta content="https://martinfowler.com/articles/extract-data-rich-service/card.png" property="og:image">
+
+<meta content="martinfowler.com" property="og:site_name">
+
+<meta content="article" property="og:type">
+
+<meta content="2018-08-30" property="og:article:modified_time">
+
+<meta content="@todkar" name="twitter:creator">
+
+<meta content="width=device-width, initial-scale=1" name="viewport">
+
+<link href="./How to extract a data-rich service from a monolith_files/extract-data-rich-service.css" rel="stylesheet" type="text/css">
+</head>
+
+<body><header id="banner" style="background-image: url(&quot;/banner.png&quot;); background-repeat: no-repeat">
+
+<div class="name-logo"><a href="https://martinfowler.com/"><img src="./How to extract a data-rich service from a monolith_files/mf-name-white.png"></a></div>
+  <div class="search">
+    <!-- SiteSearch Google -->
+    <form method="GET" action="https://www.google.com/search">
+      <input type="hidden" name="ie" value="UTF-8">
+      <input type="hidden" name="oe" value="UTF-8">
+      <input class="field" type="text" name="q" size="15" maxlength="255" value="">
+      <button class="button" type="submit" name="btnG" value=" " title="Search">
+      <input type="hidden" name="domains" value="martinfowler.com">
+      <input type="hidden" name="sitesearch" value=""> 
+      <input type="hidden" name="sitesearch" value="martinfowler.com">
+    
+  </button></form></div>
+
+<div class="menu-button navmenu-button"><a class="icon icon-bars" href="https://martinfowler.com/articles/extract-data-rich-service.html#navmenu-bottom"></a></div>
+
+<nav class="top-menu">
+<ul>
+<li><a class="" href="https://refactoring.com/">Refactoring</a></li>
+
+<li><a class="" href="https://martinfowler.com/agile.html">Agile</a></li>
+
+<li><a class="" href="https://martinfowler.com/architecture">Architecture</a></li>
+
+<li><a class="" href="https://martinfowler.com/aboutMe.html">About</a></li>
+
+<li><a class="tw" href="https://www.thoughtworks.com/">ThoughtWorks</a></li>
+
+<li><a class="icon icon-rss" href="https://martinfowler.com/feed.atom" title="feed"></a></li>
+
+<li><a class="icon icon-twitter" href="https://www.twitter.com/martinfowler" title="twitter stream"></a></li>
+</ul>
+</nav>
+</header>
+<nav id="top-navmenu">
+<nav class="navmenu">
+<div class="nav-head">  <div class="search">
+    <!-- SiteSearch Google -->
+    <form method="GET" action="https://www.google.com/search">
+      <input type="hidden" name="ie" value="UTF-8">
+      <input type="hidden" name="oe" value="UTF-8">
+      <input class="field" type="text" name="q" size="15" maxlength="255" value="">
+      <button class="button" type="submit" name="btnG" value=" " title="Search">
+      <input type="hidden" name="domains" value="martinfowler.com">
+      <input type="hidden" name="sitesearch" value=""> 
+      <input type="hidden" name="sitesearch" value="martinfowler.com">
+    
+  </button></form></div>
+
+<div class="closediv">
+<span class="close" title="close"></span>
+</div>
+</div>
+
+<div class="nav-body">
+<div class="topics">
+<h2>Topics</h2>
+
+<p><a href="https://martinfowler.com/architecture">Architecture</a></p>
+
+<p><a href="https://refactoring.com/">Refactoring</a></p>
+
+<p><a href="https://martinfowler.com/agile.html">Agile</a></p>
+
+<p><a href="https://martinfowler.com/delivery.html">Delivery</a></p>
+
+<p><a href="https://martinfowler.com/microservices">Microservices</a></p>
+
+<p><a href="https://martinfowler.com/data">Data</a></p>
+
+<p><a href="https://martinfowler.com/testing">Testing</a></p>
+
+<p><a href="https://martinfowler.com/dsl.html">DSL</a></p>
+</div>
+
+<div class="about">
+<h2>about me</h2>
+
+<p><a href="https://martinfowler.com/aboutMe.html">About</a></p>
+
+<p><a href="https://martinfowler.com/books">Books</a></p>
+
+<p><a href="https://martinfowler.com/faq.html">FAQ</a></p>
+</div>
+
+<div class="content">
+<h2>content</h2>
+
+<p><a href="https://martinfowler.com/videos.html">Videos</a></p>
+
+<p><a href="https://martinfowler.com/tags">Content Index</a></p>
+
+<p><a href="https://martinfowler.com/articles/eurogames">Board Games</a></p>
+
+<p><a href="https://martinfowler.com/photos">Photography</a></p>
+</div>
+
+<div class="tw">
+<h2>ThoughtWorks</h2>
+
+<p><a href="https://thoughtworks.com/insights">Insights</a></p>
+
+<p><a href="https://thoughtworks.com/careers">Careers</a></p>
+
+<p><a href="https://thoughtworks.com/products">Products</a></p>
+</div>
+
+<div class="feeds">
+<h2>follow</h2>
+
+<p><a href="https://www.twitter.com/martinfowler">Twitter</a></p>
+
+<p><a href="https://martinfowler.com/feed.atom">RSS</a></p>
+</div>
+</div>
+</nav>
+</nav>
+
+<div class="contents dropdown-container">
+<button class="dropdown-button">
+<h2>Contents</h2>
+</button>
+
+<div class="hidden" id="dropdownLinks"><a href="https://martinfowler.com/articles/extract-data-rich-service.html#ServiceExtractionGuidingPrinciples">Service extraction guiding principles</a>
+<ul>
+<li><a href="https://martinfowler.com/articles/extract-data-rich-service.html#HaveASingleWriteCopyForTheDataThroughoutTheTransition">Have a single write copy for the data throughout the transition</a></li>
+
+<li><a href="https://martinfowler.com/articles/extract-data-rich-service.html#Respectx201catomicStepOfArchitectureEvolutionx201dPrinciple">Respect “atomic step of architecture evolution” principle</a></li>
+</ul>
+<a href="https://martinfowler.com/articles/extract-data-rich-service.html#ServiceExtractionSteps">Service extraction steps</a>
+<ul>
+<li><a href="https://martinfowler.com/articles/extract-data-rich-service.html#Step1.IdentifyLogicAndDataRelatedToTheNewService">Step 1. Identify logic and data related to the new service</a></li>
+
+<li><a href="https://martinfowler.com/articles/extract-data-rich-service.html#Step2.CreateALogicalSeparationForTheLogicOfTheNewServiceInTheMonolith">Step 2. Create a logical separation for the logic of the new service in the monolith</a></li>
+
+<li><a href="https://martinfowler.com/articles/extract-data-rich-service.html#Step3.CreateNewTablesToSupportTheLogicOfTheNewServiceInTheMonolith">Step 3. Create new table/s to support the logic of the new service
+          in the monolith</a></li>
+
+<li><a href="https://martinfowler.com/articles/extract-data-rich-service.html#Step4.BuildNewServicePointingToTablesInMonolithicDatabase">Step 4. Build new service pointing to tables in monolithic database</a></li>
+
+<li><a href="https://martinfowler.com/articles/extract-data-rich-service.html#Step5.PointClientsToTheNewService">Step 5. Point clients to the new service</a></li>
+
+<li><a href="https://martinfowler.com/articles/extract-data-rich-service.html#Step6.CreateTheDatabaseForTheNewService">Step 6. Create the database for the new service</a></li>
+
+<li><a href="https://martinfowler.com/articles/extract-data-rich-service.html#Step7.SyncDataFromTheMonolithToTheNewDatabase">Step 7. Sync data from the monolith to the new database</a></li>
+
+<li><a href="https://martinfowler.com/articles/extract-data-rich-service.html#Step8.PointNewServiceToTheNewDatabase">Step 8. Point new service to the new database</a></li>
+
+<li><a href="https://martinfowler.com/articles/extract-data-rich-service.html#Step9.DeleteLogicAndSchemaFromTheMonolithRelatedToTheNewService">Step 9. Delete logic and schema from the monolith related to the new service</a></li>
+
+<li><a href="https://martinfowler.com/articles/extract-data-rich-service.html#Summary">Summary</a></li>
+</ul>
+</div>
+</div>
+
+<main>
+<h1>How to extract a data-rich service from a monolith</h1>
+
+<p class="abstract"><i>When breaking monoliths into smaller services, the hardest part is
+  actually breaking up the data that lives in the database of the monolith. To
+  extract a data-rich service, it is useful to follow a series of steps which
+  retain a single write-copy of the data at all times. The steps begin by making
+  a logical separation in the existing monolith: splitting service behavior into
+  a separate module, then separating data into a separate table. These elements
+  can be separately moved into a new autonomous service.</i></p>
+
+<p class="date">30 August 2018</p>
+
+<div class="frontMatter">
+<div class="frontLeft">
+<div class="author"><a href="https://computellect.com/"><img alt="Photo of Praful Todkar" src="./How to extract a data-rich service from a monolith_files/praful.jpg" width="80"></a>
+<p class="name"><a href="https://computellect.com/">Praful Todkar</a></p>
+
+<div class="bio">
+<p>Praful Todkar is a Principal Consultant with ThoughtWorks who specializes in
+      building large scale, distributed, business software systems. When building software,
+      he loves doing two things – delivering business value as quickly as possible and building
+      simple, elegant solutions to complex problems. It is even better when he can
+      combine the two.
+    </p>
+</div>
+</div>
+
+<div class="clear"></div>
+
+<div class="tags">
+<p class="tag-link"><a href="https://martinfowler.com/tags/microservices.html">microservices</a></p>
+</div>
+</div>
+
+<div class="frontRight">
+<div class="contents">
+<h2>Contents</h2>
+
+<ul>
+<li><a href="https://martinfowler.com/articles/extract-data-rich-service.html#ServiceExtractionGuidingPrinciples">Service extraction guiding principles</a>
+<ul>
+<li><a href="https://martinfowler.com/articles/extract-data-rich-service.html#HaveASingleWriteCopyForTheDataThroughoutTheTransition">Have a single write copy for the data throughout the transition</a></li>
+
+<li><a href="https://martinfowler.com/articles/extract-data-rich-service.html#Respectx201catomicStepOfArchitectureEvolutionx201dPrinciple">Respect “atomic step of architecture evolution” principle</a></li>
+</ul>
+</li>
+
+<li><a href="https://martinfowler.com/articles/extract-data-rich-service.html#ServiceExtractionSteps">Service extraction steps</a>
+<ul>
+<li><a href="https://martinfowler.com/articles/extract-data-rich-service.html#Step1.IdentifyLogicAndDataRelatedToTheNewService">Step 1. Identify logic and data related to the new service</a></li>
+
+<li><a href="https://martinfowler.com/articles/extract-data-rich-service.html#Step2.CreateALogicalSeparationForTheLogicOfTheNewServiceInTheMonolith">Step 2. Create a logical separation for the logic of the new service in the monolith</a></li>
+
+<li><a href="https://martinfowler.com/articles/extract-data-rich-service.html#Step3.CreateNewTablesToSupportTheLogicOfTheNewServiceInTheMonolith">Step 3. Create new table/s to support the logic of the new service
+          in the monolith</a></li>
+
+<li><a href="https://martinfowler.com/articles/extract-data-rich-service.html#Step4.BuildNewServicePointingToTablesInMonolithicDatabase">Step 4. Build new service pointing to tables in monolithic database</a></li>
+
+<li><a href="https://martinfowler.com/articles/extract-data-rich-service.html#Step5.PointClientsToTheNewService">Step 5. Point clients to the new service</a></li>
+
+<li><a href="https://martinfowler.com/articles/extract-data-rich-service.html#Step6.CreateTheDatabaseForTheNewService">Step 6. Create the database for the new service</a></li>
+
+<li><a href="https://martinfowler.com/articles/extract-data-rich-service.html#Step7.SyncDataFromTheMonolithToTheNewDatabase">Step 7. Sync data from the monolith to the new database</a></li>
+
+<li><a href="https://martinfowler.com/articles/extract-data-rich-service.html#Step8.PointNewServiceToTheNewDatabase">Step 8. Point new service to the new database</a></li>
+
+<li><a href="https://martinfowler.com/articles/extract-data-rich-service.html#Step9.DeleteLogicAndSchemaFromTheMonolithRelatedToTheNewService">Step 9. Delete logic and schema from the monolith related to the new service</a></li>
+
+<li><a href="https://martinfowler.com/articles/extract-data-rich-service.html#Summary">Summary</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="paperBody deep">
+<p>There is a major shift in the industry away from monoliths towards
+    smaller services. A key reason why organizations are investing in this shift
+    is because smaller services built around business capabilities increase
+    developer productivity. Teams that can own these smaller service/s can be “masters of
+    their own destiny” which means they can evolve their service/s independently
+    of other services in the system.</p>
+
+<p>When breaking monoliths into smaller services, the hardest part is
+    actually breaking up the data that lives in the database of the monolith.
+    It is relatively easy to chop up the logic in the monolith into smaller
+    pieces while still connecting to the same database. In this case, the database is
+    essentially an <a href="https://www.martinfowler.com/bliki/IntegrationDatabase.html">IntegrationDatabase</a> which gives the
+    semblance of a distributed system that can evolve independently but in fact is a single <a href="https://computellect.com/2018/01/04/types-of-coupling-when-integrating-via-the-database/">tightly coupled</a> system at the database level.
+    For services to be truly independent and thus teams to be “master of their
+    own destiny”, they also need to have an independent database – the schema and the
+    corresponding data for the service. </p>
+
+<p>In this article, I will be talking about a pattern, which is a series of
+      steps, for extracting a data-rich
+      service from a monolith while causing minimum
+    disruption to the service consumers.</p>
+
+<section id="ServiceExtractionGuidingPrinciples">
+<h2>Service extraction guiding principles</h2>
+
+<p>Before we get too deep into the actual pattern, I would like to talk
+      about two guiding principles that are critical to service extraction.
+      These help enable a smooth and safe transition from a world where you have
+      a monolith to multiple smaller services.</p>
+
+<section id="HaveASingleWriteCopyForTheDataThroughoutTheTransition">
+<h3>Have a single write copy for the data throughout the transition</h3>
+
+<p>We will have a single write copy for the data for the service being extracted during the
+        transition. Having multiple copies of data that clients can write to
+        introduces the possibility of having write conflicts. A write conflict
+        happens when the same piece of data is being written to by multiple
+        clients at the same time. Logic for handling a write conflict is complex –
+        it could mean picking a scheme such as ‘last write wins’ which could
+        produce undesired results from a client’s perspective. It could also
+        mean informing the client for whom the write failed and
+        have them take corrective action. Writing such logic is fraught with
+        complications and is something that is best avoided.</p>
+
+<p>The service extraction pattern described in here will ensure that a
+        single write copy exists at any given point in time for the service
+        being extracted to avoid the complexities that come with managing write
+        conflicts.</p>
+</section>
+
+<section id="Respectx201catomicStepOfArchitectureEvolutionx201dPrinciple">
+<h3>Respect “atomic step of architecture evolution” principle</h3>
+
+<p>My colleague Zhamak Dehghani coined the term <a href="https://martinfowler.com/articles/break-monolith-into-microservices.html#MigrateInAtomicEvolutionarySteps">‘atomic step of architecture
+        evolution’</a> which is a series of steps taken atomically (all-or-none) in
+        an architecture migration journey. At the end of the series of steps the
+        architecture yields the promised rewards. If the steps aren’t executed
+        in entirety (left midway) the architecture is in a worse off state than
+        the state in which you started. For example, if you decide to extract a
+        service and you only end up pulling the logic but not the data you are
+        still coupled at the database tier which introduces development and
+        runtime coupling. This introduces significant complexity and arguably
+        makes development and debugging issues way harder than if it were to be
+        a single monolith. </p>
+
+<p>In the following service extraction pattern, it is recommended that
+          you complete all the steps listed out for a given service. One of the biggest hurdles
+        in the service extraction pattern is actually not technical but getting
+        organizational alignment to have all the existing clients of the
+        monolith to move to the new service. This will be further explained in
+        step 5.</p>
+</section>
+</section>
+
+<section id="ServiceExtractionSteps">
+<h2>Service extraction steps</h2>
+
+<p>Now, let us dive into the actual service extraction pattern. To make it
+      easy to follow the steps, we will take an example to understand how the
+      service extraction works. </p>
+
+<p>Lets say we have a monolithic Catalog system which provides our
+      eCommerce platform with product information. Over time the Catalog
+      system has grown into a monolith which means along with the core
+      product information such as product name, category name and associated logic, it has
+      also gobbled up product pricing logic and data. There are no clear
+      boundaries between the core product part of the system and the pricing
+      part of the system. </p>
+
+<p>Moreover, the rate of change (rate at which changes are introduced in
+      the system) in the pricing part of the system is much higher than the
+      core product. The data access patterns are also different for the two
+      parts of the system. Pricing for a product changes a lot more dynamically
+      than the core product attributes. Thus, it makes a lot of sense to pull
+      out the pricing part of the system out of the monolith into a separate service
+      that can be evolved independently. </p>
+
+<aside class="sidebar">
+<p>One of the hard parts of service extraction is finding
+      the boundaries within the monolith that represent services. You can find guidance for
+      finding service boundaries <a href="https://www.thoughtworks.com/insights/blog/well-factored-approach-securing-roi-your-service-investment-part-three">here</a>.
+      </p>
+</aside>
+
+<p>What makes pulling out pricing compelling as
+    opposed to the core product is that pricing is a “leaf” dependency in the
+    catalog monolith. The core product functionality is also a dependency
+    for other functionality in the monolith such as product inventory,
+    product marketing, et al which
+  are not shown here for simplicity. If you were to pull out the core
+    product out as a service it would mean severing too many "connections"
+    in the monolith at the same time which can make the migration process quite
+    risky. To start with, you want to pull apart a valuable business capability
+    that is a leaf dependency in the monolith dependency graph such as the pricing
+    functionality.</p>
+
+<div class="figure " id="monolith-diagram.png"><img src="./How to extract a data-rich service from a monolith_files/monolith-diagram.png">
+<p class="photoCaption">Figure 1: Catalog monolith consists of the
+        application logic and database for core product as well as product pricing.
+        The Catalog monolith has two clients – the web application and iOS app.</p>
+</div>
+
+<div class="clear"></div>
+
+<h2>Initial state of the code</h2>
+
+<p>Below is the initial state of the code for the Catalog system. Obviously,
+        the code lacks the real world "messiness" aka complexity  of such a system. However,
+        it is sufficiently complex to demonstrate the spirit of a
+        refactoring that involves pulling a data-rich service out of a monolith.
+        We will see how the code below is refactored over the course of the steps.
+      </p>
+
+<p>
+        The code consists of a <code>CatalogService</code> which is representative of
+        the interface that the monolith provides to its clients. It uses a <code>
+        productRepository</code> class to fetch and persist state from the database. <code>
+        Product</code> class is a dumb data class (indicative of an
+        <a href="https://www.martinfowler.com/bliki/AnemicDomainModel.html">AnemicDomainModel</a>)
+        that contains product information.
+        Dumb data classes are clearly an anti-pattern but they are not the primary focus
+        of this article so as far as this example is concerned we will make do with it.
+        <code>Sku</code>, <code>Price</code> and <code>CategoryPriceRange</code> are
+        "tiny types".
+      </p>
+
+<p class="code-label">class CatalogService…
+</p>
+
+<pre>  public Sku searchProduct(String searchString) {
+      return productRepository.searchProduct(searchString);
+  }
+
+  public Price getPriceFor(Sku sku) {
+      Product product = productRepository.queryProduct(sku);
+      return calculatePriceFor(product);
+  }
+
+  private Price calculatePriceFor(Product product) {
+      if(product.isOnSale()) return product.getSalePrice();
+      return product.getOriginalPrice();
+  }
+
+  public CategoryPriceRange getPriceRangeFor(Category category) {
+      List&lt;Product&gt; products = productRepository.findProductsFor(category);
+      Price maxPrice = null;
+      Price minPrice = null;
+      for (Product product : products) {
+          if (product.isActive()) {
+              Price productPrice = calculatePriceFor(product);
+              if (maxPrice == null || productPrice.isGreaterThan(maxPrice)) {
+                  maxPrice = productPrice;
+              }
+              if (minPrice == null || productPrice.isLesserThan(minPrice)) {
+                  minPrice = productPrice;
+              }
+          }
+      }
+      return new CategoryPriceRange(category, minPrice, maxPrice);
+  }
+
+  public void updateIsOnSaleFor(Sku sku) {
+      final Product product = productRepository.queryProduct(sku);
+      product.setOnSale(true);
+      productRepository.save(product);
+  }</pre>
+
+<p>Let’s take our first step towards pulling the "Product pricing" service
+      out of the Catalog monolith.</p>
+
+<section id="Step1.IdentifyLogicAndDataRelatedToTheNewService">
+<h3>Step 1. Identify logic and data related to the new service</h3>
+
+<p>The first step is about identifying the data and logic related to the
+        product pricing service that lives in the monolith. Our Catalog application
+        has a <code>Products</code> table which has core product attributes such as <code>name,
+        SKU, category_name</code> and <code>is_active</code> flag (which indicates if
+        the product is active or discontinued). Each product belongs to a product category.
+         A product category
+        is a grouping of products. For example, “Men’s Shirts” category
+        has products like “Floral Shirt” and “Tuxedo Shirt”. There is core product
+        related logic such as searching a product by name in the monolith.
+        </p>
+
+<p>The <code>Products</code> table also has pricing related
+        fields such as <code>original_price, sale_price</code> and
+        <code>is_on_sale</code> flag which indicates if the product is on sale
+        or not.
+        The monolith has pricing related logic such as calculating the price for a
+        product and updating the <code>is_on_sale</code> flag. Getting the price range for a category
+        is interesting as it is primarily product pricing logic but it also has some core product logic.
+        </p>
+
+<div class="figure " id="step1.png"><img src="./How to extract a data-rich service from a monolith_files/step1.png">
+<p class="photoCaption">Figure 2: Core product logic and data is highlighted in green
+          whereas product pricing data and logic is in blue.</p>
+</div>
+
+<div class="clear"></div>
+
+<p>This is the same code that we saw earlier except that it is now color coded to
+          show the parts of the code that fall into 
+<span class="green">Core product</span>
+
+          versus 
+<span class="blue">Product pricing</span>
+.
+        </p>
+
+<p class="code-label">class CatalogService…
+</p>
+
+<pre><span class="green">  public Sku searchProduct(String searchString) {
+      return productRepository.searchProduct(searchString);
+<span class="blue">  }</span></span>
+
+<span class="blue">  public Price getPriceFor(Sku sku) {
+      Product product = productRepository.queryProduct(sku);
+      return calculatePriceFor(product);
+<span class="blue">  }</span></span>
+
+<span class="blue">  private Price calculatePriceFor(Product product) {
+      if(product.isOnSale()) return product.getSalePrice();
+      return product.getOriginalPrice();
+<span class="blue">  }</span></span>
+
+<span class="blue">  public CategoryPriceRange getPriceRangeFor(Category category) {</span>
+<span class="green">      List&lt;Product&gt; products = productRepository.findProductsFor(category);</span>
+<span class="blue">      Price maxPrice = null;
+<span class="blue">      Price minPrice = null;</span>
+      for (Product product : products) {
+<span class="green">          if (product.isActive()) {</span>
+              Price productPrice = calculatePriceFor(product);
+              if (maxPrice == null || productPrice.isGreaterThan(maxPrice)) {
+                  maxPrice = productPrice;
+<span class="blue">              }</span></span>
+<span class="blue">              if (minPrice == null || productPrice.isLesserThan(minPrice)) {</span>
+<span class="blue">                  minPrice = productPrice;</span>
+<span class="blue">              }</span>
+<span class="blue">          }</span>
+<span class="blue">      }</span>
+<span class="blue">      return new CategoryPriceRange(category, minPrice, maxPrice);</span>
+<span class="blue">  }</span>
+
+<span class="blue">  public void updateIsOnSaleFor(Sku sku) {
+      final Product product = productRepository.queryProduct(sku);
+      product.setOnSale(true);
+      productRepository.save(product);
+<span class="blue">  }</span></span></pre>
+</section>
+
+<section id="Step2.CreateALogicalSeparationForTheLogicOfTheNewServiceInTheMonolith">
+<h3>Step 2. Create a logical separation for the logic of the new service in the monolith</h3>
+
+<p> Step 2 and 3 are about creating a logical separation for the logic and data
+          for the product pricing service <i>while still working in the monolith.</i>
+          You essentially isolate the product pricing
+          data and logic from the larger monolith <i>before</i> you actually pull it out
+          into a new service.
+          The advantage of doing this is that, if you get your
+          product pricing service boundary wrong (logic or data) then it is going
+          to be much easier to refactor your code while
+          you are in the same monolith codebase as opposed to pulling it out and refactoring
+          “over the wire”. </p>
+
+<p>
+            As part of Step 2, we will be creating service classes for
+            wrapping the logic for product pricing and core product called
+            <code>ProductPricingService</code> and <code>CoreProductService</code> respectively.
+            These service classes would map one-to-one with our “physical” services –
+            Product pricing and Core product as you will see in the later steps.
+            We would also be creating separate repository classes –
+            <code>ProductPriceRepository</code> and <code>CoreProductRepository</code>.
+            These will be used to access the product pricing data and core product data
+            from the <code>Products</code> table respectively.
+          </p>
+
+<p>The key point to keep in mind during this step is that
+          the <code>ProductPricingService</code> or <code>ProductPriceRepository</code>
+          should not access the
+        <code>Products</code> table for core product information.
+        Instead for any core product
+        related information, product pricing code should go strictly through
+        the <code>CoreProductService</code>.
+        You will see an example of this in the
+        refactored <code>getPriceRangeFor</code> method below.
+      </p>
+
+<p>No table joins are permitted from tables that belong to the core product
+        part of the system to the tables that belong to product pricing.
+        Similarly, there should be no "hard" constraints in the database
+        between the core product data and the product pricing data such as
+         foreign keys or database triggers. All joins as well as constraints
+         have to be moved up to the logic layer from the database layer.
+         This is unfortunately easier said than done and
+         is one of the hardest things to do but absolutely necessary to
+         break apart the database.</p>
+
+<aside class="sidebar">
+<p>It makes sense to use a natural key such as SKU, when it is single
+      attribute and something that is ubiquitous to the domain. It might make
+      sense to use a surrogate key when there is no single attribute to uniquely
+      identify the entity such as a system generated customer id for identifying a customer. </p>
+</aside>
+
+<p>
+        Having said that, core product and product pricing do
+          have a shared identifier – the product SKU to uniquely identify
+          the product across the two parts
+        of the system down to the database level. This "cross system identifier" will be used
+        for cross service communication (as
+        demonstrated in later steps) and hence it is important to select this identifier
+        wisely. It should be one service that owns the cross system identifier.
+        All other services should use the identifier as a reference but not change it.
+        It is immutable from their point of view.
+      The service that is best suited to manage the life cycle of the entity for which
+      the identifier exists, should own the identifier. For example, in our case,
+      core product owns the product lifecycle and hence owns the SKU identifier.</p>
+
+<div class="figure " id="step2.png"><img src="./How to extract a data-rich service from a monolith_files/step2.png">
+<p class="photoCaption">Figure 3: Logical separation between core product logic
+        and product pricing logic while connecting to the same Products table.</p>
+</div>
+
+<div class="clear"></div>
+
+<p>Below is the refactored code. You will see the newly created
+          <code>ProductPricingService</code>
+          which holds pricing specific logic. We
+          also have the <code>productPriceRepository</code> to talk to the
+          pricing specific data in <code>Products</code> table. Instead of the
+          <code>Product</code> data class, we now have
+          data classes <code>ProductPrice</code> and <code>CoreProduct</code>
+          for holding the respective product pricing and core product data.
+        </p>
+
+<p>The <code>getPriceFor</code> and <code>calculatePriceFor</code>
+        functions are fairly straightforward
+        to convert over to point at the new <code>productPriceRepository</code> class.
+      </p>
+
+<p class="code-label">class ProductPricingService…
+</p>
+
+<pre>  public Price getPriceFor(Sku sku) {
+      ProductPrice <span class="highlight">productPrice</span> = <span class="highlight"><span class="highlight">productPrice</span>Repository.getPriceFor</span>(sku);
+      return calculatePriceFor(<span class="highlight">productPrice</span>);
+  }
+
+  private Price calculatePriceFor(ProductPrice <span class="highlight">productPrice</span>) {
+      if(<span class="highlight">productPrice</span>.isOnSale()) return <span class="highlight">productPrice</span>.getSalePrice();
+      return <span class="highlight">productPrice</span>.getOriginalPrice();
+  }</pre>
+
+<p>Getting the price range for a category logic is more involved since it
+        needs to know which products belong to the category which lives in the
+        core product part of the application. <code>getPriceRangeFor</code> method makes a
+        call to the <code>getActiveProductsFor</code> method in <code>coreProductService</code> to
+        get the list of active products for a given category. Thing to note here is that
+        given <code>is_active</code> is an attribute of the core product, we have
+        moved the <code>isActive</code> check over into the <code>coreProductService</code>.
+      </p>
+
+<p class="code-label">class ProductPricingService…
+</p>
+
+<pre>  public CategoryPriceRange getPriceRangeFor(Category category) {
+      List&lt;CoreProduct&gt; products = coreProductService.<span class="highlight">getActiveProductsFor</span>(category);
+
+<span class="highlight">      List&lt;ProductPrice&gt; <span class="highlight">productPrice</span>s = productPriceRepository.getProductPricesFor(mapCoreProductToSku(products));</span>
+
+      Price maxPrice = null;
+      Price minPrice = null;
+      for (ProductPrice <span class="highlight">productPrice</span> : productPrices) {
+              Price currentProductPrice = calculatePriceFor(<span class="highlight">productPrice</span>);
+              if (maxPrice == null || currentProductPrice.isGreaterThan(maxPrice)) {
+                  maxPrice = currentProductPrice;
+              }
+              if (minPrice == null || currentProductPrice.isLesserThan(minPrice)) {
+                  minPrice = currentProductPrice;
+              }
+      }
+      return new CategoryPriceRange(category, minPrice, maxPrice);
+  }
+
+<span class="highlight">  private List&lt;Sku&gt; mapCoreProductToSku(List&lt;CoreProduct&gt; coreProducts) {
+      return coreProducts.stream().map(p -&gt; p.getSku()).collect(Collectors.toList());
+  }</span></pre>
+
+<p>
+      Here is what the new <code>getActiveProductsFor</code> method for getting active
+      products for a given category looks like.
+    </p>
+
+<p class="code-label">class CoreProductService…
+</p>
+
+<pre>  public List&lt;CoreProduct&gt; getActiveProductsFor(Category category) {
+      List&lt;CoreProduct&gt; productsForCategory = <span class="highlight">coreProductRepository</span>.getProductsFor(category);
+      return <span class="highlight">filterActiveProducts</span>(productsForCategory);
+  }
+
+  private List&lt;CoreProduct&gt; <span class="highlight">filterActiveProducts</span>(List&lt;CoreProduct&gt; products) {
+      return products.stream().filter(p -&gt; p.isActive()).collect(Collectors.toList());
+  }</pre>
+
+<p>
+        In this case, we have kept the <code>isActive</code> check in the service class
+        but this can be easily moved down into the database query. In fact,
+        such a type of refactoring of splitting functionality into multiple services
+        often makes it easy to spot opportunities to move logic into the database query and thus make the
+        code more performant.
+      </p>
+
+<p>The <code>updateIsOnSale</code> logic is also fairly straight forward and would have
+        to be refactored as below.
+      </p>
+
+<p class="code-label">class ProductPricingService…
+</p>
+
+<pre>  public void updateIsOnSaleFor(Sku sku) {
+      final ProductPrice <span class="highlight">productPrice</span> = <span class="highlight">productPriceRepository</span>.getPriceFor(sku);
+      <span class="highlight">productPrice</span>.setOnSale(true);
+      <span class="highlight">productPriceRepository</span>.save(<span class="highlight">productPrice</span>);
+  }</pre>
+
+<p>
+          The <code>searchProduct</code> method points to
+          the newly created <code>coreProductRepository</code> for searching the product.
+        </p>
+
+<p class="code-label">class CoreProductService…
+</p>
+
+<pre>  public Sku searchProduct(String searchString) {
+      return <span class="highlight">coreProductRepository</span>.searchProduct(searchString);
+  }</pre>
+
+<p>
+        The <code>CatalogService</code> (top level interface to the monolith)
+        will be refactored to delegate the service method calls
+        to the appropriate service – <code>CoreProductService</code> or
+        <code>ProductPricingService</code>. This is important, so that we do not break
+       existing contracts with the clients of the monolith.
+        </p>
+
+<p>The <code>searchProduct</code> method gets delegated to <code>coreProductService</code>.</p>
+
+<p class="code-label">class CatalogService…
+</p>
+
+<pre>  public Sku searchProduct(String searchString) {
+      return <span class="highlight">coreProductService</span>.searchProduct(searchString);
+  }</pre>
+
+<p>The pricing related methods get delegated to <code>productPricingService</code>.</p>
+
+<p class="code-label">class CatalogService…
+</p>
+
+<pre>  public Price getPriceFor(Sku sku) {
+      return <span class="highlight">productPricingService</span>.getPriceFor(sku);
+  }
+
+  public CategoryPriceRange getPriceRangeFor(Category category) {
+      return <span class="highlight">productPricingService</span>.getPriceRangeFor(category);
+  }
+
+  public void updateIsOnSaleFor(Sku sku) {
+      <span class="highlight">productPricingService</span>.updateIsOnSaleFor(sku);
+  }</pre>
+</section>
+
+<section id="Step3.CreateNewTablesToSupportTheLogicOfTheNewServiceInTheMonolith">
+<h3>Step 3. Create new table/s to support the logic of the new service
+          in the monolith</h3>
+
+<p>As part of this step, you
+        would split the pricing related data into a new table – <code>ProductPrices</code>.
+        At the end of this step, the product pricing logic should access
+          the <code>ProductPrices</code> table and not the
+        <code>Products</code> table directly. For any information that it needs from the
+        <code>Products</code> table related to core product information, it should go
+        through the core product logic layer. This step should result in code changes
+        only in the <code>productPricingRepository</code> class and not in any of
+        the other classes, especially the service classes.</p>
+
+<p>
+          It is important to note that this step involves data migration from
+          the <code>Products</code> table to the <code>ProductPrices</code> table.
+          Make sure you design the columns in the new table to look exactly
+          the same as the product pricing related columns in the <code>Products</code> table.
+          This will keep the repository code simple and make the data migration simple.
+          If you notice bugs after you have pointed the <code>productPricingRepository</code>
+          to the new table, you can point the
+          <code>productPricingRepository</code> code back to the <code>Products</code> table.
+          You can choose to delete the product pricing related fields from
+          the <code>Products</code> table once this step has been successfully completed.
+        </p>
+
+<p>
+          Essentially what we are doing here is a database migration which involves
+          splitting a table into two tables and moving data from the original table
+          into the newly created table.
+          My colleague Pramod Sadalage wrote a whole book on
+          <a href="https://www.martinfowler.com/books/refactoringDatabases.html">Refactoring Databases</a> which you should check out
+          if you are curious to know more about this topic. As a quick reference, you can refer
+          to the <a href="https://www.martinfowler.com/articles/evodb.html">Evolutionary Database Design</a> article by Pramod and Martin Fowler.
+        </p>
+
+<p> At the end of this step, you should be able to get indications of
+          the possible impact the new service would have on the overall system in terms of
+          functional as well cross-functional requirements especially performance. You
+          should be able to see the performance impact of "in memory data joins" in the logic layer.
+          In our case
+          <code>getPriceRangeFor</code> makes an in memory data join between core product and product
+          pricing information. In memory data joins in the logic layer will always
+          be more expensive than making those joins at the database layer but that is cost of having
+          decoupled data systems. If the performance hurts at this stage, it is going to get worse
+          when the data goes back and forth across the physical services over the wire. If the
+          performance requirements (or any other requirements for that matter) are not being met,
+          then it is likely you will have to rethink the service boundary.
+          At least, the clients (Web application and iOS app) are largely transparent to this change
+          since we have not changed any of the client interactions yet. This allows for
+          <i>quick and cheap experimentation</i> with service boundaries which is a beauty of this step.
+        </p>
+
+<div class="figure " id="step3.png"><img src="./How to extract a data-rich service from a monolith_files/step3.png">
+<p class="photoCaption">Figure 4: Logical separation between core product logic and data
+        and product pricing logic and data.</p>
+</div>
+
+<div class="clear"></div>
+</section>
+
+<section id="Step4.BuildNewServicePointingToTablesInMonolithicDatabase">
+<h3>Step 4. Build new service pointing to tables in monolithic database</h3>
+
+<p>In this step, you build a brand new “physical” service for
+        product pricing with logic from <code>ProductPricingService</code> while still pointing
+        to the <code>ProductPrices</code> table in the monolith database. Note that at this point,
+        calling the <code>CoreProductService</code> from <code>ProductPricingService</code>
+        will be a network call and will incur a performance penalty along with having to deal
+        with issues concerning remote calls like timeouts which should be handled accordingly.
+        </p>
+
+<aside class="sidebar">
+<p>
+            Business-truthful abstractions model the abstraction interface the way
+            the business thinks about the abstraction.
+            They model the business intentions rather than the
+            mechanics of the solution. They hide complexity – domain and technical,
+            and thus reduce cognitive load on teams
+            consuming the abstraction.
+            They also allow teams building the abstraction to evolve it independently
+            by not leaking unnecessary complexity out of the abstraction.
+          </p>
+</aside>
+
+<p>
+        This might be a good
+        opportunity to create a <a href="https://www.thoughtworks.com/insights/blog/well-factored-approach-securing-roi-your-service-investment">“business truthful”
+      </a> abstraction for the product pricing service so
+        that you are modeling the service to represent the business intention
+        rather than the mechanics of the solution. For example, when the business user
+        is updating the updateIsOnSale flag they are
+        really creating a “promotion” in the system for a given product.
+        Below is what <code>updateIsOnSaleFor</code> looks like after the refactoring.
+        We have also added the ability to
+      specify the promotion price as part of this change which was not available before.
+      This might also be a good time to simplify the interface by pushing some of
+      the <i>service-related</i> complexity
+      back into the service that might have leaked out into the clients. This would be a
+      welcome change from a service consumer's point of view.
+      </p>
+
+<p class="code-label">class ProductPricingService…
+</p>
+
+<pre>  public void <span class="highlight">createPromotion</span>(Promotion <span class="highlight">promotion</span>) {
+      final ProductPrice productPrice = productPriceRepository.getPriceFor(<span class="highlight">promotion</span>.getSku());
+      productPrice.setOnSale(true);
+      productPrice.<span class="highlight">setSalePrice</span>(<span class="highlight">promotion</span>.getPrice());
+      productPriceRepository.save(productPrice);
+  }</pre>
+
+<p>
+      However, the limitation around this is that the changes should not
+      require changing the table structure
+      or the data semantics in any way as that will break the existing functionality in the monolith.
+      Once the service has been fully extracted (in Step 9), then you can change the database
+      happily to your heart's content as that would be just as good as making a
+      code change in the logic layer.
+      </p>
+
+<p>You might want to make these
+        changes before you move over the clients because changing a service interface can be an
+        expensive and time consuming process, especially in a large organization as it involves
+        buy in from different service consumers to move to the new interface in a timely fashion.
+        This will be discussed in further detail in the next step.
+        You can safely release this new pricing service to production and test
+        it. There are no clients for this service yet. Also, there is no
+        change to the clients of the monolith – Web application and iOS app, in this step.</p>
+
+<div class="figure " id="step4.png"><img src="./How to extract a data-rich service from a monolith_files/step4.png">
+<p class="photoCaption">Figure 5: New physical product pricing service that points
+          to the ProductPrices table in the monolith
+          while depending on the monolith for the core product functionality.</p>
+</div>
+
+<div class="clear"></div>
+</section>
+
+<section id="Step5.PointClientsToTheNewService">
+<h3>Step 5. Point clients to the new service</h3>
+
+<p>In this step, the clients of the monolith that are interested in the
+        product pricing functionality need to move over to the new service. The
+        work in this step will depend on two things. First of all it will depend
+        on how much of the interface has changed between the monolith and the new
+        service. Second, and arguably more complex from an organizational
+        standpoint, the bandwidth (capacity) the client teams have to complete
+        this step in a timely fashion.</p>
+
+<p>If this step drags on, it is quite likely that the architecture will be
+        left in a half complete state where some clients point to the new service
+        while some point to the monolith. This arguably leaves the architecture in a
+        worse off state than before you started. This is why the
+        'atomic step of architecture evolution' principle we discussed earlier is important. Make
+        sure you have the organizational alignment from all clients of the new
+        service functionality to move to the new service in a timely fashion
+         before starting on the
+        migration journey. It is very easy to get distracted by other high
+        priority matters while leaving the architecture in a half baked state.</p>
+
+<p>Now the good news is that not all service clients have to migrate at
+        the exact same time or need to coordinate their migration with each other.
+        However, migrating all the clients is important before moving to the next
+        step. If it does not already exist, you can introduce some monitoring at the service
+         level for pricing related methods to identify the "migration laggards" –
+         service consumers that have not migrated over to the new service.
+        </p>
+
+<p>In theory, you could work on some of the next
+        steps before the clients have migrated, especially the next one which
+        involves creating pricing database but for the sake of simplicity, I
+        recommend moving sequentially as much as possible.</p>
+
+<div class="figure " id="step5.png"><img src="./How to extract a data-rich service from a monolith_files/step5.png">
+<p class="photoCaption">Figure 6: The clients of the monolith that are interested in
+          pricing functionality have been migrated to the new product pricing service.</p>
+</div>
+
+<div class="clear"></div>
+</section>
+
+<section id="Step6.CreateTheDatabaseForTheNewService">
+<h3>Step 6. Create the database for the new service</h3>
+
+<p>This step is relatively easy where you build a pricing database
+        mirroring the table structure in the monolith. It might be tempting to
+        build a brand new schema for pricing while you are in process of building
+        a brand new service. But having a brand new schema, makes the data
+        migration in later steps harder. It also means the new pricing service
+        would have to support two different schemas – one from the monolith, the
+        other from the new database. I would recommend keeping things simple –
+        first extract the pricing service (finishing all the steps mentioned here)
+        and then refactoring the internals of the pricing service. Once the
+        pricing database has been isolated, changing it should be just as same as
+        changing any code in the service as none of clients would be accessing the
+        pricing database directly.</p>
+
+<div class="figure " id="step6.png"><img src="./How to extract a data-rich service from a monolith_files/step6.png">
+<p class="photoCaption">Figure 7: New standalone pricing database has been created.</p>
+</div>
+
+<div class="clear"></div>
+</section>
+
+<section id="Step7.SyncDataFromTheMonolithToTheNewDatabase">
+<h3>Step 7. Sync data from the monolith to the new database</h3>
+
+<p>In this step, you sync data from the monolith database for the pricing
+        tables to the new pricing database. Syncing the data between the monolith
+         and the new service database
+        is fairly straight forward if the schema in the new database is the same as
+        the pricing tables in the monolith. It is essentially the same as
+        setting up the pricing database as a “read replica” of the monolith
+        database (just for the pricing related tables though). This will ensure
+        that the data in the new pricing database is current.</p>
+
+<p>Now you are ready to hook up the pricing service to the new pricing
+        database in the next step.</p>
+
+<div class="figure " id="step7.png"><img src="./How to extract a data-rich service from a monolith_files/step7.png">
+<p class="photoCaption">Figure 8: Data synced between the product pricing related tables
+          and the new pricing database tables.</p>
+</div>
+
+<div class="clear"></div>
+</section>
+
+<section id="Step8.PointNewServiceToTheNewDatabase">
+<h3>Step 8. Point new service to the new database</h3>
+
+<p>Before you start this step, it is absolutely important that all clients
+        of the monolith that are interested in pricing information have moved over
+        to the new service. If not, then you could get into write conflicts which
+        violates the 'have a single write copy for the data' principle we discussed earlier.
+        After all clients have migrated to the
+        new service, you point the pricing service to the new pricing database. You
+        essentially switch the database connection from the monolithic database to
+        the new database.</p>
+
+<aside class="sidebar">
+<p>It is highly recommended that you have a <a href="https://martinfowler.com/bliki/ContinuousDelivery.html">
+            Continuous Delivery</a> pipeline
+          setup. It can come in handy for two reasons. First, having a set of
+          <a href="https://michaelfeathers.silvrback.com/characterization-testing">characterization tests</a>
+          run as part of the pipeline can be helpful in verifying
+          that the overall system behavior has been preserved throughout the process.
+           Another, once changes have been pushed and if you notice
+          any issues with the system in production, you can revert back to the
+          previous version relatively quickly and in a stress-free manner.</p>
+</aside>
+
+<p>One of the advantages of this design is that you can easily switch the
+        connection back to the old database if you notice any issues. One of the
+        issues you could have is the code in the new service relies on some
+        tables/fields that do not exist in the new database but only exist in the
+        old database. This could happen because you failed to identify that
+        data in step 1. This could happen with something like “reference” data,
+        for e.g. supported currencies. Once you have successfully resolved these
+        issues, you can move over to the next step. </p>
+
+<div class="figure " id="step8.png"><img src="./How to extract a data-rich service from a monolith_files/step8.png">
+<p class="photoCaption">Figure 9: Product pricing service points to the pricing database.</p>
+</div>
+
+<div class="clear"></div>
+</section>
+
+<section id="Step9.DeleteLogicAndSchemaFromTheMonolithRelatedToTheNewService">
+<h3>Step 9. Delete logic and schema from the monolith related to the new service</h3>
+
+<p>In this step, you delete the pricing related logic and schema from the
+        monolith. Too often teams leave old tables in the database for
+        ever because they are worried “they might need it someday”. Taking a
+        backup of the entire database might help assuage some of those fears.</p>
+
+<p>
+          At this point, all that the <code>CatalogService</code> is doing is delegating
+          core product method calls
+          to the <code>CoreProductService</code>, so we can remove the layer of indirection
+          and have clients call directly the <code>CoreProductService</code>.
+        </p>
+
+<div class="figure " id="step9.png"><img src="./How to extract a data-rich service from a monolith_files/step9.png">
+<p class="photoCaption">Figure 10: Core product has only core product related logic and data
+          whereas product pricing has pricing related data and logic.
+          They communicate with each other only via the logic layer.</p>
+</div>
+
+<div class="clear"></div>
+</section>
+
+<section id="Summary">
+<h3>Summary</h3>
+
+<p>That's it! We just broke off a data-rich service from the monolith. Woohoo!</p>
+
+<p>When you do this the first time, there will be significant pain and
+        valuable lessons learnt which you can use to inform your next service
+        extraction. On your first service extraction, it is best not to combine the steps,
+        even if it may be tempting to do so.
+        Taking one step at a time, makes the process of breaking up the monolith
+        less daunting, safe and predictable.
+        Once you have achieved a certain level of mastery over this pattern
+        then you can start optimizing the process based on your learnings.
+        </p>
+
+<p>Go break that monolith! Good luck!</p>
+</section>
+</section>
+
+<hr class="bodySep">
+</div>
+
+<div class="appendix">
+<section id="Acknowledgements">
+<h2>Acknowledgements</h2>
+
+<p>I would love to thank Martin Fowler for hosting this article and being generous with his time
+        in reviewing this article.
+        His review comments have truly taken this article to the next level. I would also like to thank
+      <a href="https://github.com/jrglee" target="_blank">Jorge Lee</a> for providing critical commentary.
+    I would like to thank my ThoughtWorks colleagues Joey Guerra, Matt Newman, Vanessa Towers, Ran Xiao
+    and Kuldeep Singh for their comments on our internal mailing list.</p>
+</section>
+</div>
+
+<div class="appendix">
+<h2 id="SignificantRevisions">Significant Revisions</h2>
+
+<p><i>30 August 2018: </i>Published the rest of the article</p>
+
+<p><i>29 August 2018: </i>Published sixth and seventh step</p>
+
+<p><i>28 August 2018: </i>Published fifth step</p>
+
+<p><i>27 August 2018: </i>Published fourth step</p>
+
+<p><i>25 August 2018: </i>Published third step</p>
+
+<p><i>24 August 2018: </i>Published second step</p>
+
+<p><i>23 August 2018: </i>Published first step</p>
+</div>
+</main>
+
+<nav id="bottom-navmenu" style="display: none;">
+<nav class="navmenu">
+<div class="nav-head">  <div class="search">
+    <!-- SiteSearch Google -->
+    <form method="GET" action="https://www.google.com/search">
+      <input type="hidden" name="ie" value="UTF-8">
+      <input type="hidden" name="oe" value="UTF-8">
+      <input class="field" type="text" name="q" size="15" maxlength="255" value="">
+      <button class="button" type="submit" name="btnG" value=" " title="Search">
+      <input type="hidden" name="domains" value="martinfowler.com">
+      <input type="hidden" name="sitesearch" value=""> 
+      <input type="hidden" name="sitesearch" value="martinfowler.com">
+    
+  </button></form></div>
+
+<div class="closediv">
+<span class="close" title="close"></span>
+</div>
+</div>
+
+<div class="nav-body">
+<div class="topics">
+<h2>Topics</h2>
+
+<p><a href="https://martinfowler.com/architecture">Architecture</a></p>
+
+<p><a href="https://refactoring.com/">Refactoring</a></p>
+
+<p><a href="https://martinfowler.com/agile.html">Agile</a></p>
+
+<p><a href="https://martinfowler.com/delivery.html">Delivery</a></p>
+
+<p><a href="https://martinfowler.com/microservices">Microservices</a></p>
+
+<p><a href="https://martinfowler.com/data">Data</a></p>
+
+<p><a href="https://martinfowler.com/testing">Testing</a></p>
+
+<p><a href="https://martinfowler.com/dsl.html">DSL</a></p>
+</div>
+
+<div class="about">
+<h2>about me</h2>
+
+<p><a href="https://martinfowler.com/aboutMe.html">About</a></p>
+
+<p><a href="https://martinfowler.com/books">Books</a></p>
+
+<p><a href="https://martinfowler.com/faq.html">FAQ</a></p>
+</div>
+
+<div class="content">
+<h2>content</h2>
+
+<p><a href="https://martinfowler.com/videos.html">Videos</a></p>
+
+<p><a href="https://martinfowler.com/tags">Content Index</a></p>
+
+<p><a href="https://martinfowler.com/articles/eurogames">Board Games</a></p>
+
+<p><a href="https://martinfowler.com/photos">Photography</a></p>
+</div>
+
+<div class="tw">
+<h2>ThoughtWorks</h2>
+
+<p><a href="https://thoughtworks.com/insights">Insights</a></p>
+
+<p><a href="https://thoughtworks.com/careers">Careers</a></p>
+
+<p><a href="https://thoughtworks.com/products">Products</a></p>
+</div>
+
+<div class="feeds">
+<h2>follow</h2>
+
+<p><a href="https://www.twitter.com/martinfowler">Twitter</a></p>
+
+<p><a href="https://martinfowler.com/feed.atom">RSS</a></p>
+</div>
+</div>
+</nav>
+</nav>
+<footer id="page-footer">
+<div class="tw-logo">
+<a href="http://www.thoughtworks.com/">
+<img src="./How to extract a data-rich service from a monolith_files/tw-white-300.png">
+</a>
+</div>
+<div class="menu-button">
+<div class="icon-bars navmenu-button"></div>
+</div>
+<div class="copyright">
+<p>© Martin Fowler | <a href="http://www.thoughtworks.com/privacy-policy">Privacy Policy</a> | <a href="https://martinfowler.com/aboutMe.html#disclosures">Disclosures</a></p>
+</div>
+</footer>
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-17005812-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async="" src="./How to extract a data-rich service from a monolith_files/analytics.js"></script>
+<!-- End Google Analytics -->
+
+
+
+<script src="./How to extract a data-rich service from a monolith_files/jquery-1.11.3.min.js" type="text/javascript"></script>
+
+<script src="./How to extract a data-rich service from a monolith_files/mfcom.js" type="text/javascript"></script>
+
+
+</body></html>

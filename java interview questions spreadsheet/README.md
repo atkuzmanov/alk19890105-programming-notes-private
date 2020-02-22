@@ -9258,18 +9258,96 @@ http://findnerd.com/list/view/JAVA-Web-Frameworks--Spring-MVC-JSF-Grails-Struts-
 |       |  x  |   x   |
 
 <a id="microservices-guide-martinfowler" name="microservices-guide-martinfowler">Microservices-Guide-martinfowlerM</a>
+
 - [Microservices-Guide-martinfowler](refs/Microservices-Guide-martinfowler)
 
-`references:`
-https://martinfowler.com/microservices/
+    `references:`
+
+    https://martinfowler.com/microservices/
+
+- [Microservices-martinfowler](refs/Microservices-martinfowler)
+
+    `references:`
+
+    https://martinfowler.com/articles/microservices.html
+
+- [MicroservicePremium-martinfowler](refs/MicroservicePremium-martinfowler)
+
+    `references:`
+    
+    https://martinfowler.com/bliki/MicroservicePremium.html
+
+- [MonolithFirst-martinfowler](refs/MonolithFirst-martinfowler)
+
+    `references:`
+    
+    https://martinfowler.com/bliki/MonolithFirst.html
+
+- [Dont-start-with-a-monolith-martinfowler](refs/Dont-start-with-a-monolith-martinfowler)
+
+    `references:`
+    
+    https://martinfowler.com/articles/dont-start-monolith.html
+
+- [MicroservicePrerequisites-martinfowler](refs/MicroservicePrerequisites-martinfowler)
+
+    `references:`
+    
+    https://martinfowler.com/bliki/MicroservicePrerequisites.html
+
+- [Microservices-and-the-First-Law-of-Distributed-Objects-martinfowler](refs/Microservices-and-the-First-Law-of-Distributed-Objects-martinfowler)
+
+    `references:`
+
+    https://martinfowler.com/articles/distributed-objects-microservices.html
+
+- [Testing-Strategies-in-a-Microservice-Architecture-martinfowler](refs/Testing-Strategies-in-a-Microservice-Architecture-martinfowler)
+
+    `references:`
+
+    https://martinfowler.com/articles/microservice-testing/
+
+- [How-to-break-a-Monolith-into-Microservices-martinfowler](refs/How-to-break-a-Monolith-into-Microservices-martinfowler)
+
+    `references:`
+
+    https://martinfowler.com/articles/break-monolith-into-microservices.html
+
+- [Micro-Frontends-martinfowler](refs/Micro-Frontends-martinfowler)
+
+    `references:`
+
+    https://martinfowler.com/articles/micro-frontends.html
+
+- [How-to-extract-a-data-rich-service-from-a-monolith-martinfowler](refs/How-to-extract-a-data-rich-service-from-a-monolith-martinfowler)
+
+    `references:`
+    
+    https://martinfowler.com/articles/extract-data-rich-service.html
+
+- [DevOpsCulture-martinfowler](refs/DevOpsCulture-martinfowler)
+
+    `references:`
+
+    https://martinfowler.com/bliki/DevOpsCulture.html
+
+- [CircuitBreaker-martinfowler](refs/CircuitBreaker-martinfowler)
+
+    `references:`
+
+    https://martinfowler.com/bliki/CircuitBreaker.html
+
+
+
+    
 
 - [](refs/)
 
-`references:`
+    `references:`
 
 - [](refs/)
 
-`references:`
+    `references:`
 
 
 - [](refs/)
@@ -9290,6 +9368,7 @@ https://martinfowler.com/microservices/
 - [](refs/)
 
     `references:`
+
 
 
 

@@ -1,0 +1,426 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0072)https://martinfowler.com/articles/distributed-objects-microservices.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="uft-8" name="charset">
+
+<title>Microservices and the First Law of Distributed
+  Objects</title>
+
+<meta content="summary_large_image" name="twitter:card">
+
+<meta content="16665197" name="twitter:site:id">
+
+<meta content="Microservices and the First Law of Distributed
+  Objects" property="og:title">
+
+<meta content="https://martinfowler.com/articles/distributed-objects-microservices.html" property="og:url">
+
+<meta content="In P of EAA I said &quot;don&#39;t distribute your objects&quot;. Does this advice contradict my interest in Microservices?" property="og:description">
+
+<meta content="https://martinfowler.com/articles/images/distributed-objects-microservices/local-remote.png" property="og:image">
+
+<meta content="martinfowler.com" property="og:site_name">
+
+<meta content="article" property="og:type">
+
+<meta content="2014-08-13 09:48 EDT" property="og:article:modified_time">
+
+<meta content="width=device-width, initial-scale=1" name="viewport">
+
+<link href="./Microservices and the First Law of Distributed Objects_files/article.css" rel="stylesheet" type="text/css">
+</head>
+
+<body><header id="banner" style="background-image: url(&quot;/img/zakim.png&quot;); background-repeat: no-repeat">
+
+<div class="name-logo"><a href="https://martinfowler.com/"><img src="./Microservices and the First Law of Distributed Objects_files/mf-name-white.png"></a></div>
+  <div class="search">
+    <!-- SiteSearch Google -->
+    <form method="GET" action="https://www.google.com/search">
+      <input type="hidden" name="ie" value="UTF-8">
+      <input type="hidden" name="oe" value="UTF-8">
+      <input class="field" type="text" name="q" size="15" maxlength="255" value="">
+      <button class="button" type="submit" name="btnG" value=" " title="Search">
+      <input type="hidden" name="domains" value="martinfowler.com">
+      <input type="hidden" name="sitesearch" value=""> 
+      <input type="hidden" name="sitesearch" value="martinfowler.com">
+    
+  </button></form></div>
+
+<div class="menu-button navmenu-button"><a class="icon icon-bars" href="https://martinfowler.com/articles/distributed-objects-microservices.html#navmenu-bottom"></a></div>
+
+<nav class="top-menu">
+<ul>
+<li><a class="" href="https://refactoring.com/">Refactoring</a></li>
+
+<li><a class="" href="https://martinfowler.com/agile.html">Agile</a></li>
+
+<li><a class="" href="https://martinfowler.com/architecture">Architecture</a></li>
+
+<li><a class="" href="https://martinfowler.com/aboutMe.html">About</a></li>
+
+<li><a class="tw" href="https://www.thoughtworks.com/">ThoughtWorks</a></li>
+
+<li><a class="icon icon-rss" href="https://martinfowler.com/feed.atom" title="feed"></a></li>
+
+<li><a class="icon icon-twitter" href="https://www.twitter.com/martinfowler" title="twitter stream"></a></li>
+</ul>
+</nav>
+</header>
+<nav id="top-navmenu">
+<nav class="navmenu">
+<div class="nav-head">  <div class="search">
+    <!-- SiteSearch Google -->
+    <form method="GET" action="https://www.google.com/search">
+      <input type="hidden" name="ie" value="UTF-8">
+      <input type="hidden" name="oe" value="UTF-8">
+      <input class="field" type="text" name="q" size="15" maxlength="255" value="">
+      <button class="button" type="submit" name="btnG" value=" " title="Search">
+      <input type="hidden" name="domains" value="martinfowler.com">
+      <input type="hidden" name="sitesearch" value=""> 
+      <input type="hidden" name="sitesearch" value="martinfowler.com">
+    
+  </button></form></div>
+
+<div class="closediv">
+<span class="close" title="close"></span>
+</div>
+</div>
+
+<div class="nav-body">
+<div class="topics">
+<h2>Topics</h2>
+
+<p><a href="https://martinfowler.com/architecture">Architecture</a></p>
+
+<p><a href="https://refactoring.com/">Refactoring</a></p>
+
+<p><a href="https://martinfowler.com/agile.html">Agile</a></p>
+
+<p><a href="https://martinfowler.com/delivery.html">Delivery</a></p>
+
+<p><a href="https://martinfowler.com/microservices">Microservices</a></p>
+
+<p><a href="https://martinfowler.com/data">Data</a></p>
+
+<p><a href="https://martinfowler.com/testing">Testing</a></p>
+
+<p><a href="https://martinfowler.com/dsl.html">DSL</a></p>
+</div>
+
+<div class="about">
+<h2>about me</h2>
+
+<p><a href="https://martinfowler.com/aboutMe.html">About</a></p>
+
+<p><a href="https://martinfowler.com/books">Books</a></p>
+
+<p><a href="https://martinfowler.com/faq.html">FAQ</a></p>
+</div>
+
+<div class="content">
+<h2>content</h2>
+
+<p><a href="https://martinfowler.com/videos.html">Videos</a></p>
+
+<p><a href="https://martinfowler.com/tags">Content Index</a></p>
+
+<p><a href="https://martinfowler.com/articles/eurogames">Board Games</a></p>
+
+<p><a href="https://martinfowler.com/photos">Photography</a></p>
+</div>
+
+<div class="tw">
+<h2>ThoughtWorks</h2>
+
+<p><a href="https://thoughtworks.com/insights">Insights</a></p>
+
+<p><a href="https://thoughtworks.com/careers">Careers</a></p>
+
+<p><a href="https://thoughtworks.com/products">Products</a></p>
+</div>
+
+<div class="feeds">
+<h2>follow</h2>
+
+<p><a href="https://www.twitter.com/martinfowler">Twitter</a></p>
+
+<p><a href="https://martinfowler.com/feed.atom">RSS</a></p>
+</div>
+</div>
+</nav>
+</nav>
+
+<main>
+<h1>Microservices and the First Law of Distributed
+  Objects</h1>
+
+<div class="short-front">
+<div class="author"><a href="https://martinfowler.com/"><img alt="Photo of Martin Fowler" src="./Microservices and the First Law of Distributed Objects_files/mf.jpg" width="80"></a>
+<p class="name"><a href="https://martinfowler.com/">Martin Fowler</a></p>
+</div>
+
+<div class="clear"></div>
+
+<p class="date">13 August 2014</p>
+</div>
+
+<div class="paperBody shallow">
+<p>When I wrote <a href="https://martinfowler.com/books/eaa.html">Patterns of Enterprise Application Architecture</a>, I
+    coined what I called the <b>First Law of Distributed Object Design:
+    "don't distribute your objects".</b> In recent months there's been a lot
+    of interest in <a href="https://martinfowler.com/articles/microservices.html">microservices</a>, which has led a few people to ask
+    whether microservices are in contravention to this law, and if so
+    why I am in favor of them?</p>
+
+<p>It's important to note that in this first law statement, I use
+    the phrase "distributed objects". This reflects an idea that was
+    rather in vogue in the late 90's early 00's but since has
+    (rightly) fallen out of favor. The idea of distributed objects is
+    that you could design objects and choose to use these same objects
+    either in-process or remote, where remote might mean another
+    process in the same machine, or on a different machine. Clever
+    middleware, such as DCOM or a CORBA implementation, would handle the
+    in-proces/remote distinction so your system could be written and
+    you could break it up into processes independently of how the
+    application was designed.</p>
+
+<p>My objection to the notion of distributed objects was although
+    you can encapsulate many things behind object boundaries, <a href="http://www.rgoarchitects.com/Files/fallacies.pdf">you can't encapsulate the remote/in-process
+    distinction</a>. An in-process function call is fast and always
+    succeeds (in that any exceptions are due to the application, not
+    due to the mere fact of making the call). Remote calls, however,
+    are orders of magnitude slower, and there's always a chance that
+    the call will fail due to a failure in the remote process or the
+    connection. </p>
+
+<div class="figure " id="images_distributed-objects-microservices_local-remote.png"><img src="./Microservices and the First Law of Distributed Objects_files/local-remote.png">
+<p class="photoCaption"></p>
+</div>
+
+<div class="clear"></div>
+
+<p>The consequence of this difference is that your guidelines for
+    APIs are different. In process calls can be fine-grained, if you
+    want 100 product prices and availabilities, you can happily make
+    100 calls to your product price function and another 100 for the 
+    availabilities. But if that function is a remote call, you're
+    usually better off to batch all that into a single call that asks
+    for all 100 prices and availabilities in one go. The result is a
+    very different interface to your product object. Consequently you
+    can't take the same class (which is primarily about interface) and
+    use it transparently in an in-process or remote manner.</p>
+
+<p>The microservice-advocates I've talked to are very aware of
+    this distinction, and I've not heard any of them talk about
+    in-process/remote transparency. So they aren't trying to do what
+    distributed objects were trying to do, and thus don't violate the
+    first law. Instead they advocated coarse-grained interactions with
+    documents over HTTP or lightweight messaging.</p>
+
+<p>So in essence, there is no contradiction between my views on
+    distributed objects and advocates of microservices. Despite this
+    essential non-conflict, there is another question that is now
+    begging to be asked. Microservices imply small distributed units
+    that communicate over remote connections much more than a monolith
+    would do. Doesn't that contravene the spirit of the first law even
+    if it satisfies the letter of it?</p>
+
+<p>While I do accept that there are valid reasons to do for a
+    distributed design for many systems, I do think distribution is a
+    complexity booster. A coarser-grained API is more awkward than a
+    fine-grained one. You need to decide what you are going to do
+    about failure of remote calls, and the consequences to consistency
+    and availability. Even if you minimize remote calls through your
+    protocol design, you still have to think more about performance
+    issues around them. When designing a monolith you have to worry
+    about allocation of responsibilities between modules, with a
+    distributed system you have to worry about allocation of
+    responsibilities between modules and distribution factors.</p>
+
+<p>While small microservices are certainly simpler to reason
+    about, I worry that this pushes complexity into the
+    interconnections between services, where it's less explicit and
+    thus harder to figure out when it goes wrong. Refactoring becomes
+    much harder when you have to do it across remote boundaries.
+    Microservice advocates tout the reduction of coupling you get from
+    asynchronous communication, but asynchrony is yet another
+    complexity booster. <a href="http://paulhammant.com/2011/11/29/cookie-cutter-scaling/">Cookie-cutter
+    scaling</a> allows you to handle large volumes of traffic without
+    increasing distribution complexity.</p>
+
+<p>Consequently I'm wary of distribution and 
+    my default inclination is to prefer a monolithic design. Given that,
+    why have I spent a lot of effort describing microservices and
+    supporting my colleagues who are advocating it? The answer is
+    because I know my gut feelings are not always right. I cannot deny
+    that many teams have taken a microservices approach and have found
+    success with it, whether they be well-known public cases like
+    Netflix and (probably) Amazon, or various teams I've talked to
+    both inside and outside of ThoughtWorks. I am by nature an
+    empiricist, one that believes that empirical evidence trumps theory,
+    even if that theory is rather better worked out than my gut feel.</p>
+
+<p>Not that I think the matter is settled yet. In software
+    delivery, success is <a href="https://martinfowler.com/bliki/WhatIsFailure.html">a very slippery
+    thing to identify</a>. Although organizations like Netflix and
+    Spotify have trumpeted their earlier success with microservices
+    there are also examples like Etsy or Facebook that have had
+    success with much more monolithic architectures. However
+    successful a team may think itself to have been with
+    microservices, the only real comparison would be the
+    counter-factual - would they have fared better with a monolith?
+    The microservices approach has only been around for a relatively
+    short time, so we don't have much evidence from a decade old legacy
+    microservice architecture to compare it to those elderly monoliths
+    that we dislike so much. And there may be factors we haven't
+    identified that mean that in some circumstances monoliths are
+    better while other situations favor the microservices. Given the
+    difficulty in assembling evidence in software development it's
+    more likely than not that there won't be a compelling decision in
+    favor of one or the other even after many years have passed.</p>
+
+<p>Given this uncertainty, the most important thing a writer like
+    myself can do is to communicate as clearly as I can the lessons we
+    think we've learned, even if they are contradictory. Readers will
+    make their own decisions, it is our job as writers to make sure
+    those decisions are well-informed ones, whichever side of the
+    architectural line they fall.</p>
+
+<hr class="bodySep">
+</div>
+
+<div class="appendix">
+<section id="FurtherReading">
+<h2>Further Reading</h2>
+
+<p>My article with my colleague James Lewis is our attempt to
+      prepare a <a href="https://martinfowler.com/articles/microservices.html">definition of the microservices
+      architectural style</a>. I coined the first law of
+      distributed objects in my book
+      <a href="https://martinfowler.com/books/eaa.html">Patterns of Enterprise Application
+      Architecture</a>, it appears in chapter 7: "Distribution
+      Strategies". That chapter was also freely published online by Dr Dobb's under
+      the title <a href="http://www.drdobbs.com/errant-architectures/184414966">Errant Architectures</a>.</p>
+
+<p>The <a href="http://www.rgoarchitects.com/Files/fallacies.pdf">Fallacies of Distributed Computing</a> is the classic
+      statement of why one should beware of any notion that
+      distribution can be done transparently (or easily). Waldo et
+      al's <a href="http://scholar.harvard.edu/waldo/publications/note-distributed-computing">Note on Distributed Computing</a> was a excellent statement of
+      the fundamental problems with distributed objects. </p>
+</section>
+</div>
+</main>
+
+<nav id="bottom-navmenu" style="display: none;">
+<nav class="navmenu">
+<div class="nav-head">  <div class="search">
+    <!-- SiteSearch Google -->
+    <form method="GET" action="https://www.google.com/search">
+      <input type="hidden" name="ie" value="UTF-8">
+      <input type="hidden" name="oe" value="UTF-8">
+      <input class="field" type="text" name="q" size="15" maxlength="255" value="">
+      <button class="button" type="submit" name="btnG" value=" " title="Search">
+      <input type="hidden" name="domains" value="martinfowler.com">
+      <input type="hidden" name="sitesearch" value=""> 
+      <input type="hidden" name="sitesearch" value="martinfowler.com">
+    
+  </button></form></div>
+
+<div class="closediv">
+<span class="close" title="close"></span>
+</div>
+</div>
+
+<div class="nav-body">
+<div class="topics">
+<h2>Topics</h2>
+
+<p><a href="https://martinfowler.com/architecture">Architecture</a></p>
+
+<p><a href="https://refactoring.com/">Refactoring</a></p>
+
+<p><a href="https://martinfowler.com/agile.html">Agile</a></p>
+
+<p><a href="https://martinfowler.com/delivery.html">Delivery</a></p>
+
+<p><a href="https://martinfowler.com/microservices">Microservices</a></p>
+
+<p><a href="https://martinfowler.com/data">Data</a></p>
+
+<p><a href="https://martinfowler.com/testing">Testing</a></p>
+
+<p><a href="https://martinfowler.com/dsl.html">DSL</a></p>
+</div>
+
+<div class="about">
+<h2>about me</h2>
+
+<p><a href="https://martinfowler.com/aboutMe.html">About</a></p>
+
+<p><a href="https://martinfowler.com/books">Books</a></p>
+
+<p><a href="https://martinfowler.com/faq.html">FAQ</a></p>
+</div>
+
+<div class="content">
+<h2>content</h2>
+
+<p><a href="https://martinfowler.com/videos.html">Videos</a></p>
+
+<p><a href="https://martinfowler.com/tags">Content Index</a></p>
+
+<p><a href="https://martinfowler.com/articles/eurogames">Board Games</a></p>
+
+<p><a href="https://martinfowler.com/photos">Photography</a></p>
+</div>
+
+<div class="tw">
+<h2>ThoughtWorks</h2>
+
+<p><a href="https://thoughtworks.com/insights">Insights</a></p>
+
+<p><a href="https://thoughtworks.com/careers">Careers</a></p>
+
+<p><a href="https://thoughtworks.com/products">Products</a></p>
+</div>
+
+<div class="feeds">
+<h2>follow</h2>
+
+<p><a href="https://www.twitter.com/martinfowler">Twitter</a></p>
+
+<p><a href="https://martinfowler.com/feed.atom">RSS</a></p>
+</div>
+</div>
+</nav>
+</nav>
+<footer id="page-footer">
+<div class="tw-logo">
+<a href="http://www.thoughtworks.com/">
+<img src="./Microservices and the First Law of Distributed Objects_files/tw-white-300.png">
+</a>
+</div>
+<div class="menu-button">
+<div class="icon-bars navmenu-button"></div>
+</div>
+<div class="copyright">
+<p>© Martin Fowler | <a href="http://www.thoughtworks.com/privacy-policy">Privacy Policy</a> | <a href="https://martinfowler.com/aboutMe.html#disclosures">Disclosures</a></p>
+</div>
+</footer>
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-17005812-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async="" src="./Microservices and the First Law of Distributed Objects_files/analytics.js"></script>
+<!-- End Google Analytics -->
+
+
+
+<script src="./Microservices and the First Law of Distributed Objects_files/jquery-1.11.3.min.js" type="text/javascript"></script>
+
+<script src="./Microservices and the First Law of Distributed Objects_files/mfcom.js" type="text/javascript"></script>
+
+
+</body></html>
