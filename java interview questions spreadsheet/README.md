@@ -219,6 +219,11 @@ For learning and study
 - [Microservices in Java](#microservices-in-java)
     - [Microservices](#microservices)
     - [Java Microservices](#java-microservices)
+- [Other Java](#other-java)
+- [Default and final interface methods](#default-and-final-interface-methods)
+- [Diamond inheritence problemm](#diamond-inheritence-problemm)
+- [Misc.](#misc)
+- [NoSQL and distributed databases, CAP theorem](#nosql-and-distributed-databases-cap-theorem)
 - [Random](#random)
 - [SQL Normal Forms](#sql-normal-forms)
 - [HTTP](#http)
@@ -9364,7 +9369,7 @@ http://findnerd.com/list/view/JAVA-Web-Frameworks--Spring-MVC-JSF-Grails-Struts-
 
     `references:`
 
-    https://www.marcobehler.com/guides/java-microservices-a-practical-guide#_fin
+    https://www.marcobehler.com/guides/java-microservices-a-practical-guide
 
     - [containers-How-is-Docker-different-from-a-virtual-machine-StackOverflow](refs/containers-How-is-Docker-different-from-a-virtual-machine-StackOverflow)
 
@@ -9378,6 +9383,12 @@ http://findnerd.com/list/view/JAVA-Web-Frameworks--Spring-MVC-JSF-Grails-Struts-
         
         https://www.marcobehler.com/guides/a-guide-to-logging-in-java
 
+- [Microservices-with-Spring-springio](refs/Microservices-with-Spring-springio)
+
+    `references:`
+
+    https://spring.io/blog/2015/07/14/microservices-with-spring
+
 - [Java-Microservices-Code-Examples-Tutorials-and-More-DZone](refs/Java-Microservices-Code-Examples-Tutorials-and-More-DZone)
 
     `references:`
@@ -9390,11 +9401,67 @@ http://findnerd.com/list/view/JAVA-Web-Frameworks--Spring-MVC-JSF-Grails-Struts-
 
     https://www.geeksforgeeks.org/microservices-introduction/
 
+- [Microservices-With-Spring-Cloud-Tutorial-javatpoint](refs/Microservices-With-Spring-Cloud-Tutorial-javatpoint)
+
+    `references:`
+
+    https://www.javatpoint.com/microservices
+
+- [Develop-a-Microservices-based-RESTful-Java-Application-oracle](refs/Develop-a-Microservices-based-RESTful-Java-Application-oracle)
+
+    `references:`
+
+    https://docs.oracle.com/en/solutions/develop-microservice-java-app/index.html#GUID-7B47D70F-9DD2-46FC-8E3D-5C6F8C775E54
+
+- [Developing-Microservices-with-Java-LeanIX](refs/Developing-Microservices-with-Java-LeanIX)
+
+    `references:`
+
+    https://www.leanix.net/en/blog/developing-microservices-with-java
+
+- [Microservices-Tutorial-Architecture-and-Example-guru99](refs/Microservices-Tutorial-Architecture-and-Example-guru99)
+
+    `references:`
+
+    https://www.guru99.com/microservices-tutorial.html
+
+- [Microservices-Implementation-in-Java-TatvaSoft](refs/Microservices-Implementation-in-Java-TatvaSoft)
+
+    `references:`
+
+    https://www.tatvasoft.com/blog/microservices-implementation-java/
+
+----
+
+# Other Java
+
+```text
+Other Java
+```
+
+----
+
+# Default and final interface methods
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
+
 - [](refs/)
 
     `references:`
 
-    
+
+- [](refs/)
+
+    `references:`
+----
+
+# Diamond inheritence problemm
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
 
 - [](refs/)
 
@@ -9405,15 +9472,21 @@ http://findnerd.com/list/view/JAVA-Web-Frameworks--Spring-MVC-JSF-Grails-Struts-
 
     `references:`
 
+----
 
-- [](refs/)
+# Misc.
 
-    `references:`
+```text
+Misc.
+```
 
-- [](refs/)
+----
 
-    `references:`
+# NoSQL and distributed databases, CAP theorem
 
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |  x  |   x   |
 
 - [](refs/)
 
