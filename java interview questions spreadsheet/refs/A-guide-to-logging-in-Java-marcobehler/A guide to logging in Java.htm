@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<!-- saved from url=(0061)https://www.marcobehler.com/guides/a-guide-to-logging-in-java -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="robots" content="max-snippet:-1,max-image-preview:large,max-video-preview:-1">
+
+  <link rel="shortcut icon" href="https://www.marcobehler.com/images/favicon.ico">
+
+  <link rel="canonical" href="https://www.marcobehler.com/guides/a-guide-to-logging-in-java">
+
+  <meta name="description" content="You can use this guide to discover, understand and use the right Java logging library for your applications, like Log4j2, Logback, or java.util.logging.">
+
+  <meta property="og:title" content="A guide to logging in Java">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.marcobehler.com/guides/a-guide-to-logging-in-java">
+  <meta property="og:description" content="You can use this guide to discover, understand and use the right Java logging library for your applications, like Log4j2, Logback, or java.util.logging.">
+  <meta property="og:image" content="https://www.marcobehler.com/images/guides/undraw_detailed_analysis_xn7y-8358eae4.png">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:creator" content="Marco Behler">
+  <meta name="twitter:site" content="@MarcoBehler">
+  <meta name="twitter:url" content="https://www.marcobehler.com/guides/a-guide-to-logging-in-java">
+  <meta name="twitter:title" content="A guide to logging in Java">
+  <meta name="twitter:description" content="You can use this guide to discover, understand and use the right Java logging library for your applications, like Log4j2, Logback, or java.util.logging.">
+  <meta name="twitter:image" content="https://www.marcobehler.com/images/guides/undraw_detailed_analysis_xn7y-8358eae4.png">
+
+  <title>A guide to logging in Java</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="./A guide to logging in Java_files/css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="./A guide to logging in Java_files/bootstrap.min.css">
+  <link rel="stylesheet" href="./A guide to logging in Java_files/shariff.complete-00526bf0.css">
+  <link href="./A guide to logging in Java_files/gifplayer.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="./A guide to logging in Java_files/custom-af311573.css">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script type="text/javascript" async="" src="./A guide to logging in Java_files/f.txt"></script><script type="text/javascript" async="" src="./A guide to logging in Java_files/analytics.js"></script><script async="" src="./A guide to logging in Java_files/qevents.js"></script><script src="./A guide to logging in Java_files/443144319884590" async=""></script><script async="" src="./A guide to logging in Java_files/fbevents.js"></script><script async="" src="./A guide to logging in Java_files/js"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-146539011-1');
+      gtag('config', 'AW-828277359');
+  </script>
+
+  <!-- Facebook Pixel Code -->
+  <script>
+      !function (f, b, e, v, n, t, s) {
+          if (f.fbq) return;
+          n = f.fbq = function () {
+              n.callMethod ?
+                  n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+          };
+          if (!f._fbq) f._fbq = n;
+          n.push = n;
+          n.loaded = !0;
+          n.version = '2.0';
+          n.queue = [];
+          t = b.createElement(e);
+          t.async = !0;
+          t.src = v;
+          s = b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t, s)
+      }(window, document, 'script',
+          'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '443144319884590');
+      fbq('track', 'PageView');
+  </script>
+
+  <!-- End Facebook Pixel Code -->
+
+  <!-- DO NOT MODIFY -->
+  <!-- Quora Pixel Code (JS Helper) -->
+  <script>
+      !function (q, e, v, n, t, s) {
+          if (q.qp) return;
+          n = q.qp = function () {
+              n.qp ? n.qp.apply(n, arguments) : n.queue.push(arguments);
+          };
+          n.queue = [];
+          t = document.createElement(e);
+          t.async = !0;
+          t.src = v;
+          s = document.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t, s);
+      }(window, 'script', 'https://a.quora.com/qevents.js');
+      qp('init', '88898ec3f33c4cd2bc9fb2de6e5433b4');
+      qp('track', 'ViewContent');
+  </script>
+
+
+
+  <!-- End of Quora Pixel Code -->
+
+  <!-- Hotjar Tracking Code for www.marcobehler.com -->
+  <script>
+      (function (h, o, t, j, a, r) {
+          h.hj = h.hj || function () {
+              (h.hj.q = h.hj.q || []).push(arguments)
+          };
+          h._hjSettings = {hjid: 1495926, hjsv: 6};
+          a = o.getElementsByTagName('head')[0];
+          r = o.createElement('script');
+          r.async = 1;
+          r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+          a.appendChild(r);
+      })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+  </script><script async="" src="./A guide to logging in Java_files/hotjar-1495926.js"></script>
+
+  <script src="./A guide to logging in Java_files/cbd5c45929.js" crossorigin="anonymous"></script><link href="./A guide to logging in Java_files/free-v4-shims.min.css" media="all" rel="stylesheet" id="font-awesome-5-kit-css"><link href="./A guide to logging in Java_files/free-v4-font-face.min.css" media="all" rel="stylesheet" id="font-awesome-5-kit-css"><link href="./A guide to logging in Java_files/free.min.css" media="all" rel="stylesheet" id="font-awesome-5-kit-css">
+
+<link type="text/css" href="./A guide to logging in Java_files/commento.css" rel="stylesheet" onload="window.commento.loadCssOverride()"><script async="" src="./A guide to logging in Java_files/modules.98591d9c2c879f3aa719.js" charset="utf-8"></script><style type="text/css">iframe#_hjRemoteVarsFrame {display: none !important; width: 1px !important; height: 1px !important; opacity: 0 !important; pointer-events: none !important;}</style><script src="./A guide to logging in Java_files/f(1).txt"></script></head>
+
+<body>
+
+<noscript><img height="1" width="1" style="display:none"
+                   src="https://www.facebook.com/tr?id=443144319884590&amp;ev=PageView&amp;noscript=1"
+      /></noscript>
+  <noscript>
+    <img height="1" width="1" style="display:none" src="https://q.quora.com/_/ad/88898ec3f33c4cd2bc9fb2de6e5433b4/pixel?tag=ViewContent&amp;noscript=1"/>
+  </noscript>
+
+<div class="container">
+  <header class="py-3">
+    <div class="row flex-nowrap   justify-content-center ">
+      <div class="col-6 col-md-4 pt-1 small">
+        <a class="nav-link text-dark" href="https://www.marcobehler.com/">
+          <img style="height: 20px;" src="./A guide to logging in Java_files/marco_behler-black-dbe99f23.svg">
+          <span class="d-none d-md-inline-block">Marcobehler.com</span>
+        </a>
+      </div>
+
+      <div class="col-6  justify-content-end d-flex ">
+
+        <a class="nav-link text-dark" href="https://www.marcobehler.com/academy">Academy
+        </a>
+
+        <a class="nav-link text-dark" href="https://www.marcobehler.com/guides">Blog
+        </a>
+
+        <!--<a class="nav-link text-dark" href="/login">
+            Login
+        </a>
+        <a class="nav-link text-dark font-weight-bold" href="/signup-flow?planId=free">Sign Up
+        </a>-->
+      <a class="btn btn-outline-secondary nav-link text-dark mr-3" href="https://www.marcobehler.com/login">Login</a><a class="btn btn-outline-secondary nav-link text-dark font-weight-bold" href="https://www.marcobehler.com/signup-flow?planId=free">Sign up free</a></div>
+
+
+    </div>
+  </header>
+</div>
+
+
+        <main role="main" class="pt-3 pb-3 container-fluid">
+        <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="article">
+  <div class="row">
+    <div class="col-10 col-xl-7 mb-4 mx-auto">
+
+      <div class="text-center  ">
+
+            <img class="img-fluid mb-3 w-50" style="max-height: 12rem;" itemprop="image" alt="A guide to logging in Java - header image" src="./A guide to logging in Java_files/undraw_detailed_analysis_xn7y-1b27a341.svg">
+
+        <h1 style="font-weight: bold">A guide to logging in Java</h1>
+
+          <h6 style="color: #777">Last updated
+            on June 23, 2019 - <a href="https://www.marcobehler.com/guides/a-guide-to-logging-in-java#commento">6 comments</a></h6>
+      </div>
+  </div>
+  </div>
+
+  <div class="row">
+
+ <nav class="col-md-2 d-block px-5 px-md-0 sidebar pb-3 pb-md-0">
+      <div class="sticky-top">
+
+           <div class="list-group pt-0 smaller" id="article-toc">
+
+            <h6 class="sidebar-heading mb-1 mt-3">
+                     <span>Quick Links</span>
+                   </h6>
+
+                        <ul class="nav flex-column"><li class="nav-item"><a class="nav-link py-1 " href="https://www.marcobehler.com/guides/a-guide-to-logging-in-java#_introduction">Introduction</a></li><li class="nav-item"><a class="nav-link py-1 " href="https://www.marcobehler.com/guides/a-guide-to-logging-in-java#_legacy_logging_libraries">Legacy Logging Libraries</a></li><li class="nav-item"><a class="nav-link py-1 " href="https://www.marcobehler.com/guides/a-guide-to-logging-in-java#_modern_logging_libraries">Modern Logging Libraries</a></li><li class="nav-item"><a class="nav-link py-1 " href="https://www.marcobehler.com/guides/a-guide-to-logging-in-java#_how_to_log">How to log</a></li><li class="nav-item"><a class="nav-link py-1 " href="https://www.marcobehler.com/guides/a-guide-to-logging-in-java#_centralized_logging">Centralized Logging</a></li><li class="nav-item"><a class="nav-link py-1 " href="https://www.marcobehler.com/guides/a-guide-to-logging-in-java#_deciding_on_the_right_way_to_log">Deciding On The Right (™) Way To Log</a></li><li class="nav-item"><a class="nav-link py-1 " href="https://www.marcobehler.com/guides/a-guide-to-logging-in-java#_if_you_want_to_see_this_guide_in_action">If you want to see this guide "in action"</a></li><li class="nav-item"><a class="nav-link py-1 " href="https://www.marcobehler.com/guides/a-guide-to-logging-in-java#_acknowledgements">Acknowledgements</a></li></ul>
+                      </div>
+
+
+
+   </div>
+
+    </nav>
+
+      <div class="col-md-8 px-5 text-left">
+
+            <p>You can use this guide to discover, understand and use the right Java logging library for your applications, like Log4j2, Logback, or java.util.logging.</p>
+              <p>Logging 'seems' like a very simple topic, but can be rather tricky in practice and is not covered anywhere in sufficient detail. Read this guide to fully make sense of the Java logging landscape.</p>
+
+        <div class="sect1">
+<h2 id="_introduction">Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Sooner or later, every Java application needs logging.</p>
+</div>
+<div class="paragraph">
+<p>It could be that you simply want to log your system’s state or user actions to a file, so your operations staff has a way of knowing what’s happening.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">logger.info(<span class="string"><span class="delimiter">"</span><span class="content">Application successfully started on port 8080</span><span class="delimiter">"</span></span>);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It could be that you need to record error messages whenever an exception happens and then send an e-mail or text message to a human for urgent intervention.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">logger.error(<span class="string"><span class="delimiter">"</span><span class="content">Database connection is down</span><span class="delimiter">"</span></span>, exception);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Or one of your batch jobs might want to record and send warnings to a central, GUI-based log server, whenever it fails to import some records of a csv file.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">logger.warn(<span class="string"><span class="delimiter">"</span><span class="content">Invalid bank account number for record=[{}]</span><span class="delimiter">"</span></span>, <span class="integer">53</span>);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>No matter what you want to do, you’ll need to make sure to have an appropriate logging library and then configure and use it correctly.</p>
+</div>
+<div class="paragraph">
+<p>Unfortunately, the Java universe has a plethora of logging libraries available (see <a href="https://www.marcobehler.com/episodes/109-understanding-java-logging-hell-the-basics">this video</a> for a nice overview of Java logging hell) and a developer should have a rough understanding of why there are that many options and when to use which option.</p>
+</div>
+<div class="paragraph">
+<p>Let’s find out.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_legacy_logging_libraries">Legacy Logging Libraries</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To understand recent developments with Java’s logging libraries, it makes sense to meet &amp; understand the dinosaurs - Java’s oldest logging libraries, that you will still find in some production environments today.</p>
+</div>
+<div class="sect2">
+<h3 id="_java_util_logging_jul">java.util.logging (JUL)</h3>
+<div class="paragraph">
+<p>Since Java 1.4 (2002), the JDK comes bundled with its own logging 'framework', called java.util.logging, often abbreviated to JUL. Here’s an example of how you would log things with JUL:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="comment">// java.util.logging</span>
+java.util.logging.Logger logger =  java.util.logging.Logger.getLogger(<span class="local-variable">this</span>.getClass().getName());
+logger.info(<span class="string"><span class="delimiter">"</span><span class="content">This is an info message</span><span class="delimiter">"</span></span>);
+logger.severe(<span class="string"><span class="delimiter">"</span><span class="content">This is an error message</span><span class="delimiter">"</span></span>); <span class="comment">// == ERROR</span>
+logger.fine(<span class="string"><span class="delimiter">"</span><span class="content">Here is a debug message</span><span class="delimiter">"</span></span>); <span class="comment">// == DEBUG</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As is the case for every logging library, first you get a Logger for a specific class or package, and then you can log statements. You might think that the log levels 'severe' and 'fine' look weird, but they basically correspond to the 'error' and 'debug' levels of all modern Java logging libraries.</p>
+</div>
+<div class="paragraph">
+<p>And of course, you can configure your loggers with so called handlers, like a FileHandler (which writes log statements to files) or a ConsoleHandler (which writes to System.err).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="predefined-type">FileHandler</span> fileHandler = <span class="keyword">new</span> <span class="predefined-type">FileHandler</span>(<span class="string"><span class="delimiter">"</span><span class="content">status.log</span><span class="delimiter">"</span></span>);
+logger.addHandler(fileHandler);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>So, you might be asking, if there’s JUL, why would anyone need another logging framework?</p>
+</div>
+<div class="paragraph">
+<p>While JUL does the job, there have been <a href="https://stackoverflow.com/questions/11359187/why-not-use-java-util-logging">discussions</a> about its shortcomings in the past, spanning its inconsistent API, slow performance, lack of (complex) configuration options, documentation etc - which ultimately
+lead to people developing and using other logging frameworks.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_log4j_v1">Log4j (v1)</h3>
+<div class="paragraph">
+<p>For a long time, the most popular choice for logging in Java land was <a href="https://logging.apache.org/Log4j/1.2/">Log4j (version 1)</a>, which was initially released in 2001 and maintained until 2015. In fact, you’ll still find it being used in a fair number of corporate projects, in 2018.</p>
+</div>
+<div class="paragraph">
+<p>With Log4j, the logging example from above would look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="comment">// Log4j V1</span>
+org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(MyClass.getClass().getName());
+logger.info(<span class="string"><span class="delimiter">"</span><span class="content">This is an info message</span><span class="delimiter">"</span></span>);
+logger.error(<span class="string"><span class="delimiter">"</span><span class="content">This is an error message</span><span class="delimiter">"</span></span>);
+logger.debug(<span class="string"><span class="delimiter">"</span><span class="content">Here is a debug message</span><span class="delimiter">"</span></span>);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It’s not only that Log4j has sane log level names, like 'error' and 'debug'. It also comes with a ton of different and clever appenders, like SMTPAppender (to e-mail log events), SyslogAppenders (to send events to a remote syslog daemon), JdbcAppenders (to send them to the database) and <a href="https://stackoverflow.com/a/36482">many more</a>.</p>
+</div>
+<div class="paragraph">
+<p>Also it gives you a fair amount of control over what exactly a log message should look like, with the help of <a href="https://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/PatternLayout.html">PatternLayouts</a>. So, the same log event in your Java application, could be printed out in a log file like so, depending on the layout:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="shell"># contents of status.log
+
+[INFO] 2012-11-02 21:57:53,662 MyLoggingClass - Application succesfully started on port 8080
+
+# or
+
+2010.03.23-mainThread --INFO -MyLoggingClass:Application succesfully started on port 8080
+
+# or other endless possibilities</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Log4j does the job quite well, but got superseded by Log4j2 in the past years, which is not fully compatible with Log4j1, hence we will talk about it in the next section.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_apache_commons_logging_jcl">Apache Commons Logging (JCL)</h3>
+<div class="paragraph">
+<p>Around the same time, in 2002, another library popped up, called <a href="https://commons.apache.org/proper/commons-logging/">JCL</a>, which goes by two names. Jakarta Commons Logging or Apache Commons Logging.</p>
+</div>
+<div class="paragraph">
+<p>The interesting thing about JCL is, that it is not a logging framework implementation itself. Rather, it is an interface for other logging implementations. What does that mean?</p>
+</div>
+<div class="paragraph">
+<p>As you might have guessed, the logging code itself stays fairly simple, only instead of referencing JUL or Log4j classes, you now reference the JCL classes - provided you have the JCL library on your classpath.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="comment">// Apache Commons Logging</span>
+org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(MyApp.class);
+log.info(<span class="string"><span class="delimiter">"</span><span class="content">This is an info message</span><span class="delimiter">"</span></span>);
+log.error(<span class="string"><span class="delimiter">"</span><span class="content">This is an error message</span><span class="delimiter">"</span></span>);
+log.debug(<span class="string"><span class="delimiter">"</span><span class="content">Here is a debug message</span><span class="delimiter">"</span></span>);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>So, your code only uses JCL specific classes. But then the actual logging is done by another logging framework, and it doesn’t matter if it is Log4j, JUL or (the long defunct) <a href="https://avalon.apache.org/closed.html">Apache Avalon</a>.</p>
+</div>
+<div class="paragraph">
+<p>That means you need another library, like Log4j, on your classpath and configure these two to work together.</p>
+</div>
+<div class="paragraph">
+<p><strong>Why would anyone want to do this?</strong></p>
+</div>
+<div class="paragraph">
+<p>Why wouldn’t you want to use Log4j directly, instead? There’s one major use-case, which is writing libraries:</p>
+</div>
+<div class="paragraph">
+<p>When writing libraries, you simply do not know which logging framework a user of your library wants to use in his own application. It therefore makes sense to write your library to use a logging interface - and then the user can plug in any logging implementation that he or she wants, whenever he deploys his own application.</p>
+</div>
+<div class="paragraph">
+<p><strong>Where’s the catch?</strong></p>
+</div>
+<div class="paragraph">
+<p>The problem with JCL is, that it relies on <a href="https://articles.qos.ch/thinkAgain.html?">classloader hacks</a> to find out which logging implementation it should use - at runtime. And that can lead to a lot of pain. In addition, you’ll find that the API is somewhat inflexible, that it comes with a fair amount of cruft, and there’s simply better alternatives out there, nowadays.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_modern_logging_libraries">Modern Logging Libraries</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_slf4j_logback">SLF4J &amp; Logback</h3>
+<div class="paragraph">
+<p>At some point, the original creator of Log4j, Ceki Gülcü, decided to split from the Log4j project and create a successor, which was not called Log4j2, but <a href="https://logback.qos.ch/">Logback</a>. You can read about what he tried to make better with Logback <a href="https://logback.qos.ch/reasonsToSwitch.html">here</a>.</p>
+</div>
+<div class="paragraph">
+<p>Suffice to say, that Logback is a mature and solid logging library, with a ton of features, of which auto-reloading of configuration files in production is one that developers seem to remember the most.</p>
+</div>
+<div class="paragraph">
+<p>Somewhat in parallel, he also started writing the Simple Logging Facade for Java, also known as <a href="https://www.slf4j.org/">SLF4J</a>, which is very similar to the Apache Commons Logging 'bridging' library above, just with a better implementation. Let’s see what that means:</p>
+</div>
+<div class="paragraph">
+<p>To get started with SLF4J, you only need one library on the classpath, the slf4j-api dependency (<a href="https://www.marcobehler.com/episodes/110-slf4j-how-to-set-it-up">see screencast</a> for the following section). If you are using a dependency management tool like <a href="https://maven.apache.org/">Maven</a>, then you would add the following dependency to your dependencies section:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.slf4j<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>slf4j-api<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;version&gt;</span>1.7.25<span class="tag">&lt;/version&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Having the API on your classpath will allow you to write log statements like the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="comment">// SLF4J</span>
+org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(MyClass.class);
+logger.info(<span class="string"><span class="delimiter">"</span><span class="content">This is an info message</span><span class="delimiter">"</span></span>);
+logger.error(<span class="string"><span class="delimiter">"</span><span class="content">This is an error message</span><span class="delimiter">"</span></span>);
+logger.debug(<span class="string"><span class="delimiter">"</span><span class="content">Here is a debug message</span><span class="delimiter">"</span></span>); <span class="comment">//  you do not need 'logger.isDebugEnabled' checks anymore. SLF4J will handle that for you).</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Just like JCL, SLF4J cannot do logging itself. It needs a logging library to do the actual logging, like Log4j, JUL, Logback etc. So, say you want to use Log4j v1, you would then need the slf4j-log4j12 binding library in your classpath:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.slf4j<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>slf4j-log4j12<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;version&gt;</span>1.7.25<span class="tag">&lt;/version&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>That dependency will transitively pull in Log4j (v1) for you and also make sure that SLF4J logs 'through' Log4j. If you are interested in how this works, read the section about <a href="https://www.slf4j.org/manual.html">bindings</a> in the SLF4J manual.</p>
+</div>
+<div class="paragraph">
+<p>Other libraries, like Logback, don’t need a binding library, because they implement SLF4J natively, so you can simply use the slf4j-api dependency, drop in the logback-classic jar as well, and you can log through Logback.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>ch.qos.logback<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>logback-classic<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;version&gt;</span>1.2.3<span class="tag">&lt;/version&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The beauty of this approach is, that your code only knows SLF4J. There are no references to Log4j, Logback or Jul. And if you are writing a library, that’s even better. Because if your library uses SLF4J, then the end-user of your library can decide
+to log either with Log4j, or Logback, or whatever library he wants. Because that choice can simply be made by adding or removing a couple of jars to or from the classpath.</p>
+</div>
+<div class="paragraph">
+<p><strong>Hold on, aren’t we missing something?</strong></p>
+</div>
+<div class="paragraph">
+<p>Things get interesting, whenever you are using 3rd party libraries, that are hardcoded to use a specific logging library. Imagine you are using a PDF
+generator library, which is hardcoded to use Log4j. You are also using an e-mail sending library, which uses JUL.
+Your own application uses SLF4J, but you cannot just go and change the source code of these libraries to use SLF4J as well.</p>
+</div>
+<div class="paragraph">
+<p>What to do now?</p>
+</div>
+<div class="paragraph">
+<p>Thankfully, the SLF4J creators thought about that use-case as well (see <a href="https://www.marcobehler.com/episodes/112-routing-log4j-logback-commons-logging-and-jul-through-slf4j-in-the-same-project">screencast here</a>). Let’s see what that looks like, by looking at the Maven dependencies first:</p>
+</div>
+<div class="paragraph">
+<p>Whenever you pull in a 3rd party-library that uses Log4j, it will, obviously, pull in the Log4j dependency. The Log4j dependency looks like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>log4j<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>log4j<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;version&gt;</span>1.2.17<span class="tag">&lt;/version&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You then need to make sure to <strong>exclude</strong> that dependency from your project and use the following drop-in replacement instead:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.slf4j<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>log4j-over-slf4j<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;version&gt;</span>1.7.25<span class="tag">&lt;/version&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here’s the trick: Inside that log4j-over-slf4j.jar, you’ll find classes like org.apache.log4j.Logger, but they have nothing to do with Log4j!
+Instead, these are SLF4J specific classes, i.e. your code 'thinks' it calls Log4j, but instead everything gets routed to SLF4J. (The same is true for the other 'over-slf4j' libraries, except for the JUL library, which you can read <a href="https://www.slf4j.org/legacy.html">about here</a>).</p>
+</div>
+<div class="paragraph">
+<p>Which in turn means, that you, as the end-user of a library, can use whatever logging library you want, even though the original library creator wanted you to use
+Log4j specifically.</p>
+</div>
+<div class="paragraph">
+<p><strong>Real-Life</strong></p>
+</div>
+<div class="paragraph">
+<p>So, depending on what you are building and the third-party libraries you are using, you might end-up with the following libraries in your classpath:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The SLF4J API</p>
+</li>
+<li>
+<p>Your SLF4J implementation, like Logback, or Log4j, etc.</p>
+</li>
+<li>
+<p>One or multiple bridging libraries, like log4j-over-slf4j, jul-to-slf4j, jcl-over-slf4j etc.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong><mark>Main Takeaway</mark></strong></p>
+</div>
+<div class="paragraph">
+<p>With SLF4J, you code to the API, and can choose the implementation (Log4j, Logback etc.) later (compile time). In addition, you can use bridging libraries to make legacy
+3rd party libraries 'speak' SLF4J.</p>
+</div>
+<div class="paragraph">
+<p>While all of this might look scary for beginners, it all makes sense with a bit of experience.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_log4j2">Log4j2</h3>
+<div class="paragraph">
+<p>One might think that SLF4J, with all the surrounding logging libraries, would cover almost all logging needs. Seems to be not so. In 2014, a successor to the Log4j (v1) library was released, called <a href="https://logging.apache.org/log4j/2.x/">Log4j2</a> - being a complete rewrite and of course heavily inspired by all other existing logging libraries.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, just like SLF4J, or JCL, or Commons Logging, Log4j2 can be used as a bridge, as it comes with two dependencies:</p>
+</div>
+<div class="paragraph">
+<p>An API dependency:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.apache.logging.log4j<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>log4j-api<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;version&gt;</span>2.11.1<span class="tag">&lt;/version&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And the actual logging implementation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.apache.logging.log4j<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>log4j-core<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;version&gt;</span>2.11.1<span class="tag">&lt;/version&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The API dependency works with a variety of other logging frameworks, just like SLF4J or JCL do. You can drop in Log4j2’s own logging implementation, use an SLF4J implementation, or use one of the bridging/adapter libraries
+to setup your logging in whatever way you wish. Your code, however, will only reference the Log4j2 classes like so:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="comment">// Log4j (version 2)</span>
+org.apache.logging.log4j.Logger logger = org.apache.logging.log4j.LogManager.getLogger(MyApp.class);
+logger.info(<span class="string"><span class="delimiter">"</span><span class="content">This is an info message</span><span class="delimiter">"</span></span>);
+logger.error(<span class="string"><span class="delimiter">"</span><span class="content">This is an error message</span><span class="delimiter">"</span></span>);
+logger.debug(<span class="string"><span class="delimiter">"</span><span class="content">Here is a debug message</span><span class="delimiter">"</span></span>);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you have read the previous sections, you might conclude that SLF4J and Log4j2 have a lot in common and it is unclear, why one would want to use Log4j2 instead of just sticking with SLF4J.</p>
+</div>
+<div class="paragraph">
+<p>The creators of Log4j2 have tried to answer this question themselves <a href="https://logging.apache.org/log4j/2.0/faq.html#api-tradeoffs">here</a>, with the main difference seemingly being the performance (AsyncLogger, Garbage Collections] and the slightly
+better API (Abilities to log objects, not just strings, Lambda Support etc).</p>
+</div>
+<div class="paragraph">
+<p>Though it should be said that, while these reasons might make a difference in complex high-load applications, developers working on 'normal' applications likely won’t notice a difference.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jboss_logging">Jboss Logging</h3>
+<div class="paragraph">
+<p>Talking about logging libraries wouldn’t be complete, without mentioning <a href="http://docs.jboss.org/hibernate/orm/4.3/topical/html/logging/Logging">JBoss-Logging</a>. It’s yet another logging bridge, very similar to SLF4J or JCL, so you’ll have to use
+it with another logging implementation, or even SLF4J itself.</p>
+</div>
+<div class="paragraph">
+<p>It’s main claim to fame, compared to these other logging bridges, seems to be its <a href="https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;cad=rja&amp;uact=8&amp;ved=2ahUKEwjsmP2d1a3dAhWFw4sKHXgeCNwQFjAAegQIARAB&amp;url=http%3A%2F%2Fdocs.jboss.org%2Fhibernate%2Form%2F4.3%2Ftopical%2Fhtml%2Flogging%2FLogging&amp;usg=AOvVaw2-JUSOliyacyYP0gRM4HnM">internationalization features</a>.
+Other than that there seems to be very little reason to base your project entirely on jboss-logging, though you will find projects like <a href="http://hibernate.org/">Hibernate</a> use it, because both libraries are developed under the <a href="https://www.redhat.com/de">RedHat umbrella</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_to_log">How to log</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Once you decided on your favourite logging framework, it’s time to <em>actually use</em> your logger as well. Which brings us to the question: <strong>How</strong> should you log?</p>
+</div>
+<div class="sect2">
+<h3 id="_a_small_technical_nit_pick">A small, technical nit-pick</h3>
+<div class="paragraph">
+<p>If you have a look across different Java projects in your organization, or even just look at one project, you’ll likely see a variety of ways that people try to get a Logger instance: The class that enables them to log in the first-place.</p>
+</div>
+<div class="paragraph">
+<p>This can take the looks of:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="comment">// in class 1</span>
+<span class="directive">private</span> <span class="predefined-type">Logger</span> LOG = LoggerFactory.getLogger(...);
+
+<span class="comment">// in class 2</span>
+<span class="directive">private</span> <span class="directive">static</span> <span class="directive">final</span> <span class="predefined-type">Logger</span> LOGGER = ....;
+
+<span class="comment">// in class 3</span>
+<span class="directive">private</span> <span class="directive">static</span> <span class="predefined-type">Logger</span> log = <span class="predefined-type">Logger</span>.getLogger(...);
+
+<span class="comment">// in class 4</span>
+<span class="directive">private</span> <span class="predefined-type">Logger</span> LOG_INSTANCE = ...;
+
+<span class="comment">// etc. etc.</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now what <em>should</em> this look like instead? To which there is an easy answer. If the class you are creating, and the method you are calling to create that class, both have the word "logger" inside, then call the variable 'logger'.</p>
+</div>
+<div class="paragraph">
+<p>Don’t fret too much about static or non-static, final or non-final, just make sure to be homogeneous in your choice, throughout your entire project.</p>
+</div>
+<div class="paragraph">
+<p>And finally, there is really no need to UPPER_CASE your logger just for the sake of it, certainly not as the only exception in your codebase.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_log_levels_files">Log Levels &amp; Files</h3>
+<div class="paragraph">
+<p>An insanely interesting topic is: To which log level should you <em>actually</em> log to? You have the choice of TRACE, DEBUG, INFO, WARN, ERROR, FATAL and a fair amount of developers
+feel unsure of when to use which one.</p>
+</div>
+<div class="paragraph">
+<p>Here’s a general approach that I’ve seen used successfully in a few places, but note that this is not written in stone (see <a href="https://www.marcobehler.com/episodes/132-what-log-levels-to-use-when-logging-in-your-java-applications">screencast here</a>). Make changes to these guidelines where appropriate, but make sure you have a solid use case and reasoning for it. And most importantly, make sure that
+your developers and operations guys are on the same page.</p>
+</div>
+<div class="paragraph">
+<p>Now let’s first have a look at the "error group" log levels individually, and what you might use them for.</p>
+</div>
+<div class="sect3">
+<h4 id="_fatal">FATAL</h4>
+<div class="paragraph">
+<p><em>Anything at this level means your Java process cannot continue and will now terminate.</em></p>
+</div>
+<div class="paragraph">
+<p>The least interesting log-level, as you are very unlikely to use it in your application and API’s such as SLF4J <a href="https://www.slf4j.org/faq.html#fatal">don’t even support it directly</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_error">ERROR</h4>
+<div class="paragraph">
+<p><em>A request was aborted and the underlying reason requires human intervention ASAP.</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_warn">WARN</h4>
+<div class="paragraph">
+<p><em>A request was not serviced satisfactorily, intervention is required soon, but not necessarily immediately.</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_what_does_that_mean_in_practical_terms">What does that mean in practical terms?</h4>
+<div class="paragraph">
+<p>For assessing entries against ERROR &amp; WARN you can ask the question "what is the action required" and if it doesn’t sound like an "OMG! Get that action covered now!" type of event, it gets demoted to a lesser level for not meeting criteria.</p>
+</div>
+<div class="paragraph">
+<p>Think about you pushing a new feature of your shiny fintech (bank) application to production, which unfortunately triggers the infamous Hibernate LazyLoadingException whenever
+a user tries to display the recent transactions for his bank account. That sounds like a pretty strong OMG situation, and you’ll want these errors to be logged as "errors" - and trigger appropriate reactive measures.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">2018-09-11 08:48:36.480 ERROR 10512 --- [ost-startStop-1] com.marcobehler.UserService        : Retrieving transaction list for user[id={}] failed
+
+org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: User.transactionDetails, could not initialize proxy - no Session
+        at org.hibernate.collection.internal.AbstractPersistentCollection.throwLazyInitializationException(AbstractPersistentCollection.java:582)
+        at org.hibernate.collection.internal.AbstractPersistentCollection.withTemporarySessionIfNeeded(AbstractPersistentCollection.java:201)
+        at org.hibernate.collection.internal.AbstractPersistentCollection.initialize(AbstractPersistentCollection.java:561)
+        at org.hibernate.collection.internal.AbstractPersistentCollection.read(AbstractPersistentCollection.java:132)
+        at org.hibernate.collection.internal.PersistentBag.iterator(PersistentBag.java:277)
+        at java.lang.Iterable.forEach(Iterable.java:74)
+        at LibraryTest.spring_test(LibraryTest.java:78)
+    ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then think about a batch job, which imports transactions on a daily or weekly basis. As is the case quite often, some records might be malformed and thus cannot be imported into the system.
+Someone, a person, needs to have a look at these records manually and fix them. But likely this isn’t as time-sensitive and urgent as the error case, so
+you’ll choose to log these items with the WARN level.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">2018-09-11 00:00:36.480 WARN 10512 --- [ost-startStop-1] com.marcobehler.BatchJob        : Could not import record[id=25] from csv file[name=transactions.csv] because of malformed[firstName,lastName]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The main reasoning behind keeping ERROR and WARN tags clean is that it makes monitoring and hence reacting to those events much simpler.</p>
+</div>
+<div class="paragraph">
+<p>Or in simple terms: Make sure to wake-up your operations guy at 3am in the morning for the right (kind of) error.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_info">INFO</h4>
+<div class="paragraph">
+<p>Info is the log level developers probably feel most 'comfortable' using and in practice you’ll find that developers print out a ton of statements with the
+INFO level, from client activities (webapps), progress information (batch jobs) to quite intricate, internal process flow details.</p>
+</div>
+<div class="paragraph">
+<p>Again, it can be a blurry line to decide what should be INFO and what should be DEBUG, but in general, process flow details should rather be logged with the debug level, instead of
+completely replicating a user’s journey through your application in an info.log.</p>
+</div>
+<div class="paragraph">
+<p>Historically, the main reason for logging out almost everything as INFO was, that it has been
+difficult to change log levels on the fly for applications, without having to restart (bounce) said application. Sometimes, organizational silos
+between developers and operations staff are also too large, to effortlessly and swiftly change log levels. Hence, developers chose to be on the safe-side and print out 'more', than less, to the console
+to be able to trace entire calls through the system.</p>
+</div>
+<div class="paragraph">
+<p>Enough introduction. Let’s have a look at some examples.</p>
+</div>
+<div class="paragraph">
+<p>Obviously, you can use the INFO level to log out application status, like the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">2018-09-11 08:46:26.547  INFO 8844 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>But another, intriguing way to think about the INFO level is as an additional (weak) error case: A request was not serviced satisfactorily but resolution details have been passed to the requestor and no proactive support is required.</p>
+</div>
+<div class="paragraph">
+<p>An example info would be "user login failed, incorrect username or password".</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">2018-09-11 08:46:26.547  INFO 8844 --- [           main] com.marcobehler.UserService  : User with id[=45] tried to login with wrong username/password combination</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You might want to log these because the user (through layers of support) might come to ops asking questions about why they cannot use the application. The ops staff will be able to see the reason in the logfile (even although the user has already been given this info via the app front end).</p>
+</div>
+<div class="paragraph">
+<p>Finally, there’s two more log levels, 'debug' and 'trace'. There have been quite a few heated discussions on the need for a <a href="https://www.slf4j.org/faq.html#trace">trace level online</a>, and SLF4J introduced the trace log level only in one of its later (newer) versions - after many community requests.</p>
+</div>
+<div class="paragraph">
+<p>Once more, the line between these two can be blurry, but let’s have a quick look at them:</p>
+</div>
+<div class="paragraph">
+<p><strong>DEBUG</strong></p>
+</div>
+<div class="paragraph">
+<p>Advanced level detail of internal process flows. This is only turned on during investigation of specific issues and turned off again after. Depending on the logging library used, it might not be possible to do this without bouncing (restarting) the application, which might not be acceptable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">2018-08-01 05:05:00,031 DEBUG - Checking uploaded XML files for valid structure [...]
+2018-08-01 05:06:00,031 DEBUG - Checking uploaded XML files for valid content [...]
+2018-08-01 05:07:00,031 DEBUG - Masking inputs for XML file[id=5] [...]
+2018-08-01 05:08:00,031 DEBUG - Replacing [...] XML sections for file[id=5] with [...]
+...
+2018-08-01 05:09:00,142 DEBUG - Forwarding XML file to archiving service</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>TRACE</strong> - More details than debug or reserved for use in specific environments</p>
+</div>
+<div class="paragraph">
+<p>You could see the trace level as even more detailed as the debug level, or you could decide to couple the trace level with certain environments, i.e. the DEV or TEST environment, where developers can go crazy and feel free to log out whatever they want and know that 'trace' will always be disabled on production. (Although this could also easily be achieved with different log configurations/profiles)</p>
+</div>
+<div class="paragraph">
+<p>Nevertheless, if you want to have a look at a framework that uses the TRACE logging framework diligently, then just have a look at the <a href="https://spring.io/">Spring Framework</a>.  When using Spring’s transaction management, you will only be able to see the real database transaction boundaries, when you enable the TRACE logging level:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">2018-08-01 05:05:00,031 TRACE - Getting transaction for [com.marcobehler.BitcoinApp.mine]
+
+... your own log statements./..
+
+2018-08-01 05:05:00,142 TRACE - Completing transaction for [com.marcobehler.BitcoinApp.mine]</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_log_files">Log Files</h4>
+<div class="paragraph">
+<p>When talking about log files, a common approach is to have separate files for separate use cases. That means an application will normally log to more than one logfile.</p>
+</div>
+<div class="paragraph">
+<p>You could have an <em>error.log</em> (with a filename pattern of &lt;appname&gt;.&lt;instance-name&gt;.YYYYMMDD.ZZZ.error.log), which is consumed by monitoring and alerting system and by operations staff. Obviously, you’d only want entries in that
+log file you want to alert on, i.e. your ERROR or WARN statements.</p>
+</div>
+<div class="paragraph">
+<p>You could have another log file called <em>info.log</em> or <em>status.log</em> (with a filename pattern of &lt;appname&gt;.&lt;instance-name&gt;.YYYYMMDD.ZZZ.status.log), which contains the aforementioned information about application progress or user activity, as well as e.g. a trace.log file whenever you want to go crazy with logging.</p>
+</div>
+<div class="paragraph">
+<p>When logging to separate files it makes sense to have a command line utility (like <a href="https://github.com/siom79/log-merger">log-merger</a>, or just a plain old bash script) to merge these separate logfiles on the fly for a specific timestamp.</p>
+</div>
+<div class="paragraph">
+<p>Imagine you have two files:</p>
+</div>
+<div class="paragraph">
+<p><em>error.log</em></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">2015-08-29 15:49:46,641 ERROR [org.jboss.msc.service.fail] (MSC service thread 1-4) MSC000001: Failed to start service jboss.undertow.listener.default: org.jboss.msc.service.StartException in service jboss.undertow.listener.default: Could not start http listener
+        at org.wildfly.extension.undertow.ListenerService.start(ListenerService.java:150)
+        at org.jboss.msc.service.ServiceControllerImpl$StartTask.startService(ServiceControllerImpl.java:1948)
+        at org.jboss.msc.service.ServiceControllerImpl$StartTask.run(ServiceControllerImpl.java:1881)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+        at java.lang.Thread.run(Thread.java:745)
+Caused by: java.net.BindException: Die Adresse wird bereits verwendet
+        at sun.nio.ch.Net.bind0(Native Method)
+        at sun.nio.ch.Net.bind(Net.java:436)
+        at sun.nio.ch.Net.bind(Net.java:428)
+        at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:214)
+        at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:74)
+        at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:67)
+        at org.xnio.nio.NioXnioWorker.createTcpConnectionServer(NioXnioWorker.java:182)
+        at org.xnio.XnioWorker.createStreamConnectionServer(XnioWorker.java:243)
+        at org.wildfly.extension.undertow.HttpListenerService.startListening(HttpListenerService.java:115)
+        at org.wildfly.extension.undertow.ListenerService.start(ListenerService.java:147)
+        ... 5 more</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and</p>
+</div>
+<div class="paragraph">
+<p><em>status.log</em></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">2015-08-29 15:49:46,033 INFO  [org.xnio] (MSC service thread 1-3) XNIO version 3.3.1.Final</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After running the log-merger utility, they can be viewed, on-the-fly, as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">[1] 2015-08-29 15:49:46,033 INFO  [org.xnio] (MSC service thread 1-3) XNIO version 3.3.1.Final
+[0] 2015-08-29 15:49:46,641 ERROR [org.jboss.msc.service.fail] (MSC service thread 1-4) MSC000001: Failed to start service jboss.undertow.listener.default: org.jboss.msc.service.StartException in service jboss.undertow.listener.default: Could not start http listener
+[0]         at org.wildfly.extension.undertow.ListenerService.start(ListenerService.java:150)
+[0]         at org.jboss.msc.service.ServiceControllerImpl$StartTask.startService(ServiceControllerImpl.java:1948)
+[0]         at org.jboss.msc.service.ServiceControllerImpl$StartTask.run(ServiceControllerImpl.java:1881)
+[0]         at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+[0]         at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+[0]         at java.lang.Thread.run(Thread.java:745)
+[0] Caused by: java.net.BindException: Die Adresse wird bereits verwendet
+[0]         at sun.nio.ch.Net.bind0(Native Method)
+[0]         at sun.nio.ch.Net.bind(Net.java:436)
+[0]         at sun.nio.ch.Net.bind(Net.java:428)
+[0]         at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:214)
+[0]         at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:74)
+[0]         at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:67)
+[0]         at org.xnio.nio.NioXnioWorker.createTcpConnectionServer(NioXnioWorker.java:182)
+[0]         at org.xnio.XnioWorker.createStreamConnectionServer(XnioWorker.java:243)
+[0]         at org.wildfly.extension.undertow.HttpListenerService.startListening(HttpListenerService.java:115)
+[0]         at org.wildfly.extension.undertow.ListenerService.start(ListenerService.java:147)
+[0]         ... 5 more</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can of course choose also to log everything into one file from the beginning.</p>
+</div>
+<div class="paragraph">
+<p>There’s one caveat however: Experience shows that developers often mistakenly assume that, just because log statements have a time/location correlation - which might run counter-intuitive, especially as we have just talked about merging log files.</p>
+</div>
+<div class="paragraph">
+<p>Here’s an example: Imagine you have an application which uses Hibernate. It boots up to a certain point and then it hangs, you see no more log messages. The application simply doesn’t start up.</p>
+</div>
+<div class="paragraph">
+<p>The last log message you see is the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">2018-09-11 09:35:19.166  INFO 14620 --- [ost-startStop-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It’s easy to assume that something must be broken with JPA or Hibernate, just because that’s your last log message. In fact, it <em>could</em> be Hibernate, but your application could also hang trying to boot up another part/third-party framework, that has not gotten around to log stuff out, yet.</p>
+</div>
+<div class="paragraph">
+<p>So be wary, when you come to quick conclusions, which happens often in high-pressure situations: When there’s a severe bug on production. Correlation in the log file through location/timestamp doesn’t automatically mean it <em>IS</em> correlated, only that it <em>CAN</em> be.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_mdc">MDC</h3>
+<div class="paragraph">
+<p>To make correlation of log statements strong, there’s another important concept to know, especially if you are working with multiple distributed processes (microservices): The <a href="https://logback.qos.ch/manual/mdc.html">Mapped Diagnostic Context (MDC)</a> or <a href="https://logging.apache.org/log4j/2.x/manual/thread-context.html">Thread Context</a>.</p>
+</div>
+<div class="paragraph">
+<p>Imagine you have a user-request coming in, that is routed to multiple, different microservices.
+When something goes wrong, a request fails, how do you know which log lines from which microservices correspond to that very request. Easy: You need a generated request-id that you want to log out with <strong>every</strong> log message.</p>
+</div>
+<div class="paragraph">
+<p>And because you are lazy, you don’t want to have to manually log out that id, it should just work automatically. That’s where the MDC comes in.</p>
+</div>
+<div class="paragraph">
+<p>Somewhere in your code, in an HTTP servlet-filter, you’ll have something like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">MDC.put(<span class="string"><span class="delimiter">"</span><span class="content">requestId</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">lknwelqk-12093alks-123nlkasn-5t234-lnakmwen</span><span class="delimiter">"</span></span>);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>That’s enough. Just one call to a static method.</p>
+</div>
+<div class="paragraph">
+<p>Later, in your application code, you will continue logging as usual:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">logger.info(<span class="string"><span class="delimiter">"</span><span class="content">Hi, my name is: Slim Shady!</span><span class="delimiter">"</span></span>);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You also need to configure your log library to log out the MDC variable with every log statement (see <a href="https://logback.qos.ch/manual/mdc.html">here</a>). Which will give you log messages that look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">[lknwelqk-12093alks-123nlkasn-5t234-lnakmwen] - Hi, my name is: Slim Shady!</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then it’s very easy to correlate all corresponding log messages, you simply have to specify or search for the same request-id across all your log files or in your centralized logging server.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_sensitive_information">Sensitive Information</h3>
+<div class="paragraph">
+<p>It goes without saying that you should avoid (read: must not) logging out sensitive information: User credentials (i.e. passwords) or financial information (like credit card numbers etc.) or similar sensitive user details.</p>
+</div>
+<div class="paragraph">
+<p>Depending on the complexity of your system, you might however not want to worry about fixing up every individual log statement in your system (though you might be forced to, by means of an audit), but have more of a generic solution that makes sure that certain information is masked - either partially or completely, depending
+on the security standards you need to adhere to.</p>
+</div>
+<div class="paragraph">
+<p>In the case of Log4j2 for example this means writing a custom <a href="https://logging.apache.org/log4j/2.0/log4j-core/apidocs/org/apache/logging/log4j/core/pattern/LogEventPatternConverter.html">LogEventPatternConverter</a>, that masks log events according to your regulations.</p>
+</div>
+<div class="paragraph">
+<p>Obviously, a full masking solution is out of the scope of this guide, but you can get some pointers <a href="https://objectpartners.com/2017/09/26/masking-sensitive-data-in-log4j-2/">here</a> and <a href="https://stackoverflow.com/questions/16775253/how-masking-of-sensitive-data-is-achieved-using-slf4j-framework">here</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_proactive_help">Proactive Help</h3>
+<div class="paragraph">
+<p>Another topic that isn’t really covered in detail anywhere, is <em>WHAT</em> exactly to write inside your log statements. And that brings us to the concept of <em>proactive help</em>.</p>
+</div>
+<div class="paragraph">
+<p>A great example is the <a href="https://spring.io/projects/spring-boot">Spring Boot</a> framework. When you are building a web application with Spring Boot and start it up for testing, the application will run under port 8080, so you can access it in your browser from <a href="http://localhost:8080/" class="bare">http://localhost:8080</a>.</p>
+</div>
+<div class="paragraph">
+<p>Sometimes it happens, that you have another Spring Boot application or an older version of the same application already running on port 8080. Which means you cannot start up your application as that will fail. In older Spring Boot versions, they simply
+logged out the "raw" exception, which looks like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">2018-09-11 09:35:57.062 ERROR 15516 --- [           main] o.apache.catalina.core.StandardService   : Failed to start connector [Connector[HTTP/1.1-8080]]
+
+org.apache.catalina.LifecycleException: Failed to start component [Connector[HTTP/1.1-8080]]
+        at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:167)
+        at org.apache.catalina.core.StandardService.addConnector(StandardService.java:225)
+        at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.addPreviouslyRemovedConnectors(TomcatWebServer.java:256)
+        at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:198)
+        at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.startWebServer(ServletWebServerApplicationContext.java:300)
+        at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.finishRefresh(ServletWebServerApplicationContext.java:162)
+        at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:553)
+        at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140)
+        at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:759)
+        at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:395)
+        at org.springframework.boot.SpringApplication.run(SpringApplication.java:327)
+        at org.springframework.boot.SpringApplication.run(SpringApplication.java:1255)
+        at org.springframework.boot.SpringApplication.run(SpringApplication.java:1243)
+        at com.marcobehler.MarcobehlerRootApplication.main(MarcobehlerRootApplication.java:26)
+Caused by: org.apache.catalina.LifecycleException: Protocol handler start failed
+        at org.apache.catalina.connector.Connector.startInternal(Connector.java:1020)
+        at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+        ... 13 common frames omitted
+        ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Developers can of course make the mental translation needed to go from "Failed to start connector" → "Another Spring Boot instance is running", but a better way would be what Spring Boot offers in newer versions:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">2018-09-11  17:44:49.179 ERROR 24745 --- [           main] o.s.b.d.LoggingFailureAnalysisReporter   :
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Embedded servlet container failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It could be even more improved by adding that it could be a random process or just another (IDE) instance of your application that needs to be shutdown manually.</p>
+</div>
+<div class="paragraph">
+<p>The main takeaway here is however, that it makes sense to not only log out an error message wherever you can, but also <strong>hint at possible fixes/calls for action</strong>, if you can. That will save time later on, when analysing  bugs and the corresponding log files.</p>
+</div>
+<div class="paragraph">
+<p>(If you want to see more examples of proactive help, you can also have a look at the <a href="https://wicket.apache.org/">Apache Wicket</a> framework, which comes with a 'suggested fix' for a fair amount of errors. Have a look at its source code for more details.)</p>
+</div>
+<div class="sect3">
+<h4 id="_migrating_legacy_applications">Migrating Legacy Applications</h4>
+<div class="paragraph">
+<p>To get from a normal situation to the setup discussed in this guide, i.e. unified logging practices, log libraries etc.) takes some time. Especially if you are talking multiple, existing legacy applications that you all
+want to migrate to a somewhat homogeneous logging strategy. Even disregarding all the issues of management buy-in etc, you’ll need to do
+the migration slowly for all the apps over several releases.</p>
+</div>
+<div class="paragraph">
+<p>One approach could be to put everything into the same logfile to begin with and as code and logging configuration is revisited, it would have all its logging revised to meet the new criteria. Unfortunately, this is just a rough pointer, as a fully detailed migration guide is outside the scope of this guide.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_centralized_logging">Centralized Logging</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As soon as you have more than one instance of an application running, or even multiple instances of multiple applications (think bigger organization or microservices), the question of "how to manage those logs" gets interesting. A very simple solution could be that OPs has some sort of script, that copies
+all the log files from all your instances to some shared network folder, so that developers can access it.</p>
+</div>
+<div class="paragraph">
+<p>A more advanced solution are centralized logging servers or stacks, like <a href="https://www.graylog.org/">Graylog</a> or <a href="https://www.splunk.com/en_us/solutions/solution-areas/log-management.html">Splunk</a> or <a href="https://www.elastic.co/elk-stack">Elk</a>.</p>
+</div>
+<div class="paragraph">
+<p>Let’s have a look at Graylog. There are <a href="https://github.com/mp911de/logstash-gelf/">Graylog Extended Log Format - GELF</a> appenders for all major Java logging frameworks, which means you can configure e.g. Log4j2 to directly send its log events to Graylog. Graylog will consume
+the log event from as many instances and applications as needed and display them in a nice, little graphical UI - albeit the syntax for searching specific log events/date ranges takes some time to get used to.</p>
+</div>
+<div class="paragraph">
+<p>Here’s a glance of what a Graylog dashboard looks like: (linked from the <a href="https://www.graylog.org/">graylog homepage</a>). For further information on what Graylog looks like, consult its documentation.</p>
+</div>
+<img class="img-fluid img-thumbnail" src="./A guide to logging in Java_files/5ac133a161e365e54cae414c_overview_selfservice-p-800.png">
+<div class="paragraph">
+<p>&nbsp;</p>
+</div>
+<div class="paragraph">
+<p>Takeaway: If you are big enough to need a centralized log server, do a quick comparison of all available options and then make sure of the following, independent of your final choice:</p>
+</div>
+<div class="paragraph">
+<p>That your developers and applications can not only write to your log server. But that ops and dev staff actually also knows how to properly handle the UI of the log server and issue proper search queries - especially
+if multiple instances of multiple applications are involved.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deciding_on_the_right_way_to_log">Deciding On The Right (™) Way To Log</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It has been quite a ride so far. We discussed a ton of different logging libraries and different ways how to log. Let’s sum everything up and - as always - remember that there is no 'one and only right way'.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If you are developing a new project, start out with <a href="https://www.slf4j.org/manual.html">SLF4J</a> + <a href="https://logback.qos.ch/">Logback</a> or <a href="https://logging.apache.org/log4j/2.x/">Log4j2</a>. You will be fine either way.</p>
+</li>
+<li>
+<p>If you are working on a legacy project, try to migrate everything to a log facade (SLF4J) and introduce a homogeneous and unified approach to logging across all of your teams</p>
+</li>
+<li>
+<p>Practicing the right log levels, message contents, monitoring measures etc. will take time, so don’t get frustrated. It’s an iterative process.</p>
+</li>
+<li>
+<p>If you are big enough (multiple applications, multiple instances), you might want to look into a centralized log server</p>
+</li>
+<li>
+<p>Most of all, enjoy logging!</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>That’s it for today. If you have any questions or if you found some errors (spelling, logical, whatever) just post them to the comment section or e-mail me.</p>
+</div>
+<div class="paragraph">
+<p><strong><mark>Thanks for reading</mark></strong></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_if_you_want_to_see_this_guide_in_action">If you want to see this guide "in action"</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I have produced a short video course on Java logging, which covers most concepts of this guide with real-life code, example configurations and more. Check out <a href="https://www.marcobehler.com/academy/16-java-logging-masterclass?utm_campaign=logging_guide&amp;utm_medium=logging_guide&amp;utm_source=logging_guide">Java Logging: Masterclass</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_acknowledgements">Acknowledgements</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>3amopsguy, who was a real mentor when it came to logging, back in 2012.</p>
+</div>
+</div>
+</div>
+
+        <h4 class="mt-4">Share:</h4>
+        <div class="shariff mb-5" data-twitter-via="MarcoBehler" data-url="https://www.marcobehler.com/guides/a-guide-to-logging-in-java" data-lang="en" data-services="[&quot;twitter&quot;,&quot;facebook&quot;,&quot;linkedin&quot;,&quot;reddit&quot;]" data-orientation="horizontal"><ul class="theme-color orientation-horizontal button-style-standard shariff-col-4"><li class="shariff-button twitter"><a href="https://twitter.com/intent/tweet?text=A%20guide%20to%20logging%20in%20Java&amp;url=https%3A%2F%2Fwww.marcobehler.com%2Fguides%2Fa-guide-to-logging-in-java&amp;via=MarcoBehler" data-rel="popup" rel="nofollow" title="Share on Twitter" role="button" aria-label="Share on Twitter"><span class="fab fa-twitter" aria-hidden="true"></span><span class="share_text">tweet</span></a></li><li class="shariff-button facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.marcobehler.com%2Fguides%2Fa-guide-to-logging-in-java" data-rel="popup" rel="nofollow" title="Share on Facebook" role="button" aria-label="Share on Facebook"><span class="fab fa-facebook-f" aria-hidden="true"></span><span class="share_text">share</span></a></li><li class="shariff-button linkedin"><a href="https://www.linkedin.com/shareArticle?mini=true&amp;summary=You%20can%20use%20this%20guide%20to%20discover%2C%20understand%20and%20use%20the%20right%20Java%20logging%20library%20for%20your%20applications%2C%20like%20Log4j2%2C%20Logback%2C%20or%20java.util.logging.&amp;title=A%20guide%20to%20logging%20in%20Java&amp;url=https%3A%2F%2Fwww.marcobehler.com%2Fguides%2Fa-guide-to-logging-in-java" data-rel="popup" rel="nofollow" title="Share on LinkedIn" role="button" aria-label="Share on LinkedIn"><span class="fab fa-linkedin-in" aria-hidden="true"></span><span class="share_text">share</span></a></li><li class="shariff-button reddit"><a href="https://reddit.com/submit?url=https%3A%2F%2Fwww.marcobehler.com%2Fguides%2Fa-guide-to-logging-in-java&amp;title=A%20guide%20to%20logging%20in%20Java" data-rel="popup" rel="nofollow" title="Share on Reddit" role="button" aria-label="Share on Reddit"><span class="fab fa-reddit-alien" aria-hidden="true"></span><span class="share_text">share</span></a></li></ul></div>
+
+
+          <div class="text-center pt-3 pb-4 px-2 my-4" style="background-color: rgba(230,235,241,.5)">
+            <h4 class="font-weight-bold">There's more where that came from</h4>
+            <p class="mt-0 pt-0 pl-5 pr-5" style="font-size: 0.9rem;">I'll send you an update when I publish new guides. Absolutely no spam, ever. Unsubscribe anytime.</p>
+
+            <form action="https://sendy.marcobehler.com/subscribe" method="POST" accept-charset="utf-8" class="form-inline newsletterSignupForm">
+              <div class="col-md-7 col-lg-6 ml-lg-auto">
+                <div class="form-group">
+                  <input type="email" name="email" id="email" class="form-control w-100" placeholder="e.g. martin@fowler.com" required="">
+
+                  <div style="display:none;">
+                    <label for="hp">HP</label><br>
+                    <input type="text" name="hp" id="hp">
+                  </div>
+                  <input type="hidden" name="list" value="6y1mPqI2ZsqrrbUPFriRDg">
+                  <input type="hidden" name="subform" value="yes">
+                  <input type="hidden" name="gdpr" value="checked">
+                </div>
+              </div>
+
+              <div class="col-md-5 col-lg-3 mr-lg-auto">
+                <button type="submit" class="btn btn-primary btn-large btn-round">I want more!</button>
+              </div>
+            </form>
+          </div>
+
+
+
+
+      <h4 class="font-weight-bold mt-5">Comments</h4>
+      <div id="commento" class="commento-root commento-root-font"><div id="commento-login-box-container"></div><div id="commento-error" class="commento-error-box" style="display: none;"></div><div id="commento-mod-tools" class="commento-mod-tools" style="display: none"><button id="commento-mod-tools-lock-button">Lock Thread</button></div><div id="commento-main-area" class="commento-main-area" style=""><div id="commento-login" class="commento-login"><div class="commento-login-text">Login</div></div><div id="commento-textarea-super-container-root" class="commento-button-margin"><div id="commento-textarea-container-root" class="commento-textarea-container"><textarea id="commento-textarea-root" placeholder="Add a comment"></textarea></div><button id="commento-submit-button-root" class="commento-button commento-submit-button">Add Comment</button><div class="commento-round-check commento-anonymous-checkbox-container"><input id="commento-anonymous-checkbox-root" type="checkbox"><label for="commento-anonymous-checkbox-root">Comment anonymously</label></div><a id="commento-markdown-button-root" class="commento-markdown-button"><b>M ↓</b> &nbsp; Markdown</a></div><div class="commento-sort-policy-buttons-container"><div class="commento-sort-policy-buttons"><a id="commento-sort-policy-score-desc" class="commento-sort-policy-button commento-sort-policy-button-selected">Upvotes</a><a id="commento-sort-policy-creationdate-desc" class="commento-sort-policy-button">Newest</a><a id="commento-sort-policy-creationdate-asc" class="commento-sort-policy-button">Oldest</a></div></div><div id="commento-pre-comments-area"></div><div id="commento-comments-area" class="commento-comments"><div><div id="commento-comment-card-8e36fcc9fa0c022ac75dd982a4538de532d394230faaa82333e527af0ffb0699" class="commento-card" style="border-left: 2px solid rgb(107, 76, 154);"><div class="commento-header"><div id="commento-comment-options-8e36fcc9fa0c022ac75dd982a4538de532d394230faaa82333e527af0ffb0699" class="commento-options" style="width: 160px;"><button id="commento-comment-collapse-8e36fcc9fa0c022ac75dd982a4538de532d394230faaa82333e527af0ffb0699" title="Collapse children" class="commento-option-button commento-option-collapse" style="right: 0px;"></button><button id="commento-comment-downvote-8e36fcc9fa0c022ac75dd982a4538de532d394230faaa82333e527af0ffb0699" title="Downvote" class="commento-option-button commento-option-downvote" style="right: 32px;"></button><button id="commento-comment-upvote-8e36fcc9fa0c022ac75dd982a4538de532d394230faaa82333e527af0ffb0699" title="Upvote" class="commento-option-button commento-option-upvote" style="right: 64px;"></button><button id="commento-comment-reply-8e36fcc9fa0c022ac75dd982a4538de532d394230faaa82333e527af0ffb0699" title="Reply" class="commento-option-button commento-option-reply" style="right: 96px;"></button></div><div class="commento-avatar" style="background: rgb(107, 76, 154);">J</div><div id="commento-comment-name-8e36fcc9fa0c022ac75dd982a4538de532d394230faaa82333e527af0ffb0699" class="commento-name" style="max-width: 90px;">Javin Paul</div><div id="commento-comment-subtitle-8e36fcc9fa0c022ac75dd982a4538de532d394230faaa82333e527af0ffb0699" class="commento-subtitle"><div id="commento-comment-score-8e36fcc9fa0c022ac75dd982a4538de532d394230faaa82333e527af0ffb0699" class="commento-score">0 points</div><div id="commento-comment-timeago-8e36fcc9fa0c022ac75dd982a4538de532d394230faaa82333e527af0ffb0699" title="Fri Sep 14 2018 15:56:39 GMT+0300 (Eastern European Summer Time)" class="commento-timeago">18 months ago</div></div></div><div id="commento-comment-contents-8e36fcc9fa0c022ac75dd982a4538de532d394230faaa82333e527af0ffb0699"><div id="commento-comment-body-8e36fcc9fa0c022ac75dd982a4538de532d394230faaa82333e527af0ffb0699" class="commento-body"><div id="commento-comment-text-8e36fcc9fa0c022ac75dd982a4538de532d394230faaa82333e527af0ffb0699"><p>That's a good overview of all the logging library and logging in general. It also nicely complement my logging tips article (<a href="http://javarevisited.blogspot.sg/2011/05/top-10-tips-on-logging-in-java.html#axzz57W6MT09l" rel="nofollow">http://javarevisited.blogsp...</a>) which is based upon some practical experience of logging in Java.</p>
+</div></div></div></div><div id="commento-comment-card-8ec25badf3ea45bd503e871e05600019e0ecdeae764be8bb904c37e32729e241" class="commento-card" style="border-left: 2px solid rgb(204, 37, 41);"><div class="commento-header"><div id="commento-comment-options-8ec25badf3ea45bd503e871e05600019e0ecdeae764be8bb904c37e32729e241" class="commento-options" style="width: 160px;"><button id="commento-comment-collapse-8ec25badf3ea45bd503e871e05600019e0ecdeae764be8bb904c37e32729e241" title="Collapse children" class="commento-option-button commento-option-collapse" style="right: 0px;"></button><button id="commento-comment-downvote-8ec25badf3ea45bd503e871e05600019e0ecdeae764be8bb904c37e32729e241" title="Downvote" class="commento-option-button commento-option-downvote" style="right: 32px;"></button><button id="commento-comment-upvote-8ec25badf3ea45bd503e871e05600019e0ecdeae764be8bb904c37e32729e241" title="Upvote" class="commento-option-button commento-option-upvote" style="right: 64px;"></button><button id="commento-comment-reply-8ec25badf3ea45bd503e871e05600019e0ecdeae764be8bb904c37e32729e241" title="Reply" class="commento-option-button commento-option-reply" style="right: 96px;"></button></div><div class="commento-avatar" style="background: rgb(204, 37, 41);">W</div><div id="commento-comment-name-8ec25badf3ea45bd503e871e05600019e0ecdeae764be8bb904c37e32729e241" class="commento-name" style="max-width: 108px;">WJCarpenter</div><div id="commento-comment-subtitle-8ec25badf3ea45bd503e871e05600019e0ecdeae764be8bb904c37e32729e241" class="commento-subtitle"><div id="commento-comment-score-8ec25badf3ea45bd503e871e05600019e0ecdeae764be8bb904c37e32729e241" class="commento-score">0 points</div><div id="commento-comment-timeago-8ec25badf3ea45bd503e871e05600019e0ecdeae764be8bb904c37e32729e241" title="Mon Sep 17 2018 21:53:17 GMT+0300 (Eastern European Summer Time)" class="commento-timeago">17 months ago</div></div></div><div id="commento-comment-contents-8ec25badf3ea45bd503e871e05600019e0ecdeae764be8bb904c37e32729e241"><div id="commento-comment-body-8ec25badf3ea45bd503e871e05600019e0ecdeae764be8bb904c37e32729e241" class="commento-body"><div id="commento-comment-text-8ec25badf3ea45bd503e871e05600019e0ecdeae764be8bb904c37e32729e241"><p>Thanks for a very good overview article. You hit a lot of my past pain points.</p>
+
+<p>Here are a couple of other points that I have found useful when implementing logging (or at least I wish I had found useful before I got too far along).</p>
+
+<ol>
+<li><p>You will eventually change your mind about what logging package to use. Something new and shiny will come along, or you will take over someone else's component, or you will just have more experience in some way. You WILL change your mind. No matter what choice you initially make, when you change your mind (you WILL!), you don't want to have to change 95% of your source files for a simple mechanical change; or, you don't want the dread of touching 95% of your source files to be the reason you avoid the change. Make your own internal Logger class (a popular name) with whatever methods you like. Funnel everything through that class. That class (and it's nearby helpers) is probably the only file you will need to change when you change your mind (which, I may have mentioned, you WILL).</p></li>
+
+<li><p>Logging levels seems to be the most poorly designed feature of every logging package. Everybody does it in kind of the same way (but with different naming, just to keep you on your toes). The problem is that it tries to wrap up two different concepts: how important is this piece of logging? and how much do you want to say about it? I don't have a clear-cut answer to this puzzler, but I'm sure that disagreements about what should be logged at what traditional error level are among the most popular of impedance mismatches across complex applications. There is also a third element which can be a little harder to nail down: who is the audience for the log message? Is it end users (who can modify their behavior), administrators (who can make config changes), developers (who can make code changes), troubleshooters (who need lots and lots and lots of info)?</p></li>
+</ol>
+</div></div></div></div><div id="commento-comment-card-8cf8d9412af3d9302e8cf2b9ef2663ee0f9da0c89f61466ec55a3269c65bbb4d" class="commento-card" style="border-left: 2px solid rgb(57, 106, 177);"><div class="commento-header"><div id="commento-comment-options-8cf8d9412af3d9302e8cf2b9ef2663ee0f9da0c89f61466ec55a3269c65bbb4d" class="commento-options" style="width: 160px;"><button id="commento-comment-collapse-8cf8d9412af3d9302e8cf2b9ef2663ee0f9da0c89f61466ec55a3269c65bbb4d" title="Collapse children" class="commento-option-button commento-option-collapse" style="right: 0px;"></button><button id="commento-comment-downvote-8cf8d9412af3d9302e8cf2b9ef2663ee0f9da0c89f61466ec55a3269c65bbb4d" title="Downvote" class="commento-option-button commento-option-downvote" style="right: 32px;"></button><button id="commento-comment-upvote-8cf8d9412af3d9302e8cf2b9ef2663ee0f9da0c89f61466ec55a3269c65bbb4d" title="Upvote" class="commento-option-button commento-option-upvote" style="right: 64px;"></button><button id="commento-comment-reply-8cf8d9412af3d9302e8cf2b9ef2663ee0f9da0c89f61466ec55a3269c65bbb4d" title="Reply" class="commento-option-button commento-option-reply" style="right: 96px;"></button></div><div class="commento-avatar" style="background: rgb(57, 106, 177);">W</div><div id="commento-comment-name-8cf8d9412af3d9302e8cf2b9ef2663ee0f9da0c89f61466ec55a3269c65bbb4d" class="commento-name" style="max-width: 101px;">Will Sargent</div><div id="commento-comment-subtitle-8cf8d9412af3d9302e8cf2b9ef2663ee0f9da0c89f61466ec55a3269c65bbb4d" class="commento-subtitle"><div id="commento-comment-score-8cf8d9412af3d9302e8cf2b9ef2663ee0f9da0c89f61466ec55a3269c65bbb4d" class="commento-score">0 points</div><div id="commento-comment-timeago-8cf8d9412af3d9302e8cf2b9ef2663ee0f9da0c89f61466ec55a3269c65bbb4d" title="Thu Sep 13 2018 23:45:23 GMT+0300 (Eastern European Summer Time)" class="commento-timeago">18 months ago</div></div></div><div id="commento-comment-contents-8cf8d9412af3d9302e8cf2b9ef2663ee0f9da0c89f61466ec55a3269c65bbb4d"><div id="commento-comment-body-8cf8d9412af3d9302e8cf2b9ef2663ee0f9da0c89f61466ec55a3269c65bbb4d" class="commento-body"><div id="commento-comment-text-8cf8d9412af3d9302e8cf2b9ef2663ee0f9da0c89f61466ec55a3269c65bbb4d"><p>This is great, but I'd add structured logging in JSON <a href="https://stackify.com/what-is-structured-logging-and-why-developers-need-it/" rel="nofollow">https://stackify.com/what-i...</a> using Logstash-Logback-Encoder <a href="https://github.com/logstash/logstash-logback-encoder#pattern-json-provider" rel="nofollow">https://github.com/logstash...</a> / <a href="https://logging.apache.org/log4j/2.x/manual/layouts.html#JSONLayout" rel="nofollow">https://logging.apache.org/...</a> in Log4J2</p>
+
+<p>And the benefits of async appenders <a href="https://www.loggly.com/blog/benchmarking-java-logging-frameworks-2015/" rel="nofollow">https://www.loggly.com/blog...</a> : <a href="https://github.com/logstash/logstash-logback-encoder#async-appenders" rel="nofollow">https://github.com/logstash...</a> in Logback or <a href="https://logging.apache.org/log4j/2.x/manual/async.html" rel="nofollow">https://logging.apache.org/...</a> in Log4J2</p>
+</div></div><div id="commento-comment-children-8cf8d9412af3d9302e8cf2b9ef2663ee0f9da0c89f61466ec55a3269c65bbb4d" class="commento-body"><div id="commento-comment-card-fb97aa4d4adbfffdf4a9df5df5985232049b546c49ff1bd40b6e8fea803d4094" class="commento-card" style="border-left: 2px solid rgb(62, 150, 81);"><div class="commento-header"><div id="commento-comment-options-fb97aa4d4adbfffdf4a9df5df5985232049b546c49ff1bd40b6e8fea803d4094" class="commento-options" style="width: 160px;"><button id="commento-comment-collapse-fb97aa4d4adbfffdf4a9df5df5985232049b546c49ff1bd40b6e8fea803d4094" title="Collapse children" class="commento-option-button commento-option-collapse" style="right: 0px;"></button><button id="commento-comment-downvote-fb97aa4d4adbfffdf4a9df5df5985232049b546c49ff1bd40b6e8fea803d4094" title="Downvote" class="commento-option-button commento-option-downvote" style="right: 32px;"></button><button id="commento-comment-upvote-fb97aa4d4adbfffdf4a9df5df5985232049b546c49ff1bd40b6e8fea803d4094" title="Upvote" class="commento-option-button commento-option-upvote" style="right: 64px;"></button><button id="commento-comment-reply-fb97aa4d4adbfffdf4a9df5df5985232049b546c49ff1bd40b6e8fea803d4094" title="Reply" class="commento-option-button commento-option-reply" style="right: 96px;"></button></div><div class="commento-avatar" style="background: rgb(62, 150, 81);">M</div><div id="commento-comment-name-fb97aa4d4adbfffdf4a9df5df5985232049b546c49ff1bd40b6e8fea803d4094" class="commento-name" style="max-width: 109px;">Marco Behler</div><div id="commento-comment-subtitle-fb97aa4d4adbfffdf4a9df5df5985232049b546c49ff1bd40b6e8fea803d4094" class="commento-subtitle"><div id="commento-comment-score-fb97aa4d4adbfffdf4a9df5df5985232049b546c49ff1bd40b6e8fea803d4094" class="commento-score">0 points</div><div id="commento-comment-timeago-fb97aa4d4adbfffdf4a9df5df5985232049b546c49ff1bd40b6e8fea803d4094" title="Sat Sep 15 2018 12:59:57 GMT+0300 (Eastern European Summer Time)" class="commento-timeago">18 months ago</div></div></div><div id="commento-comment-contents-fb97aa4d4adbfffdf4a9df5df5985232049b546c49ff1bd40b6e8fea803d4094"><div id="commento-comment-body-fb97aa4d4adbfffdf4a9df5df5985232049b546c49ff1bd40b6e8fea803d4094" class="commento-body"><div id="commento-comment-text-fb97aa4d4adbfffdf4a9df5df5985232049b546c49ff1bd40b6e8fea803d4094"><p>Do you have a specific use-case where I would benefit tremendously from structured JSON logging, as compared to non-structured? Honest question!</p>
+</div></div><div id="commento-comment-children-fb97aa4d4adbfffdf4a9df5df5985232049b546c49ff1bd40b6e8fea803d4094" class="commento-body"><div id="commento-comment-card-6f538cbe7bb056ef6895e1b6f1ab524f7ff02b56d2ab59cec33cc96d378880a0" class="commento-card" style="border-left: 2px solid rgb(57, 106, 177);"><div class="commento-header"><div id="commento-comment-options-6f538cbe7bb056ef6895e1b6f1ab524f7ff02b56d2ab59cec33cc96d378880a0" class="commento-options" style="width: 160px;"><button id="commento-comment-collapse-6f538cbe7bb056ef6895e1b6f1ab524f7ff02b56d2ab59cec33cc96d378880a0" title="Collapse children" class="commento-option-button commento-option-collapse" style="right: 0px;"></button><button id="commento-comment-downvote-6f538cbe7bb056ef6895e1b6f1ab524f7ff02b56d2ab59cec33cc96d378880a0" title="Downvote" class="commento-option-button commento-option-downvote" style="right: 32px;"></button><button id="commento-comment-upvote-6f538cbe7bb056ef6895e1b6f1ab524f7ff02b56d2ab59cec33cc96d378880a0" title="Upvote" class="commento-option-button commento-option-upvote" style="right: 64px;"></button><button id="commento-comment-reply-6f538cbe7bb056ef6895e1b6f1ab524f7ff02b56d2ab59cec33cc96d378880a0" title="Reply" class="commento-option-button commento-option-reply" style="right: 96px;"></button></div><div class="commento-avatar" style="background: rgb(57, 106, 177);">S</div><div id="commento-comment-name-6f538cbe7bb056ef6895e1b6f1ab524f7ff02b56d2ab59cec33cc96d378880a0" class="commento-name" style="max-width: 123px;">Sergey Chupov</div><div id="commento-comment-subtitle-6f538cbe7bb056ef6895e1b6f1ab524f7ff02b56d2ab59cec33cc96d378880a0" class="commento-subtitle"><div id="commento-comment-score-6f538cbe7bb056ef6895e1b6f1ab524f7ff02b56d2ab59cec33cc96d378880a0" class="commento-score">0 points</div><div id="commento-comment-timeago-6f538cbe7bb056ef6895e1b6f1ab524f7ff02b56d2ab59cec33cc96d378880a0" title="Mon Sep 17 2018 13:56:17 GMT+0300 (Eastern European Summer Time)" class="commento-timeago">17 months ago</div></div></div><div id="commento-comment-contents-6f538cbe7bb056ef6895e1b6f1ab524f7ff02b56d2ab59cec33cc96d378880a0"><div id="commento-comment-body-6f538cbe7bb056ef6895e1b6f1ab524f7ff02b56d2ab59cec33cc96d378880a0" class="commento-body"><div id="commento-comment-text-6f538cbe7bb056ef6895e1b6f1ab524f7ff02b56d2ab59cec33cc96d378880a0"><p>Stacks like ELK benefit greatly from the structured logs, it allows you to build stats and execute advanced queries.</p>
+</div></div></div></div><div id="commento-comment-card-5ec7746623c81c1cfb763723190c5277cea0117ec3891ee483a39eb92a4f0691" class="commento-card" style="border-left: 2px solid rgb(57, 106, 177);"><div class="commento-header"><div id="commento-comment-options-5ec7746623c81c1cfb763723190c5277cea0117ec3891ee483a39eb92a4f0691" class="commento-options" style="width: 160px;"><button id="commento-comment-collapse-5ec7746623c81c1cfb763723190c5277cea0117ec3891ee483a39eb92a4f0691" title="Collapse children" class="commento-option-button commento-option-collapse" style="right: 0px;"></button><button id="commento-comment-downvote-5ec7746623c81c1cfb763723190c5277cea0117ec3891ee483a39eb92a4f0691" title="Downvote" class="commento-option-button commento-option-downvote" style="right: 32px;"></button><button id="commento-comment-upvote-5ec7746623c81c1cfb763723190c5277cea0117ec3891ee483a39eb92a4f0691" title="Upvote" class="commento-option-button commento-option-upvote" style="right: 64px;"></button><button id="commento-comment-reply-5ec7746623c81c1cfb763723190c5277cea0117ec3891ee483a39eb92a4f0691" title="Reply" class="commento-option-button commento-option-reply" style="right: 96px;"></button></div><div class="commento-avatar" style="background: rgb(57, 106, 177);">W</div><div id="commento-comment-name-5ec7746623c81c1cfb763723190c5277cea0117ec3891ee483a39eb92a4f0691" class="commento-name" style="max-width: 101px;">Will Sargent</div><div id="commento-comment-subtitle-5ec7746623c81c1cfb763723190c5277cea0117ec3891ee483a39eb92a4f0691" class="commento-subtitle"><div id="commento-comment-score-5ec7746623c81c1cfb763723190c5277cea0117ec3891ee483a39eb92a4f0691" class="commento-score">0 points</div><div id="commento-comment-timeago-5ec7746623c81c1cfb763723190c5277cea0117ec3891ee483a39eb92a4f0691" title="Sat Sep 15 2018 18:56:11 GMT+0300 (Eastern European Summer Time)" class="commento-timeago">18 months ago</div></div></div><div id="commento-comment-contents-5ec7746623c81c1cfb763723190c5277cea0117ec3891ee483a39eb92a4f0691"><div id="commento-comment-body-5ec7746623c81c1cfb763723190c5277cea0117ec3891ee483a39eb92a4f0691" class="commento-body"><div id="commento-comment-text-5ec7746623c81c1cfb763723190c5277cea0117ec3891ee483a39eb92a4f0691"><p>It really helps when you are doing ad-hoc querying on high cardinality events, i.e. Facebook Scuba or HoneyComb.  Honeycomb has a series of blog posts going into details.  <a href="https://www.honeycomb.io/blog/category/logging/" rel="nofollow">https://www.honeycomb.io/bl...</a></p>
+</div></div></div></div></div></div></div></div></div></div></div></div></div><div id="commento-footer" class="commento-footer"><div class="commento-logo-container"><a class="commento-logo" href="https://commento.io/" target="_blank"><span class="commento-logo-text">Commento</span></a></div></div></div>
+<script src="./A guide to logging in Java_files/commento.js"></script>
+
+    </div>
+  </div>
+
+  <div class="shariff" id="floating-share" data-twitter-via="MarcoBehler" data-button-style="icon" data-url="https://www.marcobehler.com/guides/a-guide-to-logging-in-java" data-lang="en" data-services="[&quot;twitter&quot;,&quot;facebook&quot;,&quot;linkedin&quot;,&quot;reddit&quot;]" data-orientation="vertical"><ul class="theme-color orientation-vertical button-style-icon shariff-col-4"><li class="shariff-button twitter"><a href="https://twitter.com/intent/tweet?text=A%20guide%20to%20logging%20in%20Java&amp;url=https%3A%2F%2Fwww.marcobehler.com%2Fguides%2Fa-guide-to-logging-in-java&amp;via=MarcoBehler" data-rel="popup" rel="nofollow" title="Share on Twitter" role="button" aria-label="Share on Twitter"><span class="fab fa-twitter" aria-hidden="true"></span></a></li><li class="shariff-button facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.marcobehler.com%2Fguides%2Fa-guide-to-logging-in-java" data-rel="popup" rel="nofollow" title="Share on Facebook" role="button" aria-label="Share on Facebook"><span class="fab fa-facebook-f" aria-hidden="true"></span></a></li><li class="shariff-button linkedin"><a href="https://www.linkedin.com/shareArticle?mini=true&amp;summary=You%20can%20use%20this%20guide%20to%20discover%2C%20understand%20and%20use%20the%20right%20Java%20logging%20library%20for%20your%20applications%2C%20like%20Log4j2%2C%20Logback%2C%20or%20java.util.logging.&amp;title=A%20guide%20to%20logging%20in%20Java&amp;url=https%3A%2F%2Fwww.marcobehler.com%2Fguides%2Fa-guide-to-logging-in-java" data-rel="popup" rel="nofollow" title="Share on LinkedIn" role="button" aria-label="Share on LinkedIn"><span class="fab fa-linkedin-in" aria-hidden="true"></span></a></li><li class="shariff-button reddit"><a href="https://reddit.com/submit?url=https%3A%2F%2Fwww.marcobehler.com%2Fguides%2Fa-guide-to-logging-in-java&amp;title=A%20guide%20to%20logging%20in%20Java" data-rel="popup" rel="nofollow" title="Share on Reddit" role="button" aria-label="Share on Reddit"><span class="fab fa-reddit-alien" aria-hidden="true"></span></a></li></ul></div>
+
+
+<div class="card popup-screen visible" style="width: 15rem;">
+  <a href="https://www.marcobehler.com/guides/a-guide-to-logging-in-java#" class="close-popup">X</a>
+    <img class="card-img-top lazy loaded" itemprop="image" data-src="/images/marcobehler_skateboard-961d8e6f.svg" src="./A guide to logging in Java_files/marcobehler_skateboard-961d8e6f.svg" data-was-processed="true">
+    <div class="card-body">
+        <h5 class="card-title">There's more where that came from</h5>
+        <!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
+        <p class="card-text">I'll send you an update whenever I publish a new guide.</p>
+
+        <form action="https://sendy.marcobehler.com/subscribe" method="POST" accept-charset="utf-8" class="newsletterSignupForm">
+            <input type="email" class="form-control" placeholder="your@email.com" name="email" id="email" required="">
+
+            <div style="display:none;">
+                <label for="hp">HP</label><br>
+                <input type="text" name="hp" id="hp">
+            </div>
+            <input type="hidden" name="gdpr" value="checked">
+            <input type="hidden" name="list" value="6y1mPqI2ZsqrrbUPFriRDg">
+            <input type="hidden" name="subform" value="yes">
+            <input type="submit" class="btn btn-primary w-100 mt-3" name="submit" id="submit" value="I want more!">
+        </form>
+
+    </div>
+</div>
+
+
+
+
+
+</div>
+  <script type="application/javascript">
+
+      window.onscroll = function() {
+          var MIN_SCROLL = 300;
+          var shareElement = document.getElementById("floating-share");
+          if (document.body.scrollTop > MIN_SCROLL || document.documentElement.scrollTop > MIN_SCROLL) {
+              shareElement.className = "shariff visible";
+          } else {
+              shareElement.className = "shariff";
+          }
+      };
+
+      function callback() {
+          gtag('event', 'subscribe', {'event_category': 'newsletter'});
+          gtag('event', 'conversion', {'send_to': 'AW-828277359/PZDqCILJj6sBEO-E-ooD'});
+          fbq('track', 'Lead');
+          qp('track', 'GenerateLead');
+      }
+
+      var forms = document.querySelectorAll(".newsletterSignupForm");
+
+      for (i = 0; i < forms.length; ++i) {
+          var form = forms[i];
+
+          if (form.addEventListener) {
+              form.addEventListener("submit", callback, false);
+          } else if (form.attachEvent) {
+              form.attachEvent('onsubmit', callback);
+          }
+      }
+  </script>
+
+        </div>
+        </div>
+        </main>
+
+
+<!--
+        <div class="text-center fixed-bottom">
+          <div class="alert alert-primary col-10 col-xl-6 mx-auto mb-0 alert-dismissible" role="alert">
+            <small>The next batch of Well-Rounded Spring (Boot) training closes soon. <a href="https://www.well-rounded.io">See what we teach</a>.</small>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>-->
+
+<footer class="footer">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-12 small">
+        <a href="https://www.marcobehler.com/privacy">Privacy &amp; Terms</a>
+        |
+        <a href="https://www.marcobehler.com/imprint">Imprint</a>
+        |
+        <a href="https://www.marcobehler.com/contact">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="./A guide to logging in Java_files/jquery.min.js" type="text/javascript"></script>
+<script src="./A guide to logging in Java_files/popper.min.js"></script>
+<script src="./A guide to logging in Java_files/bootstrap.min.js"></script>
+<script src="./A guide to logging in Java_files/jquery.gifplayer.min.js" type="text/javascript"></script>
+<script src="./A guide to logging in Java_files/jquery.cookie.js"></script>
+<script src="./A guide to logging in Java_files/intersection-observer.js"></script>
+<script src="./A guide to logging in Java_files/lazyload.min.js"></script>
+<script src="./A guide to logging in Java_files/shariff.min-443b7f04.js"></script>
+<script src="./A guide to logging in Java_files/count.js"></script>
+
+
+<script type="text/javascript">
+
+    $(function () {
+
+        var lazyLoadInstance = new LazyLoad({
+            elements_selector: ".lazy"
+            // ... more custom settings?
+        });
+
+        if ($.cookie('well-rounded-teaser') != null) {
+            $(".alert-dismissible").alert('close');
+        }
+
+        $('.alert-dismissible').on('closed.bs.alert', function () {
+            $.cookie('well-rounded-teaser', "true", {expires: 14, path: '/'});
+        });
+
+
+        $( ".plus-guide .sect1 h2" ).each(function( index ) {
+
+            $(this).parent().find(".sect2 h3").each(function( h3Index ){
+                $(this).attr("data-number", (index + 1) + "." + (h3Index + 1));
+            });
+
+                $(this).attr("data-number", index + 1);
+//              $(this).html("<span class=\"numberCircle\">" + (index + 1) + ".</span> " +  $(this).text());
+
+          });
+    });
+
+</script>
+
+<script type="application/javascript">
+    $(function () {
+        $.getJSON("/loggedIn", function (data) {
+            var menu = $(".container").find(".col-6.d-flex");
+            if (data.loggedIn) {
+                $("<a>").text("Account").addClass("btn btn-outline-secondary nav-link text-dark mr-3").attr("href", "/account").appendTo(menu);
+                $("<a>").text("Logout").addClass("btn btn-outline-secondary nav-link text-dark font-weight-bold").attr("href", "/logout").appendTo(menu);
+            } else {
+                $("<a>").text("Login").addClass("btn btn-outline-secondary nav-link text-dark mr-3").attr("href", "/login").appendTo(menu);
+                $("<a>").text("Sign up free").addClass("btn btn-outline-secondary nav-link text-dark font-weight-bold").attr("href", "/signup-flow?planId=free").appendTo(menu);
+            }
+        });
+    });
+</script>
+
+  <script type="application/ld+json">
+          {
+            "@context": "http://schema.org",
+            "@type": "TechArticle",
+            "name": "A guide to logging in Java",
+            "headline": "A guide to logging in Java",
+            "description": "You can use this guide to discover, understand and use the right Java logging library for your applications, like Log4j2, Logback, or java.util.logging.",
+            "url": "https://www.marcobehler.com/guides/a-guide-to-logging-in-java",
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": "https://www.marcobehler.com/guides/a-guide-to-logging-in-java"
+            },
+            "dateModified": "2019-06-23",
+            "datePublished": "2019-06-23",
+            "inLanguage": "en",
+            "isAccessibleForFree": true,
+            "author": {
+              "@type": "Person",
+              "name": "Marco Behler"
+            },
+            "image": {
+              "@type": "ImageObject",
+              "url": "https://www.marcobehler.com/images/guides/undraw_detailed_analysis_xn7y-8358eae4.png"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "Marco Behler GmbH",
+              "url": "https://www.marcobehler.com",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.marcobehler.com/images/logo.png"
+              }
+            }
+          }
+
+  </script>
+
+  <script type="text/javascript">
+
+      $(function () {
+
+
+          $('*[id^="solution"]').hide();
+
+
+          $('.solution-link').click(function () {
+              $(this).parent().parent().next().toggle();
+              return false;
+          });
+
+
+          $('[data-toggle="popover"]').popover();
+
+          $('.gifplayer img').gifplayer({label: 'play'});
+
+
+          var myDiv = $("body");
+
+         var scrollto = myDiv.offset().top + ((myDiv.height() - $("#commento").height()) * 0.7);
+          var visits = jQuery.cookie('visits') || 0;
+
+          $('.close-popup').click(function (e) {
+              $('.popup-screen').css("transform", "translateX(15rem)");
+              visits++;
+              jQuery.cookie('visits', visits, {expires: 1, path: '/'});
+              return false;
+          });
+
+          if (jQuery.cookie('visits') >= 1) {
+              jQuery('.popup-screen').hide();
+          } else {
+              $(window).scroll(function () {
+                  if ($(window).scrollTop() >= scrollto) {
+                      $('div.popup-screen').addClass("visible");
+                  }
+              });
+          }
+
+          $(".newsletterSignupForm").submit(function () {
+              $('.popup-screen').css("transform", "translateX(15rem)");
+              visits++;
+              jQuery.cookie('visits', visits, {expires: 365, path: '/'});
+              return true;
+          });
+
+      });
+
+  </script>
+
+
+
+
+
+<iframe name="_hjRemoteVarsFrame" title="_hjRemoteVarsFrame" id="_hjRemoteVarsFrame" src="./A guide to logging in Java_files/box-469cf41adb11dc78be68c1ae7f9457a4.html" style="display: none !important; width: 1px !important; height: 1px !important; opacity: 0 !important; pointer-events: none !important;"></iframe></body></html>

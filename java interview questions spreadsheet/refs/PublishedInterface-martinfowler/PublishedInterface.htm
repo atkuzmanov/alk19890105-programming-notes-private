@@ -1,0 +1,313 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0054)https://martinfowler.com/bliki/PublishedInterface.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="uft-8" name="charset">
+
+<title>PublishedInterface</title>
+
+<meta content="summary" name="twitter:card">
+
+<meta content="16665197" name="twitter:site:id">
+
+<meta content="bliki: PublishedInterface" property="og:title">
+
+<meta content="https://martinfowler.com/bliki/PublishedInterface.html" property="og:url">
+
+<meta content="a bliki entry for PublishedInterface" property="og:description">
+
+<meta content="https://martinfowler.com/logo-sq.png" property="og:image">
+
+<meta content="martinfowler.com" property="og:site_name">
+
+<meta content="article" property="og:type">
+
+<meta content="2003-12-26 00:00:00 -0500" property="og:article:modified_time">
+
+<meta content="width=device-width, initial-scale=1" name="viewport">
+
+<link href="./PublishedInterface_files/entry.css" rel="stylesheet" type="text/css">
+</head>
+
+<body><header id="banner" style="background-image: url(&quot;/img/zakim.png&quot;); background-repeat: no-repeat">
+
+<div class="name-logo"><a href="https://martinfowler.com/"><img src="./PublishedInterface_files/mf-name-white.png"></a></div>
+  <div class="search">
+    <!-- SiteSearch Google -->
+    <form method="GET" action="https://www.google.com/search">
+      <input type="hidden" name="ie" value="UTF-8">
+      <input type="hidden" name="oe" value="UTF-8">
+      <input class="field" type="text" name="q" size="15" maxlength="255" value="">
+      <button class="button" type="submit" name="btnG" value=" " title="Search">
+      <input type="hidden" name="domains" value="martinfowler.com">
+      <input type="hidden" name="sitesearch" value=""> 
+      <input type="hidden" name="sitesearch" value="martinfowler.com">
+    
+  </button></form></div>
+
+<div class="menu-button navmenu-button"><a class="icon icon-bars" href="https://martinfowler.com/bliki/PublishedInterface.html#navmenu-bottom"></a></div>
+
+<nav class="top-menu">
+<ul>
+<li><a class="" href="https://refactoring.com/">Refactoring</a></li>
+
+<li><a class="" href="https://martinfowler.com/agile.html">Agile</a></li>
+
+<li><a class="" href="https://martinfowler.com/architecture">Architecture</a></li>
+
+<li><a class="" href="https://martinfowler.com/aboutMe.html">About</a></li>
+
+<li><a class="tw" href="https://www.thoughtworks.com/">ThoughtWorks</a></li>
+
+<li><a class="icon icon-rss" href="https://martinfowler.com/feed.atom" title="feed"></a></li>
+
+<li><a class="icon icon-twitter" href="https://www.twitter.com/martinfowler" title="twitter stream"></a></li>
+</ul>
+</nav>
+</header>
+<nav id="top-navmenu">
+<nav class="navmenu">
+<div class="nav-head">  <div class="search">
+    <!-- SiteSearch Google -->
+    <form method="GET" action="https://www.google.com/search">
+      <input type="hidden" name="ie" value="UTF-8">
+      <input type="hidden" name="oe" value="UTF-8">
+      <input class="field" type="text" name="q" size="15" maxlength="255" value="">
+      <button class="button" type="submit" name="btnG" value=" " title="Search">
+      <input type="hidden" name="domains" value="martinfowler.com">
+      <input type="hidden" name="sitesearch" value=""> 
+      <input type="hidden" name="sitesearch" value="martinfowler.com">
+    
+  </button></form></div>
+
+<div class="closediv">
+<span class="close" title="close"></span>
+</div>
+</div>
+
+<div class="nav-body">
+<div class="topics">
+<h2>Topics</h2>
+
+<p><a href="https://martinfowler.com/architecture">Architecture</a></p>
+
+<p><a href="https://refactoring.com/">Refactoring</a></p>
+
+<p><a href="https://martinfowler.com/agile.html">Agile</a></p>
+
+<p><a href="https://martinfowler.com/delivery.html">Delivery</a></p>
+
+<p><a href="https://martinfowler.com/microservices">Microservices</a></p>
+
+<p><a href="https://martinfowler.com/data">Data</a></p>
+
+<p><a href="https://martinfowler.com/testing">Testing</a></p>
+
+<p><a href="https://martinfowler.com/dsl.html">DSL</a></p>
+</div>
+
+<div class="about">
+<h2>about me</h2>
+
+<p><a href="https://martinfowler.com/aboutMe.html">About</a></p>
+
+<p><a href="https://martinfowler.com/books">Books</a></p>
+
+<p><a href="https://martinfowler.com/faq.html">FAQ</a></p>
+</div>
+
+<div class="content">
+<h2>content</h2>
+
+<p><a href="https://martinfowler.com/videos.html">Videos</a></p>
+
+<p><a href="https://martinfowler.com/tags">Content Index</a></p>
+
+<p><a href="https://martinfowler.com/articles/eurogames">Board Games</a></p>
+
+<p><a href="https://martinfowler.com/photos">Photography</a></p>
+</div>
+
+<div class="tw">
+<h2>ThoughtWorks</h2>
+
+<p><a href="https://thoughtworks.com/insights">Insights</a></p>
+
+<p><a href="https://thoughtworks.com/careers">Careers</a></p>
+
+<p><a href="https://thoughtworks.com/products">Products</a></p>
+</div>
+
+<div class="feeds">
+<h2>follow</h2>
+
+<p><a href="https://www.twitter.com/martinfowler">Twitter</a></p>
+
+<p><a href="https://martinfowler.com/feed.atom">RSS</a></p>
+</div>
+</div>
+</nav>
+</nav>
+
+<main>
+<article>
+<h1><a href="https://martinfowler.com/bliki/PublishedInterface.html">PublishedInterface</a></h1>
+
+<p class="date">26 December 2003</p>
+
+<div class="frontMatter">
+<div class="author">
+<p class="author-photo"><a href="https://martinfowler.com/"><img src="./PublishedInterface_files/mf.jpg" title="Photo of Martin Fowler"></a></p>
+
+<p class="name"><a href="https://martinfowler.com/" rel="author">Martin Fowler</a></p>
+</div>
+
+<div class="spacer"></div>
+
+<div class="tags">
+<p class="tag-link"><a href="https://martinfowler.com/tags/encapsulation.html">encapsulation</a></p>
+
+<p class="tag-link"><a href="https://martinfowler.com/tags/language%20feature.html">language feature</a></p>
+
+<p class="tag-link"><a href="https://martinfowler.com/tags/application%20architecture.html">application architecture</a></p>
+
+<p class="tag-link"><a href="https://martinfowler.com/tags/API%20design.html">API design</a></p>
+</div>
+</div>
+
+<div class="clear"></div>
+
+<div class="paperBody">
+<p><i>Published Interface</i> is a term I used (first in <a href="https://martinfowler.com/books/refactoring.html">Refactoring</a>)
+to refer to a class interface that's used outside the code base that
+it's defined in. As such it means more than public in Java and indeed
+even more than a non-internal public in C#. In my column for IEEE
+Software I argued
+that <a href="https://martinfowler.com/ieeeSoftware/published.pdf">the distinction between published and public is actually more
+important than that between public and private.</a></p>
+
+<p>The reason is that with a non-published interface you can change
+it and update the calling code since it is all within a single code
+base. Such things as renames can be done, and done easily with modern
+refactoring tools. But anything published so you can't reach the
+calling code needs more complicated treatment.</p>
+
+<p class="repost">reposted on 03 May 2012</p>
+</div>
+</article>
+
+<div class="clear"></div>
+</main>
+
+<nav id="bottom-navmenu" style="display: none;">
+<nav class="navmenu">
+<div class="nav-head">  <div class="search">
+    <!-- SiteSearch Google -->
+    <form method="GET" action="https://www.google.com/search">
+      <input type="hidden" name="ie" value="UTF-8">
+      <input type="hidden" name="oe" value="UTF-8">
+      <input class="field" type="text" name="q" size="15" maxlength="255" value="">
+      <button class="button" type="submit" name="btnG" value=" " title="Search">
+      <input type="hidden" name="domains" value="martinfowler.com">
+      <input type="hidden" name="sitesearch" value=""> 
+      <input type="hidden" name="sitesearch" value="martinfowler.com">
+    
+  </button></form></div>
+
+<div class="closediv">
+<span class="close" title="close"></span>
+</div>
+</div>
+
+<div class="nav-body">
+<div class="topics">
+<h2>Topics</h2>
+
+<p><a href="https://martinfowler.com/architecture">Architecture</a></p>
+
+<p><a href="https://refactoring.com/">Refactoring</a></p>
+
+<p><a href="https://martinfowler.com/agile.html">Agile</a></p>
+
+<p><a href="https://martinfowler.com/delivery.html">Delivery</a></p>
+
+<p><a href="https://martinfowler.com/microservices">Microservices</a></p>
+
+<p><a href="https://martinfowler.com/data">Data</a></p>
+
+<p><a href="https://martinfowler.com/testing">Testing</a></p>
+
+<p><a href="https://martinfowler.com/dsl.html">DSL</a></p>
+</div>
+
+<div class="about">
+<h2>about me</h2>
+
+<p><a href="https://martinfowler.com/aboutMe.html">About</a></p>
+
+<p><a href="https://martinfowler.com/books">Books</a></p>
+
+<p><a href="https://martinfowler.com/faq.html">FAQ</a></p>
+</div>
+
+<div class="content">
+<h2>content</h2>
+
+<p><a href="https://martinfowler.com/videos.html">Videos</a></p>
+
+<p><a href="https://martinfowler.com/tags">Content Index</a></p>
+
+<p><a href="https://martinfowler.com/articles/eurogames">Board Games</a></p>
+
+<p><a href="https://martinfowler.com/photos">Photography</a></p>
+</div>
+
+<div class="tw">
+<h2>ThoughtWorks</h2>
+
+<p><a href="https://thoughtworks.com/insights">Insights</a></p>
+
+<p><a href="https://thoughtworks.com/careers">Careers</a></p>
+
+<p><a href="https://thoughtworks.com/products">Products</a></p>
+</div>
+
+<div class="feeds">
+<h2>follow</h2>
+
+<p><a href="https://www.twitter.com/martinfowler">Twitter</a></p>
+
+<p><a href="https://martinfowler.com/feed.atom">RSS</a></p>
+</div>
+</div>
+</nav>
+</nav>
+<footer id="page-footer">
+<div class="tw-logo">
+<a href="http://www.thoughtworks.com/">
+<img src="./PublishedInterface_files/tw-white-300.png">
+</a>
+</div>
+<div class="menu-button">
+<div class="icon-bars navmenu-button"></div>
+</div>
+<div class="copyright">
+<p>© Martin Fowler | <a href="http://www.thoughtworks.com/privacy-policy">Privacy Policy</a> | <a href="https://martinfowler.com/aboutMe.html#disclosures">Disclosures</a></p>
+</div>
+</footer>
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-17005812-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async="" src="./PublishedInterface_files/analytics.js"></script>
+<!-- End Google Analytics -->
+
+
+
+<script src="./PublishedInterface_files/jquery-1.11.3.min.js" type="text/javascript"></script>
+
+<script src="./PublishedInterface_files/mfcom.js" type="text/javascript"></script>
+
+
+</body></html>
