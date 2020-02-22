@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)https://martinfowler.com/articles/microservice-testing/ -->
+<html class=" js svg"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Testing Strategies in a Microservice Architecture</title>
+
+
+
+<meta content="summary_large_image" name="twitter:card">
+
+<meta content="16665197" name="twitter:site:id">
+
+<meta content="Testing Strategies in a Microservice Architecture" property="og:title">
+
+<meta content="https://martinfowler.com/articles/microservice-testing/" property="og:url">
+
+<meta content="
+    The microservice architectural style presents challenges for
+    organizing effective testing, this deck outlines the kinds of
+    tests you need and how to mix them.
+  " property="og:description">
+
+<meta content="https://martinfowler.com/articles/microservice-testing/meta-image.png" property="og:image">
+
+<meta content="martinfowler.com" property="og:site_name">
+
+<meta content="article" property="og:type">
+
+<meta content="2014-11-18" property="og:article:modified_time">
+
+<meta content="@tobyclemson" name="twitter:creator">
+
+<meta content="minimum-scale = 1.62, initial-scale = 1.62" name="viewport">
+
+<link href="./Testing Strategies in a Microservice Architecture_files/infodeck.css" rel="stylesheet" type="text/css">
+
+<link href="./Testing Strategies in a Microservice Architecture_files/jquery.svg.css" rel="stylesheet" type="text/css">
+
+<script src="./Testing Strategies in a Microservice Architecture_files/modernizr.custom.js" type="text/javascript"></script>
+
+<script src="./Testing Strategies in a Microservice Architecture_files/svg_redirect.js" type="text/javascript"></script>
+<style type="text/css"></style></head>
+
+<body>
+<div class="banner"><a href="https://martinfowler.com/"><img class="logo" src="./Testing Strategies in a Microservice Architecture_files/mf-name-white.png"></a>
+<span class="deck-first-link" title="start of deck"></span>
+
+<span class="deck-prev-link deck-nav-disabled" title="previous slide"></span>
+
+<span class="deck-next-link" title="next slide"></span>
+<span class="deck-help" title="show help"></span><span class="deck-toc-button" title="show Table of Contents"></span>
+<span class="deck-status" title="go to slide"><span class="deck-status-current">1</span>/<span class="deck-status-total">25</span></span>
+</div>
+
+<div class="init" style="display: none;">
+<h1>Testing Strategies in a Microservice Architecture</h1>
+
+<p class="abstract">
+        There has been a shift in service based architectures over the last few
+        years towards smaller, more focussed "micro" services. There are many
+        benefits with this approach such as the ability to independently
+        deploy, scale and maintain each component and
+        parallelize development across multiple teams. However,
+        once these additional network partitions have been introduced, the
+        testing strategies that applied for monolithic in process applications
+        need to be reconsidered.
+      </p>
+
+<p class="author"><a href="http://github.com/tobyclemson" rel="author">Toby Clemson</a></p>
+
+<p class="pubDate">18 November 2014</p>
+</div>
+
+<div class="deck-toc-panel"><p><a href="https://martinfowler.com/articles/microservice-testing/#agenda">Agenda</a></p>
+<p><a href="https://martinfowler.com/articles/microservice-testing/#definition">What is a microservice?</a></p>
+<p><a href="https://martinfowler.com/articles/microservice-testing/#anatomy-modules">Microservice Anatomy</a></p>
+<p><a href="https://martinfowler.com/articles/microservice-testing/#architecture">Microservice Architecture</a></p>
+<p><a href="https://martinfowler.com/articles/microservice-testing/#testing-unit-introduction">Unit Testing</a></p>
+<p><a href="https://martinfowler.com/articles/microservice-testing/#testing-integration-introduction">Integration Testing</a></p>
+<p><a href="https://martinfowler.com/articles/microservice-testing/#testing-component-introduction">Component Testing</a></p>
+<p><a href="https://martinfowler.com/articles/microservice-testing/#testing-contract-introduction">Contract Testing</a></p>
+<p><a href="https://martinfowler.com/articles/microservice-testing/#testing-end-to-end-introduction">End to End Testing</a></p>
+<p><a href="https://martinfowler.com/articles/microservice-testing/#conclusion-options">Conclusion - Options</a></p>
+<p><a href="https://martinfowler.com/articles/microservice-testing/#conclusion-test-pyramid">Conclusion - Test Pyramid</a></p>
+<p><a href="https://martinfowler.com/articles/microservice-testing/#conclusion-summary">Conclusion - Summary</a></p></div>
+
+<div class="deck-help-panel"><h1 id="how-to-use-this-infodeck">How to use this <a href="https://martinfowler.com/bliki/Infodeck.html">Infodeck</a></h1>
+
+<ul>
+  <li>Tap the info icon <span class="icon-help"></span> in the top banner to show this panel, tap it
+again to hide it.</li>
+  <li>Move forward and backward using the arrow buttons at the top banner.</li>
+  <li>If you’re on a touch device then a tap on the left or right will
+move backwards or forwards. Tapping elsewhere will bring up a simple
+control panel.</li>
+  <li>If this deck has a table of contents, there will be a button on
+the top banner. Tap it to bring up a list of links to some of the
+slides in the deck. Tap it again to hide it.</li>
+  <li>You can also use a keyboard:
+    <ul>
+      <li>right-arrow, down-arrow, page-down, and space move forwards.</li>
+      <li>left-arrow, up-arrow, page-up, and backspace move backwards</li>
+      <li>If you’re on a slide with many builds, then the up and down arrow
+keys will skip over the builds</li>
+      <li>press “g” to bring up a dialog which allows you to jump to any
+slide number. You can also do this by clicking on the page number
+on the banner.</li>
+      <li>press “home” to go to the first slide, “end” to the last</li>
+      <li>press “c” to bring up the table of contents (if there is one). Tap
+ c to hide it again.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>The deck should work well in the latest versions of most browsers. If
+you are using Internet Explorer you will need at least version 10 to get a
+proper experience.</p>
+
+<p class="deck-help">close</p>
+</div>
+
+<div id="deck-container">
+
+
+<form action="https://martinfowler.com/articles/microservice-testing/" class="deck-goto-panel" method="get">
+<label for="deck-goto-input">Go to slide:</label>
+
+<input class="deck-goto-input" type="text">
+
+<input type="submit" value="Go">
+</form>
+<div class="slide current" id="cover">
+<div class="lede" style="left: 50px;top: 30px;">
+<p>Testing Strategies in a</p>
+</div>
+
+<div class="lede" style="left: 110px;top: 80px;">
+<p>Microservice Architecture</p>
+</div>
+
+<div class="tile" style="left: 220px;top: 140px;width: 500px;">
+<p class="abstract">
+        There has been a shift in service based architectures over the last few
+        years towards smaller, more focussed "micro" services. There are many
+        benefits with this approach such as the ability to independently
+        deploy, scale and maintain each component and
+        parallelize development across multiple teams. However,
+        once these additional network partitions have been introduced, the
+        testing strategies that applied for monolithic in process applications
+        need to be reconsidered.
+      </p>
+
+<p class="abstract">
+        Here, we plan to discuss a number of approaches for managing
+        the additional testing complexity of multiple independently
+        deployable components as well as how to have tests and the application
+        remain correct despite having multiple teams each acting as guardians for
+        different services.
+      </p>
+</div>
+
+<div class="tile" style="left: 220px;top: 390px;">
+<p><b><span class="pubDate">18 November 2014</span></b></p>
+</div>
+
+<div class="tile bio" style="left: 50px;top: 440px;width: 380px;"><img src="./Testing Strategies in a Microservice Architecture_files/tdc.jpg" style="width: 100px;">
+<p><b><a href="http://github.com/tobyclemson" rel="author">Toby Clemson</a></b> is a developer at ThoughtWorks
+        with a passion for building large scale distributed business systems. He has worked on projects in four
+        continents and is currently based in New York.
+      </p>
+</div>
+
+<div class="tile ack" style="left: 580px;top: 440px;width: 320px;">
+<p>
+        My thanks to <b><a href="https://martinfowler.com/">Martin Fowler</a></b> for his continued support in
+        compiling this infodeck. Thanks also to <b><a href="http://www.dtsato.com/blog/">Danilo Sato</a></b>,
+        <b><a href="https://twitter.com/dc_minutiae">Dan Coffman</a></b>,
+        <b><a href="https://twitter.com/StevenALowe">Steven Lowe</a></b>,
+        <b><a href="https://twitter.com/ctford">Chris Ford</a></b>,
+        <b><a href="https://twitter.com/zoodor">Mark Taylor</a></b>,
+        <b><a href="https://twitter.com/todkar">Praful Todkar</a></b>,
+        <b><a href="https://twitter.com/samnewman">Sam Newman</a></b> and
+        <b><a href="https://twitter.com/marcosccm">Marcos Matos</a></b> for their feedback and contributions.
+      </p>
+</div>
+
+<div class="tile hints" style="bottom: 25px;left: 720px;">
+<p>
+<span class="deck-help"><b>Hints</b> for using this deck</span>
+</p>
+</div>
+<a href="http://www.thoughtworks.com/"><img height="30.95px" src="./Testing Strategies in a Microservice Architecture_files/tw.svg" style="width: 200px;left: auto;right: 20px;top: 30px;" width="200px"></a></div><div class="slide next" id="agenda">
+<div class="lede" style="top: 20px;">
+<p>Our agenda</p>
+</div>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" version="1.1" viewBox="304 173 306 309" class="diagram" style="left: 150px;top: 70px;" height="180px" width="220px">
+  <style type="text/css">
+  /*  */
+  .label-large, .label-medium, .label-small {
+    font-family: Open Sans;
+    font-weight: 600;
+  }
+  .label-large { font-size: 24px; }
+  .label-medium { font-size: 20px; }
+  .label-small { font-size: 16px; }
+  /*  */
+</style>
+  <defs>
+    <filter id="introduction-services-dropshadow" filterUnits="userSpaceOnUse">
+      <fegaussianblur in="SourceAlpha" result="blur" stdDeviation="1.308"></fegaussianblur>
+      <feoffset in="blur" result="offset" dx="0" dy="2"></feoffset>
+      <feflood flood-color="black" flood-opacity=".5" result="flood"></feflood>
+      <fecomposite in="flood" in2="offset" operator="in"></fecomposite>
+    </filter>
+    <lineargradient x1="0" x2="1" id="introduction-services-base-gradient" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="white"></stop>
+      <stop offset="1" stop-color="#e5e5e5"></stop>
+    </lineargradient>
+    <lineargradient id="introduction-services-microservice-1-gradient" xlink:href="#introduction-services-base-gradient" gradientTransform="translate(362.33902 328.64008) rotate(90) scale(102.46017)"></lineargradient>
+    <lineargradient id="introduction-services-microservice-2-gradient" xlink:href="#introduction-services-base-gradient" gradientTransform="translate(552.09446 328.64008) rotate(90) scale(102.46017)"></lineargradient>
+    <lineargradient id="introduction-services-microservice-3-gradient" xlink:href="#introduction-services-base-gradient" gradientTransform="translate(458.53308 184.50835) rotate(90) scale(102.46017)"></lineargradient>
+    <font-face font-family="Helvetica" font-size="14" units-per-em="1000" underline-position="-75.683594" underline-thickness="49.316406" slope="0" x-height="532.22656" cap-height="719.72656" ascent="770.01953" descent="-229.98047" font-weight="bold">
+      <font-face-src>
+        <font-face-name name="Helvetica-Bold">
+      </font-face-name></font-face-src>
+    </font-face>
+    <pattern id="introduction-services-black-diagonal-stripes" xlink:href="#base-pattern">
+      <rect width="4" height="4" fill="#ffffff"></rect>
+      <path d="M -1, 2 l 6, 0" stroke="#000000" stroke-width="2"></path>
+    </pattern>
+    <pattern id="introduction-services-purple-diagonal-stripes" xlink:href="#base-pattern">
+      <rect width="4" height="4" fill="#ffffff"></rect>
+      <path d="M -1, 2 l 6, 0" stroke="#c72d69" stroke-width="2"></path>
+    </pattern>
+    <pattern id="base-pattern" patternUnits="userSpaceOnUse" width="4" height="4" patternTransform="rotate(135 5 5)">
+</pattern>
+  </defs>
+  <g stroke="none" stroke-opacity="1" stroke-dasharray="none" fill="none" fill-opacity="1">
+    <title>Microservice Testing</title>
+    <rect fill="white" width="900" height="700"></rect>
+    <g>
+      <title>Introduction :: Services</title>
+      <g>
+        <use xlink:href="#introduction-services-microservice-1" filter="url(#introduction-services-dropshadow)"></use>
+        <use xlink:href="#introduction-services-microservice-1-datastore" filter="url(#introduction-services-dropshadow)"></use>
+        <use xlink:href="#introduction-services-microservice-2" filter="url(#introduction-services-dropshadow)"></use>
+        <use xlink:href="#introduction-services-microservice-2-datastore" filter="url(#introduction-services-dropshadow)"></use>
+        <use xlink:href="#introduction-services-microservice-3" filter="url(#introduction-services-dropshadow)"></use>
+        <use xlink:href="#introduction-services-microservice-3-layer-1" filter="url(#introduction-services-dropshadow)"></use>
+        <use xlink:href="#introduction-services-microservice-3-layer-3" filter="url(#introduction-services-dropshadow)"></use>
+        <use xlink:href="#introduction-services-microservice-3-layer-2" filter="url(#introduction-services-dropshadow)"></use>
+        <use xlink:href="#introduction-services-microservice-3-layer-4" filter="url(#introduction-services-dropshadow)"></use>
+        <use xlink:href="#introduction-services-microservice-1-layer-1" filter="url(#introduction-services-dropshadow)"></use>
+        <use xlink:href="#introduction-services-microservice-1-layer-3" filter="url(#introduction-services-dropshadow)"></use>
+        <use xlink:href="#introduction-services-microservice-1-layer-2" filter="url(#introduction-services-dropshadow)"></use>
+        <use xlink:href="#introduction-services-microservice-1-layer-4" filter="url(#introduction-services-dropshadow)"></use>
+        <use xlink:href="#introduction-services-microservice-2-layer-1" filter="url(#introduction-services-dropshadow)"></use>
+        <use xlink:href="#introduction-services-microservice-2-layer-3" filter="url(#introduction-services-dropshadow)"></use>
+        <use xlink:href="#introduction-services-microservice-2-layer-2" filter="url(#introduction-services-dropshadow)"></use>
+        <use xlink:href="#introduction-services-microservice-2-layer-4" filter="url(#introduction-services-dropshadow)"></use>
+      </g>
+      <path d="M 314 325.4627 L 410.67804 325.4627 C 411.7826 325.4627 412.67804 326.35813 412.67804 327.4627 L 412.67804 472 C 412.67804 473.10457 411.7826 474 410.67804 474 L 314 474 C 312.89543 474 312 473.10457 312 472 L 312 327.4627 C 312 326.35813 312.89543 325.4627 314 325.4627 Z" stroke="#7b7b7b" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke-dasharray="16,8,2,8"></path>
+      <g id="introduction-services-microservice-1">
+        <path d="M 318.70489 328.64008 L 405.97315 328.64008 C 407.07772 328.64008 407.97315 329.53551 407.97315 330.64008 L 407.97315 429.10025 C 407.97315 430.20482 407.07772 431.10025 405.97315 431.10025 L 318.70489 431.10025 C 317.60032 431.10025 316.70489 430.20482 316.70489 429.10025 L 316.70489 330.64008 C 316.70489 329.53551 317.60032 328.64008 318.70489 328.64008 Z" fill="url(#introduction-services-microservice-1-gradient)" stroke="url(#introduction-services-black-diagonal-stripes)" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path>
+      </g>
+      <g id="introduction-services-microservice-1-datastore">
+        <path d="M 348.90172 462.8345 L 348.90172 442.7007 C 348.90172 441.31146 354.92163 440.18397 362.33902 440.18397 C 369.7564 440.18397 375.77631 441.31146 375.77631 442.7007 L 375.77631 462.8345 C 375.77631 464.22372 369.7564 465.3512 362.33902 465.3512 C 354.92163 465.3512 348.90172 464.22372 348.90172 462.8345" fill="#f2a8cd"></path>
+        <path d="M 348.90172 462.8345 L 348.90172 442.7007 C 348.90172 441.31146 354.92163 440.18397 362.33902 440.18397 C 369.7564 440.18397 375.77631 441.31146 375.77631 442.7007 L 375.77631 462.8345 C 375.77631 464.22372 369.7564 465.3512 362.33902 465.3512 C 354.92163 465.3512 348.90172 464.22372 348.90172 462.8345 M 348.90172 442.7007 C 348.90172 444.08992 354.92163 445.21742 362.33902 445.21742 C 369.7564 445.21742 375.77631 444.08992 375.77631 442.7007" stroke="url(#introduction-services-purple-diagonal-stripes)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+      </g>
+      <path d="M 503.75545 325.4627 L 600.43348 325.4627 C 601.53805 325.4627 602.43348 326.35813 602.43348 327.4627 L 602.43348 472 C 602.43348 473.10457 601.53805 474 600.43348 474 L 503.75545 474 C 502.65088 474 501.75545 473.10457 501.75545 472 L 501.75545 327.4627 C 501.75545 326.35813 502.65088 325.4627 503.75545 325.4627 Z" stroke="#7b7b7b" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke-dasharray="16,8,2,8"></path>
+      <g id="introduction-services-microservice-2">
+        <path d="M 508.46033 328.64008 L 595.7286 328.64008 C 596.83316 328.64008 597.7286 329.53551 597.7286 330.64008 L 597.7286 429.10025 C 597.7286 430.20482 596.83316 431.10025 595.7286 431.10025 L 508.46033 431.10025 C 507.35576 431.10025 506.46033 430.20482 506.46033 429.10025 L 506.46033 330.64008 C 506.46033 329.53551 507.35576 328.64008 508.46033 328.64008 Z" fill="url(#introduction-services-microservice-2-gradient)" stroke="url(#introduction-services-black-diagonal-stripes)" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path>
+      </g>
+      <g id="introduction-services-microservice-2-datastore">
+        <path d="M 538.65717 462.8345 L 538.65717 442.7007 C 538.65717 441.31146 544.67708 440.18397 552.09446 440.18397 C 559.51185 440.18397 565.53176 441.31146 565.53176 442.7007 L 565.53176 462.8345 C 565.53176 464.22372 559.51185 465.3512 552.09446 465.3512 C 544.67708 465.3512 538.65717 464.22372 538.65717 462.8345" fill="#f2a8cd"></path>
+        <path d="M 538.65717 462.8345 L 538.65717 442.7007 C 538.65717 441.31146 544.67708 440.18397 552.09446 440.18397 C 559.51185 440.18397 565.53176 441.31146 565.53176 442.7007 L 565.53176 462.8345 C 565.53176 464.22372 559.51185 465.3512 552.09446 465.3512 C 544.67708 465.3512 538.65717 464.22372 538.65717 462.8345 M 538.65717 442.7007 C 538.65717 444.08992 544.67708 445.21742 552.09446 445.21742 C 559.51185 445.21742 565.53176 444.08992 565.53176 442.7007" stroke="url(#introduction-services-purple-diagonal-stripes)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+      </g>
+      <path d="M 410.19406 180 L 506.8721 180 C 507.97667 180 508.8721 180.89543 508.8721 182 L 508.8721 289.26987 C 508.8721 290.37444 507.97667 291.26987 506.8721 291.26987 L 410.19406 291.26987 C 409.0895 291.26987 408.19406 290.37444 408.19406 289.26987 L 408.19406 182 C 408.19406 180.89543 409.0895 180 410.19406 180 Z" stroke="#7b7b7b" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke-dasharray="16,8,2,8"></path>
+      <g id="introduction-services-microservice-3">
+        <path d="M 414.89895 184.50835 L 502.1672 184.50835 C 503.27178 184.50835 504.1672 185.40378 504.1672 186.50835 L 504.1672 284.96852 C 504.1672 286.0731 503.27178 286.96852 502.1672 286.96852 L 414.89895 286.96852 C 413.79438 286.96852 412.89895 286.0731 412.89895 284.96852 L 412.89895 186.50835 C 412.89895 185.40378 413.79438 184.50835 414.89895 184.50835 Z" fill="url(#introduction-services-microservice-3-gradient)" stroke="url(#introduction-services-black-diagonal-stripes)" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path>
+      </g>
+      <text transform="translate(440.06918 409.10025)" fill="#722166" style="font-family:Open Sans;" class="label-small">
+        <tspan fill="#722166" x=".4140625" y="14" textLength="38.171875">{"…"}</tspan>
+      </text>
+      <text transform="translate(342.83902 232)" fill="#722166" style="font-family:Open Sans;" class="label-small">
+        <tspan fill="#722166" x=".4140625" y="14" textLength="38.171875">{"…"}</tspan>
+      </text>
+      <text transform="translate(532.59446 232)" fill="#722166" style="font-family:Open Sans;" class="label-small">
+        <tspan fill="#722166" x=".4140625" y="14" textLength="38.171875">{"…"}</tspan>
+      </text>
+      <path d="M 408.19406 263.4524 L 400.19406 263.4524 L 362.33902 263.4524 L 362.33902 317.4627 L 362.33902 324.4627" stroke="#722166" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+      <path d="M 508.8721 263.4524 L 516.8721 263.4524 L 552.09446 263.4524 L 552.09446 317.4627 L 552.09446 325.4627" stroke="#722166" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+      <line x1="412.67804" y1="399.73135" x2="501.75545" y2="399.73135" stroke="#722166" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></line>
+      <g id="introduction-services-microservice-3-layer-1">
+        <path d="M 420.1627 190.77205 L 496.90346 190.77205 C 498.00803 190.77205 498.90346 191.66748 498.90346 192.77205 L 498.90346 208.6467 C 498.90346 209.75127 498.00803 210.6467 496.90346 210.6467 L 420.1627 210.6467 C 419.05813 210.6467 418.1627 209.75127 418.1627 208.6467 L 418.1627 192.77205 C 418.1627 191.66748 419.05813 190.77205 420.1627 190.77205 Z" fill="#16ab62" fill-opacity=".5" stroke="#11864e" stroke-opacity=".6" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+      </g>
+      <g id="introduction-services-microservice-3-layer-3">
+        <path d="M 496.90346 257.35212 L 420.1627 257.35212 C 419.05813 257.35212 418.1627 256.45669 418.1627 255.35212 L 418.1627 239.47747 C 418.1627 238.3729 419.05813 237.47747 420.1627 237.47747 L 496.90346 237.47747 C 498.00803 237.47747 498.90346 238.3729 498.90346 239.47747 L 498.90346 255.35212 C 498.90346 256.45669 498.00803 257.35212 496.90346 257.35212 Z" fill="#722166" fill-opacity=".5" stroke="#6d2061" stroke-opacity=".6" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+      </g>
+      <g id="introduction-services-microservice-3-layer-2">
+        <path d="M 420.1627 233.9994 L 496.90346 233.9994 C 498.00803 233.9994 498.90346 233.10398 498.90346 231.9994 L 498.90346 216.12476 C 498.90346 215.02019 498.00803 214.12476 496.90346 214.12476 L 420.1627 214.12476 C 419.05813 214.12476 418.1627 215.02019 418.1627 216.12476 L 418.1627 231.9994 C 418.1627 233.10398 419.05813 233.9994 420.1627 233.9994 Z" fill="#18becb" fill-opacity=".5" stroke="#108b96" stroke-opacity=".6" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+      </g>
+      <g id="introduction-services-microservice-3-layer-4">
+        <path d="M 420.1627 280.70483 L 496.90346 280.70483 C 498.00803 280.70483 498.90346 279.8094 498.90346 278.70483 L 498.90346 262.83018 C 498.90346 261.72561 498.00803 260.83018 496.90346 260.83018 L 420.1627 260.83018 C 419.05813 260.83018 418.1627 261.72561 418.1627 262.83018 L 418.1627 278.70483 C 418.1627 279.8094 419.05813 280.70483 420.1627 280.70483 Z" fill="#f3589d" fill-opacity=".5" stroke="#c0467d" stroke-opacity=".6" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+      </g>
+      <g id="introduction-services-microservice-1-layer-1">
+        <path d="M 323.96864 334.90378 L 400.7094 334.90378 C 401.81396 334.90378 402.7094 335.7992 402.7094 336.90378 L 402.7094 352.77842 C 402.7094 353.883 401.81396 354.77842 400.7094 354.77842 L 323.96864 354.77842 C 322.86407 354.77842 321.96864 353.883 321.96864 352.77842 L 321.96864 336.90378 C 321.96864 335.7992 322.86407 334.90378 323.96864 334.90378 Z" fill="#16ab62" fill-opacity=".5" stroke="#11864e" stroke-opacity=".6" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+      </g>
+      <g id="introduction-services-microservice-1-layer-3">
+        <path d="M 400.7094 401.48384 L 323.96864 401.48384 C 322.86407 401.48384 321.96864 400.5884 321.96864 399.48384 L 321.96864 383.6092 C 321.96864 382.50463 322.86407 381.6092 323.96864 381.6092 L 400.7094 381.6092 C 401.81396 381.6092 402.7094 382.50463 402.7094 383.6092 L 402.7094 399.48384 C 402.7094 400.5884 401.81396 401.48384 400.7094 401.48384 Z" fill="#722166" fill-opacity=".5" stroke="#6d2061" stroke-opacity=".6" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+      </g>
+      <g id="introduction-services-microservice-1-layer-2">
+        <path d="M 323.96864 378.13113 L 400.7094 378.13113 C 401.81396 378.13113 402.7094 377.2357 402.7094 376.13113 L 402.7094 360.25649 C 402.7094 359.15192 401.81396 358.25649 400.7094 358.25649 L 323.96864 358.25649 C 322.86407 358.25649 321.96864 359.15192 321.96864 360.25649 L 321.96864 376.13113 C 321.96864 377.2357 322.86407 378.13113 323.96864 378.13113 Z" fill="#18becb" fill-opacity=".5" stroke="#108b96" stroke-opacity=".6" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+      </g>
+      <g id="introduction-services-microservice-1-layer-4">
+        <path d="M 323.96864 424.83655 L 400.7094 424.83655 C 401.81396 424.83655 402.7094 423.94112 402.7094 422.83655 L 402.7094 406.9619 C 402.7094 405.85733 401.81396 404.9619 400.7094 404.9619 L 323.96864 404.9619 C 322.86407 404.9619 321.96864 405.85733 321.96864 406.9619 L 321.96864 422.83655 C 321.96864 423.94112 322.86407 424.83655 323.96864 424.83655 Z" fill="#f3589d" fill-opacity=".5" stroke="#c0467d" stroke-opacity=".6" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+      </g>
+      <g id="introduction-services-microservice-2-layer-1">
+        <path d="M 513.7241 334.90378 L 590.46484 334.90378 C 591.5694 334.90378 592.46484 335.7992 592.46484 336.90378 L 592.46484 352.77842 C 592.46484 353.883 591.5694 354.77842 590.46484 354.77842 L 513.7241 354.77842 C 512.61952 354.77842 511.7241 353.883 511.7241 352.77842 L 511.7241 336.90378 C 511.7241 335.7992 512.61952 334.90378 513.7241 334.90378 C 513.7241 334.90378 513.7241 334.90378 513.7241 334.90378 Z" fill="#16ab62" fill-opacity=".5" stroke="#11864e" stroke-opacity=".6" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+      </g>
+      <g id="introduction-services-microservice-2-layer-3">
+        <path d="M 590.46484 401.48384 L 513.7241 401.48384 C 512.61952 401.48384 511.7241 400.5884 511.7241 399.48384 L 511.7241 383.6092 C 511.7241 382.50463 512.61952 381.6092 513.7241 381.6092 L 590.46484 381.6092 C 591.5694 381.6092 592.46484 382.50463 592.46484 383.6092 L 592.46484 399.48384 C 592.46484 400.5884 591.5694 401.48384 590.46484 401.48384 Z" fill="#722166" fill-opacity=".5" stroke="#6d2061" stroke-opacity=".6" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+      </g>
+      <g id="introduction-services-microservice-2-layer-2">
+        <path d="M 513.7241 378.13113 L 590.46484 378.13113 C 591.5694 378.13113 592.46484 377.2357 592.46484 376.13113 L 592.46484 360.25649 C 592.46484 359.15192 591.5694 358.25649 590.46484 358.25649 L 513.7241 358.25649 C 512.61952 358.25649 511.7241 359.15192 511.7241 360.25649 L 511.7241 376.13113 C 511.7241 377.2357 512.61952 378.13113 513.7241 378.13113 C 513.7241 378.13113 513.7241 378.13113 513.7241 378.13113 Z" fill="#18becb" fill-opacity=".5" stroke="#108b96" stroke-opacity=".6" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+      </g>
+      <g id="introduction-services-microservice-2-layer-4">
+        <path d="M 513.7241 424.83655 L 590.46484 424.83655 C 591.5694 424.83655 592.46484 423.94112 592.46484 422.83655 L 592.46484 406.9619 C 592.46484 405.85733 591.5694 404.9619 590.46484 404.9619 L 513.7241 404.9619 C 512.61952 404.9619 511.7241 405.85733 511.7241 406.9619 L 511.7241 422.83655 C 511.7241 423.94112 512.61952 424.83655 513.7241 424.83655 C 513.7241 424.83655 513.7241 424.83655 513.7241 424.83655 Z" fill="#f3589d" fill-opacity=".5" stroke="#c0467d" stroke-opacity=".6" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+      </g>
+    </g>
+  </g>
+</svg>
+<div class="tile" style="left: 90px;top: 240px;width: 380px;">
+<div class="lede header-position">
+<p>First some Definitions…</p>
+</div>
+
+<ul>
+<li><i><a href="https://martinfowler.com/articles/microservice-testing/#definition">What is a microservice?</a></i></li>
+
+<li><i><a href="https://martinfowler.com/articles/microservice-testing/#anatomy-modules">Anatomy</a></i>: a look inside a microservice</li>
+
+<li><i><a href="https://martinfowler.com/articles/microservice-testing/#architecture">Architecture</a></i>: choreographing services</li>
+</ul>
+</div>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" version="1.1" viewBox="279 144 284 329" class="diagram" style="left: 580px;top: 70px;" height="180px" width="220px">
+  <style type="text/css">
+  /*  */
+  .label-large, .label-medium, .label-small {
+    font-family: Open Sans;
+    font-weight: 600;
+  }
+  .label-large { font-size: 24px; }
+  .label-medium { font-size: 20px; }
+  .label-small { font-size: 16px; }
+  /*  */
+</style>
+  <defs>
+    <filter id="introduction-testing-dropshadow" filterUnits="userSpaceOnUse">
+      <fegaussianblur in="SourceAlpha" result="blur" stdDeviation="1.308"></fegaussianblur>
+      <feoffset in="blur" result="offset" dx="0" dy="2"></feoffset>
+      <feflood flood-color="black" flood-opacity=".5" result="flood"></feflood>
+      <fecomposite in="flood" in2="offset" operator="in"></fecomposite>
+    </filter>
+    <lineargradient x1="0" x2="1" id="introduction-testing-microservice-base-gradient" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="white"></stop>
+      <stop offset="1" stop-color="#e5e5e5"></stop>
+    </lineargradient>
+    <lineargradient id="introduction-testing-microservice-gradient" xlink:href="#introduction-testing-microservice-base-gradient" gradientTransform="translate(420.75 203.75727) rotate(90) scale(143.26015)"></lineargradient>
+    <font-face font-family="Helvetica" font-size="14" units-per-em="1000" underline-position="-75.683594" underline-thickness="49.316406" slope="0" x-height="532.22656" cap-height="719.72656" ascent="770.01953" descent="-229.98047" font-weight="bold">
+      <font-face-src>
+        <font-face-name name="Helvetica-Bold">
+      </font-face-name></font-face-src>
+    </font-face>
+    <lineargradient x1="0" x2="1" id="introduction-testing-pin-base-gradient" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="white"></stop>
+      <stop offset="1" stop-color="#e7e7e7"></stop>
+    </lineargradient>
+    <lineargradient id="introduction-testing-bottom-pin-gradient" xlink:href="#introduction-testing-pin-base-gradient" gradientTransform="translate(420.5842 465.20704) rotate(-89) scale(19)"></lineargradient>
+    <lineargradient id="introduction-testing-left-pin-gradient" xlink:href="#introduction-testing-pin-base-gradient" gradientTransform="translate(302.94635 172.28242) rotate(53) scale(19)"></lineargradient>
+    <lineargradient id="introduction-testing-right-pin-gradient" xlink:href="#introduction-testing-pin-base-gradient" gradientTransform="translate(538.55365 172.28242) rotate(127) scale(19)"></lineargradient>
+    <pattern id="introduction-testing-black-diagonal-stripes" xlink:href="#base-pattern">
+      <rect width="4" height="4" fill="#ffffff"></rect>
+      <path d="M -1, 2 l 6, 0" stroke="#000000" stroke-width="2"></path>
+    </pattern>
+    <pattern id="introduction-testing-purple-diagonal-stripes" xlink:href="#base-pattern">
+      <rect width="4" height="4" fill="#ffffff"></rect>
+      <path d="M -1, 2 l 6, 0" stroke="#c72d69" stroke-width="2"></path>
+    </pattern>
+    <pattern id="base-pattern" patternUnits="userSpaceOnUse" width="4" height="4" patternTransform="rotate(135 5 5)">
+</pattern>
+  </defs>
+  <g stroke="none" stroke-opacity="1" stroke-dasharray="none" fill="none" fill-opacity="1">
+    <title>Microservice Testing</title>
+    <rect fill="white" width="900" height="700"></rect>
+    <g>
+      <title>Introduction :: Testing</title>
+      <g>
+        <use xlink:href="#introduction-testing-microservice" filter="url(#introduction-testing-dropshadow)"></use>
+        <use xlink:href="#introduction-testing-datastore" filter="url(#introduction-testing-dropshadow)"></use>
+        <use xlink:href="#introduction-testing-microservice-layer-1" filter="url(#introduction-testing-dropshadow)"></use>
+        <use xlink:href="#introduction-testing-microservice-layer-3" filter="url(#introduction-testing-dropshadow)"></use>
+        <use xlink:href="#introduction-testing-microservice-layer-2" filter="url(#introduction-testing-dropshadow)"></use>
+        <use xlink:href="#introduction-testing-microservice-layer-4" filter="url(#introduction-testing-dropshadow)"></use>
+      </g>
+      <path d="M 352.36582 199.31466 L 489.13418 199.31466 C 490.23875 199.31466 491.13418 200.21009 491.13418 201.31466 L 491.13418 405 C 491.13418 406.10457 490.23875 407 489.13418 407 L 352.36582 407 C 351.26125 407 350.36582 406.10457 350.36582 405 L 350.36582 201.31466 C 350.36582 200.21009 351.26125 199.31466 352.36582 199.31466 Z" stroke="#7b7b7b" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke-dasharray="16,8,2,8"></path>
+      <g id="introduction-testing-microservice">
+        <path d="M 358.9442 203.75727 L 482.5558 203.75727 C 483.66037 203.75727 484.5558 204.6527 484.5558 205.75727 L 484.5558 345.01742 C 484.5558 346.122 483.66037 347.01742 482.5558 347.01742 L 358.9442 347.01742 C 357.83963 347.01742 356.9442 346.122 356.9442 345.01742 L 356.9442 205.75727 C 356.9442 204.6527 357.83963 203.75727 358.9442 203.75727 Z" fill="url(#introduction-testing-microservice-gradient)" stroke="url(#introduction-testing-black-diagonal-stripes)" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path>
+      </g>
+      <g id="introduction-testing-datastore">
+        <path d="M 403.51484 392.05237 L 403.51484 366.22804 C 403.51484 364.44616 411.2362 363 420.75 363 C 430.2638 363 437.98516 364.44616 437.98516 366.22804 L 437.98516 392.05237 C 437.98516 393.83425 430.2638 395.28041 420.75 395.28041 C 411.2362 395.28041 403.51484 393.83425 403.51484 392.05237" fill="#f2a8cd"></path>
+        <path d="M 403.51484 392.05237 L 403.51484 366.22804 C 403.51484 364.44616 411.2362 363 420.75 363 C 430.2638 363 437.98516 364.44616 437.98516 366.22804 L 437.98516 392.05237 C 437.98516 393.83425 430.2638 395.28041 420.75 395.28041 C 411.2362 395.28041 403.51484 393.83425 403.51484 392.05237 M 403.51484 366.22804 C 403.51484 368.00992 411.2362 369.45608 420.75 369.45608 C 430.2638 369.45608 437.98516 368.00992 437.98516 366.22804" stroke="url(#introduction-testing-purple-diagonal-stripes)" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+      </g>
+      <text transform="translate(401.25 154.70593)" fill="#722166" style="font-family:Open Sans;" class="label-small">
+        <tspan fill="#722166" x=".4140625" y="14" textLength="38.171875">{"…"}</tspan>
+      </text>
+      <line x1="420.75" y1="176.70593" x2="420.75" y2="199.31466" stroke="#722166" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></line>
+      <path d="M 439.01397 459.97123 C 443.94621 457.89234 441.07995 446.2137 434.18524 442.95174 C 427.29056 439.68978 416.0232 439.4931 409.0189 442.51246 C 402.01453 445.5318 397.0523 455.53913 401.3573 457.78614 C 405.66227 460.03315 434.08175 462.05013 439.01397 459.97123 Z" fill="#e3e3e3" stroke="#7b7b7b" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"></path>
+      <path d="M 435.49472 462.68438 C 443.76755 459.11824 443.87253 453.1041 435.7292 449.25142 C 427.5859 445.3987 414.27806 445.16642 406.00528 448.73258 C 397.73245 452.29872 397.62747 458.31287 405.7708 462.16555 C 413.9141 466.01826 427.22194 466.25054 435.49472 462.68438" fill="url(#introduction-testing-bottom-pin-gradient)" stroke="#7b7b7b" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"></path>
+      <line x1="420.68654" y1="440.37146" x2="420.61897" y2="378.5" stroke="#7b7b7b" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></line>
+      <path d="M 321.04959 165.59512 C 326.2618 164.37788 330.80748 175.51085 327.14686 182.20244 C 323.48629 188.89401 314.4864 195.67591 307.04506 197.35023 C 299.6037 199.02459 289.707 193.84522 291.86906 189.49694 C 294.0311 185.14867 315.83739 166.81234 321.04959 165.59512 Z" fill="#e3e3e3" stroke="#7b7b7b" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"></path>
+      <path d="M 316.49199 165.5591 C 325.28097 163.58153 328.90092 168.38537 324.57738 176.28878 C 320.25389 184.19219 309.62415 192.20227 300.83519 194.17981 C 292.0462 196.15739 288.42626 191.35355 292.7498 183.45013 C 297.0733 175.54672 307.70303 167.53664 316.49199 165.5591" fill="url(#introduction-testing-left-pin-gradient)" stroke="#7b7b7b" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"></path>
+      <line x1="317.984" y1="192.05013" x2="356.53605" y2="242.08471" stroke="#7b7b7b" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></line>
+      <path d="M 520.4504 165.59512 C 515.2382 164.37788 510.69252 175.51085 514.35314 182.20244 C 518.0137 188.89401 527.0136 195.67591 534.45494 197.35023 C 541.8963 199.02459 551.793 193.84522 549.63094 189.49694 C 547.4689 185.14867 525.6626 166.81234 520.4504 165.59512 Z" fill="#e3e3e3" stroke="#7b7b7b" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"></path>
+      <path d="M 525.008 165.5591 C 516.21903 163.58153 512.59908 168.38537 516.92262 176.28878 C 521.2461 184.19219 531.87585 192.20227 540.6648 194.17981 C 549.4538 196.15739 553.07374 191.35355 548.7502 183.45013 C 544.4267 175.54672 533.79697 167.53664 525.008 165.5591" fill="url(#introduction-testing-right-pin-gradient)" stroke="#7b7b7b" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"></path>
+      <line x1="523.516" y1="192.05013" x2="484.96395" y2="242.08471" stroke="#7b7b7b" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></line>
+      <g id="introduction-testing-microservice-layer-1">
+        <path d="M 366.18923 212.38735 L 475.31077 212.38735 C 476.41534 212.38735 477.31077 213.28278 477.31077 214.38735 L 477.31077 238.23265 C 477.31077 239.33722 476.41534 240.23265 475.31077 240.23265 L 366.18923 240.23265 C 365.08466 240.23265 364.18923 239.33722 364.18923 238.23265 L 364.18923 214.38735 C 364.18923 213.28278 365.08466 212.38735 366.18923 212.38735 Z" fill="#16ab62" fill-opacity=".5" stroke="#11864e" stroke-opacity=".6" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+      </g>
+      <g id="introduction-testing-microservice-layer-3">
+        <path d="M 475.31077 305.66912 L 366.18923 305.66912 C 365.08466 305.66912 364.18923 304.77369 364.18923 303.66912 L 364.18923 279.82381 C 364.18923 278.71924 365.08466 277.82381 366.18923 277.82381 L 475.31077 277.82381 C 476.41534 277.82381 477.31077 278.71924 477.31077 279.82381 L 477.31077 303.66912 C 477.31077 304.77369 476.41534 305.66912 475.31077 305.66912 Z" fill="#722166" fill-opacity=".5" stroke="#6d2061" stroke-opacity=".6" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+      </g>
+      <g id="introduction-testing-microservice-layer-2">
+        <path d="M 366.18923 272.95088 L 475.31077 272.95088 C 476.41534 272.95088 477.31077 272.05545 477.31077 270.95088 L 477.31077 247.10558 C 477.31077 246.00101 476.41534 245.10558 475.31077 245.10558 L 366.18923 245.10558 C 365.08466 245.10558 364.18923 246.00101 364.18923 247.10558 L 364.18923 270.95088 C 364.18923 272.05545 365.08466 272.95088 366.18923 272.95088 Z" fill="#18becb" fill-opacity=".5" stroke="#108b96" stroke-opacity=".6" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+      </g>
+      <g id="introduction-testing-microservice-layer-4">
+        <path d="M 366.18923 338.38735 L 475.31077 338.38735 C 476.41534 338.38735 477.31077 337.49192 477.31077 336.38735 L 477.31077 312.54204 C 477.31077 311.43747 476.41534 310.54204 475.31077 310.54204 L 366.18923 310.54204 C 365.08466 310.54204 364.18923 311.43747 364.18923 312.54204 L 364.18923 336.38735 C 364.18923 337.49192 365.08466 338.38735 366.18923 338.38735 Z" fill="#f3589d" fill-opacity=".5" stroke="#c0467d" stroke-opacity=".6" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+      </g>
+    </g>
+  </g>
+</svg>
+<div class="tile" style="left: 470px;top: 240px;width: 470px;">
+<div class="lede header-position">
+<p>…then the Testing Strategies…</p>
+</div>
+
+<ul>
+<li><i><a href="https://martinfowler.com/articles/microservice-testing/#testing-unit-introduction">Unit</a></i>: mockist vs. classic</li>
+
+<li><i><a href="https://martinfowler.com/articles/microservice-testing/#testing-integration-introduction">Integration</a></i>: datastores and external services</li>
+
+<li><i><a href="https://martinfowler.com/articles/microservice-testing/#testing-component-introduction">Component</a></i>: in or out of process?</li>
+
+<li><i><a href="https://martinfowler.com/articles/microservice-testing/#testing-contract-introduction">Contract</a></i>: ensuring consistency across boundaries</li>
+
+<li><i><a href="https://martinfowler.com/articles/microservice-testing/#testing-end-to-end-introduction">End-to-end</a></i>: tips and tricks</li>
+</ul>
+</div>
+
+<div class="tile" style="left: 290px;top: 425px;width: 400px;">
+<div class="lede header-position">
+<p>…then some Conclusions</p>
+</div>
+
+<ul>
+<li><i><a href="https://martinfowler.com/articles/microservice-testing/#conclusion-options">Options</a></i>: testing benefits of microservices </li>
+
+<li><i><a href="https://martinfowler.com/articles/microservice-testing/#conclusion-test-pyramid">Test Pyramid</a></i>: how many tests?</li>
+
+<li><i><a href="https://martinfowler.com/articles/microservice-testing/#conclusion-summary">Summary</a></i>: wrapping things up</li>
+</ul>
+</div>
+</div></div>
+
+<div class="deck-touch-panel">
+<p class="button previous" style="width: 100px;">Previous<span class="extra"><br>(always active)</span></p>
+
+<p class="button next" style="width: 100px;">Next<span class="extra"><br>(always active)</span></p>
+
+<p class="button first">First</p>
+
+<p class="button last">Last</p>
+
+<p class="button goto">Go to<br>slide #</p>
+</div>
+
+<script src="./Testing Strategies in a Microservice Architecture_files/jquery-1.7.2.min.js" type="text/javascript"></script>
+
+<script src="./Testing Strategies in a Microservice Architecture_files/spin.js" type="text/javascript"></script>
+
+<script src="./Testing Strategies in a Microservice Architecture_files/q.js" type="text/javascript"></script>
+
+<script src="./Testing Strategies in a Microservice Architecture_files/jquery.svg.min.js" type="text/javascript"></script>
+
+<script src="./Testing Strategies in a Microservice Architecture_files/jquery.svgdom.min.js" type="text/javascript"></script>
+
+<script src="./Testing Strategies in a Microservice Architecture_files/jquery.svganim.min.js" type="text/javascript"></script>
+
+<script src="./Testing Strategies in a Microservice Architecture_files/infodeck.js" type="text/javascript"></script>
+
+<script src="./Testing Strategies in a Microservice Architecture_files/contents.js" type="text/javascript"></script>
+
+<script src="./Testing Strategies in a Microservice Architecture_files/deck.js" type="text/javascript"></script>
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-17005812-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async="" src="./Testing Strategies in a Microservice Architecture_files/analytics.js"></script>
+<!-- End Google Analytics -->
+
+
+
+</body></html>
