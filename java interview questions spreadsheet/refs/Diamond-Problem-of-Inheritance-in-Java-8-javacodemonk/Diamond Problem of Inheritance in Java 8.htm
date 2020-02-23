@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<!-- saved from url=(0078)https://www.javacodemonk.com/diamond-problem-of-inheritance-in-java-8-88faf6c9 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script type="text/javascript" async="" src="./Diamond Problem of Inheritance in Java 8_files/analytics.js"></script><script async="" src="./Diamond Problem of Inheritance in Java 8_files/js"></script>
+      <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'UA-138181587-2');
+      </script>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Diamond Problem of inheritance is an ambiguity that can arise as a consequence of allowing multiple inheritance in language like C++. We will discuss it from Java context.">
+      <meta name="keywords" content="diamond problem, inheritance, java 8">
+  <meta name="author" content="Carvia Tech">
+<meta name="_csrf_parameter" content="_csrf"><meta name="_csrf_header" content="X-CSRF-TOKEN"><meta name="_csrf" content="561c40a5-7c4d-4f2c-a300-f99f16b4e172">  <link rel="shortcut icon" href="https://www.javacodemonk.com/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="https://www.javacodemonk.com/favicon.ico" type="image/x-icon">
+  <link rel="canonical" href="https://www.javacodemonk.com/diamond-problem-of-inheritance-in-java-8-88faf6c9">
+
+  <title>Diamond Problem of Inheritance in Java 8</title>
+
+  <link rel="stylesheet" href="./Diamond Problem of Inheritance in Java 8_files/css">
+  <!-- Bootstrap Core CSS -->
+  <link href="./Diamond Problem of Inheritance in Java 8_files/bootstrap.min-9789b96f44004a593f70a170ff563e16.css" rel="stylesheet">
+  <link href="./Diamond Problem of Inheritance in Java 8_files/jumbotron-0ef7edc6babea5a47645bda0c45368aa.css" rel="stylesheet">
+  <link href="./Diamond Problem of Inheritance in Java 8_files/blog-home-ade407501ff5c1ab784618eb657e923e.css" rel="stylesheet">
+  <link href="./Diamond Problem of Inheritance in Java 8_files/asciidoctor-custom-72ee2fb2e0424bba9d48534f9144e7d1.css" rel="stylesheet">
+<link href="./Diamond Problem of Inheritance in Java 8_files/cookie-bar-style-da77a131b3831e3c347356792e63eb6f.css" rel="stylesheet">
+<link href="./Diamond Problem of Inheritance in Java 8_files/font-awesome.min-269550530cc127b6aa5a35925a7de6ce.css" rel="stylesheet">
+
+  <link href="./Diamond Problem of Inheritance in Java 8_files/font-awesome.min-269550530cc127b6aa5a35925a7de6ce.css" rel="stylesheet">
+
+  <meta property="og:url" content="https://www.javacodemonk.com/diamond-problem-of-inheritance-in-java-8-88faf6c9">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Diamond Problem of Inheritance in Java 8">
+  <meta property="og:description" content="Diamond Problem of inheritance is an ambiguity that can arise as a consequence of allowing multiple inheritance in language like C++. We will discuss it from Java context.">
+      <meta property="og:image" content="https://s3.shunyafoundation.com/s3/f6eb486e3857cd2d8b73ba98039fc87e176c4496/diamond_problem_inheritance_java8-2x.png">
+
+  <script src="./Diamond Problem of Inheritance in Java 8_files/jquery.min.js"></script>
+
+   <link href="./Diamond Problem of Inheritance in Java 8_files/xcode-ed99a3ac6aad0509c8425eecc7710950.css" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Diamond Problem of Inheritance in Java 8",
+      "image": "https://s3.shunyafoundation.com/s3/f6eb486e3857cd2d8b73ba98039fc87e176c4496/diamond_problem_inheritance_java8-2x.png",
+      "keywords": "diamond problem, inheritance, java 8",
+      "description": "Diamond Problem of inheritance is an ambiguity that can arise as a consequence of allowing multiple inheritance in language like C++. We will discuss it from Java context.",
+      "publisher": {
+            "@type": "Organization",
+            "name": "Carvia Tech"
+      },
+      "url": "https://www.javacodemonk.com/diamond-problem-of-inheritance-in-java-8-88faf6c9",
+      "datePublished": "2017-12-16",
+      "dateModified": "2019-05-05",
+      "author": {
+          "@type": "Person",
+          "name": "Carvia Tech"
+      }
+  }
+  </script>
+
+  <script type="text/javascript">
+      $(function () {
+          var token = $("meta[name='_csrf']").attr("content");
+          var header = $("meta[name='_csrf_header']").attr("content");
+          $(document).ajaxSend(function (e, xhr, options) {
+              xhr.setRequestHeader(header, token);
+          });
+      });
+
+      var scrollToElement = function (el, ms) {
+          var speed = (ms) ? ms : 1500;
+          $('html,body').animate({
+              scrollTop: $(el).offset().top
+          }, speed);
+      };
+
+      var useAjaxBusyWait = function () {
+          $(document).ready(function () {
+              $('body').append('<div id="ajaxBusy"><p id="ajaxBusyMsg">Please wait...</p></div>');
+              // AJAX activity indicator bound to ajax start/stop document events
+              $(document).ajaxStart(function () {
+                  $('#ajaxBusy').show();
+              }).ajaxStop(function () {
+                  $('#ajaxBusy').hide();
+              });
+          });
+      };
+  </script>
+
+
+
+  <style>
+    h1, .h1 {
+      font-size: 2.0rem;
+    }
+
+    .sticky-top { top: 5.5em; }
+  </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+    <div class="container">
+    <a class="navbar-brand" href="https://www.javacodemonk.com/"><i class="fa fa-home" aria-hidden="true"></i> CodeMonk</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li id="ml_menu_id" class="nav-item">
+                <a class="nav-link" href="https://www.javacodemonk.com/category/machine-learning">ML</a>
+            </li>
+            <li id="sdet_menu_id" class="nav-item">
+                <a class="nav-link" href="https://www.javacodemonk.com/category/sdet-interviews">SDET</a>
+            </li>
+            <li id="java_menu_id" class="nav-item">
+                <a class="nav-link" href="https://www.javacodemonk.com/category/java-interviews">Java</a>
+            </li>
+            <li id="microservices_menu_id" class="nav-item">
+                <a class="nav-link" href="https://www.javacodemonk.com/category/microservices">Microservices</a>
+            </li>
+            <li id="spring_menu_id" class="nav-item">
+                <a class="nav-link" href="https://www.javacodemonk.com/category/spring-framework">Spring</a>
+            </li>
+            <li id="explore_id" class="nav-item">
+                <a class="nav-link" href="https://www.javacodemonk.com/explore"><i class="fa fa-list" aria-hidden="true"></i> More</a>
+            </li>
+            <li id="bookshelf_id" class="nav-item">
+                <a class="nav-link" href="https://www.javacodemonk.com/book-shelf"><i class="fa fa-book" aria-hidden="true"></i> Book Shelf</a>
+            </li>
+
+
+
+        </ul>
+
+        <form class="form-inline my-2 my-lg-0" action="https://www.javacodemonk.com/search" method="get">
+            <input class="form-control mr-sm-1" type="text" value="" name="q" placeholder="Search for ..." required="">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+        </form>
+
+    </div>
+    </div>
+</nav>
+
+<script>
+    $('#home_id').addClass('active');
+</script>
+
+<main role="main">
+    <!-- Page Content -->
+    <div class="container mt-3">
+
+        <div class="row">
+            <!-- Post Content Column -->
+            <div class="col-lg-8 col-md-8 col-sm-12">
+                <nav aria-label="breadcrumb" role="navigation">
+                    <ol class="breadcrumb small">
+                        <li class="breadcrumb-item"><a href="https://www.javacodemonk.com/explore">Home</a></li>
+                            <li class="breadcrumb-item"><a href="https://www.javacodemonk.com/category/core-java">Core Java</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Diamond Problem of Inheritance in Java 8</li>
+                    </ol>
+                </nav>
+
+                <!-- Title -->
+                <h1 class="mt-3">Diamond Problem of Inheritance in Java 8</h1>
+
+                <p class="lead small">
+                    <span class="mr-2"><i class="fa fa-address-card-o" aria-hidden="true"></i> Carvia Tech</span> |
+                    <span class="text-muted1 ml-2 mr-2"><i class="fa fa-calendar" aria-hidden="true"></i> May 05, 2019</span> |
+                    <span class="text-muted1 ml-2 mr-2"><i class="fa fa-clock-o" aria-hidden="true"></i> 3 min read</span> |
+                    <span class="text-muted1 ml-2 mr-2"><i class="fa fa-eye" aria-hidden="true"></i> 2,815 views</span>
+                </p>
+
+                <hr>
+
+
+                <!-- Post Content -->
+                <div class="customCss">
+                    <div class="sect1">
+<h2 id="_what_is_diamond_problem_of_inheritance">What is diamond problem of Inheritance?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Diamond Problem of inheritance is an ambiguity that can arise as a consequence of allowing multiple inheritance in language like C++.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./Diamond Problem of Inheritance in Java 8_files/diamond-problem.png" alt="diamond problem">
+</div>
+<div class="title">Diamond Problem of Inheritance</div>
+</div>
+<div class="paragraph">
+<p>Consider the below classes in C++</p>
+</div>
+<div class="listingblock">
+<div class="title">Diamond Problem of Inheritance</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span>{
+     <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span> </span>{ ... }
+}
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">B</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">A</span> </span>{}
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">C</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">A</span> </span>{}
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">D</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">B</span>, <span class="hljs-title">C</span> </span>{}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the code above, the implementation of method <code>foo()</code> inherited by class D is unambiguously that defined by class A. But as soon as class B and class C starts to provide its own implementation for method <code>foo()</code>, the ambiguity will arrive in method resolution by Class D. This trap is known as diamond problem of multiple inheritance.</p>
+</div>
+<div class="paragraph">
+<p>Since Java does not allow multiple inheritance for classes (only multiple interfaces are allowed), so diamond problem can not exist in Java. At any given point in time, a given Java class can extend from only one super class.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_does_java_8_tackles_diamond_problem_of_multiple_inheritance">How does Java 8 tackles diamond problem of multiple inheritance?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Java 8 brought a major change where interfaces can provide default implementation for its methods. Java designers kept in mind the diamond problem of inheritance while making this big change. There are clearly defined conflict resolution rules while inheriting default methods from interfaces using Java 8.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Rule 1</dt>
+<dd>
+<p>Any method inherited from a class or a superclass is given higher priority over any default method inherited from an interface.</p>
+<div class="imageblock">
+<div class="content">
+<img src="./Diamond Problem of Inheritance in Java 8_files/rule-1.png" alt="rule 1">
+</div>
+<div class="title">class has higher precedence than interface default methods.</div>
+</div>
+<div class="paragraph">
+<p>In the diagram above, <code>foo()</code> method of class D will inherit from class C.</p>
+</div>
+</dd>
+<dt class="hdlist1">Rule 2</dt>
+<dd>
+<p>Derived interfaces or sub-interfaces take higher precedence than the interfaces higher-up in the inheritance hierarchy.</p>
+</dd>
+</dl>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./Diamond Problem of Inheritance in Java 8_files/rule-2.png" alt="rule 2">
+</div>
+<div class="title">sub-interface has higher priority</div>
+</div>
+<div class="paragraph">
+<p>In the above class diagram, <code>foo()</code> of class C will inherit from default method of interface B.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Rule 3</dt>
+<dd>
+<p>In case Rule 1 and Rule 2 are not able to resolve the conflict then the implementing class has to specifically override and provide a method with the same method definition.</p>
+</dd>
+</dl>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./Diamond Problem of Inheritance in Java 8_files/rule-3.png" alt="rule 3">
+</div>
+<div class="title">class C must override foo method</div>
+</div>
+<div class="paragraph">
+<p>In above class diagram, since interface A &amp; B are at same level, to resolve conflict, class C must provide its own implementation by overriding method <code>foo()</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Rule 3</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">C</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span> </span>{
+        B.<span class="hljs-keyword">super</span>.foo();    <i class="conum" data-value="1"></i><b>(<span class="hljs-number">1</span>)</b>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>foo()</code> method can refer to A or B’s default implementation using <code>A.super.foo()</code> or <code>B.super.foo()</code></td>
+</tr>
+</tbody></table>
+</div>
+<div class="sect2">
+<h3 id="_question_what_will_be_output_of_the_below_program">Question: what will be output of the below program?</h3>
+<div class="listingblock">
+<div class="title">Problem Statement</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs"><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">A</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">default</span> <span class="hljs-keyword">void</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span> </span>{ System.out.println(<span class="hljs-string">"hello from A"</span>); }
+}
+<span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">B</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">A</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">default</span> <span class="hljs-keyword">void</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span> </span>{ System.out.println(<span class="hljs-string">"hello from B"</span>); }
+}
+<span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">C</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">A</span> </span>{}
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">D</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">B</span>, <span class="hljs-title">C</span> </span>{}
+
+
+C c = <span class="hljs-keyword">new</span> D();
+c.foo();</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="title">Output</div>
+<div class="content">
+<pre>hello from B</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The static type of c is unimportant here; what really counts is that it is an instance of class D, whose most specific version of <code>foo()</code> is inherited from class B.</p>
+</div>
+<hr>
+<div class="sidebarblock lead">
+<div class="content">
+<div class="title">Buy my ebook for complete question bank</div>
+<div class="paragraph">
+<p>Most of these questions has been answered in my eBook "Cracking the Core Java Interview" updated on June 2018, that you can buy from this link:</p>
+</div>
+<a href="https://books.shunyafoundation.com/?author=munish+chandel" style="font-family: Georgia, serif; font-size: 100%; font-style: normal; font-variant: normal; font-weight: normal; line-height: normal;" target="_blank">Buy from Shunya (DRM Free PDF download with updates)</a><div style="font-family: Georgia, serif; font-size: 100%; font-style: normal; font-variant: normal; font-weight: normal; line-height: normal;">
+<br>
+
+<a href="https://play.google.com/store/books/author?id=Munish+Chandel" style="font-family: Georgia, serif; font-size: 100%; font-style: normal; font-variant: normal; font-weight: normal; line-height: normal;" target="_blank">Buy from Google Books</a><div style="font-family: Georgia, serif; font-size: 100%; font-style: normal; font-variant: normal; font-weight: normal; line-height: normal;"></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+                </div>
+
+    <script async="" src="./Diamond Problem of Inheritance in Java 8_files/f.txt"></script>
+    <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-8459438937301460" data-ad-slot="7685550227">
+    </ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+
+                    <hr class="hr-line-dashed">
+
+                    <h6 class="text-muted">Top articles in this category:</h6>
+                    <ol>
+                            <li><a href="https://www.javacodemonk.com/what-are-four-principles-of-oop-how-aggregation-is-different-than-composition-5b534baf">What are four principles of OOP, How aggregation is different than Composition?</a></li>
+                            <li><a href="https://www.javacodemonk.com/producer-consumer-problem-using-blocking-queue-in-java-e0e583dd">Producer Consumer Problem using Blocking Queue in Java</a></li>
+                            <li><a href="https://www.javacodemonk.com/java-8-parallel-stream-with-custom-threadpool-48643a91">Java 8 Parallel Stream with ThreadPool</a></li>
+                            <li><a href="https://www.javacodemonk.com/how-will-you-calculate-factorial-of-a-large-number-in-java-bc6254e2">How will you calculate factorial of a large number in Java</a></li>
+                            <li><a href="https://www.javacodemonk.com/what-is-double-checked-locking-problem-in-multi-threading-17daeca6">What is Double Checked Locking Problem in Multi-Threading?</a></li>
+                            <li><a href="https://www.javacodemonk.com/how-will-you-increment-each-element-of-an-integer-array-using-parallel-operation-2726ada4">How will you increment each element of an Integer array, using parallel operation</a></li>
+                            <li><a href="https://www.javacodemonk.com/what-do-you-understand-by-java-memory-model-f548966f">What do you understand by Java Memory Model?</a></li>
+                    </ol>
+
+                <hr class="hr-line-dashed">
+
+                <div class="text-left">
+                    <h6 class="text-muted mb-3">Share article:</h6>
+                    <a class="btn btn-sm btn-outline-info" href="https://www.facebook.com/sharer/sharer.php?u=https://www.javacodemonk.com/diamond-problem-of-inheritance-in-java-8-88faf6c9" target="_blank">
+                        <i class="fa fa-facebook-official" aria-hidden="true"></i> Facebook
+                    </a>
+                    <a class="btn btn-sm btn-outline-info" href="https://twitter.com/intent/tweet?text=https://www.javacodemonk.com/diamond-problem-of-inheritance-in-java-8-88faf6c9" target="_blank">
+                        <i class="fa fa-twitter" aria-hidden="true"></i> Twitter
+                    </a>
+                    <a class="btn btn-sm btn-outline-info" href="https://www.linkedin.com/cws/share?url=https://www.javacodemonk.com/diamond-problem-of-inheritance-in-java-8-88faf6c9&amp;title=Diamond%20Problem%20of%20Inheritance%20in%20Java%208" target="_blank">
+                        <i class="fa fa-linkedin-square" aria-hidden="true"></i> LinkedIn
+                    </a>
+                </div>
+
+                <br>
+
+
+                <h6 class="text-muted">Find more on this topic:</h6>
+
+                <a href="https://www.javacodemonk.com/category/core-java" class="card-link">
+                <div class="card mb-3 shadow-sm h-md-250" style="max-width: 540px;">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src="./Diamond Problem of Inheritance in Java 8_files/core-java-questions.png" class="card-img" alt="Core Java image">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Core Java</h5>
+                                <p class="card-text">Core Java - OOP Concepts, Garbage Collection, Multi-threading, Collections Framework, Java 8 Features, Lambda Functions, Streams.</p>
+                                <p class="card-text"><small class="text-muted">Last updated 1 week ago</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </a>
+
+                <br>
+
+                    <h6 class="text-muted">Recommended books for interview preparation:</h6>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card bg-light mb-3">
+                <div class="card-header">
+                    Book you may be interested in..
+                </div>
+                <div class="card-body">
+                    <div class="media">
+                        <a href="https://books.shunyafoundation.com/to/VWVTPZ3A?affid=javablog" target="_blank">
+                            <img class="mr-3 img-responsive" style="max-height: 170px;" src="./Diamond Problem of Inheritance in Java 8_files/spring-microservices-interviews-small.jpg" alt="Generic placeholder image">
+                        </a>
+                        <div class="media-body">
+                            <h5 class="card-title mt-0"><a href="https://books.shunyafoundation.com/to/VWVTPZ3A?affid=javablog" target="_blank">ebook PDF - Cracking Spring Microservices Interviews for Java Developers</a></h5>
+                            <nav>
+                                <a href="https://books.shunyafoundation.com/to/VWVTPZ3A?affid=javablog" target="_blank" class="btn btn-primary">Buy for Rs. 199</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card bg-light mb-3">
+                <div class="card-header">
+                    Book you may be interested in..
+                </div>
+                <div class="card-body">
+                    <div class="media">
+                        <a href="https://books.shunyafoundation.com/to/sku2?affid=javablog" target="_blank">
+                            <img class="mr-3 img-responsive" style="max-height: 170px;" src="./Diamond Problem of Inheritance in Java 8_files/ccji-front-cover.png" alt="Generic placeholder image">
+                        </a>
+                        <div class="media-body">
+                            <h5 class="card-title mt-0"><a href="https://books.shunyafoundation.com/to/sku2?affid=javablog" target="_blank">ebook PDF - Cracking Java Interviews v3.5 by Munish Chandel</a></h5>
+                            <nav>
+                                <a href="https://books.shunyafoundation.com/to/sku2?affid=javablog" target="_blank" class="btn btn-primary">Buy for Rs. 250</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+                <!-- Comments Form -->
+
+                <!-- Single Comment -->
+
+                <!-- Comment with nested comments -->
+
+            </div>
+
+            <!-- Sidebar Widgets Column -->
+            <div class="col-md-4">
+
+    <div class="row">
+            <div class="col-md-12">
+                <div class="card bg-light mb-3">
+                    <div class="card-header">
+                        Book you may be interested in..
+                    </div>
+                    <div class="card-body">
+                        <div class="media">
+                            <a href="https://books.shunyafoundation.com/to/VWVTPZ3A?affid=javablog" target="_blank">
+                                <img class="mr-3 img-responsive" style="max-height: 170px;" src="./Diamond Problem of Inheritance in Java 8_files/spring-microservices-interviews-small.jpg" alt="Generic placeholder image">
+                            </a>
+                            <div class="media-body">
+                                <h5 class="card-title mt-0"><a href="https://books.shunyafoundation.com/to/VWVTPZ3A?affid=javablog" target="_blank">ebook PDF - Cracking Spring Microservices Interviews for Java Developers</a></h5>
+                                <nav>
+                                    <a href="https://books.shunyafoundation.com/to/VWVTPZ3A?affid=javablog" target="_blank" class="btn btn-primary">Buy for Rs. 199</a>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+                <div class="card my-4">
+<script async="" src="./Diamond Problem of Inheritance in Java 8_files/f.txt"></script>
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8459438937301460" data-ad-slot="5018545355" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                </div>
+                <!-- Categories Widget -->
+
+                <!-- Categories Widget -->
+
+                <!-- Side Widget -->
+                    <div class="card my-4">
+                        <h5 class="card-header">Similar Posts</h5>
+    <ul class="list-group list-group-flush">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href="https://www.javacodemonk.com/java-exception-class-hierarchy-92e8224e">
+                        <span class="small">Explain Java Exception Class Hierarchy</span>
+                    </a>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href="https://www.javacodemonk.com/http-download-using-java-nio-filechannel-f6196fc4">
+                        <span class="small">Http download using Java NIO FileChannel</span>
+                    </a>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href="https://www.javacodemonk.com/crc32-checksum-calculation-java-nio-c26893db">
+                        <span class="small">CRC32 checksum calculation Java NIO</span>
+                    </a>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href="https://www.javacodemonk.com/set-precision-and-scale-for-a-double-value-in-java-9c8d56f4">
+                        <span class="small">Set precision and scale for a double value in java</span>
+                    </a>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href="https://www.javacodemonk.com/difference-between-hashmap-linkedhashmap-and-treemap-d33da4e2">
+                        <span class="small">Difference between HashMap, LinkedHashMap and TreeMap</span>
+                    </a>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href="https://www.javacodemonk.com/what-is-difference-between-executorservice-submit-and-execute-method-890daad4">
+                        <span class="small">What is difference between ExecutorService submit and execute method</span>
+                    </a>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href="https://www.javacodemonk.com/left-shift-right-shift-and-unsigned-rght-shift-operator-java-e70bc5be">
+                        <span class="small">What is left shift right shift and unsigned rght shift operator in Java</span>
+                    </a>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href="https://www.javacodemonk.com/what-happens-when-wait-and-notify-method-called-d08ccfa7">
+                        <span class="small">What happens when wait() &amp; notify() method are called</span>
+                    </a>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href="https://www.javacodemonk.com/can-we-write-a-java-method-that-swaps-two-integers-0a56915c">
+                        <span class="small">can we write a java method that swaps two integers</span>
+                    </a>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href="https://www.javacodemonk.com/find-missing-numbers-in-4-billion-unique-numbers-with-50mb-ram-652b9176">
+                        <span class="small">Find missing numbers in 4 billion unique numbers with 50MB RAM</span>
+                    </a>
+                </li>
+    </ul>
+                    </div>
+
+                <div class="sticky-top">
+                    <div class="card my-4">
+<script async="" src="./Diamond Problem of Inheritance in Java 8_files/f.txt"></script>
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8459438937301460" data-ad-slot="5649839744" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                    </div>
+                    <div class="card my-4">
+<script async="" src="./Diamond Problem of Inheritance in Java 8_files/f.txt"></script>
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8459438937301460" data-ad-slot="2119917255" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+                    </div>
+   <div class="card bg-light mb-3 w-100">
+       <div class="card-header">Free Email Updates</div>
+       <div class="card-body">
+           <p class="card-text">Provide email address to subscribe to this blog.</p>
+           <form action="https://www.javacodemonk.com/subscribe/apply" method="post">
+               <div class="form-group">
+                   <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="Email Address">
+               </div>
+               <div class="form-group row">
+                   <div class="col-sm-10">
+                       <button type="submit" class="btn btn-primary">Subscribe</button>
+                   </div>
+               </div>
+<input type="hidden" name="_csrf" value="561c40a5-7c4d-4f2c-a300-f99f16b4e172">           </form>
+       </div>
+   </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+<!-- Cookies -->
+<input type="checkbox" id="cookies-close">
+<label for="cookies-close" class="cookies-close">Got it!</label>
+<div id="cookies" class="cookies">
+    <p class="cookies-message">This website uses cookies to ensure you get the best experience on our website.  <a href="https://www.javacodemonk.com/privacy-policy" class="cookies-message-link">more info</a></p>
+</div>
+<!-- End Cookies -->
+
+<!-- Footer -->
+<footer class="py-3 bg-primary1 footer">
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-md-4 offset-md-1 col-sm-12">
+                <ul class="text-left mb-0">
+                    <li><a href="https://www.javacodemonk.com/admin">Sign in</a></li>
+                    <li><a href="https://www.javacodemonk.com/privacy-policy">Privacy Policy</a></li>
+                    <li><a href="https://www.javacodemonk.com/contact-us">Contact us</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4 offset-md-3 col-sm-12">
+                <p class="text-center">Find us on social media.</p>
+                <ul class="list-inline text-center list-social-icons mb-0">
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/crackingjavainterviews/" target="_blank" rel="nofollow">
+                            <span class="fa-stack fa-lg">
+                              <i class="fa fa-circle fa-stack-2x"></i>
+                              <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="https://www.javacodemonk.com/diamond-problem-of-inheritance-in-java-8-88faf6c9#">
+                            <span class="fa-stack fa-lg">
+                              <i class="fa fa-circle fa-stack-2x"></i>
+                              <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="https://www.javacodemonk.com/diamond-problem-of-inheritance-in-java-8-88faf6c9#">
+                            <span class="fa-stack fa-lg">
+                              <i class="fa fa-circle fa-stack-2x"></i>
+                              <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="https://www.javacodemonk.com/diamond-problem-of-inheritance-in-java-8-88faf6c9#">
+                            <span class="fa-stack fa-lg">
+                              <i class="fa fa-circle fa-stack-2x"></i>
+                              <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <p class="copyright text-center">Copyright © www.javacodemonk.com 2019-20</p>
+    </div>
+    <!-- /.container -->
+</footer>
+
+<script src="./Diamond Problem of Inheritance in Java 8_files/jquery.min.js"></script>
+<script src="./Diamond Problem of Inheritance in Java 8_files/js.cookie.js"></script>
+<script>
+    $(document).ready(function() {
+        if (localStorage.getItem('popState') != 'shown') {
+            $('#cookies').addClass("cookies-show");
+            $('.cookies-close').addClass("show-close-cookies");
+        }
+
+        $('#cookies-close').click(function (e) {
+            localStorage.setItem('popState','shown');
+            // var number = Math.random();
+            // var id = number.toString(36).substr(2, 9); // 'xtis06h6'
+            // Cookies.set('ShunyaPlatform', id);
+            $('#cookies').removeClass("cookies-show").addClass("cookies-hide");
+            $('.cookies-close').removeClass("show-close-cookies").addClass("hide-close-cookies");
+        });
+    });
+</script>
+
+    </div>
+    <!-- /.container -->
+
+</main>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="./Diamond Problem of Inheritance in Java 8_files/popper.min.js"></script>
+<script src="./Diamond Problem of Inheritance in Java 8_files/bootstrap.min.js"></script>
+<script src="./Diamond Problem of Inheritance in Java 8_files/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script type="text/javascript">
+  $(".js-social-share").click(function(e) {
+      e.preventDefault();
+
+      windowPopup($(this).attr("href")+window.location.href, 500, 300);
+  });
+
+  function windowPopup(url, width, height) {
+      // Calculate the position of the popup so
+      // it’s centered on the screen.
+      var left = (screen.width / 2) - (width / 2),
+              top = (screen.height / 2) - (height / 2);
+
+      window.open(
+              url,
+              "",
+              "menubar=no,toolbar=no,resizable=yes,scrollbars=yes,width=" + width + ",height=" + height + ",top=" + top + ",left=" + left
+      );
+  }
+</script>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="./Diamond Problem of Inheritance in Java 8_files/firebase-app.js"></script>
+<script src="./Diamond Problem of Inheritance in Java 8_files/firebase-messaging.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+ https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+// Your web app's Firebase configuration
+var firebaseConfig = {
+    apiKey: "AIzaSyCwRywm_KLmAu9Ny0NxworsUmZE-_qt_Es",
+    authDomain: "java-android-app.firebaseapp.com",
+    databaseURL: "https://java-android-app.firebaseio.com",
+    projectId: "java-android-app",
+    storageBucket: "java-android-app.appspot.com",
+    messagingSenderId: "915536116885",
+    appId: "1:915536116885:web:ef1803c4ee35d503fdaf9c"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+</script>
+
+<script>
+const messaging = firebase.messaging();
+
+function sendTokenToServer(currentToken) {
+    $.ajax({
+        url: '/api/fcm/subscribe',
+        type: 'POST',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+        },
+        data: {
+            token: currentToken
+        },
+        success: function (response) {
+            setTokenSentToServer(true)
+            //TODO: Change its location
+            // alert('You are successfully subscribed to topic');
+        }
+    });
+}
+
+function isTokenSentToServer() {
+    return window.localStorage.getItem('sentToServer') === '1';
+}
+
+function setTokenSentToServer(sent) {
+    window.localStorage.setItem('sentToServer', sent ? '1' : '0');
+}
+
+function requestPermission() {
+    messaging.requestPermission()
+        .then(function () {
+            console.log('Notification permission granted.');
+            messaging.getToken()
+                .then(function (currentToken) {
+                    console.log('Token is: ' + currentToken);
+                    if (currentToken) {
+                        if (!isTokenSentToServer()) {
+                            console.log("FCM Token not sent to server, sending it now.");
+                            sendTokenToServer(currentToken);
+                        } else {
+                            console.log("FCM Token already sent to server, not sending it again.");
+                        }
+//                                        updateUIForPushEnabled(currentToken);
+                    } else {
+                        // Show permission request.
+                        console.log('No Instance ID token available. Request permission to generate one.');
+                        // Show permission UI.
+                        setTokenSentToServer(false);
+                        // updateUIForPushPermissionRequired();
+                    }
+                })
+                .catch(function (err) {
+                    console.log('An error occurred while retrieving token. ', err);
+                    setTokenSentToServer(false);
+                });
+
+        })
+        .catch(function (err) {
+            console.log('Unable to get permission to notify.', err);
+        });
+}
+
+messaging.onTokenRefresh(function () {
+    messaging.getToken()
+        .then(function (refreshedToken) {
+            console.log('Token refreshed.');
+            // Indicate that the new Instance ID token has not yet been sent to the
+            // app server.
+            setTokenSentToServer(false);
+            // Send Instance ID token to app server.
+            sendTokenToServer(refreshedToken);
+            // ...
+        })
+        .catch(function (err) {
+            console.log('Unable to retrieve refreshed token ', err);
+            // showToken('Unable to retrieve refreshed token ', err);
+        });
+});
+
+$(document).ready(function () {
+    requestPermission();
+});
+</script>
+
+
+</body></html>
