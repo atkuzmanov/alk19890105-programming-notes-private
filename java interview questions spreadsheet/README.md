@@ -9538,16 +9538,30 @@ Other Java
 |-------|-----|-------|
 |       |  x  |   x   |
 
-- [](refs/)
+- [Diamond-Problem-of-Inheritance-in-Java-8-javacodemonk](refs/Diamond-Problem-of-Inheritance-in-Java-8-javacodemonk)
 
     `references:`
 
-
-- [](refs/)
+    https://www.javacodemonk.com/diamond-problem-of-inheritance-in-java-8-88faf6c9
+    
+- [What-about-the-diamond-problem-Maurice-Naftalins-LambdaFAQ](refs/What-about-the-diamond-problem-Maurice-Naftalins-LambdaFAQ)
 
     `references:`
 
+    http://www.lambdafaq.org/what-about-the-diamond-problem/
 
+
+- [Multiple-Inheritance-in-Java-JournalDev](refs/Multiple-Inheritance-in-Java-JournalDev)
+
+    `references:`
+
+    https://www.journaldev.com/1775/multiple-inheritance-in-java
+
+- [Dealing-With-the-Diamond-Problem-in-Java-DZone](refs/Dealing-With-the-Diamond-Problem-in-Java-DZone)
+
+    `references:`
+
+    https://dzone.com/articles/dealing-with-diamond-problem-in-java
 
 ----
 
