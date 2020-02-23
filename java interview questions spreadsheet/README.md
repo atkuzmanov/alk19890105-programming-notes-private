@@ -220,6 +220,7 @@ For learning and study
     - [Microservices](#microservices)
     - [Java Microservices](#java-microservices)
 - [Other Java](#other-java)
+- [Java 9](#java-9)
 - [Default and final interface methods](#default-and-final-interface-methods)
 - [Diamond inheritence problemm](#diamond-inheritence-problemm)
 - [Misc.](#misc)
@@ -9440,6 +9441,57 @@ Other Java
 ```
 
 ----
+
+# Java 9
+
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|   x   |  x  |   x   |
+
+- [9-new-features-in-Java-9-Pluralsight](refs/9-new-features-in-Java-9-Pluralsight)
+
+    `references:`
+
+    https://www.pluralsight.com/blog/software-development/java-9-new-features
+
+- [Java-9-Features-with-Examples-JournalDev](refs/Java-9-Features-with-Examples-JournalDev)
+
+    `references:`
+
+    https://www.journaldev.com/13121/java-9-features-with-examples
+
+- [Java-9-New-Features-Baeldung](refs/Java-9-New-Features-Baeldung)
+
+    `references:`
+
+    https://www.baeldung.com/new-java-9
+
+- [Java-9-Features-javatpoint](refs/Java-9-Features-javatpoint)
+
+    `references:`
+
+    https://www.javatpoint.com/java-9-features
+
+- [Whats-new-in-Java-9-and-JDK-9-InfoWorld](refs/Whats-new-in-Java-9-and-JDK-9-InfoWorld)
+
+    `references:`
+
+    https://www.infoworld.com/article/3227244/java-9-is-here-everything-you-need-to-know.html
+
+- [Java-Platform-Standard-Edition-Whats-New-in-Oracle-JDK 9-oraclecom](refs/Java-Platform-Standard-Edition-Whats-New-in-Oracle-JDK 9-oraclecom)
+
+    `references:`
+
+    https://docs.oracle.com/javase/9/whatsnew/toc.htm#JSNEW-GUID-C23AFD78-C777-460B-8ACE-58BE5EA681F6
+
+
+- [Java-9-Features-and-Enhancements-HowToDoInJava](refs/Java-9-Features-and-Enhancements-HowToDoInJava)
+
+    `references:`
+
+    https://howtodoinjava.com/java9/java9-new-features-enhancements/    
+
+----    
 
 # Default and final interface methods
 
