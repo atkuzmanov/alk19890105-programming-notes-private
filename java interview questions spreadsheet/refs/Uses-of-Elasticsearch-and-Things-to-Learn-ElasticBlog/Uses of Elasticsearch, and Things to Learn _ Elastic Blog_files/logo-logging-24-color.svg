@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.1 (78136) - https://sketchapp.com -->
+    <title>logo-logging-24-color</title>
+    <desc>Created with Sketch.</desc>
+    <g id="logo-logging-24-color" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M10,10.7729 L10,23.9999 L17,23.9999 C17,18.5019 14.225,13.6529 10,10.7729" id="Fill-1" fill="#353535"></path>
+        <path d="M10,10.7729 C7.436,9.0239 4.338,7.9999 1,7.9999 L1,16.9999 C4.866,16.9999 8,20.1339 8,23.9999 L10,23.9999 L10,10.7729 Z" id="Fill-3" fill="#0077CC"></path>
+        <path d="M10,0 L10,7.273 C15.948,10.486 20,16.778 20,24 L22,24 L22,12 C22,5.373 16.627,0 10,0" id="Fill-5" fill="#00C2B3"></path>
+    </g>
+</svg>

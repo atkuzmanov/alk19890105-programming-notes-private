@@ -225,6 +225,7 @@ For learning and study
 - [Diamond inheritence problemm](#diamond-inheritence-problemm)
 - [Misc.](#misc)
 - [NoSQL and distributed databases, CAP theorem](#nosql-and-distributed-databases-cap-theorem)
+- [Elastic search, why and how](#elastic-search-why-and-how)
 - [Random](#random)
 - [SQL Normal Forms](#sql-normal-forms)
 - [HTTP](#http)
@@ -9611,12 +9612,54 @@ Misc.
     https://en.wikipedia.org/wiki/CAP_theorem
 
 ----
-----
 
-- [](refs/)
+# Elastic search, why and how
 
-`references:`
+|Junior |Mid  |Senior |
+|-------|-----|-------|
+|       |     |   x   |
 
+- [What-Is-Elasticsearch-DZone](refs/What-Is-Elasticsearch-DZone)
+
+    `references:`
+
+    https://dzone.com/articles/what-is-elasticsearch-and-how-it-can-be-useful
+
+- [What-is-Elasticsearch-and-How-Can-I-Use-It-qbox](refs/What-is-Elasticsearch-and-How-Can-I-Use-It-qbox)
+
+    `references:`
+
+    https://qbox.io/blog/what-is-elasticsearch
+
+- [What-is-ElasticSearch-Why-ElasticSearch-medium](refs/What-is-ElasticSearch-Why-ElasticSearch-medium)
+
+    `references:`
+
+    https://medium.com/@AIMDekTech/what-is-elasticsearch-why-elasticsearch-advantages-of-elasticsearch-47b81b549f4d
+
+- [Elasticsearch-Why-and-How-Andrea-Gioco-Medium](refs/Elasticsearch-Why-and-How-Andrea-Gioco-Medium)
+
+    `references:`
+    
+    https://medium.com/@andrea.reon/elasticsearch-why-and-how-c79a43288a4b
+    
+- [Uses-of-Elasticsearch-and-Things-to-Learn-ElasticBlog](refs/Uses-of-Elasticsearch-and-Things-to-Learn-ElasticBlog)
+
+    `references:`
+
+    https://www.elastic.co/blog/found-uses-of-elasticsearch
+
+- [What-is-Elasticsearch-Elastic-ElasticBlog](refs/What-is-Elasticsearch-Elastic-ElasticBlog)
+
+    `references:`
+    
+    https://www.elastic.co/what-is/elasticsearch
+
+- [What-is-Elasticsearch-Why-do-I-need-it-Openprogrammer](refs/What-is-Elasticsearch-Why-do-I-need-it-Openprogrammer)
+
+    `references:`
+
+    https://www.openprogrammer.info/2015/01/04/what-is-elasticsearch/
 
 ----
 ----
