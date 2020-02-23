@@ -9579,19 +9579,36 @@ Misc.
 |-------|-----|-------|
 |       |  x  |   x   |
 
-- [](refs/)
+- [CAP-Theorem-and-Distributed-Database-Management-Systems-towardsdatascience](refs/CAP-Theorem-and-Distributed-Database-Management-Systems-towardsdatascience)
 
     `references:`
 
+    https://towardsdatascience.com/cap-theorem-and-distributed-database-management-systems-5c2be977950e
 
-- [](refs/)
+
+- [An-Illustrated-Proof-of-the-CAP-Theorem-mwhittaker](refs/An-Illustrated-Proof-of-the-CAP-Theorem-mwhittaker)
 
     `references:`
 
+    https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/
 
+- [What-is-the-CAP-Theorem-IBM](refs/What-is-the-CAP-Theorem-IBM)
 
+    `references:`
 
+    https://www.ibm.com/cloud/learn/cap-theorem
 
+- [Understanding-the-CAP-Theorem-DZone](refs/Understanding-the-CAP-Theorem-DZone)
+
+    `references:`
+
+    https://dzone.com/articles/understanding-the-cap-theorem
+
+- [CAP-theorem-Wikipedia](refs/CAP-theorem-Wikipedia)
+
+    `references:`
+
+    https://en.wikipedia.org/wiki/CAP_theorem
 
 ----
 ----
