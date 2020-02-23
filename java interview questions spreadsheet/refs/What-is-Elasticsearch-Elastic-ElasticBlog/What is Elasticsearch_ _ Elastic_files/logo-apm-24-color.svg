@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.1 (78136) - https://sketchapp.com -->
+    <title>logo-apm-24-color</title>
+    <desc>Created with Sketch.</desc>
+    <g id="logo-apm-24-color" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polygon id="Fill-1" fill="#FF3A99" points="0 7 24 7 24 0 0 0"></polygon>
+        <path d="M17,14 L8,14 L8,7 L24,7 C24,10.866 20.866,14 17,14" id="Fill-2" fill="#353535"></path>
+        <polygon id="Fill-4" fill="#0077CC" points="14 24 24 24 24 17 14 17"></polygon>
+    </g>
+</svg>
