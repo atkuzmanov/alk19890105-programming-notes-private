@@ -9499,14 +9499,37 @@ Other Java
 |-------|-----|-------|
 |       |  x  |   x   |
 
-- [](refs/)
+- [Static-and-Default-Methods-in-Interfaces-in-Java-Baeldung](refs/Static-and-Default-Methods-in-Interfaces-in-Java-Baeldung)
 
     `references:`
 
+    https://www.baeldung.com/java-static-default-methods
 
-- [](refs/)
+
+- [language-design-Why-is-final-not-allowed-in-Java-8-interface-methods-StackOverflow](refs/language-design-Why-is-final-not-allowed-in-Java-8-interface-methods-StackOverflow)
 
     `references:`
+
+    https://stackoverflow.com/questions/23453287/why-is-final-not-allowed-in-java-8-interface-methods
+
+- [What-is-the-reason-why-synchronized-is-not-allowed-in-Java-8-interface-methods-StackOverflow](refs/What-is-the-reason-why-synchronized-is-not-allowed-in-Java-8-interface-methods-StackOverflow)
+
+    `references:`
+    
+    https://stackoverflow.com/questions/23453568/what-is-the-reason-why-synchronized-is-not-allowed-in-java-8-interface-methods/23463334#23463334
+
+- [Default-Methods-In-Java-8-GeeksforGeeks](refs/Default-Methods-In-Java-8-GeeksforGeeks)
+
+    `references:`
+
+    https://www.geeksforgeeks.org/default-methods-java/
+
+- [Interface-Default-Methods-in-Java-8-DZone](refs/Interface-Default-Methods-in-Java-8-DZone)
+
+    `references:`
+    
+    https://dzone.com/articles/interface-default-methods-java
+    
 ----
 
 # Diamond inheritence problemm
@@ -9523,6 +9546,8 @@ Other Java
 - [](refs/)
 
     `references:`
+
+
 
 ----
 
