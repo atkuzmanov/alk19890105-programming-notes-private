@@ -1,9 +1,0 @@
-Adform=window.Adform||{};
-Adform.host="https://track.adform.net";
-Adform.shost="https://s1.adform.net";
-Adform.scriptBase=Adform.shost+"/banners/scripts/";
-Adform.cache="620";
-Adform.ADFBannerData={"URL":"https://track.adform.net/adfserve/?bn=35686831;rtbpid=3;rtbinv=${INV_SRC};rtbwp=0.012171-jGLwpLNtEzJBJFODwDsZ_EbDRGbPBUnA0;rtbr=1360111705332678276;rtbcid=${ENC_CID};rtbtpc=${ENC_TPC};rtburl=https%3A%2F%2Frestfulapi.net%2F;rtbcat=${IAB_CATS};rtbdp=${DATA_PROV};rtbdt=${DATA_TYPE};rtbdc=${DATA_FEE_ENC};rtbplc=${ENC_PLC};rtbrmc=${ENC_RMC};rtbdata=HJUBK6GPR9fPpmFXW3-LxXJSD-pZIUPzpZQY9TxpoFImLFh4trFm9vzNierE-G3-YyPr71wD7ogaCtf_t9TP9_ipwuWgta0E3V9u2n8D4L2Qy_gJtFWZcc4GRM1RYRRf1CL4qinxMsB8M3XFrlGKYao3dhdeW45jiPVp9M3p7BNzdTkNugo04j-83nnXS0659B9nPKo_3x0HDq_UUUnCokamIyTQzkDnc6GBQ1tzEgih4logzvEfhJdKpYNtaesxMJ_qBDS6u7bDeIjrSAcYFw2;rtbtest=0","CREFURL":"https%3a%2f%2fwww.btserve.com%2frender%3fifrId%3dwaldo-tag-4086-3%26code%3dwaldo-tag-4086%26t%3dbidt-sra%26auctionId%3de49e55a7-509e-4d7a-93c9-6643d7a30128%7cwaldo-tag-4086%7c3%26v2%3dtrue%26passback%3dfalse","BN":35686831};
-if(!Adform.ADFBannerParams)Adform.ADFBannerParams=[];
-Adform.ADFBannerParams.push(Adform.ADFBannerData);
-typeof Adform.ADFUtilInstance=="undefined"?document.write('<scr'+'ipt type="text/javascript" src="https://s1.adform.net/stoat/620/s1.adform.net/bootstrap.js"></scr'+'ipt>'):new Adform.ADFBanner();
