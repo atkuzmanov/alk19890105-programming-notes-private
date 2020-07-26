@@ -1,1 +1,0 @@
-Krux.ns.quinstreet.kxjsonp_consent_set_1({"status":400,"body":{"dt":"kxcookie","settings":{"dc":1,"al":1,"tg":1,"cd":1,"sh":1,"re":1},"pr":"gdpr","code":"bad_request","idt":"device","idv":"DNT","request_id":"1tU6aojGTdXU4hKB0PDAbC","errors":{"idv":"user opted out via (optout or dnt)"},"timestamp":1582040767}});
