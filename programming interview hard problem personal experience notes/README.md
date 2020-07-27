@@ -1129,17 +1129,15 @@ Always looking for suitable trainings and conferences to improve both technical 
 
 I strived to improve my presentation skills. Researching delivering powerful presentations I thought myself to be concise and to the point, to take pauses and that less text has more impact. I pushed myself to do more 10% projects and presentations to practice these techniques. I applied this knowledge on the co-developed Vivo-Admin, which was nominated among other projects for presentation at an Online Production Systems demos. It was very well received, and is backlog scheduled for production development.
 
-Certifications:
-    - Oracle Certified Java6SE Programmer, 2011
-
-    - Fast Track to Scala, 2014
-    
-    - Advanced Scala, 2016
+Certifications:  
+  - Oracle Certified Java6SE Programmer, 2011
+  - Fast Track to Scala, 2014
+  - Advanced Scala, 2016
 
 Conferences:
-    - QCon 2014
-    - ScalaXchange 2015
-    - MongoDB 2016
+  - QCon 2014
+  - ScalaXchange 2015
+  - MongoDB 2016
 
 
 Volunteered for US Presidential Elections 2016 overnight support.
