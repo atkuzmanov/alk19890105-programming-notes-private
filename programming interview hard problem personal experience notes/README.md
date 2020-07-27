@@ -1,13 +1,8 @@
+# Programming interview hard problem personal experience 2018-10-14-1003
 
-
-Programming interview hard problem personal experience 2018-10-14-1003
-
-/*--------------------------------*/
-/*--------------------------------*/
-/*--------------------------------*/
-/*--------------------------------*/
 |||cps-notification-service |||cps notification service |||notification service
 
+## Cps-Notification-Service
 
 Cps-Notification-Service – Technical owner of project. Technical lead of the project. Technical owner of the product. Lead of the epic. Critical component – without its notifications, the BBC websites will not update with new content.
 
@@ -35,30 +30,33 @@ In the end the product was rolled out successfully, despite deadline slippage, a
 After the dust settled, advising with my line manager, I did root cause analysis of what went wrong. I feel responsible for the difficulties encountered in the Cps-Notifications-Service, and have drawn lessons from them. Going forward I will initially have frequent Technical Feasibility meetings and then have them as needed, pre-empting problems and challenging senior decisions when appropriate. Instead of inflating epics, I would separate them and then collaborate closely with the related epic lead. I would also include performance as part of the MVP, rather than as an optimisation. I have already applied some of this experience, advising in Breaking-News-Tool-v3 meetings. Not deterred, excited to apply the new experience, and wanting to develop further I have asked senior staff for owning more epics.
 
 
-Technical notes:
+### Technical notes:
 
-CAPACITY:
+#### CAPACITY:
 
 CapacityManager.scala was a Scala Object, so that it was a Singleton, as in the Singleton Design Pattern.
 
 All functions (a.k.a. methods in Java) for manipulation of the capacity metric variables (exampleNumMaxConcurrentChecks, exampleNumConcurrentChecksInProgress)  were synchronized or had synchronized blocks inside them to ensure Thread safety.
 
+```scala
 currentCapacity(): Int = synchronized {
 	exampleNumMaxConcurrentChecks – exampleGetNumOfConcurrentChecksInProgress
 }
-
+```
 or
 
+```scala
 exampleGetNumOfConcurrentChecksInProgress(): Int = {
 	synchronized{exampleNumConcurrentChecksInProgress}	
 }
 
 Int exampleNumMaxConcurrentChecks = 0
 Int exampleNumConcurrentChecksInProgress = 0
-
+```
 
 A calculated percentage of the Capacity was used to be graphed on a Grafana/Graphite Dashboard. Other than the visibility on the human-readable monitoring Dashboards, it had automated monitoring via AWS CloudWatch Alarms. If any capacity related alarms were triggered, that would result in AutoScaling kicking in and horizontally scaling by provisioning more EC2 instances.
 
+```scala
 def exampleCapacityInUseAsPercentage(exampleNumConcurrentChecksInProgress: Int, exampleNumMaxConcurrentChecks: Int) = {
   val percentage = (exampleNumConcurrentChecksInProgress.toFloat / exampleNumMaxConcurrentChecks.toFloat) * 100
   "%.2f".format(percentage)
@@ -69,17 +67,20 @@ def exampleCapacityInUseAsPercentage(exampleNumConcurrentChecksInProgress: Int, 
 // Number of concurrent checks in progress: 125
 // percentage calculation formula/function: val percentage = (exampleNumConcurrentChecksInProgress.toFloat / exampleNumMaxConcurrentChecks.toFloat) * 100
 // percentage = (125.00 / 500.00) * 100 = 0.25 * 100 = 25% of Capacity used.
+```
 
-
-ONE DATACENTRE DOWN CHECKS:
+### ONE DATACENTRE DOWN CHECKS:
 
 It was using statuses form each Datacentre to check it’s availability.
 It was also using the timestamp of the content to check in it has been updated in both Datacentres. It was comparing the timestamp from the message which has arrived, against the timestamp it got from the Datacentre for that content, and checking if the timestamp from the Datacentre is greater than or equal (>=) to the one from the message. If it was equal everything was fine. If it was greater than, things were still fine, it meant that while the current notification message was being processed, another change to the content has been done, which is reflected in a newer message in the queue, which we still haven’t gotten to, so it’s ok to discard the current message. If the timestamp from the server was less than the current timestamp it meant the content was stale and it did a couple of retries at different time intervals.
 
+```scala
 object ExampleDatacentreStatus extends Enumeration {
   val AvailableStatus, NotFoundStatus, TimeConflictStatus, NotAvailableStatus, UnexpectedStatus = Value
 }
+```
 
+```scala
 import example.package.ExampleDatacentreStatus._
 
 import scala.util.{Failure, Success, Try}
@@ -179,15 +180,16 @@ object ExampleDatacentreResponse {
     (datacentre1.exampleGetStatus() == NotAvailableStatus) != (datacentre2.exampleGetStatus() == NotAvailableStatus)
   }
 }
+```
 
+### RETRIES:
 
-RETRIES:
 It was using a DAO (Data Access Object) to access the Datacentres.
 It would retry either a default number of attempts and delay in milliseconds, or use the values set in the service configuration.
 It would try to carry out checks to both Datacentres and if one of them is unsuccessful, it would go into the retry loop until it either gets a successful result from both Datacentres or runs out of number of retries.
 If it ran out of number of retries it would log an error, put the content notification message, containing all the metadata for the content which failed the checks in a Dead Letter queue, where it could be investigated by a human. The Dead Letter queue had monitoring and alarms, so if there were a concerning amount of notifications going in the dead letter queue, and alarm would be triggered.
 
-
+```scala
   val exampleDAO: ExampleDao
   val attempts: Int = 2
   val retryDelay: Int = 500
@@ -221,20 +223,13 @@ If it ran out of number of retries it would log an error, put the content notifi
     }
   }
 
-
-
-
-
-
-
-//---
-
-
+```
 
 |||Launcher with a scheduler
 |||scala
 |||scalatra
 
+```scala
 import ....akka.ServiceActorSystem
 
 import org.eclipse.jetty.server.Server
@@ -267,19 +262,13 @@ object Launcher extends App {
   server.start()
   server.join()
 }
-
-
-
-
-
-//---
-
+```
 
 |||custom thread pool size custom execution context
 |||scalatra
 |||scala
 
-
+```scala
 package ...
 
 import java.util.concurrent.Executors
@@ -290,13 +279,7 @@ object CustomExecutionContextWithCustomThreadPool {
   val customThreadPoolSize#: Int = 5000
   implicit val executionContext: ExecutionContextExecutor = ExecutionContext.fromExecutor(Executors.newFixedThreadPool(customThreadPoolSize#))
 }
-
-
-
-//---
-
-
-//---
+```
 
 |||notice processor scala
 |||notice dispatcher scala
@@ -304,6 +287,7 @@ object CustomExecutionContextWithCustomThreadPool {
 |||aws sqs process messages aws sqs
 |||scala
 
+```scala
 processSQSMessage(): Future[List[Unit]] = {
 	val messages = receiveMessagesFromSQS()
 	//Future.sequence() transforms from List[Future[Unit]] to Future[List[Unit]]
@@ -326,18 +310,16 @@ receiveMessagesFromSQS() = {
 		List.empty
 	}
 }
+```
 
-
-//---
-
-
-//---
 
 |||notice processor scala
 |||notice dispatcher scala
 
 |||concurrency checks managing
 |||scala
+
+```scala
 
 val exampleNumMaxConcurrentChecks: Int = 
 
@@ -374,10 +356,7 @@ def exampleCapacityInUseAsPercentage(exampleNumConcurrentChecksInProgress: Int, 
   val percentage = (exampleNumConcurrentChecksInProgress.toFloat / exampleNumMaxConcurrentChecks.toFloat) * 100
   "%.2f".format(percentage)
 }
-
-//---
-
-//---
+```
 
 |||notice processor scala
 |||notice dispatcher scala
@@ -390,6 +369,7 @@ def exampleCapacityInUseAsPercentage(exampleNumConcurrentChecksInProgress: Int, 
 |||with retries
 |||scala
 
+```scala
 makeCallReturningTupleOfResults(): (Future[Response], Future[Response]) = {
 	//make call1...
 	//make call2...
@@ -424,9 +404,7 @@ useTupleOfResultsPart2(result1: Future[Response], result2: Future[Response], som
         	false
 	}
 }
-
-
-//---
+```
 
 |||notice processor scala
 |||notice dispatcher scala
@@ -440,6 +418,7 @@ useTupleOfResultsPart2(result1: Future[Response], result2: Future[Response], som
 |||attempts scala
 |||tries scala
 
+```scala
   private def with#OfAttempts(attemptsRemaining: Int = attempts)(block: => Future[Boolean]): Future[Boolean] = {
   	//stats
 
@@ -475,16 +454,11 @@ useTupleOfResultsPart2(result1: Future[Response], result2: Future[Response], som
 withRetries() {
 	//do stuff that requires retries...
 }
+```
 
 
-//---
+## example-notice-processor-scala-one-datacentre-down-improvement
 
-
-/*--------------------------------*/
-/*--------------------------------*/
-/*--------------------------------*/
-/*--------------------------------*/
-/*---[START: example-notice-processor-scala-one-datacentre-down-improvement]---*/
 |||one datacentre down
 |||one dc down
 |||one datacenter down
@@ -496,6 +470,7 @@ withRetries() {
 |||notice processor scala |||notice processor scala v2
 |||notice dispatcher scala |||notice dispatcher scala v2
 
+```scala
 package example.package
 
 import example.package.StatsD
@@ -613,9 +588,10 @@ trait ExampleDataCentreVerificationService {
 object ExampleDataCentreVerificationService extends ExampleDataCentreVerificationService {
   override val exampleDAO = ExampleDao
 }
+```
 
-//---
 
+```scala
 package example.package
 
 import example.package.ExampleDatacentreStatus._
@@ -718,26 +694,18 @@ object ExampleDatacentreResponse {
   }
 }
 
-//---
+```
 
+```scala
 package example.package
 
 object ExampleDatacentreStatus extends Enumeration {
   val AvailableStatus, NotFoundStatus, TimeConflictStatus, NotAvailableStatus, UnexpectedStatus = Value
 }
+```
 
-/*---[END: example-notice-processor-scala-one-datacentre-down-improvement]---*/
-/*--------------------------------*/
-/*--------------------------------*/
-/*--------------------------------*/
-/*--------------------------------*/
+## example-notice-processor-scala-retry-attempts-v3
 
-
-
-/*--------------------------------*/
-/*--------------------------------*/
-/*--------------------------------*/
-/*---[START: example-notice-processor-scala-retry-attempts-v3]---*/
 |||attempts scala |||attempts scala v3 |||attempts v3
 |||tries scala |||tries scala v3 |||tries v3
 
@@ -747,6 +715,7 @@ object ExampleDatacentreStatus extends Enumeration {
 |||retry a block of code scala
 |||attempt a block of code scala
 
+```scala
 package example.package
 
 import example.package.mixin.ExampleCustomExecutionContext
@@ -803,29 +772,18 @@ private def exampleErrorHandler(response: Response, extralInfo: String) = {
     Future.failed(new Exception())
   }
 
-/*---[END: example-notice-processor-scala-retry-attempts-v3]---*/
-/*--------------------------------*/
-/*--------------------------------*/
-/*--------------------------------*/
-/*--------------------------------*/
+```
 
+---
 
-
-/*--------------------------------*/
-/*--------------------------------*/
-/*--------------------------------*/
-/*--------------------------------*/
-/*--------------------------------*/
-/*--------------------------------*/
-/*--------------------------------*/
-
+## CPS-Breaking-News myBBC integration
 
 CPS-Breaking-News myBBC integration – Technical lead. The hardest technical challenge was designing and implementing the mechanism for switching from Boxcar to Ingress. It had to be seamless for our users and audiences. Under my high scrutiny for analysis, design and quality, we built a robust mechanism. I insisted on, and promoted pair-programming, test-driven-development and code reviews for each task, and gave constructive feedback. Not only did the mechanism allow for a seamless transition, but was toggled only by a Cosmos configuration change and redeployment, a big advantage in speed, to a release toggled one. It is also highly reusable – will be used for all News, Sport and WorldService sites.
 Another challenge was collaboration within the team - work for two epics was happening simultaneously on one codebase. I alleviated this through frequent consultation and coordination with the other epic lead.
 As this was a high-profile, hard deadline project, I applied my effective epic management skills, gained from previous experience. I used Eisenhower’s urgent vs. important decision principle to break down and group tasks. Tasks, required for bringing the journalists back in CPS on time before the General Election 2017, I marked as ‘urgent and important’, and tasks, vital for the actual Election, such as monitoring and support tools, I grouped as ‘not-urgent, but important’. This helped me hit all milestones along the way. As usual, after changes, I updated the runbook information and diagrams documentation, so it’s in good shape to aid monitoring and support. Also volunteered for UK General Elections 2017 support.
 
 
-CPS-Breaking-News myBBC integration
+### CPS-Breaking-News myBBC integration
 
 After delivering CPS-Notification-Service, I wanted to demonstrate I have taken improvement feedback on board. Always looking to develop both soft and technical skills I desired owning another epic and volunteered to lead the myBBC integration.
 
@@ -853,10 +811,7 @@ I designed this solution to be re-usable and I am confident I will bring the sam
 
 Looking forward on working together on next phases and more projects such as this.
 
-
-
-//---
-
+```java
 package java8.play2.example.utilities;
 
 import java8.play2.example.aws.ExampleDynamoDbDaoLayer;
@@ -966,10 +921,10 @@ public class ExampleEnvConfiguration {
         return "mongodb://localhost:27017";
     }
 }
+```
 
 
-
-//---
+```java
 
 package java8.play2.example.utilities;
 
@@ -1020,10 +975,9 @@ public class ExampleUtils {
     }
 }
 
-//---
+```
 
-
-//---
+```java
 
 package java8.play2.example.utilities;
 
@@ -1100,10 +1054,10 @@ public class ExampleUrlShortener {
     }
 }
 
-//---
+```
 
 
-//---
+```java
 
 package java8.play2.example.utilities;
 
@@ -1120,10 +1074,10 @@ public class ExampleUtilsTest {
     }
 }
 
-//---
+```
 
 
-//---
+```java
 
 package java8.play2.example.services;
 
@@ -1154,13 +1108,11 @@ public class ExampleServiceWithStubForCucumberTestsMockServerImpl implements Exa
     }
 }
 
-//---
+```
 
+---
 
-/*--------------------------------*/
-/*--------------------------------*/
-/*--------------------------------*/
-
+### Other
 
 Have been positive about changes and quickly adopted and promoted pair programming and code reviews for Breaking-News-Tool and Cps-Notification-Service. Adapted to new ways of working like functional programming, Continuous Delivery, and continued to deliver work for both projects.
 
@@ -1192,48 +1144,12 @@ Volunteered for US Presidential Elections 2016 overnight support.
 
 Volunteered for UK General Elections 2017 support.
 
+---
 
-
-
-
-
-
-/*--------------------------------*/
-/*--------------------------------*/
-/*--------------------------------*/
-/*--------------------------------*/
-/*--------------------------------*/
-/*--------------------------------*/
-/*--------------------------------*/
 |||bar raiser interview
 
 Organized Retrospectives by introducing an “Anonymous Retro Box” for anonymous post it notes, so that uncomfortable topics would not get left out of the discussion.
 
-
-/*--------------------------------*/
-/*--------------------------------*/
-/*--------------------------------*/
-/*--------------------------------*/
-/*--------------------------------*/
-/*--------------------------------*/
-/*--------------------------------*/
-
-
-/*--------------------------------*/
-/*--------------------------------*/
-/*--------------------------------*/
-/*--------------------------------*/
-/*--------------------------------*/
-/*--------------------------------*/
-/*--------------------------------*/
-
-
-/*--------------------------------*/
-/*--------------------------------*/
-/*--------------------------------*/
-/*--------------------------------*/
-/*--------------------------------*/
-/*--------------------------------*/
-/*--------------------------------*/
+---
 
 
