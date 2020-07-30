@@ -29,7 +29,6 @@ In the end the product was rolled out successfully, despite deadline slippage, a
 
 After the dust settled, advising with my line manager, I did root cause analysis of what went wrong. I feel responsible for the difficulties encountered in the Cps-Notifications-Service, and have drawn lessons from them. Going forward I will initially have frequent Technical Feasibility meetings and then have them as needed, pre-empting problems and challenging senior decisions when appropriate. Instead of inflating epics, I would separate them and then collaborate closely with the related epic lead. I would also include performance as part of the MVP, rather than as an optimisation. I have already applied some of this experience, advising in Breaking-News-Tool-v3 meetings. Not deterred, excited to apply the new experience, and wanting to develop further I have asked senior staff for owning more epics.
 
-
 ### Technical notes:
 
 #### CAPACITY:
@@ -43,6 +42,7 @@ currentCapacity(): Int = synchronized {
 	exampleNumMaxConcurrentChecks – exampleGetNumOfConcurrentChecksInProgress
 }
 ```
+
 or
 
 ```scala
@@ -182,7 +182,7 @@ object ExampleDatacentreResponse {
 }
 ```
 
-### RETRIES:
+### RETRIES
 
 It was using a DAO (Data Access Object) to access the Datacentres.
 It would retry either a default number of attempts and delay in milliseconds, or use the values set in the service configuration.
@@ -297,8 +297,6 @@ processSQSMessage(): Future[List[Unit]] = {
 	)
 }
 
-
-
 receiveMessagesFromSQS() = {
 	val processingCapacity: Int = currentCapacity()
 	if(processingCapacity > 0) {
@@ -311,7 +309,6 @@ receiveMessagesFromSQS() = {
 	}
 }
 ```
-
 
 |||notice processor scala
 |||notice dispatcher scala
@@ -782,7 +779,6 @@ CPS-Breaking-News myBBC integration – Technical lead. The hardest technical ch
 Another challenge was collaboration within the team - work for two epics was happening simultaneously on one codebase. I alleviated this through frequent consultation and coordination with the other epic lead.
 As this was a high-profile, hard deadline project, I applied my effective epic management skills, gained from previous experience. I used Eisenhower’s urgent vs. important decision principle to break down and group tasks. Tasks, required for bringing the journalists back in CPS on time before the General Election 2017, I marked as ‘urgent and important’, and tasks, vital for the actual Election, such as monitoring and support tools, I grouped as ‘not-urgent, but important’. This helped me hit all milestones along the way. As usual, after changes, I updated the runbook information and diagrams documentation, so it’s in good shape to aid monitoring and support. Also volunteered for UK General Elections 2017 support.
 
-
 ### CPS-Breaking-News myBBC integration
 
 After delivering CPS-Notification-Service, I wanted to demonstrate I have taken improvement feedback on board. Always looking to develop both soft and technical skills I desired owning another epic and volunteered to lead the myBBC integration.
@@ -1056,7 +1052,6 @@ public class ExampleUrlShortener {
 
 ```
 
-
 ```java
 
 package java8.play2.example.utilities;
@@ -1075,7 +1070,6 @@ public class ExampleUtilsTest {
 }
 
 ```
-
 
 ```java
 
@@ -1124,17 +1118,18 @@ While my line manager was on leave he delegated both technical and micromanageme
 
 Volunteered and I am currently mentoring a graduate.
 
-
 Always looking for suitable trainings and conferences to improve both technical and soft skills. Have expressed interest in management courses to further develop my interpersonal and leadership skills. Attended resilience course and voluntary workshop.
 
 I strived to improve my presentation skills. Researching delivering powerful presentations I thought myself to be concise and to the point, to take pauses and that less text has more impact. I pushed myself to do more 10% projects and presentations to practice these techniques. I applied this knowledge on the co-developed Vivo-Admin, which was nominated among other projects for presentation at an Online Production Systems demos. It was very well received, and is backlog scheduled for production development.
 
 Certifications:  
+
   - Oracle Certified Java6SE Programmer, 2011
   - Fast Track to Scala, 2014
   - Advanced Scala, 2016
 
 Conferences:
+
   - QCon 2014
   - ScalaXchange 2015
   - MongoDB 2016
@@ -1151,5 +1146,3 @@ Volunteered for UK General Elections 2017 support.
 Organized Retrospectives by introducing an “Anonymous Retro Box” for anonymous post it notes, so that uncomfortable topics would not get left out of the discussion.
 
 ---
-
-
