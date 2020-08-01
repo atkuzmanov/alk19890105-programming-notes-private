@@ -1,5 +1,9 @@
-# Programming notes - these are notes, etcetera, inspired from things I have done or seen.
+# Programming notes - private
 
-## PRIVATE
+Programming notes - private - these are notes, etcetera, inspired from things I have done or seen.
+
+```text
+PRIVATE
+```
 
 ---
