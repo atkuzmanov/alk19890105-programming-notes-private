@@ -1,4 +1,6 @@
-# study plan 2020
+# programming study plan 2020
+
+[2020-08-15-1757]
 
 - Java interview questions spreadsheet
   
@@ -73,5 +75,9 @@
 - JavaScript
 
 - Kotlin
+
+---
+
+- Find best apps/courses for learning algorithms etc.
 
 ---
