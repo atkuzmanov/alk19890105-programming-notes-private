@@ -26,6 +26,8 @@
 
   - Lambdas
 
+  - Streams
+
   - JSON processing
     - Serialization/Deserialization
     - Jackson
