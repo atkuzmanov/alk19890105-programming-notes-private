@@ -112,4 +112,10 @@
 
 - "Head First Kotlin", Dawn Griffiths, David Griffiths, O'Reilly Media, Inc., ISBN: 9781491996690
 
+***GoLang Go***
+
+- "The Go Programming Language (Addison-Wesley Professional Computing Series)", Alan A. A. Donovan and Brian W. Kernighan
+
+- "Head First Go", Jay McGavren
+
 ---
