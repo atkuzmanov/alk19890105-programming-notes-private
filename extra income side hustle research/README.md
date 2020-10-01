@@ -13,7 +13,7 @@
 10 Side Hustles to Make Extra Money As a Software Engineer
 How to make money outside of your day job
 
-George Field
+by George Field
 
 Oct 1 · 13 min read
 
