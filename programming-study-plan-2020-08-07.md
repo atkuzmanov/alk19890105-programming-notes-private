@@ -121,3 +121,26 @@
 - "Head First Go", Jay McGavren
 
 ---
+---
+
+Other
+
+- AutoValue framework
+- Lambdas & Streams
+- `-xlint:overloads`
+- JMH benchmarking
+- Threads
+- `|=`
+- AJAX
+- Java Server Faces
+- Servlet
+- Callback function
+- Semaphore
+- Circuit Breaker
+- Git actions?
+- Minesweeper game task
+- Java formatting IDE
+- CRUD SpringBoot app + threads + read CSV file + SQL
+- VIM
+
+---
