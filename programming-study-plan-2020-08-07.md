@@ -143,5 +143,26 @@ Other
 - CRUD SpringBoot app + threads + read CSV file + SQL
 - VIM
 - Hackerrank
+- BST
+- sqrt
+- Time complexity O(n)
+
+---
+
+| CURRENT STACK: | INTERESTED IN: |
+|:--------------:|:--------------:|
+| Java | Kotlin |
+| SpringBoot | NodeJS |
+| Spring | ReactJS |
+| AWS | Go Lang |
+| MySQL | Python |
+| mongoDB | AngularJS |
+| GitHub | HTML5 |
+| Scala | CSS3 |
+| JavaScript |  |
+| Docker |  |
+| Kubernetes |  |
+| Linux |  |
+| MacOS |  |
 
 ---
