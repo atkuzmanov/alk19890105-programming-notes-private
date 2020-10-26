@@ -120,6 +120,10 @@
 
 - "Head First Go", Jay McGavren
 
+***Python***
+
+- ...
+
 ---
 ---
 
@@ -149,20 +153,28 @@ Other
 
 ---
 
-| CURRENT STACK: | INTERESTED IN: |
-|:--------------:|:--------------:|
-| Java | Kotlin |
-| SpringBoot | NodeJS |
-| Spring | ReactJS |
-| AWS | Go Lang |
-| MySQL | Python |
-| mongoDB | AngularJS |
-| GitHub | HTML5 |
-| Scala | CSS3 |
-| JavaScript |  |
-| Docker |  |
-| Kubernetes |  |
-| Linux |  |
-| MacOS |  |
+CURRENT STACK:
+- Java
+- SpringBoot
+- Spring
+- AWS
+- MySQL
+- MongoDB
+- GitHub
+- Scala
+- JavaScript
+- Docker
+- Kubernetes
+- Linux
+- MacOS
+
+INTERESTED IN:
+- Kotlin
+- NodeJS
+- ReactJS
+- Python
+- Go Lang
+- HTML5
+- CSS3
 
 ---
