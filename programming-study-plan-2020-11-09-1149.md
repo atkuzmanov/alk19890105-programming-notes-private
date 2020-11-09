@@ -182,12 +182,14 @@ INTERESTED IN:
 
 ## Robust Application Base
 
+---
+
 ### GeneSys
 
 `"Genesis + System = GeneSys"`
 \- atkuzmanov
 
-Eager Beaver
+Project alternative code name "Eager Beaver".
 
 ---
 
