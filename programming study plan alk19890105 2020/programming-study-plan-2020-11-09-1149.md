@@ -13,16 +13,17 @@
 
   - [ ] Data structures
 
-  - [x] SpringBoot
-
-  - [x] Spring
+  - [x] SpringBoot and Spring
     - [x] Dependency Injection (DI)
+    - [x] Inversion Of Control (IoC)
 
   - [ ] Dropwizard
 
   - [ ] Guice
 
   - [ ] Guava
+  
+  - [ ] Lombok
 
   - [ ] Lambdas
 
@@ -39,6 +40,7 @@
     - [ ] SAX
     - [ ] JAXB
     - [ ] XSLT
+    - [ ] XPATH
 
   - [ ] Servlets
     - [ ] JAX-RS
@@ -50,7 +52,7 @@
     - [ ] Wiremock
     - [ ] Integration tests
 
-  - [ ] Concurrency
+  - [ ] Mutithreading and Concurrency
     - [ ] Concurrent vs. Parallel
 
   - [ ] Java memory management
