@@ -67,6 +67,8 @@
 
 - [ ] Kubernetes
 
+- [ ] gRPC
+
 - [x] Cloud
   - [x] AWS
 
