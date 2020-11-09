@@ -195,7 +195,7 @@ Eager Beaver
   <tbody>
     <tr>
       <th>TECH</th>
-      <th>ADDITIONAL TECH</th>
+      <th>ADDITIONAL NOTES</th>
       <th>ALT TECH</th>
     </tr>
     <tr>
@@ -244,6 +244,10 @@ Eager Beaver
       Go Lang
       <br>
       NodeJS
+      <br>
+      Kotlin
+      <br>
+      Scala
       </td>
     </tr>
     <tr>
@@ -331,6 +335,51 @@ Eager Beaver
       </td>
     </tr>
     <tr>
+      <td align="center" colspan="3">ADDITIONAL CONSIDERATIONS</td>
+    </tr>
+    <tr>
+      <td align="center">
+      Structured Logging
+      </td>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+      Distributed Tracing
+      </td>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+    </tr>
+    <tr>
       <td align="center">
       </td>
       <td align="center">
@@ -369,7 +418,15 @@ Eager Beaver
       </td>
       <td align="center">
       </td>
-    </tr>        
+    </tr>
+    <tr>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+    </tr>
   </tbody>
 </table>
 
