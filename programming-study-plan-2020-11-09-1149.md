@@ -237,6 +237,12 @@ Eager Beaver
     <tr>
       <td align="center">
       Java
+      <br>
+      - Lombok
+      <br>
+      - Guava
+      <br>
+      - Guice
       </td>
       <td align="center">
       </td>
@@ -283,6 +289,15 @@ Eager Beaver
     </tr>
     <tr>
       <td align="center">
+      Maven + Enforcer plugin
+      </td>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
       GitHub
       </td>
       <td align="center">
@@ -306,6 +321,8 @@ Eager Beaver
     <tr>
       <td align="center">
       Docker
+      <br>
+      - Docker Compose
       </td>
       <td align="center">
       </td>
@@ -332,6 +349,7 @@ Eager Beaver
       <td align="center">
       </td>
       <td align="center">
+      On premises
       </td>
     </tr>
     <tr>
@@ -339,7 +357,44 @@ Eager Beaver
     </tr>
     <tr>
       <td align="center">
+      Testing
+      <br>
+      - Unit Testing
+      <br>
+      - Integration Testing
+      <br>
+      - End-To-End Testing
+      </td>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+      Multithreading
+      </td>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+      Swagger
+      </td>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
       Structured Logging
+        <br>
+        - Logback
+        <br>
+        - Mapped Diagnostic Context (MDC)
       </td>
       <td align="center">
       </td>
@@ -357,6 +412,65 @@ Eager Beaver
     </tr>
     <tr>
       <td align="center">
+      Security
+      <br>
+      - OAuth
+      <br>
+      - Vault
+      </td>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+      Aspect Oriented Programming (AOP)
+      </td>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+      JSON
+      </td>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+      XML
+      </td>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+      Design Patterns
+      </td>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+      Documentation
+      </td>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+      Licensing
       </td>
       <td align="center">
       </td>
