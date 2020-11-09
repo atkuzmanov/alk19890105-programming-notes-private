@@ -85,9 +85,15 @@
 
 - [ ] Kotlin
 
+- [ ] Python + Django
+
+- [ ] Scala
+
 ---
 
 - [x] Find best apps/courses for learning algorithms etc.
+  - [ ] <https://java-programming.mooc.fi/>
+  - [ ] <https://yangshun.github.io/tech-interview-handbook/algorithms/algorithms-introduction/>
 
 ---
 
@@ -425,6 +431,8 @@ Project alternative code name "Eager Beaver".
     <tr>
       <td align="center">
       Distributed Tracing
+      <br>
+      - Zipkin
       </td>
       <td align="center">
       </td>
