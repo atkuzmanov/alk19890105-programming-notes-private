@@ -67,7 +67,8 @@
 
 - [ ] Kubernetes
 
-- [x] AWS
+- [x] Cloud
+  - [x] AWS
 
 - [ ] Databases
   - [ ] Relational
@@ -288,6 +289,20 @@ Project alternative code name "Eager Beaver".
       <td align="center">
       </td>
       <td align="center">
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+      Messaging
+      <br>
+      - Kafka
+      <br>
+      - RabbitMQ
+      </td>
+      <td align="center">
+      </td>
+      <td align="center">
+      AWS SQS and AWS SNS
       </td>
     </tr>
     <tr>
