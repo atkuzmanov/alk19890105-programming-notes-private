@@ -77,7 +77,7 @@
   - [ ] NoSQL
     - [ ] MongoDB
 
-- Interview Architecture Questions / Interview Hard Problem / Interview Bar Raiser
+- [ ] Interview Architecture Questions / Interview Hard Problem / Interview Bar Raiser
 
 - [x] JavaScript
 
