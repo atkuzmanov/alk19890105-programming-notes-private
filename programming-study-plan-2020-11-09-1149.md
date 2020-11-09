@@ -189,7 +189,188 @@ INTERESTED IN:
 
 Eager Beaver
 
+---
 
-
+<table border="0" cellspacing="1" cellpadding="2">
+  <tbody>
+    <tr>
+      <th>TECH</th>
+      <th>ADDITIONAL TECH</th>
+      <th>ALT TECH</th>
+    </tr>
+    <tr>
+      <td align="center" colspan="3">FRONT END</td>
+    </tr>
+    <tr>
+      <td align="center">
+      HTML5
+      </td>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+    </tr>
+        <tr>
+      <td align="center">
+      CSS
+      </td>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+      JavaScript + ReactJS + NodeJS
+      </td>
+      <td align="center">      
+      </td>
+      <td align="center">
+      Python + Django
+      <br>
+      PHP + Laravel
+      </td>
+    </tr>
+    <tr>
+      <td align="center" colspan="3">BACK END</td>
+    </tr>
+    <tr>
+      <td align="center">
+      Java
+      </td>
+      <td align="center">
+      </td>
+      <td align="center">
+      Go Lang
+      <br>
+      NodeJS
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+      Spring Boot
+      <br>
+      Spring
+      </td>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+      Data
+      <br>
+      - SQL
+      <br>
+      -- MySQL
+      <br>
+      - NoSQL
+      <br>
+      -- MongoDB
+      </td>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+    </tr>
+    <tr>
+      <td align="center" colspan="3">DEV TOOLS</td>
+    </tr>
+    <tr>
+      <td align="center">
+      GitHub
+      </td>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+      CircleCI
+      </td>
+      <td align="center">
+      </td>
+      <td align="center">
+      Jenkins
+      </td>
+    </tr>
+    <tr>
+      <td align="center" colspan="3">INFRASTRUCTURE / DEV OPS</td>
+    </tr>
+    <tr>
+      <td align="center">
+      Docker
+      </td>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+      Kubernetes
+      </td>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+      CLOUD
+      <br>
+      - AWS
+      <br>
+      - Others (Digital Ocean, Google Cloud)
+      </td>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+      <td align="center">
+      </td>
+    </tr>        
+  </tbody>
+</table>
 
 ---
