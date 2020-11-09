@@ -70,7 +70,7 @@
 - [x] Cloud
   - [x] AWS
 
-- [ ] Databases
+- [ ] Data / Databases
   - [ ] Relational
     - [ ] SQL
     - [ ] MySQL
