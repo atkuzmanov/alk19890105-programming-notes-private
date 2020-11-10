@@ -94,7 +94,7 @@
 ---
 
 - [x] Find best apps/courses for learning algorithms etc.
-  - [ ] <https://java-programming.mooc.fi/>
+  - [ ] <https://www.mooc.fi/en>
   - [ ] <https://yangshun.github.io/tech-interview-handbook/algorithms/algorithms-introduction/>
 
 ---
