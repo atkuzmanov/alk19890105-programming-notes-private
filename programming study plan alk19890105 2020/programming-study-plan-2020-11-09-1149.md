@@ -336,7 +336,11 @@ Project alternative code name "Eager Beaver".
     </tr>
     <tr>
       <td align="center">
-      CircleCI
+      CI/CD
+      <br>
+      - CircleCI
+      <br>
+      - GitHub Actions
       </td>
       <td align="center">
       </td>
