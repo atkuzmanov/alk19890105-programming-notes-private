@@ -137,15 +137,37 @@
   - [x] <https://developer.mozilla.org/en-US/docs/Glossary/Callback_function>
 - [x] Semaphore
   - [x] <http://tutorials.jenkov.com/java-concurrency/semaphores.html>
-- [ ] Circuit Breaker
-- [ ] Git actions?
+- [x] Circuit Breaker
+  - [x] <https://java-design-patterns.com/patterns/circuit-breaker/>
+  - [x] <https://martinfowler.com/bliki/CircuitBreaker.html>
+  - [x] <https://stackoverflow.com/questions/30285637/circuit-breaker-design-pattern-implementation>
+- [ ] GitHub Actions
+  - [ ] <https://docs.github.com/en/free-pro-team@latest/actions>
 - [ ] Minesweeper game task
 - [ ] Java formatting IDE
+  - [ ] Eclipse Code Formatter
+    - [ ] <https://www.beyondjava.net/run-eclipse-formatter-command-line>
+    - [ ] <https://stackoverflow.com/questions/384101/can-the-eclipse-java-formatter-be-used-stand-alone>
+    - [ ] <https://peterfriese.wordpress.com/2007/05/28/formatting-your-code-using-the-eclipse-code-formatter/>
+  - [ ] Checkstyle
+    - [ ] <https://checkstyle.sourceforge.io/>
+    - [ ] <https://checkstyle.sourceforge.io/cmdline.html>
+    - [ ] <https://www.baeldung.com/checkstyle-java>
+    - [ ] Checkstyle in CircleCI
+      - [ ] <https://fossies.org/linux/checkstyle/.circleci/config.yml>
+      - [ ] <https://gist.github.com/cobot00/e0ed6ad4138af883e9f8aadb9c477505>
+  - [ ] Checstyle atlernatives
+    - [ ] PMD <https://github.com/pmd/pmd>
+  - [ ] EDITORCONFIG
+    - [ ] <https://editorconfig.org/>
+  - [ ] Java Code Conventions
+    - [ ] <https://www.oracle.com/technetwork/java/codeconventions-150003.pdf>
+    - [ ] <https://checkstyle.org/styleguides/sun-code-conventions-19990420/CodeConvTOC.doc.html>
 - [x] CRUD SpringBoot app + threads + read CSV file + SQL
 - [ ] VIM
 - [x] Hackerrank
 - [ ] BST
-- [ ] sqrt
+- [ ] SQRT
 - [ ] Time complexity O(n)
 
 ---
