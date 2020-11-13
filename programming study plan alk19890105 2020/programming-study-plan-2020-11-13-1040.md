@@ -143,7 +143,6 @@
   - [x] <https://stackoverflow.com/questions/30285637/circuit-breaker-design-pattern-implementation>
 - [ ] GitHub Actions
   - [ ] <https://docs.github.com/en/free-pro-team@latest/actions>
-- [ ] Minesweeper game task
 - [ ] Java formatting IDE
   - [ ] Eclipse Code Formatter
     - [ ] <https://www.beyondjava.net/run-eclipse-formatter-command-line>
@@ -163,7 +162,9 @@
   - [ ] Java Code Conventions
     - [ ] <https://www.oracle.com/technetwork/java/codeconventions-150003.pdf>
     - [ ] <https://checkstyle.org/styleguides/sun-code-conventions-19990420/CodeConvTOC.doc.html>
-- [x] CRUD SpringBoot app + threads + read CSV file + SQL
+- [x] CRUD SpringBoot app + threads + read CSV file + SQL interview task
+- [ ] JSON parsing interview
+- [ ] Minesweeper game interview task
 - [ ] VIM
 - [x] Hackerrank
 - [ ] BST
@@ -617,6 +618,10 @@ Project alternative code name "Eager Beaver".
     - [ ] SQL
 
 - [ ] Interview Architecture Questions / Interview Hard Problem / Interview Bar Raiser
+
+- [ ] JSON parsing interview
+
+- [ ] Minesweeper game interview task
 
 - [ ] Videa - GoLang, Kotlin, Python + Django, Scala
 
