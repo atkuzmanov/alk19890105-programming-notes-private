@@ -27,6 +27,8 @@
 
   - [ ] Data structures
 
+  - [ ] Data structures & Algorithms coding tasks
+
   - [x] SpringBoot and Spring
     - [x] Dependency Injection (DI)
     - [x] Inversion Of Control (IoC)
@@ -163,13 +165,13 @@
     - [ ] <https://www.oracle.com/technetwork/java/codeconventions-150003.pdf>
     - [ ] <https://checkstyle.org/styleguides/sun-code-conventions-19990420/CodeConvTOC.doc.html>
 - [x] CRUD SpringBoot app + threads + read CSV file + SQL interview task
-- [ ] JSON parsing interview
+- [ ] JSON parsing interview task
 - [ ] Minesweeper game interview task
 - [ ] VIM
 - [x] Hackerrank
 - [ ] BST
 - [ ] SQRT
-- [ ] Time complexity O(n) 
+- [ ] Time complexity O(n)
 - [ ] Videa - GoLang, Kotlin, Python + Django, Scala
 
 ---
@@ -611,6 +613,7 @@ Project alternative code name "Eager Beaver".
 - [ ] Java
   
   - [ ] Data structures & Algorithms
+    - [ ] Data structures & Algorithms coding tasks
 
   - [ ] [java interview questions spreadsheet](./java%20interview%20questions%20spreadsheet)
 
@@ -619,8 +622,6 @@ Project alternative code name "Eager Beaver".
     - [ ] SQL
 
 - [ ] Interview Architecture Questions / Interview Hard Problem / Interview Bar Raiser
-
-- [ ] JSON parsing interview
 
 - [ ] Minesweeper game interview task
 
