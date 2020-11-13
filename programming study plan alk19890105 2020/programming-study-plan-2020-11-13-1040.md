@@ -124,11 +124,19 @@
   - [x] <https://docs.oracle.com/javase/7/docs/technotes/tools/windows/javac.html>
   - [x] <https://stackoverflow.com/questions/8215781/how-do-i-compile-with-xlintunchecked>
   - [x] <https://ucsb-cs56-pconrad.github.io/topics/maven_xlint/>
-- [ ] Java Microbenchmark Harness, JMH benchmarking
+- [x] Java Microbenchmark Harness, JMH benchmarking
+  - [x] <http://tutorials.jenkov.com/java-performance/jmh.html>
 - [x] AJAX
-- [ ] Java Server Faces
+- [x] Java Server Faces
+  - [x] <https://www.oracle.com/java/technologies/javaserverfaces.html>
+  - [x] <https://projects.eclipse.org/proposals/jakarta-server-faces>
+  - [x] <https://jakarta.ee/specifications/faces/3.0/>
 - [x] Callback function
-- [ ] Semaphore
+  - [x] <https://en.wikipedia.org/wiki/Callback_(computer_programming)>
+  - [x] <https://stackoverflow.com/questions/824234/what-is-a-callback-function>
+  - [x] <https://developer.mozilla.org/en-US/docs/Glossary/Callback_function>
+- [x] Semaphore
+  - [x] <http://tutorials.jenkov.com/java-concurrency/semaphores.html>
 - [ ] Circuit Breaker
 - [ ] Git actions?
 - [ ] Minesweeper game task
