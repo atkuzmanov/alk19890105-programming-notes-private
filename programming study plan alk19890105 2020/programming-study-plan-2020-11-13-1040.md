@@ -169,7 +169,8 @@
 - [x] Hackerrank
 - [ ] BST
 - [ ] SQRT
-- [ ] Time complexity O(n)
+- [ ] Time complexity O(n) 
+- [ ] Videa - GoLang, Kotlin, Python + Django, Scala
 
 ---
 
@@ -622,7 +623,5 @@ Project alternative code name "Eager Beaver".
 - [ ] JSON parsing interview
 
 - [ ] Minesweeper game interview task
-
-- [ ] Videa - GoLang, Kotlin, Python + Django, Scala
 
 ---
