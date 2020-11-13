@@ -12,11 +12,7 @@
 
 💬 - In progress.
 
-*️⃣ - In progress.
-
 ❌ - Will not be done.
-
-⛔️ - Will not be done.
 
 ---
 
@@ -25,7 +21,7 @@
 - [ ] Java interview questions spreadsheet  
   - [ ] [java interview questions spreadsheet](./java%20interview%20questions%20spreadsheet)
 
-- [ ] Java
+- [x] Java
   
   - [ ] Algorithms
 
@@ -35,7 +31,7 @@
     - [x] Dependency Injection (DI)
     - [x] Inversion Of Control (IoC)
 
-  - [ ] ❌ Dropwizard
+  - [ ] Dropwizard
 
   - [x] Guice
 
@@ -566,5 +562,29 @@ Project alternative code name "Eager Beaver".
     </tr>
   </tbody>
 </table>
+
+---
+---
+---
+
+## Programming study plan short
+
+[2020-11-13-1040]
+
+---
+
+- [ ] Java
+  
+  - [ ] Data structures & Algorithms
+
+  - [ ] [java interview questions spreadsheet](./java%20interview%20questions%20spreadsheet)
+
+- [ ] Data / Databases
+  - [ ] Relational
+    - [ ] SQL
+
+- [ ] Interview Architecture Questions / Interview Hard Problem / Interview Bar Raiser
+
+- [ ] Videa - GoLang, Kotlin, Python + Django, Scala
 
 ---
