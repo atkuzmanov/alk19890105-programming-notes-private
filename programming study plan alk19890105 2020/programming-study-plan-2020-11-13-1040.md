@@ -119,9 +119,12 @@
 
 ### To research
 
-- [ ] AutoValue framework
-- [ ] `-xlint:overloads`
-- [ ] JMH benchmarking
+- [x] AutoValue framework [Google Auto](https://github.com/google/auto)
+- [x] `-xlint:overloads`
+  - [x] <https://docs.oracle.com/javase/7/docs/technotes/tools/windows/javac.html>
+  - [x] <https://stackoverflow.com/questions/8215781/how-do-i-compile-with-xlintunchecked>
+  - [x] <https://ucsb-cs56-pconrad.github.io/topics/maven_xlint/>
+- [ ] Java Microbenchmark Harness, JMH benchmarking
 - [x] AJAX
 - [ ] Java Server Faces
 - [x] Callback function
