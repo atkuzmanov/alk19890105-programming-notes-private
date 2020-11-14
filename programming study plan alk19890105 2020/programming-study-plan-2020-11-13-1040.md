@@ -613,7 +613,6 @@ Project alternative code name "Eager Beaver".
 - [ ] Java
   
   - [ ] Data structures & Algorithms
-    - [ ] Data structures & Algorithms coding tasks
 
   - [ ] [java interview questions spreadsheet](./java%20interview%20questions%20spreadsheet)
 
