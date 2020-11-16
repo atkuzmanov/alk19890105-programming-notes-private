@@ -166,7 +166,7 @@
     - [ ] <https://checkstyle.org/styleguides/sun-code-conventions-19990420/CodeConvTOC.doc.html>
 - [x] CRUD SpringBoot app + threads + read CSV file + SQL interview task
 - [ ] JSON parsing interview task
-- [ ] Minesweeper game interview task
+- [x] Minesweeper game interview task
 - [ ] VIM
 - [x] Hackerrank
 - [ ] BST
@@ -625,7 +625,5 @@ Project alternative code name "Eager Beaver".
     - [ ] SQL
 
 - [ ] Interview Architecture Questions / Interview Hard Problem / Interview Bar Raiser
-
-- [ ] Minesweeper game interview task
 
 ---
