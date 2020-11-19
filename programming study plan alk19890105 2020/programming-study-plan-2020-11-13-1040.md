@@ -218,6 +218,10 @@
 
 - [ ] "Programming in Scala", Martin Odersky 2010, Second Edition, Artima 2014, ISBN-10: 9815316-4-4, ISBN-13: 978-0-9815316-4-9
 
+***Data Structures and Algorithms***
+
+- [ ] "The Algorithm Design Manual", Steven S. Skiena, 2nd Edition, 2008, Springer, ISBN-10: 1848000693, ISBN-13: 978-1848000698; "The Algorithm Design Manual", Steven S. Skiena, 3rd Edition, 2020, Springer, ISBN-10: 3030542556, ISBN-13: 978-3030542559
+
 ---
 
 ## Stack
