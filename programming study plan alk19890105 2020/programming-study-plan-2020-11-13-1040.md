@@ -614,19 +614,24 @@ Project alternative code name "Eager Beaver".
 
 ## Programming study plan short
 
-[2020-11-13-1040]
+[2020-11-22-1321]
 
 ---
 
 - [ ] Java
   
   - [ ] Data structures & Algorithms
+    - [ ] Sorting algorithms
+    - [ ] General data structures (Array, List, Stack, Queue, Map, etc.)
+    - [ ] Trees - balancing; BST; RBT;
+    - [ ] Graphs?
 
   - [ ] [java interview questions spreadsheet](./java%20interview%20questions%20spreadsheet)
 
 - [ ] Data / Databases
   - [ ] Relational
     - [ ] SQL
+    - [ ] Hibernate
 
 - [ ] Interview Architecture Questions / Interview Hard Problem / Interview Bar Raiser
 
