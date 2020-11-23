@@ -23,9 +23,8 @@
 
 - [x] Java
   
-  - [ ] Algorithms
-
-  - [ ] Data structures
+  - [ ] Algorithms & Data structures
+    - [ ] Dynamic programming & Memorization
 
   - [ ] Data structures & Algorithms coding tasks
 
