@@ -625,6 +625,7 @@ Project alternative code name "Eager Beaver".
     - [ ] General data structures (Array, List, Stack, Queue, Map, etc.)
     - [ ] Trees - balancing; BST; RBT;
     - [ ] Graphs?
+    - [ ] Dynamic programming & Memorization
 
   - [ ] [java interview questions spreadsheet](./java%20interview%20questions%20spreadsheet)
 
