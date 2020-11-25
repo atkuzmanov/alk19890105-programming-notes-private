@@ -1129,6 +1129,18 @@ So what are abstract classes exactly? Let’s go over the basics. An abstract cl
 
 An interface is not a class, like the abstract class, but it is very similar to it. It contains methods without a signature (a body). An interface cannot do anything on its own. Think of it as an empty template that you can copy and fill. It, too, is used to impose guidelines and hierarchies and provide methods to sub classes. A class cannot inherit from more than one abstract class at one time in languages like Java and C. Because of the lack of support for multiple-inheritance, interfaces are used instead.
 
+===
+
+Interface in java with example programs
+
+```text
+Nested interfaces
+An interface which is declared inside another interface or class is called nested interface. They are also known as inner interface. For example Entry interface in collections framework is declared inside Map interface, that’s why we don’ use it directly, rather we use it like this: Map.Entry.
+```
+
+> References:
+> <https://beginnersbook.com/2013/05/java-interface/>
+
 # Access modifiers
 
 |Junior |Mid  |Senior |
