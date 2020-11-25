@@ -24,7 +24,7 @@
 - [x] Java
   
   - [ ] Algorithms & Data structures
-    - [ ] Dynamic programming & Memorization
+    - [ ] Dynamic programming & Memoization
 
   - [ ] Data structures & Algorithms coding tasks
 
@@ -624,7 +624,7 @@ Project alternative code name "Eager Beaver".
     - [ ] General data structures (Array, List, Stack, Queue, Map, etc.)
     - [ ] Trees - balancing; BST; RBT;
     - [ ] Graphs?
-    - [ ] Dynamic programming & Memorization
+    - [ ] Dynamic programming & Memoization
 
   - [ ] [java interview questions spreadsheet](./java%20interview%20questions%20spreadsheet)
 
@@ -633,6 +633,8 @@ Project alternative code name "Eager Beaver".
     - [ ] SQL
     - [ ] Hibernate
 
-- [ ] Interview Architecture Questions / Interview Hard Problem / Interview Bar Raiser
+- [ ] Interview Architecture Questions / Interview Hard Problem / Interview Bar Raiser / System Design / Distributed Systems
+
+- [ ] AngularJS video
 
 ---
