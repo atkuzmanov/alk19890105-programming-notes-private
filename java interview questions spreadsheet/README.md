@@ -5327,6 +5327,8 @@ https://stackoverflow.com/questions/3295496/what-is-a-javabean-exactly
 `references:`
 https://www.javaworld.com/article/3432125/what-is-ejb-the-evolution-of-enterprise-javabeans.html
 
+- [Chapter 14 Enterprise Beans](https://docs.oracle.com/cd/E19798-01/821-1841/6nmq2cp3a/index.html)
+
 - [jakartaee-Why-not-use-Session-Beans-instead-of-Message-Driven-Beans-StackOverflow](refs/jakartaee-Why-not-use-Session-Beans-instead-of-Message-Driven-Beans-StackOverflow)
 
 `references:`
