@@ -620,11 +620,11 @@ Project alternative code name "Eager Beaver".
 - [ ] Java
   
   - [ ] Data structures & Algorithms
-    - [ ] Sorting algorithms
-    - [ ] General data structures (Array, List, Stack, Queue, Map, etc.)
+    - [x] Sorting algorithms
+    - [x] General data structures (Array, List, Stack, Queue, Map, etc.)
     - [ ] Trees - balancing; BST; RBT;
-    - [ ] Graphs?
-    - [ ] Dynamic programming & Memoization
+    - [x] Graphs
+    - [x] Dynamic programming & Memoization
 
   - [ ] [java interview questions spreadsheet](./java%20interview%20questions%20spreadsheet)
 
@@ -633,7 +633,7 @@ Project alternative code name "Eager Beaver".
     - [ ] SQL
     - [ ] Hibernate
 
-- [ ] Interview Architecture Questions / Interview Hard Problem / Interview Bar Raiser / System Design / Distributed Systems
+- [x] Interview Architecture Questions / Interview Hard Problem / Interview Bar Raiser / System Design / Distributed Systems
 
 - [ ] AngularJS video
 

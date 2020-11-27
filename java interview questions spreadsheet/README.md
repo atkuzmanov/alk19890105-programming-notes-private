@@ -5856,6 +5856,11 @@ http://tutorials.jenkov.com/java-reflection/modules.html
 |-------|-----|-------|
 |       |  x  |   x   |
 
+- [Java Volatile Keyword](http://tutorials.jenkov.com/java-concurrency/volatile.html)
+
+> References:
+> <http://tutorials.jenkov.com/java-concurrency/volatile.html>
+
 - [Difference-between-transient-and-volatile-keyword-Java](refs/Difference-between-transient-and-volatile-keyword-Java)
 
 `references:`
