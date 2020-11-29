@@ -209,6 +209,7 @@ For learning and study
 - [What is JSP](#what-is-jsp)
 - [Java Servlets](#java-servlets)
 - [JavaServer Faces; Java Server Faces; JSF;](#javaserver-faces-java-server-faces-jsf)
+- [Jakarta Server Faces (JSF; formerly JavaServer Faces) vs Angular](#jakarta-server-faces-jsf-formerly-javaserver-faces-vs-angular)
 - [JSP vs Servlet](#jsp-vs-servlet)
 - [Struts2/JSF MVC Components? What is MVC?](#struts2jsf-mvc-components-what-is-mvc)
   - [JSF MVC Components](#jsf-mvc-components)
@@ -9143,6 +9144,15 @@ https://docs.oracle.com/javaee/6/tutorial/doc/bnaph.html
 
 `references:`
 https://www.javatpoint.com/jsf-tutorial
+
+----
+
+# Jakarta Server Faces (JSF; formerly JavaServer Faces) vs Angular
+
+Why are Angular Components more Successful than JSF Components?
+
+> References
+> <https://www.beyondjava.net/angular-components-successful-jsf-components>
 
 ----
 

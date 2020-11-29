@@ -221,6 +221,10 @@
 
 - [ ] "The Algorithm Design Manual", Steven S. Skiena, 2nd Edition, 2008, Springer, ISBN-10: 1848000693, ISBN-13: 978-1848000698; "The Algorithm Design Manual", Steven S. Skiena, 3rd Edition, 2020, Springer, ISBN-10: 3030542556, ISBN-13: 978-3030542559
 
+***Mathematics / Maths***
+
+- [ ] ...
+
 ---
 
 ## Stack
@@ -611,7 +615,7 @@ Project alternative code name "Eager Beaver".
 ---
 ---
 
-## Programming study plan short
+## Programming study plan short additional
 
 [2020-11-22-1321]
 
@@ -625,16 +629,34 @@ Project alternative code name "Eager Beaver".
     - [ ] Trees - balancing; BST; RBT;
     - [x] Graphs
     - [x] Dynamic programming & Memoization
+    - [ ] Heaps
+    - [ ] Matrix
+    - [ ] Trie
+    - [ ] Binary Search
+    - [ ] Dijkstra
 
-  - [ ] [java interview questions spreadsheet](./java%20interview%20questions%20spreadsheet)
+  - [x] [java interview questions spreadsheet](./java%20interview%20questions%20spreadsheet)
 
-- [ ] Data / Databases
-  - [ ] Relational
-    - [ ] SQL
-    - [ ] Hibernate
+- [x] Data / Databases
+  - [x] Relational
+    - [x] SQL
+    - [x] Hibernate
 
 - [x] Interview Architecture Questions / Interview Hard Problem / Interview Bar Raiser / System Design / Distributed Systems
 
-- [ ] AngularJS video
+- [x] AngularJS
+
+- [ ] Go / Go Lang
+
+- [x] Threads / Dead Lock / Dining Philosophers
+  - [x] Concurrent vs Parallel
+
+- [ ] Memcache vs Varnish
+
+- [ ] Consistent Hashing
+
+- [ ] Knuth Algorithms book
+
+- [ ] Krasimir Minev Diskretna matematika kniga
 
 ---
