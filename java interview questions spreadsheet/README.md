@@ -84,6 +84,8 @@ For learning and study
 - [why make private fields also final if they cannot be accessed if getters and setters not provided? How do Spring inject private object fields?](#why-make-private-fields-also-final-if-they-cannot-be-accessed-if-getters-and-setters-not-provided-how-do-spring-inject-private-object-fields)
   - [why make private fields also final if they cannot be accessed if getters and setters not provided?](#why-make-private-fields-also-final-if-they-cannot-be-accessed-if-getters-and-setters-not-provided)
   - [How does Spring inject private object fields?](#how-does-spring-inject-private-object-fields)
+      - [Types of injection in Spring](#types-of-injection-in-spring)
+        - [Why field injection is not recommended in Spring IOC?](#why-field-injection-is-not-recommended-in-spring-ioc)
 - [Defensive copying](#defensive-copying)
 - [GC algorithm (mark and sweep)](#gc-algorithm-mark-and-sweep)
 - [Heap zones for GC](#heap-zones-for-gc)
@@ -6036,10 +6038,106 @@ https://en.wikipedia.org/wiki/Final_(Java)
 `references:`
 https://stackoverflow.com/questions/3536674/how-does-spring-annotation-autowired-work
 
+--
+
+#### Types of injection in Spring
+
+- Constructor-based dependency injection
+- Setter-based dependency injection
+- Field-based dependency injection
+
+**Constructor-based dependency injection**
+
+In constructor-based dependency injection, the class constructor is annotated with @Autowired and includes a variable number of arguments with the objects to be injected.
+
+```java
+@Component
+public class ConstructorBasedInjection {
+
+    private final InjectedBean injectedBean;
+
+    @Autowired
+    public ConstructorBasedInjection(InjectedBean injectedBean) {
+        this.injectedBean = injectedBean;
+    }
+
+}
+```
+
+The main advantage of constructor-based injection is that you can declare your injected fields final, as they will be initiated during class instantiation. This is convenient for required dependencies.
+
+**Setter-based dependency injection**
+
+In setter-based dependency injection, setter methods are annotated with @Autowired. Spring container will call these setter methods once the Bean is instantiated using a no-argument constructor or a no-argument static factory method in order to inject the Bean’s dependencies.
+
+```java
+@Component
+public class ConstructorBasedInjection {
+
+    private InjectedBean injectedBean;
+
+    @Autowired
+    public void setInjectedBean(InjectedBean injectedBean) {
+        this.injectedBean = injectedBean;
+    }
+
+}
+```
+
+##### Why field injection is not recommended in Spring IOC?
+
+Field-based dependency injection
+In field-based dependency injection, fields/properties are annotated with @Autowired. Spring container will set these fields once the class is instantiated.
+
+```java
+@Component
+public class ConstructorBasedInjection {
+
+    @Autowired
+    private InjectedBean injectedBean;
+
+}
+```
+
+As you can see, this is the cleanest way to inject dependencies as it avoids adding boilerplate code and there is no need to declare a constructor for the class. The code looks nice, neat and concise but as the code inspector already hinted us, there are some drawbacks to this approach.
+
+Field-based dependency injection drawbacks
+
+**Disallows immutable field declaration**
+
+Field-based dependency injection won’t work on fields that are declared final/immutable as this fields must be instantiated at class instantiation. The only way to declare immutable dependencies is by using constructor-based dependency injection.
+
+**Eases single responsibility principle violation**
+
+As you know, in object-oriented computer programming, the SOLID acronym defines five design principles that will make your code understandable, flexible and maintainable.
+
+The S in SOLID stands for single responsibility principle, meaning that a class should only be responsible for a single part of the functionality of the software application and all its services should be aligned narrowly with that responsibility.
+
+With field-based dependency injection, it’s really easy to have lots of dependencies in your class and everything will look just fine. If constructor-based dependency injection is used instead, as more dependencies are added to your class, the constructor grows bigger and bigger and code starts to smell, sending clear signals that something is wrong.
+
+Having a constructor with more than ten arguments is a clear sign that the class has too many collaborators and that maybe is a good time to start splitting the class into smaller and more maintainable pieces.
+
+So although field-injection is not directly responsible for breaking the single responsibility principle it surely enough helps by hiding signals that otherwise would be really clear.
+
+**Tightly coupled with dependency injection container**
+
+The main reason to use field-based injection is to avoid the boilerplate code for getters and setters or creating constructors for your class. In the end, this means that the only way these fields can be set are by Spring container instantiating the class and injecting them using reflection, otherwise the fields will remain null and your class will be broken/useless.
+
+The dependency injection design pattern separates the creation of class dependencies from the class itself transferring this responsibility to a class injector allowing the program design to be loosely coupled and to follow the Single responsibility and Dependency inversion principles (again SOLID). So in the end the decoupling achieved for the class by autowiring its fields is lost by getting coupled again with the class injector (in this case Spring) making the class useless outside of a Spring container.
+
+This means that if you want to use your class outside the application container, for example for unit testing, you are forced to use a Spring container to instantiate your class as there is no other possible way (but reflection) to set the autowired fields.
+
+**Hidden dependencies**
+
+When using a dependency injection pattern, affected classes should clearly expose these dependencies using a public interface either by exposing the the required dependencies in the constructor or the optional ones using methods (setters). When using field-based dependency injection, the class is inherently hiding these dependencies to the outside world.
+
+
 - [Field-injection-is-not-recommended-Spring-IOC-Marc-Nuri](refs/Field-injection-is-not-recommended-Spring-IOC-Marc-Nuri)
 
 `references:`
 https://blog.marcnuri.com/field-injection-is-not-recommended/
+
+--
 
 - [Field-Dependency-Injection-Considered-Harmful-VojtechRuzickas-Programming-Blog](refs/Field-Dependency-Injection-Considered-Harmful-VojtechRuzickas-Programming-Blog)
 
